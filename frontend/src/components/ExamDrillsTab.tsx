@@ -14,18 +14,28 @@ interface ExamDrillsTabProps {
   summary: ContentSummary;
 }
 
-function StudyLink({ question, summary }: { question: Question; summary: ContentSummary }) {
+function findLessonForQuestion(question: Question, summary: ContentSummary) {
   const lessons = summary.lessonIndex ?? [];
   const objectives = question.objectiveIds ?? [];
-  const lesson =
+  return (
     lessons.find((row) => row.drillIds?.includes(question.id)) ??
-    lessons.find((row) => row.objectiveIds?.some((id) => objectives.includes(id)));
+    lessons.find((row) => row.objectiveIds?.some((id) => objectives.includes(id)))
+  );
+}
+
+function StudyLink({ question, summary }: { question: Question; summary: ContentSummary }) {
+  const lesson = findLessonForQuestion(question, summary);
   if (!lesson) return null;
   return (
     <p>
       <Link to={`/start?lesson=${encodeURIComponent(lesson.id)}`}>Study: {lesson.title}</Link>
     </p>
   );
+}
+
+function backToStartHref(question: Question, summary: ContentSummary) {
+  const lesson = findLessonForQuestion(question, summary);
+  return lesson ? `/start?lesson=${encodeURIComponent(lesson.id)}` : '/start';
 }
 
 interface QuestionMeta {
@@ -36,7 +46,7 @@ interface QuestionMeta {
 }
 
 export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [catalog, setCatalog] = useState<QuestionMeta[]>([]);
   const [activeModule, setActiveModule] = useState<string | null>(null);
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
@@ -51,6 +61,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
   const [openedFromQuery, setOpenedFromQuery] = useState(false);
   const scrollToQuestion = useRef(false);
   const questionHeading = useRef<HTMLHeadingElement>(null);
+  const questionArticle = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -140,9 +151,25 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
     scrollToQuestion.current = false;
     const heading = questionHeading.current;
     if (!heading) return;
-    heading.scrollIntoView({ block: 'start' });
+    (questionArticle.current ?? heading).scrollIntoView({ block: 'start' });
     heading.focus({ preventScroll: true });
   }, [question]);
+
+  // Keep ?q= in sync with whichever drill is active, however it got there
+  // (card click, module/All-drills filter falling back to the first drill,
+  // or the initial load), so a reload or shared link reopens the same drill.
+  useEffect(() => {
+    if (!activeQuestionId) return;
+    if (searchParams.get('q') === activeQuestionId) return;
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set('q', activeQuestionId);
+        return next;
+      },
+      { replace: true },
+    );
+  }, [activeQuestionId, searchParams, setSearchParams]);
 
   const toggleChoice = (id: string) => {
     if (!question || result) return;
@@ -236,7 +263,9 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
 
         {openedFromQuery && (
           <p>
-            <a href="/start">Back to Start here</a>
+            <Link to={question ? backToStartHref(question, summary) : '/start'}>
+              Back to Start here
+            </Link>
           </p>
         )}
         {unknownQueryId && (
@@ -263,15 +292,15 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                     style={DOMAIN_STYLE[color]}
                     onClick={() => {
                       setUnknownQueryId(null);
-                      setSearchParams({ q: q.id }, { replace: true });
                       if (q.id !== activeQuestionId) {
                         scrollToQuestion.current = true;
                         setActiveQuestionId(q.id);
                       } else {
                         scrollToQuestion.current = false;
-                        const heading = questionHeading.current;
-                        heading?.scrollIntoView({ block: 'start' });
-                        heading?.focus({ preventScroll: true });
+                        (questionArticle.current ?? questionHeading.current)?.scrollIntoView({
+                          block: 'start',
+                        });
+                        questionHeading.current?.focus({ preventScroll: true });
                       }
                     }}
                   >
@@ -312,6 +341,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
 
             {question && (
               <article
+                ref={questionArticle}
                 className="pbq"
                 style={DOMAIN_STYLE[EXAM_MODULE_COLOR[question.module ?? 'A0'] ?? 'd1']}
               >

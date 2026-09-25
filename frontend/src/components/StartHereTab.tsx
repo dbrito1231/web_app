@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../api/client';
 import type { ExerciseIndexRow, LabIndexRow, Lesson, ReadinessPayload } from '../types';
 import { MarkdownBody } from '../utils/markdown';
@@ -34,7 +34,7 @@ function RelatedPractice({
           <ul>
             {relatedLabs.map((lab) => (
               <li key={lab.id}>
-                <a href={`/labs?lab=${encodeURIComponent(lab.id)}`}>{lab.title}</a>
+                <Link to={`/labs?lab=${encodeURIComponent(lab.id)}`}>{lab.title}</Link>
               </li>
             ))}
           </ul>
@@ -64,26 +64,44 @@ export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: S
   ]);
   const [labIndex, setLabIndex] = useState<LabIndexRow[]>([]);
   const [exerciseIndex, setExerciseIndex] = useState<ExerciseIndexRow[]>([]);
-  const [lessonId, setLessonIdState] = useState(
-    () => searchParams.get('lesson') || 'a0-lab-safety',
-  );
+  // ?lesson= is the single source of truth: no separate lessonId state, so a
+  // picker change or an in-app nav (e.g. the Exam drills Study link) each
+  // cause exactly one fetch instead of a state/URL ping-pong.
+  const lessonId = searchParams.get('lesson') || 'a0-lab-safety';
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [importText, setImportText] = useState('');
   const [resetText, setResetText] = useState('');
   const [message, setMessage] = useState<string | null>(null);
+  const previousLessonId = useRef(lessonId);
+  // StartHereTab mounts fresh each time the Start here tab becomes active
+  // (App.tsx only renders it while tab === 'start'), so an in-app nav such as
+  // the Exam drills Study link (`/start?lesson=...`) is a first mount with a
+  // `lesson` param already in the URL, not a same-instance lessonId change.
+  // Scroll on that first mount too, whenever a `lesson` param was requested.
+  const scrollToLesson = useRef(Boolean(searchParams.get('lesson')));
+  const lessonHeading = useRef<HTMLHeadingElement>(null);
 
-  // Pick up ?lesson= changes that happen via in-app navigation (e.g. a router
-  // Link from the Exam drills Study link), not just the value read on mount.
+  // Whenever the active lesson changes afterwards (picker or a repeat
+  // in-app nav while already mounted), scroll the lesson heading into view
+  // and focus it once the lesson has loaded.
   useEffect(() => {
-    const fromUrl = searchParams.get('lesson');
-    if (fromUrl && fromUrl !== lessonId) {
-      setLessonIdState(fromUrl);
+    if (previousLessonId.current !== lessonId) {
+      scrollToLesson.current = true;
+      previousLessonId.current = lessonId;
     }
-  }, [searchParams, lessonId]);
+  }, [lessonId]);
+
+  useEffect(() => {
+    if (!lesson || !scrollToLesson.current) return;
+    scrollToLesson.current = false;
+    const heading = lessonHeading.current;
+    if (!heading) return;
+    heading.scrollIntoView({ block: 'start' });
+    heading.focus({ preventScroll: true });
+  }, [lesson]);
 
   const setLessonId = (id: string) => {
-    setLessonIdState(id);
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
@@ -284,7 +302,9 @@ export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: S
         </div>
 
         <div className="prose" style={{ marginTop: 22 }}>
-          <h2>{lesson?.title ?? 'A0 — Lab safety'}</h2>
+          <h2 ref={lessonHeading} tabIndex={-1} className="lesson-heading">
+            {lesson?.title ?? 'A0 — Lab safety'}
+          </h2>
           <label className="lesson-picker">
             Lesson
             <select value={lessonId} onChange={(e) => setLessonId(e.target.value)}>
@@ -302,7 +322,7 @@ export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: S
               <ul>
                 {lesson.drillIds.map((id) => (
                   <li key={id}>
-                    <a href={`/exam?q=${encodeURIComponent(id)}`}>{id}</a>
+                    <Link to={`/exam?q=${encodeURIComponent(id)}`}>{id}</Link>
                   </li>
                 ))}
               </ul>
