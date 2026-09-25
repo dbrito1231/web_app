@@ -280,7 +280,11 @@ Both confirm that N1–N3 are real and approve the N1, N2a, N2c and N3 fixes. Bo
 
 **Learning content affected:** yes.
 
-**Status: waiting for your approval.**
+**Status: approved by you on 2026-09-26, all items.** On the same day you also approved:
+- fixing FS-R2-2-001 and FS-R2-2-002 now (within O6/R5);
+- drafting the Q1 pilot batch (SAA task 1.1) for review.
+
+The Teacher re-validates the finished lab changes (AGENTS.md "after implementation").
 
 ## Learning content impact
 

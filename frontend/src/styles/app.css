@@ -166,6 +166,8 @@ table.cov td:first-child{width:44%;color:var(--ink)}
 .pbq-card .m{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
 .pbq{background:var(--panel);border:1px solid var(--rule-strong);border-radius:6px;padding:20px 22px;box-shadow:var(--shadow)}
 .pbq h2{font-size:21px;margin-bottom:6px}
+.pbq-heading{scroll-margin-top:80px}
+.pbq-heading:focus{outline:2px solid var(--dc);outline-offset:4px}
 .pbq .prompt{max-width:80ch;margin:8px 0 14px}
 .exhibit{background:var(--code-bg);border:1px solid var(--code-rule);border-radius:5px;overflow-x:auto;margin:10px 0 16px}
 .exhibit pre{margin:0;padding:12px 14px;font-size:12.6px;line-height:1.55;color:var(--code-ink)}

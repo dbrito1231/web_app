@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { api } from '../api/client';
 import {
   DOMAIN_STYLE,
@@ -13,8 +13,12 @@ interface ExamDrillsTabProps {
   summary: ContentSummary;
 }
 
-function StudyLink({ questionId, summary }: { questionId: string; summary: ContentSummary }) {
-  const lesson = summary.lessonIndex?.find((row) => row.drillIds?.includes(questionId));
+function StudyLink({ question, summary }: { question: Question; summary: ContentSummary }) {
+  const lessons = summary.lessonIndex ?? [];
+  const objectives = question.objectiveIds ?? [];
+  const lesson =
+    lessons.find((row) => row.drillIds?.includes(question.id)) ??
+    lessons.find((row) => row.objectiveIds?.some((id) => objectives.includes(id)));
   if (!lesson) return null;
   return (
     <p>
@@ -43,6 +47,8 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
   const [error, setError] = useState<string | null>(null);
   const [unknownQueryId, setUnknownQueryId] = useState<string | null>(null);
   const [openedFromQuery, setOpenedFromQuery] = useState(false);
+  const scrollToQuestion = useRef(false);
+  const questionHeading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -65,6 +71,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
         if (requested) setOpenedFromQuery(true);
         const pick = requested ? rows.find((row) => row.id === requested) : undefined;
         if (pick) {
+          scrollToQuestion.current = true;
           setUnknownQueryId(null);
           setActiveModule(null);
           setActiveQuestionId(pick.id);
@@ -125,6 +132,15 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
       cancelled = true;
     };
   }, [activeQuestionId]);
+
+  useEffect(() => {
+    if (!question || !scrollToQuestion.current) return;
+    scrollToQuestion.current = false;
+    const heading = questionHeading.current;
+    if (!heading) return;
+    heading.scrollIntoView({ block: 'start' });
+    heading.focus({ preventScroll: true });
+  }, [question]);
 
   const toggleChoice = (id: string) => {
     if (!question || result) return;
@@ -244,6 +260,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                     className={`pbq-card ${q.id === activeQuestionId ? 'sel' : ''}`}
                     style={DOMAIN_STYLE[color]}
                     onClick={() => {
+                      scrollToQuestion.current = true;
                       setUnknownQueryId(null);
                       setActiveQuestionId(q.id);
                     }}
@@ -292,8 +309,10 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                   Module {question.module ?? 'A0'} ·{' '}
                   {question.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
                 </div>
-                <StudyLink questionId={question.id} summary={summary} />
-                <h2>{question.id}</h2>
+                <StudyLink question={question} summary={summary} />
+                <h2 ref={questionHeading} tabIndex={-1} className="pbq-heading">
+                  {question.id}
+                </h2>
                 <div className="prompt">
                   {question.stem}
                   {question.promptNote && (
