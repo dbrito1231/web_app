@@ -45,8 +45,10 @@ function WorkbookShell() {
     readiness,
     labsById,
     headerStats,
+    notice,
+    clearNotice,
     refreshProgress,
-    reload,
+    reloadWithNotice,
   } = useWorkbookBootstrap();
 
   const setTab = useCallback(
@@ -105,7 +107,12 @@ function WorkbookShell() {
             {tab === 'exam' && <ExamDrillsTab summary={summary} />}
             {tab === 'coverage' && <CoverageTab />}
             {tab === 'start' && (
-              <StartHereTab readiness={readiness} onReload={() => void reload()} />
+              <StartHereTab
+                readiness={readiness}
+                notice={notice}
+                onDismissNotice={clearNotice}
+                onReload={(message) => void reloadWithNotice(message)}
+              />
             )}
           </>
         )}

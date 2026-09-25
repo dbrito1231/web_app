@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CURRICULUM, DOMAIN_STYLE } from '../data/curriculum';
 import type { ContentSummary, Lab, ProgressSnapshot } from '../types';
 import { computeHeaderStats, labStepProgress } from '../utils/progress';
@@ -25,12 +26,19 @@ export function LabsTab({
   const available = useMemo(() => new Set(summary.labs), [summary.labs]);
   const stats = computeHeaderStats(labsById, progress);
 
-  const linkedLab = new URLSearchParams(window.location.search).get('lab') ?? '';
+  const [searchParams] = useSearchParams();
+  const linkedLab = searchParams.get('lab') ?? '';
   const [mainQuery, setMainQuery] = useState(linkedLab);
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('');
   const [selectedModId, setSelectedModId] = useState<string | null>(null);
   const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
+
+  // Keep the search box in sync with ?lab= across in-app navigation: a fresh
+  // linked id replaces the box, and navigating to plain /labs clears it.
+  useEffect(() => {
+    setMainQuery(linkedLab);
+  }, [linkedLab]);
 
   const totalCatalogLabs = useMemo(
     () =>

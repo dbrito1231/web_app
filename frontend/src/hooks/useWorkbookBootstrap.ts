@@ -25,6 +25,7 @@ export function useWorkbookBootstrap() {
   const [readiness, setReadiness] = useState<ReadinessPayload | null>(null);
   const [labsById, setLabsById] = useState<Map<string, Lab>>(new Map());
   const [labsLoading, setLabsLoading] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
   const labsStarted = useRef(false);
   const [headerStats, setHeaderStats] = useState<HeaderStats>({
     progressPercent: 0,
@@ -102,6 +103,16 @@ export function useWorkbookBootstrap() {
     void bootstrap();
   }, [bootstrap]);
 
+  const reloadWithNotice = useCallback(
+    async (message: string) => {
+      await bootstrap();
+      setNotice(message);
+    },
+    [bootstrap],
+  );
+
+  const clearNotice = useCallback(() => setNotice(null), []);
+
   useEffect(() => {
     if (!summary?.labIndex) return;
     setHeaderStats(computeHeaderStatsFromIndex(summary.labIndex, progress));
@@ -123,7 +134,10 @@ export function useWorkbookBootstrap() {
     readiness,
     labsById,
     headerStats,
+    notice,
+    clearNotice,
     refreshProgress: onProgressChange,
     reload: bootstrap,
+    reloadWithNotice,
   };
 }

@@ -1,4 +1,4 @@
-import type { KeyboardEvent } from 'react';
+import { useEffect, useRef, type KeyboardEvent } from 'react';
 import type { HeaderStats, TabId } from '../types';
 
 const TABS: { id: TabId; label: string; view: string }[] = [
@@ -15,6 +15,21 @@ interface HeaderProps {
 }
 
 export function Header({ activeTab, onTabChange, stats }: HeaderProps) {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const setVar = () => {
+      document.documentElement.style.setProperty('--header-h', `${el.offsetHeight}px`);
+    };
+    setVar();
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(setVar);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
     if (event.key === 'ArrowRight') next = (index + 1) % TABS.length;
@@ -29,7 +44,7 @@ export function Header({ activeTab, onTabChange, stats }: HeaderProps) {
   };
 
   return (
-    <header className="top">
+    <header className="top" ref={headerRef}>
       <a href="#main" className="skip-link">
         Skip to main content
       </a>

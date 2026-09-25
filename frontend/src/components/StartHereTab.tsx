@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { api } from '../api/client';
 import type { ExerciseIndexRow, LabIndexRow, Lesson, ReadinessPayload } from '../types';
 import { MarkdownBody } from '../utils/markdown';
 
 interface StartHereTabProps {
   readiness: ReadinessPayload | null;
-  onReload: () => void;
+  notice: string | null;
+  onDismissNotice: () => void;
+  onReload: (message: string) => void;
 }
 
 function RelatedPractice({
@@ -54,20 +57,48 @@ function RelatedPractice({
   );
 }
 
-export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
+export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: StartHereTabProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [lessonIndex, setLessonIndex] = useState<Array<{ id: string; title: string }>>([
     { id: 'a0-lab-safety', title: 'A0 — Lab safety' },
   ]);
   const [labIndex, setLabIndex] = useState<LabIndexRow[]>([]);
   const [exerciseIndex, setExerciseIndex] = useState<ExerciseIndexRow[]>([]);
-  const [lessonId, setLessonId] = useState(
-    () => new URLSearchParams(window.location.search).get('lesson') || 'a0-lab-safety',
+  const [lessonId, setLessonIdState] = useState(
+    () => searchParams.get('lesson') || 'a0-lab-safety',
   );
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [importText, setImportText] = useState('');
   const [resetText, setResetText] = useState('');
   const [message, setMessage] = useState<string | null>(null);
+
+  // Pick up ?lesson= changes that happen via in-app navigation (e.g. a router
+  // Link from the Exam drills Study link), not just the value read on mount.
+  useEffect(() => {
+    const fromUrl = searchParams.get('lesson');
+    if (fromUrl && fromUrl !== lessonId) {
+      setLessonIdState(fromUrl);
+    }
+  }, [searchParams, lessonId]);
+
+  const setLessonId = (id: string) => {
+    setLessonIdState(id);
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        next.set('lesson', id);
+        return next;
+      },
+      { replace: true },
+    );
+  };
+
+  useEffect(() => {
+    if (!notice) return;
+    const timer = window.setTimeout(() => onDismissNotice(), 5000);
+    return () => window.clearTimeout(timer);
+  }, [notice, onDismissNotice]);
 
   useEffect(() => {
     let cancelled = false;
@@ -123,8 +154,7 @@ export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
     try {
       const payload = JSON.parse(importText) as unknown;
       await api.importProgress(payload);
-      setMessage('Import completed');
-      onReload();
+      onReload('Import completed');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Import failed');
     }
@@ -140,8 +170,7 @@ export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
     try {
       await api.resetProgress();
       setResetText('');
-      setMessage('Progress reset');
-      onReload();
+      onReload('Progress reset');
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Reset failed');
     }
@@ -353,9 +382,9 @@ export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
             Reset all progress
           </button>
 
-          {message && (
+          {(message || notice) && (
             <p className="success-msg" role="status">
-              {message}
+              {message ?? notice}
             </p>
           )}
           {error && (

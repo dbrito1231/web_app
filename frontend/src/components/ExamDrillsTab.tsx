@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../api/client';
 import {
   DOMAIN_STYLE,
@@ -22,7 +23,7 @@ function StudyLink({ question, summary }: { question: Question; summary: Content
   if (!lesson) return null;
   return (
     <p>
-      <a href={`/start?lesson=${encodeURIComponent(lesson.id)}`}>Study: {lesson.title}</a>
+      <Link to={`/start?lesson=${encodeURIComponent(lesson.id)}`}>Study: {lesson.title}</Link>
     </p>
   );
 }
@@ -35,6 +36,7 @@ interface QuestionMeta {
 }
 
 export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
+  const [, setSearchParams] = useSearchParams();
   const [catalog, setCatalog] = useState<QuestionMeta[]>([]);
   const [activeModule, setActiveModule] = useState<string | null>(null);
   const [activeQuestionId, setActiveQuestionId] = useState<string | null>(null);
@@ -260,9 +262,17 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                     className={`pbq-card ${q.id === activeQuestionId ? 'sel' : ''}`}
                     style={DOMAIN_STYLE[color]}
                     onClick={() => {
-                      scrollToQuestion.current = true;
                       setUnknownQueryId(null);
-                      setActiveQuestionId(q.id);
+                      setSearchParams({ q: q.id }, { replace: true });
+                      if (q.id !== activeQuestionId) {
+                        scrollToQuestion.current = true;
+                        setActiveQuestionId(q.id);
+                      } else {
+                        scrollToQuestion.current = false;
+                        const heading = questionHeading.current;
+                        heading?.scrollIntoView({ block: 'start' });
+                        heading?.focus({ preventScroll: true });
+                      }
                     }}
                   >
                     <span className="eyebrow" style={{ color: 'var(--dc)' }}>
@@ -309,10 +319,10 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                   Module {question.module ?? 'A0'} ·{' '}
                   {question.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
                 </div>
-                <StudyLink question={question} summary={summary} />
                 <h2 ref={questionHeading} tabIndex={-1} className="pbq-heading">
                   {question.id}
                 </h2>
+                <StudyLink question={question} summary={summary} />
                 <div className="prompt">
                   {question.stem}
                   {question.promptNote && (
