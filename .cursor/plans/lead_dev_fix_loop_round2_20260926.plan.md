@@ -7,13 +7,13 @@ todos:
     status: completed
   - id: phase-0-baseline
     content: Git baseline commit (with user OK), DB fingerprint, server PIDs, register reconciled
-    status: pending
+    status: completed
   - id: phase-1-decisions
     content: User decisions D1–D6 recorded
-    status: pending
+    status: completed
   - id: phase-2-reverify
     content: Team re-verifies every change made after round-final (R1–R6)
-    status: pending
+    status: completed
   - id: phase-3-open-items
     content: Validate and fix remaining open items (O1–O10)
     status: pending

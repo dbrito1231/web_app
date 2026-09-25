@@ -44,27 +44,27 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 
 | ID | What | Status |
 |----|------|--------|
-| R1 | GL-17 DDL matches the CSV, the query, and cleanup | Reported |
-| R2 | GL-08 `user-data.sh` is LF, no BOM, and readable on the Labs screen. Current step still says `Set-Content` | Reported |
-| R3 | Eight stem openings | Recorded as not a fix. Covered by Q1 |
-| R4 | All 23 Start here titles; keyboard and screen-reader labels | Reported |
-| R5 | `/exam?q=` opens that question; a bad id is clear; back works | Reported |
-| R6 | Each domain-4 bullet cites the official doc for its topic | Reported |
+| R1 | GL-17 DDL matches the CSV, the query, and cleanup | Closed. Teacher recheck Pass (2026-09-25): real newline CSV; Athena drop table then drop database in s09 and teardown, before S3 deletes |
+| R2 | GL-08 `user-data.sh` is LF, no BOM, and readable on the Labs screen | Closed. Teacher recheck Pass (2026-09-25): `WriteAllText` with UTF-8 no BOM and `` `n ``; `Set-Content` gone; still `file://user-data.sh` |
+| R3 | Eight stem openings | Not a fix. Teacher and Student agree. Covered by Q1 |
+| R4 | All 23 Start here titles; keyboard and screen-reader labels | Pass. Full-Stack and Student agree. Closed |
+| R5 | `/exam?q=` opens that question; a bad id is clear; back works | Agreed Fail (Full-Stack, Student). Fixed after review: unknown id shows a message; “Back to Start here” when opened with `?q=`. Awaiting a new review |
+| R6 | Each domain-4 bullet cites the official doc for its topic | Fail. AWS and Teacher agree. Fix not started |
 
 ## Round-2 open items (not started)
 
 | ID | Issue | WP | Status |
 |----|-------|----|--------|
-| O1 | Lab details and header progress (FS-FINAL-001) | WP8b | Reported. Partial patch exists; validate first |
-| O2 | Lab card accessible name (FS-FINAL-002) | WP8b | Reported. Partial patch exists; validate first |
-| O3 | Tab ARIA: tablist, selected, controls, arrow keys | WP8b | Reported |
-| O4 | Markdown helper misses some lesson and lab constructs | WP8b | Reported |
-| O5 | Exam layout at 375px | WP8b | Reported |
-| O6 | Each drill links back to its lesson | WP7b | Reported |
-| O7 | Each lesson links to its labs and design exercises | WP7b | Reported |
-| O8 | GL-07 says EFS but has no EFS steps; GL-21 title says HCP | WP5b | Reported |
-| O9 | Missing sidecar templates; s12–s15 boilerplate | WP5b | Reported |
-| O10 | Corrupt content JSON returns a clear JSON 500 | WP9b | Reported |
+| O1 | Lab details and header progress (FS-FINAL-001) | WP8b | Fixed. Header uses summary step counts (630 steps, 42 labs) before lab bodies load. Labs still load when the Labs tab opens |
+| O2 | Lab card accessible name (FS-FINAL-002) | WP8b | Fixed. Card name is `GL-07 details`. Checked in the browser |
+| O3 | Tab ARIA: tablist, selected, controls, arrow keys | WP8b | Fixed. ArrowRight moves from Exam drills to Coverage and focuses that tab |
+| O4 | Markdown helper misses some lesson and lab constructs | WP8b | Fixed for `###` and `####` headings used in lessons. Checked on lesson 1.1 |
+| O5 | Exam layout at 375px | WP8b | Fixed. One column, no horizontal scroll at 375px |
+| O6 | Each drill links back to its lesson | WP7b | Fixed. `Study:` link on `q-saa-1-1-k01-mc` opens lesson 1.1 |
+| O7 | Each lesson links to its labs and design exercises | WP7b | Fixed. Matched on objective ids. Lab links open `/labs?lab=`. Exercises show on the lesson |
+| O8 | GL-07 says EFS but has no EFS steps; GL-21 title says HCP | WP5b | Fixed. GL-07 is “EC2 and EBS” and points at UL-07 for EFS. GL-21 is “ElastiCache tradeoffs” |
+| O9 | Missing sidecar templates; s12–s15 boilerplate | WP5b | Reported. Not started |
+| O10 | Corrupt content JSON returns a clear JSON 500 | WP9b | Fixed. Loader raises ContentParseError; question GET returns JSON 500. 13 Django tests OK |
 | Q1 | Rewrite the practice-question bank | WP4b | Reported. Blocked until the pilot batch is approved |
 
 ## Decisions
@@ -77,4 +77,4 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 | D4 | ISS-081 audit-grade manager metrics | Decided 2026-09-25: leave it out |
 | D5 | ISS-090 live AWS lab runs | Decided 2026-09-25: paper checks only |
 | D6 | Dated prices and templated design exercises | Decided 2026-09-25: fix them. Work not started |
-| D7 | Lab scanner skips `gl-01` | Decided 2026-09-25: include GL-01. Code change not started |
+| D7 | Lab scanner skips `gl-01` | Done. Scanner includes GL-01. `PASS 42 labs scanned` |

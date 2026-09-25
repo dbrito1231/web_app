@@ -21,9 +21,9 @@ Django's listener PID changed since `reports/evidence/preflight.md`. Vite's PID 
 
 ## Git
 
-- Branch `master` has **no commits**. The whole tree is untracked.
-- Baseline commit (B1) is **not done**. It waits on decision D1.
-- `backend/db.sqlite3` is gitignored.
+- Decision D1: baseline is on `main`, not `fix/run2-round2`.
+- Commit `925b619` — "baseline after fix pass 1".
+- `backend/db.sqlite3` is gitignored and was not committed.
 
 ## What this round has not started
 
