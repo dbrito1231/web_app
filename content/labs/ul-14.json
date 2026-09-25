@@ -57,19 +57,23 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "RDS restore lab complete."
   },
-  "stopChargesPanel": "Delete RDS instances, snapshots, subnet group for ul-14.",
+  "stopChargesPanel": "Delete the restored copy, then the source RDS instance (wait for each), then the manual snapshot, the DB subnet group and the lab SG for ul-14.",
   "teardown": {
     "labId": "ul-14",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$DbId = $null",
-      "$SubnetGroup = $null",
-      "if ($DbId) { aws rds delete-db-instance --db-instance-identifier $DbId --skip-final-snapshot -ErrorAction SilentlyContinue }",
-      "if ($SubnetGroup) { aws rds delete-db-subnet-group --db-subnet-group-name $SubnetGroup -ErrorAction SilentlyContinue }"
+      "# Uses: $CopyDbId, $DbId, $DbSnapshotId, $SubnetGroup, $SgId (the IDs you set while building; unset ones are skipped)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-14",
+      "if ($CopyDbId) { aws rds delete-db-instance --db-instance-identifier $CopyDbId --skip-final-snapshot; aws rds wait db-instance-deleted --db-instance-identifier $CopyDbId }",
+      "if ($DbId) { aws rds delete-db-instance --db-instance-identifier $DbId --skip-final-snapshot; aws rds wait db-instance-deleted --db-instance-identifier $DbId }",
+      "if ($DbSnapshotId) { aws rds delete-db-snapshot --db-snapshot-identifier $DbSnapshotId }",
+      "if ($SubnetGroup) { aws rds delete-db-subnet-group --db-subnet-group-name $SubnetGroup }",
+      "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-14 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-14 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws rds describe-db-instances --db-instance-identifier $DbId returns DBInstanceNotFound (repeat with $CopyDbId)",
+      "aws rds describe-db-snapshots --db-snapshot-identifier $DbSnapshotId returns DBSnapshotNotFound"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-14 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-14. Delete only those ids. Never delete untagged resources."

@@ -57,21 +57,25 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "EFS integrated EC2 lab with teardown."
   },
-  "stopChargesPanel": "Delete mount targets, EFS, EC2, volumes for ul-07.",
+  "stopChargesPanel": "Unmount EFS on the instance, delete the mount targets and wait until none remain, delete the EFS file system, terminate the EC2 instance, then delete the mount-target SG and the instance SG for ul-07.",
   "teardown": {
     "labId": "ul-07",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$InstanceId = $null",
-      "$VolumeId = $null",
-      "$SnapshotId = $null",
+      "# Uses: $FileSystemId, $InstanceId, $MountTargetSgId, $InstanceSgId (the IDs you set while building; unset ones are skipped)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07",
+      "# First unmount on the instance: sudo umount <mountpoint>",
+      "if ($FileSystemId) { $MtIds = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"MountTargets[].[MountTargetId]\" --output text; foreach ($MtId in $MtIds) { if ($MtId) { aws efs delete-mount-target --mount-target-id $MtId } } }",
+      "if ($FileSystemId) { do { Start-Sleep -Seconds 10; $MtLeft = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"length(MountTargets)\" --output text } while ($MtLeft -and $MtLeft -ne '0') }",
+      "if ($FileSystemId) { aws efs delete-file-system --file-system-id $FileSystemId }",
       "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
-      "if ($VolumeId) { aws ec2 detach-volume --volume-id $VolumeId -ErrorAction SilentlyContinue; aws ec2 delete-volume --volume-id $VolumeId -ErrorAction SilentlyContinue }",
-      "if ($SnapshotId) { aws ec2 delete-snapshot --snapshot-id $SnapshotId }"
+      "if ($MountTargetSgId) { aws ec2 delete-security-group --group-id $MountTargetSgId }",
+      "if ($InstanceSgId) { aws ec2 delete-security-group --group-id $InstanceSgId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-07 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws efs describe-file-systems --file-system-id $FileSystemId returns FileSystemNotFound (it can take a minute after delete-file-system)",
+      "aws ec2 describe-instances --instance-ids $InstanceId shows State.Name terminated"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-07 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07. Delete only those ids. Never delete untagged resources."

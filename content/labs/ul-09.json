@@ -57,19 +57,25 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Target tracking ASG lab complete."
   },
-  "stopChargesPanel": "Delete ASG, LT, alarms, EC2 for ul-09.",
+  "stopChargesPanel": "Scale the ASG to 0, force-delete it and wait for its instances to terminate, then delete the CloudWatch alarm (if you created one), the launch template and the lab SG for ul-09.",
   "teardown": {
     "labId": "ul-09",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$AsgName = $null",
-      "$LaunchTemplateId = $null",
-      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0 -ErrorAction SilentlyContinue; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete -ErrorAction SilentlyContinue }",
-      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }"
+      "# Uses: $AsgName, $LaunchTemplateId, $AlarmName, $SgId (the IDs you set while building; unset ones are skipped)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09",
+      "if ($AsgName) { $AsgInstanceIds = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"AutoScalingGroups[0].Instances[].[InstanceId]\" --output text }",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
+      "if ($AsgInstanceIds) { aws ec2 wait instance-terminated --instance-ids $AsgInstanceIds }",
+      "if ($AsgName) { do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text } while ($AsgLeft -and $AsgLeft -ne '0') }",
+      "if ($AlarmName) { aws cloudwatch delete-alarms --alarm-names $AlarmName }",
+      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
+      "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-09 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName returns an empty AutoScalingGroups list",
+      "aws ec2 describe-volumes --filters Name=tag:LabId,Values=ul-09 returns an empty Volumes list"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-09 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09. Delete only those ids. Never delete untagged resources."

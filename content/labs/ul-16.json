@@ -56,19 +56,23 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Private DNS design lab."
   },
-  "stopChargesPanel": "Delete Route53 zone and VPC if created for ul-16.",
+  "stopChargesPanel": "Delete every record you added (DELETE change batch), then the private hosted zone, then the VPC only if you created it for ul-16.",
   "teardown": {
     "labId": "ul-16",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$ZoneId = $null",
-      "$VpcId = $null",
-      "aws route53 delete-hosted-zone --id $ZoneId",
-      "aws ec2 delete-vpc --vpc-id $VpcId"
+      "# Uses: $ZoneId, $VpcId (the IDs you set while building; unset ones are skipped)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16",
+      "# Set $VpcId only if you created a VPC for this lab. Never delete the default VPC.",
+      "if ($ZoneId) { $Rrs = aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --query \"ResourceRecordSets[?Type != 'SOA' && Type != 'NS']\" --output json | Out-String | ConvertFrom-Json }",
+      "if ($ZoneId -and $Rrs) { $Changes = @($Rrs | ForEach-Object { @{ Action = 'DELETE'; ResourceRecordSet = $_ } }); @{ Changes = $Changes } | ConvertTo-Json -Depth 10 | Set-Content -Encoding Ascii ul16-records-delete.json; $ChangeId = aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://ul16-records-delete.json --query ChangeInfo.Id --output text; aws route53 wait resource-record-sets-changed --id $ChangeId }",
+      "if ($ZoneId) { aws route53 delete-hosted-zone --id $ZoneId }",
+      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws route53 get-hosted-zone --id $ZoneId returns NoSuchHostedZone",
+      "aws ec2 describe-vpcs --vpc-ids $VpcId returns InvalidVpcID.NotFound (only if you created the VPC)"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-16 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16. Delete only those ids. Never delete untagged resources."
