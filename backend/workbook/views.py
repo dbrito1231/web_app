@@ -1,4 +1,5 @@
 import json
+import logging
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
@@ -6,6 +7,7 @@ from django.views.decorators.http import require_GET, require_POST
 
 from workbook.content_loader import (
     ContentNotFoundError,
+    ContentParseError,
     content_root,
     content_summary,
     list_content_ids,
@@ -27,6 +29,8 @@ from workbook.progress import (
 from workbook.readiness import compute_readiness_metrics
 from workbook.scoring import score_question
 
+logger = logging.getLogger(__name__)
+
 
 def _json_error(message: str, status: int = 400) -> JsonResponse:
     return JsonResponse({"error": message}, status=status)
@@ -39,6 +43,11 @@ def _parse_json_body(request) -> dict | None:
         return json.loads(request.body.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError):
         return None
+
+
+def _content_error(exc: ContentParseError) -> JsonResponse:
+    logger.error("Corrupt content file: %s", exc)
+    return _json_error(str(exc), 500)
 
 
 def _question_objectives_map() -> dict[str, list[str]]:
@@ -60,7 +69,10 @@ def health(_request):
 
 @require_GET
 def question_catalog_view(_request):
-    return JsonResponse({"questions": question_catalog()})
+    try:
+        return JsonResponse({"questions": question_catalog()})
+    except ContentParseError as exc:
+        return _content_error(exc)
 
 
 @require_GET
@@ -69,6 +81,8 @@ def content_summary_view(_request):
         return JsonResponse(content_summary())
     except FileNotFoundError as exc:
         return _json_error(str(exc), 500)
+    except ContentParseError as exc:
+        return _content_error(exc)
 
 
 @require_GET
@@ -77,6 +91,8 @@ def lesson_detail(_request, lesson_id: str):
         return JsonResponse(load_lesson(lesson_id))
     except ContentNotFoundError:
         return _json_error("Lesson not found", 404)
+    except ContentParseError as exc:
+        return _content_error(exc)
 
 
 @require_GET
@@ -85,6 +101,8 @@ def question_detail(_request, question_id: str):
         question = load_question(question_id)
     except ContentNotFoundError:
         return _json_error("Question not found", 404)
+    except ContentParseError as exc:
+        return _content_error(exc)
     return JsonResponse(public_question(question))
 
 
@@ -113,6 +131,8 @@ def create_attempt(request):
         question = load_question(question_id)
     except ContentNotFoundError:
         return _json_error("Question not found", 404)
+    except ContentParseError as exc:
+        return _content_error(exc)
 
     choice_ids = {choice.get("id") for choice in question.get("choices") or []}
     if any(item not in choice_ids for item in selected_ids):
@@ -153,6 +173,8 @@ def lab_detail(request, lab_id: str):
         lab = load_lab(lab_id)
     except ContentNotFoundError:
         return _json_error("Lab not found", 404)
+    except ContentParseError as exc:
+        return _content_error(exc)
     return JsonResponse(public_lab(lab, reveal=reveal))
 
 
@@ -224,7 +246,10 @@ def reset_view(request):
 
 @require_GET
 def readiness_metrics(_request):
-    data = compute_readiness_metrics(_question_objectives_map())
+    try:
+        data = compute_readiness_metrics(_question_objectives_map())
+    except ContentParseError as exc:
+        return _content_error(exc)
     return JsonResponse(data)
 
 
@@ -233,6 +258,12 @@ def coverage_registry(_request):
     path = content_root() / "coverage" / "saa_registry.json"
     if not path.is_file():
         return _json_error("Coverage registry not found", 404)
-    with path.open(encoding="utf-8") as handle:
-        payload = json.load(handle)
+    try:
+        with path.open(encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except json.JSONDecodeError as exc:
+        parse_error = ContentParseError(
+            f"Content file {path.name} is not valid JSON: {exc.msg} (line {exc.lineno})"
+        )
+        return _content_error(parse_error)
     return JsonResponse(payload)

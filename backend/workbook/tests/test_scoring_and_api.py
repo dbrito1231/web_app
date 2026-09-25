@@ -1,8 +1,11 @@
 import json
+import tempfile
+from pathlib import Path
+from unittest.mock import patch
 
 from django.test import Client, TestCase
 
-from workbook.content_loader import load_question
+from workbook.content_loader import ContentParseError, _read_json, load_question
 from workbook.models import Attempt
 from workbook.progress import import_progress
 from workbook.readiness import compute_readiness_metrics
@@ -147,3 +150,26 @@ class AttemptApiTests(TestCase):
         self.assertNotIn("solution", hidden.json())
         revealed = self.client.get("/api/labs/gl-01?reveal=1")
         self.assertIn("solution", revealed.json())
+
+
+class ContentParseTests(TestCase):
+    def test_loader_rejects_corrupt_json(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "broken.json"
+            path.write_text("{", encoding="utf-8")
+            with self.assertRaises(ContentParseError) as caught:
+                _read_json(path)
+        self.assertIn("broken.json", str(caught.exception))
+        self.assertIn("not valid JSON", str(caught.exception))
+
+    def test_question_get_returns_json_500_for_corrupt_file(self):
+        with patch(
+            "workbook.views.load_question",
+            side_effect=ContentParseError(
+                "Content file q-bad.json is not valid JSON: Expecting value (line 1)"
+            ),
+        ):
+            response = Client().get("/api/questions/q-bad")
+        self.assertEqual(response.status_code, 500)
+        self.assertTrue(response["Content-Type"].startswith("application/json"))
+        self.assertIn("not valid JSON", response.json()["error"])

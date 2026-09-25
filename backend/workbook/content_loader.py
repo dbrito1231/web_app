@@ -9,6 +9,10 @@ class ContentNotFoundError(FileNotFoundError):
     pass
 
 
+class ContentParseError(ValueError):
+    """A content file exists but is not valid JSON."""
+
+
 def content_root() -> Path:
     return Path(settings.CONTENT_ROOT)
 
@@ -16,8 +20,13 @@ def content_root() -> Path:
 def _read_json(path: Path) -> dict:
     if not path.is_file():
         raise ContentNotFoundError(str(path))
-    with path.open(encoding="utf-8") as handle:
-        return json.load(handle)
+    try:
+        with path.open(encoding="utf-8") as handle:
+            return json.load(handle)
+    except json.JSONDecodeError as exc:
+        raise ContentParseError(
+            f"Content file {path.name} is not valid JSON: {exc.msg} (line {exc.lineno})"
+        ) from exc
 
 
 def list_content_ids(subdir: str) -> list[str]:
@@ -76,7 +85,57 @@ def lesson_index() -> list[dict]:
     rows = []
     for lesson_id in list_content_ids("lessons"):
         lesson = load_lesson(lesson_id)
-        rows.append({"id": lesson_id, "title": lesson.get("title") or lesson_id})
+        rows.append(
+            {
+                "id": lesson_id,
+                "title": lesson.get("title") or lesson_id,
+                "drillIds": lesson.get("drillIds") or [],
+                "objectiveIds": lesson.get("objectiveIds") or [],
+            }
+        )
+    return rows
+
+
+def lab_index() -> list[dict]:
+    rows = []
+    for lab_id in list_content_ids("labs"):
+        lab = load_lab(lab_id)
+        steps = lab.get("steps") or []
+        if steps:
+            step_ids = [
+                step.get("id")
+                for step in steps
+                if isinstance(step, dict) and step.get("id")
+            ]
+        else:
+            criteria = lab.get("acceptanceCriteria") or []
+            step_ids = [f"c{index + 1:02d}" for index, _text in enumerate(criteria)]
+        rows.append(
+            {
+                "id": lab_id,
+                "title": lab.get("title") or lab_id,
+                "objectiveIds": lab.get("objectiveIds") or [],
+                "stepIds": step_ids,
+            }
+        )
+    return rows
+
+
+def exercise_index() -> list[dict]:
+    rows = []
+    directory = content_root() / "exercises"
+    if not directory.is_dir():
+        return rows
+    for exercise_id in list_content_ids("exercises"):
+        item = _read_json(directory / f"{exercise_id}.json")
+        rows.append(
+            {
+                "id": exercise_id,
+                "title": item.get("title") or exercise_id,
+                "objectiveIds": item.get("objectiveIds") or [],
+                "scenario": item.get("scenario") or "",
+            }
+        )
     return rows
 
 
@@ -87,6 +146,8 @@ def content_summary() -> dict:
         "lessonIndex": lesson_index(),
         "questions": list_content_ids("questions"),
         "labs": list_content_ids("labs"),
+        "labIndex": lab_index(),
+        "exerciseIndex": exercise_index(),
         "objectives": {
             "saa": _read_json(root / "objectives" / "saa_c03.json")
             if (root / "objectives" / "saa_c03.json").is_file()
