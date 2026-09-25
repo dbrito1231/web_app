@@ -6,12 +6,12 @@
   "objectiveIds": [
     "SAA-1.1-S06"
   ],
-  "stem": "A manufacturer with 15 accounts in AWS Organizations wants employees to sign in to all accounts with their existing on-premises Active Directory credentials. Passwords must stay on premises, and the company will not run any domain controllers in AWS. Which TWO components should the solutions architect use? (Select TWO.)",
+  "stem": "A manufacturer with 15 accounts in AWS Organizations wants employees to sign in to all accounts with their existing on-premises Active Directory credentials, set up and managed from one central place rather than once per account. Passwords must stay on premises, and the company will not run any domain controllers in AWS. Which TWO components should the solutions architect use? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "A Simple AD directory that is populated with copies of the employee accounts"
+      "text": "An IAM SAML identity provider for AD FS, created separately in each of the 15 accounts, with IAM roles mapped from AD groups in every account"
     },
     {
       "id": "b",
@@ -27,18 +27,18 @@
     },
     {
       "id": "e",
-      "text": "IAM Identity Center using that directory as its identity source, with permission sets per account"
+      "text": "IAM Identity Center using an AWS Directory Service directory as its identity source, with permission sets per account"
     }
   ],
   "correctAnswerIds": [
     "d",
     "e"
   ],
-  "rationale": "AD Connector is a directory gateway that redirects requests to the on-premises Active Directory without caching any information in the cloud and without domain controllers in AWS. IAM Identity Center can use an AD Connector in the management account as its identity source, performs pass-through authentication so no passwords are synchronized, and grants AD groups access to accounts through permission sets. Simple AD is a standalone Samba-based directory that is closed to new customers, does not support trusts, and is not supported by IAM Identity Center. A Cognito user pool is a directory for users of your web and mobile apps and would hold its own copies of the users. AWS Managed Microsoft AD creates a pair of domain controllers in your VPC, which the company has ruled out.",
+  "rationale": "AD Connector is a directory gateway that redirects requests to the on-premises Active Directory without caching any information in the cloud and without domain controllers in AWS. IAM Identity Center can use that AD Connector, set up once in the management account, as its identity source; it performs pass-through authentication so no passwords are synchronized, and it grants AD groups access to accounts through permission sets from that one place. A SAML identity provider for AD FS built separately in each of the 15 accounts would keep passwords on premises and needs no AWS domain controllers, but it means building and maintaining 15 separate federation trusts and role mappings instead of the one central setup the company wants. A Cognito user pool is a directory for users of your web and mobile apps; importing the employee accounts into it would create its own copies of the users rather than keeping passwords on premises. AWS Managed Microsoft AD is itself a directory hosted in AWS: creating it deploys a pair of domain controllers in your VPC, which breaks 'no domain controllers in AWS' even when it runs a two-way trust to the on-premises domain.",
   "citationIds": [
     "cite-saa-1-1-ad-connector",
     "cite-saa-1-1-idc-ad",
-    "cite-saa-1-1-simple-ad",
+    "cite-saa-1-1-saml",
     "cite-saa-1-1-managed-ad",
     "cite-saa-1-1-cognito"
   ],

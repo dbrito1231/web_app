@@ -19,11 +19,11 @@
     },
     {
       "id": "c",
-      "text": "Enable Amazon GuardDuty in every Region so that it removes permissions from roles once it detects that they are unused"
+      "text": "Turn on an IAM Access Analyzer external access analyzer for the account and remove every role that appears in its findings"
     },
     {
       "id": "d",
-      "text": "Set AdministratorAccess as the permissions boundary on every role so that the boundary follows actual usage"
+      "text": "Turn on the AWS Trusted Advisor IAM Access Key Rotation check and rotate the credentials it flags"
     },
     {
       "id": "e",
@@ -34,13 +34,12 @@
     "b",
     "e"
   ],
-  "rationale": "IAM Access Analyzer policy generation reviews CloudTrail events for a role over a date range and produces a policy template that contains only the actions the role used, which you test and then attach. IAM last accessed information shows which allowed services and actions each identity has actually used, so unused permissions can be removed. PowerUserAccess grants full access to almost every service, which widens rather than narrows the roles. GuardDuty is a threat detection service that produces findings; it does not edit IAM policies. A permissions boundary sets maximum permissions and never tracks usage; an AdministratorAccess boundary restricts nothing.",
+  "rationale": "IAM Access Analyzer policy generation reviews CloudTrail events for a role over a date range and produces a policy template that contains only the actions the role used, which you test and then attach. IAM last accessed information shows which allowed services and actions each identity has actually used, so unused permissions can be removed. An Access Analyzer external access analyzer finds resource-based policies that share a resource with a principal outside your zone of trust; it does not review whether a role's own permissions are used, so it would not flag an overly broad role that only ever acts inside the account. The Trusted Advisor IAM Access Key Rotation check flags IAM access keys that have not been rotated in 90 days; it says nothing about which permissions a role's policy grants, so rotating keys does not shrink anything.",
   "citationIds": [
     "cite-saa-1-1-aa-policygen",
     "cite-saa-1-1-last-accessed",
-    "cite-saa-1-1-iam-bp",
-    "cite-saa-1-1-guardduty",
-    "cite-saa-1-1-boundaries"
+    "cite-saa-1-1-aa-external",
+    "cite-saa-1-1-ta-keys"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

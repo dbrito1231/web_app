@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-1.1-S06"
   ],
-  "scenario": "You must design a solution addressing: Directory federation with IAM roles. You have one personal account and cannot provision unavailable services.",
+  "scenario": "A single company has one AWS account and one on-premises Active Directory forest. You must produce a design decision record, not a live build, for two related federation problems: (1) staff must reach the AWS Management Console with their AD credentials, with no IAM users created for them, using either SAML 2.0 federation through AD FS or IAM Identity Center; and (2) a second scenario, evaluated separately in the same record, has the company grow to several AWS accounts in one AWS Organization and asks whether to keep per-account SAML trusts, connect an AD Connector or AWS Managed Microsoft AD to IAM Identity Center, or run a fully AWS-hosted directory. You have one personal account and cannot provision unavailable services.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Decide between SAML 2.0 federation through AD FS (or another SAML IdP) and IAM Identity Center for the single-account case, and justify the choice",
+    "Compare AD Connector, AWS Managed Microsoft AD, and a per-account SAML identity provider as the identity source or federation mechanism for the multi-account case, and state which one keeps passwords on premises and which one runs domain controllers in AWS",
+    "State whether IAM Identity Center is used in the multi-account case, and if so, what its identity source is"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "SAML/AD FS vs IAM Identity Center choice justified for the single-account case",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "AD Connector vs AWS Managed Microsoft AD vs per-account SAML compared for the multi-account case, naming which keeps passwords on premises and which adds domain controllers in AWS",
       "points": 2
     }
   ],

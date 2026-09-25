@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-1.1-S02"
   ],
-  "stem": "Three internal applications on Amazon EC2 at a travel company each run under their own IAM role and all need the same read and write access to one DynamoDB table. Operations wants no stored credentials on the instances and a single policy document to update when the permissions change. Which TWO actions should the team take? (Select TWO.)",
+  "stem": "Three internal applications on Amazon EC2 at a travel company each have their own IAM role defined, but the instances currently read long-term access keys for that role from a config file on disk to reach one DynamoDB table. Operations wants no stored credentials on the instances and a single policy document to update when the permissions change. Which TWO actions should the team take? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
