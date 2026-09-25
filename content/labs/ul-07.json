@@ -15,6 +15,7 @@
   ],
   "scenario": "Add a small Amazon EFS file system to the EC2/EBS pattern: mount, write, unmount, delete.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul07`: file system tagged Name=workbook-ul07, EC2 instance tagged Name=workbook-ul07, mount-target security group `workbook-ul07-mt-sg`, and instance security group `workbook-ul07-sg`. Tag each one LabId=ul-07.",
     "A small EFS file system is created with encryption at rest enabled.",
     "One mount target exists in the same VPC/AZ as a lab EC2 instance.",
     "You mount the file system on the instance and create one test file.",
@@ -63,7 +64,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: $FileSystemId, $InstanceId, $MountTargetSgId, $InstanceSgId (the IDs you set while building; unset ones are skipped)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07",
+      "# Lost an ID? Resources are named workbook-ul07*; list what is tagged with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07",
       "# First unmount on the instance: sudo umount <mountpoint>",
       "if ($FileSystemId) { $MtIds = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"MountTargets[].[MountTargetId]\" --output text; foreach ($MtId in $MtIds) { if ($MtId) { aws efs delete-mount-target --mount-target-id $MtId } } }",
       "if ($FileSystemId) { do { Start-Sleep -Seconds 10; $MtLeft = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"length(MountTargets)\" --output text } while ($MtLeft -and $MtLeft -ne '0') }",

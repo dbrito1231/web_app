@@ -15,6 +15,7 @@
   ],
   "scenario": "Associate AWS WAF with your ALB lab after pricing review; prove a rule fires; remove WAF before ALB teardown.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul08`: ALB `workbook-ul08`, target group `workbook-ul08-tg`, VPC `workbook-ul08`, security group `workbook-ul08-sg`, and WAF web ACL `workbook-ul08`. Tag each one LabId=ul-08.",
     "Application Load Balancer from GL-08 pattern exists and serves HTTP. It uses two public subnets in different Availability Zones (for example us-east-1a and us-east-1b), both tagged LabId=ul-08 and associated with the public route table.",
     "AWS WAF web ACL is associated with the ALB after you record WAF pricing.",
     "One WAF managed rule group is attached (AWSManagedRulesCommonRuleSet or similar).",
@@ -42,7 +43,7 @@
     },
     {
       "level": 3,
-      "text": "Use curl with bad User-Agent to trigger managed rule."
+      "text": "Use curl.exe with bad User-Agent to trigger managed rule."
     }
   ],
   "rubric": [
@@ -63,7 +64,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: $WebAclName, $WebAclId, $AlbArn, $ListenerArn, $TargetGroupArn, $InstanceId, $AllocationId, $VpcId, $SubnetPub, $SubnetPub2, $IgwId, $PublicRouteTableId, $RtAssocPub, $RtAssocPub2, $SgId (the IDs you set while building; unset ones are skipped)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08",
+      "# Lost an ID? Resources are named workbook-ul08*; list what is tagged with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08",
       "if ($AlbArn) { aws wafv2 disassociate-web-acl --resource-arn $AlbArn }",
       "if ($WebAclId -and $WebAclName) { $LockToken = aws wafv2 get-web-acl --name $WebAclName --scope REGIONAL --id $WebAclId --query LockToken --output text; aws wafv2 delete-web-acl --name $WebAclName --scope REGIONAL --id $WebAclId --lock-token $LockToken }",
       "if ($ListenerArn) { aws elbv2 delete-listener --listener-arn $ListenerArn }",
@@ -87,7 +88,7 @@
       "aws ec2 describe-vpcs --vpc-ids $VpcId returns InvalidVpcID.NotFound"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
-    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08. Delete only those ids. Never delete untagged resources. Load balancer network interfaces can linger for a minute or two after the waiter returns: if a subnet, internet gateway or security group delete returns DependencyViolation, wait 1-2 minutes and rerun that line."
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08. Delete only those ids. Never delete untagged resources. Load balancer network interfaces can linger for a minute or two after the waiter returns: if a subnet, internet gateway or security group delete returns DependencyViolation, wait 1\u20132 minutes and rerun Stop charges from that line."
   },
   "executionStatus": "unexecuted",
   "module": "A2",

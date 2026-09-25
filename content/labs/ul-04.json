@@ -24,13 +24,12 @@
     "S3 test object uses SSE-KMS with the same CMK.",
     "Key deletion remains scheduled and is not cancelled.",
     "No secrets or parameters remain after teardown.",
-    "LabId=ul-04 on all tagged resources.",
     "IAM users did not receive long-lived access keys.",
     "Teardown order: secrets/parameters, S3, alias, key deletion window respected.",
     "After teardown, describe-secret returns ResourceNotFound.",
     "After teardown, get-parameter returns ParameterNotFound.",
     "Bucket is gone.",
-    "Tag search LabId=ul-04 is empty."
+    "Tag search LabId=ul-04 shows only the KMS key, in PendingDeletion."
   ],
   "hints": [
     {

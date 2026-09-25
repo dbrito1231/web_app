@@ -22,7 +22,6 @@
     "Assume-role session can list and get objects but cannot put or delete.",
     "Bucket policy does not grant public access.",
     "STS session credentials expire and you cleared them from the shell.",
-    "All tagged resources use LabId=ul-03.",
     "CloudTrail is not required but if enabled for test, it is removed in teardown.",
     "No access keys were created for the lab role.",
     "Teardown removes GuardDuty before IAM and S3.",

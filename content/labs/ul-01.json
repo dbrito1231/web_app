@@ -63,10 +63,10 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: none (the roles are named workbook-ul01-daily and workbook-ul01-breakglass)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-01",
-      "aws iam delete-role-policy --role-name workbook-ul01-daily --policy-name ul01-daily",
+      "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-01",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul01-daily --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul01-daily --policy-name $P } }",
       "aws iam delete-role --role-name workbook-ul01-daily",
-      "aws iam delete-role-policy --role-name workbook-ul01-breakglass --policy-name ul01-bg",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul01-breakglass --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul01-breakglass --policy-name $P } }",
       "aws iam delete-role --role-name workbook-ul01-breakglass"
     ],
     "verification": [

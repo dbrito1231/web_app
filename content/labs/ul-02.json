@@ -15,6 +15,7 @@
   ],
   "scenario": "You inherit a private S3 bucket used for workbook data. Add a `sensitive/` prefix with sample content, briefly enable Macie to capture pricing for classification, then disable Macie. Do not repeat the GL-02 step sequence.",
   "acceptanceCriteria": [
+    "Name the resource you create `workbook-ul02-<account-id>` (or reuse your tagged GL-02 bucket and record its name in your notes).",
     "A second prefix `sensitive/` exists with at least one object under the same tagged bucket (new or reused).",
     "Amazon Macie is enabled long enough to record the per-GB classification price from official pricing; you note the estimate in your lab notes.",
     "Macie is disabled or suspended again before teardown so ongoing Macie charges stop.",
@@ -62,9 +63,9 @@
     "labId": "ul-02",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "# Uses: none ($Bucket is rebuilt below; if you reused your GL-02 bucket, set $Bucket to that name instead)",
+      "# Uses: $Bucket (optional \u2014 set it before running teardown if you reused your GL-02 bucket; otherwise the next line builds workbook-ul02-<account-id>)",
       "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-02",
-      "$Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\"",
+      "if (-not $Bucket) { $Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\" }",
       "aws macie2 update-macie-session --status PAUSED",
       "aws s3api delete-bucket-policy --bucket $Bucket",
       "$versions = aws s3api list-object-versions --bucket $Bucket --output json | ConvertFrom-Json",

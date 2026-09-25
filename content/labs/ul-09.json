@@ -66,7 +66,7 @@
       "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09",
       "if ($AsgName) { $AsgInstanceIds = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"AutoScalingGroups[0].Instances[].[InstanceId]\" --output text }",
       "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
-      "if ($AsgInstanceIds) { aws ec2 wait instance-terminated --instance-ids $AsgInstanceIds }",
+      "if ($AsgInstanceIds -and $AsgInstanceIds -ne 'None') { aws ec2 wait instance-terminated --instance-ids $AsgInstanceIds }",
       "if ($AsgName) { do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text } while ($AsgLeft -and $AsgLeft -ne '0') }",
       "if ($AlarmName) { aws cloudwatch delete-alarms --alarm-names $AlarmName }",
       "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
