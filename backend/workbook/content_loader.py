@@ -53,8 +53,28 @@ def load_lesson(lesson_id: str) -> dict:
     return _read_json(content_root() / "lessons" / f"{lesson_id}.json", dict)
 
 
+def _require_optional_list(value, path: Path, field: str, *, item_type: type | None = None) -> None:
+    """Raise ContentParseError if `value` is present but not a list (of
+    `item_type`, when given). `None`/missing is fine — callers already treat
+    an absent field as an empty list."""
+    if value is None:
+        return
+    if not isinstance(value, list) or (
+        item_type is not None and not all(isinstance(item, item_type) for item in value)
+    ):
+        detail = "a list of objects" if item_type is dict else "a list"
+        raise ContentParseError(
+            f"Content file {path.name} field '{field}' must be {detail}"
+        )
+
+
 def load_question(question_id: str) -> dict:
-    return _read_json(content_root() / "questions" / f"{question_id}.json", dict)
+    path = content_root() / "questions" / f"{question_id}.json"
+    question = _read_json(path, dict)
+    _require_optional_list(question.get("choices"), path, "choices", item_type=dict)
+    _require_optional_list(question.get("objectiveIds"), path, "objectiveIds")
+    _require_optional_list(question.get("correctAnswerIds"), path, "correctAnswerIds")
+    return question
 
 
 def load_lab(lab_id: str) -> dict:
@@ -180,7 +200,14 @@ def saa_objective_domain_map() -> dict[str, str]:
     if not path.is_file():
         return {}
     rows = _read_json(path, list)
-    return {row["id"]: row["domain_id"] for row in rows}
+    result: dict[str, str] = {}
+    for row in rows:
+        if not isinstance(row, dict) or "id" not in row or "domain_id" not in row:
+            raise ContentParseError(
+                f"Content file {path.name} has an objective row missing 'id' or 'domain_id'"
+            )
+        result[row["id"]] = row["domain_id"]
+    return result
 
 
 @lru_cache(maxsize=1)
@@ -190,7 +217,19 @@ def terraform_objective_group_map() -> dict[str, int]:
     if not path.is_file():
         return {}
     rows = _read_json(path, list)
-    return {row["id"]: int(row["group"]) for row in rows}
+    result: dict[str, int] = {}
+    for row in rows:
+        if not isinstance(row, dict) or "id" not in row or "group" not in row:
+            raise ContentParseError(
+                f"Content file {path.name} has an objective row missing 'id' or 'group'"
+            )
+        try:
+            result[row["id"]] = int(row["group"])
+        except (TypeError, ValueError) as exc:
+            raise ContentParseError(
+                f"Content file {path.name} has a non-numeric 'group' for {row['id']}"
+            ) from exc
+    return result
 
 
 def question_track(question: dict) -> str:

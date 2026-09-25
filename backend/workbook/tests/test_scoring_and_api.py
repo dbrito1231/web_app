@@ -4,7 +4,13 @@ from pathlib import Path
 
 from django.test import Client, TestCase, override_settings
 
-from workbook.content_loader import ContentParseError, _read_json, load_question
+from workbook.content_loader import (
+    ContentParseError,
+    _read_json,
+    load_question,
+    saa_objective_domain_map,
+    terraform_objective_group_map,
+)
 from workbook.models import Attempt
 from workbook.progress import import_progress
 from workbook.readiness import compute_readiness_metrics
@@ -183,6 +189,7 @@ class ContentParseTests(TestCase):
                     "/api/content/catalog",
                     "/api/content/summary",
                     "/api/coverage",
+                    "/api/metrics/readiness",
                 ]
                 with override_settings(CONTENT_ROOT=root), self.assertLogs(
                     "workbook.views", "ERROR"
@@ -195,3 +202,59 @@ class ContentParseTests(TestCase):
                             route,
                         )
                         self.assertIn("Content file", response.json()["error"], route)
+
+                    client = Client(enforce_csrf_checks=True)
+                    client.get("/api/health")
+                    token = client.cookies["csrftoken"].value
+                    attempt = client.post(
+                        "/api/attempts",
+                        data=json.dumps(
+                            {
+                                "questionId": "q-bad",
+                                "selectedIds": ["a"],
+                                "mode": "practice",
+                            }
+                        ),
+                        content_type="application/json",
+                        HTTP_ORIGIN="http://127.0.0.1:5173",
+                        HTTP_X_CSRFTOKEN=token,
+                    )
+                    self.assertEqual(attempt.status_code, 500, "/api/attempts")
+                    self.assertTrue(
+                        attempt["Content-Type"].startswith("application/json"),
+                        "/api/attempts",
+                    )
+                    self.assertIn("Content file", attempt.json()["error"], "/api/attempts")
+
+    def test_question_with_bad_choices_shape_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "questions").mkdir()
+            (root / "questions" / "q-bad-choices.json").write_text(
+                json.dumps({"id": "q-bad-choices", "choices": "ab"}), encoding="utf-8"
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_question("q-bad-choices")
+
+    def test_objective_row_missing_fields_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "objectives").mkdir()
+            (root / "objectives" / "saa_c03.json").write_text(
+                json.dumps([{"domain_id": "d1"}]), encoding="utf-8"
+            )
+            (root / "objectives" / "terraform_004.json").write_text(
+                json.dumps([{"id": "tf.1"}]), encoding="utf-8"
+            )
+            saa_objective_domain_map.cache_clear()
+            terraform_objective_group_map.cache_clear()
+            try:
+                with override_settings(CONTENT_ROOT=root):
+                    with self.assertRaises(ContentParseError):
+                        saa_objective_domain_map()
+                    with self.assertRaises(ContentParseError):
+                        terraform_objective_group_map()
+            finally:
+                saa_objective_domain_map.cache_clear()
+                terraform_objective_group_map.cache_clear()
