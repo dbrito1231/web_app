@@ -27,20 +27,20 @@
     },
     {
       "id": "e",
-      "text": "Create an IAM group in account A, add account B's role to it, and attach the needed permissions"
+      "text": "Create a role in account A that trusts account B's role, and have the account B role call sts:AssumeRole on it before invoking the function and sending the messages"
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Lambda functions and SQS queues both support resource-based policies. A statement in the function policy (added with add-permission or put-resource-policy) lets account B invoke the function, and a queue policy that names the account B role allows sqs:SendMessage. Together with the role's identity-based policy, both halves of cross-account access are in place. An SCP never grants permissions. A permissions boundary on the execution role only limits what the function itself can do; it does not control who may invoke it. IAM groups contain only IAM users of their own account, so a role from account B cannot be a member.",
+  "rationale": "Lambda functions and SQS queues both support resource-based policies. A statement in the function policy (added with add-permission or put-resource-policy) lets account B invoke the function, and a queue policy that names the account B role allows sqs:SendMessage. Together with the role's identity-based policy, both halves of cross-account access are in place. An SCP never grants permissions. A permissions boundary on the execution role only limits what the function itself can do; it does not control who may invoke it. A role in account A that trusts account B and is reached by calling sts:AssumeRole is a common cross-account pattern, but the stem rules it out here: the order service must invoke the function and send the messages without assuming a role in account A, and its own identity-based policy already allows both actions directly once the resource-based policies above are in place.",
   "citationIds": [
     "cite-saa-1-1-lambda-xacct",
     "cite-saa-1-1-sqs-policies",
     "cite-saa-1-1-identity-vs-resource",
     "cite-saa-1-1-scp",
-    "cite-saa-1-1-groups"
+    "cite-saa-1-1-xacct-tutorial"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

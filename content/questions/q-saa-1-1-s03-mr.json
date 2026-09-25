@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "In development, add a trust policy to the engineers' role that names the production deployment role as a trusted entity"
+      "text": "In development, edit the trust policy of the engineers' role to name the production deployment role as a trusted entity"
     },
     {
       "id": "b",
@@ -34,7 +34,7 @@
     "b",
     "d"
   ],
-  "rationale": "Cross-account role access needs both sides: a role in the destination account whose trust policy names the originating account, and an identity-based policy in the originating account that allows sts:AssumeRole on that role's ARN. AssumeRole then returns temporary credentials. A trust policy belongs on the role being assumed, in production, not on the role doing the assuming in development; adding one to the development-side role does not grant it permission to call sts:AssumeRole on the production role, and production would still lack a role that trusts the development account. VPC peering connects networks; it does not grant any IAM permissions. IAM groups contain only IAM users of the same account, so a role from another account cannot be added.",
+  "rationale": "Cross-account role access needs both sides: a role in the destination account whose trust policy names the originating account, and an identity-based policy in the originating account that allows sts:AssumeRole on that role's ARN. AssumeRole then returns temporary credentials. A trust policy belongs on the role being assumed, in production, not on the role doing the assuming in development; every role already has exactly one trust policy, and editing the one on the development-side role does not grant it permission to call sts:AssumeRole on the production role, and production would still lack a role that trusts the development account. VPC peering connects networks; it does not grant any IAM permissions. IAM groups contain only IAM users of the same account, so a role from another account cannot be added.",
   "citationIds": [
     "cite-saa-1-1-xacct-tutorial",
     "cite-saa-1-1-identity-vs-resource",

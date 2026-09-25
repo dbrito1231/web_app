@@ -23,17 +23,17 @@
     },
     {
       "id": "d",
-      "text": "Turn on IAM Access Analyzer external access findings to monitor the root user's activity, and leave the backup script using the root access key"
+      "text": "Move the script to an IAM role, delete the root access key, and set the account password policy to require MFA"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "AWS recommends that you do not create access keys for the root user, that you protect root sign-in with MFA, and that you use the root user only for tasks that require it. Workloads should use the temporary credentials of an IAM role, so moving the script to a role lets you delete the key. Rotating and storing the root key still leaves a long-term credential with full access to every service and billing. Adding MFA protects console sign-in, but the access key would keep working without MFA, so the most dangerous credential remains. External access findings flag resource-based policies that share access with a principal outside your account or organization; they do not monitor root user API activity, and turning them on does not remove the root access key that the backup script still uses.",
+  "rationale": "AWS recommends that you do not create access keys for the root user, that you protect root sign-in with MFA, and that you use the root user only for tasks that require it. Workloads should use the temporary credentials of an IAM role, so moving the script to a role lets you delete the key. Rotating and storing the root key still leaves a long-term credential with full access to every service and billing. Adding MFA protects console sign-in, but the access key would keep working without MFA, so the most dangerous credential remains. Moving the script to a role and deleting the root access key correctly fixes the access-key finding, but setting the account password policy to require MFA does not fix the other finding: the IAM password policy controls password length, complexity, expiration, and reuse, has no MFA setting, and does not apply to the root user, so the root user still has no MFA device registered.",
   "citationIds": [
     "cite-saa-1-1-root-bp",
     "cite-saa-1-1-iam-bp",
-    "cite-saa-1-1-aa-external"
+    "cite-saa-1-1-pw-policy"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

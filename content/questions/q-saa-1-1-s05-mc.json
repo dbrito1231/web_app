@@ -15,11 +15,11 @@
     },
     {
       "id": "b",
-      "text": "Use AWS DataSync to copy the bucket's objects into a bucket in account B"
+      "text": "An AWS DataSync task that copies the bucket's objects into a bucket in account B"
     },
     {
       "id": "c",
-      "text": "Add a bucket ACL that grants read access to account B's AWS account"
+      "text": "A bucket ACL that grants read access to account B's AWS account"
     },
     {
       "id": "d",
@@ -29,12 +29,13 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "For a request from one account to another, the requester needs an identity-based policy in its own account and the resource-based policy in the owning account must also allow it. The role already has the first half, so account A adds a bucket policy that names the role and allows s3:GetObject. An SCP never grants permissions; it only limits the maximum permissions of principals in member accounts. AWS DataSync copies data between locations; it does not grant the account B role permission to read the original bucket in account A, and the analytics role's identity-based policy already targets that original object, not a copy sitting in a different bucket. A bucket ACL, even where still enabled, grants access to the whole AWS account rather than to the specific role's ARN, and new S3 buckets default to the Bucket owner enforced setting, which disables ACLs entirely; a bucket policy is the supported way to scope resource-based access to one caller's ARN.",
+  "rationale": "For a request from one account to another, the requester needs an identity-based policy in its own account and the resource-based policy in the owning account must also allow it. The role already has the first half, so account A adds a bucket policy that names the role and allows s3:GetObject. An SCP never grants permissions; it only limits the maximum permissions of principals in member accounts. AWS DataSync copies data between locations; it does not grant the account B role permission to read the original bucket in account A, and the analytics role's identity-based policy already targets that original object, not a copy sitting in a different bucket. A bucket ACL granting READ to account B's AWS account is not the fix: on a bucket, READ allows the grantee only to list the objects (s3:ListBucket), not to read their data (s3:GetObject), so it would not satisfy this request even if it were the only problem; new S3 buckets also default to the Bucket owner enforced setting, which disables ACLs entirely and means AWS access-management policies, not ACLs, control access. A bucket policy is the supported way to scope resource-based access to one caller's ARN.",
   "citationIds": [
     "cite-saa-1-1-identity-vs-resource",
     "cite-saa-1-1-s3-xacct",
     "cite-saa-1-1-scp",
-    "cite-saa-1-1-s3-object-ownership"
+    "cite-saa-1-1-s3-object-ownership",
+    "cite-saa-1-1-s3-acl-permissions"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

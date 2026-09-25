@@ -27,20 +27,21 @@
     },
     {
       "id": "e",
-      "text": "Create an IAM group with the ReadOnlyAccess managed policy in the management account and add each auditor's IAM user to it"
+      "text": "Create an organization trail in the management account and give the auditors direct read access to its S3 log bucket, instead of connecting IAM Identity Center to the corporate IdP"
     }
   ],
   "correctAnswerIds": [
     "a",
     "d"
   ],
-  "rationale": "A read-only role in each member account that trusts the scanner's role lets the scanner call sts:AssumeRole and work with temporary credentials, which is the IAM pattern for cross-account delegation. IAM Identity Center connected to the corporate IdP gives auditors one sign-in, and assigning a permission set makes Identity Center create matching roles in each target account. Registering delegated administrator status authorizes a specific AWS service to operate across the organization's accounts using that service's own mechanism; it does not by itself grant the security account's role any IAM permission to read arbitrary resources in member accounts, so a general-purpose scanner would still need a role to assume in each account. An SCP never grants permissions; it only sets the maximum permissions available. An IAM group in the management account grants permissions only in that account and cannot give its users access to resources in member accounts.",
+  "rationale": "A read-only role in each member account that trusts the scanner's role lets the scanner call sts:AssumeRole and work with temporary credentials, which is the IAM pattern for cross-account delegation. IAM Identity Center connected to the corporate IdP gives auditors one sign-in, and assigning a permission set makes Identity Center create matching roles in each target account. Registering delegated administrator status authorizes a specific AWS service to operate across the organization's accounts using that service's own mechanism; it does not by itself grant the security account's role any IAM permission to read arbitrary resources in member accounts, so a general-purpose scanner would still need a role to assume in each account. An SCP never grants permissions; it only sets the maximum permissions available. An organization trail only centralizes API activity logs for every account; it does not authenticate people or grant them read access to account resources, and reading a log bucket is not the single sign-in with the corporate identity provider that the auditors need, so it fails that requirement even though the trail itself is a real, correctly described feature.",
   "citationIds": [
     "cite-saa-1-1-xacct-tutorial",
     "cite-saa-1-1-idc-permsets",
     "cite-saa-1-1-scp",
     "cite-saa-1-1-iam-bp",
-    "cite-saa-1-1-org-delegated-admin"
+    "cite-saa-1-1-org-delegated-admin",
+    "cite-saa-1-1-org-trail"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

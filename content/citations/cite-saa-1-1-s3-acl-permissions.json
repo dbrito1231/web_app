@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-s3-acl-permissions",
+  "title": "Access control list (ACL) overview: what permissions can I grant?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html",
+  "accessed": "2026-09-26",
+  "note": "Amendment 2, round 5 (batch F12, q-saa-1-1-s05-mc rationale fix): fetched from docs.aws.amazon.com. Confirms the READ permission when granted on a bucket allows the grantee to list the objects (maps to s3:ListBucket, s3:ListBucketVersions, s3:ListBucketMultipartUploads) but not to read them; reading an object's data requires s3:GetObject, which is granted by READ on the object itself, not on the bucket."
+}
