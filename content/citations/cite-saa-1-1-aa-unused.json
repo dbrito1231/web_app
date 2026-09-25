@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-aa-unused",
+  "title": "IAM Access Analyzer: unused access findings",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (AWS-R4-003): fetched from docs.aws.amazon.com. Confirms unused access findings (a paid Access Analyzer capability) flag unused IAM roles, unused access keys and passwords, and unused service- and action-level permissions on roles."
+}

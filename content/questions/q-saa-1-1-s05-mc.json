@@ -15,11 +15,11 @@
     },
     {
       "id": "b",
-      "text": "A permissions boundary on account A's administrator role that includes s3:GetObject for the account B role"
+      "text": "Use AWS DataSync to copy the bucket's objects into a bucket in account B"
     },
     {
       "id": "c",
-      "text": "A new IAM user in account A with S3 read access, created for the analytics team in account B"
+      "text": "Add a bucket ACL that grants read access to account B's AWS account"
     },
     {
       "id": "d",
@@ -29,12 +29,12 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "For a request from one account to another, the requester needs an identity-based policy in its own account and the resource-based policy in the owning account must also allow it. The role already has the first half, so account A adds a bucket policy that names the role and allows s3:GetObject. An SCP never grants permissions; it only limits the maximum permissions of principals in member accounts. A permissions boundary on another role in account A does not grant anything to the account B role and only caps the entity it is set on. An IAM user in account A would need access keys handed to account B, which are the long-term credentials the team must not share.",
+  "rationale": "For a request from one account to another, the requester needs an identity-based policy in its own account and the resource-based policy in the owning account must also allow it. The role already has the first half, so account A adds a bucket policy that names the role and allows s3:GetObject. An SCP never grants permissions; it only limits the maximum permissions of principals in member accounts. AWS DataSync copies data between locations; it does not grant the account B role permission to read the original bucket in account A, and the analytics role's identity-based policy already targets that original object, not a copy sitting in a different bucket. A bucket ACL, even where still enabled, grants access to the whole AWS account rather than to the specific role's ARN, and new S3 buckets default to the Bucket owner enforced setting, which disables ACLs entirely; a bucket policy is the supported way to scope resource-based access to one caller's ARN.",
   "citationIds": [
     "cite-saa-1-1-identity-vs-resource",
     "cite-saa-1-1-s3-xacct",
     "cite-saa-1-1-scp",
-    "cite-saa-1-1-boundaries"
+    "cite-saa-1-1-s3-object-ownership"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

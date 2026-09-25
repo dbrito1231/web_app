@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-idc-instances",
+  "title": "IAM Identity Center: organization and account instances",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/singlesignon/latest/userguide/identity-center-instances.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (AWS-R4-009): fetched from docs.aws.amazon.com. Confirms an organization instance (enabled in the AWS Organizations management account) is required for multi-account permission sets and the AWS access portal to accounts; an account instance cannot assign AWS account access."
+}

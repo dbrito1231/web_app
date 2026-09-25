@@ -23,16 +23,17 @@
     },
     {
       "id": "d",
-      "text": "Create one shared IAM user with AdministratorAccess for the team and give the script that user's access keys"
+      "text": "Turn on IAM Access Analyzer external access findings to monitor the root user's activity, and leave the backup script using the root access key"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "AWS recommends that you do not create access keys for the root user, that you protect root sign-in with MFA, and that you use the root user only for tasks that require it. Workloads should use the temporary credentials of an IAM role, so moving the script to a role lets you delete the key. Rotating and storing the root key still leaves a long-term credential with full access to every service and billing. Adding MFA protects console sign-in, but the access key would keep working without MFA, so the most dangerous credential remains. A shared administrator IAM user swaps one long-term credential for another and removes individual accountability; human users should federate and use temporary credentials.",
+  "rationale": "AWS recommends that you do not create access keys for the root user, that you protect root sign-in with MFA, and that you use the root user only for tasks that require it. Workloads should use the temporary credentials of an IAM role, so moving the script to a role lets you delete the key. Rotating and storing the root key still leaves a long-term credential with full access to every service and billing. Adding MFA protects console sign-in, but the access key would keep working without MFA, so the most dangerous credential remains. External access findings flag resource-based policies that share access with a principal outside your account or organization; they do not monitor root user API activity, and turning them on does not remove the root access key that the backup script still uses.",
   "citationIds": [
     "cite-saa-1-1-root-bp",
-    "cite-saa-1-1-iam-bp"
+    "cite-saa-1-1-iam-bp",
+    "cite-saa-1-1-aa-external"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

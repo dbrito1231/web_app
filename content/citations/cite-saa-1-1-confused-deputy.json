@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-confused-deputy",
+  "title": "The confused deputy problem",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (AWS-R4-007): fetched from docs.aws.amazon.com. Confirms the confused-deputy risk is another customer of the same third party supplying your role ARN, not an arbitrary outsider who merely learns the ARN."
+}

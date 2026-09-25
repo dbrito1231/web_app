@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "IAM users whose names match the AD accounts, with a script that copies AD password changes into IAM"
+      "text": "Create an Amazon Cognito user pool configured as a SAML service provider for AD FS, and use it for console sign-in"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "SAML 2.0 federation lets users sign in through an IdP such as AD FS and reach the console without an IAM user for each person. You create a SAML identity provider in IAM, create roles whose trust policy names that provider, and configure AD FS assertions that map AD groups to the roles. A Cognito identity pool issues AWS credentials to users of your web or mobile app; it does not provide single sign-on to the AWS Management Console. IAM users are exactly what the requirement forbids, and copying passwords adds long-term credentials to manage. AWS Managed Microsoft AD runs new domain controllers in your VPC; replacing the existing forest is a migration that the scenario does not call for and it still needs a federation or role mapping to reach the console.",
+  "rationale": "SAML 2.0 federation lets users sign in through an IdP such as AD FS and reach the console without an IAM user for each person. You create a SAML identity provider in IAM, create roles whose trust policy names that provider, and configure AD FS assertions that map AD groups to the roles. A Cognito identity pool issues AWS credentials to users of your web or mobile app; it does not provide single sign-on to the AWS Management Console. A Cognito user pool authenticates users for your own applications and issues its own tokens; configuring it as a SAML service provider still only signs users into that application, not the AWS Management Console. AWS Managed Microsoft AD runs new domain controllers in your VPC; replacing the existing forest is a migration that the scenario does not call for and it still needs a federation or role mapping to reach the console.",
   "citationIds": [
     "cite-saa-1-1-saml",
     "cite-saa-1-1-cognito",

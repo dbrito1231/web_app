@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-idc-idp-source",
+  "title": "IAM Identity Center: connect to an external identity provider",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-identity-source-idp.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (AWS-R4-002): fetched from docs.aws.amazon.com. Confirms external identity providers connect through SAML 2.0, with users and groups provisioned by SCIM; OIDC is not a supported way to connect an identity source."
+}

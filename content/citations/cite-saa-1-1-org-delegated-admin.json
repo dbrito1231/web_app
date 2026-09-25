@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-org-delegated-admin",
+  "title": "Delegated administrator for AWS services that work with Organizations",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_delegated_admin.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (batch F8, q-saa-1-1-k01-mr distractor fix): fetched from docs.aws.amazon.com. Confirms delegated administrator status registers a member account as administrator for a specific compatible AWS service's organization-wide feature; it does not by itself grant that account's IAM roles permission to read resources in member accounts outside that service's own mechanism."
+}

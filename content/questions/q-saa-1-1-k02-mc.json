@@ -23,19 +23,20 @@
     },
     {
       "id": "d",
-      "text": "Create IAM users with console passwords and MFA in one central account and let them switch roles into the other accounts"
+      "text": "Enable IAM Identity Center as an account instance, without enabling AWS Organizations, and assign permission sets from there"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "IAM Identity Center provides one point of federation with a single SAML certificate to manage, an AWS access portal where users see all of their assigned accounts, and permission sets that it provisions as roles in each account. Amazon Cognito is an identity platform for users of your web and mobile apps; it is not the service for workforce sign-in to AWS accounts. Per-account IAM SAML federation works, but the SAML provider used in a role trust policy must be in the same account as the role, so the team would maintain 12 separate trusts. IAM users rely on long-term credentials, and IAM best practices require human users to federate through an identity provider and use temporary credentials.",
+  "rationale": "IAM Identity Center provides one point of federation with a single SAML certificate to manage, an AWS access portal where users see all of their assigned accounts, and permission sets that it provisions as roles in each account. Amazon Cognito is an identity platform for users of your web and mobile apps; it is not the service for workforce sign-in to AWS accounts. Per-account IAM SAML federation works, but the SAML provider used in a role trust policy must be in the same account as the role, so the team would maintain 12 separate trusts. An account instance of Identity Center supports only the single account it runs in; assigning permission sets across the other 11 accounts and giving users one access portal to all of them requires an organization instance, enabled in the AWS Organizations management account.",
   "citationIds": [
     "cite-saa-1-1-idc-what",
     "cite-saa-1-1-idc-permsets",
     "cite-saa-1-1-saml",
     "cite-saa-1-1-cognito",
-    "cite-saa-1-1-iam-bp"
+    "cite-saa-1-1-iam-bp",
+    "cite-saa-1-1-idc-instances"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

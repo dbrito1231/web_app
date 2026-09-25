@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-s3-object-ownership",
+  "title": "Controlling ownership of objects and disabling ACLs for your bucket",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html",
+  "accessed": "2026-09-25",
+  "note": "Amendment 2, round 4 (batch F8, q-saa-1-1-s05-mc distractor fix): fetched from docs.aws.amazon.com. Confirms new S3 buckets default to the Bucket owner enforced setting, which disables ACLs entirely, and that an ACL grants access to an AWS account or predefined group rather than to a specific IAM role ARN."
+}
