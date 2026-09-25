@@ -99,10 +99,10 @@
       "id": "s09",
       "title": "Drop table and database",
       "bullets": [
-        "Run `$DropTableId = aws athena start-query-execution --query-string 'DROP TABLE gl17.sample' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text`.",
-        "Run `do { Start-Sleep -Seconds 2; $DropTableState = aws athena get-query-execution --query-execution-id $DropTableId --query QueryExecution.Status.State --output text } while ($DropTableState -eq 'QUEUED' -or $DropTableState -eq 'RUNNING')`.",
-        "Run `$DropDbId = aws athena start-query-execution --query-string 'DROP DATABASE gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text`.",
-        "Run `do { Start-Sleep -Seconds 2; $DropDbState = aws athena get-query-execution --query-execution-id $DropDbId --query QueryExecution.Status.State --output text } while ($DropDbState -eq 'QUEUED' -or $DropDbState -eq 'RUNNING')`.",
+        "Run `$DropTableId = aws athena start-query-execution --query-string 'DROP TABLE IF EXISTS gl17.sample' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text`.",
+        "Run `$i = 0; do { Start-Sleep -Seconds 2; $DropTableState = aws athena get-query-execution --query-execution-id $DropTableId --query QueryExecution.Status.State --output text; $i++ } while (($DropTableState -eq 'QUEUED' -or $DropTableState -eq 'RUNNING') -and $i -lt 60)`.",
+        "Run `$DropDbId = aws athena start-query-execution --query-string 'DROP DATABASE IF EXISTS gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text`.",
+        "Run `$j = 0; do { Start-Sleep -Seconds 2; $DropDbState = aws athena get-query-execution --query-execution-id $DropDbId --query QueryExecution.Status.State --output text; $j++ } while (($DropDbState -eq 'QUEUED' -or $DropDbState -eq 'RUNNING') -and $j -lt 60)`.",
         "Success: `$DropTableState` and `$DropDbState` are SUCCEEDED. Do this before you delete the results bucket."
       ]
     },
@@ -191,9 +191,9 @@
       "$Bucket = \"workbook-gl17-$((aws sts get-caller-identity --query Account --output text))\"",
       "$ResultsBucket = \"workbook-gl17-results-$((aws sts get-caller-identity --query Account --output text))\"",
       "$DropTableId = aws athena start-query-execution --query-string 'DROP TABLE IF EXISTS gl17.sample' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text",
-      "if ($DropTableId) { do { Start-Sleep -Seconds 2; $DropTableState = aws athena get-query-execution --query-execution-id $DropTableId --query QueryExecution.Status.State --output text } while ($DropTableState -eq 'QUEUED' -or $DropTableState -eq 'RUNNING') }",
+      "if ($DropTableId) { $i = 0; do { Start-Sleep -Seconds 2; $DropTableState = aws athena get-query-execution --query-execution-id $DropTableId --query QueryExecution.Status.State --output text; $i++ } while (($DropTableState -eq 'QUEUED' -or $DropTableState -eq 'RUNNING') -and $i -lt 60); if ($i -ge 60) { Write-Host 'Timed out waiting for DROP TABLE to finish after 60 tries; check the Athena console' } }",
       "$DropDbId = aws athena start-query-execution --query-string 'DROP DATABASE IF EXISTS gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/ --query QueryExecutionId --output text",
-      "if ($DropDbId) { do { Start-Sleep -Seconds 2; $DropDbState = aws athena get-query-execution --query-execution-id $DropDbId --query QueryExecution.Status.State --output text } while ($DropDbState -eq 'QUEUED' -or $DropDbState -eq 'RUNNING') }",
+      "if ($DropDbId) { $j = 0; do { Start-Sleep -Seconds 2; $DropDbState = aws athena get-query-execution --query-execution-id $DropDbId --query QueryExecution.Status.State --output text; $j++ } while (($DropDbState -eq 'QUEUED' -or $DropDbState -eq 'RUNNING') -and $j -lt 60); if ($j -ge 60) { Write-Host 'Timed out waiting for DROP DATABASE to finish after 60 tries; check the Athena console' } }",
       "aws s3 rm s3://$Bucket --recursive",
       "aws s3 rm s3://$ResultsBucket --recursive",
       "aws s3api delete-bucket --bucket $Bucket",

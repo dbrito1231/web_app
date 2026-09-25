@@ -14,6 +14,7 @@
   ],
   "scenario": "Design a private DNS layout with two records and document split-horizon behavior.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul16`: private hosted zone `workbook-ul16` and, if you create one, VPC `workbook-ul16`. Tag each one LabId=ul-16.",
     "Private hosted zone linked to VPC.",
     "Split-horizon or separate private name documented vs any public DNS.",
     "At least two private records (A and CNAME or two A).",
@@ -69,11 +70,13 @@
       "if ($ZoneId -and $Rrs) { $Changes = @($Rrs | ForEach-Object { @{ Action = 'DELETE'; ResourceRecordSet = $_ } }) }",
       "# Write the change batch and submit it",
       "if ($ZoneId -and $Rrs) { @{ Changes = $Changes } | ConvertTo-Json -Depth 10 | Set-Content -Encoding Ascii ul16-records-delete.json; $ChangeId = aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://ul16-records-delete.json --query ChangeInfo.Id --output text }",
-      "if ($ZoneId -and $Rrs) { aws route53 wait resource-record-sets-changed --id $ChangeId }",
+      "if ($ZoneId -and $Rrs -and $ChangeId) { aws route53 wait resource-record-sets-changed --id $ChangeId }",
       "if ($ZoneId) { aws route53 delete-hosted-zone --id $ZoneId }",
       "# Delete any subnets and security groups you added to $VpcId before delete-vpc",
       "if ($VpcId) { $IsDefault = aws ec2 describe-vpcs --vpc-ids $VpcId --query \"Vpcs[0].IsDefault\" --output text }",
       "$NotDefaultVpc = ($IsDefault -eq 'False')",
+      "if ($VpcId -and $NotDefaultVpc) { foreach ($SubnetId in ((aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[].SubnetId\" --output text) -split '\\s+')) { if ($SubnetId) { aws ec2 delete-subnet --subnet-id $SubnetId } } }",
+      "if ($VpcId -and $NotDefaultVpc) { foreach ($SgId in ((aws ec2 describe-security-groups --filters Name=vpc-id,Values=$VpcId --query \"SecurityGroups[?GroupName!='default'].GroupId\" --output text) -split '\\s+')) { if ($SgId) { aws ec2 delete-security-group --group-id $SgId } } }",
       "if ($VpcId -and $NotDefaultVpc) { aws ec2 delete-vpc --vpc-id $VpcId }"
     ],
     "verification": [

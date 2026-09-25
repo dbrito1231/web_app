@@ -62,15 +62,16 @@
     "labId": "ul-21",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "# Uses: none (resources are named workbook-ul21)",
+      "# Uses: $AwsPath (optional \u2014 set $AwsPath = $true only if you built the AWS ElastiCache half; unset, the AWS lines below are skipped)",
       "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21",
       "Remove-Item Env:TF_TOKEN_app_terraform_io -ErrorAction SilentlyContinue",
       "# terraform logout removes the token that terraform login saved (credentials.tfrc.json)",
       "terraform logout app.terraform.io",
+      "# terraform logout only deletes the local copy of the token; it does not revoke it. Revoke the token in HCP Terraform under User settings -> Tokens.",
       "# AWS path only (skip if you stayed on HCP): the subnet group can be deleted only after the cluster is gone",
-      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-ul21 --query CacheCluster.CacheClusterStatus --output text",
-      "aws elasticache wait cache-cluster-deleted --cache-cluster-id workbook-ul21",
-      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-ul21"
+      "if ($AwsPath) { aws elasticache delete-cache-cluster --cache-cluster-id workbook-ul21 --query CacheCluster.CacheClusterStatus --output text }",
+      "if ($AwsPath) { aws elasticache wait cache-cluster-deleted --cache-cluster-id workbook-ul21 }",
+      "if ($AwsPath) { aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-ul21 }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21 returns an empty ResourceTagMappingList in $env:AWS_REGION",

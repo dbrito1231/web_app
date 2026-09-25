@@ -63,16 +63,17 @@
     "labId": "ul-02",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "# Uses: $Bucket (optional \u2014 set it before running teardown if you reused your GL-02 bucket; otherwise the next line builds workbook-ul02-<account-id>)",
+      "# Uses: $Ul02Bucket (optional \u2014 set it to your GL-02 bucket name if you reused it; otherwise the next line builds workbook-ul02-<account-id>)",
       "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-02",
-      "if (-not $Bucket) { $Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\" }",
+      "if (-not $Ul02Bucket) { $Ul02Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\" }; Write-Host \"Deleting bucket: $Ul02Bucket\"",
       "aws macie2 update-macie-session --status PAUSED",
-      "aws s3api delete-bucket-policy --bucket $Bucket",
-      "$versions = aws s3api list-object-versions --bucket $Bucket --output json | ConvertFrom-Json",
-      "foreach ($v in $versions.Versions) { aws s3api delete-object --bucket $Bucket --key $v.Key --version-id $v.VersionId }",
-      "foreach ($m in $versions.DeleteMarkers) { aws s3api delete-object --bucket $Bucket --key $m.Key --version-id $m.VersionId }",
-      "aws s3api delete-bucket-lifecycle --bucket $Bucket",
-      "aws s3api delete-bucket --bucket $Bucket"
+      "$Ul02BucketLabId = aws s3api get-bucket-tagging --bucket $Ul02Bucket --query \"TagSet[?Key=='LabId'].Value | [0]\" --output text",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { aws s3api delete-bucket-policy --bucket $Ul02Bucket } else { Write-Host \"Skipping ${Ul02Bucket}: LabId tag is not ul-02 or gl-02\" }",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { $versions = aws s3api list-object-versions --bucket $Ul02Bucket --output json | ConvertFrom-Json }",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { foreach ($v in $versions.Versions) { aws s3api delete-object --bucket $Ul02Bucket --key $v.Key --version-id $v.VersionId } }",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { foreach ($m in $versions.DeleteMarkers) { aws s3api delete-object --bucket $Ul02Bucket --key $m.Key --version-id $m.VersionId } }",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { aws s3api delete-bucket-lifecycle --bucket $Ul02Bucket }",
+      "if ($Ul02BucketLabId -eq 'ul-02' -or $Ul02BucketLabId -eq 'gl-02') { aws s3api delete-bucket --bucket $Ul02Bucket }"
     ],
     "verification": [
       "aws macie2 get-macie-session shows status PAUSED or Macie not enabled",

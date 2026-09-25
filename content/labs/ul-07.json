@@ -67,7 +67,7 @@
       "# Lost an ID? Resources are named workbook-ul07*; list what is tagged with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07",
       "# First unmount on the instance: sudo umount <mountpoint>",
       "if ($FileSystemId) { $MtIds = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"MountTargets[].[MountTargetId]\" --output text; foreach ($MtId in $MtIds) { if ($MtId) { aws efs delete-mount-target --mount-target-id $MtId } } }",
-      "if ($FileSystemId) { do { Start-Sleep -Seconds 10; $MtLeft = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"length(MountTargets)\" --output text } while ($MtLeft -and $MtLeft -ne '0') }",
+      "if ($FileSystemId) { $i = 0; do { Start-Sleep -Seconds 10; $MtLeft = aws efs describe-mount-targets --file-system-id $FileSystemId --query \"length(MountTargets)\" --output text; $i++ } while ($MtLeft -and $MtLeft -ne '0' -and $i -lt 60); if ($i -ge 60) { Write-Host 'Timed out waiting for EFS mount targets to delete after 60 tries; check the EFS console before deleting the file system' } }",
       "if ($FileSystemId) { aws efs delete-file-system --file-system-id $FileSystemId }",
       "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
       "if ($MountTargetSgId) { aws ec2 delete-security-group --group-id $MountTargetSgId }",
@@ -79,7 +79,7 @@
       "aws ec2 describe-instances --instance-ids $InstanceId shows State.Name terminated"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
-    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-07 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07. Delete only those ids. Never delete untagged resources."
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-07 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07. Delete only those ids. Never delete untagged resources. If delete-file-system returns FileSystemInUse, wait a minute and rerun the mount-target poll line."
   },
   "executionStatus": "unexecuted",
   "module": "A2",

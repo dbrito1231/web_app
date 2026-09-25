@@ -81,7 +81,7 @@
       "title": "Create cluster",
       "bullets": [
         "Run `$VpcId = aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query \"Vpcs[0].VpcId\" --output text`.",
-        "Run `$Subnets = aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId Name=availability-zone,Values=us-east-1a,us-east-1b --query \"Subnets[0:2].SubnetId\" --output text`.",
+        "Run `$Subnets = aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId Name=availability-zone-id,Values=use1-az1,use1-az2,use1-az4,use1-az6 --query \"Subnets[0:2].SubnetId\" --output text`. EKS rejects subnets in AZ ID use1-az3, and AZ names map to different AZ IDs per account, so subnets are filtered by availability-zone-id, not availability-zone.",
         "Run `$SubnetIds = ($Subnets -split '\\s+') | Where-Object { $_ }`. Run `aws eks create-cluster --name workbook-gl19 --role-arn $EksRoleArn --resources-vpc-config subnetIds=$($SubnetIds -join ',') --tags LabId=gl-19,Workbook=aws-tf-lab`.",
         "Run `aws eks wait cluster-active --name workbook-gl19`.",
         "Success: cluster status ACTIVE."

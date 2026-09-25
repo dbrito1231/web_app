@@ -134,7 +134,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ASG (scale to 0, force-delete, then poll every 15 seconds until it is gone; this also terminates its instances), launch template. The AWS CLI has no Auto Scaling waiter, so Stop charges uses a short loop",
+        "Teardown order for this lab: ASG (scale to 0, force-delete, then poll every 15 seconds, up to 60 tries, until it is gone; this also terminates its instances), launch template. The AWS CLI has no Auto Scaling waiter, so Stop charges uses a short capped loop",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -186,7 +186,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
-      "if ($AsgName) { do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text } while ($AsgLeft -and $AsgLeft -ne '0') }",
+      "if ($AsgName) { $i = 0; do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text; $i++ } while ($AsgLeft -and $AsgLeft -ne '0' -and $i -lt 60); if ($i -ge 60) { Write-Host 'Timed out waiting for the ASG to delete after 60 tries; check the Auto Scaling console before deleting the launch template' } }",
       "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }"
     ],
     "verification": [

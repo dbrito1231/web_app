@@ -66,7 +66,7 @@
       "$Bucket = \"workbook-ul17-$((aws sts get-caller-identity --query Account --output text))\"",
       "# DROP ... CASCADE drops the database and every table in it. The loop waits for the query to finish before the results prefix is deleted.",
       "$QueryId = aws athena start-query-execution --query-string 'DROP DATABASE IF EXISTS workbook_ul17 CASCADE' --result-configuration OutputLocation=s3://$Bucket/results/ --query QueryExecutionId --output text",
-      "if ($QueryId) { do { Start-Sleep -Seconds 2; $QueryState = aws athena get-query-execution --query-execution-id $QueryId --query QueryExecution.Status.State --output text } while ($QueryState -eq 'QUEUED' -or $QueryState -eq 'RUNNING'); $QueryState }",
+      "if ($QueryId) { $i = 0; do { Start-Sleep -Seconds 2; $QueryState = aws athena get-query-execution --query-execution-id $QueryId --query QueryExecution.Status.State --output text; $i++ } while (($QueryState -eq 'QUEUED' -or $QueryState -eq 'RUNNING') -and $i -lt 60); if ($i -ge 60) { Write-Host 'Timed out waiting for DROP DATABASE to finish after 60 tries; check the Athena console' }; $QueryState }",
       "$WorkGroup = aws athena get-work-group --work-group workbook-ul17 --query WorkGroup.Name --output text",
       "if ($WorkGroup -and $WorkGroup -ne 'None') { aws athena delete-work-group --work-group $WorkGroup --recursive-delete-option }",
       "$Crawler = aws glue get-crawler --name workbook-ul17 --query Crawler.Name --output text",

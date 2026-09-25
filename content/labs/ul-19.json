@@ -33,7 +33,7 @@
   "hints": [
     {
       "level": 1,
-      "text": "Fargate profiles need private subnets; the default VPC (like GL-19) has only public ones, so most learners pick the node group path."
+      "text": "Fargate profiles need private subnets; the default VPC (like GL-19) has only public ones, so most learners pick the node group path. EKS also rejects subnets in AZ ID use1-az3; pick default-VPC subnets by availability-zone-id, as GL-19 does."
     },
     {
       "level": 2,

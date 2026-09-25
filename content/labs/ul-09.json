@@ -67,7 +67,7 @@
       "if ($AsgName) { $AsgInstanceIds = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"AutoScalingGroups[0].Instances[].[InstanceId]\" --output text }",
       "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
       "if ($AsgInstanceIds -and $AsgInstanceIds -ne 'None') { aws ec2 wait instance-terminated --instance-ids $AsgInstanceIds }",
-      "if ($AsgName) { do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text } while ($AsgLeft -and $AsgLeft -ne '0') }",
+      "if ($AsgName) { $i = 0; do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text; $i++ } while ($AsgLeft -and $AsgLeft -ne '0' -and $i -lt 60); if ($i -ge 60) { Write-Host 'Timed out waiting for the ASG to delete after 60 tries; check the Auto Scaling console before deleting the launch template' } }",
       "if ($AlarmName) { aws cloudwatch delete-alarms --alarm-names $AlarmName }",
       "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
       "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }"
