@@ -1,6 +1,6 @@
 {
   "id": "gl-07",
-  "title": "GL-07 — EC2, EBS, and EFS",
+  "title": "GL-07 — EC2 and EBS",
   "kind": "guided",
   "pairId": "ul-07",
   "region": "us-east-1",
@@ -46,7 +46,7 @@
       "bullets": [
         "Run `aws --version`.",
         "Success: output starts with `aws-cli/2`.",
-        "This lab focuses on EC2, EBS, and EFS; Terraform is not required unless a step says so."
+        "This lab focuses on EC2 and EBS. UL-07 adds the EFS file system. Terraform is not required unless a step says so."
       ]
     },
     {

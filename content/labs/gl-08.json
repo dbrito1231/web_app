@@ -95,7 +95,7 @@
       "title": "Launch target instance",
       "bullets": [
         "Run `$AmiId = aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query \"Parameters[0].Value\" --output text`.",
-        "Run `@'` then a new line `#!/bin/bash` then a new line `python3 -m http.server 80` then a new line `'@ | Set-Content -Encoding ascii user-data.sh`.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\user-data.sh\", \"#!/bin/bash`npython3 -m http.server 80`n\", $utf8)`. This writes LF line endings and no BOM, so the shebang works on Linux.",
         "Run `$InstanceId = aws ec2 run-instances --image-id $AmiId --instance-type t3.micro --subnet-id $SubnetPub --security-group-ids $SgId --tag-specifications \"ResourceType=instance,Tags=[{Key=LabId,Value=gl-08}]\" --user-data file://user-data.sh --query \"Instances[0].InstanceId\" --output text`.",
         "Run `aws ec2 wait instance-running --instance-ids $InstanceId`.",
         "Success: instance is running."

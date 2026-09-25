@@ -1,6 +1,6 @@
 {
   "id": "gl-21",
-  "title": "GL-21 \u2014 HCP Terraform and cache tradeoffs",
+  "title": "GL-21 — ElastiCache tradeoffs",
   "kind": "guided",
   "pairId": "ul-21",
   "region": "us-east-1",

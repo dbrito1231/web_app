@@ -73,7 +73,7 @@
       "bullets": [
         "Run `aws s3api create-bucket --bucket $Bucket --region us-east-1`.",
         "Run `aws s3api create-bucket --bucket $ResultsBucket --region us-east-1`.",
-        "Run `'name,value\\nfoo,1' | Out-File -Encoding ascii gl17.csv`.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl17.csv\", \"name,value`nfoo,1`n\", $utf8)`.",
         "Run `aws s3 cp gl17.csv s3://$Bucket/data/gl17.csv`.",
         "Success: object is in the data bucket."
       ]
@@ -97,10 +97,11 @@
     },
     {
       "id": "s09",
-      "title": "Drop table",
+      "title": "Drop table and database",
       "bullets": [
-        "Run `DROP TABLE gl17.sample`.",
-        "Success: table removed."
+        "Run `aws athena start-query-execution --query-string 'DROP TABLE gl17.sample' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/`.",
+        "Run `aws athena start-query-execution --query-string 'DROP DATABASE gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/`.",
+        "Success: table and database are gone. Do this before you delete the results bucket."
       ]
     },
     {
@@ -134,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: Athena results, data buckets",
+        "Teardown order for this lab: drop the Athena table, drop the database, then delete the results and data buckets",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -187,6 +188,8 @@
     "orderedDeletesPowerShell": [
       "$Bucket = \"workbook-gl17-$((aws sts get-caller-identity --query Account --output text))\"",
       "$ResultsBucket = \"workbook-gl17-results-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws athena start-query-execution --query-string 'DROP TABLE IF EXISTS gl17.sample' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/",
+      "aws athena start-query-execution --query-string 'DROP DATABASE IF EXISTS gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/",
       "aws s3 rm s3://$Bucket --recursive",
       "aws s3 rm s3://$ResultsBucket --recursive",
       "aws s3api delete-bucket --bucket $Bucket",

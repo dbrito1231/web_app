@@ -80,9 +80,8 @@ def scan_file(path: Path) -> None:
 
 
 def main() -> None:
-    for path in sorted(LABS.glob("*.json")):
-        if path.stem == "gl-01":
-            continue
+    paths = sorted(LABS.glob("*.json"))
+    for path in paths:
         scan_file(path)
 
     if errors:
@@ -90,7 +89,7 @@ def main() -> None:
         for e in errors:
             print(" -", e)
         sys.exit(1)
-    print("PASS", len(list(LABS.glob("*.json"))) - 1, "labs scanned")
+    print("PASS", len(paths), "labs scanned")
 
 
 if __name__ == "__main__":
