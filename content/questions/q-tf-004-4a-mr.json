@@ -34,7 +34,7 @@
     "a",
     "b"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
   "citationIds": [],
   "reviewedOn": null,
   "mcpStatus": "pending_recheck"

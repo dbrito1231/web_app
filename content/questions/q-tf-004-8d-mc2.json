@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "rationale": "Correct: 'Apply the objective directly: Configure and use HCP Terraform integration'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
   "citationIds": [],
   "reviewedOn": null,
   "mcpStatus": "pending_recheck"
