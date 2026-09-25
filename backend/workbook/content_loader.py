@@ -17,16 +17,26 @@ def content_root() -> Path:
     return Path(settings.CONTENT_ROOT)
 
 
-def _read_json(path: Path) -> dict:
+def _read_json(path: Path, expect: type | None = None):
     if not path.is_file():
         raise ContentNotFoundError(str(path))
     try:
         with path.open(encoding="utf-8") as handle:
-            return json.load(handle)
+            data = json.load(handle)
     except json.JSONDecodeError as exc:
         raise ContentParseError(
             f"Content file {path.name} is not valid JSON: {exc.msg} (line {exc.lineno})"
         ) from exc
+    except UnicodeDecodeError as exc:
+        raise ContentParseError(
+            f"Content file {path.name} is not UTF-8 text"
+        ) from exc
+    if expect is not None and not isinstance(data, expect):
+        kind = "object" if expect is dict else "list"
+        raise ContentParseError(
+            f"Content file {path.name} must contain a JSON {kind} at the top level"
+        )
+    return data
 
 
 def list_content_ids(subdir: str) -> list[str]:
@@ -40,15 +50,19 @@ def list_content_ids(subdir: str) -> list[str]:
 
 
 def load_lesson(lesson_id: str) -> dict:
-    return _read_json(content_root() / "lessons" / f"{lesson_id}.json")
+    return _read_json(content_root() / "lessons" / f"{lesson_id}.json", dict)
 
 
 def load_question(question_id: str) -> dict:
-    return _read_json(content_root() / "questions" / f"{question_id}.json")
+    return _read_json(content_root() / "questions" / f"{question_id}.json", dict)
 
 
 def load_lab(lab_id: str) -> dict:
-    return _read_json(content_root() / "labs" / f"{lab_id}.json")
+    return _read_json(content_root() / "labs" / f"{lab_id}.json", dict)
+
+
+def load_coverage_registry() -> dict:
+    return _read_json(content_root() / "coverage" / "saa_registry.json", dict)
 
 
 def public_question(question: dict) -> dict:
@@ -127,7 +141,7 @@ def exercise_index() -> list[dict]:
     if not directory.is_dir():
         return rows
     for exercise_id in list_content_ids("exercises"):
-        item = _read_json(directory / f"{exercise_id}.json")
+        item = _read_json(directory / f"{exercise_id}.json", dict)
         rows.append(
             {
                 "id": exercise_id,
@@ -149,10 +163,10 @@ def content_summary() -> dict:
         "labIndex": lab_index(),
         "exerciseIndex": exercise_index(),
         "objectives": {
-            "saa": _read_json(root / "objectives" / "saa_c03.json")
+            "saa": _read_json(root / "objectives" / "saa_c03.json", list)
             if (root / "objectives" / "saa_c03.json").is_file()
             else [],
-            "terraform": _read_json(root / "objectives" / "terraform_004.json")
+            "terraform": _read_json(root / "objectives" / "terraform_004.json", list)
             if (root / "objectives" / "terraform_004.json").is_file()
             else [],
         },
@@ -165,7 +179,7 @@ def saa_objective_domain_map() -> dict[str, str]:
     path = root / "objectives" / "saa_c03.json"
     if not path.is_file():
         return {}
-    rows = _read_json(path)
+    rows = _read_json(path, list)
     return {row["id"]: row["domain_id"] for row in rows}
 
 
@@ -175,7 +189,7 @@ def terraform_objective_group_map() -> dict[str, int]:
     path = root / "objectives" / "terraform_004.json"
     if not path.is_file():
         return {}
-    rows = _read_json(path)
+    rows = _read_json(path, list)
     return {row["id"]: int(row["group"]) for row in rows}
 
 

@@ -8,9 +8,9 @@ from django.views.decorators.http import require_GET, require_POST
 from workbook.content_loader import (
     ContentNotFoundError,
     ContentParseError,
-    content_root,
     content_summary,
     list_content_ids,
+    load_coverage_registry,
     load_lab,
     load_lesson,
     load_question,
@@ -255,15 +255,10 @@ def readiness_metrics(_request):
 
 @require_GET
 def coverage_registry(_request):
-    path = content_root() / "coverage" / "saa_registry.json"
-    if not path.is_file():
-        return _json_error("Coverage registry not found", 404)
     try:
-        with path.open(encoding="utf-8") as handle:
-            payload = json.load(handle)
-    except json.JSONDecodeError as exc:
-        parse_error = ContentParseError(
-            f"Content file {path.name} is not valid JSON: {exc.msg} (line {exc.lineno})"
-        )
-        return _content_error(parse_error)
+        payload = load_coverage_registry()
+    except ContentNotFoundError:
+        return _json_error("Coverage registry not found", 404)
+    except ContentParseError as exc:
+        return _content_error(exc)
     return JsonResponse(payload)

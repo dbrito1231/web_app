@@ -1,9 +1,8 @@
 import json
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
 
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 
 from workbook.content_loader import ContentParseError, _read_json, load_question
 from workbook.models import Attempt
@@ -162,14 +161,37 @@ class ContentParseTests(TestCase):
         self.assertIn("broken.json", str(caught.exception))
         self.assertIn("not valid JSON", str(caught.exception))
 
-    def test_question_get_returns_json_500_for_corrupt_file(self):
-        with patch(
-            "workbook.views.load_question",
-            side_effect=ContentParseError(
-                "Content file q-bad.json is not valid JSON: Expecting value (line 1)"
-            ),
-        ):
-            response = Client().get("/api/questions/q-bad")
-        self.assertEqual(response.status_code, 500)
-        self.assertTrue(response["Content-Type"].startswith("application/json"))
-        self.assertIn("not valid JSON", response.json()["error"])
+    def test_corrupt_files_return_json_500_through_real_views(self):
+        bad_files = {
+            "syntax": "{".encode("utf-8"),
+            "utf16": '{"id": "q"}'.encode("utf-16"),
+            "wrong-type": b"[]",
+        }
+        for label, raw in bad_files.items():
+            with self.subTest(label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                for sub in ("questions", "lessons", "labs", "coverage"):
+                    (root / sub).mkdir()
+                (root / "questions" / "q-bad.json").write_bytes(raw)
+                (root / "lessons" / "l-bad.json").write_bytes(raw)
+                (root / "labs" / "lab-bad.json").write_bytes(raw)
+                (root / "coverage" / "saa_registry.json").write_bytes(raw)
+                routes = [
+                    "/api/questions/q-bad",
+                    "/api/lessons/l-bad",
+                    "/api/labs/lab-bad",
+                    "/api/content/catalog",
+                    "/api/content/summary",
+                    "/api/coverage",
+                ]
+                with override_settings(CONTENT_ROOT=root), self.assertLogs(
+                    "workbook.views", "ERROR"
+                ):
+                    for route in routes:
+                        response = Client().get(route)
+                        self.assertEqual(response.status_code, 500, route)
+                        self.assertTrue(
+                            response["Content-Type"].startswith("application/json"),
+                            route,
+                        )
+                        self.assertIn("Content file", response.json()["error"], route)
