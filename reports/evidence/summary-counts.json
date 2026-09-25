@@ -1,0 +1,399 @@
+{
+  "finding_total": 62,
+  "by_severity": {
+    "Medium": 27,
+    "Low": 17,
+    "Informational": 5,
+    "High": 10,
+    "Critical": 3
+  },
+  "by_confidence": {
+    "Confirmed": 23,
+    "Likely": 25,
+    "Subjective Observation": 4,
+    "Needs Verification": 7,
+    "Unknown": 3
+  },
+  "by_report_prefix": {
+    "01": 8,
+    "02": 15,
+    "03": 11,
+    "04": 7,
+    "05": 14,
+    "06": 7
+  },
+  "findings": [
+    {
+      "id": "STUDENT-201",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-202",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-203",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-204",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-211",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-205",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-206",
+      "severity": "Informational",
+      "confidence": "Likely",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "STUDENT-208",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "01-college-it-student.md"
+    },
+    {
+      "id": "F-201",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-202",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-203",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-204",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-205",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-206",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "F-207",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-208",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-209",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-210",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-211",
+      "severity": "Low",
+      "confidence": "Subjective Observation",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-212",
+      "severity": "High",
+      "confidence": "Needs Verification",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-213",
+      "severity": "Medium",
+      "confidence": "Needs Verification",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-214",
+      "severity": "Medium",
+      "confidence": "Needs Verification",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "TEACHER-215",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "02-teacher.md"
+    },
+    {
+      "id": "AWS-201",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-202",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-203",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-204",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-205",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-206",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-207",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-208",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-209",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-210",
+      "severity": "Informational",
+      "confidence": "Needs Verification",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "AWS-211",
+      "severity": "Informational",
+      "confidence": "Subjective Observation",
+      "report": "03-senior-aws-solutions-architect.md"
+    },
+    {
+      "id": "ITMGR-230",
+      "severity": "Critical",
+      "confidence": "Unknown",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-201",
+      "severity": "High",
+      "confidence": "Unknown",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-204",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-202",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-203",
+      "severity": "Medium",
+      "confidence": "Needs Verification",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-205",
+      "severity": "High",
+      "confidence": "Subjective Observation",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "ITMGR-206",
+      "severity": "Low",
+      "confidence": "Needs Verification",
+      "report": "04-it-manager.md"
+    },
+    {
+      "id": "FULLSTACK-230",
+      "severity": "Critical",
+      "confidence": "Unknown",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-201",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-202",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-203",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-204",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-205",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-206",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-207",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-208",
+      "severity": "Medium",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-209",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-210",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-211",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-212",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "FULLSTACK-213",
+      "severity": "Medium",
+      "confidence": "Needs Verification",
+      "report": "05-senior-fullstack-engineer.md"
+    },
+    {
+      "id": "PYTHON-230",
+      "severity": "Critical",
+      "confidence": "Confirmed",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-201",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-203",
+      "severity": "Medium",
+      "confidence": "Confirmed",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-202",
+      "severity": "Informational",
+      "confidence": "Likely",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-204",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-205",
+      "severity": "Low",
+      "confidence": "Likely",
+      "report": "06-senior-python-developer.md"
+    },
+    {
+      "id": "PYTHON-206",
+      "severity": "Informational",
+      "confidence": "Subjective Observation",
+      "report": "06-senior-python-developer.md"
+    }
+  ]
+}

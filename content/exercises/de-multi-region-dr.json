@@ -1,0 +1,45 @@
+{
+  "id": "de-multi-region-dr",
+  "title": "Multi-Region DR vs RPO/RTO",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-2.2-K04",
+    "SAA-2.2-S06"
+  ],
+  "scenario": "You must design a solution addressing: Multi-Region DR vs RPO/RTO. You have one personal account and cannot provision unavailable services.",
+  "constraints": [
+    "Do not claim live AWS experience",
+    "Cite official docs",
+    "Include teardown or 'not provisioned' rationale",
+    "State cost assumptions"
+  ],
+  "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Requirements mapped to services",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Security and least privilege addressed",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Cost and residual risk stated",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Why live lab was unsuitable documented",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Official citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Service unavailable or not disposable in a personal same-day lab"
+}

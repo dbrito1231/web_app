@@ -1,0 +1,83 @@
+{
+  "id": "ul-18",
+  "title": "UL-18 \u2014 Challenge: ECS on Fargate",
+  "kind": "unguided",
+  "pairId": "gl-18",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.2,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K14",
+    "SAA-3.2-K05"
+  ],
+  "scenario": "Run Fargate task, bump CPU/memory one tier, run again, tear down.",
+  "acceptanceCriteria": [
+    "Fargate task definition created.",
+    "CPU and memory changed once to next Fargate size tier for pricing comparison.",
+    "Second task run uses updated task definition revision.",
+    "Both task ARNs documented.",
+    "Tasks stopped before cluster delete.",
+    "Cost-risk accepted.",
+    "LabId=ul-18 tags.",
+    "Public IP only if needed and released after stop.",
+    "CloudWatch log group deleted if created.",
+    "Security groups minimal.",
+    "No ECS service left desired>0.",
+    "Task definition deregistered.",
+    "Cluster deleted.",
+    "describe-clusters empty.",
+    "Tag search LabId=ul-18 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Register new TD revision."
+    },
+    {
+      "level": 2,
+      "text": "Compare Fargate pricing page."
+    },
+    {
+      "level": 3,
+      "text": "Stop tasks before cluster delete."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Fargate sizing comparison lab."
+  },
+  "stopChargesPanel": "Delete ECS cluster, TD, logs for ul-18.",
+  "teardown": {
+    "labId": "ul-18",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws ecs delete-cluster --cluster workbook-gl18",
+      "aws iam detach-role-policy --role-name workbook-gl18-task --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+      "aws iam delete-role --role-name workbook-gl18-task"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-18 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 4.8,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-18) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "ul-15",
+  "title": "UL-15 \u2014 Challenge: CloudWatch and CloudTrail",
+  "kind": "unguided",
+  "pairId": "gl-15",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.2-S03",
+    "SAA-2.2-K12"
+  ],
+  "scenario": "After GL-15 trail work, set 1-day retention on the GL-10 Lambda log group (or equivalent lab log group).",
+  "acceptanceCriteria": [
+    "CloudTrail portion matches GL-15 minimal trail.",
+    "CloudWatch log group for GL-10 Lambda (or named workbook lab log group) has retention set to 1 day.",
+    "Retention change verified with describe-log-groups.",
+    "No custom metric charges introduced.",
+    "Alarm if created uses only free-tier friendly namespace.",
+    "Trail logging stopped before delete.",
+    "S3 bucket emptied for trail.",
+    "LabId=ul-15 tags.",
+    "IAM roles for trail least privilege.",
+    "No CloudWatch Logs data ingestion charges beyond brief test.",
+    "Teardown deletes trail then bucket.",
+    "Teardown resets or deletes log group.",
+    "Teardown deletes alarms.",
+    "Log retention shows 1 or log group absent.",
+    "Tag search LabId=ul-15 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "put-retention-policy on log group."
+    },
+    {
+      "level": 2,
+      "text": "Find log group from Lambda function name."
+    },
+    {
+      "level": 3,
+      "text": "Trail S3 bucket must be empty before delete."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Trail plus log retention challenge."
+  },
+  "stopChargesPanel": "Delete trail, bucket, adjust/delete log group for ul-15.",
+  "teardown": {
+    "labId": "ul-15",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws cloudtrail stop-logging --name workbook-gl15 -ErrorAction SilentlyContinue",
+      "aws cloudtrail delete-trail --name workbook-gl15 -ErrorAction SilentlyContinue",
+      "aws cloudwatch delete-alarms --alarm-names workbook-gl15",
+      "$Bucket = \"workbook-gl15-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-15 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-15 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-15) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

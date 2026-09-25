@@ -1,0 +1,197 @@
+{
+  "id": "gl-12",
+  "title": "GL-12 — Step Functions",
+  "kind": "guided",
+  "pairId": "ul-12",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "forgotten24hEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K16",
+    "SAA-2.1-S01"
+  ],
+  "module": "A2",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete state machine and IAM role used by Step Functions.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on Step Functions; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Execution role",
+      "bullets": [
+        "Run `aws iam create-role --role-name workbook-gl12-sfn --assume-role-policy-document file://gl12-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `aws iam put-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log --policy-document file://gl12-log-policy.json`.",
+        "Run `$SfnRoleArn = aws iam get-role --role-name workbook-gl12-sfn --query Role.Arn --output text`.",
+        "Success: role Arn is set."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "State machine",
+      "bullets": [
+        "Save gl12.asl.json with Pass state ending Succeed.",
+        "Run `$SmArn = aws stepfunctions create-state-machine --name workbook-gl12 --definition file://gl12.asl.json --role-arn $SfnRoleArn --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query stateMachineArn --output text`.",
+        "Success: state machine Arn is set."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Start execution",
+      "bullets": [
+        "Run `$ExecArn = aws stepfunctions start-execution --state-machine-arn $SmArn --input '{}' --query executionArn --output text`.",
+        "Run `aws stepfunctions describe-execution --execution-arn $ExecArn`.",
+        "Success: status SUCCEEDED."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "List executions",
+      "bullets": [
+        "Run `aws stepfunctions list-executions --state-machine-arn $SmArn --max-results 1`.",
+        "Success: your execution appears."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Transition cost note",
+      "bullets": [
+        "Standard workflows bill per state transition; this run used one Pass.",
+        "Success: you noted the estimate from the card."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Prepare delete",
+      "bullets": [
+        "Delete state machine, then IAM role policy and role.",
+        "Success: Stop charges order is clear."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: state machine, IAM role",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-12",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws stepfunctions delete-state-machine --state-machine-arn $SmArn",
+      "aws iam delete-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log",
+      "aws iam delete-role --role-name workbook-gl12-sfn"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-12 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Minimal Standard workflow with one successful execution."
+}

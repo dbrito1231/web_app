@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-3-5-s05-mr",
+  "type": "mr",
+  "module": "A3",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-3.5-S05"
+  ],
+  "stem": "Select TWO actions that support this requirement: Selecting appropriate compute options for data processing (for example, Amazon EMR)",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "b",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "c",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "d",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "e",
+      "text": "Design against the stated requirement and document tradeoffs"
+    }
+  ],
+  "correctAnswerIds": [
+    "e",
+    "a"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

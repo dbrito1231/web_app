@@ -1,0 +1,45 @@
+{
+  "id": "lesson-4-3",
+  "title": "A4 \u2014 Cost-optimized databases",
+  "module": "A4",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-4.3-K01",
+    "SAA-4.3-K02",
+    "SAA-4.3-K03",
+    "SAA-4.3-K04",
+    "SAA-4.3-K05",
+    "SAA-4.3-K06",
+    "SAA-4.3-K07",
+    "SAA-4.3-K08",
+    "SAA-4.3-K09",
+    "SAA-4.3-S01",
+    "SAA-4.3-S02",
+    "SAA-4.3-S03",
+    "SAA-4.3-S04",
+    "SAA-4.3-S05"
+  ],
+  "drillIds": [
+    "q-saa-4-3-k01-mc",
+    "q-saa-4-3-k02-mc",
+    "q-saa-4-3-k03-mc",
+    "q-saa-4-3-k04-mc",
+    "q-saa-4-3-k05-mc",
+    "q-saa-4-3-k06-mc",
+    "q-saa-4-3-k07-mc",
+    "q-saa-4-3-k08-mc",
+    "q-saa-4-3-k09-mc",
+    "q-saa-4-3-s01-mc",
+    "q-saa-4-3-s02-mc",
+    "q-saa-4-3-s03-mc",
+    "q-saa-4-3-s04-mc",
+    "q-saa-4-3-s05-mc"
+  ],
+  "labIds": [],
+  "exerciseIds": [],
+  "citationIds": [
+    "cite-4-3"
+  ],
+  "bodyMarkdown": "## Cost-optimized databases\n\nExam task **4.3**. This lesson maps each knowledge and skill bullet from the supplied SAA-C03 guide.\n\n### Knowledge\n\n#### SAA-4.3-K01\nAWS cost management service features (for example, cost allocation tags, multi-account billing)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K02\nAWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K03\nCaching strategies\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K04\nData retention policies\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K05\nDatabase capacity planning (for example, capacity units)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K06\nDatabase connections and proxies\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K07\nDatabase engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K08\nDatabase replication (for example, read replicas)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.3-K09\nDatabase types and services (for example, relational compared with non-relational, Amazon Aurora, Amazon DynamoDB)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n### Skills\n\n#### SAA-4.3-S01\nDesigning appropriate backup and retention policies (for example, snapshot frequency)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.3-S02\nDetermining an appropriate database engine (for example, MySQL compared with PostgreSQL)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.3-S03\nDetermining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.3-S04\nDetermining cost-effective AWS database types (for example, time series format, columnar format)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.3-S05\nMigrating database schemas and data to different locations and/or different database engines\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n### Warnings\n\n- Do not use the AWS root user for routine lab work.\n- Stopping an instance is not teardown.\n- $10 budget alerts warn; they do not stop spend.\n\n**Citation (official):** https://aws.amazon.com/rds/pricing/ (last verified planning baseline 2026-09-23; MCP re-check pending)."
+}

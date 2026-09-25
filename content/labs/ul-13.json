@@ -1,0 +1,81 @@
+{
+  "id": "ul-13",
+  "title": "UL-13 \u2014 Challenge: DynamoDB",
+  "kind": "unguided",
+  "pairId": "gl-13",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.3-K03",
+    "SAA-3.3-S04",
+    "SAA-4.3-S03"
+  ],
+  "scenario": "Add a GSI, query it, then remove the GSI before table delete.",
+  "acceptanceCriteria": [
+    "Base table uses on-demand billing.",
+    "One GSI exists with projection ALL or KEYS_ONLY documented.",
+    "Query uses GSI not Scan for lookup pattern.",
+    "At least three items indexed on GSI partition key.",
+    "After query proof, GSI is deleted via UpdateTable.",
+    "Table still operable on base key after GSI removal.",
+    "LabId=ul-13 tags present.",
+    "No provisioned capacity mode used.",
+    "Teardown deletes table (removes GSI automatically).",
+    "describe-table shows no GSIs after update.",
+    "Query output captured in local notes only.",
+    "No DAX cluster created.",
+    "No streams required.",
+    "Table deleted.",
+    "Tag search LabId=ul-13 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "UpdateTable can drop GSI."
+    },
+    {
+      "level": 2,
+      "text": "Wait ACTIVE after each update."
+    },
+    {
+      "level": 3,
+      "text": "Query GSI name explicitly."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "GSI add/query/remove complete."
+  },
+  "stopChargesPanel": "Delete DynamoDB table for ul-13.",
+  "teardown": {
+    "labId": "ul-13",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws dynamodb delete-table --table-name workbook-gl13"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-13 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-13 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-13) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

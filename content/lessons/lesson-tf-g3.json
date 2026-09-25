@@ -1,0 +1,33 @@
+{
+  "id": "lesson-tf-g3",
+  "title": "T1 \u2014 Core Terraform workflow",
+  "module": "T1",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.3a",
+    "tf.004.3b",
+    "tf.004.3c",
+    "tf.004.3d",
+    "tf.004.3e",
+    "tf.004.3f",
+    "tf.004.3g"
+  ],
+  "drillIds": [
+    "q-tf-004-3a-mc",
+    "q-tf-004-3b-mc",
+    "q-tf-004-3c-mc",
+    "q-tf-004-3d-mc",
+    "q-tf-004-3e-mc",
+    "q-tf-004-3f-mc",
+    "q-tf-004-3g-mc",
+    "q-tf-004-3a-mr"
+  ],
+  "labIds": [
+    "gl-20"
+  ],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Core Terraform workflow\n\nTerraform Associate 004 objective group 3.\n\n### tf.004.3a\nDescribe the Terraform workflow\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3b\nInitialize a Terraform working directory\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3c\nValidate a Terraform configuration\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3d\nGenerate and review an execution plan for Terraform\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3e\nApply changes to infrastructure with Terraform\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3f\nDestroy Terraform-managed infrastructure\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.3g\nApply formatting and style adjustments to a configuration\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "de-saa-2.2-s07",
+  "title": "Design exercise: SAA-2.2-S07",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-2.2-S07"
+  ],
+  "scenario": "Design a solution that demonstrates skill: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+  "constraints": [
+    "Personal single account",
+    "Do not claim live AWS experience",
+    "Cite official documentation",
+    "State cost and residual risk"
+  ],
+  "requiredArtifact": "Decision notes + diagram outline + citation",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Objective addressed",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Tradeoffs documented",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Security considered",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Cost/risk stated",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Mapped as design_exercise to complete skill coverage when no dedicated live lab step exists"
+}

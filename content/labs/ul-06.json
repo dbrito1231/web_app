@@ -1,0 +1,122 @@
+{
+  "id": "ul-06",
+  "title": "UL-06 \u2014 Challenge: NAT gateway then delete",
+  "kind": "unguided",
+  "pairId": "gl-06",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.2-S01",
+    "SAA-4.4-K04",
+    "SAA-4.4-S01"
+  ],
+  "scenario": "Same NAT pattern as GL-06 but you choose CIDRs and document hourly + data processing cost before create.",
+  "acceptanceCriteria": [
+    "VPC with public and private subnets created with LabId=ul-06 tags.",
+    "Elastic IP allocated in vpc domain and associated only with NAT.",
+    "NAT gateway placed in public subnet and reaches available state.",
+    "Private route table sends 0.0.0.0/0 to the NAT gateway.",
+    "Cost-risk phrase `I ACCEPT THE COST RISK` recorded before NAT create.",
+    "Hourly and per-GB NAT pricing noted from official pages.",
+    "describe-nat-gateways shows your NAT before teardown.",
+    "NAT gateway deleted and wait until deleted state.",
+    "Elastic IP released after NAT delete.",
+    "No NAT gateways remain in the VPC.",
+    "Subnets and VPC deleted after NAT cleanup.",
+    "No running ENIs left in lab VPC.",
+    "Public IPv4 charges documented.",
+    "Tag search LabId=ul-06 empty.",
+    "Same session teardown verified with describe calls."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "NAT partial hours bill full hour."
+    },
+    {
+      "level": 2,
+      "text": "Wait for nat-gateway-deleted."
+    },
+    {
+      "level": 3,
+      "text": "Release EIP after NAT delete."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "NAT lab with cost gate and cleanup."
+  },
+  "stopChargesPanel": "Delete NAT, EIP, VPC for ul-06.",
+  "teardown": {
+    "labId": "ul-06",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$NatGatewayId = $null",
+      "$AllocationId = $null",
+      "$EndpointId = $null",
+      "$AlbArn = $null",
+      "$TargetGroupArn = $null",
+      "$AsgName = $null",
+      "$LaunchTemplateId = $null",
+      "$InstanceId = $null",
+      "$NaclAssocId = $null",
+      "$DefaultNaclId = $null",
+      "$CustomNaclId = $null",
+      "$RtAssocPub = $null",
+      "$RtAssocPriv = $null",
+      "$PublicRouteTableId = $null",
+      "$PrivateRouteTableId = $null",
+      "$SubnetPub = $null",
+      "$SubnetPriv = $null",
+      "$IgwId = $null",
+      "$VpcId = $null",
+      "$SgId = $null",
+      "if ($NatGatewayId) { aws ec2 delete-nat-gateway --nat-gateway-id $NatGatewayId; aws ec2 wait nat-gateway-deleted --nat-gateway-ids $NatGatewayId }",
+      "if ($AllocationId) { aws ec2 release-address --allocation-id $AllocationId }",
+      "if ($EndpointId) { aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId }",
+      "if ($NatGatewayId) { aws ec2 delete-nat-gateway --nat-gateway-id $NatGatewayId; aws ec2 wait nat-gateway-deleted --nat-gateway-ids $NatGatewayId }",
+      "if ($AllocationId) { aws ec2 release-address --allocation-id $AllocationId }",
+      "if ($AlbArn) { aws elbv2 delete-load-balancer --load-balancer-arn $AlbArn; aws elbv2 wait load-balancers-deleted --load-balancer-arns $AlbArn }",
+      "if ($TargetGroupArn) { aws elbv2 delete-target-group --target-group-arn $TargetGroupArn }",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
+      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
+      "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
+      "if ($NaclAssocId -and $DefaultNaclId) { aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId }",
+      "if ($CustomNaclId) { aws ec2 delete-network-acl --network-acl-id $CustomNaclId }",
+      "if ($RtAssocPub) { aws ec2 disassociate-route-table --association-id $RtAssocPub }",
+      "if ($RtAssocPriv) { aws ec2 disassociate-route-table --association-id $RtAssocPriv }",
+      "if ($PublicRouteTableId) { aws ec2 delete-route-table --route-table-id $PublicRouteTableId }",
+      "if ($PrivateRouteTableId) { aws ec2 delete-route-table --route-table-id $PrivateRouteTableId }",
+      "if ($SubnetPub) { aws ec2 delete-subnet --subnet-id $SubnetPub }",
+      "if ($SubnetPriv) { aws ec2 delete-subnet --subnet-id $SubnetPriv }",
+      "if ($IgwId -and $VpcId) { aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId; aws ec2 delete-internet-gateway --internet-gateway-id $IgwId }",
+      "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }",
+      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-06 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-06 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-06 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-06. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 1.2,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-06) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

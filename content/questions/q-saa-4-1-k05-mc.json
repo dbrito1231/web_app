@@ -1,0 +1,36 @@
+{
+  "id": "q-saa-4-1-k05-mc",
+  "type": "mc",
+  "module": "A4",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-4.1-K05"
+  ],
+  "stem": "You must choose one approach for: Backup strategies. Which action fits?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "b",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "c",
+      "text": "Apply the objective directly: Backup strategies"
+    },
+    {
+      "id": "d",
+      "text": "Ignore least privilege and use the root user for speed"
+    }
+  ],
+  "correctAnswerIds": [
+    "c"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

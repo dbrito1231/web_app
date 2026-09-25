@@ -1,0 +1,33 @@
+{
+  "id": "lesson-3-4",
+  "title": "A3 \u2014 High-performing networks",
+  "module": "A3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-3.4-K01",
+    "SAA-3.4-K02",
+    "SAA-3.4-K03",
+    "SAA-3.4-K04",
+    "SAA-3.4-S01",
+    "SAA-3.4-S02",
+    "SAA-3.4-S03",
+    "SAA-3.4-S04"
+  ],
+  "drillIds": [
+    "q-saa-3-4-k01-mc",
+    "q-saa-3-4-k02-mc",
+    "q-saa-3-4-k03-mc",
+    "q-saa-3-4-k04-mc",
+    "q-saa-3-4-s01-mc",
+    "q-saa-3-4-s02-mc",
+    "q-saa-3-4-s03-mc",
+    "q-saa-3-4-s04-mc"
+  ],
+  "labIds": [],
+  "exerciseIds": [],
+  "citationIds": [
+    "cite-3-4"
+  ],
+  "bodyMarkdown": "## High-performing networks\n\nExam task **3.4**. This lesson maps each knowledge and skill bullet from the supplied SAA-C03 guide.\n\n### Knowledge\n\n#### SAA-3.4-K01\nEdge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.4-K02\nHow to design network architecture (for example, subnet tiers, routing, IP addressing)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.4-K03\nLoad balancing concepts (for example, Application Load Balancer [ALB])\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.4-K04\nNetwork connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n### Skills\n\n#### SAA-3.4-S01\nCreating a network topology for various architectures (for example, global, hybrid, multi-tier)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.4-S02\nDetermining network configurations that can scale to accommodate future needs\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.4-S03\nDetermining the appropriate placement of resources to meet business requirements\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.4-S04\nSelecting the appropriate load balancing strategy\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n### Warnings\n\n- Do not use the AWS root user for routine lab work.\n- Stopping an instance is not teardown.\n- $10 budget alerts warn; they do not stop spend.\n\n**Citation (official):** https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html (last verified planning baseline 2026-09-23; MCP re-check pending)."
+}

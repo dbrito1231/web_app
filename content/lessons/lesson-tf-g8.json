@@ -1,0 +1,27 @@
+{
+  "id": "lesson-tf-g8",
+  "title": "T4 \u2014 HCP Terraform concepts",
+  "module": "T4",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.8a",
+    "tf.004.8b",
+    "tf.004.8c",
+    "tf.004.8d"
+  ],
+  "drillIds": [
+    "q-tf-004-8a-mc",
+    "q-tf-004-8b-mc",
+    "q-tf-004-8c-mc",
+    "q-tf-004-8d-mc",
+    "q-tf-004-8a-mr"
+  ],
+  "labIds": [
+    "gl-21"
+  ],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## HCP Terraform concepts\n\nTerraform Associate 004 objective group 8.\n\n### tf.004.8a\nUse HCP Terraform to create infrastructure\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.8b\nDescribe HCP Terraform collaboration and governance features\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.8c\nDescribe how to organize and use HCP Terraform workspaces and projects\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.8d\nConfigure and use HCP Terraform integration\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n**HCP rule:** Hands-on only on a no-charge plan. Never connect AWS credentials to HCP on a paid path."
+}

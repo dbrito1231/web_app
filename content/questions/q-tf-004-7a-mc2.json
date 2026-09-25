@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-7a-mc2",
+  "type": "mc",
+  "module": "T3",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.7a"
+  ],
+  "stem": "Quick check \u2014 Import existing infrastructure into your Terraform workspace. Which practice is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: Import existing infrastructure into your Terraform workspace"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

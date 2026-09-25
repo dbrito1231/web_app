@@ -1,0 +1,207 @@
+{
+  "id": "gl-02",
+  "title": "GL-02 — Private S3 data controls",
+  "kind": "guided",
+  "pairId": "ul-02",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.1,
+  "forgotten24hEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.3-K01",
+    "SAA-1.3-S02",
+    "SAA-1.3-S06"
+  ],
+  "module": "A1",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Empty the bucket (all versions), delete lifecycle, policy, and bucket when finished. Versioned objects must be removed before delete-bucket.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on S3 data controls; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Set `$Bucket = \"workbook-gl02-$AccountId\"`. Names must be globally unique and lowercase.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create the private bucket",
+      "bullets": [
+        "Run `aws s3api create-bucket --bucket $Bucket --region us-east-1 --tagging \"TagSet=[{Key=Workbook,Value=aws-tf-lab},{Key=LabId,Value=gl-02},{Key=CreatedAt,Value=$CreatedAt},{Key=ExpiresAt,Value=$ExpiresAt}]\"`.",
+        "In us-east-1 do not pass LocationConstraint.",
+        "Success: `aws s3api head-bucket --bucket $Bucket` exits 0."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Block all public access",
+      "bullets": [
+        "Run `aws s3api put-public-access-block --bucket $Bucket --public-access-block-configuration BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true`.",
+        "Success: all four flags are true."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Enable versioning and lifecycle",
+      "bullets": [
+        "Run `aws s3api put-bucket-versioning --bucket $Bucket --versioning-configuration Status=Enabled`.",
+        "Save lifecycle.json with one rule Expiration Days=1 on prefix `lab/` and Status Enabled.",
+        "Run `aws s3api put-bucket-lifecycle-configuration --bucket $Bucket --lifecycle-configuration file://lifecycle.json`.",
+        "Success: versioning shows Enabled."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Upload a tiny object",
+      "bullets": [
+        "Run `'hello-gl02' | Out-File -Encoding ascii gl02.txt`.",
+        "Run `aws s3 cp gl02.txt s3://$Bucket/lab/gl02.txt`.",
+        "Success: head-object returns ContentLength."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Attach a bucket policy requiring TLS",
+      "bullets": [
+        "Save gl02-policy.json denying s3:PutObject unless aws:SecureTransport is true for bucket $Bucket.",
+        "Run `aws s3api put-bucket-policy --bucket $Bucket --policy file://gl02-policy.json`.",
+        "Success: get-bucket-policy returns your document."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Validate HTTPS copy",
+      "bullets": [
+        "Run `aws s3 cp gl02.txt s3://$Bucket/lab/gl02-copy.txt`.",
+        "Success: copy succeeds over HTTPS."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: empty versioned objects and delete markers, bucket policy, lifecycle, then delete-bucket",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-02` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-02",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$Bucket = \"workbook-gl02-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws s3api delete-object --bucket $Bucket --key lab/gl02.txt",
+      "aws s3api delete-object --bucket $Bucket --key lab/gl02-copy.txt",
+      "$versions = aws s3api list-object-versions --bucket $Bucket --output json | ConvertFrom-Json",
+      "foreach ($v in $versions.Versions) { aws s3api delete-object --bucket $Bucket --key $v.Key --version-id $v.VersionId }",
+      "foreach ($m in $versions.DeleteMarkers) { aws s3api delete-object --bucket $Bucket --key $m.Key --version-id $m.VersionId }",
+      "aws s3api delete-bucket-policy --bucket $Bucket",
+      "aws s3api delete-bucket-lifecycle --bucket $Bucket",
+      "aws s3api delete-bucket --bucket $Bucket"
+    ],
+    "verification": [
+      "aws s3api head-bucket --bucket $Bucket returns 404 Not Found",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-02 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-02 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-02. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Create one private S3 bucket with block public access, versioning, a one-day lifecycle on prefix lab/, a tiny object, and a bucket policy requiring TLS. Same-hour cost is pennies for storage requests."
+}

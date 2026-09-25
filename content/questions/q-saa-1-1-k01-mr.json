@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-1-1-k01-mr",
+  "type": "mr",
+  "module": "A1",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-1.1-K01"
+  ],
+  "stem": "Select TWO actions that support this requirement: Access controls and management across multiple accounts",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "b",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "c",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "d",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "e",
+      "text": "Use root credentials for every lab step"
+    }
+  ],
+  "correctAnswerIds": [
+    "a",
+    "b"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

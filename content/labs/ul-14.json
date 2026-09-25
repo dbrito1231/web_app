@@ -1,0 +1,85 @@
+{
+  "id": "ul-14",
+  "title": "UL-14 \u2014 Challenge: RDS single-AZ",
+  "kind": "unguided",
+  "pairId": "gl-14",
+  "region": "us-east-1",
+  "estimatedMinutes": 120,
+  "sameHourEstimateUsd": 0.5,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.3-S02",
+    "SAA-4.3-S01",
+    "SAA-2.2-S05"
+  ],
+  "scenario": "Restore RDS to a new instance from snapshot, validate, delete copy then source.",
+  "acceptanceCriteria": [
+    "Source RDS instance created single-AZ smallest class.",
+    "Manual snapshot or restore-to-new-instance performed.",
+    "Restored copy instance identifier distinct from source.",
+    "Connectivity or describe validated on copy.",
+    "Copy instance deleted before source.",
+    "Source instance deleted without final snapshot if policy allows.",
+    "Subnet group and SG cleaned up.",
+    "Cost-risk logged.",
+    "LabId=ul-14 tags.",
+    "No Multi-AZ enabled.",
+    "Backup retention documented.",
+    "Snapshots deleted after instances.",
+    "No orphaned storage snapshots.",
+    "describe-db-instances empty for lab ids.",
+    "Tag search LabId=ul-14 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Restore creates new instance id."
+    },
+    {
+      "level": 2,
+      "text": "Delete copy first to save cost."
+    },
+    {
+      "level": 3,
+      "text": "Snapshots bill until deleted."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "RDS restore lab complete."
+  },
+  "stopChargesPanel": "Delete RDS instances, snapshots, subnet group for ul-14.",
+  "teardown": {
+    "labId": "ul-14",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$DbId = $null",
+      "$SubnetGroup = $null",
+      "if ($DbId) { aws rds delete-db-instance --db-instance-identifier $DbId --skip-final-snapshot -ErrorAction SilentlyContinue }",
+      "if ($SubnetGroup) { aws rds delete-db-subnet-group --db-subnet-group-name $SubnetGroup -ErrorAction SilentlyContinue }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-14 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-14 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-14 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-14. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 12.0,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-14) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

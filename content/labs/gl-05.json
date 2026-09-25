@@ -1,0 +1,218 @@
+{
+  "id": "gl-05",
+  "title": "GL-05 — VPC segmentation",
+  "kind": "guided",
+  "pairId": "ul-05",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.0,
+  "forgotten24hEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.2-S01",
+    "SAA-1.2-S02"
+  ],
+  "module": "A1",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete endpoints, associations, subnets, IGW detach, SG, NACL, route tables, then VPC.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on VPC segmentation; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create the VPC",
+      "bullets": [
+        "Run `$VpcId = aws ec2 create-vpc --cidr-block 10.50.0.0/16 --query Vpc.VpcId --output text --tag-specifications \"ResourceType=vpc,Tags=[{Key=Name,Value=workbook-gl05},{Key=LabId,Value=gl-05},{Key=Workbook,Value=aws-tf-lab}]\"`.",
+        "Run `aws ec2 modify-vpc-attribute --vpc-id $VpcId --enable-dns-hostnames '{\"Value\":true}'`.",
+        "Success: `$VpcId` is set."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Create subnets",
+      "bullets": [
+        "Run `$SubnetPub = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.50.1.0/24 --availability-zone us-east-1a --query Subnet.SubnetId --output text --tag-specifications \"ResourceType=subnet,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `$SubnetPriv = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.50.2.0/24 --availability-zone us-east-1b --query Subnet.SubnetId --output text --tag-specifications \"ResourceType=subnet,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Success: both subnet ids are set."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Internet gateway and public routes",
+      "bullets": [
+        "Run `$IgwId = aws ec2 create-internet-gateway --query InternetGateway.InternetGatewayId --output text --tag-specifications \"ResourceType=internet-gateway,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `aws ec2 attach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId`.",
+        "Run `$PublicRouteTableId = aws ec2 create-route-table --vpc-id $VpcId --query RouteTable.RouteTableId --output text --tag-specifications \"ResourceType=route-table,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `aws ec2 create-route --route-table-id $PublicRouteTableId --destination-cidr-block 0.0.0.0/0 --gateway-id $IgwId`.",
+        "Run `$RtAssocPub = aws ec2 associate-route-table --route-table-id $PublicRouteTableId --subnet-id $SubnetPub --query AssociationId --output text`.",
+        "Success: public subnet has a default route to the IGW."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Private route table and S3 endpoint",
+      "bullets": [
+        "Run `$PrivateRouteTableId = aws ec2 create-route-table --vpc-id $VpcId --query RouteTable.RouteTableId --output text --tag-specifications \"ResourceType=route-table,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `$RtAssocPriv = aws ec2 associate-route-table --route-table-id $PrivateRouteTableId --subnet-id $SubnetPriv --query AssociationId --output text`.",
+        "Run `$EndpointId = aws ec2 create-vpc-endpoint --vpc-id $VpcId --service-name com.amazonaws.us-east-1.s3 --route-table-ids $PrivateRouteTableId --query VpcEndpoint.VpcEndpointId --output text --tag-specifications \"ResourceType=vpc-endpoint,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Success: endpoint State is available."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Security group and NACL",
+      "bullets": [
+        "Run `$SgId = aws ec2 create-security-group --group-name workbook-gl05 --description \"gl05\" --vpc-id $VpcId --query GroupId --output text --tag-specifications \"ResourceType=security-group,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `aws ec2 authorize-security-group-ingress --group-id $SgId --protocol tcp --port 22 --cidr 203.0.113.0/32` using your public /32.",
+        "Run `$CustomNaclId = aws ec2 create-network-acl --vpc-id $VpcId --query NetworkAcl.NetworkAclId --output text --tag-specifications \"ResourceType=network-acl,Tags=[{Key=LabId,Value=gl-05}]\"`.",
+        "Run `aws ec2 create-network-acl-entry --network-acl-id $CustomNaclId --ingress --rule-number 100 --protocol 6 --rule-action deny --cidr-block 0.0.0.0/0 --port-range From=22,To=22`.",
+        "Run `$NaclAssocId = aws ec2 describe-network-acls --filters Name=association.subnet-id,Values=$SubnetPriv --query 'NetworkAcls[0].Associations[0].NetworkAclAssociationId' --output text`.",
+        "Run `$DefaultNaclId = aws ec2 describe-network-acls --filters Name=vpc-id,Values=$VpcId Name=default,Values=true --query 'NetworkAcls[0].NetworkAclId' --output text`.",
+        "Run `aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $CustomNaclId`.",
+        "Success: private subnet uses the custom NACL."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Verify no NAT",
+      "bullets": [
+        "Run `aws ec2 describe-nat-gateways --filter Name=vpc-id,Values=$VpcId --query NatGateways`.",
+        "Success: the list is empty."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: VPC endpoint, NACL restore, route disassociation, subnets, IGW, SG, NACL, VPC",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-05` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-05",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId",
+      "aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId",
+      "aws ec2 delete-network-acl --network-acl-id $CustomNaclId",
+      "aws ec2 disassociate-route-table --association-id $RtAssocPub",
+      "aws ec2 disassociate-route-table --association-id $RtAssocPriv",
+      "aws ec2 delete-route-table --route-table-id $PublicRouteTableId",
+      "aws ec2 delete-route-table --route-table-id $PrivateRouteTableId",
+      "aws ec2 delete-subnet --subnet-id $SubnetPub",
+      "aws ec2 delete-subnet --subnet-id $SubnetPriv",
+      "aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId",
+      "aws ec2 delete-internet-gateway --internet-gateway-id $IgwId",
+      "aws ec2 delete-security-group --group-id $SgId",
+      "aws ec2 delete-vpc --vpc-id $VpcId"
+    ],
+    "verification": [
+      "aws ec2 describe-vpcs --vpc-ids $VpcId returns InvalidVpcID.NotFound",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-05 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-05 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-05. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Build a VPC with public and private subnets, security group, restrictive NACL, and an S3 gateway endpoint. No NAT gateway in this lab."
+}

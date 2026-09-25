@@ -1,0 +1,36 @@
+{
+  "id": "q-saa-4-4-s07-mc",
+  "type": "mc",
+  "module": "A4",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-4.4-S07"
+  ],
+  "stem": "A teammate asks how to meet this requirement: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed). Which action is appropriate?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VP"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

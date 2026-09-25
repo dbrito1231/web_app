@@ -1,0 +1,200 @@
+{
+  "id": "gl-20",
+  "title": "GL-20 — Terraform workflow modules state import",
+  "kind": "guided",
+  "pairId": "ul-20",
+  "region": "us-east-1",
+  "estimatedMinutes": 150,
+  "sameHourEstimateUsd": 0.1,
+  "forgotten24hEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "tf.004.3a",
+    "tf.004.3e",
+    "tf.004.5c",
+    "tf.004.7a"
+  ],
+  "module": "T3",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "terraform destroy; remove .terraform and state files from disk (state gitignored).",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "Terraform is required for the steps that follow. Use the fixture in lab-fixtures/gl-20."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Set `$Suffix = \"$AccountId-gl20-$(Get-Random -Maximum 9999)\"`.",
+        "Success: suffix is unique and lowercase-safe."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Open fixture",
+      "bullets": [
+        "Run `cd lab-fixtures/gl-20`.",
+        "Review main.tf for the S3 bucket and LabId=gl-20 tags.",
+        "Success: you see variable bucket_suffix."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "terraform init",
+      "bullets": [
+        "Run `terraform init`.",
+        "Success: init completes with local backend."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "fmt and validate",
+      "bullets": [
+        "Run `terraform fmt`.",
+        "Run `terraform validate`.",
+        "Success: validate returns success."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "plan and apply",
+      "bullets": [
+        "Run `terraform plan -var bucket_suffix=$Suffix -out gl20.tfplan`.",
+        "Run `terraform apply gl20.tfplan` yourself.",
+        "Run `$Bucket = terraform output -raw bucket_name`.",
+        "Success: bucket exists in AWS."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "state list",
+      "bullets": [
+        "Run `terraform state list`.",
+        "Success: aws_s3_bucket.lab is listed."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Out-of-band change and refresh",
+      "bullets": [
+        "Run `aws s3api put-bucket-tagging --bucket $Bucket --tagging \"TagSet=[{Key=OOB,Value=manual},{Key=LabId,Value=gl-20}]\"`.",
+        "Run `terraform plan -refresh-only -var bucket_suffix=$Suffix`.",
+        "Success: plan shows tag drift."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Same-hour estimate is pennies for a tiny bucket.",
+        "Success: you know S3 storage may lag on the bill."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Run `terraform destroy -var bucket_suffix=$Suffix` after emptying if needed.",
+        "Remove .terraform local state artifacts from disk; state stays gitignored.",
+        "Success: destroy completes."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run destroy and verify bucket gone with aws s3api head-bucket.",
+        "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "Review billing after 8–12 hours.",
+        "Record actual spend.",
+        "Leftover buckets still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-20",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "cd lab-fixtures/gl-20",
+      "terraform destroy -auto-approve -var bucket_suffix=$Suffix",
+      "aws s3api head-bucket --bucket $Bucket 2>&1 | Select-String NotFound"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-20 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Local Terraform backend: init, fmt, validate, plan, apply, state list, destroy on gl-20 fixture. You run apply/destroy."
+}

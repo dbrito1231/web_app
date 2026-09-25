@@ -1,0 +1,237 @@
+{
+  "id": "gl-08",
+  "title": "GL-08 \u2014 Application Load Balancer",
+  "kind": "guided",
+  "pairId": "ul-08",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.04,
+  "forgotten24hEstimateUsd": 0.96,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K09",
+    "SAA-2.2-K08",
+    "SAA-3.4-S04"
+  ],
+  "module": "A2",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete listener, load balancer, target group, terminate EC2, then VPC artifacts.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on Application Load Balancer; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Accept cost risk",
+      "bullets": [
+        "In the lab card, open the cost-risk box and type `I ACCEPT THE COST RISK` exactly as shown.",
+        "Success: the UI records your confirmation before any hourly resource is created.",
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create VPC, subnets, IGW",
+      "bullets": [
+        "Run `$VpcId = aws ec2 create-vpc --cidr-block 10.80.0.0/16 --query Vpc.VpcId --output text --tag-specifications \"ResourceType=vpc,Tags=[{Key=LabId,Value=gl-08}]\"`.",
+        "Run `$SubnetPub = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.80.1.0/24 --availability-zone us-east-1a --query Subnet.SubnetId --output text`.",
+        "Run `$IgwId = aws ec2 create-internet-gateway --query InternetGateway.InternetGatewayId --output text --tag-specifications \"ResourceType=internet-gateway,Tags=[{Key=LabId,Value=gl-08}]\"`.",
+        "Run `aws ec2 attach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId`.",
+        "Run `$PublicRouteTableId = aws ec2 create-route-table --vpc-id $VpcId --query RouteTable.RouteTableId --output text`.",
+        "Run `aws ec2 create-route --route-table-id $PublicRouteTableId --destination-cidr-block 0.0.0.0/0 --gateway-id $IgwId`.",
+        "Run `$RtAssocPub = aws ec2 associate-route-table --route-table-id $PublicRouteTableId --subnet-id $SubnetPub --query AssociationId --output text`.",
+        "Success: public subnet has internet route."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Security group",
+      "bullets": [
+        "Run `$SgId = aws ec2 create-security-group --group-name workbook-gl08 --description gl08 --vpc-id $VpcId --query GroupId --output text --tag-specifications \"ResourceType=security-group,Tags=[{Key=LabId,Value=gl-08}]\"`.",
+        "Run `aws ec2 authorize-security-group-ingress --group-id $SgId --protocol tcp --port 80 --cidr 0.0.0.0/0`.",
+        "Success: `$SgId` allows HTTP."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Launch target instance",
+      "bullets": [
+        "Run `$AmiId = aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query \"Parameters[0].Value\" --output text`.",
+        "Run `@'` then a new line `#!/bin/bash` then a new line `python3 -m http.server 80` then a new line `'@ | Set-Content -Encoding ascii user-data.sh`.",
+        "Run `$InstanceId = aws ec2 run-instances --image-id $AmiId --instance-type t3.micro --subnet-id $SubnetPub --security-group-ids $SgId --tag-specifications \"ResourceType=instance,Tags=[{Key=LabId,Value=gl-08}]\" --user-data file://user-data.sh --query \"Instances[0].InstanceId\" --output text`.",
+        "Run `aws ec2 wait instance-running --instance-ids $InstanceId`.",
+        "Success: instance is running."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Create ALB and target group",
+      "bullets": [
+        "Run `$AlbArn = aws elbv2 create-load-balancer --name workbook-gl08 --subnets $SubnetPub --security-groups $SgId --query \"LoadBalancers[0].LoadBalancerArn\" --output text --tags Key=LabId,Value=gl-08 Key=Workbook,Value=aws-tf-lab`.",
+        "Run `$TargetGroupArn = aws elbv2 create-target-group --name workbook-gl08-tg --protocol HTTP --port 80 --vpc-id $VpcId --target-type instance --query \"TargetGroups[0].TargetGroupArn\" --output text`.",
+        "Run `aws elbv2 register-targets --target-group-arn $TargetGroupArn --targets Id=$InstanceId`.",
+        "Run `aws elbv2 create-listener --load-balancer-arn $AlbArn --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=$TargetGroupArn`.",
+        "Success: target health becomes healthy."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "HTTP check",
+      "bullets": [
+        "Run `$Dns = aws elbv2 describe-load-balancers --load-balancer-arns $AlbArn --query 'LoadBalancers[0].DNSName' --output text`.",
+        "Run `curl http://$Dns/`.",
+        "Success: HTTP response from the instance."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Confirm hourly cleanup plan",
+      "bullets": [
+        "ALB and EC2 bill hourly; teardown deletes ALB before instance and VPC.",
+        "Success: Stop charges order matches your resource ids."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: ALB, target group, instance, VPC stack",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8\u201312 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-08",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$EndpointId = $null",
+      "$NatGatewayId = $null",
+      "$AllocationId = $null",
+      "$AsgName = $null",
+      "$LaunchTemplateId = $null",
+      "$NaclAssocId = $null",
+      "$DefaultNaclId = $null",
+      "$CustomNaclId = $null",
+      "$RtAssocPriv = $null",
+      "$PrivateRouteTableId = $null",
+      "$SubnetPriv = $null",
+      "if ($EndpointId) { aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId }",
+      "if ($NatGatewayId) { aws ec2 delete-nat-gateway --nat-gateway-id $NatGatewayId; aws ec2 wait nat-gateway-deleted --nat-gateway-ids $NatGatewayId }",
+      "if ($AllocationId) { aws ec2 release-address --allocation-id $AllocationId }",
+      "if ($AlbArn) { aws elbv2 delete-load-balancer --load-balancer-arn $AlbArn; aws elbv2 wait load-balancers-deleted --load-balancer-arns $AlbArn }",
+      "if ($TargetGroupArn) { aws elbv2 delete-target-group --target-group-arn $TargetGroupArn }",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
+      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
+      "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
+      "if ($NaclAssocId -and $DefaultNaclId) { aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId }",
+      "if ($CustomNaclId) { aws ec2 delete-network-acl --network-acl-id $CustomNaclId }",
+      "if ($RtAssocPub) { aws ec2 disassociate-route-table --association-id $RtAssocPub }",
+      "if ($RtAssocPriv) { aws ec2 disassociate-route-table --association-id $RtAssocPriv }",
+      "if ($PublicRouteTableId) { aws ec2 delete-route-table --route-table-id $PublicRouteTableId }",
+      "if ($PrivateRouteTableId) { aws ec2 delete-route-table --route-table-id $PrivateRouteTableId }",
+      "if ($SubnetPub) { aws ec2 delete-subnet --subnet-id $SubnetPub }",
+      "if ($SubnetPriv) { aws ec2 delete-subnet --subnet-id $SubnetPriv }",
+      "if ($IgwId -and $VpcId) { aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId; aws ec2 delete-internet-gateway --internet-gateway-id $IgwId }",
+      "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }",
+      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "tradeoff",
+  "body": "Internet-facing ALB with one healthy t3.micro target on HTTP. Delete all hourly components same session."
+}

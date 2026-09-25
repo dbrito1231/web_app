@@ -1,0 +1,27 @@
+{
+  "id": "lesson-tf-g5",
+  "title": "T3 \u2014 Terraform modules",
+  "module": "T3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.5a",
+    "tf.004.5b",
+    "tf.004.5c",
+    "tf.004.5d"
+  ],
+  "drillIds": [
+    "q-tf-004-5a-mc",
+    "q-tf-004-5b-mc",
+    "q-tf-004-5c-mc",
+    "q-tf-004-5d-mc",
+    "q-tf-004-5a-mr"
+  ],
+  "labIds": [
+    "gl-20"
+  ],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Terraform modules\n\nTerraform Associate 004 objective group 5.\n\n### tf.004.5a\nExplain how Terraform sources modules\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.5b\nDescribe variable scope within modules\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.5c\nUse modules in configuration\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.5d\nManage module versions\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

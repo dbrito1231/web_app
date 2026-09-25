@@ -1,0 +1,206 @@
+{
+  "id": "gl-03",
+  "title": "GL-03 — IAM role, resource policy, and STS",
+  "kind": "guided",
+  "pairId": "ul-03",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.0,
+  "forgotten24hEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.1-S03",
+    "SAA-1.1-S05"
+  ],
+  "module": "A1",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete inline role policy, role, bucket policy, objects, and bucket. Remove any active assumed-role env vars first.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on IAM and STS; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Set `$Bucket = \"workbook-gl03-$AccountId\"`.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create the lab bucket",
+      "bullets": [
+        "Run `aws s3api create-bucket --bucket $Bucket --region us-east-1`.",
+        "Run `aws s3api put-bucket-tagging --bucket $Bucket --tagging \"TagSet=[{Key=Workbook,Value=aws-tf-lab},{Key=LabId,Value=gl-03},{Key=CreatedAt,Value=$CreatedAt},{Key=ExpiresAt,Value=$ExpiresAt}]\"`.",
+        "Run `'gl03-readme' | Out-File -Encoding ascii gl03.txt`.",
+        "Run `aws s3 cp gl03.txt s3://$Bucket/readme.txt`.",
+        "Success: head-bucket and head-object succeed."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Create the IAM role",
+      "bullets": [
+        "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from s02.",
+        "Run `aws iam create-role --role-name workbook-gl03-role --assume-role-policy-document file://gl03-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-03 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `$RoleArn = aws iam get-role --role-name workbook-gl03-role --query Role.Arn --output text`.",
+        "Success: Role Arn is set in `$RoleArn`."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Attach read-only inline policy",
+      "bullets": [
+        "Save gl03-s3read.json allowing s3:GetObject and s3:ListBucket on `$Bucket` only.",
+        "Run `aws iam put-role-policy --role-name workbook-gl03-role --policy-name gl03-read --policy-document file://gl03-s3read.json`.",
+        "Success: get-role-policy returns the document."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Assume the role",
+      "bullets": [
+        "Run `$Creds = aws sts assume-role --role-arn $RoleArn --role-session-name gl03-lab | ConvertFrom-Json`.",
+        "Set `$env:AWS_ACCESS_KEY_ID`, `$env:AWS_SECRET_ACCESS_KEY`, `$env:AWS_SESSION_TOKEN` from `$Creds.Credentials`.",
+        "Success: get-caller-identity shows the assumed role Arn."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Read as the role",
+      "bullets": [
+        "Run `aws s3 cp s3://$Bucket/readme.txt -`.",
+        "Success: object body prints."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Prove write is denied",
+      "bullets": [
+        "Run `aws s3 cp gl03.txt s3://$Bucket/denied.txt` and expect AccessDenied.",
+        "Run `Remove-Item Env:AWS_ACCESS_KEY_ID,Env:AWS_SECRET_ACCESS_KEY,Env:AWS_SESSION_TOKEN`.",
+        "Success: your profile credentials work again."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: clear STS env vars, inline policy, role, bucket objects, bucket",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-03",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "Remove-Item Env:AWS_ACCESS_KEY_ID,Env:AWS_SECRET_ACCESS_KEY,Env:AWS_SESSION_TOKEN -ErrorAction SilentlyContinue",
+      "$Bucket = \"workbook-gl03-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws iam delete-role-policy --role-name workbook-gl03-role --policy-name gl03-read",
+      "aws iam delete-role --role-name workbook-gl03-role",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket"
+    ],
+    "verification": [
+      "aws iam get-role --role-name workbook-gl03-role returns NoSuchEntity",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-03 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Create a lab S3 bucket and an IAM role that can read only that bucket. Assume the role with STS and prove read works and write fails. No access keys on the role."
+}

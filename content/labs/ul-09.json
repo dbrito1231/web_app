@@ -1,0 +1,85 @@
+{
+  "id": "ul-09",
+  "title": "UL-09 \u2014 Challenge: Auto Scaling",
+  "kind": "unguided",
+  "pairId": "gl-09",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.03,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.2-K04",
+    "SAA-3.2-S01",
+    "SAA-3.2-S02"
+  ],
+  "scenario": "Use target tracking scaling to reach two instances briefly, then scale to zero and delete.",
+  "acceptanceCriteria": [
+    "Launch template defines instance type and tags LabId=ul-09.",
+    "Auto Scaling group uses target tracking policy on average CPU (target 50%).",
+    "Policy drives desired capacity up toward 2 instances under load or alarm simulation.",
+    "You scale desired capacity back to 0 manually after observation.",
+    "All instances terminate after scale-in.",
+    "Auto Scaling group deleted with force-delete.",
+    "Launch template deleted.",
+    "Cost-risk phrase logged before instances launch.",
+    "No orphaned EBS volumes from lab instances.",
+    "CloudWatch alarm tied to policy is deleted if created.",
+    "Min/max/desired documented while at peak.",
+    "No load balancer required.",
+    "Teardown removes security groups dedicated to lab.",
+    "describe-auto-scaling-groups empty for lab name.",
+    "Tag search LabId=ul-09 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Target tracking creates alarms automatically."
+    },
+    {
+      "level": 2,
+      "text": "Set MaxSize at least 2."
+    },
+    {
+      "level": 3,
+      "text": "Force-delete ASG after desired 0."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Target tracking ASG lab complete."
+  },
+  "stopChargesPanel": "Delete ASG, LT, alarms, EC2 for ul-09.",
+  "teardown": {
+    "labId": "ul-09",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$AsgName = $null",
+      "$LaunchTemplateId = $null",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0 -ErrorAction SilentlyContinue; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete -ErrorAction SilentlyContinue }",
+      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-09 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-09 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-09. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 0.72,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-09) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

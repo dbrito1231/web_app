@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-2d-mc2",
+  "type": "mc",
+  "module": "T1",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.2d"
+  ],
+  "stem": "Quick check \u2014 Explain how Terraform uses and manages state. Which practice is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: Explain how Terraform uses and manages state"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

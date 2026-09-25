@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-8d-mc2",
+  "type": "mc",
+  "module": "T4",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.8d"
+  ],
+  "stem": "Quick check \u2014 Configure and use HCP Terraform integration. Which practice is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: Configure and use HCP Terraform integration"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

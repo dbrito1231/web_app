@@ -1,0 +1,87 @@
+{
+  "id": "ul-07",
+  "title": "UL-07 \u2014 Challenge: EC2, EBS, and EFS",
+  "kind": "unguided",
+  "pairId": "gl-07",
+  "region": "us-east-1",
+  "estimatedMinutes": 120,
+  "sameHourEstimateUsd": 0.03,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.1-K02",
+    "SAA-3.2-S03",
+    "SAA-4.2-S06"
+  ],
+  "scenario": "Add a small Amazon EFS file system to the EC2/EBS pattern: mount, write, unmount, delete.",
+  "acceptanceCriteria": [
+    "A small EFS file system is created with encryption at rest enabled.",
+    "One mount target exists in the same VPC/AZ as a lab EC2 instance.",
+    "You mount the file system on the instance and create one test file.",
+    "You read the file back successfully.",
+    "You unmount before terminating the instance.",
+    "EC2 instance is terminated, not merely stopped.",
+    "EFS mount targets are deleted before file system delete.",
+    "File system delete completes without MountTargetConflict.",
+    "Cost-risk accepted before hourly EC2.",
+    "All resources tagged LabId=ul-07.",
+    "Security groups allow NFS only from the instance SG.",
+    "No public NFS exposure to 0.0.0.0/0.",
+    "Teardown removes EC2 ENI dependencies.",
+    "describe-file-systems shows none for your id.",
+    "Tag search LabId=ul-07 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "EFS mount targets bill per AZ."
+    },
+    {
+      "level": 2,
+      "text": "Delete mount targets before filesystem."
+    },
+    {
+      "level": 3,
+      "text": "Use nfs-utils on Amazon Linux."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "EFS integrated EC2 lab with teardown."
+  },
+  "stopChargesPanel": "Delete mount targets, EFS, EC2, volumes for ul-07.",
+  "teardown": {
+    "labId": "ul-07",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$InstanceId = $null",
+      "$VolumeId = $null",
+      "$SnapshotId = $null",
+      "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
+      "if ($VolumeId) { aws ec2 detach-volume --volume-id $VolumeId -ErrorAction SilentlyContinue; aws ec2 delete-volume --volume-id $VolumeId -ErrorAction SilentlyContinue }",
+      "if ($SnapshotId) { aws ec2 delete-snapshot --snapshot-id $SnapshotId }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-07 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-07 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-07. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 0.72,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-07) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

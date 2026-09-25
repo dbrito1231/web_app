@@ -1,0 +1,85 @@
+{
+  "id": "ul-17",
+  "title": "UL-17 \u2014 Challenge: Athena on a tiny file",
+  "kind": "unguided",
+  "pairId": "gl-17",
+  "region": "us-east-1",
+  "estimatedMinutes": 60,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.5-K01",
+    "SAA-3.5-S07"
+  ],
+  "scenario": "Convert Athena query results to Parquet (or similar), verify, delete outputs.",
+  "acceptanceCriteria": [
+    "CSV source data in s3:// bucket prefix.",
+    "Athena query creates CTAS or INSERT output format change (e.g., Parquet).",
+    "Output prefix distinct from raw data prefix.",
+    "Second query reads converted format successfully.",
+    "Drop table statements executed.",
+    "Output objects deleted from S3.",
+    "Source CSV deleted.",
+    "Bucket removed.",
+    "LabId=ul-17 tags on bucket.",
+    "Workgroup output location set.",
+    "Query scan size noted for cost.",
+    "No Glue crawler left running.",
+    "Athena workgroup default or named documented.",
+    "S3 empty before delete-bucket.",
+    "Tag search LabId=ul-17 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "CTAS WITH format parquet."
+    },
+    {
+      "level": 2,
+      "text": "Output to s3://bucket/converted/"
+    },
+    {
+      "level": 3,
+      "text": "Drop tables before bucket delete."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Athena convert and cleanup."
+  },
+  "stopChargesPanel": "Delete S3 data and results for ul-17.",
+  "teardown": {
+    "labId": "ul-17",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$Bucket = \"workbook-gl17-$((aws sts get-caller-identity --query Account --output text))\"",
+      "$ResultsBucket = \"workbook-gl17-results-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3 rm s3://$ResultsBucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket",
+      "aws s3api delete-bucket --bucket $ResultsBucket"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-17 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-17 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-17 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-17. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "foundation",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-17) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

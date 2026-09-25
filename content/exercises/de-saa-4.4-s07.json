@@ -1,0 +1,44 @@
+{
+  "id": "de-saa-4.4-s07",
+  "title": "Design exercise: SAA-4.4-S07",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-4.4-S07"
+  ],
+  "scenario": "Design a solution that demonstrates skill: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+  "constraints": [
+    "Personal single account",
+    "Do not claim live AWS experience",
+    "Cite official documentation",
+    "State cost and residual risk"
+  ],
+  "requiredArtifact": "Decision notes + diagram outline + citation",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Objective addressed",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Tradeoffs documented",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Security considered",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Cost/risk stated",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Mapped as design_exercise to complete skill coverage when no dedicated live lab step exists"
+}

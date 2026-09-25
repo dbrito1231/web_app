@@ -1,0 +1,33 @@
+{
+  "id": "lesson-tf-g4",
+  "title": "T2 \u2014 Terraform configuration",
+  "module": "T2",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.4a",
+    "tf.004.4b",
+    "tf.004.4c",
+    "tf.004.4d",
+    "tf.004.4e",
+    "tf.004.4f",
+    "tf.004.4g",
+    "tf.004.4h"
+  ],
+  "drillIds": [
+    "q-tf-004-4a-mc",
+    "q-tf-004-4b-mc",
+    "q-tf-004-4c-mc",
+    "q-tf-004-4d-mc",
+    "q-tf-004-4e-mc",
+    "q-tf-004-4f-mc",
+    "q-tf-004-4g-mc",
+    "q-tf-004-4h-mc",
+    "q-tf-004-4a-mr"
+  ],
+  "labIds": [],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Terraform configuration\n\nTerraform Associate 004 objective group 4.\n\n### tf.004.4a\nUse and differentiate resource and data blocks\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4b\nRefer to resource attributes and create cross-resource references\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4c\nUse variables and outputs\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4d\nUnderstand and use complex types\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4e\nWrite dynamic configuration using expressions and functions\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4f\nDefine resource dependencies in configuration (includes depends_on and create_before_destroy lifecycle)\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4g\nValidate configuration using custom conditions\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.4h\nSensitive data best practices including Vault; ephemeral values and write-only arguments\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

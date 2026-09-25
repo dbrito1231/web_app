@@ -1,0 +1,45 @@
+{
+  "id": "lesson-4-4",
+  "title": "A4 \u2014 Cost-optimized networks",
+  "module": "A4",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-4.4-K01",
+    "SAA-4.4-K02",
+    "SAA-4.4-K03",
+    "SAA-4.4-K04",
+    "SAA-4.4-K05",
+    "SAA-4.4-K06",
+    "SAA-4.4-K07",
+    "SAA-4.4-S01",
+    "SAA-4.4-S02",
+    "SAA-4.4-S03",
+    "SAA-4.4-S04",
+    "SAA-4.4-S05",
+    "SAA-4.4-S06",
+    "SAA-4.4-S07"
+  ],
+  "drillIds": [
+    "q-saa-4-4-k01-mc",
+    "q-saa-4-4-k02-mc",
+    "q-saa-4-4-k03-mc",
+    "q-saa-4-4-k04-mc",
+    "q-saa-4-4-k05-mc",
+    "q-saa-4-4-k06-mc",
+    "q-saa-4-4-k07-mc",
+    "q-saa-4-4-s01-mc",
+    "q-saa-4-4-s02-mc",
+    "q-saa-4-4-s03-mc",
+    "q-saa-4-4-s04-mc",
+    "q-saa-4-4-s05-mc",
+    "q-saa-4-4-s06-mc",
+    "q-saa-4-4-s07-mc"
+  ],
+  "labIds": [],
+  "exerciseIds": [],
+  "citationIds": [
+    "cite-4-4"
+  ],
+  "bodyMarkdown": "## Cost-optimized networks\n\nExam task **4.4**. This lesson maps each knowledge and skill bullet from the supplied SAA-C03 guide.\n\n### Knowledge\n\n#### SAA-4.4-K01\nAWS cost management service features (for example, cost allocation tags, multi-account billing)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K02\nAWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K03\nLoad balancing concepts (for example, Application Load Balancer [ALB])\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K04\nNAT gateways (for example, NAT instance costs compared with NAT gateway costs)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K05\nNetwork connectivity (for example, private lines, dedicated lines, VPNs)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K06\nNetwork routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-4.4-K07\nNetwork services with appropriate use cases (for example, DNS)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n### Skills\n\n#### SAA-4.4-S01\nConfiguring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S02\nConfiguring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S03\nConfiguring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S04\nDetermining strategic needs for content delivery networks (CDNs) and edge caching\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S05\nReviewing existing workloads for network optimizations\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S06\nSelecting an appropriate throttling strategy\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-4.4-S07\nSelecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n### Warnings\n\n- Do not use the AWS root user for routine lab work.\n- Stopping an instance is not teardown.\n- $10 budget alerts warn; they do not stop spend.\n\n**Citation (official):** https://aws.amazon.com/vpc/pricing/ (last verified planning baseline 2026-09-23; MCP re-check pending)."
+}

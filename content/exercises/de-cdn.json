@@ -1,0 +1,45 @@
+{
+  "id": "de-cdn",
+  "title": "CloudFront and Global Accelerator",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-3.4-K01",
+    "SAA-4.4-S04"
+  ],
+  "scenario": "You must design a solution addressing: CloudFront and Global Accelerator. You have one personal account and cannot provision unavailable services.",
+  "constraints": [
+    "Do not claim live AWS experience",
+    "Cite official docs",
+    "Include teardown or 'not provisioned' rationale",
+    "State cost assumptions"
+  ],
+  "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Requirements mapped to services",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Security and least privilege addressed",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Cost and residual risk stated",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Why live lab was unsuitable documented",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Official citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Service unavailable or not disposable in a personal same-day lab"
+}

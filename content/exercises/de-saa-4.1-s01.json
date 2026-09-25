@@ -1,0 +1,44 @@
+{
+  "id": "de-saa-4.1-s01",
+  "title": "Design exercise: SAA-4.1-S01",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-4.1-S01"
+  ],
+  "scenario": "Design a solution that demonstrates skill: Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+  "constraints": [
+    "Personal single account",
+    "Do not claim live AWS experience",
+    "Cite official documentation",
+    "State cost and residual risk"
+  ],
+  "requiredArtifact": "Decision notes + diagram outline + citation",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Objective addressed",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Tradeoffs documented",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Security considered",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Cost/risk stated",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Mapped as design_exercise to complete skill coverage when no dedicated live lab step exists"
+}

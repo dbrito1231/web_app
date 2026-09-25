@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-4-4-s03-mr",
+  "type": "mr",
+  "module": "A4",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-4.4-S03"
+  ],
+  "stem": "Select TWO actions that support this requirement: Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "b",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "c",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "d",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "e",
+      "text": "Store AWS access keys in the workbook git repo"
+    }
+  ],
+  "correctAnswerIds": [
+    "c",
+    "d"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

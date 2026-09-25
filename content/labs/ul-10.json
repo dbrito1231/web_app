@@ -1,0 +1,89 @@
+{
+  "id": "ul-10",
+  "title": "UL-10 \u2014 Challenge: Queue and event path",
+  "kind": "unguided",
+  "pairId": "gl-10",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K05",
+    "SAA-2.1-K11",
+    "SAA-2.1-K12"
+  ],
+  "scenario": "Add DLQ and idempotent Lambda handling to the messaging lab.",
+  "acceptanceCriteria": [
+    "Primary SQS queue and dead-letter queue pair configured with redrive policy.",
+    "Lambda processes messages idempotently (duplicate delivery does not double side effects).",
+    "Failed messages land in DLQ after maxReceiveCount.",
+    "You send one bad message and observe DLQ depth increase.",
+    "CloudWatch log group for Lambda exists during test.",
+    "SNS topic fans out to queue and/or Lambda as designed.",
+    "IAM roles least privilege per service.",
+    "LabId=ul-10 on functions and queues.",
+    "No VPC attachment on Lambda.",
+    "Teardown deletes event source mappings first.",
+    "Teardown deletes Lambda then log group.",
+    "Teardown deletes both queues.",
+    "Teardown deletes SNS topic.",
+    "DLQ is empty or deleted with queue.",
+    "Tag search LabId=ul-10 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Use partial batch responses for SQS triggers."
+    },
+    {
+      "level": 2,
+      "text": "Set maxReceiveCount low for lab."
+    },
+    {
+      "level": 3,
+      "text": "Idempotency key in DynamoDB or conditional write."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "DLQ and idempotency challenge done."
+  },
+  "stopChargesPanel": "Delete mappings, Lambda, logs, DLQ, main queue, SNS for ul-10.",
+  "teardown": {
+    "labId": "ul-10",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$TopicArn = $null",
+      "$QueueUrl = $null",
+      "aws sns list-subscriptions-by-topic --topic-arn $TopicArn --query Subscriptions[].SubscriptionArn --output text | ForEach-Object { if ($_ -and $_ -ne 'PendingConfirmation') { aws sns unsubscribe --subscription-arn $_ } }",
+      "aws lambda delete-function --function-name workbook-gl10",
+      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl10",
+      "aws sqs delete-queue --queue-url $QueueUrl",
+      "aws sns delete-topic --topic-arn $TopicArn",
+      "aws iam detach-role-policy --role-name workbook-gl10-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+      "aws iam delete-role --role-name workbook-gl10-lambda"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-10 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-10 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-10. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-10) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

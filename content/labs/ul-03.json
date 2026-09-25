@@ -1,0 +1,86 @@
+{
+  "id": "ul-03",
+  "title": "UL-03 \u2014 Challenge: IAM role, resource policy, and STS",
+  "kind": "unguided",
+  "pairId": "gl-03",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.1-S03",
+    "SAA-1.1-S05"
+  ],
+  "scenario": "Design a least-privilege reader role for one bucket, enable GuardDuty long enough to capture pricing, then disable it. Tighten policies beyond GL-03.",
+  "acceptanceCriteria": [
+    "IAM policy on the lab role lists only the lab bucket Arn and object prefix, not `*`.",
+    "Trust policy allows assume-role only for your lab IAM principal, not `*`.",
+    "GuardDuty detector is enabled and you record the per-feature monthly estimate from official pricing.",
+    "GuardDuty is disabled or suspended before teardown.",
+    "Assume-role session can list and get objects but cannot put or delete.",
+    "Bucket policy does not grant public access.",
+    "STS session credentials expire and you cleared them from the shell.",
+    "All tagged resources use LabId=ul-03.",
+    "CloudTrail is not required but if enabled for test, it is removed in teardown.",
+    "No access keys were created for the lab role.",
+    "Teardown removes GuardDuty before IAM and S3.",
+    "Teardown deletes role inline policies then role.",
+    "Teardown empties and deletes the bucket.",
+    "No GuardDuty detector remains enabled.",
+    "LabId=ul-03 tag search returns empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Scope Resource ARNs to bucket and objects."
+    },
+    {
+      "level": 2,
+      "text": "GuardDuty has a free trial then per-event pricing; disable when done."
+    },
+    {
+      "level": 3,
+      "text": "Delete role policies before deleting the role."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "GuardDuty priced and disabled; scoped IAM; full teardown."
+  },
+  "stopChargesPanel": "Disable GuardDuty, delete IAM role and bucket resources tagged ul-03.",
+  "teardown": {
+    "labId": "ul-03",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "Remove-Item Env:AWS_ACCESS_KEY_ID,Env:AWS_SECRET_ACCESS_KEY,Env:AWS_SESSION_TOKEN -ErrorAction SilentlyContinue",
+      "$Bucket = \"workbook-gl03-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws iam delete-role-policy --role-name workbook-gl03-role --policy-name gl03-read",
+      "aws iam delete-role --role-name workbook-gl03-role",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-03 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws iam get-role --role-name workbook-gl03-role returns NoSuchEntity",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-03 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-03. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A1",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-03) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

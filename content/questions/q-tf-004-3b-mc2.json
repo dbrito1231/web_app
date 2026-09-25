@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-3b-mc2",
+  "type": "mc",
+  "module": "T1",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.3b"
+  ],
+  "stem": "Quick check \u2014 Initialize a Terraform working directory. Which practice is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Apply the objective directly: Initialize a Terraform working directory"
+    },
+    {
+      "id": "b",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "c",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "d",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    }
+  ],
+  "correctAnswerIds": [
+    "a"
+  ],
+  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-3f-mc2",
+  "type": "mc",
+  "module": "T1",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.3f"
+  ],
+  "stem": "Quick check \u2014 Destroy Terraform-managed infrastructure. Which practice is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "b",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "c",
+      "text": "Apply the objective directly: Destroy Terraform-managed infrastructure"
+    },
+    {
+      "id": "d",
+      "text": "Ignore least privilege and use the root user for speed"
+    }
+  ],
+  "correctAnswerIds": [
+    "c"
+  ],
+  "rationale": "Option A aligns with the published objective wording. B violates root/MFA guidance. C ignores teardown. D misstates AWS Budgets behavior (alerts do not stop spend).",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

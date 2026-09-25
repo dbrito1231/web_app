@@ -1,0 +1,86 @@
+{
+  "id": "ul-04",
+  "title": "UL-04 \u2014 Challenge: Customer-managed KMS key",
+  "kind": "unguided",
+  "pairId": "gl-04",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.3-K04",
+    "SAA-1.3-S02",
+    "SAA-1.3-S04"
+  ],
+  "scenario": "Extend GL-04 with an explicit CMK key policy, one Secrets Manager secret, and one SSM standard parameter\u2014then delete billable extras before finishing KMS teardown.",
+  "acceptanceCriteria": [
+    "CMK key policy explicitly allows your lab principal kms:Encrypt and kms:Decrypt on that key only.",
+    "Default key administrators are not left as `*`.",
+    "One Secrets Manager secret stores a dummy value encrypted by the CMK; you record Secrets Manager pricing.",
+    "One SSM Parameter Store standard parameter exists; you record standard parameter pricing.",
+    "Secret and parameter are deleted before key schedule completes.",
+    "S3 test object uses SSE-KMS with the same CMK.",
+    "Key deletion remains scheduled and is not cancelled.",
+    "No secrets or parameters remain after teardown.",
+    "LabId=ul-04 on all tagged resources.",
+    "IAM users did not receive long-lived access keys.",
+    "Teardown order: secrets/parameters, S3, alias, key deletion window respected.",
+    "After teardown, describe-secret returns ResourceNotFound.",
+    "After teardown, get-parameter returns ParameterNotFound.",
+    "Bucket is gone.",
+    "Tag search LabId=ul-04 is empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Key policy JSON uses your account id and role/user Arn."
+    },
+    {
+      "level": 2,
+      "text": "Secrets Manager charges per secret per month; delete same day."
+    },
+    {
+      "level": 3,
+      "text": "Delete secret with force-delete-without-recovery when appropriate."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Key policy, Secrets Manager, SSM, and KMS teardown complete."
+  },
+  "stopChargesPanel": "Delete secrets, parameters, bucket, alias; leave CMK scheduled for deletion.",
+  "teardown": {
+    "labId": "ul-04",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$Bucket = \"workbook-gl04-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket",
+      "aws kms delete-alias --alias-name alias/workbook-gl04",
+      "# Key remains scheduled for deletion; do not cancel"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws s3api head-bucket --bucket $Bucket returns 404",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-04 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-04 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A1",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-04) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

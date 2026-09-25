@@ -1,0 +1,25 @@
+{
+  "id": "lesson-tf-g7",
+  "title": "T3 \u2014 Maintain infrastructure",
+  "module": "T3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.7a",
+    "tf.004.7b",
+    "tf.004.7c"
+  ],
+  "drillIds": [
+    "q-tf-004-7a-mc",
+    "q-tf-004-7b-mc",
+    "q-tf-004-7c-mc",
+    "q-tf-004-7a-mr"
+  ],
+  "labIds": [
+    "gl-20"
+  ],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Maintain infrastructure\n\nTerraform Associate 004 objective group 7.\n\n### tf.004.7a\nImport existing infrastructure into your Terraform workspace\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.7b\nUse the CLI to inspect state\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.7c\nDescribe when and how to use verbose logging\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-1-1-s03-mr",
+  "type": "mr",
+  "module": "A1",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-1.1-S03"
+  ],
+  "stem": "Select TWO actions that support this requirement: Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "b",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "c",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "d",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "e",
+      "text": "Skip teardown if the instance is stopped"
+    }
+  ],
+  "correctAnswerIds": [
+    "b",
+    "c"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

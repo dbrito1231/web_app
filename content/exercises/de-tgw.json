@@ -1,0 +1,44 @@
+{
+  "id": "de-tgw",
+  "title": "Transit Gateway and peering",
+  "practiceMode": "design_exercise",
+  "objectiveIds": [
+    "SAA-4.4-K06"
+  ],
+  "scenario": "You must design a solution addressing: Transit Gateway and peering. You have one personal account and cannot provision unavailable services.",
+  "constraints": [
+    "Do not claim live AWS experience",
+    "Cite official docs",
+    "Include teardown or 'not provisioned' rationale",
+    "State cost assumptions"
+  ],
+  "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
+  "rubric": [
+    {
+      "id": "r1",
+      "label": "Requirements mapped to services",
+      "points": 2
+    },
+    {
+      "id": "r2",
+      "label": "Security and least privilege addressed",
+      "points": 2
+    },
+    {
+      "id": "r3",
+      "label": "Cost and residual risk stated",
+      "points": 2
+    },
+    {
+      "id": "r4",
+      "label": "Why live lab was unsuitable documented",
+      "points": 2
+    },
+    {
+      "id": "r5",
+      "label": "Official citation present",
+      "points": 2
+    }
+  ],
+  "constraint_reason": "Service unavailable or not disposable in a personal same-day lab"
+}

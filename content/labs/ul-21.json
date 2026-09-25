@@ -1,0 +1,83 @@
+{
+  "id": "ul-21",
+  "title": "UL-21 \u2014 Challenge: ElastiCache then HCP as allowed",
+  "kind": "unguided",
+  "pairId": "gl-21",
+  "region": "us-east-1",
+  "estimatedMinutes": 120,
+  "sameHourEstimateUsd": 0.2,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.3-K02",
+    "SAA-3.3-S05",
+    "tf.004.8a"
+  ],
+  "scenario": "Terraform Associate 8a\u20138d on HCP no-charge only; stop before connecting AWS credentials. Optional smallest ElastiCache delete if you used AWS half.",
+  "acceptanceCriteria": [
+    "Terraform HCP signup uses no-charge plan only.",
+    "No AWS credentials connected to HCP paid workspace.",
+    "Local Terraform config documents remote backend block for HCP without applying with AWS creds.",
+    "Objective 8a\u20138d concepts answered in notes with official HashiCorp doc links.",
+    "If AWS ElastiCache used instead, smallest node deleted same day.",
+    "Cost-risk accepted for any AWS cache path.",
+    "LabId=ul-21 on AWS resources if created.",
+    "HCP organization and project named in notes.",
+    "VCS connection not required for lab.",
+    "Run tasks / applies from HCP not executed against AWS.",
+    "terraform login not stored in git.",
+    "Workspaces list screenshot or CLI output in local notes only.",
+    "AWS side tag search empty.",
+    "ElastiCache subnet group deleted.",
+    "No ongoing HCP bill assumed beyond free tier."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "HCP free tier only."
+    },
+    {
+      "level": 2,
+      "text": "Do not add AWS creds to HCP."
+    },
+    {
+      "level": 3,
+      "text": "Use design notes if paid path required."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "HCP concepts plus optional cache teardown."
+  },
+  "stopChargesPanel": "Delete ElastiCache and AWS tags for ul-21; remove local terraform tokens from shell.",
+  "teardown": {
+    "labId": "ul-21",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-gl21 -ErrorAction SilentlyContinue",
+      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-gl21 -ErrorAction SilentlyContinue"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-21 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-21 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "T4",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 4.8,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-21) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

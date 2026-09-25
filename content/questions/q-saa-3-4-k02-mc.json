@@ -1,0 +1,36 @@
+{
+  "id": "q-saa-3-4-k02-mc",
+  "type": "mc",
+  "module": "A3",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-3.4-K02"
+  ],
+  "stem": "Pick the action that satisfies: How to design network architecture (for example, subnet tiers, routing, IP addressing).",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: How to design network architecture (for example, subnet tiers, routing, IP addressing)"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

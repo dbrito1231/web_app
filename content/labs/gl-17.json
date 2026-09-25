@@ -1,0 +1,204 @@
+{
+  "id": "gl-17",
+  "title": "GL-17 \u2014 Athena on a tiny file",
+  "kind": "guided",
+  "pairId": "ul-17",
+  "region": "us-east-1",
+  "estimatedMinutes": 60,
+  "sameHourEstimateUsd": 0.05,
+  "forgotten24hEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-3.5-K01",
+    "SAA-3.5-S07"
+  ],
+  "module": "A3",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Remove Athena results, S3 objects, bucket; no leftover crawler.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on Athena; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Set `$Bucket = \"workbook-gl17-$AccountId\"`.",
+        "Set `$ResultsBucket = \"workbook-gl17-results-$AccountId\"`.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Results and data buckets",
+      "bullets": [
+        "Run `aws s3api create-bucket --bucket $Bucket --region us-east-1`.",
+        "Run `aws s3api create-bucket --bucket $ResultsBucket --region us-east-1`.",
+        "Run `'name,value\\nfoo,1' | Out-File -Encoding ascii gl17.csv`.",
+        "Run `aws s3 cp gl17.csv s3://$Bucket/data/gl17.csv`.",
+        "Success: object is in the data bucket."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Create database and table",
+      "bullets": [
+        "Run `aws athena start-query-execution --query-string 'CREATE DATABASE IF NOT EXISTS gl17' --result-configuration OutputLocation=s3://$ResultsBucket/athena/`.",
+        "Run `aws athena start-query-execution --query-string \"CREATE EXTERNAL TABLE IF NOT EXISTS gl17.sample (name string, value int) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LOCATION 's3://$Bucket/data/' TBLPROPERTIES ('skip.header.line.count'='1')\" --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/`.",
+        "Success: tables show in glue/athena."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Run query",
+      "bullets": [
+        "Run `aws athena start-query-execution --query-string 'SELECT * FROM gl17.sample LIMIT 10' --query-execution-context Database=gl17 --result-configuration OutputLocation=s3://$ResultsBucket/athena/`.",
+        "Success: query succeeds."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Drop table",
+      "bullets": [
+        "Run `DROP TABLE gl17.sample`.",
+        "Success: table removed."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Empty buckets",
+      "bullets": [
+        "Run `aws s3 rm s3://$Bucket --recursive`.",
+        "Run `aws s3 rm s3://$ResultsBucket --recursive`.",
+        "Success: buckets are empty."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Delete buckets",
+      "bullets": [
+        "Run `aws s3api delete-bucket --bucket $Bucket`.",
+        "Run `aws s3api delete-bucket --bucket $ResultsBucket`.",
+        "Success: head-bucket fails for both."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: Athena results, data buckets",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-17` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8\u201312 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-17",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$Bucket = \"workbook-gl17-$((aws sts get-caller-identity --query Account --output text))\"",
+      "$ResultsBucket = \"workbook-gl17-results-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws s3 rm s3://$Bucket --recursive",
+      "aws s3 rm s3://$ResultsBucket --recursive",
+      "aws s3api delete-bucket --bucket $Bucket",
+      "aws s3api delete-bucket --bucket $ResultsBucket"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-17 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-17 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-17. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "foundation",
+  "body": "Tiny CSV in S3, one Athena table, one query, drop table and delete outputs."
+}

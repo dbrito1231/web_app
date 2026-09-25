@@ -1,0 +1,85 @@
+{
+  "id": "ul-11",
+  "title": "UL-11 \u2014 Challenge: API Gateway and Lambda",
+  "kind": "unguided",
+  "pairId": "gl-11",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K01",
+    "SAA-2.1-S05"
+  ],
+  "scenario": "Add an authorized /admin route that returns 403 without credentials.",
+  "acceptanceCriteria": [
+    "HTTP API has public route GET /hello unchanged from guided pattern.",
+    "Second route GET /admin requires JWT or IAM authorization.",
+    "Unauthorized call to /admin returns HTTP 403.",
+    "Authorized call returns 200 with expected body.",
+    "Lambda permissions allow only apigateway invoke from your API.",
+    "LabId=ul-11 tags on API and function.",
+    "No API keys committed to git.",
+    "CORS not wide open to * unless justified in notes.",
+    "Teardown deletes authorizer before routes.",
+    "Teardown deletes API and Lambda.",
+    "CloudWatch log group removed.",
+    "Two routes documented in your notes.",
+    "403 reproduced with curl without token.",
+    "200 reproduced with valid token.",
+    "Tag search LabId=ul-11 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Use JWT authorizer or AWS_IAM."
+    },
+    {
+      "level": 2,
+      "text": "Test with curl -H Authorization."
+    },
+    {
+      "level": 3,
+      "text": "403 must be observable."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Authorized route challenge complete."
+  },
+  "stopChargesPanel": "Delete authorizer, API, Lambda for ul-11.",
+  "teardown": {
+    "labId": "ul-11",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$ApiId = $null",
+      "aws apigatewayv2 delete-api --api-id $ApiId",
+      "aws lambda delete-function --function-name workbook-gl11",
+      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl11",
+      "aws iam detach-role-policy --role-name workbook-gl11-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+      "aws iam delete-role --role-name workbook-gl11-lambda"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-11 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-11) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

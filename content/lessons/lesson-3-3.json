@@ -1,0 +1,43 @@
+{
+  "id": "lesson-3-3",
+  "title": "A3 \u2014 High-performing databases",
+  "module": "A3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-3.3-K01",
+    "SAA-3.3-K02",
+    "SAA-3.3-K03",
+    "SAA-3.3-K04",
+    "SAA-3.3-K05",
+    "SAA-3.3-K06",
+    "SAA-3.3-K07",
+    "SAA-3.3-K08",
+    "SAA-3.3-S01",
+    "SAA-3.3-S02",
+    "SAA-3.3-S03",
+    "SAA-3.3-S04",
+    "SAA-3.3-S05"
+  ],
+  "drillIds": [
+    "q-saa-3-3-k01-mc",
+    "q-saa-3-3-k02-mc",
+    "q-saa-3-3-k03-mc",
+    "q-saa-3-3-k04-mc",
+    "q-saa-3-3-k05-mc",
+    "q-saa-3-3-k06-mc",
+    "q-saa-3-3-k07-mc",
+    "q-saa-3-3-k08-mc",
+    "q-saa-3-3-s01-mc",
+    "q-saa-3-3-s02-mc",
+    "q-saa-3-3-s03-mc",
+    "q-saa-3-3-s04-mc",
+    "q-saa-3-3-s05-mc"
+  ],
+  "labIds": [],
+  "exerciseIds": [],
+  "citationIds": [
+    "cite-3-3"
+  ],
+  "bodyMarkdown": "## High-performing databases\n\nExam task **3.3**. This lesson maps each knowledge and skill bullet from the supplied SAA-C03 guide.\n\n### Knowledge\n\n#### SAA-3.3-K01\nAWS global infrastructure (for example, Availability Zones, AWS Regions)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K02\nCaching strategies and services (for example, Amazon ElastiCache)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K03\nData access patterns (for example, read-intensive compared with write-intensive)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K04\nDatabase capacity planning (for example, capacity units, instance types, Provisioned IOPS)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K05\nDatabase connections and proxies\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K06\nDatabase engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K07\nDatabase replication (for example, read replicas)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.3-K08\nDatabase types and services (for example, serverless, relational compared with non-relational, in-memory)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n### Skills\n\n#### SAA-3.3-S01\nConfiguring read replicas to meet business requirements\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.3-S02\nDesigning database architectures\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.3-S03\nDetermining an appropriate database engine (for example, MySQL compared with PostgreSQL)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.3-S04\nDetermining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.3-S05\nIntegrating caching to meet business requirements\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n### Warnings\n\n- Do not use the AWS root user for routine lab work.\n- Stopping an instance is not teardown.\n- $10 budget alerts warn; they do not stop spend.\n\n**Citation (official):** https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html (last verified planning baseline 2026-09-23; MCP re-check pending)."
+}

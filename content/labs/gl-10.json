@@ -1,0 +1,208 @@
+{
+  "id": "gl-10",
+  "title": "GL-10 — Queue and event path",
+  "kind": "guided",
+  "pairId": "ul-10",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.05,
+  "forgotten24hEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K05",
+    "SAA-2.1-K11",
+    "SAA-2.1-K12"
+  ],
+  "module": "A2",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete subscription, function, log group, queue, topic.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on SQS, SNS, and Lambda; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create Lambda execution role",
+      "bullets": [
+        "Save gl10-trust.json for lambda.amazonaws.com.",
+        "Run `aws iam create-role --role-name workbook-gl10-lambda --assume-role-policy-document file://gl10-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-10 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `aws iam attach-role-policy --role-name workbook-gl10-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.",
+        "Run `$LambdaRoleArn = aws iam get-role --role-name workbook-gl10-lambda --query Role.Arn --output text`.",
+        "Success: role Arn is set."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Create SNS topic and SQS queue",
+      "bullets": [
+        "Run `$TopicArn = aws sns create-topic --name workbook-gl10 --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-10 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query TopicArn --output text`.",
+        "Run `$QueueUrl = aws sqs create-queue --queue-name workbook-gl10 --attributes MessageRetentionPeriod=86400 --tags LabId=gl-10,Workbook=aws-tf-lab --query QueueUrl --output text`.",
+        "Run `$QueueArn = aws sqs get-queue-attributes --queue-url $QueueUrl --attribute-names QueueArn --query Attributes.QueueArn --output text`.",
+        "Success: topic and queue Arns are set."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Subscribe SQS to SNS",
+      "bullets": [
+        "Run `aws sns subscribe --topic-arn $TopicArn --protocol sqs --notification-endpoint $QueueArn`.",
+        "Save queue policy allowing SNS to sqs:SendMessage.",
+        "Run `aws sqs set-queue-attributes --queue-url $QueueUrl --attributes Policy=file://gl10-queue-policy.json`.",
+        "Success: subscription is confirmed."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Create Lambda function",
+      "bullets": [
+        "Zip gl10_lambda.py as function.zip with a handler that logs the event.",
+        "Run `$FunctionArn = aws lambda create-function --function-name workbook-gl10 --runtime python3.12 --role $LambdaRoleArn --handler lambda_function.lambda_handler --zip-file fileb://function.zip --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-10 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query FunctionArn --output text`.",
+        "Success: function is Active."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Wire SNS to Lambda",
+      "bullets": [
+        "Run `aws sns subscribe --topic-arn $TopicArn --protocol lambda --notification-endpoint $FunctionArn`.",
+        "Run `aws lambda add-permission --function-name workbook-gl10 --statement-id sns-gl10 --action lambda:InvokeFunction --principal sns.amazonaws.com --source-arn $TopicArn`.",
+        "Success: subscription exists."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Publish test message",
+      "bullets": [
+        "Run `aws sns publish --topic-arn $TopicArn --message '{\"test\":\"gl10\"}'`.",
+        "Run `aws logs tail /aws/lambda/workbook-gl10 --since 5m` after a short wait.",
+        "Success: log shows the invocation."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: SNS subscriptions, Lambda, log group, queue, topic, IAM role",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-10",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws sns list-subscriptions-by-topic --topic-arn $TopicArn --query Subscriptions[].SubscriptionArn --output text | ForEach-Object { if ($_ -and $_ -ne 'PendingConfirmation') { aws sns unsubscribe --subscription-arn $_ } }",
+      "aws lambda delete-function --function-name workbook-gl10",
+      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl10",
+      "aws sqs delete-queue --queue-url $QueueUrl",
+      "aws sns delete-topic --topic-arn $TopicArn",
+      "aws iam detach-role-policy --role-name workbook-gl10-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+      "aws iam delete-role --role-name workbook-gl10-lambda"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-10 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "Wire SNS to SQS and Lambda without VPC. Publish one message and confirm Lambda execution logs."
+}

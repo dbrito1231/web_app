@@ -1,0 +1,200 @@
+{
+  "id": "gl-18",
+  "title": "GL-18 — ECS on Fargate",
+  "kind": "guided",
+  "pairId": "ul-18",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.2,
+  "forgotten24hEstimateUsd": 4.8,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K14",
+    "SAA-3.2-K05"
+  ],
+  "module": "A3",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Stop tasks, delete service if any, deregister task defs, delete cluster.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on ECS Fargate; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Accept cost risk",
+      "bullets": [
+        "In the lab card, open the cost-risk box and type `I ACCEPT THE COST RISK` exactly as shown.",
+        "Success: the UI records your confirmation before any hourly resource is created.",
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Cluster and roles",
+      "bullets": [
+        "Run `aws ecs create-cluster --cluster-name workbook-gl18 --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-18 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `aws iam create-role --role-name workbook-gl18-task --assume-role-policy-document file://gl18-trust.json`.",
+        "Run `aws iam attach-role-policy --role-name workbook-gl18-task --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy`.",
+        "Run `$TaskRoleArn = aws iam get-role --role-name workbook-gl18-task --query Role.Arn --output text`.",
+        "Success: cluster and role exist."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Task definition",
+      "bullets": [
+        "Save gl18-task.json Fargate awsvpc public subnet from default VPC, tiny CPU/memory.",
+        "Run `aws ecs register-task-definition --cli-input-json file://gl18-task.json`.",
+        "Run `$TaskDef = aws ecs describe-task-definition --task-definition workbook-gl18 --query taskDefinition.taskDefinitionArn --output text`.",
+        "Success: task definition registered."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Run task",
+      "bullets": [
+        "Run `@{awsvpcConfiguration=@{subnets=@($SubnetId);assignPublicIp='ENABLED'}} | ConvertTo-Json -Compress | Set-Content -Encoding ascii network.json`. Run `aws ecs run-task --cluster workbook-gl18 --launch-type FARGATE --task-definition $TaskDef --network-configuration file://network.json`.",
+        "Success: task reaches STOPPED after the container exits."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Scale desired to zero",
+      "bullets": [
+        "This lab uses run-task only; confirm no service remains with desired > 0.",
+        "Success: no running tasks."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Deregister task definition",
+      "bullets": [
+        "Run `aws ecs deregister-task-definition --task-definition $TaskDef`.",
+        "Success: revision is INACTIVE."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Delete cluster",
+      "bullets": [
+        "Run `aws ecs delete-cluster --cluster workbook-gl18`.",
+        "Success: cluster is gone."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: ECS cluster, task definition, IAM role",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-18",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws ecs delete-cluster --cluster workbook-gl18",
+      "aws iam detach-role-policy --role-name workbook-gl18-task --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+      "aws iam delete-role --role-name workbook-gl18-task"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-18 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "tradeoff",
+  "body": "ECS Fargate cluster, one short task, stop, deregister TD, delete cluster."
+}

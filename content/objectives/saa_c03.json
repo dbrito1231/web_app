@@ -1,0 +1,1514 @@
+[
+  {
+    "id": "SAA-1.1-K01",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Access controls and management across multiple accounts",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-K02",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "AWS federated access and identity services (for example, IAM, AWS IAM Identity Center)",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-K03",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-K04",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "AWS security best practices (for example, the principle of least privilege)",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-K05",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "The AWS shared responsibility model",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S01",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S02",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Designing a flexible authorization model that includes IAM users, groups, roles, and policies",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S03",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S04",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S05",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Determining the appropriate use of resource policies for AWS services",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.1-S06",
+    "task_id": "1.1",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Determining when to federate a directory service with IAM roles",
+    "printed_pages": "4"
+  },
+  {
+    "id": "SAA-1.2-K01",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Application configuration and credentials security",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-K02",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "AWS service endpoints",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-K03",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Control ports, protocols, and network traffic on AWS",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-K04",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Secure application access",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-K05",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-K06",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Threat vectors external to AWS (for example, DDoS, SQL injection)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-S01",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-S02",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Determining network segmentation strategies (for example, using public subnets and private subnets)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-S03",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.2-S04",
+    "task_id": "1.2",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)",
+    "printed_pages": "4-5"
+  },
+  {
+    "id": "SAA-1.3-K01",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Data access and governance",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-K02",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Data recovery",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-K03",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Data retention and classification",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-K04",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "knowledge",
+    "text": "Encryption and appropriate key management",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S01",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Aligning AWS technologies to meet compliance requirements",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S02",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Encrypting data at rest (for example, AWS KMS)",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S03",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S04",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Implementing access policies for encryption keys",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S05",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Implementing data backups and replications",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S06",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Implementing policies for data access, lifecycle, and protection",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-1.3-S07",
+    "task_id": "1.3",
+    "domain_id": "d1",
+    "kind": "skill",
+    "text": "Rotating encryption keys and renewing certificates",
+    "printed_pages": "5"
+  },
+  {
+    "id": "SAA-2.1-K01",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "API creation and management (for example, Amazon API Gateway, REST API)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K02",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K03",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Caching strategies",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K04",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Design principles for microservices (for example, stateless workloads compared with stateful workloads)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K05",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Event-driven architectures",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K06",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Horizontal scaling and vertical scaling",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K07",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "How to appropriately use edge accelerators (for example, content delivery network [CDN])",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K08",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "How to migrate applications into containers",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K09",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K10",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Multi-tier architectures",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K11",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Queuing and messaging concepts (for example, publish/subscribe)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K12",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K13",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Storage types with associated characteristics (for example, object, file, block)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K14",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K15",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "When to use read replicas",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-K16",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Workflow orchestration (for example, AWS Step Functions)",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S01",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Designing event-driven, microservice, and/or multi-tier architectures based on requirements",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S02",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining scaling strategies for components used in an architecture design",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S03",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining the AWS services required to achieve loose coupling based on requirements",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S04",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining when to use containers",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S05",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining when to use serverless technologies and patterns",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S06",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Recommending appropriate compute, storage, networking, and database technologies based on requirements",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.1-S07",
+    "task_id": "2.1",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Using purpose-built AWS services for workloads",
+    "printed_pages": "6-7"
+  },
+  {
+    "id": "SAA-2.2-K01",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K02",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "AWS Managed Services (AMS) with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K03",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Basic networking concepts (for example, route tables)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K04",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Disaster recovery (DR) strategies (for example, backup and restore, pilot light, warm standby, active-active failover, recovery point objective [RPO], recovery time objective [RTO])",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K05",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Distributed design patterns",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K06",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Failover strategies",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K07",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Immutable infrastructure",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K08",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Load balancing concepts (for example, ALB)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K09",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Proxy concepts (for example, Amazon RDS Proxy)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K10",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Service quotas and throttling (for example, how to configure the service quotas for a workload in a standby environment)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K11",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Storage options and characteristics (for example, durability, replication)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-K12",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "knowledge",
+    "text": "Workload visibility (for example, AWS X-Ray)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S01",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining automation strategies to ensure infrastructure integrity",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S02",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S03",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Identifying metrics based on business requirements to deliver a highly available solution",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S04",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Implementing designs to mitigate single points of failure",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S05",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Implementing strategies to ensure the durability and availability of data (for example, backups)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S06",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Selecting an appropriate DR strategy to meet business requirements",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S07",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-2.2-S08",
+    "task_id": "2.2",
+    "domain_id": "d2",
+    "kind": "skill",
+    "text": "Using purpose-built AWS services for workloads",
+    "printed_pages": "7-8"
+  },
+  {
+    "id": "SAA-3.1-K01",
+    "task_id": "3.1",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Hybrid storage solutions to meet business requirements",
+    "printed_pages": "8"
+  },
+  {
+    "id": "SAA-3.1-K02",
+    "task_id": "3.1",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Storage services with appropriate use cases (for example, Amazon S3, Amazon EFS, Amazon EBS)",
+    "printed_pages": "8"
+  },
+  {
+    "id": "SAA-3.1-K03",
+    "task_id": "3.1",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Storage types with associated characteristics (for example, object, file, block)",
+    "printed_pages": "8"
+  },
+  {
+    "id": "SAA-3.1-S01",
+    "task_id": "3.1",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining storage services and configurations that meet performance demands",
+    "printed_pages": "8"
+  },
+  {
+    "id": "SAA-3.1-S02",
+    "task_id": "3.1",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining storage services that can scale to accommodate future needs",
+    "printed_pages": "8"
+  },
+  {
+    "id": "SAA-3.2-K01",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "AWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate)",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-K02",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Distributed computing concepts supported by AWS global infrastructure and edge services",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-K03",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Queuing and messaging concepts (for example, publish/subscribe)",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-K04",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Scalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling)",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-K05",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Serverless technologies and patterns (for example, AWS Lambda, Fargate)",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-K06",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-S01",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Decoupling workloads so that components can scale independently",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-S02",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Identifying metrics and conditions to perform scaling actions",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-S03",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.2-S04",
+    "task_id": "3.2",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements",
+    "printed_pages": "8-9"
+  },
+  {
+    "id": "SAA-3.3-K01",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K02",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Caching strategies and services (for example, Amazon ElastiCache)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K03",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Data access patterns (for example, read-intensive compared with write-intensive)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K04",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K05",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Database connections and proxies",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K06",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K07",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Database replication (for example, read replicas)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-K08",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Database types and services (for example, serverless, relational compared with non-relational, in-memory)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-S01",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Configuring read replicas to meet business requirements",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-S02",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Designing database architectures",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-S03",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-S04",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.3-S05",
+    "task_id": "3.3",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Integrating caching to meet business requirements",
+    "printed_pages": "9-10"
+  },
+  {
+    "id": "SAA-3.4-K01",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-K02",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "How to design network architecture (for example, subnet tiers, routing, IP addressing)",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-K03",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-K04",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-S01",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Creating a network topology for various architectures (for example, global, hybrid, multi-tier)",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-S02",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining network configurations that can scale to accommodate future needs",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-S03",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Determining the appropriate placement of resources to meet business requirements",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.4-S04",
+    "task_id": "3.4",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Selecting the appropriate load balancing strategy",
+    "printed_pages": "10"
+  },
+  {
+    "id": "SAA-3.5-K01",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Amazon Quick)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K02",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Data ingestion patterns (for example, frequency)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K03",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Data transfer services with appropriate use cases (for example, AWS DataSync, AWS Storage Gateway)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K04",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Data transformation services with appropriate use cases (for example, AWS Glue)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K05",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Secure access to ingestion access points",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K06",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Sizes and speeds needed to meet business requirements",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-K07",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "knowledge",
+    "text": "Streaming data services with appropriate use cases (for example, Amazon Kinesis)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S01",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Building and securing data lakes",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S02",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Designing data streaming architectures",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S03",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Designing data transfer solutions",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S04",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Implementing visualization strategies",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S05",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Selecting appropriate compute options for data processing (for example, Amazon EMR)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S06",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Selecting appropriate configurations for ingestion",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-3.5-S07",
+    "task_id": "3.5",
+    "domain_id": "d3",
+    "kind": "skill",
+    "text": "Transforming data between formats (for example, .csv to .parquet)",
+    "printed_pages": "10-11"
+  },
+  {
+    "id": "SAA-4.1-K01",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Access options (for example, an S3 bucket with Requester Pays object storage)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K02",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K03",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K04",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS storage services with appropriate use cases (for example, Amazon FSx, Amazon EFS, Amazon S3, Amazon EBS)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K05",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Backup strategies",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K06",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K07",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Data lifecycles",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K08",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K09",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Storage access patterns",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K10",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Storage tiering (for example, cold tiering for object storage)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-K11",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Storage types with associated characteristics (for example, object, file, block)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S01",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S02",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining the correct storage size for a workload",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S03",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining the lowest cost method of transferring data for a workload to AWS storage",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S04",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining when storage auto scaling is required",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S05",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Managing S3 object lifecycles",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S06",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate backup and/or archival solution",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S07",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate service for data migration to storage services",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S08",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate storage tier",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S09",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the correct data lifecycle for storage",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.1-S10",
+    "task_id": "4.1",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the most cost-effective storage service for a workload",
+    "printed_pages": "11-12"
+  },
+  {
+    "id": "SAA-4.2-K01",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K02",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K03",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K04",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS purchasing options (for example, Spot Instances, Reserved Instances, Savings Plans)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K05",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Distributed compute strategies (for example, edge processing)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K06",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Hybrid compute options (for example, AWS Outposts)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K07",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K08",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Optimization of compute utilization (for example, containers, serverless computing, microservices)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-K09",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Scaling strategies (for example, auto scaling, hibernation)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S01",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S02",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S03",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S04",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining the required availability for different classes of workloads (for example, production workloads, non-production workloads)",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S05",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate instance family for a workload",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.2-S06",
+    "task_id": "4.2",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate instance size for a workload",
+    "printed_pages": "12-13"
+  },
+  {
+    "id": "SAA-4.3-K01",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K02",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K03",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Caching strategies",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K04",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Data retention policies",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K05",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Database capacity planning (for example, capacity units)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K06",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Database connections and proxies",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K07",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K08",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Database replication (for example, read replicas)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-K09",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Database types and services (for example, relational compared with non-relational, Amazon Aurora, Amazon DynamoDB)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-S01",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Designing appropriate backup and retention policies (for example, snapshot frequency)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-S02",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-S03",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-S04",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining cost-effective AWS database types (for example, time series format, columnar format)",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.3-S05",
+    "task_id": "4.3",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Migrating database schemas and data to different locations and/or different database engines",
+    "printed_pages": "13-14"
+  },
+  {
+    "id": "SAA-4.4-K01",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K02",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K03",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K04",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "NAT gateways (for example, NAT instance costs compared with NAT gateway costs)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K05",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Network connectivity (for example, private lines, dedicated lines, VPNs)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K06",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-K07",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "knowledge",
+    "text": "Network services with appropriate use cases (for example, DNS)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S01",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S02",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S03",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S04",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Determining strategic needs for content delivery networks (CDNs) and edge caching",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S05",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Reviewing existing workloads for network optimizations",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S06",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting an appropriate throttling strategy",
+    "printed_pages": "14-15"
+  },
+  {
+    "id": "SAA-4.4-S07",
+    "task_id": "4.4",
+    "domain_id": "d4",
+    "kind": "skill",
+    "text": "Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+    "printed_pages": "14-15"
+  }
+]

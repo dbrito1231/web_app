@@ -1,0 +1,83 @@
+{
+  "id": "ul-16",
+  "title": "UL-16 \u2014 Challenge: Private DNS",
+  "kind": "unguided",
+  "pairId": "gl-16",
+  "region": "us-east-1",
+  "estimatedMinutes": 60,
+  "sameHourEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.2-K01",
+    "SAA-3.4-K02"
+  ],
+  "scenario": "Design a private DNS layout with two records and document split-horizon behavior.",
+  "acceptanceCriteria": [
+    "Private hosted zone linked to VPC.",
+    "Split-horizon or separate private name documented vs any public DNS.",
+    "At least two private records (A and CNAME or two A).",
+    "Resolver behavior explained in notes (VPC DNS).",
+    "No public hosted zone for same name.",
+    "LabId=ul-16 tags where supported.",
+    "Health checks not required.",
+    "Teardown removes custom records.",
+    "Teardown deletes hosted zone.",
+    "VPC association removed automatically on zone delete.",
+    "No Route 53 resolver endpoints created.",
+    "Query from EC2 optional; describe records sufficient.",
+    "Zone delete succeeds.",
+    "No PHZ left with lab name.",
+    "Tag search LabId=ul-16 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Private zones need VPC association."
+    },
+    {
+      "level": 2,
+      "text": "Delete non-required records first."
+    },
+    {
+      "level": 3,
+      "text": "CallerReference must be unique."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Private DNS design lab."
+  },
+  "stopChargesPanel": "Delete Route53 zone and VPC if created for ul-16.",
+  "teardown": {
+    "labId": "ul-16",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$ZoneId = $null",
+      "$VpcId = $null",
+      "aws route53 delete-hosted-zone --id $ZoneId",
+      "aws ec2 delete-vpc --vpc-id $VpcId"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-16 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A3",
+  "difficulty": "foundation",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-16) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

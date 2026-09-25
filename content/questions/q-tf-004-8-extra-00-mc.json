@@ -1,0 +1,34 @@
+{
+  "id": "q-tf-004-8-extra-00-mc",
+  "type": "mc",
+  "module": "T4",
+  "difficulty": "foundation",
+  "objectiveIds": [
+    "tf.004.8a"
+  ],
+  "stem": "HCP Terraform practice check #0 (tf.004.8a): which statement is correct?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Skip teardown for cloud resources managed outside Terraform"
+    },
+    {
+      "id": "b",
+      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+    },
+    {
+      "id": "c",
+      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+    },
+    {
+      "id": "d",
+      "text": "Agents should create HCP workspaces during implementation"
+    }
+  ],
+  "correctAnswerIds": [
+    "b"
+  ],
+  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
+  "mcpStatus": "pending_recheck"
+}

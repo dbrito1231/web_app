@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-4-2-k02-mr",
+  "type": "mr",
+  "module": "A4",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-4.2-K02"
+  ],
+  "stem": "Select TWO actions that support this requirement: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "b",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "c",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "d",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "e",
+      "text": "Validate with official documentation before applying"
+    }
+  ],
+  "correctAnswerIds": [
+    "d",
+    "e"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "q-saa-2-2-s06-mc",
+  "type": "mc",
+  "module": "A2",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-2.2-S06"
+  ],
+  "stem": "The workload needs this outcome: Selecting an appropriate DR strategy to meet business requirements. Which action should you take?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Apply the objective directly: Selecting an appropriate DR strategy to meet business requirements"
+    },
+    {
+      "id": "b",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "c",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "d",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    }
+  ],
+  "correctAnswerIds": [
+    "a"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

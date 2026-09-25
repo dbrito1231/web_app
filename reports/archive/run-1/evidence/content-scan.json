@@ -1,0 +1,3939 @@
+{
+  "question_count": 429,
+  "finding_count": 721,
+  "findings": [
+    {
+      "kind": "question",
+      "id": "q-a0-mc-001",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-a0-mr-001",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k04-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s01-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s04-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s05-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-1-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-2-s04-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-k04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s01-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-1-3-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k09-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k10-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k11-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k11-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k11-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k12-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k12-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k13-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k13-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k14-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k14-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k14-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k15-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k16-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-k16-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-1-s07-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k09-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k09-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k10-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k10-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k11-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k11-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k12-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k12-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k12-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-k12-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s07-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-2-2-s08-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-1-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k05-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-2-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k01-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-3-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-4-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k01-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k04-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-k07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-3-5-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k08-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k10-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k10-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k11-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k11-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-k11-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s09-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s09-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s10-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s10-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-1-s10-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k09-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-k09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-2-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k08-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k08-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k08-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k09-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-k09-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s04-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-3-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k06-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-k07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s01-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s01-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s02-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s02-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s02-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s03-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s03-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s03-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s04-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s04-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s05-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s05-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s06-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s06-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s07-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-saa-4-4-s07-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-1c-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2a-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2b-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2c-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-2d-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3a-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3b-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3c-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3d-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3d-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3e-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3e-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3e-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3e-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3e-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3f-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3f-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3f-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3f-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3f-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3g-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3g-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3g-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3g-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-3g-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4a-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4a-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4e-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4e-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4e-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4e-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4e-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4f-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4f-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4f-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4f-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4f-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4g-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4g-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4g-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4g-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4g-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4h-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4h-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4h-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4h-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-4h-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5a-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-5d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-6d-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7a-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-7c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-00-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-01-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-02-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-03-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-04-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-05-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-06-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8-extra-07-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8a-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8b-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8c-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mc",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mc",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mc2",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mc2",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mr",
+      "issue": "heuristic_longest_correct"
+    },
+    {
+      "kind": "question",
+      "id": "q-tf-004-8d-mr",
+      "issue": "has_cli_or_code_snippet",
+      "detail": "flagged_for_review"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-01",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-02",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-03",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-04",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-05",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-06",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-07",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-08",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-09",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-10",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-11",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-12",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-13",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-14",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-15",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-16",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-17",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-18",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-19",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-20",
+      "issue": "missing_beforeYouStart"
+    },
+    {
+      "kind": "lab",
+      "id": "ul-21",
+      "issue": "missing_beforeYouStart"
+    }
+  ],
+  "mcp_status": {
+    "missing": 2,
+    "pending_recheck": 427
+  },
+  "reviewed_on_sample": {
+    "null": 419,
+    "missing": 10
+  }
+}

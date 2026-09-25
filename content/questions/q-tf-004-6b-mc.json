@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-6b-mc",
+  "type": "mc",
+  "module": "T3",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "tf.004.6b"
+  ],
+  "stem": "A teammate asks how to meet this requirement: Describe state locking. Which action is appropriate?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "b",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "c",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "d",
+      "text": "Apply the objective directly: Describe state locking"
+    }
+  ],
+  "correctAnswerIds": [
+    "d"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

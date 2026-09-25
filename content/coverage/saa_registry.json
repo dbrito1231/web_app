@@ -1,0 +1,5568 @@
+{
+  "schemaVersion": 1,
+  "source": "supplied SAA-C03 PDF",
+  "accessed": "2026-09-23",
+  "total": 189,
+  "rows": [
+    {
+      "objective_id": "SAA-1.1-K01",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Access controls and management across multiple accounts",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-k01-mc",
+        "q-saa-1-1-k01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-multi-account"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-K02",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "AWS federated access and identity services (for example, IAM, AWS IAM Identity Center)",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-k02-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-K03",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-K04",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "AWS security best practices (for example, the principle of least privilege)",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-a0-mr-001",
+        "q-saa-1-1-k04-mc",
+        "q-saa-1-1-k04-mr"
+      ],
+      "guided_refs": [
+        "gl-01"
+      ],
+      "unguided_refs": [
+        "ul-01"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-K05",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "The AWS shared responsibility model",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-a0-mc-001",
+        "q-a0-mr-001",
+        "q-saa-1-1-k05-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S01",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s01-mc",
+        "q-saa-1-1-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-01"
+      ],
+      "unguided_refs": [
+        "ul-01"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S02",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Designing a flexible authorization model that includes IAM users, groups, roles, and policies",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s02-mc",
+        "q-saa-1-1-s02-mr"
+      ],
+      "guided_refs": [
+        "gl-01"
+      ],
+      "unguided_refs": [
+        "ul-01"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S03",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s03-mc",
+        "q-saa-1-1-s03-mr"
+      ],
+      "guided_refs": [
+        "gl-03"
+      ],
+      "unguided_refs": [
+        "ul-03"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S04",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s04-mc",
+        "q-saa-1-1-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-multi-account"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S05",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Determining the appropriate use of resource policies for AWS services",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s05-mc",
+        "q-saa-1-1-s05-mr"
+      ],
+      "guided_refs": [
+        "gl-03"
+      ],
+      "unguided_refs": [
+        "ul-03"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.1-S06",
+      "task_id": "1.1",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4",
+      "source_text": "Determining when to federate a directory service with IAM roles",
+      "lesson_refs": [
+        "lesson-1-1"
+      ],
+      "drill_refs": [
+        "q-saa-1-1-s06-mc",
+        "q-saa-1-1-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-federation"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K01",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Application configuration and credentials security",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K02",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "AWS service endpoints",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k02-mc",
+        "q-saa-1-2-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K03",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Control ports, protocols, and network traffic on AWS",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K04",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Secure application access",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K05",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k05-mc",
+        "q-saa-1-2-k05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-K06",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Threat vectors external to AWS (for example, DDoS, SQL injection)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-S01",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-s01-mc",
+        "q-saa-1-2-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-05",
+        "gl-06"
+      ],
+      "unguided_refs": [
+        "ul-05",
+        "ul-06"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-S02",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Determining network segmentation strategies (for example, using public subnets and private subnets)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-s02-mc",
+        "q-saa-1-2-s02-mr"
+      ],
+      "guided_refs": [
+        "gl-05"
+      ],
+      "unguided_refs": [
+        "ul-05"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-S03",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-s03-mc",
+        "q-saa-1-2-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-1.2-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.2-S04",
+      "task_id": "1.2",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "4-5",
+      "source_text": "Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)",
+      "lesson_refs": [
+        "lesson-1-2"
+      ],
+      "drill_refs": [
+        "q-saa-1-2-s04-mc",
+        "q-saa-1-2-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-direct-connect"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-K01",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Data access and governance",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-k01-mc",
+        "q-saa-1-3-k01-mr"
+      ],
+      "guided_refs": [
+        "gl-02"
+      ],
+      "unguided_refs": [
+        "ul-02"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-K02",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Data recovery",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-k02-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-K03",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Data retention and classification",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-K04",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Encryption and appropriate key management",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-k04-mc",
+        "q-saa-1-3-k04-mr"
+      ],
+      "guided_refs": [
+        "gl-04"
+      ],
+      "unguided_refs": [
+        "ul-04"
+      ],
+      "exercise_refs": [
+        "de-cloudhsm"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S01",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Aligning AWS technologies to meet compliance requirements",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s01-mc",
+        "q-saa-1-3-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-1.3-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S02",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Encrypting data at rest (for example, AWS KMS)",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s02-mc",
+        "q-saa-1-3-s02-mr"
+      ],
+      "guided_refs": [
+        "gl-02",
+        "gl-04"
+      ],
+      "unguided_refs": [
+        "ul-02",
+        "ul-04"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S03",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s03-mc",
+        "q-saa-1-3-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-1.3-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S04",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Implementing access policies for encryption keys",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s04-mc",
+        "q-saa-1-3-s04-mr"
+      ],
+      "guided_refs": [
+        "gl-04"
+      ],
+      "unguided_refs": [
+        "ul-04"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S05",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Implementing data backups and replications",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s05-mc",
+        "q-saa-1-3-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-1.3-s05"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S06",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Implementing policies for data access, lifecycle, and protection",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s06-mc",
+        "q-saa-1-3-s06-mr"
+      ],
+      "guided_refs": [
+        "gl-02"
+      ],
+      "unguided_refs": [
+        "ul-02"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-1.3-S07",
+      "task_id": "1.3",
+      "domain_id": "d1",
+      "domain_title": "Design Secure Architectures",
+      "domain_weight": 30,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "5",
+      "source_text": "Rotating encryption keys and renewing certificates",
+      "lesson_refs": [
+        "lesson-1-3"
+      ],
+      "drill_refs": [
+        "q-saa-1-3-s07-mc",
+        "q-saa-1-3-s07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-1.3-s07"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K01",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "API creation and management (for example, Amazon API Gateway, REST API)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k01-mc"
+      ],
+      "guided_refs": [
+        "gl-11"
+      ],
+      "unguided_refs": [
+        "ul-11"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K02",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k02-mc",
+        "q-saa-2-1-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K03",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Caching strategies",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K04",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Design principles for microservices (for example, stateless workloads compared with stateful workloads)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K05",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Event-driven architectures",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k05-mc",
+        "q-saa-2-1-k05-mr"
+      ],
+      "guided_refs": [
+        "gl-10"
+      ],
+      "unguided_refs": [
+        "ul-10"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K06",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Horizontal scaling and vertical scaling",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K07",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "How to appropriately use edge accelerators (for example, content delivery network [CDN])",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K08",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "How to migrate applications into containers",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k08-mc",
+        "q-saa-2-1-k08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K09",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k09-mc"
+      ],
+      "guided_refs": [
+        "gl-08"
+      ],
+      "unguided_refs": [
+        "ul-08"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K10",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Multi-tier architectures",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k10-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K11",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Queuing and messaging concepts (for example, publish/subscribe)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k11-mc",
+        "q-saa-2-1-k11-mr"
+      ],
+      "guided_refs": [
+        "gl-10"
+      ],
+      "unguided_refs": [
+        "ul-10"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K12",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k12-mc"
+      ],
+      "guided_refs": [
+        "gl-10"
+      ],
+      "unguided_refs": [
+        "ul-10"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K13",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Storage types with associated characteristics (for example, object, file, block)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k13-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K14",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k14-mc",
+        "q-saa-2-1-k14-mr"
+      ],
+      "guided_refs": [
+        "gl-18",
+        "gl-19"
+      ],
+      "unguided_refs": [
+        "ul-18",
+        "ul-19"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K15",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "When to use read replicas",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k15-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-K16",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Workflow orchestration (for example, AWS Step Functions)",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-k16-mc"
+      ],
+      "guided_refs": [
+        "gl-12"
+      ],
+      "unguided_refs": [
+        "ul-12"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S01",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Designing event-driven, microservice, and/or multi-tier architectures based on requirements",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s01-mc",
+        "q-saa-2-1-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-12"
+      ],
+      "unguided_refs": [
+        "ul-12"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S02",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Determining scaling strategies for components used in an architecture design",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s02-mc",
+        "q-saa-2-1-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.1-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S03",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Determining the AWS services required to achieve loose coupling based on requirements",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s03-mc",
+        "q-saa-2-1-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.1-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S04",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Determining when to use containers",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s04-mc",
+        "q-saa-2-1-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.1-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S05",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Determining when to use serverless technologies and patterns",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s05-mc",
+        "q-saa-2-1-s05-mr"
+      ],
+      "guided_refs": [
+        "gl-11"
+      ],
+      "unguided_refs": [
+        "ul-11"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S06",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Recommending appropriate compute, storage, networking, and database technologies based on requirements",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s06-mc",
+        "q-saa-2-1-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.1-s06"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.1-S07",
+      "task_id": "2.1",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "6-7",
+      "source_text": "Using purpose-built AWS services for workloads",
+      "lesson_refs": [
+        "lesson-2-1"
+      ],
+      "drill_refs": [
+        "q-saa-2-1-s07-mc",
+        "q-saa-2-1-s07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.1-s07"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K01",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k01-mc"
+      ],
+      "guided_refs": [
+        "gl-16"
+      ],
+      "unguided_refs": [
+        "ul-16"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K02",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "AWS Managed Services (AMS) with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k02-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K03",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Basic networking concepts (for example, route tables)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k03-mc",
+        "q-saa-2-2-k03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K04",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Disaster recovery (DR) strategies (for example, backup and restore, pilot light, warm standby, active-active failover, recovery point objective [RPO], recovery time objective [RTO])",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-multi-region-dr"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K05",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Distributed design patterns",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k05-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K06",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Failover strategies",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k06-mc",
+        "q-saa-2-2-k06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K07",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Immutable infrastructure",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K08",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Load balancing concepts (for example, ALB)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k08-mc"
+      ],
+      "guided_refs": [
+        "gl-08"
+      ],
+      "unguided_refs": [
+        "ul-08"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K09",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Proxy concepts (for example, Amazon RDS Proxy)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k09-mc",
+        "q-saa-2-2-k09-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K10",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Service quotas and throttling (for example, how to configure the service quotas for a workload in a standby environment)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k10-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-throttling"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K11",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Storage options and characteristics (for example, durability, replication)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k11-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-K12",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Workload visibility (for example, AWS X-Ray)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-k12-mc",
+        "q-saa-2-2-k12-mr"
+      ],
+      "guided_refs": [
+        "gl-15"
+      ],
+      "unguided_refs": [
+        "ul-15"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S01",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Determining automation strategies to ensure infrastructure integrity",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s01-mc",
+        "q-saa-2-2-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.2-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S02",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s02-mc",
+        "q-saa-2-2-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.2-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S03",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Identifying metrics based on business requirements to deliver a highly available solution",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s03-mc",
+        "q-saa-2-2-s03-mr"
+      ],
+      "guided_refs": [
+        "gl-15"
+      ],
+      "unguided_refs": [
+        "ul-15"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S04",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Implementing designs to mitigate single points of failure",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s04-mc",
+        "q-saa-2-2-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.2-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S05",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Implementing strategies to ensure the durability and availability of data (for example, backups)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s05-mc",
+        "q-saa-2-2-s05-mr"
+      ],
+      "guided_refs": [
+        "gl-14"
+      ],
+      "unguided_refs": [
+        "ul-14"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S06",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Selecting an appropriate DR strategy to meet business requirements",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s06-mc",
+        "q-saa-2-2-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-multi-region-dr"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S07",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s07-mc",
+        "q-saa-2-2-s07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.2-s07"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-2.2-S08",
+      "task_id": "2.2",
+      "domain_id": "d2",
+      "domain_title": "Design Resilient Architectures",
+      "domain_weight": 26,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "7-8",
+      "source_text": "Using purpose-built AWS services for workloads",
+      "lesson_refs": [
+        "lesson-2-2"
+      ],
+      "drill_refs": [
+        "q-saa-2-2-s08-mc",
+        "q-saa-2-2-s08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-2.2-s08"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.1-K01",
+      "task_id": "3.1",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8",
+      "source_text": "Hybrid storage solutions to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-1"
+      ],
+      "drill_refs": [
+        "q-saa-3-1-k01-mc",
+        "q-saa-3-1-k01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.1-K02",
+      "task_id": "3.1",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8",
+      "source_text": "Storage services with appropriate use cases (for example, Amazon S3, Amazon EFS, Amazon EBS)",
+      "lesson_refs": [
+        "lesson-3-1"
+      ],
+      "drill_refs": [
+        "q-saa-3-1-k02-mc"
+      ],
+      "guided_refs": [
+        "gl-07"
+      ],
+      "unguided_refs": [
+        "ul-07"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.1-K03",
+      "task_id": "3.1",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8",
+      "source_text": "Storage types with associated characteristics (for example, object, file, block)",
+      "lesson_refs": [
+        "lesson-3-1"
+      ],
+      "drill_refs": [
+        "q-saa-3-1-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.1-S01",
+      "task_id": "3.1",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8",
+      "source_text": "Determining storage services and configurations that meet performance demands",
+      "lesson_refs": [
+        "lesson-3-1"
+      ],
+      "drill_refs": [
+        "q-saa-3-1-s01-mc",
+        "q-saa-3-1-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.1-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.1-S02",
+      "task_id": "3.1",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8",
+      "source_text": "Determining storage services that can scale to accommodate future needs",
+      "lesson_refs": [
+        "lesson-3-1"
+      ],
+      "drill_refs": [
+        "q-saa-3-1-s02-mc",
+        "q-saa-3-1-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.1-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K01",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "AWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate)",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K02",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Distributed computing concepts supported by AWS global infrastructure and edge services",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k02-mc",
+        "q-saa-3-2-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K03",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Queuing and messaging concepts (for example, publish/subscribe)",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K04",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Scalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling)",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k04-mc"
+      ],
+      "guided_refs": [
+        "gl-09"
+      ],
+      "unguided_refs": [
+        "ul-09"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K05",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Serverless technologies and patterns (for example, AWS Lambda, Fargate)",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k05-mc",
+        "q-saa-3-2-k05-mr"
+      ],
+      "guided_refs": [
+        "gl-18"
+      ],
+      "unguided_refs": [
+        "ul-18"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-K06",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-k06-mc"
+      ],
+      "guided_refs": [
+        "gl-19"
+      ],
+      "unguided_refs": [
+        "ul-19"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-S01",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Decoupling workloads so that components can scale independently",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-s01-mc",
+        "q-saa-3-2-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-09"
+      ],
+      "unguided_refs": [
+        "ul-09"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-S02",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Identifying metrics and conditions to perform scaling actions",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-s02-mc",
+        "q-saa-3-2-s02-mr"
+      ],
+      "guided_refs": [
+        "gl-09"
+      ],
+      "unguided_refs": [
+        "ul-09"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-S03",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-s03-mc",
+        "q-saa-3-2-s03-mr"
+      ],
+      "guided_refs": [
+        "gl-07"
+      ],
+      "unguided_refs": [
+        "ul-07"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.2-S04",
+      "task_id": "3.2",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "8-9",
+      "source_text": "Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-2"
+      ],
+      "drill_refs": [
+        "q-saa-3-2-s04-mc",
+        "q-saa-3-2-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.2-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K01",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k01-mc",
+        "q-saa-3-3-k01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K02",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Caching strategies and services (for example, Amazon ElastiCache)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k02-mc"
+      ],
+      "guided_refs": [
+        "gl-21"
+      ],
+      "unguided_refs": [
+        "ul-21"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K03",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Data access patterns (for example, read-intensive compared with write-intensive)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k03-mc"
+      ],
+      "guided_refs": [
+        "gl-13"
+      ],
+      "unguided_refs": [
+        "ul-13"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K04",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k04-mc",
+        "q-saa-3-3-k04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K05",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Database connections and proxies",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k05-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K06",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-db-migration"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K07",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Database replication (for example, read replicas)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k07-mc",
+        "q-saa-3-3-k07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-K08",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Database types and services (for example, serverless, relational compared with non-relational, in-memory)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-k08-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-S01",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Configuring read replicas to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-s01-mc",
+        "q-saa-3-3-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.3-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-S02",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Designing database architectures",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-s02-mc",
+        "q-saa-3-3-s02-mr"
+      ],
+      "guided_refs": [
+        "gl-14"
+      ],
+      "unguided_refs": [
+        "ul-14"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-S03",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-s03-mc",
+        "q-saa-3-3-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.3-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-S04",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-s04-mc",
+        "q-saa-3-3-s04-mr"
+      ],
+      "guided_refs": [
+        "gl-13"
+      ],
+      "unguided_refs": [
+        "ul-13"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.3-S05",
+      "task_id": "3.3",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "9-10",
+      "source_text": "Integrating caching to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-3"
+      ],
+      "drill_refs": [
+        "q-saa-3-3-s05-mc",
+        "q-saa-3-3-s05-mr"
+      ],
+      "guided_refs": [
+        "gl-21"
+      ],
+      "unguided_refs": [
+        "ul-21"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-K01",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-cdn"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-K02",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "How to design network architecture (for example, subnet tiers, routing, IP addressing)",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-k02-mc"
+      ],
+      "guided_refs": [
+        "gl-16"
+      ],
+      "unguided_refs": [
+        "ul-16"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-K03",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-k03-mc",
+        "q-saa-3-4-k03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-K04",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-direct-connect"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-S01",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Creating a network topology for various architectures (for example, global, hybrid, multi-tier)",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-s01-mc",
+        "q-saa-3-4-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.4-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-S02",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Determining network configurations that can scale to accommodate future needs",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-s02-mc",
+        "q-saa-3-4-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.4-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-S03",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Determining the appropriate placement of resources to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-s03-mc",
+        "q-saa-3-4-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.4-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.4-S04",
+      "task_id": "3.4",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10",
+      "source_text": "Selecting the appropriate load balancing strategy",
+      "lesson_refs": [
+        "lesson-3-4"
+      ],
+      "drill_refs": [
+        "q-saa-3-4-s04-mc",
+        "q-saa-3-4-s04-mr"
+      ],
+      "guided_refs": [
+        "gl-08"
+      ],
+      "unguided_refs": [
+        "ul-08"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K01",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Amazon Quick)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k01-mc",
+        "q-saa-3-5-k01-mr"
+      ],
+      "guided_refs": [
+        "gl-17"
+      ],
+      "unguided_refs": [
+        "ul-17"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K02",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Data ingestion patterns (for example, frequency)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k02-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K03",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Data transfer services with appropriate use cases (for example, AWS DataSync, AWS Storage Gateway)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-snow"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K04",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Data transformation services with appropriate use cases (for example, AWS Glue)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k04-mc",
+        "q-saa-3-5-k04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-emr-glue"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K05",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Secure access to ingestion access points",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k05-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K06",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Sizes and speeds needed to meet business requirements",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-K07",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Streaming data services with appropriate use cases (for example, Amazon Kinesis)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-k07-mc",
+        "q-saa-3-5-k07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-streaming"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S01",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Building and securing data lakes",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s01-mc",
+        "q-saa-3-5-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-data-lake"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S02",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Designing data streaming architectures",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s02-mc",
+        "q-saa-3-5-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-streaming"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S03",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Designing data transfer solutions",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s03-mc",
+        "q-saa-3-5-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.5-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S04",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Implementing visualization strategies",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s04-mc",
+        "q-saa-3-5-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-visualization"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S05",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Selecting appropriate compute options for data processing (for example, Amazon EMR)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s05-mc",
+        "q-saa-3-5-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-emr-glue"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S06",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Selecting appropriate configurations for ingestion",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s06-mc",
+        "q-saa-3-5-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-3.5-s06"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-3.5-S07",
+      "task_id": "3.5",
+      "domain_id": "d3",
+      "domain_title": "Design High-Performing Architectures",
+      "domain_weight": 24,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "10-11",
+      "source_text": "Transforming data between formats (for example, .csv to .parquet)",
+      "lesson_refs": [
+        "lesson-3-5"
+      ],
+      "drill_refs": [
+        "q-saa-3-5-s07-mc",
+        "q-saa-3-5-s07-mr"
+      ],
+      "guided_refs": [
+        "gl-17"
+      ],
+      "unguided_refs": [
+        "ul-17"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K01",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Access options (for example, an S3 bucket with Requester Pays object storage)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K02",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k02-mc",
+        "q-saa-4-1-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K03",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K04",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "AWS storage services with appropriate use cases (for example, Amazon FSx, Amazon EFS, Amazon S3, Amazon EBS)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K05",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Backup strategies",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k05-mc",
+        "q-saa-4-1-k05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K06",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K07",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Data lifecycles",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K08",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k08-mc",
+        "q-saa-4-1-k08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K09",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Storage access patterns",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k09-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K10",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Storage tiering (for example, cold tiering for object storage)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k10-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-K11",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Storage types with associated characteristics (for example, object, file, block)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-k11-mc",
+        "q-saa-4-1-k11-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S01",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s01-mc",
+        "q-saa-4-1-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S02",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Determining the correct storage size for a workload",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s02-mc",
+        "q-saa-4-1-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S03",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Determining the lowest cost method of transferring data for a workload to AWS storage",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s03-mc",
+        "q-saa-4-1-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-storage-migration"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S04",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Determining when storage auto scaling is required",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s04-mc",
+        "q-saa-4-1-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S05",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Managing S3 object lifecycles",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s05-mc",
+        "q-saa-4-1-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s05"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S06",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Selecting the appropriate backup and/or archival solution",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s06-mc",
+        "q-saa-4-1-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s06"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S07",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Selecting the appropriate service for data migration to storage services",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s07-mc",
+        "q-saa-4-1-s07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-snow",
+        "de-storage-migration"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S08",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Selecting the appropriate storage tier",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s08-mc",
+        "q-saa-4-1-s08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s08"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S09",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Selecting the correct data lifecycle for storage",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s09-mc",
+        "q-saa-4-1-s09-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s09"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.1-S10",
+      "task_id": "4.1",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "11-12",
+      "source_text": "Selecting the most cost-effective storage service for a workload",
+      "lesson_refs": [
+        "lesson-4-1"
+      ],
+      "drill_refs": [
+        "q-saa-4-1-s10-mc",
+        "q-saa-4-1-s10-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.1-s10"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K01",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K02",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k02-mc",
+        "q-saa-4-2-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K03",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K04",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "AWS purchasing options (for example, Spot Instances, Reserved Instances, Savings Plans)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-purchasing"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K05",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Distributed compute strategies (for example, edge processing)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k05-mc",
+        "q-saa-4-2-k05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K06",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Hybrid compute options (for example, AWS Outposts)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-outposts"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K07",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K08",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Optimization of compute utilization (for example, containers, serverless computing, microservices)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k08-mc",
+        "q-saa-4-2-k08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-K09",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Scaling strategies (for example, auto scaling, hibernation)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-k09-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S01",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s01-mc",
+        "q-saa-4-2-s01-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.2-s01"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S02",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s02-mc",
+        "q-saa-4-2-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.2-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S03",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s03-mc",
+        "q-saa-4-2-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.2-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S04",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Determining the required availability for different classes of workloads (for example, production workloads, non-production workloads)",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s04-mc",
+        "q-saa-4-2-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.2-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S05",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Selecting the appropriate instance family for a workload",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s05-mc",
+        "q-saa-4-2-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.2-s05"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.2-S06",
+      "task_id": "4.2",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "12-13",
+      "source_text": "Selecting the appropriate instance size for a workload",
+      "lesson_refs": [
+        "lesson-4-2"
+      ],
+      "drill_refs": [
+        "q-saa-4-2-s06-mc",
+        "q-saa-4-2-s06-mr"
+      ],
+      "guided_refs": [
+        "gl-07"
+      ],
+      "unguided_refs": [
+        "ul-07"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K01",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K02",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k02-mc",
+        "q-saa-4-3-k02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K03",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Caching strategies",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k03-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K04",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Data retention policies",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k04-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K05",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Database capacity planning (for example, capacity units)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k05-mc",
+        "q-saa-4-3-k05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K06",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Database connections and proxies",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k06-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K07",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K08",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Database replication (for example, read replicas)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k08-mc",
+        "q-saa-4-3-k08-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-K09",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Database types and services (for example, relational compared with non-relational, Amazon Aurora, Amazon DynamoDB)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-k09-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-S01",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Designing appropriate backup and retention policies (for example, snapshot frequency)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-s01-mc",
+        "q-saa-4-3-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-14"
+      ],
+      "unguided_refs": [
+        "ul-14"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-S02",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-s02-mc",
+        "q-saa-4-3-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.3-s02"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-S03",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-s03-mc",
+        "q-saa-4-3-s03-mr"
+      ],
+      "guided_refs": [
+        "gl-13"
+      ],
+      "unguided_refs": [
+        "ul-13"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-S04",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Determining cost-effective AWS database types (for example, time series format, columnar format)",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-s04-mc",
+        "q-saa-4-3-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.3-s04"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.3-S05",
+      "task_id": "4.3",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "13-14",
+      "source_text": "Migrating database schemas and data to different locations and/or different database engines",
+      "lesson_refs": [
+        "lesson-4-3"
+      ],
+      "drill_refs": [
+        "q-saa-4-3-s05-mc",
+        "q-saa-4-3-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-db-migration"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K01",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k01-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K02",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k02-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K03",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Load balancing concepts (for example, Application Load Balancer [ALB])",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k03-mc",
+        "q-saa-4-4-k03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K04",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "NAT gateways (for example, NAT instance costs compared with NAT gateway costs)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k04-mc"
+      ],
+      "guided_refs": [
+        "gl-06"
+      ],
+      "unguided_refs": [
+        "ul-06"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K05",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Network connectivity (for example, private lines, dedicated lines, VPNs)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k05-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K06",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k06-mc",
+        "q-saa-4-4-k06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-tgw"
+      ],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-K07",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "knowledge",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Network services with appropriate use cases (for example, DNS)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-k07-mc"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [],
+      "practice_mode": "concept_review",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S01",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s01-mc",
+        "q-saa-4-4-s01-mr"
+      ],
+      "guided_refs": [
+        "gl-06"
+      ],
+      "unguided_refs": [
+        "ul-06"
+      ],
+      "exercise_refs": [],
+      "practice_mode": "live_aws",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S02",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s02-mc",
+        "q-saa-4-4-s02-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-direct-connect"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S03",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s03-mc",
+        "q-saa-4-4-s03-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.4-s03"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S04",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Determining strategic needs for content delivery networks (CDNs) and edge caching",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s04-mc",
+        "q-saa-4-4-s04-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-cdn"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S05",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Reviewing existing workloads for network optimizations",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s05-mc",
+        "q-saa-4-4-s05-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.4-s05"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S06",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Selecting an appropriate throttling strategy",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s06-mc",
+        "q-saa-4-4-s06-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-throttling"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": "Not disposable in personal same-day lab",
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    },
+    {
+      "objective_id": "SAA-4.4-S07",
+      "task_id": "4.4",
+      "domain_id": "d4",
+      "domain_title": "Design Cost-Optimized Architectures",
+      "domain_weight": 20,
+      "bullet_kind": "skill",
+      "source_file": "solutions-architect-associate-03.pdf",
+      "printed_pages": "14-15",
+      "source_text": "Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+      "lesson_refs": [
+        "lesson-4-4"
+      ],
+      "drill_refs": [
+        "q-saa-4-4-s07-mc",
+        "q-saa-4-4-s07-mr"
+      ],
+      "guided_refs": [],
+      "unguided_refs": [],
+      "exercise_refs": [
+        "de-saa-4.4-s07"
+      ],
+      "practice_mode": "design_exercise",
+      "constraint_reason": null,
+      "validation_refs": [],
+      "status": "implemented_unverified",
+      "gap": "MCP re-check and Phase 6 verification pending",
+      "owner": "phase-3/4/5",
+      "next_action": "Phase 6 verify"
+    }
+  ]
+}

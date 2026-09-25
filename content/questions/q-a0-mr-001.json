@@ -1,0 +1,41 @@
+{
+  "id": "q-a0-mr-001",
+  "type": "mr",
+  "stem": "Select TWO practices that match this workbook's lab safety rules.",
+  "promptNote": "Select exactly two.",
+  "choices": [
+    {
+      "id": "a",
+      "text": "Store access keys in the React bundle for convenience"
+    },
+    {
+      "id": "b",
+      "text": "Treat budget alerts as lagging signals, not spend stoppers"
+    },
+    {
+      "id": "c",
+      "text": "Assume Free Tier will cover all lab hours"
+    },
+    {
+      "id": "d",
+      "text": "Let agents execute apply/destroy in your account"
+    },
+    {
+      "id": "e",
+      "text": "Run teardown deletes when finished or stopping early"
+    }
+  ],
+  "correctAnswerIds": [
+    "e",
+    "b"
+  ],
+  "rationale": "Teardown is mandatory; budgets alert only. Keys stay out of the app; Free Tier is never assumed; agents never touch AWS.",
+  "objectiveIds": [
+    "SAA-1.1-K04",
+    "SAA-1.1-K05"
+  ],
+  "citationIds": [],
+  "module": "A0",
+  "difficulty": "foundation",
+  "selectCount": 2
+}

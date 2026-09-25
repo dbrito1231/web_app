@@ -1,0 +1,18 @@
+{
+  "id": "a0-lab-safety",
+  "title": "A0 \u2014 Lab safety and local threat model",
+  "module": "A0",
+  "tier": "foundation",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-1.1-K05"
+  ],
+  "drillIds": [
+    "q-a0-mc-001",
+    "q-a0-mr-001"
+  ],
+  "labIds": [
+    "gl-01"
+  ],
+  "bodyMarkdown": "## Before you touch AWS\n\nThis workbook runs locally on **127.0.0.1**. Progress and answer keys live in **SQLite** and in **content JSON** on disk. Another process on your PC could call the Django port.\n\n- Use a **named CLI profile** or IAM Identity Center; never root access keys.\n- **$10 is a warning**, not a cap. Budget alerts lag hours and do not stop spend.\n- Complete **teardown** when you finish or stop early; stopping an instance is not teardown.\n- Agents and this app **never** call AWS on your behalf.\n\n\n### Permissions boundary\n\nA permissions boundary is a second IAM policy that sets the maximum permissions a user or role can have, even if another policy grants more. GL-01 creates one so lab principals cannot exceed the lab deny list.\n"
+}

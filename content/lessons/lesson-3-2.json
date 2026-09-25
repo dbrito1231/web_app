@@ -1,0 +1,37 @@
+{
+  "id": "lesson-3-2",
+  "title": "A3 \u2014 High-performing compute",
+  "module": "A3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "SAA-3.2-K01",
+    "SAA-3.2-K02",
+    "SAA-3.2-K03",
+    "SAA-3.2-K04",
+    "SAA-3.2-K05",
+    "SAA-3.2-K06",
+    "SAA-3.2-S01",
+    "SAA-3.2-S02",
+    "SAA-3.2-S03",
+    "SAA-3.2-S04"
+  ],
+  "drillIds": [
+    "q-saa-3-2-k01-mc",
+    "q-saa-3-2-k02-mc",
+    "q-saa-3-2-k03-mc",
+    "q-saa-3-2-k04-mc",
+    "q-saa-3-2-k05-mc",
+    "q-saa-3-2-k06-mc",
+    "q-saa-3-2-s01-mc",
+    "q-saa-3-2-s02-mc",
+    "q-saa-3-2-s03-mc",
+    "q-saa-3-2-s04-mc"
+  ],
+  "labIds": [],
+  "exerciseIds": [],
+  "citationIds": [
+    "cite-3-2"
+  ],
+  "bodyMarkdown": "## High-performing compute\n\nExam task **3.2**. This lesson maps each knowledge and skill bullet from the supplied SAA-C03 guide.\n\n### Knowledge\n\n#### SAA-3.2-K01\nAWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.2-K02\nDistributed computing concepts supported by AWS global infrastructure and edge services\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.2-K03\nQueuing and messaging concepts (for example, publish/subscribe)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.2-K04\nScalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.2-K05\nServerless technologies and patterns (for example, AWS Lambda, Fargate)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n#### SAA-3.2-K06\nThe orchestration of containers (for example, Amazon ECS, Amazon EKS)\n\n**Tradeoffs:** Choose the simplest control that meets the requirement. Prefer managed services when operational overhead dominates. Use this lesson's citation link at the bottom before you lab. In a single-account lab, practice the smallest related resource then tear it down the same day. Multi-account or hybrid items may be design-only.\n\n### Skills\n\n#### SAA-3.2-S01\nDecoupling workloads so that components can scale independently\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.2-S02\nIdentifying metrics and conditions to perform scaling actions\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.2-S03\nSelecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n#### SAA-3.2-S04\nSelecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements\n\n**Applied practice:** Complete the mapped guided/unguided lab or design exercise. Observable criteria are on that content item.\n\n### Warnings\n\n- Do not use the AWS root user for routine lab work.\n- Stopping an instance is not teardown.\n- $10 budget alerts warn; they do not stop spend.\n\n**Citation (official):** https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html (last verified planning baseline 2026-09-23; MCP re-check pending)."
+}

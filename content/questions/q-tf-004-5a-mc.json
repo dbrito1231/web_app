@@ -1,0 +1,36 @@
+{
+  "id": "q-tf-004-5a-mc",
+  "type": "mc",
+  "module": "T3",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "tf.004.5a"
+  ],
+  "stem": "Which action is the right fit for this requirement: Explain how Terraform sources modules?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "b",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    },
+    {
+      "id": "c",
+      "text": "Apply the objective directly: Explain how Terraform sources modules"
+    },
+    {
+      "id": "d",
+      "text": "Ignore least privilege and use the root user for speed"
+    }
+  ],
+  "correctAnswerIds": [
+    "c"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

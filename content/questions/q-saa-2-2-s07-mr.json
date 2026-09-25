@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-2-2-s07-mr",
+  "type": "mr",
+  "module": "A2",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-2.2-S07"
+  ],
+  "stem": "Select TWO actions that support this requirement: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "b",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "c",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "d",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "e",
+      "text": "Use root credentials for every lab step"
+    }
+  ],
+  "correctAnswerIds": [
+    "a",
+    "b"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

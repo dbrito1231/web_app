@@ -1,0 +1,33 @@
+{
+  "id": "q-a0-mc-001",
+  "type": "mc",
+  "stem": "Who is responsible for rotating credentials and choosing a named CLI profile for workbook labs?",
+  "choices": [
+    {
+      "id": "a",
+      "text": "AWS Budgets, automatically"
+    },
+    {
+      "id": "b",
+      "text": "The Django app, using stored keys"
+    },
+    {
+      "id": "c",
+      "text": "The learner, in their own terminal"
+    },
+    {
+      "id": "d",
+      "text": "The coverage registry job"
+    }
+  ],
+  "correctAnswerIds": [
+    "c"
+  ],
+  "rationale": "REQ-P03 and REQ-L30: the learner runs CLI locally; the app never receives credentials.",
+  "objectiveIds": [
+    "SAA-1.1-K05"
+  ],
+  "citationIds": [],
+  "module": "A0",
+  "difficulty": "foundation"
+}

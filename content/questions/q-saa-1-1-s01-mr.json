@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-1-1-s01-mr",
+  "type": "mr",
+  "module": "A1",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-1.1-S01"
+  ],
+  "stem": "Select TWO actions that support this requirement: Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "b",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "c",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "d",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "e",
+      "text": "Design against the stated requirement and document tradeoffs"
+    }
+  ],
+  "correctAnswerIds": [
+    "e",
+    "a"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

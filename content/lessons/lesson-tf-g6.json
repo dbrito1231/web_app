@@ -1,0 +1,25 @@
+{
+  "id": "lesson-tf-g6",
+  "title": "T3 \u2014 Terraform state",
+  "module": "T3",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.6a",
+    "tf.004.6b",
+    "tf.004.6c",
+    "tf.004.6d"
+  ],
+  "drillIds": [
+    "q-tf-004-6a-mc",
+    "q-tf-004-6b-mc",
+    "q-tf-004-6c-mc",
+    "q-tf-004-6d-mc",
+    "q-tf-004-6a-mr"
+  ],
+  "labIds": [],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Terraform state\n\nTerraform Associate 004 objective group 6.\n\n### tf.004.6a\nDescribe the local backend\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.6b\nDescribe state locking\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.6c\nConfigure remote state using the backend block\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.6d\nManage resource drift and Terraform state\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

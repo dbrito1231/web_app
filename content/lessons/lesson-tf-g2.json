@@ -1,0 +1,25 @@
+{
+  "id": "lesson-tf-g2",
+  "title": "T1 \u2014 Terraform fundamentals",
+  "module": "T1",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.2a",
+    "tf.004.2b",
+    "tf.004.2c",
+    "tf.004.2d"
+  ],
+  "drillIds": [
+    "q-tf-004-2a-mc",
+    "q-tf-004-2b-mc",
+    "q-tf-004-2c-mc",
+    "q-tf-004-2d-mc",
+    "q-tf-004-2a-mr"
+  ],
+  "labIds": [],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## Terraform fundamentals\n\nTerraform Associate 004 objective group 2.\n\n### tf.004.2a\nInstall and version Terraform providers\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.2b\nDescribe how Terraform uses providers\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.2c\nWrite Terraform configuration using multiple providers\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.2d\nExplain how Terraform uses and manages state\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

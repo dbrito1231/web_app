@@ -1,0 +1,120 @@
+{
+  "id": "ul-08",
+  "title": "UL-08 \u2014 Challenge: Application Load Balancer",
+  "kind": "unguided",
+  "pairId": "gl-08",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.04,
+  "hourly": true,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K09",
+    "SAA-2.2-K08",
+    "SAA-3.4-S04"
+  ],
+  "scenario": "Associate AWS WAF with your ALB lab after pricing review; prove a rule fires; remove WAF before ALB teardown.",
+  "acceptanceCriteria": [
+    "Application Load Balancer from GL-08 pattern exists and serves HTTP.",
+    "AWS WAF web ACL is associated with the ALB after you record WAF pricing.",
+    "One WAF managed rule group is attached (AWSManagedRulesCommonRuleSet or similar).",
+    "Test request shows blocked or counted action for a deliberate bad request.",
+    "WAF association is removed before ALB delete.",
+    "Web ACL is deleted after disassociation.",
+    "ALB and targets teardown same day.",
+    "Cost-risk accepted before hourly resources.",
+    "LabId=ul-08 tags present.",
+    "No 0.0.0.0/0 on SSH security groups.",
+    "HTTP listener only for lab (no TLS cert purchase).",
+    "Teardown order documented: WAF, listener, ALB, TG, EC2.",
+    "Public IPv4 released if allocated standalone.",
+    "describe-load-balancers empty for lab names.",
+    "Tag search LabId=ul-08 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "WAF bills per web ACL and rules."
+    },
+    {
+      "level": 2,
+      "text": "Disassociate ACL before deleting ALB."
+    },
+    {
+      "level": 3,
+      "text": "Use curl with bad User-Agent to trigger managed rule."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "WAF + ALB challenge with cleanup."
+  },
+  "stopChargesPanel": "Remove WAF ACL association, delete ACL, ALB, EC2 for ul-08.",
+  "teardown": {
+    "labId": "ul-08",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$EndpointId = $null",
+      "$NatGatewayId = $null",
+      "$AllocationId = $null",
+      "$AlbArn = $null",
+      "$TargetGroupArn = $null",
+      "$AsgName = $null",
+      "$LaunchTemplateId = $null",
+      "$InstanceId = $null",
+      "$NaclAssocId = $null",
+      "$DefaultNaclId = $null",
+      "$CustomNaclId = $null",
+      "$RtAssocPub = $null",
+      "$RtAssocPriv = $null",
+      "$PublicRouteTableId = $null",
+      "$PrivateRouteTableId = $null",
+      "$SubnetPub = $null",
+      "$SubnetPriv = $null",
+      "$IgwId = $null",
+      "$VpcId = $null",
+      "$SgId = $null",
+      "if ($EndpointId) { aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId }",
+      "if ($NatGatewayId) { aws ec2 delete-nat-gateway --nat-gateway-id $NatGatewayId; aws ec2 wait nat-gateway-deleted --nat-gateway-ids $NatGatewayId }",
+      "if ($AllocationId) { aws ec2 release-address --allocation-id $AllocationId }",
+      "if ($AlbArn) { aws elbv2 delete-load-balancer --load-balancer-arn $AlbArn; aws elbv2 wait load-balancers-deleted --load-balancer-arns $AlbArn }",
+      "if ($TargetGroupArn) { aws elbv2 delete-target-group --target-group-arn $TargetGroupArn }",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
+      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
+      "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
+      "if ($NaclAssocId -and $DefaultNaclId) { aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId }",
+      "if ($CustomNaclId) { aws ec2 delete-network-acl --network-acl-id $CustomNaclId }",
+      "if ($RtAssocPub) { aws ec2 disassociate-route-table --association-id $RtAssocPub }",
+      "if ($RtAssocPriv) { aws ec2 disassociate-route-table --association-id $RtAssocPriv }",
+      "if ($PublicRouteTableId) { aws ec2 delete-route-table --route-table-id $PublicRouteTableId }",
+      "if ($PrivateRouteTableId) { aws ec2 delete-route-table --route-table-id $PrivateRouteTableId }",
+      "if ($SubnetPub) { aws ec2 delete-subnet --subnet-id $SubnetPub }",
+      "if ($SubnetPriv) { aws ec2 delete-subnet --subnet-id $SubnetPriv }",
+      "if ($IgwId -and $VpcId) { aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId; aws ec2 delete-internet-gateway --internet-gateway-id $IgwId }",
+      "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }",
+      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-08. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "tradeoff",
+  "forgotten24hEstimateUsd": 0.96,
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-08) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

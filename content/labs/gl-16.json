@@ -1,0 +1,194 @@
+{
+  "id": "gl-16",
+  "title": "GL-16 — Private DNS",
+  "kind": "guided",
+  "pairId": "ul-16",
+  "region": "us-east-1",
+  "estimatedMinutes": 60,
+  "sameHourEstimateUsd": 0.1,
+  "forgotten24hEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.2-K01",
+    "SAA-3.4-K02"
+  ],
+  "module": "A3",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete records and private zone; no public domain purchase.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on Route 53 private DNS; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create VPC",
+      "bullets": [
+        "Run `$VpcId = aws ec2 create-vpc --cidr-block 10.160.0.0/16 --query Vpc.VpcId --output text --tag-specifications \"ResourceType=vpc,Tags=[{Key=LabId,Value=gl-16}]\"`.",
+        "Success: `$VpcId` is set."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Private hosted zone",
+      "bullets": [
+        "Run `$ZoneId = aws route53 create-hosted-zone --name workbook.gl16.local --vpc VPCRegion=us-east-1,VPCId=$VpcId --caller-reference gl16-$(Get-Random) --hosted-zone-config Comment=gl16,PrivateZone=true --query HostedZone.Id --output text`.",
+        "Success: private zone is created."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Private record",
+      "bullets": [
+        "Save gl16-record.json with A record app.workbook.gl16.local to 10.160.1.10.",
+        "Run `aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://gl16-record.json`.",
+        "Success: record exists."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "List records",
+      "bullets": [
+        "Run `aws route53 list-resource-record-sets --hosted-zone-id $ZoneId`.",
+        "Success: app record is listed."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Delete record",
+      "bullets": [
+        "Run change-batch DELETE for the app record.",
+        "Success: only NS/SOA remain."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Delete zone and VPC",
+      "bullets": [
+        "Run `aws route53 delete-hosted-zone --id $ZoneId`.",
+        "Run `aws ec2 delete-vpc --vpc-id $VpcId`.",
+        "Success: both are gone."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: hosted zone records, zone, VPC",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-16",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws route53 delete-hosted-zone --id $ZoneId",
+      "aws ec2 delete-vpc --vpc-id $VpcId"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-16 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "foundation",
+  "body": "One Route 53 private hosted zone linked to your VPC with one private A record."
+}

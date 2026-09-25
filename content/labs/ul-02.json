@@ -1,0 +1,88 @@
+{
+  "id": "ul-02",
+  "title": "UL-02 \u2014 Challenge: Private S3 data controls",
+  "kind": "unguided",
+  "pairId": "gl-02",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.3-K01",
+    "SAA-1.3-S02",
+    "SAA-1.3-S06"
+  ],
+  "scenario": "You inherit a private S3 bucket used for workbook data. Add a `sensitive/` prefix with sample content, briefly enable Macie to capture pricing for classification, then disable Macie. Do not repeat the GL-02 step sequence.",
+  "acceptanceCriteria": [
+    "A second prefix `sensitive/` exists with at least one object under the same tagged bucket (new or reused).",
+    "Amazon Macie is enabled long enough to record the per-GB classification price from official pricing; you note the estimate in your lab notes.",
+    "Macie is disabled or suspended again before teardown so ongoing Macie charges stop.",
+    "Block public access remains fully on for the bucket.",
+    "Bucket policy still requires TLS for writes.",
+    "Versioning remains enabled.",
+    "Lifecycle rule still targets only `lab/` and not `sensitive/`.",
+    "You can list both prefixes with `aws s3 ls` and show distinct keys.",
+    "All creatable resources carry Workbook, LabId=ul-02, CreatedAt, ExpiresAt tags where the API supports tags.",
+    "No bucket ACL grants public read or write.",
+    "Teardown removes Macie-dependent settings before emptying the bucket.",
+    "Teardown deletes all object versions under both prefixes.",
+    "Teardown deletes the bucket and policy.",
+    "After teardown, `aws s3api head-bucket` fails for your bucket name.",
+    "Tagged LabId=ul-02 inventory in us-east-1 is empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Macie pricing is per GB scanned; keep the scan minimal."
+    },
+    {
+      "level": 2,
+      "text": "Empty versioned deletes before delete-bucket."
+    },
+    {
+      "level": 3,
+      "text": "Pause Macie with `aws macie2 update-macie-session --status PAUSED`; confirm with get-macie-session."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Meets Macie-on/off, dual-prefix, and full S3 teardown with ul-02 tags."
+  },
+  "stopChargesPanel": "Disable Macie, empty both prefixes including versions, remove policy and bucket. Macie left on can accrue charges.",
+  "teardown": {
+    "labId": "ul-02",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\"",
+      "aws macie2 update-macie-session --status PAUSED",
+      "aws s3api delete-bucket-policy --bucket $Bucket",
+      "$versions = aws s3api list-object-versions --bucket $Bucket --output json | ConvertFrom-Json",
+      "foreach ($v in $versions.Versions) { aws s3api delete-object --bucket $Bucket --key $v.Key --version-id $v.VersionId }",
+      "foreach ($m in $versions.DeleteMarkers) { aws s3api delete-object --bucket $Bucket --key $m.Key --version-id $m.VersionId }",
+      "aws s3api delete-bucket-lifecycle --bucket $Bucket",
+      "aws s3api delete-bucket --bucket $Bucket"
+    ],
+    "verification": [
+      "aws macie2 get-macie-session shows status PAUSED or Macie not enabled",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-02 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-02 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-02. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A1",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-02) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

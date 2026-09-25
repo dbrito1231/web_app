@@ -1,0 +1,84 @@
+{
+  "id": "ul-20",
+  "title": "UL-20 \u2014 Challenge: Terraform workflow modules state import",
+  "kind": "unguided",
+  "pairId": "gl-20",
+  "region": "us-east-1",
+  "estimatedMinutes": 150,
+  "sameHourEstimateUsd": 0.1,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "tf.004.3a",
+    "tf.004.3e",
+    "tf.004.5c",
+    "tf.004.7a"
+  ],
+  "scenario": "Refactor fixture into a module, import an bucket, produce saved plan without applying it.",
+  "acceptanceCriteria": [
+    "Root module calls a child module for the S3 bucket resource.",
+    "terraform init succeeds with local backend.",
+    "Existing bucket imported via terraform import into module address.",
+    "terraform plan saved to file plan.out not applied.",
+    "Saved plan shows expected changes only.",
+    "terraform fmt -check passes.",
+    "terraform validate passes.",
+    "State lists imported resource.",
+    "Manual destroy or terraform destroy removes bucket after any apply you chose.",
+    "No remote backend with credentials in git.",
+    "LabId=ul-20 tags in module code.",
+    "Module output documents bucket name.",
+    "Import id documented in notes.",
+    "Plan file deleted from git status.",
+    "Tag search LabId=ul-20 empty after destroy."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "terraform import module.bucket.aws_s3_bucket.this name"
+    },
+    {
+      "level": 2,
+      "text": "plan -out=plan.out"
+    },
+    {
+      "level": 3,
+      "text": "Do not commit plan or state."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Terraform module import plan lab."
+  },
+  "stopChargesPanel": "Destroy any applied resources; remove state for ul-20.",
+  "teardown": {
+    "labId": "ul-20",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "cd lab-fixtures/gl-20",
+      "terraform destroy -auto-approve -var bucket_suffix=$Suffix",
+      "aws s3api head-bucket --bucket $Bucket 2>&1 | Select-String NotFound"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-20 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "T3",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-20) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

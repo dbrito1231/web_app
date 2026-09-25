@@ -1,0 +1,23 @@
+{
+  "id": "lesson-tf-g1",
+  "title": "T1 \u2014 IaC with Terraform",
+  "module": "T1",
+  "tier": "exam",
+  "practiceMode": "concept_review",
+  "objectiveIds": [
+    "tf.004.1a",
+    "tf.004.1b",
+    "tf.004.1c"
+  ],
+  "drillIds": [
+    "q-tf-004-1a-mc",
+    "q-tf-004-1b-mc",
+    "q-tf-004-1c-mc",
+    "q-tf-004-1a-mr"
+  ],
+  "labIds": [],
+  "citationIds": [
+    "cite-tf-004"
+  ],
+  "bodyMarkdown": "## IaC with Terraform\n\nTerraform Associate 004 objective group 1.\n\n### tf.004.1a\nExplain what IaC is\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.1b\nDescribe the advantages of IaC patterns\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n\n### tf.004.1c\nExplain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows\n\nStudy the official mapping: https://developer.hashicorp.com/terraform/tutorials/certification-004/associate-review-004. Practice with local `terraform fmt`, `validate`, and learner-run apply only when a lab requires it.\n"
+}

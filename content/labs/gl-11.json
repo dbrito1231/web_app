@@ -1,0 +1,202 @@
+{
+  "id": "gl-11",
+  "title": "GL-11 — API Gateway and Lambda",
+  "kind": "guided",
+  "pairId": "ul-11",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "forgotten24hEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K01",
+    "SAA-2.1-S05"
+  ],
+  "module": "A2",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete API, routes, Lambda, and log group.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using a named profile, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: both variables print the expected values."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: Arn contains `:user/` or `:assumed-role/`, not `:root`.",
+        "Set `$AccountId` from the Account field."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: output starts with `aws-cli/2`.",
+        "This lab focuses on API Gateway and Lambda; Terraform is not required unless a step says so."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Open this lab's same-hour and forgotten-24h estimates in the card header.",
+        "Success: you can state both numbers before creating billable resources.",
+        "Budget alerts from GL-01 warn only; they do not stop spend."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Set lab variables",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's calendar date.",
+        "Success: date variables and lab names are set."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Lambda role and function",
+      "bullets": [
+        "Run `aws iam create-role --role-name workbook-gl11-lambda --assume-role-policy-document file://gl11-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-11 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `aws iam attach-role-policy --role-name workbook-gl11-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.",
+        "Run `$LambdaRoleArn = aws iam get-role --role-name workbook-gl11-lambda --query Role.Arn --output text`.",
+        "Run `$FunctionArn = aws lambda create-function --function-name workbook-gl11 --runtime python3.12 --role $LambdaRoleArn --handler lambda_function.lambda_handler --zip-file fileb://function.zip --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-11 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query FunctionArn --output text`.",
+        "Success: function Arn is set."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "HTTP API",
+      "bullets": [
+        "Run `$ApiId = aws apigatewayv2 create-api --name workbook-gl11 --protocol-type HTTP --tags LabId=gl-11,Workbook=aws-tf-lab --query ApiId --output text`.",
+        "Run `$IntegrationId = aws apigatewayv2 create-integration --api-id $ApiId --integration-type AWS_PROXY --integration-uri $FunctionArn --payload-format-version 2.0 --query IntegrationId --output text`.",
+        "Run `aws apigatewayv2 create-route --api-id $ApiId --route-key 'GET /hello' --target integrations/$IntegrationId`.",
+        "Success: route exists."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Deploy stage",
+      "bullets": [
+        "Run `aws apigatewayv2 create-stage --api-id $ApiId --stage-name prod --auto-deploy`.",
+        "Run `aws lambda add-permission --function-name workbook-gl11 --statement-id apigw --action lambda:InvokeFunction --principal apigateway.amazonaws.com --source-arn arn:aws:execute-api:us-east-1:$AccountId:$ApiId/*/*`.",
+        "Success: stage is deployed."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Invoke route",
+      "bullets": [
+        "Run `$InvokeUrl = aws apigatewayv2 get-apis --query \"Items[?ApiId=='$ApiId'].ApiEndpoint\" --output text`.",
+        "Run `curl \"$InvokeUrl/prod/hello\"`.",
+        "Success: HTTP 200 from Lambda."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "List routes",
+      "bullets": [
+        "Run `aws apigatewayv2 get-routes --api-id $ApiId`.",
+        "Success: GET /hello is listed."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Document cleanup order",
+      "bullets": [
+        "Delete API, Lambda permission, function, log group, IAM role.",
+        "Success: order matches Stop charges."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Cost checkpoint",
+      "bullets": [
+        "Re-read the same-hour and forgotten-24h estimates on this lab card.",
+        "Stopping an instance or scaling to zero is not teardown.",
+        "Success: you know what still bills if you walk away overnight."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Teardown order for this lab: HTTP API, Lambda, IAM role",
+        "Open Stop charges and read each PowerShell line top to bottom.",
+        "Success: dependents are deleted before parents."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run every Stop charges command yourself in order.",
+        "Success: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11` returns an empty ResourceTagMappingList."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "After 8–12 hours, review today's charges in the Billing console.",
+        "Record actual spend in your notes.",
+        "Leftover tagged resources can still bill until deleted."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-11",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws apigatewayv2 delete-api --api-id $ApiId",
+      "aws lambda delete-function --function-name workbook-gl11",
+      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl11",
+      "aws iam detach-role-policy --role-name workbook-gl11-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+      "aws iam delete-role --role-name workbook-gl11-lambda"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-11 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "applied",
+  "body": "One HTTP API route integrated with Lambda; one successful test call."
+}

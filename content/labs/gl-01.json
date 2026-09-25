@@ -1,0 +1,230 @@
+{
+  "id": "gl-01",
+  "title": "GL-01 \u2014 Identity, budget, and preflight",
+  "kind": "guided",
+  "pairId": "ul-01",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.0,
+  "forgotten24hEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.1-K04",
+    "SAA-1.1-S01",
+    "SAA-1.1-S02"
+  ],
+  "module": "A0",
+  "body": "Create one IAM lab user with MFA and a permissions boundary, plus one alert-only budget. Same-hour estimate is $0. You run every command. Do not create access keys and do not use the root user.",
+  "beforeYouStart": [
+    "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
+    "Run aws sts get-caller-identity",
+    "Review same-hour and 24-hour estimates"
+  ],
+  "stopChargesPanel": "Delete the lab user, MFA device, boundary policy, and budget when you finish or stop early. This lab creates no instance. Stopping an instance is not teardown.",
+  "steps": [
+    {
+      "id": "s01",
+      "title": "Set the profile and region",
+      "bullets": [
+        "In PowerShell run `$env:AWS_PROFILE = 'your-lab-profile'` using the named profile you already use, not root.",
+        "Run `$env:AWS_REGION = 'us-east-1'`.",
+        "Success: `$env:AWS_PROFILE` prints your profile name and `$env:AWS_REGION` prints us-east-1."
+      ]
+    },
+    {
+      "id": "s02",
+      "title": "Confirm who is signed in",
+      "bullets": [
+        "Run `aws sts get-caller-identity`.",
+        "Success: the JSON shows an Account and an Arn whose path contains `:user/` or `:assumed-role/`.",
+        "Stop if the Arn contains `:root`.",
+        "Copy the Account value into `$AccountId` for later commands.",
+        "Do not paste the output into this app."
+      ]
+    },
+    {
+      "id": "s03",
+      "title": "Confirm AWS CLI v2",
+      "bullets": [
+        "Run `aws --version`.",
+        "Success: the first token starts with `aws-cli/2`.",
+        "This lab does not use Terraform."
+      ]
+    },
+    {
+      "id": "s04",
+      "title": "Read the cost estimate",
+      "bullets": [
+        "Same-hour estimate is $0.",
+        "Forgotten-overnight estimate is $0 because this lab creates no hourly resource.",
+        "An alert-only budget has no charge.",
+        "$10 alerts warn you. They do not stop spend.",
+        "Success: you can say both estimates before you create anything."
+      ]
+    },
+    {
+      "id": "s05",
+      "title": "Create the lab IAM user",
+      "bullets": [
+        "Set `$CreatedAt` and `$ExpiresAt` to today's date (same calendar day), for example 2026-09-25.",
+        "Run `aws iam create-user --user-name workbook-gl01 --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-01 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`.",
+        "Success: the output UserName is workbook-gl01.",
+        "Do not run `aws iam create-access-key`."
+      ]
+    },
+    {
+      "id": "s06",
+      "title": "Create the permissions boundary",
+      "bullets": [
+        "Save gl01-boundary.json with Version 2012-10-17 and two statements.",
+        "First statement: Allow Action * on Resource *.",
+        "Second statement: Deny cloudhsm:*, shield:*, directconnect:*, and outposts:* on Resource *.",
+        "Those four denies are the whole extra restriction.",
+        "Run `aws iam create-policy --policy-name gl01-boundary --policy-document file://gl01-boundary.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-01 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`.",
+        "Success: the output Arn ends in policy/gl01-boundary. Copy that Arn into `$BoundaryArn`."
+      ]
+    },
+    {
+      "id": "s07",
+      "title": "Attach the boundary to the user",
+      "bullets": [
+        "Run `aws iam put-user-permissions-boundary --user-name workbook-gl01 --permissions-boundary $BoundaryArn`.",
+        "Success: the command exits 0.",
+        "`aws iam get-user --user-name workbook-gl01` shows PermissionsBoundary with that Arn."
+      ]
+    },
+    {
+      "id": "s08",
+      "title": "Create a virtual MFA device",
+      "bullets": [
+        "Run `aws iam create-virtual-mfa-device --virtual-mfa-device-name workbook-gl01 --outfile \"$env:TEMP\\gl01-mfa.png\" --bootstrap-method QRCodePNG`.",
+        "Success: a SerialNumber Arn is printed and the PNG exists.",
+        "Treat the PNG and the Base32 seed as secrets.",
+        "Do not commit them or paste them here."
+      ]
+    },
+    {
+      "id": "s09",
+      "title": "Enable MFA on the lab user",
+      "bullets": [
+        "Enroll the QR in an authenticator.",
+        "Run `aws iam enable-mfa-device --user-name workbook-gl01 --serial-number <SerialNumber Arn> --authentication-code1 <current code> --authentication-code2 <next code>`.",
+        "The two codes must be consecutive.",
+        "Success: `aws iam list-mfa-devices --user-name workbook-gl01` lists that serial.",
+        "Delete the PNG after enrollment."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Create the alert-only budget",
+      "bullets": [
+        "Save gl01-budget.json as BudgetName workbook-gl01, BudgetLimit Amount 10 Unit USD, TimeUnit MONTHLY, BudgetType COST.",
+        "The 10 is only the budget baseline. Alerts are separate and do not stop spend.",
+        "Run `aws budgets create-budget --account-id $AccountId --budget file://gl01-budget.json`.",
+        "Do not call `create-budget-action`.",
+        "Success: `aws budgets describe-budget --account-id $AccountId --budget-name workbook-gl01` returns that name."
+      ]
+    },
+    {
+      "id": "s11",
+      "title": "Add email alerts, not actions",
+      "bullets": [
+        "Run `aws budgets create-notification --account-id $AccountId --budget-name workbook-gl01 --notification NotificationType=ACTUAL,ComparisonOperator=GREATER_THAN,Threshold=<amount>,ThresholdType=ABSOLUTE_VALUE --subscribers SubscriptionType=EMAIL,Address=<your-email>`.",
+        "Use ACTUAL amounts 2, 5, and 8.",
+        "Repeat with NotificationType=FORECASTED for amounts 5 and 8.",
+        "Success: `aws budgets describe-notifications-for-budget` lists those five alerts.",
+        "No budget action exists."
+      ]
+    },
+    {
+      "id": "s12",
+      "title": "Confirm there is no access key",
+      "bullets": [
+        "Run `aws iam list-access-keys --user-name workbook-gl01`.",
+        "Success: AccessKeyMetadata is empty.",
+        "If a key exists, delete it with `aws iam delete-access-key` before you continue.",
+        "Do not create root access keys."
+      ]
+    },
+    {
+      "id": "s13",
+      "title": "Order the deletes",
+      "bullets": [
+        "Deactivate MFA.",
+        "Delete the virtual MFA device.",
+        "Remove the permissions boundary.",
+        "Delete the user.",
+        "Delete the boundary policy.",
+        "Delete the budget.",
+        "Success: that order is on screen in Stop charges. Dependents come first."
+      ]
+    },
+    {
+      "id": "s14",
+      "title": "Tear the lab down",
+      "bullets": [
+        "Run the Stop charges commands yourself, top to bottom.",
+        "Success: `aws iam get-user --user-name workbook-gl01` returns NoSuchEntity.",
+        "`aws budgets describe-budget --account-id $AccountId --budget-name workbook-gl01` returns NotFound."
+      ]
+    },
+    {
+      "id": "s15",
+      "title": "Check the bill later",
+      "bullets": [
+        "In the Billing console, look up this account's charges for today after the usual 8\u201312 hour lag.",
+        "Record the actual amount in your own notes.",
+        "Expect $0 for this lab.",
+        "Alerts do not delete resources, and time already used can still appear."
+      ]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "cp1",
+      "label": "Preflight complete"
+    },
+    {
+      "id": "cp2",
+      "label": "Primary resource created"
+    },
+    {
+      "id": "cp3",
+      "label": "Validation passed"
+    },
+    {
+      "id": "cp4",
+      "label": "Teardown verified"
+    }
+  ],
+  "solution": {
+    "summary": "Gated reference for facilitators.",
+    "hints": [
+      "Use official AWS docs for exact flags."
+    ]
+  },
+  "teardown": {
+    "labId": "gl-01",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$BoundaryArn = $null",
+      "$Serial = aws iam list-mfa-devices --user-name workbook-gl01 --query 'MFADevices[0].SerialNumber' --output text",
+      "aws iam deactivate-mfa-device --user-name workbook-gl01 --serial-number $Serial",
+      "aws iam delete-virtual-mfa-device --serial-number $Serial",
+      "aws iam delete-user-permissions-boundary --user-name workbook-gl01",
+      "aws iam delete-user --user-name workbook-gl01",
+      "aws iam delete-policy --policy-arn $BoundaryArn",
+      "aws budgets delete-budget --account-id $AccountId --budget-name workbook-gl01"
+    ],
+    "verification": [
+      "aws iam get-user --user-name workbook-gl01 returns NoSuchEntity",
+      "aws budgets describe-budget --account-id $AccountId --budget-name workbook-gl01 returns NotFound",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-01 returns an empty list in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alert-only budgets have no charge. Alerts do not delete resources.",
+    "recovery": "If a command fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller Arn is not root. Run aws sts get-caller-identity and type that Account value before any further delete. List only LabId=gl-01 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-01. Refuse the list when it is empty or larger than the user, policy, and budget from this lab. Delete only those ids, never untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "difficulty": "foundation"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "q-saa-2-2-s05-mc",
+  "type": "mc",
+  "module": "A2",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-2.2-S05"
+  ],
+  "stem": "In a design review, the requirement is: Implementing strategies to ensure the durability and availability of data (for example, backups). Which action matches it?",
+  "selectCount": 1,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Apply the objective directly: Implementing strategies to ensure the durability and availability of data (for example, backups)"
+    },
+    {
+      "id": "b",
+      "text": "Ignore least privilege and use the root user for speed"
+    },
+    {
+      "id": "c",
+      "text": "Leave hourly resources running overnight without teardown"
+    },
+    {
+      "id": "d",
+      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+    }
+  ],
+  "correctAnswerIds": [
+    "a"
+  ],
+  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

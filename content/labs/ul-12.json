@@ -1,0 +1,83 @@
+{
+  "id": "ul-12",
+  "title": "UL-12 \u2014 Challenge: Step Functions",
+  "kind": "unguided",
+  "pairId": "gl-12",
+  "region": "us-east-1",
+  "estimatedMinutes": 75,
+  "sameHourEstimateUsd": 0.05,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-2.1-K16",
+    "SAA-2.1-S01"
+  ],
+  "scenario": "Extend Step Functions with failure, Retry, and Catch handling.",
+  "acceptanceCriteria": [
+    "State machine includes intentional failure branch.",
+    "Retry policy configured on task state.",
+    "Catch block routes failure to cleanup Pass state.",
+    "Successful path still reachable with valid input.",
+    "Execution history shows retry attempt count.",
+    "IAM role scoped to Lambda or mock task only.",
+    "LabId=ul-12 on state machine.",
+    "CloudWatch logs not required but if enabled, removed in teardown.",
+    "No Express workflow unless documented.",
+    "Transition count noted for cost.",
+    "Teardown deletes state machine before role.",
+    "No running executions remain.",
+    "describe-state-machine fails after delete.",
+    "Failure branch tested once.",
+    "Tag search LabId=ul-12 empty."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Use Task with Lambda throw."
+    },
+    {
+      "level": 2,
+      "text": "Retry on States.TaskFailed."
+    },
+    {
+      "level": 3,
+      "text": "Catch to Pass named FailureHandled."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Failure branch SFN lab done."
+  },
+  "stopChargesPanel": "Delete state machine and IAM role for ul-12.",
+  "teardown": {
+    "labId": "ul-12",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$SmArn = $null",
+      "aws stepfunctions delete-state-machine --state-machine-arn $SmArn",
+      "aws iam delete-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log",
+      "aws iam delete-role --role-name workbook-gl12-sfn"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-12 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-12 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-12. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A2",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-12) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

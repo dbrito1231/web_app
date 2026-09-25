@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-3-5-s01-mr",
+  "type": "mr",
+  "module": "A3",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-3.5-S01"
+  ],
+  "stem": "Select TWO actions that support this requirement: Building and securing data lakes",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Store AWS access keys in the workbook git repo"
+    },
+    {
+      "id": "b",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "c",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "d",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "e",
+      "text": "Validate with official documentation before applying"
+    }
+  ],
+  "correctAnswerIds": [
+    "d",
+    "e"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}

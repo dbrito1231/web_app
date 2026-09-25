@@ -1,0 +1,84 @@
+{
+  "id": "ul-01",
+  "title": "UL-01 \u2014 Challenge: Identity, budget, and preflight",
+  "kind": "unguided",
+  "pairId": "gl-01",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.1-K04",
+    "SAA-1.1-S01",
+    "SAA-1.1-S02"
+  ],
+  "scenario": "Design daily vs break-glass IAM roles with boundaries. Do not repeat GL-01 step list.",
+  "acceptanceCriteria": [
+    "Separate IAM role workbook-ul01-daily exists with permissions boundary referencing GL-01 deny pattern.",
+    "Break-glass role workbook-ul01-breakglass exists with tighter trust requiring MFA.",
+    "Daily role inline policy denies iam:CreateUser and budgets:ModifyBudget.",
+    "Break-glass trust policy requires aws:MultiFactorAuthPresent for AssumeRole.",
+    "No access keys created for either role.",
+    "Both roles tagged LabId=ul-01 with Workbook=aws-tf-lab.",
+    "Trust policies document who may assume each role.",
+    "You assume the daily role via STS. If you already completed GL-03, list that bucket read-only; otherwise prove the role cannot call iam:CreateUser.",
+    "Break-glass assume is documented but not used for routine lab steps.",
+    "Teardown deletes inline policies before roles.",
+    "No new IAM users or MFA devices are created in UL-01.",
+    "GL-01 budget and lab user are not modified or deleted by UL-01 teardown.",
+    "Tag search LabId=ul-01 is empty after cleanup.",
+    "Kill-switch snippet applies only to tagged LabId resources.",
+    "You record which role you used for each STS call in your notes."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Use permission boundaries on both roles."
+    },
+    {
+      "level": 2,
+      "text": "Break-glass trust requires aws:MultiFactorAuthPresent."
+    },
+    {
+      "level": 3,
+      "text": "STS assume-role for proof."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Daily vs break-glass IAM design with teardown."
+  },
+  "stopChargesPanel": "Delete ul-01 roles and policies; keep GL-01 user unless you created ul-01-only principals.",
+  "teardown": {
+    "labId": "ul-01",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "aws iam delete-role-policy --role-name workbook-ul01-daily --policy-name ul01-daily",
+      "aws iam delete-role --role-name workbook-ul01-daily",
+      "aws iam delete-role-policy --role-name workbook-ul01-breakglass --policy-name ul01-bg",
+      "aws iam delete-role --role-name workbook-ul01-breakglass"
+    ],
+    "verification": [
+      "aws iam get-role --role-name workbook-ul01-daily returns NoSuchEntity",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-01 returns empty"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. List LabId=ul-01 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-01. Delete only those ids after typing your account id from aws sts get-caller-identity. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A0",
+  "difficulty": "foundation",
+  "beforeYouStart": [
+    "Finish GL-01 first. GL-03 is optional for the bucket check.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION before any command."
+  ]
+}

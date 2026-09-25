@@ -1,0 +1,106 @@
+{
+  "id": "ul-05",
+  "title": "UL-05 \u2014 Challenge: VPC segmentation",
+  "kind": "unguided",
+  "pairId": "gl-05",
+  "region": "us-east-1",
+  "estimatedMinutes": 90,
+  "sameHourEstimateUsd": 0.0,
+  "hourly": false,
+  "practiceMode": "live_aws",
+  "objectiveIds": [
+    "SAA-1.2-S01",
+    "SAA-1.2-S02"
+  ],
+  "scenario": "Extend GL-05 to dual-AZ layout with tighter NACL rules on private subnets. Still no NAT.",
+  "acceptanceCriteria": [
+    "VPC spans two Availability Zones with at least one public and one private subnet per AZ (four subnets total).",
+    "Private subnets in both AZs share one route table with no 0.0.0.0/0 to an IGW or NAT.",
+    "Network ACL on private subnets denies inbound SSH (tcp/22) explicitly.",
+    "Public subnets route 0.0.0.0/0 to an internet gateway.",
+    "S3 gateway endpoint is attached to private route tables.",
+    "No NAT gateway exists in the VPC.",
+    "Security groups follow least privilege (no 0.0.0.0/0 on admin ports).",
+    "All resources tagged LabId=ul-05 where supported.",
+    "You can draw which AZ each subnet belongs to.",
+    "Teardown removes VPC endpoints first.",
+    "Teardown deletes subnets then IGW then VPC.",
+    "No elastic network interfaces remain in VPC.",
+    "describe-nat-gateways for the VPC is empty after work.",
+    "Tag search LabId=ul-05 returns empty.",
+    "Same-hour estimate documented as near-zero without NAT."
+  ],
+  "hints": [
+    {
+      "level": 1,
+      "text": "Use /24 per subnet; watch AZ names."
+    },
+    {
+      "level": 2,
+      "text": "NACL is stateless\u2014allow return traffic."
+    },
+    {
+      "level": 3,
+      "text": "Delete endpoints before subnets."
+    }
+  ],
+  "rubric": [
+    "Functionality",
+    "Security / least privilege",
+    "Resilience",
+    "Maintainability",
+    "Cost awareness",
+    "Cleanup verified"
+  ],
+  "solution": {
+    "summary": "Gated. Reveal only after attempt.",
+    "outline": "Dual-AZ VPC without NAT; teardown verified."
+  },
+  "stopChargesPanel": "Remove endpoints, IGW, subnets, ACLs, SGs, VPC for ul-05 tags.",
+  "teardown": {
+    "labId": "ul-05",
+    "regionScope": "us-east-1",
+    "orderedDeletesPowerShell": [
+      "$EndpointId = $null",
+      "$NaclAssocId = $null",
+      "$DefaultNaclId = $null",
+      "$CustomNaclId = $null",
+      "$RtAssocPub = $null",
+      "$RtAssocPriv = $null",
+      "$PublicRouteTableId = $null",
+      "$PrivateRouteTableId = $null",
+      "$SubnetPub = $null",
+      "$SubnetPriv = $null",
+      "$IgwId = $null",
+      "$VpcId = $null",
+      "$SgId = $null",
+      "aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId",
+      "aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId",
+      "aws ec2 delete-network-acl --network-acl-id $CustomNaclId",
+      "aws ec2 disassociate-route-table --association-id $RtAssocPub",
+      "aws ec2 disassociate-route-table --association-id $RtAssocPriv",
+      "aws ec2 delete-route-table --route-table-id $PublicRouteTableId",
+      "aws ec2 delete-route-table --route-table-id $PrivateRouteTableId",
+      "aws ec2 delete-subnet --subnet-id $SubnetPub",
+      "aws ec2 delete-subnet --subnet-id $SubnetPriv",
+      "aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId",
+      "aws ec2 delete-internet-gateway --internet-gateway-id $IgwId",
+      "aws ec2 delete-security-group --group-id $SgId",
+      "aws ec2 delete-vpc --vpc-id $VpcId"
+    ],
+    "verification": [
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-05 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws ec2 describe-vpcs --vpc-ids $VpcId returns InvalidVpcID.NotFound",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-05 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+    ],
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-05 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-05. Delete only those ids. Never delete untagged resources."
+  },
+  "executionStatus": "unexecuted",
+  "module": "A1",
+  "difficulty": "applied",
+  "beforeYouStart": [
+    "Read the paired guided lab (gl-05) stop-charges panel before you create anything.",
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-aws-provider",
+  "title": "Terraform Registry — hashicorp/aws provider",
+  "publisher": "HashiCorp",
+  "url": "https://registry.terraform.io/providers/hashicorp/aws/latest",
+  "accessed": "2026-09-24",
+  "note": "MCP get_latest_provider_version returned 6.66.0 on 2026-09-24; workbook pin ~> 6.0 remains valid"
+}

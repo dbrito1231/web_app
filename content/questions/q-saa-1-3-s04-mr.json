@@ -1,0 +1,41 @@
+{
+  "id": "q-saa-1-3-s04-mr",
+  "type": "mr",
+  "module": "A1",
+  "difficulty": "applied",
+  "objectiveIds": [
+    "SAA-1.3-S04"
+  ],
+  "stem": "Select TWO actions that support this requirement: Implementing access policies for encryption keys",
+  "selectCount": 2,
+  "choices": [
+    {
+      "id": "a",
+      "text": "Skip teardown if the instance is stopped"
+    },
+    {
+      "id": "b",
+      "text": "Use root credentials for every lab step"
+    },
+    {
+      "id": "c",
+      "text": "Design against the stated requirement and document tradeoffs"
+    },
+    {
+      "id": "d",
+      "text": "Validate with official documentation before applying"
+    },
+    {
+      "id": "e",
+      "text": "Store AWS access keys in the workbook git repo"
+    }
+  ],
+  "correctAnswerIds": [
+    "c",
+    "d"
+  ],
+  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
+  "citationIds": [],
+  "reviewedOn": null,
+  "mcpStatus": "pending_recheck"
+}
