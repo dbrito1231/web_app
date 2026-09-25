@@ -132,3 +132,43 @@ New items from Full-Stack:
 | D5 | ISS-090 live AWS lab runs | Decided 2026-09-25: paper checks only |
 | D6 | Dated prices and templated design exercises | Decided 2026-09-25: fix them. Work not started |
 | D7 | Lab scanner skips `gl-01` | Done. Scanner includes GL-01. `PASS 42 labs scanned` |
+
+## Round 3 results (2026-09-26)
+
+Reports: `reports/fix-loop-r2/round-3/` (AWS, Teacher, Student, Python, Full-Stack) and `reports/fix-loop-r2/q1-pilot/` (AWS, Teacher, Student). DB restored to baseline after the round (fingerprint `930f0e72…` matches; 8 attempt rows from reviewer drills removed).
+
+### Closed this round (original reporter + a second role marked Gone)
+
+| ID | Gone by |
+|----|---------|
+| N1, N2a, N2b, N2c, N3, N6, N7, T1–T6 (lab cleanup, CR-0017) | AWS; Teacher (approve on all 12 GL and most UL); Student (7 labs followed) |
+| R1 GL-17, R2 GL-08 | AWS, Student |
+| N5 scanner loophole, PY-R2-2-001/002/003/004/005/007 | Python; AWS (scanner PASS on 42 labs) |
+| O1, O5, O7, R5 | Full-Stack (round 2), Student |
+| O6 / FS-R2-2-002 Study link (429/429 drills) | Full-Stack, Student |
+
+### Still open, or new
+
+| ID | Issue | Sev | Source |
+|----|-------|-----|--------|
+| L1 | **Lessons don't teach.** SAA lessons are ~50% boilerplate plus the objective text; Terraform lessons are 96–242 words, mostly boilerplate. No pilot question passes teach-before-test | **High** | Teacher pilot T1; Lead Dev measured all 23 lessons |
+| N8 | 133 rationales outside the pilot still name wrong letters | **High** | Lead Dev (pilot fixed 19) |
+| FS-R3-001 | `?q=` / card scroll: 80px margin < wrapped header (115px at 1024, 176px at 375), so the heading is hidden | Medium | Full-Stack |
+| AWS-R3-002 | GL-14/19/21 subnet lookup returns one tab-joined string; subnet group / cluster create fails | Medium | AWS (reproduced in PS 5.1) |
+| TEACHER-R3-001 | UL-15 duplicate criterion; CloudTrail criterion lost | Medium | Teacher, AWS |
+| TEACHER-R3-002 | UL-01 teardown policy names not in criteria | Medium | Teacher |
+| TEACHER-R3-003 | UL-02 `$Bucket` comment contradicts next line; name not in criteria | Medium | Teacher |
+| PY-R3-002/003 | Scanner still foolable (text-only guard check; `''`/`$NULL` resets; empty teardown) | Medium | Python |
+| Q1-T2 | `de-federation` exercise lacks SAML / AD FS / AD Connector / Identity Center | Medium | Teacher pilot |
+| Q1-T3 | Pilot fixes: k04-mr (non-existent features), s02-mr (key looks already done), s06-mr (choice cross-reference, retired Simple AD) | Low | Teacher pilot |
+| Q1-T4 | Lesson 1.1 `drillIds` omit the 8 MR questions | Low | Teacher, Student pilot |
+| Q1-M | Distractor reuse ("IAM user with keys" 8/19, "boundary" 6/19) | Low | Teacher pilot |
+| AWS-R3-001 | `| [0]` lookups with text output per page (UL-10/11/12/17) | Low | AWS |
+| AWS-R3 Lows | GL-17 async DROP race; GL-19 us-east-1e subnets; GL-19 panel SG wording; UL-04 C16 vs pending-deletion key; UL-16 default VPC; UL-09 `None`; UL-08/11 `curl`; UL-18 untagged SG lookup | Low | AWS |
+| TEACHER-R3-004…015 | Wording, teachability, criterion-duplication nits across UL labs | Low | Teacher |
+| STUDENT-R3-004 | UL-07/UL-08 lack the `workbook-ulNN` naming criterion | Low | Student |
+| FS-R3-002 | Clicking the selected card leaves the scroll flag set; next module click jumps | Low | Full-Stack |
+| FS-R2-2-003…008, FS-R3-003/004 | Older screen Lows and notes | Low / Info | Full-Stack |
+| PY-R3-001, 004–006 | Inner-shape HTML 500; scanner case and false-positive gaps | Low | Python |
+
+Pilot verdicts: AWS **approve** (19/19 exam-realistic and correct); Student **approve** (7/7 fair, 7/7 correct); Teacher **concerns** (16 approve, 3 small fixes, and lessons don't teach).
