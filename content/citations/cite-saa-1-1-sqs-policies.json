@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-sqs-policies",
+  "title": "Basic examples of Amazon SQS policies",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-basic-examples-of-sqs-policies.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
+}

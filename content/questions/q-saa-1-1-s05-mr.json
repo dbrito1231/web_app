@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-1.1-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the appropriate use of resource policies for AWS services",
+  "stem": "An order service in account B must invoke a Lambda function and send messages to an SQS queue, both owned by account A, without assuming a role in account A. The service's role in account B already allows lambda:InvokeFunction and sqs:SendMessage on those ARNs. Which TWO changes in account A complete the setup? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Attach an SCP in account A's organization that allows account B to invoke the function and send messages"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add a statement to the function's resource-based policy that allows account B to call lambda:InvokeFunction"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Add a queue policy that allows the account B role to perform sqs:SendMessage on the queue"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Attach a permissions boundary to the function's execution role that lists account B as a trusted caller"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Create an IAM group in account A, add account B's role to it, and attach the needed permissions"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "c"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lambda functions and SQS queues both support resource-based policies. A statement in the function policy (added with add-permission or put-resource-policy) lets account B invoke the function, and a queue policy that names the account B role allows sqs:SendMessage. Together with the role's identity-based policy, both halves of cross-account access are in place. An SCP never grants permissions. A permissions boundary on the execution role only limits what the function itself can do; it does not control who may invoke it. IAM groups contain only IAM users of their own account, so a role from account B cannot be a member.",
+  "citationIds": [
+    "cite-saa-1-1-lambda-xacct",
+    "cite-saa-1-1-sqs-policies",
+    "cite-saa-1-1-identity-vs-resource",
+    "cite-saa-1-1-scp",
+    "cite-saa-1-1-groups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

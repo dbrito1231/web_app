@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-1.1-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])",
+  "stem": "A research lab still has 30 IAM users that developers use for console and AWS CLI work. The CISO requires that API calls be made only after MFA and wants to stop issuing long-lived access keys to people. Which TWO actions meet these requirements? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Update the IAM account password policy so that it requires an MFA code at every console sign-in and CLI call"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Rotate every developer's access keys every 90 days by using a scheduled Lambda function"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Attach a policy that denies all actions except MFA setup when aws:MultiFactorAuthPresent is false"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Enable MFA on the root user only, because IAM users inherit the root user's MFA device"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Move developers to IAM Identity Center so that the CLI gets temporary credentials instead of access keys"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "e"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A policy with a Deny statement that uses BoolIfExists on aws:MultiFactorAuthPresent set to false blocks every action except the MFA setup actions until the user has authenticated with MFA; CLI users then call sts:GetSessionToken with their MFA code. IAM Identity Center gives human users temporary credentials for the console and CLI and has its own MFA settings, which removes the need for long-lived access keys. The IAM account password policy controls password length, complexity, expiration and reuse; it has no MFA option and does not apply to access keys. Rotating access keys still issues long-lived keys to people, which is what the CISO wants to stop. MFA is registered per identity; each user needs their own device, and the root user's MFA does nothing for IAM users.",
+  "citationIds": [
+    "cite-saa-1-1-mfa-policy",
+    "cite-saa-1-1-pw-policy",
+    "cite-saa-1-1-iam-bp",
+    "cite-saa-1-1-idc-what"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

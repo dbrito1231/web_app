@@ -6,31 +6,37 @@
   "objectiveIds": [
     "SAA-1.1-K02"
   ],
-  "stem": "An exam scenario centers on: AWS federated access and identity services (for example, IAM, AWS IAM Identity Center). Which action matches it?",
+  "stem": "An insurance firm keeps its 2,000 employees in an external SAML 2.0 identity provider and has 12 AWS accounts in one organization. Employees must use their existing corporate sign-in to reach every account they are entitled to from one portal, and the identity team wants to manage only one federation trust. What should a solutions architect recommend?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable IAM Identity Center, connect the IdP as its identity source, and assign groups to accounts with permission sets"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: AWS federated access and identity services (for example, IAM, AWS IAM Identity Center)"
+      "text": "Create an Amazon Cognito user pool federated with the IdP and map its groups to IAM roles in each of the 12 accounts"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add the IdP as an IAM SAML identity provider in each of the 12 accounts and create federated roles in every account"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create IAM users with console passwords and MFA in one central account and let them switch roles into the other accounts"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "IAM Identity Center provides one point of federation with a single SAML certificate to manage, an AWS access portal where users see all of their assigned accounts, and permission sets that it provisions as roles in each account. Amazon Cognito is an identity platform for users of your web and mobile apps; it is not the service for workforce sign-in to AWS accounts. Per-account IAM SAML federation works, but the SAML provider used in a role trust policy must be in the same account as the role, so the team would maintain 12 separate trusts. IAM users rely on long-term credentials, and IAM best practices require human users to federate through an identity provider and use temporary credentials.",
+  "citationIds": [
+    "cite-saa-1-1-idc-what",
+    "cite-saa-1-1-idc-permsets",
+    "cite-saa-1-1-saml",
+    "cite-saa-1-1-cognito",
+    "cite-saa-1-1-iam-bp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.1-S02"
   ],
-  "stem": "The workload needs this outcome: Designing a flexible authorization model that includes IAM users, groups, roles, and policies. Which action should you take?",
+  "stem": "A software vendor has 60 developers split into frontend, backend and data teams. People move between teams every few months, and each team needs a different, stable set of permissions. Which authorization design needs the least administrative effort?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Designing a flexible authorization model that includes IAM users, groups, roles, and policies"
+      "text": "Attach inline policies to each developer's IAM user and edit those policies whenever someone changes teams"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create a parent IAM group that contains the three team groups so that shared permissions are inherited by each team"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Name each team's IAM group as the Principal in the resource-based policies on that team's buckets and queues"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create one IAM group per team with a managed policy attached, and move users between groups when they change teams"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "IAM user groups let you attach a policy once and give it to every member; when someone changes jobs you remove them from the old group and add them to the new one instead of editing their permissions. Inline policies have a one-to-one relationship with a single identity, so 60 copies would need editing on every move. IAM groups can't be nested; a group contains only users, not other groups. A group cannot be a Principal in a resource-based policy, because groups relate to permissions, not authentication.",
+  "citationIds": [
+    "cite-saa-1-1-groups",
+    "cite-saa-1-1-managed-inline"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

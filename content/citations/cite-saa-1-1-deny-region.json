@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-deny-region",
+  "title": "AWS: Denies access to AWS based on the requested Region",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_deny-requested-region.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
+}

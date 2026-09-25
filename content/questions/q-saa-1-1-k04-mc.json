@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.1-K04"
   ],
-  "stem": "Pick the action that satisfies: AWS security best practices (for example, the principle of least privilege).",
+  "stem": "A Lambda function in a logistics company's account must read objects under the invoices/ prefix of one S3 bucket and nothing else. A security review flagged the function's current permissions as too broad. Which change follows the principle of least privilege?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Attach the AWS managed AmazonS3ReadOnlyAccess policy to the function's execution role"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Give the execution role a customer managed policy that allows s3:GetObject on only that bucket's invoices/* ARN"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create an IAM user for the function and put its access keys in encrypted Lambda environment variables"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS security best practices (for example, the principle of least privilege)"
+      "text": "Keep AmazonS3FullAccess on the role and add a permissions boundary that allows only the S3 read-only actions for every bucket"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Least privilege means granting only the actions required, on specific resources, which is exactly a customer managed policy that allows s3:GetObject on the invoices/* object ARN. AmazonS3ReadOnlyAccess is an AWS managed policy for all customers; it grants read access to every bucket in the account, and AWS notes that managed policies might not be least privilege for your use case. An IAM user with access keys gives the function long-term credentials, while IAM best practices say workloads on Lambda should use the temporary credentials of an IAM role. A permissions boundary only caps permissions; the effective permissions would still be read access to every bucket, which is broader than one prefix.",
+  "citationIds": [
+    "cite-saa-1-1-iam-bp",
+    "cite-saa-1-1-managed-inline",
+    "cite-saa-1-1-boundaries"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

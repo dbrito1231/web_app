@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.1-S01"
   ],
-  "stem": "Which action is the right fit for this requirement: Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])?",
+  "stem": "During an audit of a standalone AWS account, a small design agency learns that the root user has an active access key used by a nightly backup script and has no MFA device. Which action best addresses both findings?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move the script to an IAM role, delete the root access key, and register MFA for the root user"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Keep the root access key, rotate it every 90 days, and store it in AWS Secrets Manager"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Applying AWS security best practices to IAM users and root users (for example, multi-factor authentication [MFA])"
+      "text": "Register MFA for the root user and keep the access key, because scripts cannot use MFA anyway"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create one shared IAM user with AdministratorAccess for the team and give the script that user's access keys"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS recommends that you do not create access keys for the root user, that you protect root sign-in with MFA, and that you use the root user only for tasks that require it. Workloads should use the temporary credentials of an IAM role, so moving the script to a role lets you delete the key. Rotating and storing the root key still leaves a long-term credential with full access to every service and billing. Adding MFA protects console sign-in, but the access key would keep working without MFA, so the most dangerous credential remains. A shared administrator IAM user swaps one long-term credential for another and removes individual accountability; human users should federate and use temporary credentials.",
+  "citationIds": [
+    "cite-saa-1-1-root-bp",
+    "cite-saa-1-1-iam-bp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

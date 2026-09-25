@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.1-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing a flexible authorization model that includes IAM users, groups, roles, and policies",
+  "stem": "Three internal applications on Amazon EC2 at a travel company each run under their own IAM role and all need the same read and write access to one DynamoDB table. Operations wants no stored credentials on the instances and a single policy document to update when the permissions change. Which TWO actions should the team take? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Attach each application's IAM role to its instances through an instance profile"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Bake an IAM user's access keys into the AMI so that every instance launched from it has credentials"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Create one customer managed policy for the table and attach it to all three roles"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Embed an inline copy of the table policy in each application's role so each app has its own"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Add the EC2 instances to an IAM group that has the DynamoDB policy attached"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An IAM role delivered through an instance profile gives the application temporary credentials from instance metadata that are rotated automatically, so nothing is stored on the instance. A customer managed policy is a standalone policy that can be attached to many identities, and an update to it applies to every role it is attached to. Access keys baked into an AMI are long-term credentials copied to every instance, which is what roles for EC2 are meant to replace. Inline policies keep a one-to-one relationship with each identity, so three copies would have to be edited separately. IAM groups contain only IAM users; EC2 instances and roles cannot be members.",
+  "citationIds": [
+    "cite-saa-1-1-ec2-role",
+    "cite-saa-1-1-managed-inline",
+    "cite-saa-1-1-groups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

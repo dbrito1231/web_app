@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.1-S03"
   ],
-  "stem": "Which action is the right fit for this requirement: Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)?",
+  "stem": "A cost-optimization SaaS provider needs read-only access to a manufacturing company's AWS account. The provider serves hundreds of customers from its own AWS account, and the manufacturer wants protection against the confused deputy problem. How should the manufacturer grant access?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create an IAM user for the provider with a read-only policy and send the provider that user's access keys"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create a role that trusts the provider's account and share the role ARN, leaving the trust policy without conditions"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)"
+      "text": "Create a read-only role that trusts the provider's account and requires the provider's external ID in a condition"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add a bucket policy to each S3 bucket and a key policy to each KMS key that names the provider's AWS account"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "For third-party access, you create a role whose trust policy names the third party's account and add a condition on sts:ExternalId with the unique ID the provider assigned to you; the provider must pass that ID when it calls AssumeRole. The external ID exists to prevent the confused deputy problem when a provider assumes roles for many customers. Giving the provider an IAM user's access keys shares long-term credentials, which AWS says not to do. A role trust without the external ID condition can be assumed by the provider on behalf of any customer who knows the ARN, which is the confused deputy risk. Resource policies on each bucket and key cover only those resources, would need to be maintained one by one, and still lack the external ID safeguard.",
+  "citationIds": [
+    "cite-saa-1-1-third-party"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

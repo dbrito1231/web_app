@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.1-K01"
   ],
-  "stem": "The workload needs this outcome: Access controls and management across multiple accounts. Which action should you take?",
+  "stem": "A retail group runs 45 member accounts in AWS Organizations. Legal counsel requires that no workload ever runs outside eu-west-1 and eu-central-1, and the rule must hold even for account administrators and the root user of each member account. Which solution meets this requirement with the least ongoing effort?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Access controls and management across multiple accounts"
+      "text": "Attach an identity-based policy that denies requests outside the two Regions to every IAM user and role in each member account"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Set a permissions boundary that allows only the two Regions on every IAM role that developers create in the member accounts"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Attach an SCP to the member accounts' OUs that denies requests where aws:RequestedRegion is not one of the two Regions"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create an organization trail and an EventBridge rule that alerts the security team about API calls in any other Region"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An SCP attached to the OUs sets the maximum available permissions for every IAM user and role in the member accounts, including each member account's root user, and every account below the OU inherits it. A Deny on aws:RequestedRegion (with global services such as IAM, CloudFront and Route 53 exempted through NotAction, as in the AWS example policy) therefore blocks the other Regions no matter what the local administrators grant. An identity-based deny on every user and role must be maintained principal by principal, local administrators can detach it, and it does not constrain the root user, which AWS guidance restricts with an SCP. A permissions boundary limits only the entities it is set on, so existing administrators and the root user stay unrestricted. An organization trail with an alert only records and reports calls after they happen; it does not prevent them.",
+  "citationIds": [
+    "cite-saa-1-1-scp",
+    "cite-saa-1-1-deny-region",
+    "cite-saa-1-1-root-bp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

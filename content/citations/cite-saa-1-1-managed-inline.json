@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-managed-inline",
+  "title": "Managed policies and inline policies",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
+}

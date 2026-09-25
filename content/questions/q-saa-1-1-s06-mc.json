@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-1.1-S06"
   ],
-  "stem": "The workload needs this outcome: Determining when to federate a directory service with IAM roles. Which action should you take?",
+  "stem": "A university runs Active Directory Federation Services (AD FS) in front of its on-premises Active Directory and has a single AWS account. IT staff must reach the AWS Management Console with their AD credentials, AD group membership must decide their permissions, and no IAM users may be created. What should the solutions architect configure?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Determining when to federate a directory service with IAM roles"
+      "text": "An Amazon Cognito identity pool that accepts AD FS assertions and exchanges them for IAM role credentials"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An IAM SAML identity provider for AD FS, plus IAM roles that trust it and are mapped from AD groups"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "IAM users whose names match the AD accounts, with a script that copies AD password changes into IAM"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An AWS Managed Microsoft AD directory that replaces the on-premises forest and holds the staff accounts in AWS"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "SAML 2.0 federation lets users sign in through an IdP such as AD FS and reach the console without an IAM user for each person. You create a SAML identity provider in IAM, create roles whose trust policy names that provider, and configure AD FS assertions that map AD groups to the roles. A Cognito identity pool issues AWS credentials to users of your web or mobile app; it does not provide single sign-on to the AWS Management Console. IAM users are exactly what the requirement forbids, and copying passwords adds long-term credentials to manage. AWS Managed Microsoft AD runs new domain controllers in your VPC; replacing the existing forest is a migration that the scenario does not call for and it still needs a federation or role mapping to reach the console.",
+  "citationIds": [
+    "cite-saa-1-1-saml",
+    "cite-saa-1-1-cognito",
+    "cite-saa-1-1-managed-ad",
+    "cite-saa-1-1-iam-bp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

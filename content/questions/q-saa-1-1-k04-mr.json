@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-1.1-K04"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS security best practices (for example, the principle of least privilege)",
+  "stem": "After a year of rapid growth, a fintech company's IAM roles still carry the broad permissions granted during early development. The security lead wants to shrink each role to what it actually uses, based on evidence rather than guesswork. Which TWO actions should the team take? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Replace each role's custom policies with the AWS managed PowerUserAccess job function policy"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Use IAM Access Analyzer to generate a policy for each role from its CloudTrail activity, then test and attach it"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Enable Amazon GuardDuty in every Region so that it removes permissions from roles once it detects that they are unused"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Set AdministratorAccess as the permissions boundary on every role so that the boundary follows actual usage"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Review IAM last accessed information and remove the services and actions that each role has not used"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "b",
+    "e"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "IAM Access Analyzer policy generation reviews CloudTrail events for a role over a date range and produces a policy template that contains only the actions the role used, which you test and then attach. IAM last accessed information shows which allowed services and actions each identity has actually used, so unused permissions can be removed. PowerUserAccess grants full access to almost every service, which widens rather than narrows the roles. GuardDuty is a threat detection service that produces findings; it does not edit IAM policies. A permissions boundary sets maximum permissions and never tracks usage; an AdministratorAccess boundary restricts nothing.",
+  "citationIds": [
+    "cite-saa-1-1-aa-policygen",
+    "cite-saa-1-1-last-accessed",
+    "cite-saa-1-1-iam-bp",
+    "cite-saa-1-1-guardduty",
+    "cite-saa-1-1-boundaries"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

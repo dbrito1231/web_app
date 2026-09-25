@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.1-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs])",
+  "stem": "A holding company manages 80 member accounts in AWS Organizations. Auditors require that API activity from every member account is recorded in a trail that member-account administrators cannot stop or change, and that nobody in a member account, including the root user, can create IAM users or access keys. New accounts must be covered automatically. Which TWO actions meet these requirements? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Create an organization trail from the management account so that it logs events for all member accounts"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Attach an SCP that denies iam:CreateUser and iam:CreateAccessKey directly to the management account"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Set a permissions boundary that denies CloudTrail and IAM user changes on each administrator role in the member accounts"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Create a trail in each member account and give the local administrators ownership of that trail"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Attach an SCP that denies iam:CreateUser and iam:CreateAccessKey to the OUs that hold the member accounts"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "e"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An organization trail logs events for the management account and all member accounts; users in member accounts can see it but cannot delete it, turn logging off, or change it, and accounts that join the organization are added automatically. An SCP attached to the OUs restricts every IAM user and role in the member accounts, including the root user, and each account inherits the policies of the OUs above it, so new accounts placed in those OUs are covered. SCPs do not affect users or roles in the management account, and attaching one there does nothing for member accounts. A permissions boundary applies only to the roles it is set on; it misses the root user, other principals and new accounts. A trail owned by local administrators can be stopped or changed by those same administrators.",
+  "citationIds": [
+    "cite-saa-1-1-org-trail",
+    "cite-saa-1-1-scp",
+    "cite-saa-1-1-boundaries"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

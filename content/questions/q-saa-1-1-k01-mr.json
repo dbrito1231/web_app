@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-1.1-K01"
   ],
-  "stem": "Select TWO actions that support this requirement: Access controls and management across multiple accounts",
+  "stem": "A media company has 30 accounts in AWS Organizations. A compliance scanner that runs in the central security account must read resource configurations in every member account, and human auditors must sign in once with the corporate identity provider and get read-only access to all accounts. Which TWO actions meet these requirements? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "In each member account, create a read-only role whose trust policy names the scanner's role, and have the scanner call sts:AssumeRole"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Create an IAM user with access keys in each member account and store the 30 key pairs in the scanner's configuration"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Attach an SCP to the organization root that grants the security account read access to resources in all member accounts"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Connect IAM Identity Center to the corporate IdP and assign the auditors group a read-only permission set on all accounts"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Create an IAM group with the ReadOnlyAccess managed policy in the management account and add each auditor's IAM user to it"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "d"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A read-only role in each member account that trusts the scanner's role lets the scanner call sts:AssumeRole and work with temporary credentials, which is the IAM pattern for cross-account delegation. IAM Identity Center connected to the corporate IdP gives auditors one sign-in, and assigning a permission set makes Identity Center create matching roles in each target account. IAM users with access keys in every account create 30 sets of long-term credentials, which IAM best practices tell you to avoid for workloads. An SCP never grants permissions; it only sets the maximum permissions available. An IAM group in the management account grants permissions only in that account and cannot give its users access to resources in member accounts.",
+  "citationIds": [
+    "cite-saa-1-1-xacct-tutorial",
+    "cite-saa-1-1-idc-permsets",
+    "cite-saa-1-1-scp",
+    "cite-saa-1-1-iam-bp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

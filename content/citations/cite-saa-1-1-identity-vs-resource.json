@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-1-identity-vs-resource",
+  "title": "Identity-based policies and resource-based policies",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
+}

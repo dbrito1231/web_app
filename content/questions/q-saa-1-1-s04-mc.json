@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.1-S04"
   ],
-  "stem": "A teammate asks how to meet this requirement: Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs]). Which action is appropriate?",
+  "stem": "A regional bank is starting its AWS adoption and expects to create about 25 accounts next quarter. It wants a prescriptive multi-account environment set up quickly, with preventive and detective guardrails and a standardized way to provision new accounts from an approved template. Which option meets these needs with the least custom work?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Control Tower, using its landing zone, controls and Account Factory"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Organizations with hand-written SCPs and a script that calls the CreateAccount API for each new account"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Service Catalog with a portfolio of CloudFormation products that teams launch into existing accounts"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Designing a security strategy for multiple AWS accounts (for example, AWS Control Tower, service control policies [SCPs]"
+      "text": "IAM Identity Center with permission sets that define what each team may do in its accounts"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Control Tower orchestrates AWS Organizations, AWS Service Catalog and IAM Identity Center to build a landing zone in under an hour, applies preventive, detective and proactive controls, and provides Account Factory as a configurable template for provisioning accounts. Organizations with hand-written SCPs and scripts can reach a similar result, but everything Control Tower sets up must then be built and maintained by hand. Service Catalog is one of the building blocks Control Tower uses; on its own it does not create the landing zone or its guardrails. IAM Identity Center manages workforce access to accounts; it does not provision accounts or apply governance controls.",
+  "citationIds": [
+    "cite-saa-1-1-control-tower",
+    "cite-saa-1-1-scp"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

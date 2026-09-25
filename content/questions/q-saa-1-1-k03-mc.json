@@ -2,35 +2,38 @@
   "id": "q-saa-1-1-k03-mc",
   "type": "mc",
   "module": "A1",
-  "difficulty": "applied",
+  "difficulty": "foundation",
   "objectiveIds": [
     "SAA-1.1-K03"
   ],
-  "stem": "During an architecture review, the goal is: AWS global infrastructure (for example, Availability Zones, AWS Regions). Which action matches that goal?",
+  "stem": "A payments startup must obey a regulation that customer records never leave the country where its chosen AWS Region is located. Its MySQL database must also stay available, with no committed transactions lost, if one Availability Zone fails. Which design meets both requirements?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy Amazon RDS for MySQL in one Availability Zone and add a cross-Region read replica in a neighboring country's Region"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: AWS global infrastructure (for example, Availability Zones, AWS Regions)"
+      "text": "Run the database in a Local Zone close to the headquarters and take a snapshot of it every hour"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run primary and standby MySQL instances on Amazon EC2 in two subnets of the same Availability Zone"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Deploy Amazon RDS for MySQL as a Multi-AZ DB instance deployment in the chosen Region"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Regions are isolated from each other and AWS does not replicate resources across Regions automatically, so a Region choice keeps data in its country. A Multi-AZ DB instance deployment keeps a synchronous standby replica in a different Availability Zone of the same Region and fails over automatically, so an AZ failure does not lose committed data and the data never leaves the Region. A cross-Region read replica in another country stores customer records outside the permitted country. A Local Zone is a single location that extends a Region; if that location fails the database is down, and hourly snapshots can lose up to an hour of data. Two instances in the same Availability Zone share its failure: if the AZ fails, both are unavailable.",
+  "citationIds": [
+    "cite-saa-1-1-regions-azs",
+    "cite-saa-1-1-rds-multiaz"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

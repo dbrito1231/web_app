@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.1-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing a role-based access control strategy (for example, AWS STS, role switching, cross-account access)",
+  "stem": "Release engineers sign in to a development account through a federated role. For deployments they need short-lived access to a separate production account, and no identities may be created for them in production. Which TWO steps are required? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Create IAM users for the release engineers in the production account and require MFA on each user"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "In production, create a deployment role whose trust policy names the development account as a trusted principal"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Set up VPC peering between the two accounts so that the release engineers can reach production resources"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "In development, allow the engineers' role to call sts:AssumeRole on the production deployment role's ARN"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add the development account's release role to an IAM group in the production account"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "A and B are sound exam/lab practice. C/D/E violate credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-account role access needs both sides: a role in the destination account whose trust policy names the originating account, and an identity-based policy in the originating account that allows sts:AssumeRole on that role's ARN. AssumeRole then returns temporary credentials. IAM users in production are the identities the requirement forbids, and they carry long-term credentials. VPC peering connects networks; it does not grant any IAM permissions. IAM groups contain only IAM users of the same account, so a role from another account cannot be added.",
+  "citationIds": [
+    "cite-saa-1-1-xacct-tutorial",
+    "cite-saa-1-1-identity-vs-resource",
+    "cite-saa-1-1-groups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

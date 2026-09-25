@@ -2,35 +2,39 @@
   "id": "q-saa-1-1-k05-mc",
   "type": "mc",
   "module": "A1",
-  "difficulty": "applied",
+  "difficulty": "foundation",
   "objectiveIds": [
     "SAA-1.1-K05"
   ],
-  "stem": "Pick the action that satisfies: The AWS shared responsibility model.",
+  "stem": "A healthcare company is moving a self-managed MySQL database from Amazon EC2 to Amazon RDS for MySQL. The compliance officer asks which security task will remain the company's responsibility after the migration. Which task should the architect name?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Protecting the physical infrastructure and facilities that run the Amazon RDS service"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Performing maintenance on the underlying hardware of the DB instances"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Controlling network access through security group rules and managing database user accounts"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: The AWS shared responsibility model"
+      "text": "Configuring and running the replication process to the Multi-AZ standby instance"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Under the shared responsibility model, AWS handles security of the cloud and the customer handles security in the cloud. For Amazon RDS, the customer still decides which hosts can connect through security groups and uses the database engine's own features to control who can log in. Protecting the infrastructure that runs AWS services is AWS's part of the model. Amazon RDS performs maintenance on the underlying hardware of DB instances. In a Multi-AZ deployment, Amazon RDS provisions and maintains the synchronous standby replica itself, and you do not configure security access for processes that RDS manages, such as replication.",
+  "citationIds": [
+    "cite-saa-1-1-rds-security",
+    "cite-saa-1-1-rds-maint",
+    "cite-saa-1-1-rds-multiaz"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
