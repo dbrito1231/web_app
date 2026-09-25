@@ -1,6 +1,6 @@
 {
   "id": "gl-15",
-  "title": "GL-15 — CloudWatch and CloudTrail",
+  "title": "GL-15 \u2014 CloudWatch and CloudTrail",
   "kind": "guided",
   "pairId": "ul-15",
   "region": "us-east-1",
@@ -147,7 +147,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -181,8 +181,8 @@
     "labId": "gl-15",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws cloudtrail stop-logging --name workbook-gl15 -ErrorAction SilentlyContinue",
-      "aws cloudtrail delete-trail --name workbook-gl15 -ErrorAction SilentlyContinue",
+      "aws cloudtrail stop-logging --name workbook-gl15",
+      "aws cloudtrail delete-trail --name workbook-gl15",
       "aws cloudwatch delete-alarms --alarm-names workbook-gl15",
       "$Bucket = \"workbook-gl15-$((aws sts get-caller-identity --query Account --output text))\"",
       "aws s3 rm s3://$Bucket --recursive",
@@ -191,7 +191,7 @@
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-15 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-15 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-15. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

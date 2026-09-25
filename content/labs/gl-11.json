@@ -1,6 +1,6 @@
 {
   "id": "gl-11",
-  "title": "GL-11 — API Gateway and Lambda",
+  "title": "GL-11 \u2014 API Gateway and Lambda",
   "kind": "guided",
   "pairId": "ul-11",
   "region": "us-east-1",
@@ -91,7 +91,7 @@
       "title": "Deploy stage",
       "bullets": [
         "Run `aws apigatewayv2 create-stage --api-id $ApiId --stage-name prod --auto-deploy`.",
-        "Run `aws lambda add-permission --function-name workbook-gl11 --statement-id apigw --action lambda:InvokeFunction --principal apigateway.amazonaws.com --source-arn arn:aws:execute-api:us-east-1:$AccountId:$ApiId/*/*`.",
+        "Run `aws lambda add-permission --function-name workbook-gl11 --statement-id apigw --action lambda:InvokeFunction --principal apigateway.amazonaws.com --source-arn \"arn:aws:execute-api:us-east-1:$($AccountId):$($ApiId)/*/*\"`. The `$( )` stops PowerShell from reading `$AccountId:` as a drive-qualified variable.",
         "Success: stage is deployed."
       ]
     },
@@ -100,7 +100,7 @@
       "title": "Invoke route",
       "bullets": [
         "Run `$InvokeUrl = aws apigatewayv2 get-apis --query \"Items[?ApiId=='$ApiId'].ApiEndpoint\" --output text`.",
-        "Run `curl \"$InvokeUrl/prod/hello\"`.",
+        "Run `curl.exe \"$InvokeUrl/prod/hello\"`. In Windows PowerShell 5.1, plain `curl` is an alias for Invoke-WebRequest, so type `curl.exe`.",
         "Success: HTTP 200 from Lambda."
       ]
     },
@@ -150,7 +150,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -193,7 +193,7 @@
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-11 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

@@ -1,6 +1,6 @@
 {
   "id": "gl-16",
-  "title": "GL-16 — Private DNS",
+  "title": "GL-16 \u2014 Private DNS",
   "kind": "guided",
   "pairId": "ul-16",
   "region": "us-east-1",
@@ -19,7 +19,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete records and private zone; no public domain purchase.",
+  "stopChargesPanel": "Delete the app A record with a DELETE change batch, then the private hosted zone, then the VPC. No public domain purchase.",
   "steps": [
     {
       "id": "s01",
@@ -85,7 +85,7 @@
       "id": "s08",
       "title": "Private record",
       "bullets": [
-        "Save gl16-record.json with A record app.workbook.gl16.local to 10.160.1.10.",
+        "Run `$Utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl16-record.json\", '{\"Changes\":[{\"Action\":\"CREATE\",\"ResourceRecordSet\":{\"Name\":\"app.workbook.gl16.local\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"10.160.1.10\"}]}}]}', $Utf8)`. This saves a CREATE change batch for the A record app.workbook.gl16.local \u2192 10.160.1.10 with TTL 300, as UTF-8 without a BOM.",
         "Run `aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://gl16-record.json`.",
         "Success: record exists."
       ]
@@ -102,7 +102,8 @@
       "id": "s10",
       "title": "Delete record",
       "bullets": [
-        "Run change-batch DELETE for the app record.",
+        "Run `$Utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl16-record-delete.json\", '{\"Changes\":[{\"Action\":\"DELETE\",\"ResourceRecordSet\":{\"Name\":\"app.workbook.gl16.local\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"10.160.1.10\"}]}}]}', $Utf8)`. A DELETE must repeat the exact name, type, TTL, and value from s08.",
+        "Run `aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://gl16-record-delete.json`.",
         "Success: only NS/SOA remain."
       ]
     },
@@ -128,7 +129,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: hosted zone records, zone, VPC",
+        "Teardown order for this lab: the app A record (DELETE change batch), zone, VPC. If s10 already deleted the record, the DELETE returns InvalidChangeBatch (not found); continue with the next line",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -145,7 +146,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -179,13 +180,15 @@
     "labId": "gl-16",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws route53 delete-hosted-zone --id $ZoneId",
-      "aws ec2 delete-vpc --vpc-id $VpcId"
+      "$Utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl16-record-delete.json\", '{\"Changes\":[{\"Action\":\"DELETE\",\"ResourceRecordSet\":{\"Name\":\"app.workbook.gl16.local\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"10.160.1.10\"}]}}]}', $Utf8)",
+      "if ($ZoneId) { aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://gl16-record-delete.json }",
+      "if ($ZoneId) { aws route53 delete-hosted-zone --id $ZoneId }",
+      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-16 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-16. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

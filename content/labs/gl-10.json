@@ -1,6 +1,6 @@
 {
   "id": "gl-10",
-  "title": "GL-10 — Queue and event path",
+  "title": "GL-10 \u2014 Queue and event path",
   "kind": "guided",
   "pairId": "ul-10",
   "region": "us-east-1",
@@ -20,7 +20,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete subscription, function, log group, queue, topic.",
+  "stopChargesPanel": "Delete the function, log group, queue, and topic (deleting the topic also deletes its subscriptions), then the IAM role.",
   "steps": [
     {
       "id": "s01",
@@ -137,7 +137,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: SNS subscriptions, Lambda, log group, queue, topic, IAM role",
+        "Teardown order for this lab: Lambda, log group, queue, topic (delete-topic also deletes its SNS subscriptions), IAM role",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -154,7 +154,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -188,7 +188,6 @@
     "labId": "gl-10",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws sns list-subscriptions-by-topic --topic-arn $TopicArn --query Subscriptions[].SubscriptionArn --output text | ForEach-Object { if ($_ -and $_ -ne 'PendingConfirmation') { aws sns unsubscribe --subscription-arn $_ } }",
       "aws lambda delete-function --function-name workbook-gl10",
       "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl10",
       "aws sqs delete-queue --queue-url $QueueUrl",
@@ -199,7 +198,7 @@
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-10 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-10. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

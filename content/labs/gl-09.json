@@ -1,6 +1,6 @@
 {
   "id": "gl-09",
-  "title": "GL-09 — Auto Scaling",
+  "title": "GL-09 \u2014 Auto Scaling",
   "kind": "guided",
   "pairId": "ul-09",
   "region": "us-east-1",
@@ -20,7 +20,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete ASG, launch template, security groups, subnets/VPC if created for lab.",
+  "stopChargesPanel": "Scale the ASG to 0 and force-delete it, wait until it is gone (its instances terminate with it), then delete the launch template. This lab uses the default VPC and creates no security group or subnet.",
   "steps": [
     {
       "id": "s01",
@@ -134,7 +134,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ASG, launch template, any instances",
+        "Teardown order for this lab: ASG (scale to 0, force-delete, then poll every 15 seconds until it is gone; this also terminates its instances), launch template. The AWS CLI has no Auto Scaling waiter, so Stop charges uses a short loop",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -151,7 +151,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -185,13 +185,14 @@
     "labId": "gl-09",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0 -ErrorAction SilentlyContinue; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete -ErrorAction SilentlyContinue }",
+      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
+      "if ($AsgName) { do { Start-Sleep -Seconds 15; $AsgLeft = aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $AsgName --query \"length(AutoScalingGroups)\" --output text } while ($AsgLeft -and $AsgLeft -ne '0') }",
       "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-09 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-09 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-09. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

@@ -1,6 +1,6 @@
 {
   "id": "gl-21",
-  "title": "GL-21 — ElastiCache tradeoffs",
+  "title": "GL-21 \u2014 ElastiCache tradeoffs",
   "kind": "guided",
   "pairId": "ul-21",
   "region": "us-east-1",
@@ -20,7 +20,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete cache cluster and subnet group; ElastiCache is hourly.",
+  "stopChargesPanel": "Delete the cache cluster, wait until it is deleted, then delete the cache subnet group; ElastiCache is hourly.",
   "steps": [
     {
       "id": "s01",
@@ -133,7 +133,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ElastiCache cluster, subnet group",
+        "Teardown order for this lab: ElastiCache cluster (wait until deleted), subnet group",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -184,8 +184,9 @@
     "labId": "gl-21",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-gl21 -ErrorAction SilentlyContinue",
-      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-gl21 -ErrorAction SilentlyContinue"
+      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-gl21",
+      "aws elasticache wait cache-cluster-deleted --cache-cluster-id workbook-gl21",
+      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-gl21"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-21 returns an empty ResourceTagMappingList in $env:AWS_REGION"

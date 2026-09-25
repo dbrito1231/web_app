@@ -20,7 +20,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete listener, load balancer, target group, terminate EC2, then VPC artifacts.",
+  "stopChargesPanel": "Delete the load balancer (this removes its listener) and wait, delete the target group, terminate the EC2 instance and wait, then disassociate and delete the route table, delete both subnets, detach and delete the internet gateway, and delete the security group and VPC.",
   "steps": [
     {
       "id": "s01",
@@ -72,13 +72,15 @@
       "title": "Create VPC, subnets, IGW",
       "bullets": [
         "Run `$VpcId = aws ec2 create-vpc --cidr-block 10.80.0.0/16 --query Vpc.VpcId --output text --tag-specifications \"ResourceType=vpc,Tags=[{Key=LabId,Value=gl-08}]\"`.",
-        "Run `$SubnetPub = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.80.1.0/24 --availability-zone us-east-1a --query Subnet.SubnetId --output text`.",
+        "Run `$SubnetPub = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.80.1.0/24 --availability-zone us-east-1a --query Subnet.SubnetId --output text --tag-specifications \"ResourceType=subnet,Tags=[{Key=LabId,Value=gl-08}]\"`.",
+        "Run `$SubnetPub2 = aws ec2 create-subnet --vpc-id $VpcId --cidr-block 10.80.2.0/24 --availability-zone us-east-1b --query Subnet.SubnetId --output text --tag-specifications \"ResourceType=subnet,Tags=[{Key=LabId,Value=gl-08}]\"`. An Application Load Balancer needs subnets in at least two Availability Zones.",
         "Run `$IgwId = aws ec2 create-internet-gateway --query InternetGateway.InternetGatewayId --output text --tag-specifications \"ResourceType=internet-gateway,Tags=[{Key=LabId,Value=gl-08}]\"`.",
         "Run `aws ec2 attach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId`.",
-        "Run `$PublicRouteTableId = aws ec2 create-route-table --vpc-id $VpcId --query RouteTable.RouteTableId --output text`.",
+        "Run `$PublicRouteTableId = aws ec2 create-route-table --vpc-id $VpcId --query RouteTable.RouteTableId --output text --tag-specifications \"ResourceType=route-table,Tags=[{Key=LabId,Value=gl-08}]\"`.",
         "Run `aws ec2 create-route --route-table-id $PublicRouteTableId --destination-cidr-block 0.0.0.0/0 --gateway-id $IgwId`.",
         "Run `$RtAssocPub = aws ec2 associate-route-table --route-table-id $PublicRouteTableId --subnet-id $SubnetPub --query AssociationId --output text`.",
-        "Success: public subnet has internet route."
+        "Run `$RtAssocPub2 = aws ec2 associate-route-table --route-table-id $PublicRouteTableId --subnet-id $SubnetPub2 --query AssociationId --output text`.",
+        "Success: both public subnets (us-east-1a and us-east-1b) are associated with the route table that has the internet route."
       ]
     },
     {
@@ -105,11 +107,12 @@
       "id": "s09",
       "title": "Create ALB and target group",
       "bullets": [
-        "Run `$AlbArn = aws elbv2 create-load-balancer --name workbook-gl08 --subnets $SubnetPub --security-groups $SgId --query \"LoadBalancers[0].LoadBalancerArn\" --output text --tags Key=LabId,Value=gl-08 Key=Workbook,Value=aws-tf-lab`.",
-        "Run `$TargetGroupArn = aws elbv2 create-target-group --name workbook-gl08-tg --protocol HTTP --port 80 --vpc-id $VpcId --target-type instance --query \"TargetGroups[0].TargetGroupArn\" --output text`.",
+        "Run `$AlbArn = aws elbv2 create-load-balancer --name workbook-gl08 --subnets $SubnetPub $SubnetPub2 --security-groups $SgId --query \"LoadBalancers[0].LoadBalancerArn\" --output text --tags Key=LabId,Value=gl-08 Key=Workbook,Value=aws-tf-lab`.",
+        "Run `$TargetGroupArn = aws elbv2 create-target-group --name workbook-gl08-tg --protocol HTTP --port 80 --vpc-id $VpcId --target-type instance --query \"TargetGroups[0].TargetGroupArn\" --output text --tags Key=LabId,Value=gl-08 Key=Workbook,Value=aws-tf-lab`.",
         "Run `aws elbv2 register-targets --target-group-arn $TargetGroupArn --targets Id=$InstanceId`.",
         "Run `aws elbv2 create-listener --load-balancer-arn $AlbArn --protocol HTTP --port 80 --default-actions Type=forward,TargetGroupArn=$TargetGroupArn`.",
-        "Success: target health becomes healthy."
+        "Run `aws elbv2 wait target-in-service --target-group-arn $TargetGroupArn --targets Id=$InstanceId`. It checks every 15 seconds for up to 10 minutes; the default health check needs 5 passes 30 seconds apart, so expect about 2.5 minutes.",
+        "Success: the wait returns with no error, so the target is healthy."
       ]
     },
     {
@@ -117,7 +120,7 @@
       "title": "HTTP check",
       "bullets": [
         "Run `$Dns = aws elbv2 describe-load-balancers --load-balancer-arns $AlbArn --query 'LoadBalancers[0].DNSName' --output text`.",
-        "Run `curl http://$Dns/`.",
+        "Run `curl.exe http://$Dns/`. In Windows PowerShell 5.1, plain `curl` is an alias for Invoke-WebRequest, so type `curl.exe`.",
         "Success: HTTP response from the instance."
       ]
     },
@@ -125,7 +128,7 @@
       "id": "s11",
       "title": "Confirm hourly cleanup plan",
       "bullets": [
-        "ALB and EC2 bill hourly; teardown deletes ALB before instance and VPC.",
+        "ALB and EC2 bill hourly; teardown deletes the ALB and waits, then the target group, then the instance, then the VPC stack.",
         "Success: Stop charges order matches your resource ids."
       ]
     },
@@ -143,7 +146,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ALB, target group, instance, VPC stack",
+        "Teardown order for this lab: ALB (wait until deleted; its listener goes with it), target group, instance (wait until terminated), both route-table associations, route table, both subnets, internet gateway, security group, VPC",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -194,33 +197,14 @@
     "labId": "gl-08",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$EndpointId = $null",
-      "$NatGatewayId = $null",
-      "$AllocationId = $null",
-      "$AsgName = $null",
-      "$LaunchTemplateId = $null",
-      "$NaclAssocId = $null",
-      "$DefaultNaclId = $null",
-      "$CustomNaclId = $null",
-      "$RtAssocPriv = $null",
-      "$PrivateRouteTableId = $null",
-      "$SubnetPriv = $null",
-      "if ($EndpointId) { aws ec2 delete-vpc-endpoints --vpc-endpoint-ids $EndpointId }",
-      "if ($NatGatewayId) { aws ec2 delete-nat-gateway --nat-gateway-id $NatGatewayId; aws ec2 wait nat-gateway-deleted --nat-gateway-ids $NatGatewayId }",
-      "if ($AllocationId) { aws ec2 release-address --allocation-id $AllocationId }",
       "if ($AlbArn) { aws elbv2 delete-load-balancer --load-balancer-arn $AlbArn; aws elbv2 wait load-balancers-deleted --load-balancer-arns $AlbArn }",
       "if ($TargetGroupArn) { aws elbv2 delete-target-group --target-group-arn $TargetGroupArn }",
-      "if ($AsgName) { aws autoscaling update-auto-scaling-group --auto-scaling-group-name $AsgName --min-size 0 --max-size 0 --desired-capacity 0; aws autoscaling delete-auto-scaling-group --auto-scaling-group-name $AsgName --force-delete }",
-      "if ($LaunchTemplateId) { aws ec2 delete-launch-template --launch-template-id $LaunchTemplateId }",
       "if ($InstanceId) { aws ec2 terminate-instances --instance-ids $InstanceId; aws ec2 wait instance-terminated --instance-ids $InstanceId }",
-      "if ($NaclAssocId -and $DefaultNaclId) { aws ec2 replace-network-acl-association --association-id $NaclAssocId --network-acl-id $DefaultNaclId }",
-      "if ($CustomNaclId) { aws ec2 delete-network-acl --network-acl-id $CustomNaclId }",
       "if ($RtAssocPub) { aws ec2 disassociate-route-table --association-id $RtAssocPub }",
-      "if ($RtAssocPriv) { aws ec2 disassociate-route-table --association-id $RtAssocPriv }",
+      "if ($RtAssocPub2) { aws ec2 disassociate-route-table --association-id $RtAssocPub2 }",
       "if ($PublicRouteTableId) { aws ec2 delete-route-table --route-table-id $PublicRouteTableId }",
-      "if ($PrivateRouteTableId) { aws ec2 delete-route-table --route-table-id $PrivateRouteTableId }",
       "if ($SubnetPub) { aws ec2 delete-subnet --subnet-id $SubnetPub }",
-      "if ($SubnetPriv) { aws ec2 delete-subnet --subnet-id $SubnetPriv }",
+      "if ($SubnetPub2) { aws ec2 delete-subnet --subnet-id $SubnetPub2 }",
       "if ($IgwId -and $VpcId) { aws ec2 detach-internet-gateway --internet-gateway-id $IgwId --vpc-id $VpcId; aws ec2 delete-internet-gateway --internet-gateway-id $IgwId }",
       "if ($SgId) { aws ec2 delete-security-group --group-id $SgId }",
       "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
@@ -229,7 +213,7 @@
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
-    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08. Delete only those ids. Never delete untagged resources."
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-08 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-08. Delete only those ids. Never delete untagged resources. The ALB's network interfaces can linger for a minute or two after the delete waiter returns. If a subnet, internet gateway, or security group delete returns DependencyViolation, wait 1\u20132 minutes and rerun Stop charges from that line."
   },
   "executionStatus": "unexecuted",
   "difficulty": "tradeoff",

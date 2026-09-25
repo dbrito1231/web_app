@@ -1,6 +1,6 @@
 {
   "id": "gl-14",
-  "title": "GL-14 — RDS single-AZ",
+  "title": "GL-14 \u2014 RDS single-AZ",
   "kind": "guided",
   "pairId": "ul-14",
   "region": "us-east-1",
@@ -20,7 +20,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete DB instance, subnet group, security groups; RDS forgotten overnight is costly.",
+  "stopChargesPanel": "Delete the DB instance without a final snapshot, wait until it is deleted, then delete the DB subnet group. This lab uses the default VPC security group. RDS forgotten overnight is costly.",
   "steps": [
     {
       "id": "s01",
@@ -135,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: RDS instance, subnet group",
+        "Teardown order for this lab: RDS instance (wait until deleted), subnet group. If s09 already deleted the instance, delete-db-instance reports DBInstanceNotFound and the wait returns at once",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -152,7 +152,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -186,13 +186,16 @@
     "labId": "gl-14",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "if ($DbId) { aws rds delete-db-instance --db-instance-identifier $DbId --skip-final-snapshot -ErrorAction SilentlyContinue }",
-      "if ($SubnetGroup) { aws rds delete-db-subnet-group --db-subnet-group-name $SubnetGroup -ErrorAction SilentlyContinue }"
+      "$SubnetGroup = 'workbook-gl14'",
+      "$DbId = 'workbookgl14'",
+      "aws rds delete-db-instance --db-instance-identifier $DbId --skip-final-snapshot",
+      "aws rds wait db-instance-deleted --db-instance-identifier $DbId",
+      "aws rds delete-db-subnet-group --db-subnet-group-name $SubnetGroup"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-14 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-14 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-14. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

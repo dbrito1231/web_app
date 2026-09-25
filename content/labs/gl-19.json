@@ -1,6 +1,6 @@
 {
   "id": "gl-19",
-  "title": "GL-19 — EKS control plane then delete",
+  "title": "GL-19 \u2014 EKS control plane then delete",
   "kind": "guided",
   "pairId": "ul-19",
   "region": "us-east-1",
@@ -152,7 +152,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -186,15 +186,15 @@
     "labId": "gl-19",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws eks delete-cluster --name workbook-gl19 -ErrorAction SilentlyContinue",
-      "aws eks wait cluster-deleted --name workbook-gl19 -ErrorAction SilentlyContinue",
+      "aws eks delete-cluster --name workbook-gl19",
+      "aws eks wait cluster-deleted --name workbook-gl19",
       "aws iam detach-role-policy --role-name workbook-gl19-eks --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
       "aws iam delete-role --role-name workbook-gl19-eks"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-19 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-19 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-19. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

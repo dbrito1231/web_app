@@ -208,7 +208,8 @@
     "labId": "gl-01",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$BoundaryArn = $null",
+      "$AccountId = aws sts get-caller-identity --query Account --output text",
+      "$BoundaryArn = \"arn:aws:iam::$($AccountId):policy/gl01-boundary\"",
       "$Serial = aws iam list-mfa-devices --user-name workbook-gl01 --query 'MFADevices[0].SerialNumber' --output text",
       "aws iam deactivate-mfa-device --user-name workbook-gl01 --serial-number $Serial",
       "aws iam delete-virtual-mfa-device --serial-number $Serial",
