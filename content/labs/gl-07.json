@@ -140,7 +140,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: instance (if still running), any remaining volume (detach, wait until available, delete), snapshot. A NotFound or IncorrectState error on a line means that resource is already gone",
+        "Teardown order for this lab: instance (if still running), any remaining volume (detach, wait until available, delete), snapshot. NotFound means the volume is already gone; IncorrectState on detach means it is already detached.",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]

@@ -72,9 +72,9 @@
       "title": "Create DB subnet group",
       "bullets": [
         "Run `$VpcId = aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query \"Vpcs[0].VpcId\" --output text`.",
-        "Run `$Subnets = aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[0:2].SubnetId\" --output text`.",
+        "Run `$SubnetIds = (aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[0:2].SubnetId\" --output text) -split '\\s+' | Where-Object { $_ }`.",
         "Run `$SubnetGroup = \"workbook-gl14\"`.",
-        "Run `aws rds create-db-subnet-group --db-subnet-group-name $SubnetGroup --db-subnet-group-description gl14 --subnet-ids $Subnets --tags Key=LabId,Value=gl-14 Key=Workbook,Value=aws-tf-lab`.",
+        "Run `aws rds create-db-subnet-group --db-subnet-group-name $SubnetGroup --db-subnet-group-description gl14 --subnet-ids $SubnetIds --tags Key=LabId,Value=gl-14 Key=Workbook,Value=aws-tf-lab`.",
         "Success: subnet group exists."
       ]
     },

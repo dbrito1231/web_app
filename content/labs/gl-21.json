@@ -72,8 +72,8 @@
       "title": "Cache subnet group",
       "bullets": [
         "Run `$VpcId = aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query \"Vpcs[0].VpcId\" --output text`.",
-        "Run `$Subnets = aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[0:2].SubnetId\" --output text`.",
-        "Run `aws elasticache create-cache-subnet-group --cache-subnet-group-name workbook-gl21 --cache-subnet-group-description gl21 --subnet-ids $Subnets`.",
+        "Run `$SubnetIds = (aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[0:2].SubnetId\" --output text) -split '\\s+' | Where-Object { $_ }`.",
+        "Run `aws elasticache create-cache-subnet-group --cache-subnet-group-name workbook-gl21 --cache-subnet-group-description gl21 --subnet-ids $SubnetIds`.",
         "Success: subnet group is available."
       ]
     },
