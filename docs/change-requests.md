@@ -208,6 +208,22 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: WP11
 - Teacher validation: approved for the sandbox note. Audit-grade multi-user metrics stay out of scope (KISS).
 
+## CR-0017 — Lab cleanup that deletes nothing, and GL-08 ALB subnets
+- Raised by: AWS Architect (round-1) and Lead Dev
+- Date: 2026-09-26
+- Type: content-error
+- Where: `content/labs/gl-01.json`, `gl-06.json`, `gl-08.json`, `ul-05`–`ul-16` (10 files), `scripts/scan_lab_placeholders.py`
+- Problem:
+  - GL-08 creates the internet-facing ALB with one subnet; AWS requires two AZs (N1).
+  - Teardowns reset IDs to `$null` before using them, so GL-01 never deletes its boundary policy and 10 unguided labs delete nothing (N2).
+  - UL-07 never deletes EFS (N3).
+  - The scanner counted the `$null` lines as "assigned" (loophole).
+- Suggested fix: Amendment 1 in `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md`
+- Affects learning content: yes
+- Status: planned
+- Plan: `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` (Amendment 1)
+- Teacher validation: pending
+
 ## Template
 
 ```markdown

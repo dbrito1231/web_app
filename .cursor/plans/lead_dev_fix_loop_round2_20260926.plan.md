@@ -209,6 +209,79 @@ Q1 fact-checking must use the MCP or doc tools. A model's memory never closes a 
 - `reports/fix-loop/issue-register.md`
 - `reports/fix-loop-r2/**`
 
+## Amendment 1 (2026-09-26): new lab issues N1–N4
+
+**Approval.** You asked Lead Dev to "run the next steps" (log the GL-08 bug, re-check GL-17/GL-08, commit and review O1–O10, fix the empty cleanup values). This amendment is the written plan for those fixes. AGENTS.md says Teacher validates it before any implementation. The Teacher and AWS verdicts are recorded below.
+
+Each issue was validated by Lead Dev against commit `8789bf5`, using read-only scripts over `content/labs/*.json`.
+
+| ID | Issue | Evidence | Severity | Fix |
+|---|---|---|---|---|
+| N1 | GL-08 creates the internet-facing ALB with one subnet. AWS requires subnets in at least two Availability Zones, so `create-load-balancer` fails (AWS round-1, not logged at the time) | `gl-08.json` s06 creates only `$SubnetPub` (us-east-1a); s09 passes `--subnets $SubnetPub` | Medium | s06: add `$SubnetPub2` (10.80.2.0/24, us-east-1b) and associate it with the public route table (`$RtAssocPub2`). s09: pass `--subnets $SubnetPub $SubnetPub2`. Teardown: disassociate `$RtAssocPub2` and delete `$SubnetPub2` before the route table and VPC. Tag both subnets `LabId=gl-08` |
+| N2a | GL-01 cleanup sets `$BoundaryArn = $null` and then runs `delete-policy --policy-arn $BoundaryArn`. The boundary policy is never deleted, and the value from s06 is wiped | `gl-01.json` teardown lines 1 and 7 | Medium | Replace with `$AccountId = aws sts get-caller-identity --query Account --output text` and `$BoundaryArn = "arn:aws:iam::$($AccountId):policy/gl01-boundary"` |
+| N2b | 10 unguided labs (UL-05, 06, 07, 08, 09, 10, 11, 12, 14, 16) start Stop charges with `$X = $null` for every resource. That wipes the IDs the learner set while building, so every guarded delete is skipped and nothing is deleted. UL-06 and UL-08 include hourly NAT and ALB | Script: every teardown var in these labs is reset to `$null` before use | **High** (cost risk; only the tag-search check would catch leftovers) | Remove all `= $null` lines. Start each UL teardown with one PowerShell comment naming the variables it uses: `# Uses the IDs you set while building: $VpcId, $SubnetPub, …. Set any you named differently. Unset ones are skipped.` |
+| N2c | GL-06 and GL-08 carry `$null` lines plus guarded deletes for resources those labs never create. GL-06 repeats the NAT and EIP lines twice | Script: 10 dead lines in GL-06 and 11 in GL-08 | Low | Delete the dead lines and the duplicate NAT/EIP pair. Keep only deletes for resources the lab's steps create |
+| N3 | UL-07 is the EFS lab, but its cleanup never deletes the EFS mount targets or file system | `ul-07.json` teardown has only instance, volume and snapshot | Medium | Add `$FileSystemId` deletes: list and delete the mount targets, wait until none remain, then run `delete-file-system`. All of it goes before the instance and security group, following the criteria order |
+| N4 | Start here lists a lesson's drills by raw question ID, not by question text (FS-R2-R1-001) | `StartHereTab.tsx:224` | Low | Logged only. Fixed together with Q1, when stems change |
+
+**Scanner hardening** (`scripts/scan_lab_placeholders.py`), which closes the loophole behind N2:
+- Count as "assigned" only variables set in the lab's **steps**, never in the teardown itself.
+- Fail on any `= $null` line in a teardown.
+- For `ul-*` labs, every teardown variable must be named in the leading `# Uses …` comment.
+
+**Files touched:**
+- `content/labs/{gl-01,gl-06,gl-08}.json`
+- `content/labs/ul-{05,06,07,08,09,10,11,12,14,16}.json`
+- `scripts/scan_lab_placeholders.py`
+- records: `issue-register.md`, `docs/change-requests.md` (CR-0017), `docs/status.md`
+
+**Risks:**
+- A wrong CLI flag or delete order. Mitigation: the AWS reviewer checks every changed command against the AWS CLI reference.
+- The comment-header approach relies on learners keeping their shell variables. Mitigation: the tag-search verification step stays, and the comment says what to do if the shell was closed.
+
+**Tests:** scanner PASS on all 42 labs; content lint PASS; Django tests; a Lead Dev script showing zero `= $null` teardown lines; AWS and Student round-2 review.
+
+**Learning content affected:** yes (labs). It needs Teacher validation before and after.
+
+**Pre-implementation verdicts (2026-09-26):**
+- Teacher: **concerns** (`reports/fix-loop-r2/amendment-1/TEACHER.md`)
+- AWS: **concerns** (`reports/fix-loop-r2/amendment-1/AWS.md`)
+
+Both confirm that N1–N3 are real and approve the N1, N2a, N2c and N3 fixes. Both found that the original design was not enough, and they found more cleanup bugs. The revised design below replaces the table above. **It needs your approval before any lab file changes**, because it is much larger than the original "fix the empty cleanup values" step.
+
+### Amendment 1, revised: every lab's Stop charges must run and delete what the lab creates
+
+| ID | Issue | Labs | Sev | Fix (commands taken from the AWS report, doc-cited) |
+|---|---|---|---|---|
+| N1 | Internet-facing ALB with one subnet | GL-08, **UL-08** | Medium | Add a second tagged public subnet in us-east-1b and associate it with the public route table; pass `--subnets $SubnetPub $SubnetPub2`; add `aws elbv2 wait target-in-service` before the HTTP check. Teardown order: ALB (and wait) → target group → instance → both route-table associations → route table → both subnets → IGW → SG → VPC. Update s06 success text and s13 order text |
+| N2a | `$BoundaryArn = $null` before `delete-policy` | GL-01 | Medium | `$AccountId = aws sts get-caller-identity --query Account --output text`; `$BoundaryArn = "arn:aws:iam::$($AccountId):policy/gl01-boundary"` |
+| N2b | UL teardowns reset every ID to `$null`, so nothing is deleted | UL-05, 06, 07, 08, 09, 10, 11, 12, 14, 16 | **High** | Remove the `$null` lines. Wrap **every** UL delete in `if ($Var) { … }`. Start the teardown with one comment naming only that lab's real resource variables, plus how to recover a lost ID: `aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-NN` |
+| N2c | Dead guarded lines and duplicate NAT/EIP pairs | GL-06, GL-08, UL-06, UL-08 | Low | Delete the dead and duplicate lines (line list in the AWS report) |
+| N3 | EFS never deleted | UL-07 | Medium | Delete the mount targets → poll `describe-mount-targets` until 0 (EFS has no waiter) → `delete-file-system`, then the mount-target SG before the instance SG. Add an unmount note and a `describe-file-systems` check |
+| N6 | `-ErrorAction SilentlyContinue` appended to native `aws` commands; the CLI rejects it, so the delete never runs | 16 lines in 12 labs (incl. GL-19 EKS, GL-21 ElastiCache, UL-14 RDS, UL-09 ASG) | **High** | Remove the flag from every `aws` line (keep it on real cmdlets such as `Remove-Item`). Add the missing waits: `eks wait nodegroup-deleted` / `cluster-deleted`, `elasticache wait cache-cluster-deleted`, `rds wait db-instance-deleted` before subnet-group deletes |
+| N7 | UL teardowns hard-code guided names `workbook-glNN` that UL learners never create | UL-03, 04, 10, 11, 12, 13, 15, 17, 18, 19, 21 | Medium | Add an acceptance criterion "Name resources `workbook-ulNN`" and use those names, or variables, in the teardown |
+| T1 | UL teardowns that don't match their own criteria | UL-05 (2 of 4 subnets), UL-08 (no WAF web ACL delete), UL-10 (no DLQ or event mapping delete), UL-14 (no restored-copy or snapshot delete, no waits), UL-16 (zone records not deleted → HostedZoneNotEmpty) | High (UL-08, UL-14), Medium (rest) | Add the missing deletes and waits in dependency order |
+| T2 | EKS extras never deleted, so delete-cluster fails | UL-19 | **High** | `delete-nodegroup` + `wait nodegroup-deleted` and/or `delete-fargate-profile` + `wait fargate-profile-deleted`, then `delete-cluster` + `wait cluster-deleted` |
+| T3 | Missing deletes | UL-03 (GuardDuty detector), UL-04 (KMS key deletion not scheduled; secret and SSM parameter kept), GL-16 (record not deleted → zone delete fails) | Medium | Add `guardduty delete-detector`, `kms schedule-key-deletion --pending-window-in-days 7`, `secretsmanager delete-secret`, `ssm delete-parameter`, and a Route 53 DELETE change batch before the zone delete |
+| T4 | Variables used but never set | GL-14 (`$DbId`, `$SubnetGroup`) | Medium | Set them in s06 |
+| T5 | PowerShell parse error in a lab step: `"…:$AccountId:$ApiId/*/*"` (Lead Dev reproduced "Variable reference is not valid") | GL-11 s08 | Medium | `"arn:aws:execute-api:us-east-1:$($AccountId):$($ApiId)/*/*"` |
+| T6 | Low polish | GL-08 (untagged target group, subnet and route table; `curl` is an alias for Invoke-WebRequest in PS 5.1, reproduced → use `curl.exe`), GL-10 (unsubscribe line gets tab-joined ARNs), UL-18 (no running-task check before delete-cluster) | Low | As listed in the AWS report |
+| N5 | Scanner loopholes | `scripts/scan_lab_placeholders.py` | High (it hid all of the above) | Rules: assignments count only from steps **or** from teardown lookup lines (`$X = aws …` or a string built from other vars), never `= $null`; UL labs are checked against their `# Uses` comment; fail on `-ErrorAction` in an `aws` line, `workbook-gl` names in `ul-*` teardowns, unguarded UL deletes, and duplicate teardown lines; per-lab whitelist instead of a global one. Add a small fixture test for the scanner |
+
+**Files:**
+- about 26 files in `content/labs/*.json`
+- `scripts/scan_lab_placeholders.py`
+- a new `backend/workbook/tests/test_lab_scan.py`, or `tests/unit/`
+- records
+
+**Method:** AWS reviewer's exact commands; every changed command checked against the CLI reference; batches by lab group, one commit each.
+
+**Review:** AWS and Student check every changed lab (Student follows the Stop charges text literally); Teacher checks wording and ordering against each lab's "Order the deletes" step; Python checks the scanner and its test.
+
+**Learning content affected:** yes.
+
+**Status: waiting for your approval.**
+
 ## Learning content impact
 
 Yes, and it is large. Q1 rewrites most of the SAA and TF question bank, and O6–O9 plus R1, R2 and R6 change labs and lessons. Every content WP needs a Teacher verdict before your approval and again after the fix.

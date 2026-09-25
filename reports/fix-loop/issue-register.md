@@ -67,6 +67,55 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 | O10 | Corrupt content JSON returns a clear JSON 500 | WP9b | Fixed. Loader raises ContentParseError; question GET returns JSON 500. 13 Django tests OK |
 | Q1 | Rewrite the practice-question bank | WP4b | Reported. Blocked until the pilot batch is approved |
 
+O1–O8 and O10 were committed on 2026-09-26 (`609182f`, `37e0a95`, `b0ed883`). Team round-2 review is in progress (`reports/fix-loop-r2/round-2/`). None of them is Closed until two roles mark it Gone.
+
+## Amendment 1 items (logged 2026-09-26, CR-0017)
+
+| ID | Issue | Source | Severity | Status |
+|----|-------|--------|----------|--------|
+| N1 | GL-08 internet-facing ALB created with one subnet; AWS needs two AZs | AWS round-1 new issue (was not logged) | Medium | Valid. Design awaiting Teacher and AWS verdicts |
+| N2a | GL-01 teardown sets `$BoundaryArn = $null` before `delete-policy`; the boundary policy is never deleted | Lead Dev script | Medium | Valid. Awaiting verdicts |
+| N2b | 10 unguided labs reset every ID to `$null` at the top of Stop charges; nothing gets deleted | Lead Dev script (register ISS-030 residual) | High | Valid. Awaiting verdicts |
+| N2c | GL-06/GL-08 dead `$null` and guarded delete lines; GL-06 NAT/EIP lines duplicated | Lead Dev script | Low | Valid. Awaiting verdicts |
+| N3 | UL-07 (EFS lab) teardown never deletes EFS | Lead Dev review | Medium | Valid. Awaiting verdicts |
+| N4 | Start here lists drills by raw question ID | FS-R2-R1-001 | Low | Valid. Deferred to Q1 |
+| N5 | Scanner counts teardown `$null` lines as "assigned" | Lead Dev review | Medium | Valid. Awaiting verdicts |
+| N6 | 14 labs append `-ErrorAction SilentlyContinue` to native `aws` commands. PowerShell passes these words to `aws` as arguments (confirmed locally with `cmd /c echo`), so the cleanup command likely fails; this includes the GL-19 EKS and GL-21 ElastiCache deletes | Lead Dev review | High (Likely until AWS confirms CLI behaviour) | Validating (AWS) |
+| N7 | 11 unguided labs' teardowns hard-code guided-lab names (`workbook-glNN`) | Lead Dev review | Medium | Valid (AWS confirmed). Revised design awaiting user approval |
+| T1 | UL-05/08/10/14/16 teardowns miss resources their criteria create | Teacher + AWS amendment review | High/Medium | Valid. Awaiting user approval |
+| T2 | UL-19 never deletes node group / Fargate profile; cluster delete fails | AWS amendment review | High | Valid. Awaiting user approval |
+| T3 | UL-03 GuardDuty, UL-04 KMS/secret/SSM, GL-16 Route 53 record not deleted | AWS amendment review | Medium | Valid. Awaiting user approval |
+| T4 | GL-14 `$DbId` / `$SubnetGroup` never set | AWS amendment review | Medium | Valid. Awaiting user approval |
+| T5 | GL-11 s08 `"…:$AccountId:$ApiId/*/*"` is a PowerShell parse error | AWS (Needs Verification) → Lead Dev reproduced | Medium | Valid. Awaiting user approval |
+| T6 | GL-08 untagged resources and `curl` alias; GL-10 unsubscribe line; UL-18 task check | AWS amendment review | Low | Valid. Awaiting user approval |
+
+N6 is now Valid and High: the AWS reviewer confirmed with the CLI docs that AWS CLI v2 rejects unknown arguments.
+
+## Round-2 team review results so far (2026-09-26)
+
+**Full-Stack** (`reports/fix-loop-r2/round-2/FULLSTACK.md`):
+- Gone: O1, O2, O3, O4, O5, O7, R5.
+- **Still present:** O6. The Study link is missing on 193 of 429 drills, including all MR variants and all 74 Terraform questions, because it only uses lesson `drillIds`.
+- Each item still needs a second role (Student) before it closes.
+- No drill was submitted, so the save flow was not re-tested this round.
+
+New items from Full-Stack:
+
+| ID | Issue | Sev | Status |
+|----|-------|-----|--------|
+| FS-R2-2-001 | `/exam?q=` opens the question far down the page with no scroll or focus, so the link looks broken | Medium | Valid (reported). Fix is in approved O6/R5 scope |
+| FS-R2-2-002 | Study link only uses lesson `drillIds`, so 193 drills lack it (same root as O6) | Medium | Valid. Fix is in O6 scope: fall back to objective-id match |
+| FS-R2-2-003 | Sticky header covers the linked lab card head | Low | Reported |
+| FS-R2-2-004 | Lab filter stays after returning to plain `/labs` | Low | Reported |
+| FS-R2-2-005 | Start here scrolls sideways at 375px | Low | Reported |
+| FS-R2-2-006 | Lesson picker doesn't update `?lesson=` | Low | Reported |
+| FS-R2-2-007 | `?q=` not updated after picking another drill | Low | Reported |
+| FS-R2-2-008 | Import/Reset confirmation lost after reload (code reading only) | Low | Reported (Likely) |
+
+**Python** (`reports/fix-loop-r2/round-2/PYTHON.md`): PY-R2-2-003/004/005 are folded into N5 (scanner). PY-R2-2-006/008/009/010 are Low and reported.
+
+**ISS-060 / O10:** Python round-2 found non-UTF-8 and wrong-type files still gave an HTML 500 (PY-R2-2-001/002). Fixed in `1c68079` with real-file route tests. Awaiting Python re-check.
+
 ## Decisions
 
 | ID | Decision | Status |
