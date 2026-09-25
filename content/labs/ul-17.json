@@ -14,6 +14,7 @@
   ],
   "scenario": "Convert Athena query results to Parquet (or similar), verify, delete outputs.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul17`: bucket `workbook-ul17-<account-id>` (prefixes `raw/`, `converted/`, `results/`), Athena database `workbook_ul17`, and workgroup `workbook-ul17` or crawler `workbook-ul17` if you create one. Tag each one LabId=ul-17.",
     "CSV source data in s3:// bucket prefix.",
     "Athena query creates CTAS or INSERT output format change (e.g., Parquet).",
     "Output prefix distinct from raw data prefix.",
@@ -56,21 +57,29 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Athena convert and cleanup."
   },
-  "stopChargesPanel": "Delete S3 data and results for ul-17.",
+  "stopChargesPanel": "Drop the Athena database and tables, delete the optional workgroup and crawler, then empty and delete the ul-17 bucket.",
   "teardown": {
     "labId": "ul-17",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$Bucket = \"workbook-gl17-$((aws sts get-caller-identity --query Account --output text))\"",
-      "$ResultsBucket = \"workbook-gl17-results-$((aws sts get-caller-identity --query Account --output text))\"",
+      "# Uses: none (resources are named workbook-ul17)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-17",
+      "$Bucket = \"workbook-ul17-$((aws sts get-caller-identity --query Account --output text))\"",
+      "# DROP ... CASCADE drops the database and every table in it. The loop waits for the query to finish before the results prefix is deleted.",
+      "$QueryId = aws athena start-query-execution --query-string 'DROP DATABASE IF EXISTS workbook_ul17 CASCADE' --result-configuration OutputLocation=s3://$Bucket/results/ --query QueryExecutionId --output text",
+      "if ($QueryId) { do { Start-Sleep -Seconds 2; $QueryState = aws athena get-query-execution --query-execution-id $QueryId --query QueryExecution.Status.State --output text } while ($QueryState -eq 'QUEUED' -or $QueryState -eq 'RUNNING'); $QueryState }",
+      "$WorkGroup = aws athena list-work-groups --query \"WorkGroups[?Name=='workbook-ul17'].Name | [0]\" --output text",
+      "if ($WorkGroup -and $WorkGroup -ne 'None') { aws athena delete-work-group --work-group $WorkGroup --recursive-delete-option }",
+      "$Crawler = aws glue list-crawlers --query \"CrawlerNames[?@=='workbook-ul17'] | [0]\" --output text",
+      "if ($Crawler -and $Crawler -ne 'None') { aws glue delete-crawler --name $Crawler }",
       "aws s3 rm s3://$Bucket --recursive",
-      "aws s3 rm s3://$ResultsBucket --recursive",
-      "aws s3api delete-bucket --bucket $Bucket",
-      "aws s3api delete-bucket --bucket $ResultsBucket"
+      "aws s3api delete-bucket --bucket $Bucket"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-17 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-17 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "The DROP DATABASE query state printed by the teardown is SUCCEEDED",
+      "aws glue get-database --name workbook_ul17 returns EntityNotFoundException",
+      "aws s3api head-bucket --bucket $Bucket returns 404"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-17 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-17. Delete only those ids. Never delete untagged resources."

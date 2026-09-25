@@ -62,6 +62,8 @@
     "labId": "ul-01",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
+      "# Uses: none (the roles are named workbook-ul01-daily and workbook-ul01-breakglass)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-01",
       "aws iam delete-role-policy --role-name workbook-ul01-daily --policy-name ul01-daily",
       "aws iam delete-role --role-name workbook-ul01-daily",
       "aws iam delete-role-policy --role-name workbook-ul01-breakglass --policy-name ul01-bg",

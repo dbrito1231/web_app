@@ -15,6 +15,7 @@
   ],
   "scenario": "Add a GSI, query it, then remove the GSI before table delete.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul13`: table `workbook-ul13`. Tag it LabId=ul-13.",
     "Base table uses on-demand billing.",
     "One GSI exists with projection ALL or KEYS_ONLY documented.",
     "Query uses GSI not Scan for lookup pattern.",
@@ -62,11 +63,14 @@
     "labId": "ul-13",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws dynamodb delete-table --table-name workbook-gl13"
+      "# Uses: none (resources are named workbook-ul13)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13",
+      "aws dynamodb delete-table --table-name workbook-ul13",
+      "aws dynamodb wait table-not-exists --table-name workbook-ul13"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-13 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws dynamodb describe-table --table-name workbook-ul13 returns ResourceNotFoundException"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-13 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13. Delete only those ids. Never delete untagged resources."

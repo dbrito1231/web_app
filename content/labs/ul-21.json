@@ -15,6 +15,7 @@
   ],
   "scenario": "Terraform Associate 8a\u20138d on HCP no-charge only; stop before connecting AWS credentials. Optional smallest ElastiCache delete if you used AWS half.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul21`: if you take the AWS path, cache cluster `workbook-ul21` and cache subnet group `workbook-ul21`. Tag each one LabId=ul-21.",
     "Terraform HCP signup uses no-charge plan only.",
     "No AWS credentials connected to HCP paid workspace.",
     "Local Terraform config documents remote backend block for HCP without applying with AWS creds.",
@@ -62,12 +63,19 @@
     "labId": "ul-21",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-gl21 -ErrorAction SilentlyContinue",
-      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-gl21 -ErrorAction SilentlyContinue"
+      "# Uses: none (resources are named workbook-ul21)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21",
+      "Remove-Item Env:TF_TOKEN_app_terraform_io -ErrorAction SilentlyContinue",
+      "# terraform logout removes the token that terraform login saved (credentials.tfrc.json)",
+      "# AWS path only (skip if you stayed on HCP): the subnet group can be deleted only after the cluster is gone",
+      "aws elasticache delete-cache-cluster --cache-cluster-id workbook-ul21 --query CacheCluster.CacheClusterStatus --output text",
+      "aws elasticache wait cache-cluster-deleted --cache-cluster-id workbook-ul21",
+      "aws elasticache delete-cache-subnet-group --cache-subnet-group-name workbook-ul21"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-21 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws elasticache describe-cache-clusters --cache-cluster-id workbook-ul21 returns CacheClusterNotFound",
+      "aws elasticache describe-cache-subnet-groups --cache-subnet-group-name workbook-ul21 returns CacheSubnetGroupNotFoundFault"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-21 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-21. Delete only those ids. Never delete untagged resources."

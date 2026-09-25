@@ -12,10 +12,11 @@
     "SAA-2.2-S03",
     "SAA-2.2-K12"
   ],
-  "scenario": "After GL-15 trail work, set 1-day retention on the GL-10 Lambda log group (or equivalent lab log group).",
+  "scenario": "After GL-15 trail work, create lab log group `/workbook/ul15` (or reuse the UL-10 Lambda log group while UL-10 is still up) and set its retention to 1 day.",
   "acceptanceCriteria": [
-    "CloudTrail portion matches GL-15 minimal trail.",
-    "CloudWatch log group for GL-10 Lambda (or named workbook lab log group) has retention set to 1 day.",
+    "Name the resources you create `workbook-ul15`: trail `workbook-ul15`, bucket `workbook-ul15-<account-id>`, log group `/workbook/ul15`, alarm `workbook-ul15` if you create one, and role `workbook-ul15-trail` if the trail sends to CloudWatch Logs. Tag each one LabId=ul-15.",
+    "CloudWatch log group `/workbook/ul15` (or the UL-10 Lambda log group) has retention set to 1 day.",
+    "CloudWatch log group `/workbook/ul15` (or the UL-10 Lambda log group) has retention set to 1 day.",
     "Retention change verified with describe-log-groups.",
     "No custom metric charges introduced.",
     "Alarm if created uses only free-tier friendly namespace.",
@@ -56,21 +57,32 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Trail plus log retention challenge."
   },
-  "stopChargesPanel": "Delete trail, bucket, adjust/delete log group for ul-15.",
+  "stopChargesPanel": "Stop and delete the trail, delete the alarm and the /workbook/ul15 log group, empty and delete the trail bucket, and delete the optional trail role for ul-15.",
   "teardown": {
     "labId": "ul-15",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws cloudtrail stop-logging --name workbook-gl15 -ErrorAction SilentlyContinue",
-      "aws cloudtrail delete-trail --name workbook-gl15 -ErrorAction SilentlyContinue",
-      "aws cloudwatch delete-alarms --alarm-names workbook-gl15",
-      "$Bucket = \"workbook-gl15-$((aws sts get-caller-identity --query Account --output text))\"",
+      "# Uses: none (resources are named workbook-ul15)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15",
+      "aws cloudtrail stop-logging --name workbook-ul15",
+      "aws cloudtrail delete-trail --name workbook-ul15",
+      "# Only if you created the alarm:",
+      "aws cloudwatch delete-alarms --alarm-names workbook-ul15",
+      "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /workbook/ul15 --query \"logGroups[?logGroupName=='/workbook/ul15'].logGroupName | [0]\" --output text",
+      "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
+      "$Bucket = \"workbook-ul15-$((aws sts get-caller-identity --query Account --output text))\"",
       "aws s3 rm s3://$Bucket --recursive",
-      "aws s3api delete-bucket --bucket $Bucket"
+      "aws s3api delete-bucket --bucket $Bucket",
+      "# Only if you created the CloudTrail-to-CloudWatch Logs role:",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul15-trail --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul15-trail --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul15-trail --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul15-trail --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul15-trail"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-15 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws cloudtrail describe-trails --trail-name-list workbook-ul15 returns an empty trailList",
+      "aws logs describe-log-groups --log-group-name-prefix /workbook/ul15 returns an empty logGroups list",
+      "aws s3api head-bucket --bucket $Bucket returns 404"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-15 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15. Delete only those ids. Never delete untagged resources."

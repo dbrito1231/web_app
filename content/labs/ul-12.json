@@ -14,6 +14,7 @@
   ],
   "scenario": "Extend Step Functions with failure, Retry, and Catch handling.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul12`: state machine `workbook-ul12`, role `workbook-ul12-sfn`, and, if you use a Lambda task, function `workbook-ul12-task` with role `workbook-ul12-lambda`. Tag each one LabId=ul-12.",
     "State machine includes intentional failure branch.",
     "Retry policy configured on task state.",
     "Catch block routes failure to cleanup Pass state.",
@@ -56,19 +57,34 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Failure branch SFN lab done."
   },
-  "stopChargesPanel": "Delete state machine and IAM role for ul-12.",
+  "stopChargesPanel": "Stop running executions, delete the state machine, its log group and any Lambda task, then the IAM roles for ul-12.",
   "teardown": {
     "labId": "ul-12",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$SmArn = $null",
-      "aws stepfunctions delete-state-machine --state-machine-arn $SmArn",
-      "aws iam delete-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log",
-      "aws iam delete-role --role-name workbook-gl12-sfn"
+      "# Uses: none (resources are named workbook-ul12)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-12",
+      "$SmArn = aws stepfunctions list-state-machines --query \"stateMachines[?name=='workbook-ul12'].stateMachineArn | [0]\" --output text",
+      "if ($SmArn -and $SmArn -ne 'None') { foreach ($ExecArn in (aws stepfunctions list-executions --state-machine-arn $SmArn --status-filter RUNNING --query \"executions[].[executionArn]\" --output text)) { if ($ExecArn) { aws stepfunctions stop-execution --execution-arn $ExecArn } } }",
+      "if ($SmArn -and $SmArn -ne 'None') { aws stepfunctions delete-state-machine --state-machine-arn $SmArn }",
+      "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/vendedlogs/states/workbook-ul12 --query \"logGroups[?logGroupName=='/aws/vendedlogs/states/workbook-ul12'].logGroupName | [0]\" --output text",
+      "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
+      "$FnName = aws lambda list-functions --query \"Functions[?FunctionName=='workbook-ul12-task'].FunctionName | [0]\" --output text",
+      "if ($FnName -and $FnName -ne 'None') { aws lambda delete-function --function-name $FnName }",
+      "$TaskLogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/lambda/workbook-ul12-task --query \"logGroups[?logGroupName=='/aws/lambda/workbook-ul12-task'].logGroupName | [0]\" --output text",
+      "if ($TaskLogGroup -and $TaskLogGroup -ne 'None') { aws logs delete-log-group --log-group-name $TaskLogGroup }",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul12-sfn --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul12-sfn --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul12-sfn --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul12-sfn --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul12-sfn",
+      "# Only if you created the Lambda task role:",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul12-lambda --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul12-lambda --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul12-lambda --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul12-lambda --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul12-lambda"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-12 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws stepfunctions list-state-machines --query \"stateMachines[?name=='workbook-ul12']\" returns []",
+      "aws iam get-role --role-name workbook-ul12-sfn returns NoSuchEntity"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-12 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-12. Delete only those ids. Never delete untagged resources."

@@ -89,6 +89,11 @@ O1–O8 and O10 were committed on 2026-09-26 (`609182f`, `37e0a95`, `b0ed883`). 
 | T5 | GL-11 s08 `"…:$AccountId:$ApiId/*/*"` is a PowerShell parse error | AWS (Needs Verification) → Lead Dev reproduced | Medium | Valid. Awaiting user approval |
 | T6 | GL-08 untagged resources and `curl` alias; GL-10 unsubscribe line; UL-18 task check | AWS amendment review | Low | Valid. Awaiting user approval |
 
+| N8 | **152 of 429 rationales refer to choices by letter ("A and B are sound…")**, and the letters don't match the key. Pass-1 rotated the keys without updating the rationales. The UI also shuffles choice order (`ExamDrillsTab.tsx` `shuffle`), so any letter reference is wrong for learners | Lead Dev script 2026-09-26 | **High** (explanations teach the wrong answer) | Valid. Q1 pilot rule: no letter references. Remaining batches fix it as they are rewritten. An interim fix for the rest needs your decision |
+| N9 | Exam tab renders all ~430 drill cards above the question; page is ~117,000 px tall in a narrow window | Lead Dev browser check | Low | Reported (FS-R2-2-001 fix scrolls to the question; layout itself unchanged) |
+
+FS-R2-2-001 and FS-R2-2-002 fixed in `740efd0`; awaiting re-review. Scanner rewrite N5 is in `bbb05de`, with 6 fixture tests.
+
 N6 is now Valid and High: the AWS reviewer confirmed with the CLI docs that AWS CLI v2 rejects unknown arguments.
 
 ## Round-2 team review results so far (2026-09-26)

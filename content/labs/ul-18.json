@@ -14,6 +14,7 @@
   ],
   "scenario": "Run Fargate task, bump CPU/memory one tier, run again, tear down.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul18`: cluster `workbook-ul18`, task definition family `workbook-ul18`, execution role `workbook-ul18-task`, log group `/ecs/workbook-ul18` and security group `workbook-ul18-sg` if you create them. Tag each one LabId=ul-18.",
     "Fargate task definition created.",
     "CPU and memory changed once to next Fargate size tier for pricing comparison.",
     "Second task run uses updated task definition revision.",
@@ -56,21 +57,34 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Fargate sizing comparison lab."
   },
-  "stopChargesPanel": "Delete ECS cluster, TD, logs for ul-18.",
+  "stopChargesPanel": "Scale services to 0 and delete them, stop running tasks, deregister task definitions, delete the cluster, log group, security group and IAM role for ul-18.",
   "teardown": {
     "labId": "ul-18",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "aws ecs delete-cluster --cluster workbook-gl18",
-      "aws iam detach-role-policy --role-name workbook-gl18-task --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
-      "aws iam delete-role --role-name workbook-gl18-task"
+      "# Uses: none (resources are named workbook-ul18)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18",
+      "# Services first (a service restarts its tasks), then any task still running",
+      "foreach ($Svc in ((aws ecs list-services --cluster workbook-ul18 --query serviceArns --output text) -split '\\s+')) { if ($Svc -and $Svc -ne 'None') { aws ecs update-service --cluster workbook-ul18 --service $Svc --desired-count 0 --query service.desiredCount --output text; aws ecs delete-service --cluster workbook-ul18 --service $Svc --force --query service.status --output text; aws ecs wait services-inactive --cluster workbook-ul18 --services $Svc } }",
+      "foreach ($TaskArn in ((aws ecs list-tasks --cluster workbook-ul18 --desired-status RUNNING --query taskArns --output text) -split '\\s+')) { if ($TaskArn -and $TaskArn -ne 'None') { aws ecs stop-task --cluster workbook-ul18 --task $TaskArn --reason ul-18-teardown --query task.lastStatus --output text; aws ecs wait tasks-stopped --cluster workbook-ul18 --tasks $TaskArn } }",
+      "foreach ($TdArn in ((aws ecs list-task-definitions --family-prefix workbook-ul18 --status ACTIVE --query taskDefinitionArns --output text) -split '\\s+')) { if ($TdArn -and $TdArn -ne 'None') { aws ecs deregister-task-definition --task-definition $TdArn --query taskDefinition.status --output text } }",
+      "aws ecs delete-cluster --cluster workbook-ul18",
+      "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /ecs/workbook-ul18 --query \"logGroups[?logGroupName=='/ecs/workbook-ul18'].logGroupName | [0]\" --output text",
+      "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
+      "$SgId = aws ec2 describe-security-groups --filters Name=group-name,Values=workbook-ul18-sg --query \"SecurityGroups[0].GroupId\" --output text",
+      "if ($SgId -and $SgId -ne 'None') { aws ec2 delete-security-group --group-id $SgId }",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul18-task --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul18-task --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul18-task --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul18-task --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul18-task"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws ecs describe-clusters --clusters workbook-ul18 --query \"clusters[?status=='ACTIVE']\" returns []",
+      "aws ecs list-task-definitions --family-prefix workbook-ul18 --status ACTIVE returns an empty taskDefinitionArns list",
+      "aws iam get-role --role-name workbook-ul18-task returns NoSuchEntity"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
-    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-18 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18. Delete only those ids. Never delete untagged resources."
+    "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-18 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-18. Delete only those ids. Never delete untagged resources. If delete-cluster returns ClusterContainsServicesException or ClusterContainsTasksException, rerun the service and task lines and wait until they finish. If the security group delete returns DependencyViolation, wait a minute for the task ENI to be released and rerun it."
   },
   "executionStatus": "unexecuted",
   "module": "A3",

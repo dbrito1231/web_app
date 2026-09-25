@@ -63,9 +63,11 @@
     "labId": "ul-20",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "cd lab-fixtures/gl-20",
-      "terraform destroy -auto-approve -var bucket_suffix=$Suffix",
-      "aws s3api head-bucket --bucket $Bucket 2>&1 | Select-String NotFound"
+      "# Uses: $Suffix, $Bucket (the values you set while building; unset ones are skipped)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20",
+      "# Run the next line from your UL-20 root module folder, not from lab-fixtures/gl-20.",
+      "if ($Suffix) { terraform destroy -auto-approve -var bucket_suffix=$Suffix }",
+      "if ($Bucket) { aws s3api head-bucket --bucket $Bucket 2>&1 | Select-String NotFound }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20 returns an empty ResourceTagMappingList in $env:AWS_REGION",

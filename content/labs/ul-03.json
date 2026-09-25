@@ -14,6 +14,7 @@
   ],
   "scenario": "Design a least-privilege reader role for one bucket, enable GuardDuty long enough to capture pricing, then disable it. Tighten policies beyond GL-03.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul03`: role `workbook-ul03-role` (inline policy `ul03-read`), bucket `workbook-ul03-<account-id>`, and trail `workbook-ul03-trail` if you enable CloudTrail. Tag each one LabId=ul-03.",
     "IAM policy on the lab role lists only the lab bucket Arn and object prefix, not `*`.",
     "Trust policy allows assume-role only for your lab IAM principal, not `*`.",
     "GuardDuty detector is enabled and you record the per-feature monthly estimate from official pricing.",
@@ -56,22 +57,31 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "GuardDuty priced and disabled; scoped IAM; full teardown."
   },
-  "stopChargesPanel": "Disable GuardDuty, delete IAM role and bucket resources tagged ul-03.",
+  "stopChargesPanel": "Delete the GuardDuty detector (only if the lab enabled it), the optional trail, the ul-03 role and its inline policy, then empty and delete the ul-03 bucket.",
   "teardown": {
     "labId": "ul-03",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
+      "# Uses: none (resources are named workbook-ul03)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-03",
       "Remove-Item Env:AWS_ACCESS_KEY_ID,Env:AWS_SECRET_ACCESS_KEY,Env:AWS_SESSION_TOKEN -ErrorAction SilentlyContinue",
-      "$Bucket = \"workbook-gl03-$((aws sts get-caller-identity --query Account --output text))\"",
-      "aws iam delete-role-policy --role-name workbook-gl03-role --policy-name gl03-read",
-      "aws iam delete-role --role-name workbook-gl03-role",
+      "# GuardDuty: skip the next two lines if GuardDuty was already on in this account before the lab. Deleting the detector disables GuardDuty in us-east-1, and its findings and settings are lost.",
+      "$DetectorId = aws guardduty list-detectors --query \"DetectorIds[0]\" --output text",
+      "if ($DetectorId -and $DetectorId -ne 'None') { aws guardduty delete-detector --detector-id $DetectorId }",
+      "$TrailArn = aws cloudtrail describe-trails --trail-name-list workbook-ul03-trail --query \"trailList[0].TrailARN\" --output text",
+      "if ($TrailArn -and $TrailArn -ne 'None') { aws cloudtrail delete-trail --name $TrailArn }",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul03-role --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul03-role --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul03-role --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul03-role --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul03-role",
+      "$Bucket = \"workbook-ul03-$((aws sts get-caller-identity --query Account --output text))\"",
       "aws s3 rm s3://$Bucket --recursive",
       "aws s3api delete-bucket --bucket $Bucket"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-03 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws iam get-role --role-name workbook-gl03-role returns NoSuchEntity",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws guardduty list-detectors returns an empty DetectorIds list (unless GuardDuty was on before the lab)",
+      "aws iam get-role --role-name workbook-ul03-role returns NoSuchEntity",
+      "aws s3api head-bucket --bucket $Bucket returns 404"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-03 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-03. Delete only those ids. Never delete untagged resources."

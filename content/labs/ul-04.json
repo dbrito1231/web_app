@@ -15,6 +15,7 @@
   ],
   "scenario": "Extend GL-04 with an explicit CMK key policy, one Secrets Manager secret, and one SSM standard parameter\u2014then delete billable extras before finishing KMS teardown.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul04`: key alias `alias/workbook-ul04`, secret `workbook-ul04-secret`, SSM parameter `workbook-ul04-param`, and bucket `workbook-ul04-<account-id>`. Tag each one LabId=ul-04.",
     "CMK key policy explicitly allows your lab principal kms:Encrypt and kms:Decrypt on that key only.",
     "Default key administrators are not left as `*`.",
     "One Secrets Manager secret stores a dummy value encrypted by the CMK; you record Secrets Manager pricing.",
@@ -57,21 +58,30 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Key policy, Secrets Manager, SSM, and KMS teardown complete."
   },
-  "stopChargesPanel": "Delete secrets, parameters, bucket, alias; leave CMK scheduled for deletion.",
+  "stopChargesPanel": "Delete the secret and parameter, empty and delete the bucket, delete the alias, then schedule the CMK for deletion (7-day window) and do not cancel it.",
   "teardown": {
     "labId": "ul-04",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$Bucket = \"workbook-gl04-$((aws sts get-caller-identity --query Account --output text))\"",
+      "# Uses: none (resources are named workbook-ul04)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04",
+      "$KeyId = aws kms describe-key --key-id alias/workbook-ul04 --query KeyMetadata.KeyId --output text",
+      "# Force delete (no recovery window) so describe-secret returns ResourceNotFound, as the criteria require. The secret holds only a dummy value.",
+      "aws secretsmanager delete-secret --secret-id workbook-ul04-secret --force-delete-without-recovery",
+      "aws ssm delete-parameter --name workbook-ul04-param",
+      "$Bucket = \"workbook-ul04-$((aws sts get-caller-identity --query Account --output text))\"",
       "aws s3 rm s3://$Bucket --recursive",
       "aws s3api delete-bucket --bucket $Bucket",
-      "aws kms delete-alias --alias-name alias/workbook-gl04",
-      "# Key remains scheduled for deletion; do not cancel"
+      "aws kms delete-alias --alias-name alias/workbook-ul04",
+      "if ($KeyId -and $KeyId -ne 'None') { aws kms schedule-key-deletion --key-id $KeyId --pending-window-in-days 7 }",
+      "# The key stays PendingDeletion for 7 days. Do not cancel the deletion."
     ],
     "verification": [
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04 returns an empty ResourceTagMappingList in $env:AWS_REGION",
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04 returns an empty ResourceTagMappingList in $env:AWS_REGION (the KMS key may still be listed while it is PendingDeletion)",
+      "aws secretsmanager describe-secret --secret-id workbook-ul04-secret returns ResourceNotFoundException",
+      "aws ssm get-parameter --name workbook-ul04-param returns ParameterNotFound",
       "aws s3api head-bucket --bucket $Bucket returns 404",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-04 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws kms describe-key --key-id $KeyId --query KeyMetadata.KeyState returns PendingDeletion"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-04 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-04. Delete only those ids. Never delete untagged resources."

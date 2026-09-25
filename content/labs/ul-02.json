@@ -62,6 +62,8 @@
     "labId": "ul-02",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
+      "# Uses: none ($Bucket is rebuilt below; if you reused your GL-02 bucket, set $Bucket to that name instead)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-02",
       "$Bucket = \"workbook-ul02-$((aws sts get-caller-identity --query Account --output text))\"",
       "aws macie2 update-macie-session --status PAUSED",
       "aws s3api delete-bucket-policy --bucket $Bucket",

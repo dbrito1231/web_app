@@ -14,6 +14,7 @@
   ],
   "scenario": "Add an authorized /admin route that returns 403 without credentials.",
   "acceptanceCriteria": [
+    "Name the resources you create `workbook-ul11`: HTTP API `workbook-ul11`, function `workbook-ul11`, role `workbook-ul11-lambda`, plus `workbook-ul11-auth` for a Lambda authorizer or user pool `workbook-ul11` for a Cognito JWT issuer if you use one. Tag each one LabId=ul-11.",
     "HTTP API has public route GET /hello unchanged from guided pattern.",
     "Second route GET /admin requires JWT or IAM authorization.",
     "Unauthorized call to /admin returns HTTP 403.",
@@ -56,21 +57,34 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Authorized route challenge complete."
   },
-  "stopChargesPanel": "Delete authorizer, API, Lambda for ul-11.",
+  "stopChargesPanel": "Delete the API (with its authorizer and routes), the Lambda functions and log groups, any Cognito user pool, and the IAM role for ul-11.",
   "teardown": {
     "labId": "ul-11",
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
-      "$ApiId = $null",
-      "aws apigatewayv2 delete-api --api-id $ApiId",
-      "aws lambda delete-function --function-name workbook-gl11",
-      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-gl11",
-      "aws iam detach-role-policy --role-name workbook-gl11-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
-      "aws iam delete-role --role-name workbook-gl11-lambda"
+      "# Uses: none (resources are named workbook-ul11)",
+      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11",
+      "# delete-api removes the API's authorizers, routes, integrations and stages together",
+      "$ApiId = aws apigatewayv2 get-apis --query \"Items[?Name=='workbook-ul11'].ApiId | [0]\" --output text",
+      "if ($ApiId -and $ApiId -ne 'None') { aws apigatewayv2 delete-api --api-id $ApiId }",
+      "aws lambda delete-function --function-name workbook-ul11",
+      "aws logs delete-log-group --log-group-name /aws/lambda/workbook-ul11",
+      "$FnName = aws lambda list-functions --query \"Functions[?FunctionName=='workbook-ul11-auth'].FunctionName | [0]\" --output text",
+      "if ($FnName -and $FnName -ne 'None') { aws lambda delete-function --function-name $FnName }",
+      "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/lambda/workbook-ul11-auth --query \"logGroups[?logGroupName=='/aws/lambda/workbook-ul11-auth'].logGroupName | [0]\" --output text",
+      "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
+      "# Cognito: if you added a user pool domain, delete it first (aws cognito-idp delete-user-pool-domain)",
+      "$PoolId = aws cognito-idp list-user-pools --max-results 60 --query \"UserPools[?Name=='workbook-ul11'].Id | [0]\" --output text",
+      "if ($PoolId -and $PoolId -ne 'None') { aws cognito-idp delete-user-pool --user-pool-id $PoolId }",
+      "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul11-lambda --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul11-lambda --policy-arn $P } }",
+      "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul11-lambda --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul11-lambda --policy-name $P } }",
+      "aws iam delete-role --role-name workbook-ul11-lambda"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-11 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws apigatewayv2 get-apis --query \"Items[?Name=='workbook-ul11']\" returns []",
+      "aws lambda get-function --function-name workbook-ul11 returns ResourceNotFoundException",
+      "aws iam get-role --role-name workbook-ul11-lambda returns NoSuchEntity"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-11 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11. Delete only those ids. Never delete untagged resources."
