@@ -119,7 +119,7 @@ export function LabCard({
   };
 
   return (
-    <article className={`lab-card ${open ? 'is-open' : ''}`} style={domainStyle}>
+    <article id={`lab-card-${lab.id}`} className={`lab-card ${open ? 'is-open' : ''}`} style={domainStyle}>
       <header
         className="lab-card-head"
         onClick={() => setOpen((v) => !v)}
@@ -132,7 +132,7 @@ export function LabCard({
         role="button"
         tabIndex={0}
         aria-expanded={open}
-        aria-label={`${chip}. ${lab.title}`}
+        aria-label={`${chip} details`}
       >
         <span className="lab-id-chip">{chip}</span>
         <span>

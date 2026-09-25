@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CURRICULUM, DOMAIN_STYLE } from '../data/curriculum';
 import type { ContentSummary, Lab, ProgressSnapshot } from '../types';
 import { computeHeaderStats, labStepProgress } from '../utils/progress';
@@ -25,7 +25,8 @@ export function LabsTab({
   const available = useMemo(() => new Set(summary.labs), [summary.labs]);
   const stats = computeHeaderStats(labsById, progress);
 
-  const [mainQuery, setMainQuery] = useState('');
+  const linkedLab = new URLSearchParams(window.location.search).get('lab') ?? '';
+  const [mainQuery, setMainQuery] = useState(linkedLab);
   const [difficulty, setDifficulty] = useState<DifficultyFilter>('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('');
   const [selectedModId, setSelectedModId] = useState<string | null>(null);
@@ -91,6 +92,7 @@ export function LabsTab({
             if (statusFilter && st !== statusFilter) return false;
             if (!q) return true;
             return (
+              ref.id.toLowerCase().includes(q) ||
               ref.title.toLowerCase().includes(q) ||
               ref.chip.toLowerCase().includes(q) ||
               lab.title.toLowerCase().includes(q)
@@ -112,6 +114,11 @@ export function LabsTab({
   ]);
 
   const shown = sections.reduce((n, s) => n + s.labs.length, 0);
+
+  useEffect(() => {
+    if (!linkedLab || !labsById.has(linkedLab)) return;
+    document.getElementById(`lab-card-${linkedLab}`)?.scrollIntoView({ block: 'start' });
+  }, [linkedLab, labsById]);
 
   return (
     <div className="shell shell-tab">
@@ -241,6 +248,7 @@ export function LabsTab({
                     lab={lab}
                     chip={ref.chip}
                     domainStyle={DOMAIN_STYLE[mod.color]}
+                    defaultOpen={ref.id === linkedLab}
                     progress={progress}
                     onProgressChange={onProgressChange}
                   />

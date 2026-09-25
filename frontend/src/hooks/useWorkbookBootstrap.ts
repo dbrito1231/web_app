@@ -7,7 +7,7 @@ import type {
   ProgressSnapshot,
   ReadinessPayload,
 } from '../types';
-import { computeHeaderStats } from '../utils/progress';
+import { computeHeaderStatsFromIndex } from '../utils/progress';
 
 const emptyProgress: ProgressSnapshot = {
   attemptCounts: { total: 0, examFirstAttempts: 0 },
@@ -96,21 +96,21 @@ export function useWorkbookBootstrap() {
     } finally {
       setLoading(false);
     }
-  }, [reloadLabs]);
+  }, []);
 
   useEffect(() => {
     void bootstrap();
   }, [bootstrap]);
 
   useEffect(() => {
-    setHeaderStats(computeHeaderStats(labsById, progress));
-  }, [labsById, progress]);
+    if (!summary?.labIndex) return;
+    setHeaderStats(computeHeaderStatsFromIndex(summary.labIndex, progress));
+  }, [summary, progress]);
 
   const onProgressChange = useCallback(async () => {
-    const snap = await refreshProgress();
+    await refreshProgress();
     setReadiness(await api.readiness());
-    setHeaderStats(computeHeaderStats(labsById, snap));
-  }, [labsById, refreshProgress]);
+  }, [refreshProgress]);
 
   return {
     loading,

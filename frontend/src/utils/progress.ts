@@ -1,4 +1,4 @@
-import type { HeaderStats, Lab, LabStep, ProgressSnapshot } from '../types';
+import type { HeaderStats, Lab, LabIndexRow, LabStep, ProgressSnapshot } from '../types';
 
 export function checkpointMap(progress: ProgressSnapshot): Map<string, string> {
   const map = new Map<string, string>();
@@ -33,6 +33,33 @@ export function labStepProgress(
   if (total > 0 && completed >= total) status = 'complete';
   else if (completed > 0) status = 'in-progress';
   return { completed, total, status };
+}
+
+export function computeHeaderStatsFromIndex(
+  labs: LabIndexRow[],
+  progress: ProgressSnapshot,
+): HeaderStats {
+  const map = checkpointMap(progress);
+  let stepsCompleted = 0;
+  let stepsTotal = 0;
+  let labsCompleted = 0;
+  for (const lab of labs) {
+    const completed = lab.stepIds.filter(
+      (stepId) => map.get(`${lab.id}:${stepId}`) === 'self-reported',
+    ).length;
+    stepsCompleted += completed;
+    stepsTotal += lab.stepIds.length;
+    if (lab.stepIds.length > 0 && completed >= lab.stepIds.length) labsCompleted += 1;
+  }
+  const progressPercent =
+    stepsTotal > 0 ? Math.round((stepsCompleted / stepsTotal) * 100) : 0;
+  return {
+    progressPercent,
+    stepsCompleted,
+    stepsTotal,
+    labsCompleted,
+    labsTotal: labs.length,
+  };
 }
 
 export function computeHeaderStats(

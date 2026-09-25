@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../api/client';
-import type { Lesson, ReadinessPayload } from '../types';
+import type { ExerciseIndexRow, LabIndexRow, Lesson, ReadinessPayload } from '../types';
 import { MarkdownBody } from '../utils/markdown';
 
 interface StartHereTabProps {
@@ -8,11 +8,61 @@ interface StartHereTabProps {
   onReload: () => void;
 }
 
+function RelatedPractice({
+  objectiveIds,
+  labs,
+  exercises,
+}: {
+  objectiveIds: string[];
+  labs: LabIndexRow[];
+  exercises: ExerciseIndexRow[];
+}) {
+  const objectives = new Set(objectiveIds);
+  const relatedLabs = labs.filter((lab) => lab.objectiveIds.some((id) => objectives.has(id)));
+  const relatedExercises = exercises.filter((item) =>
+    item.objectiveIds.some((id) => objectives.has(id)),
+  );
+  if (relatedLabs.length === 0 && relatedExercises.length === 0) return null;
+  return (
+    <>
+      {relatedLabs.length > 0 && (
+        <>
+          <h3>Labs for this lesson</h3>
+          <ul>
+            {relatedLabs.map((lab) => (
+              <li key={lab.id}>
+                <a href={`/labs?lab=${encodeURIComponent(lab.id)}`}>{lab.title}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+      {relatedExercises.length > 0 && (
+        <>
+          <h3>Design exercises for this lesson</h3>
+          <ul>
+            {relatedExercises.map((item) => (
+              <li key={item.id}>
+                <strong>{item.title}</strong>
+                {item.scenario ? <p>{item.scenario}</p> : null}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </>
+  );
+}
+
 export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
   const [lessonIndex, setLessonIndex] = useState<Array<{ id: string; title: string }>>([
     { id: 'a0-lab-safety', title: 'A0 — Lab safety' },
   ]);
-  const [lessonId, setLessonId] = useState('a0-lab-safety');
+  const [labIndex, setLabIndex] = useState<LabIndexRow[]>([]);
+  const [exerciseIndex, setExerciseIndex] = useState<ExerciseIndexRow[]>([]);
+  const [lessonId, setLessonId] = useState(
+    () => new URLSearchParams(window.location.search).get('lesson') || 'a0-lab-safety',
+  );
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [importText, setImportText] = useState('');
@@ -33,6 +83,8 @@ export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
           else if (summary.lessons.length) {
             setLessonIndex(summary.lessons.map((id) => ({ id, title: id })));
           }
+          setLabIndex(summary.labIndex ?? []);
+          setExerciseIndex(summary.exerciseIndex ?? []);
         }
       } catch (e) {
         if (!cancelled) {
@@ -226,6 +278,13 @@ export function StartHereTab({ readiness, onReload }: StartHereTabProps) {
                 ))}
               </ul>
             </>
+          )}
+          {lesson && (
+            <RelatedPractice
+              objectiveIds={lesson.objectiveIds ?? []}
+              labs={labIndex}
+              exercises={exerciseIndex}
+            />
           )}
           {!lesson && !error && <p>Loading lesson…</p>}
         </div>

@@ -81,11 +81,34 @@ export interface ProgressSnapshot {
   bestByQuestion?: Record<string, number>;
 }
 
+export interface LessonIndexRow {
+  id: string;
+  title: string;
+  drillIds?: string[];
+  objectiveIds?: string[];
+}
+
+export interface LabIndexRow {
+  id: string;
+  title: string;
+  objectiveIds: string[];
+  stepIds: string[];
+}
+
+export interface ExerciseIndexRow {
+  id: string;
+  title: string;
+  objectiveIds: string[];
+  scenario: string;
+}
+
 export interface ContentSummary {
   lessons: string[];
-  lessonIndex?: Array<{ id: string; title: string }>;
+  lessonIndex?: LessonIndexRow[];
   questions: string[];
   labs: string[];
+  labIndex?: LabIndexRow[];
+  exerciseIndex?: ExerciseIndexRow[];
 }
 
 export interface QuestionCatalogRow {
@@ -134,6 +157,7 @@ export interface Lesson {
   bodyMarkdown?: string;
   drillIds?: string[];
   labIds?: string[];
+  objectiveIds?: string[];
 }
 
 export interface HeaderStats {

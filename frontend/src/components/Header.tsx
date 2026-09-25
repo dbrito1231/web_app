@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from 'react';
 import type { HeaderStats, TabId } from '../types';
 
 const TABS: { id: TabId; label: string; view: string }[] = [
@@ -14,6 +15,19 @@ interface HeaderProps {
 }
 
 export function Header({ activeTab, onTabChange, stats }: HeaderProps) {
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next = index;
+    if (event.key === 'ArrowRight') next = (index + 1) % TABS.length;
+    else if (event.key === 'ArrowLeft') next = (index - 1 + TABS.length) % TABS.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = TABS.length - 1;
+    else return;
+    event.preventDefault();
+    const id = TABS[next].id;
+    onTabChange(id);
+    document.getElementById(`tab-${id}`)?.focus();
+  };
+
   return (
     <header className="top">
       <a href="#main" className="skip-link">
@@ -25,7 +39,7 @@ export function Header({ activeTab, onTabChange, stats }: HeaderProps) {
           <span className="code">SAA-C03 + 004</span>
         </div>
         <nav className="tabs" role="tablist" aria-label="Views">
-          {TABS.map((tab) => (
+          {TABS.map((tab, index) => (
             <button
               key={tab.id}
               type="button"
@@ -34,7 +48,9 @@ export function Header({ activeTab, onTabChange, stats }: HeaderProps) {
               data-view={tab.view}
               aria-selected={activeTab === tab.id}
               aria-controls="main"
+              tabIndex={activeTab === tab.id ? 0 : -1}
               onClick={() => onTabChange(tab.id)}
+              onKeyDown={(event) => onTabKeyDown(event, index)}
             >
               {tab.label}
             </button>

@@ -13,6 +13,16 @@ interface ExamDrillsTabProps {
   summary: ContentSummary;
 }
 
+function StudyLink({ questionId, summary }: { questionId: string; summary: ContentSummary }) {
+  const lesson = summary.lessonIndex?.find((row) => row.drillIds?.includes(questionId));
+  if (!lesson) return null;
+  return (
+    <p>
+      <a href={`/start?lesson=${encodeURIComponent(lesson.id)}`}>Study: {lesson.title}</a>
+    </p>
+  );
+}
+
 interface QuestionMeta {
   id: string;
   module: string;
@@ -31,6 +41,8 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
   const [bestScores, setBestScores] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [unknownQueryId, setUnknownQueryId] = useState<string | null>(null);
+  const [openedFromQuery, setOpenedFromQuery] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -50,10 +62,15 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
         setCatalog(rows);
         if (progress.bestByQuestion) setBestScores(progress.bestByQuestion);
         const requested = new URLSearchParams(window.location.search).get('q');
-        const pick = rows.find((row) => row.id === requested);
+        if (requested) setOpenedFromQuery(true);
+        const pick = requested ? rows.find((row) => row.id === requested) : undefined;
         if (pick) {
+          setUnknownQueryId(null);
           setActiveModule(null);
           setActiveQuestionId(pick.id);
+        } else if (requested) {
+          setUnknownQueryId(requested);
+          setActiveQuestionId(null);
         } else if (rows[0]) {
           setActiveQuestionId(rows[0].id);
         }
@@ -70,6 +87,10 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
   );
 
   useEffect(() => {
+    if (unknownQueryId) {
+      setQuestion(null);
+      return;
+    }
     if (!list.length) {
       setQuestion(null);
       return;
@@ -77,7 +98,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
     if (!list.some((q) => q.id === activeQuestionId)) {
       setActiveQuestionId(list[0].id);
     }
-  }, [list, activeQuestionId]);
+  }, [list, activeQuestionId, unknownQueryId]);
 
   useEffect(() => {
     if (!activeQuestionId) return;
@@ -195,6 +216,17 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
           Exam-style MC and MR drills. Answers are scored when you press Check answers.
         </div>
 
+        {openedFromQuery && (
+          <p>
+            <a href="/start">Back to Start here</a>
+          </p>
+        )}
+        {unknownQueryId && (
+          <p className="inline-error" role="alert">
+            No drill matches “{unknownQueryId}”.
+          </p>
+        )}
+
         {list.length === 0 && (
           <div className="empty">No questions published for this filter yet.</div>
         )}
@@ -211,7 +243,10 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                     type="button"
                     className={`pbq-card ${q.id === activeQuestionId ? 'sel' : ''}`}
                     style={DOMAIN_STYLE[color]}
-                    onClick={() => setActiveQuestionId(q.id)}
+                    onClick={() => {
+                      setUnknownQueryId(null);
+                      setActiveQuestionId(q.id);
+                    }}
                   >
                     <span className="eyebrow" style={{ color: 'var(--dc)' }}>
                       {q.module} · {q.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
@@ -257,6 +292,7 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                   Module {question.module ?? 'A0'} ·{' '}
                   {question.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
                 </div>
+                <StudyLink questionId={question.id} summary={summary} />
                 <h2>{question.id}</h2>
                 <div className="prompt">
                   {question.stem}

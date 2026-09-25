@@ -77,6 +77,14 @@ function renderTextBlock(text: string, keyPrefix: string): ReactElement[] {
       return;
     }
     flushList(i);
+    if (trimmed.startsWith('#### ')) {
+      out.push(<h5 key={`${keyPrefix}-h4-${i}`}>{inlineFormat(trimmed.slice(5))}</h5>);
+      return;
+    }
+    if (trimmed.startsWith('### ')) {
+      out.push(<h4 key={`${keyPrefix}-h3-${i}`}>{inlineFormat(trimmed.slice(4))}</h4>);
+      return;
+    }
     if (trimmed.startsWith('## ')) {
       out.push(
         <h3 key={`${keyPrefix}-h-${i}`}>{trimmed.slice(3)}</h3>,

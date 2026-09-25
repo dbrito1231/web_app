@@ -199,6 +199,8 @@ table.cov td:first-child{width:44%;color:var(--ink)}
 .prose{max-width:76ch}
 .prose h2{font-size:23px;margin:26px 0 8px}
 .prose h3{font-size:16px;margin:20px 0 6px}
+.markdown-body h4{font-size:15px;margin:16px 0 4px}
+.markdown-body h5{font-size:14px;margin:12px 0 4px}
 .prose p,.prose li{margin:6px 0}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin:14px 0 20px}
 .facts div{background:var(--panel);padding:10px 14px}
@@ -296,4 +298,13 @@ textarea.io{width:100%;min-height:120px;font-family:var(--f-mono);font-size:12px
   .shell-tab{grid-template-columns:1fr}
   .lab-card-body,.labbody{padding:4px 14px 16px}
   .lab-card-head{grid-template-columns:56px minmax(0,1fr)}
+}
+@media (max-width:480px){
+  .pbq-grid{grid-template-columns:1fr}
+  .top-in{padding:10px 12px;gap:10px}
+  .tabs{flex-wrap:wrap}
+  .choice-row{min-width:0}
+  .choice-row span{min-width:0}
+  .main{padding:14px 12px 48px}
+  .pbq h2{overflow-wrap:anywhere}
 }
