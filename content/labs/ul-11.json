@@ -23,11 +23,11 @@
     "LabId=ul-11 tags on API and function.",
     "No API keys committed to git.",
     "CORS not wide open to * unless justified in notes.",
-    "Teardown deletes authorizer before routes.",
+    "Teardown deletes the API (this removes its authorizer, routes, integrations and stages).",
     "Teardown deletes API and Lambda.",
     "CloudWatch log group removed.",
     "Two routes documented in your notes.",
-    "403 reproduced with curl without token.",
+    "403 reproduced with curl.exe without token.",
     "200 reproduced with valid token.",
     "Tag search LabId=ul-11 empty."
   ],
@@ -38,7 +38,7 @@
     },
     {
       "level": 2,
-      "text": "Test with curl -H Authorization."
+      "text": "Test with curl.exe -H Authorization."
     },
     {
       "level": 3,
@@ -63,18 +63,18 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: none (resources are named workbook-ul11)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11",
+      "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-11",
       "# delete-api removes the API's authorizers, routes, integrations and stages together",
-      "$ApiId = aws apigatewayv2 get-apis --query \"Items[?Name=='workbook-ul11'].ApiId | [0]\" --output text",
+      "$ApiId = (aws apigatewayv2 get-apis --query \"Items[?Name=='workbook-ul11']\" --output json | ConvertFrom-Json).ApiId",
       "if ($ApiId -and $ApiId -ne 'None') { aws apigatewayv2 delete-api --api-id $ApiId }",
       "aws lambda delete-function --function-name workbook-ul11",
       "aws logs delete-log-group --log-group-name /aws/lambda/workbook-ul11",
-      "$FnName = aws lambda list-functions --query \"Functions[?FunctionName=='workbook-ul11-auth'].FunctionName | [0]\" --output text",
+      "$FnName = aws lambda get-function --function-name workbook-ul11-auth --query Configuration.FunctionName --output text",
       "if ($FnName -and $FnName -ne 'None') { aws lambda delete-function --function-name $FnName }",
       "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/lambda/workbook-ul11-auth --query \"logGroups[?logGroupName=='/aws/lambda/workbook-ul11-auth'].logGroupName | [0]\" --output text",
       "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
       "# Cognito: if you added a user pool domain, delete it first (aws cognito-idp delete-user-pool-domain)",
-      "$PoolId = aws cognito-idp list-user-pools --max-results 60 --query \"UserPools[?Name=='workbook-ul11'].Id | [0]\" --output text",
+      "$PoolId = (aws cognito-idp list-user-pools --max-results 60 --query \"UserPools[?Name=='workbook-ul11']\" --output json | ConvertFrom-Json).Id",
       "if ($PoolId -and $PoolId -ne 'None') { aws cognito-idp delete-user-pool --user-pool-id $PoolId }",
       "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul11-lambda --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul11-lambda --policy-arn $P } }",
       "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul11-lambda --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul11-lambda --policy-name $P } }",

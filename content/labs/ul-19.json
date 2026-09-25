@@ -14,7 +14,7 @@
   ],
   "scenario": "Add Fargate profile or one node group to EKS, then remove before cluster delete.",
   "acceptanceCriteria": [
-    "Name the resources you create `workbook-ul19`: cluster `workbook-ul19` in the default VPC (as in GL-19), role `workbook-ul19-eks`, and either node group `workbook-ul19-ng` with role `workbook-ul19-node` or Fargate profile `workbook-ul19-fp` with role `workbook-ul19-fargate`. Fargate profiles accept only private subnets, so in the default VPC use the node group path. Tag each one LabId=ul-19.",
+    "Name the resources you create `workbook-ul19`: cluster `workbook-ul19` in the default VPC (as in GL-19), role `workbook-ul19-eks`, and either node group `workbook-ul19-ng` with role `workbook-ul19-node` or Fargate profile `workbook-ul19-fp` with role `workbook-ul19-fargate`. Tag each one LabId=ul-19.",
     "EKS cluster created.",
     "Either Fargate profile OR one managed node group added briefly.",
     "kubectl get nodes shows Ready once if node path chosen.",
@@ -22,7 +22,6 @@
     "Node group scaled to zero or Fargate profile removed before cluster delete.",
     "Cluster delete initiated same session.",
     "Cost-risk logged.",
-    "LabId=ul-19 tags.",
     "No extended support tier selected.",
     "IAM roles cleaned after cluster delete.",
     "Security groups from EKS removed.",
@@ -34,14 +33,18 @@
   "hints": [
     {
       "level": 1,
-      "text": "Delete node group before cluster."
+      "text": "Fargate profiles need private subnets; the default VPC (like GL-19) has only public ones, so most learners pick the node group path."
     },
     {
       "level": 2,
-      "text": "Fargate profile delete can take minutes."
+      "text": "Delete node group before cluster."
     },
     {
       "level": 3,
+      "text": "Fargate profile delete can take minutes."
+    },
+    {
+      "level": 4,
       "text": "Control plane bills until cluster gone."
     }
   ],
@@ -63,7 +66,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: none (resources are named workbook-ul19)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-19",
+      "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-19",
       "# Node groups and Fargate profiles must be gone before delete-cluster. Each delete waits (node groups can take 10+ minutes).",
       "foreach ($Ng in ((aws eks list-nodegroups --cluster-name workbook-ul19 --query nodegroups --output text) -split '\\s+')) { if ($Ng -and $Ng -ne 'None') { aws eks delete-nodegroup --cluster-name workbook-ul19 --nodegroup-name $Ng --query nodegroup.status --output text; aws eks wait nodegroup-deleted --cluster-name workbook-ul19 --nodegroup-name $Ng } }",
       "foreach ($Fp in ((aws eks list-fargate-profiles --cluster-name workbook-ul19 --query fargateProfileNames --output text) -split '\\s+')) { if ($Fp -and $Fp -ne 'None') { aws eks delete-fargate-profile --cluster-name workbook-ul19 --fargate-profile-name $Fp --query fargateProfile.status --output text; aws eks wait fargate-profile-deleted --cluster-name workbook-ul19 --fargate-profile-name $Fp } }",
@@ -72,7 +75,18 @@
       "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/eks/workbook-ul19/cluster --query \"logGroups[?logGroupName=='/aws/eks/workbook-ul19/cluster'].logGroupName | [0]\" --output text",
       "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
       "# IAM roles after the cluster is gone; roles you did not create are skipped",
-      "foreach ($R in 'workbook-ul19-node','workbook-ul19-fargate','workbook-ul19-eks') { $Found = aws iam list-roles --query \"Roles[?RoleName=='$R'].RoleName | [0]\" --output text; if ($Found -and $Found -ne 'None') { foreach ($P in (aws iam list-attached-role-policies --role-name $R --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name $R --policy-arn $P } }; foreach ($P in ((aws iam list-role-policies --role-name $R --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name $R --policy-name $P } }; aws iam delete-role --role-name $R } }"
+      "$EksRole = aws iam list-roles --query \"Roles[?RoleName=='workbook-ul19-eks'].RoleName | [0]\" --output text",
+      "if ($EksRole -and $EksRole -ne 'None') { foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul19-eks --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul19-eks --policy-arn $P } } }",
+      "if ($EksRole -and $EksRole -ne 'None') { foreach ($P in ((aws iam list-role-policies --role-name workbook-ul19-eks --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul19-eks --policy-name $P } } }",
+      "if ($EksRole -and $EksRole -ne 'None') { aws iam delete-role --role-name workbook-ul19-eks }",
+      "$NodeRole = aws iam list-roles --query \"Roles[?RoleName=='workbook-ul19-node'].RoleName | [0]\" --output text",
+      "if ($NodeRole -and $NodeRole -ne 'None') { foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul19-node --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul19-node --policy-arn $P } } }",
+      "if ($NodeRole -and $NodeRole -ne 'None') { foreach ($P in ((aws iam list-role-policies --role-name workbook-ul19-node --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul19-node --policy-name $P } } }",
+      "if ($NodeRole -and $NodeRole -ne 'None') { aws iam delete-role --role-name workbook-ul19-node }",
+      "$FargateRole = aws iam list-roles --query \"Roles[?RoleName=='workbook-ul19-fargate'].RoleName | [0]\" --output text",
+      "if ($FargateRole -and $FargateRole -ne 'None') { foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul19-fargate --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul19-fargate --policy-arn $P } } }",
+      "if ($FargateRole -and $FargateRole -ne 'None') { foreach ($P in ((aws iam list-role-policies --role-name workbook-ul19-fargate --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul19-fargate --policy-name $P } } }",
+      "if ($FargateRole -and $FargateRole -ne 'None') { aws iam delete-role --role-name workbook-ul19-fargate }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-19 returns an empty ResourceTagMappingList in $env:AWS_REGION",

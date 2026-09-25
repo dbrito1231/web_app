@@ -66,12 +66,12 @@
       "# Uses: $Suffix, $Bucket (the values you set while building; unset ones are skipped)",
       "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20",
       "# Run the next line from your UL-20 root module folder, not from lab-fixtures/gl-20.",
-      "if ($Suffix) { terraform destroy -auto-approve -var bucket_suffix=$Suffix }",
-      "if ($Bucket) { aws s3api head-bucket --bucket $Bucket 2>&1 | Select-String NotFound }"
+      "if ($Suffix) { terraform destroy -auto-approve -var bucket_suffix=$Suffix }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20 returns an empty ResourceTagMappingList in $env:AWS_REGION",
-      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20 returns an empty ResourceTagMappingList in $env:AWS_REGION"
+      "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-20 returns an empty ResourceTagMappingList in $env:AWS_REGION (only relevant if you imported the GL-20 bucket into this lab's state)",
+      "aws s3api head-bucket --bucket $Bucket returns 404 (only set if you created or imported a bucket for this lab)"
     ],
     "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=ul-20 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-20. Delete only those ids. Never delete untagged resources."

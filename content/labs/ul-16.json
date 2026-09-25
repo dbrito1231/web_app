@@ -65,9 +65,16 @@
       "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16",
       "# Set $VpcId only if you created a VPC for this lab. Never delete the default VPC.",
       "if ($ZoneId) { $Rrs = aws route53 list-resource-record-sets --hosted-zone-id $ZoneId --query \"ResourceRecordSets[?Type != 'SOA' && Type != 'NS']\" --output json | Out-String | ConvertFrom-Json }",
-      "if ($ZoneId -and $Rrs) { $Changes = @($Rrs | ForEach-Object { @{ Action = 'DELETE'; ResourceRecordSet = $_ } }); @{ Changes = $Changes } | ConvertTo-Json -Depth 10 | Set-Content -Encoding Ascii ul16-records-delete.json; $ChangeId = aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://ul16-records-delete.json --query ChangeInfo.Id --output text; aws route53 wait resource-record-sets-changed --id $ChangeId }",
+      "# Build one DELETE entry per record",
+      "if ($ZoneId -and $Rrs) { $Changes = @($Rrs | ForEach-Object { @{ Action = 'DELETE'; ResourceRecordSet = $_ } }) }",
+      "# Write the change batch and submit it",
+      "if ($ZoneId -and $Rrs) { @{ Changes = $Changes } | ConvertTo-Json -Depth 10 | Set-Content -Encoding Ascii ul16-records-delete.json; $ChangeId = aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://ul16-records-delete.json --query ChangeInfo.Id --output text }",
+      "if ($ZoneId -and $Rrs) { aws route53 wait resource-record-sets-changed --id $ChangeId }",
       "if ($ZoneId) { aws route53 delete-hosted-zone --id $ZoneId }",
-      "if ($VpcId) { aws ec2 delete-vpc --vpc-id $VpcId }"
+      "# Delete any subnets and security groups you added to $VpcId before delete-vpc",
+      "if ($VpcId) { $IsDefault = aws ec2 describe-vpcs --vpc-ids $VpcId --query \"Vpcs[0].IsDefault\" --output text }",
+      "$NotDefaultVpc = ($IsDefault -eq 'False')",
+      "if ($VpcId -and $NotDefaultVpc) { aws ec2 delete-vpc --vpc-id $VpcId }"
     ],
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-16 returns an empty ResourceTagMappingList in $env:AWS_REGION",

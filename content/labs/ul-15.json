@@ -16,13 +16,12 @@
   "acceptanceCriteria": [
     "Name the resources you create `workbook-ul15`: trail `workbook-ul15`, bucket `workbook-ul15-<account-id>`, log group `/workbook/ul15`, alarm `workbook-ul15` if you create one, and role `workbook-ul15-trail` if the trail sends to CloudWatch Logs. Tag each one LabId=ul-15.",
     "CloudWatch log group `/workbook/ul15` (or the UL-10 Lambda log group) has retention set to 1 day.",
-    "CloudWatch log group `/workbook/ul15` (or the UL-10 Lambda log group) has retention set to 1 day.",
+    "Trail `workbook-ul15` logs management events to the ul-15 bucket.",
     "Retention change verified with describe-log-groups.",
     "No custom metric charges introduced.",
     "Alarm if created uses only free-tier friendly namespace.",
     "Trail logging stopped before delete.",
     "S3 bucket emptied for trail.",
-    "LabId=ul-15 tags.",
     "IAM roles for trail least privilege.",
     "No CloudWatch Logs data ingestion charges beyond brief test.",
     "Teardown deletes trail then bucket.",
@@ -63,7 +62,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: none (resources are named workbook-ul15)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15",
+      "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-15",
       "aws cloudtrail stop-logging --name workbook-ul15",
       "aws cloudtrail delete-trail --name workbook-ul15",
       "# Only if you created the alarm:",

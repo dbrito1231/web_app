@@ -22,7 +22,6 @@
     "At least three items indexed on GSI partition key.",
     "After query proof, GSI is deleted via UpdateTable.",
     "Table still operable on base key after GSI removal.",
-    "LabId=ul-13 tags present.",
     "No provisioned capacity mode used.",
     "Teardown deletes table (removes GSI automatically).",
     "describe-table shows no GSIs after update.",
@@ -64,7 +63,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "# Uses: none (resources are named workbook-ul13)",
-      "# Lost an ID? aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13",
+      "# Lost track? List what is left: aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=ul-13",
       "aws dynamodb delete-table --table-name workbook-ul13",
       "aws dynamodb wait table-not-exists --table-name workbook-ul13"
     ],
