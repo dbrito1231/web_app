@@ -286,6 +286,45 @@ Both confirm that N1–N3 are real and approve the N1, N2a, N2c and N3 fixes. Bo
 
 The Teacher re-validates the finished lab changes (AGENTS.md "after implementation").
 
+## Amendment 2 (2026-09-26): round-3 fixes, lessons first, wrong-letter interim fix
+
+**Your decisions (2026-09-26):**
+1. Fix every Medium and Low item logged in round 3 (register section "Round 3 results"). The edits are made by subagents running **Sonnet 5**, with Lead Dev orchestrating.
+2. The question rewrite continues **lesson first, then questions**, for each exam task (L1).
+3. **Interim fix** for the 133 wrong-letter rationales outside the pilot (N8): replace each letter reference with the text of the choice it means, or delete the letter sentence. Change nothing else.
+4. The **pilot method is approved with fixes**: k04-mr, s02-mr and s06-mr are fixed and the Teacher's new rules are added. Subagents run Sonnet 5.
+
+**Content-impact check.** The item-level fixes come directly from the Teacher and AWS round-3 reports, which serve as their pre-validation. The lesson 1.1 rewrite follows the concept list in the Teacher's draft CR T1 (`reports/fix-loop-r2/q1-pilot/TEACHER.md`). Every content batch gets a Teacher re-validation after implementation.
+
+**Rules added for every remaining question batch** (from the Teacher's pilot review):
+- No wrong-answer type reused in more than about 15% of a batch.
+- No choices that describe features that don't exist, and no retired services as distractors.
+- No choice that refers to another choice.
+- No stem that describes the key as already done.
+- The task's lesson is rewritten and Teacher-approved before its questions.
+- Every question the lesson covers is listed in its `drillIds`, including MR variants.
+
+**Implementation batches.** Each batch is a Sonnet 5 subagent with its own set of files:
+
+| Batch | Files | Items |
+|---|---|---|
+| F1 | `content/labs/gl-07, gl-14, gl-17, gl-19, gl-21` | AWS-R3-002 subnet join; GL-17 async DROP wait; GL-19 us-east-1e and panel SG wording; TEACHER-R3-013 |
+| F2 | `content/labs/ul-01, ul-02, ul-03, ul-04, ul-07, ul-08, ul-09` | TEACHER-R3-002, 003, 011, 012, 014; UL-04 C16; UL-08 `curl.exe`; UL-09 `None`; STUDENT-R3-004 |
+| F3 | `content/labs/ul-10 … ul-21` | TEACHER-R3-001, 004…011, 014, 015; AWS-R3-001 `[0]` lookups; UL-11 `curl.exe`; UL-16 default VPC; UL-18 SG lookup |
+| F4 | `scripts/scan_lab_placeholders.py`, `scripts/content_lint.py`, `backend/workbook/**` | PY-R3-001…006; duplicate-criterion lint rule (TEACHER-R3-001) |
+| F5 | `frontend/src/**` | FS-R3-001 to 004; FS-R2-2-003 to 008 |
+| F6 | `content/questions/*` except `q-saa-1-1-*` | N8 interim letter fix only |
+| F7 | `content/lessons/lesson-1-1.json`, `content/questions/q-saa-1-1-{k04-mr,s02-mr,s06-mr}.json`, `content/exercises/de-federation.json`, new `content/citations/cite-saa-1-1-*` | L1 lesson 1.1 rewrite; Q1-T2, Q1-T3, Q1-T4 |
+
+**Review after implementation:**
+- Labs: AWS and Student.
+- Scanner and backend: Python.
+- Screens: Full-Stack and Student.
+- Wrong-letter fix: Teacher checks a sample.
+- Lesson and pilot fixes: Teacher, AWS and Student.
+
+The freeze and reopen rules apply as before.
+
 ## Learning content impact
 
 Yes, and it is large. Q1 rewrites most of the SAA and TF question bank, and O6–O9 plus R1, R2 and R6 change labs and lessons. Every content WP needs a Teacher verdict before your approval and again after the fix.
