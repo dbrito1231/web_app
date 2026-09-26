@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K07"
   ],
-  "stem": "You must choose one approach for: Immutable infrastructure. Which action fits?",
+  "stem": "A fintech company patches its production fleet by connecting into each running instance and applying updates directly, and over several months the instances have drifted out of sync with each other.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Keep applying updates by connecting into each running instance, but add configuration management tooling to keep them consistent"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Take an Amazon EBS snapshot of each running instance before every update, to use as a rollback point"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Immutable infrastructure"
+      "text": "Bake the update into a new AMI and replace the fleet through an Auto Scaling group instance refresh instead of patching in place"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Split the fleet across two Availability Zones so an update to one AZ's instances does not affect the other AZ"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Baking the update into a new AMI and replacing every instance through an Auto Scaling group instance refresh follows immutable infrastructure: no running instance is patched in place, every change ships as a new image that replaces the old resource entirely, which eliminates the configuration drift the company is seeing and makes rollback as simple as relaunching the previous image. Continuing to connect into each running instance and apply updates directly is still an in-place change no matter what configuration management tooling is layered on top, so instances can still drift between the tooling's runs and the deployment is still not atomic. Taking an EBS snapshot before each update creates a rollback point for data, but the instances are still being patched in place between snapshots, so the drift the company is experiencing is not addressed. Splitting the fleet across two Availability Zones improves availability if one AZ fails, but it does not change how updates are applied to the instances within either AZ, so the in-place patching that causes drift continues in both AZs.",
+  "citationIds": [
+    "cite-saa-2-2-immutable"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

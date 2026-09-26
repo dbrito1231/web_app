@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-K12"
   ],
-  "stem": "Which action is the right fit for this requirement: Workload visibility (for example, AWS X-Ray)?",
+  "stem": "An online marketplace's checkout flow calls several downstream services, and the operations team needs to know exactly which one of those downstream calls is adding the most latency to a single slow checkout request.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Configure a CloudWatch alarm that triggers when a resource's latency metric crosses a threshold"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Search aggregated application logs with CloudWatch Logs Insights for the affected time window"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Workload visibility (for example, AWS X-Ray)"
+      "text": "Add a custom CloudWatch dashboard widget showing latency per service"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable AWS X-Ray tracing to build a service map and trace the request across the downstream calls"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS X-Ray traces a single request across multiple services, builds a service map, and pinpoints which specific downstream call in that chain introduced the latency, which is exactly the per-request, which-call-is-slow question the operations team is asking. A CloudWatch alarm reports that a metric crossed a threshold on a resource; it can say that latency rose overall, but it cannot identify which downstream call within one request caused it. Searching aggregated logs with CloudWatch Logs Insights can surface patterns across many log entries, but it does not trace a single request's path through multiple services the way distributed tracing does, so pinpointing the one slow call in the chain is much harder. A custom CloudWatch dashboard widget only visualizes metrics that are already being collected per service; it does not trace an individual request across service boundaries to attribute the added latency to one specific downstream call.",
+  "citationIds": [
+    "cite-saa-2-2-cloudwatch",
+    "cite-saa-2-2-xray"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

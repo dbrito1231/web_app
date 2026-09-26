@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K04"
   ],
-  "stem": "A teammate asks how to meet this requirement: Disaster recovery (DR) strategies (for example, backup and restore, pilot light, warm standby, active-active failover, recovery point objective [RPO], recovery time objective [RTO]). Which action is appropriate?",
+  "stem": "A retailer's internal reporting workload can tolerate losing up to about 10 minutes of data and can stay offline for up to about 30 minutes before its recovery Region must be fully serving traffic, and the team wants the cheapest DR strategy that still meets both numbers.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Backup and restore, with infrastructure and data restored into the recovery Region only after a disaster is declared"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Multi-site active/active, with the workload actively serving production traffic from both Regions at all times"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Warm standby, with a scaled-down but fully functional copy already running continuously in the recovery Region"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Disaster recovery (DR) strategies (for example, backup and restore, pilot light, warm standby, active-active failover, r"
+      "text": "Pilot light, keeping data stores running while compute is created from configuration only when needed"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Pilot light keeps the core data stores running and replicating continuously, which supports an RPO in minutes, while compute is only created from existing configuration when a disaster is declared, giving an RTO in the tens of minutes; both match the stated numbers at a lower cost than keeping compute running continuously in the recovery Region. Backup and restore only restores infrastructure and data after a disaster is declared, which typically produces an RTO of up to 24 hours and an RPO measured in hours, both far looser than the roughly 10-minute and 30-minute targets in the requirement. Multi-site active/active runs the workload actively in multiple Regions at once with near-zero RPO and potentially zero RTO, which satisfies the numbers but at the highest cost and complexity of the four strategies, more than the cheapest option that still meets the requirement. Warm standby keeps a scaled-down copy fully running and serving at least some traffic continuously in the recovery Region, which meets the numbers but costs more than pilot light because its compute layer runs continuously rather than only being created when needed.",
+  "citationIds": [
+    "cite-saa-2-2-dr-strategies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

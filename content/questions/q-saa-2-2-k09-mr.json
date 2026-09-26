@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.2-K09"
   ],
-  "stem": "Select TWO actions that support this requirement: Proxy concepts (for example, Amazon RDS Proxy)",
+  "stem": "A ride-sharing company wants to place Amazon RDS Proxy in front of its database for two specific reasons. Which TWO benefits does RDS Proxy provide here? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Adds readable standby capacity for the database in other Availability Zones"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Replicates the database to a secondary cluster in another Region"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Pools the many short-lived connections from the Lambda functions onto fewer database connections"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Holds client-side connections open during a failover and transparently switches them to the new writer"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Removes the need for a Multi-AZ deployment because the proxy stores the data itself"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "RDS Proxy pools and multiplexes many short-lived client connections onto a smaller number of database connections, which is exactly the behavior that stops a bursty Lambda fleet from exhausting the database's connection limit. RDS Proxy also holds client-side connections open during a failover and transparently switches them to the new writer once it is promoted, cutting the failover time the application perceives instead of forcing every client to reconnect from scratch. Adding readable standby capacity in other Availability Zones is what a Multi-AZ DB cluster deployment does, not what a connection proxy does; RDS Proxy does not add or manage database standbys itself. Replicating the database to a secondary cluster in another Region is what Aurora Global Database does; RDS Proxy has no cross-Region replication capability of its own. RDS Proxy does not store any of the application's data and does not remove the need for a Multi-AZ deployment; it only pools and manages connections to whichever database endpoint it is configured to reach, so the underlying database still needs its own failover protection.",
+  "citationIds": [
+    "cite-saa-2-2-rds-proxy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

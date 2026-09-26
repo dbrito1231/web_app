@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.2-K06"
   ],
-  "stem": "Select TWO actions that support this requirement: Failover strategies",
+  "stem": "A subscription platform's web tier runs across three Availability Zones and needs unhealthy compute instances detected and replaced, with traffic stopped from reaching them, automatically and without any DNS changes. Which TWO mechanisms provide this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Rely on RDS Multi-AZ automatic failover to redirect database connections to the standby"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure Application Load Balancer health checks so traffic stops being routed to failing targets"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Configure Route 53 failover routing to redirect DNS answers to a secondary site"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Manually promote an Aurora Replica to take over as the primary writer"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Let the Auto Scaling group's health checks replace unhealthy instances automatically"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Application Load Balancer health checks continuously probe registered targets and stop routing traffic to any target that fails them, which removes an unhealthy compute instance from serving traffic without touching DNS at all. Auto Scaling group health checks detect an unhealthy instance, terminate it, and launch a replacement automatically, which is the mechanism that actually replaces the failed compute instance without human action. RDS Multi-AZ automatic failover repoints a database instance's endpoint to its standby, which protects the database tier, not the compute instances the web tier runs on, so it does not address the stated requirement. Route 53 failover routing works by changing which endpoint DNS answers point to, which is precisely the kind of DNS change the requirement says must not happen. Manually promoting an Aurora Replica requires a human action to trigger, and it operates on the database tier, not the compute instances described, so it satisfies neither the automatic nor the compute-instance part of the requirement.",
+  "citationIds": [
+    "cite-saa-2-2-elb-healthchecks",
+    "cite-saa-2-2-asg-multiaz"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

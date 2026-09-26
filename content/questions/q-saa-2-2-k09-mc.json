@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K09"
   ],
-  "stem": "A teammate asks how to meet this requirement: Proxy concepts (for example, Amazon RDS Proxy). Which action is appropriate?",
+  "stem": "A ride-sharing company's fleet of Lambda functions opens a new short-lived database connection on every invocation, and during traffic spikes the functions exhaust the RDS instance's connection limit.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Place Amazon RDS Proxy between the Lambda functions and the database to pool the connections"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Convert the database to a Multi-AZ DB instance to add a non-readable standby"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a read replica so read traffic no longer competes for the primary's connections"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Proxy concepts (for example, Amazon RDS Proxy)"
+      "text": "Extend the database into an Aurora Global Database with a secondary cluster in another Region"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon RDS Proxy sits between the application and the database and pools and multiplexes many short-lived client connections onto a smaller number of database connections, which directly stops a fleet of Lambda functions from exhausting the database's connection limit during a traffic spike. A Multi-AZ DB instance adds a non-readable standby purely for automatic failover; it does not change how many connections the fleet opens or pool them, so the connection limit is still exhausted the same way. A read replica offloads read traffic to a separate copy of the data, but the Lambda functions in this scenario are exhausting connections through short-lived connections in general, not through read/write contention, so adding a replica does not pool or reduce the connection count against the primary. Extending the database into an Aurora Global Database adds a read-only secondary cluster in another Region for cross-Region recovery; it does nothing to pool or limit the number of concurrent connections the Lambda fleet opens against the primary cluster.",
+  "citationIds": [
+    "cite-saa-2-2-rds-proxy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

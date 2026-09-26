@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K01"
   ],
-  "stem": "Pick the action that satisfies: AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53).",
+  "stem": "A gaming company runs an identical stateless matchmaking API in two AWS Regions and wants every player automatically routed to whichever Region currently gives that player the lowest network latency, with no manual traffic-percentage adjustments.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure a Route 53 weighted routing policy split evenly between the two Regions"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Configure a Route 53 latency-based routing policy across the two Regions"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Configure a Route 53 geolocation routing policy based on each player's country"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS global infrastructure (for example, Availability Zones, AWS Regions, Amazon Route 53)"
+      "text": "Configure a Route 53 failover routing policy with one Region set as primary"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A latency-based routing policy sends each client to the Region that currently offers the lowest round-trip latency to that client, and it adjusts automatically as network conditions change, which is exactly the lowest-latency, no-manual-adjustment requirement here. Weighted routing splits traffic between resources by a fixed percentage that an operator sets, so it does not automatically follow which Region is fastest for a given player; matching a changing latency picture would still require manually changing the weights. Geolocation routing sends a client to a resource chosen by the client's geographic location, which supports compliance or localization goals but does not measure or optimize for network latency at all. Failover routing is an active-passive policy that sends all traffic to a primary resource and only shifts to the secondary once the primary fails a health check, so it does not distribute traffic between two simultaneously active Regions by latency.",
+  "citationIds": [
+    "cite-saa-2-2-route53-routing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

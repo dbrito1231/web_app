@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-K08"
   ],
-  "stem": "During an architecture review, the goal is: Load balancing concepts (for example, ALB). Which action matches that goal?",
+  "stem": "A photo-sharing service runs an Application Load Balancer across three Availability Zones with two healthy targets in AZ-A, two in AZ-B, and only one in AZ-C, yet the single instance in AZ-C is not receiving a noticeably larger share of requests per instance than the instances in the other two AZs.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Application Load Balancer health checks are removing unhealthy targets from rotation in each AZ"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Load balancing concepts (for example, ALB)"
+      "text": "Auto Scaling group health checks are replacing unhealthy instances automatically in AZ-C"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A Route 53 multivalue answer routing policy is returning several healthy records at random"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Cross-zone load balancing on the Application Load Balancer"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-zone load balancing is enabled by default on an Application Load Balancer and spreads requests evenly across every healthy target in every enabled AZ rather than only the targets that happen to receive the request in a given AZ, which is exactly why the single target in AZ-C is not seeing a disproportionate share of traffic despite having fewer healthy targets than the other AZs. Application Load Balancer health checks decide whether a target is healthy enough to receive traffic at all; they explain why an unhealthy target stops receiving requests, not why load is balanced evenly across AZs with different healthy-target counts. Auto Scaling group health checks detect and replace unhealthy instances, which changes how many targets exist in an AZ over time, but it does not explain how the load balancer distributes requests among the targets that already exist. Route 53 multivalue answer routing operates at the DNS layer, returning up to eight healthy records at random to a resolver; it has no visibility into, or effect on, how an Application Load Balancer distributes individual requests among its own registered targets.",
+  "citationIds": [
+    "cite-saa-2-2-elb-healthchecks",
+    "cite-saa-2-1-alb-cross-zone"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

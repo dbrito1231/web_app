@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K05"
   ],
-  "stem": "A teammate asks how to meet this requirement: Distributed design patterns. Which action is appropriate?",
+  "stem": "A ticketing platform currently runs its checkout service as a single, larger EC2 instance in one subnet, and the team wants a design that keeps serving checkout requests if that specific host, or the Availability Zone it sits in, becomes unavailable.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Replace the single instance with a stateless fleet spread across multiple Availability Zones behind a load balancer with health checks"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a second EC2 instance in the same Availability Zone as the first, behind a load balancer with health checks"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a Multi-AZ standby to the checkout database while keeping the application on the single EC2 instance"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Distributed design patterns"
+      "text": "Add a read replica of the checkout database in a second Availability Zone while keeping the application on the single EC2 instance"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Spreading redundant copies of the checkout service across multiple Availability Zones behind a health-checked load balancer removes the dependency on any one instance or AZ, so a healthy instance in any AZ can keep serving requests if one host or one AZ fails, which is exactly the distributed, redundant pattern the requirement calls for. Adding a second EC2 instance behind a load balancer in the same Availability Zone as the first protects against losing one host, since the other instance in that AZ can still serve traffic, but it does not protect against losing the Availability Zone itself, since both instances still sit in the same AZ. Adding a Multi-AZ standby to the database improves the database tier's resilience but leaves the application tier as a single instance in a single AZ, so the checkout service itself still has no protection against the failure described. Adding a database read replica in a second AZ has the same gap: it only changes the data tier, while the compute tier that actually serves checkout requests remains a single point of failure.",
+  "citationIds": [
+    "cite-saa-2-2-reliability-pillar"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

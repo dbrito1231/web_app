@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.2-K12"
   ],
-  "stem": "Select TWO actions that support this requirement: Workload visibility (for example, AWS X-Ray)",
+  "stem": "An online marketplace wants an alarm that automatically scales its checkout fleet when latency rises, and separately wants to see exactly which downstream call is slowing a specific checkout request. Which TWO services address these two needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Configure a CloudWatch alarm on a latency metric to trigger Auto Scaling"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure a Route 53 health check on the checkout endpoint to detect when it stops responding"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Search aggregated application logs with CloudWatch Logs Insights for the affected time window"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add a custom CloudWatch dashboard widget that graphs per-service latency"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Enable AWS X-Ray tracing to build a service map and trace the slow downstream call"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A CloudWatch alarm on a latency metric is exactly the mechanism that watches a threshold and can trigger Auto Scaling actions when latency rises, addressing the scaling need. AWS X-Ray traces an individual request across the downstream services it calls and builds a service map that pinpoints which specific call added the latency, addressing the tracing need. A Route 53 health check monitors whether an endpoint is reachable so DNS can fail over to a secondary site; it reports up-or-down status, not a latency metric, so it does not trigger scaling the way an alarm does. Searching aggregated logs with CloudWatch Logs Insights can surface patterns across many log entries for a time window, but it does not trace a single request's path through multiple services, so it cannot point to the one downstream call that slowed one specific request. A custom CloudWatch dashboard widget only visualizes metrics that are already being collected per service; like Logs Insights, it shows aggregated numbers rather than tracing an individual request across service boundaries.",
+  "citationIds": [
+    "cite-saa-2-2-cloudwatch",
+    "cite-saa-2-2-xray"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

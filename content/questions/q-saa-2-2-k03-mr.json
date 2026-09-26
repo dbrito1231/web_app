@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.2-K03"
   ],
-  "stem": "Select TWO actions that support this requirement: Basic networking concepts (for example, route tables)",
+  "stem": "A logistics company wants to redesign its VPC so that a NAT gateway outage in AZ-A never affects outbound internet access for workloads in AZ-B, and vice versa. Which TWO route table changes are needed? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Create a NAT gateway in AZ-A's public subnet and set AZ-A's private route table to target only that NAT gateway"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Keep one shared NAT gateway in AZ-A and associate it with both AZs' route tables"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Give AZ-A its own dedicated NAT gateway, but leave AZ-B's route table still pointed at AZ-A's NAT gateway"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create a NAT gateway in AZ-B's public subnet and set AZ-B's private route table to target only that NAT gateway"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Keep a NAT instance running in AZ-A's public subnet and reference it from AZ-B's route table"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Creating a NAT gateway inside AZ-A's own public subnet and pointing only AZ-A's private route table at it keeps AZ-A's outbound path independent of any other AZ. Creating a separate NAT gateway inside AZ-B's own public subnet and pointing only AZ-B's private route table at it does the same for AZ-B, and together the two changes give each AZ an outbound path that survives the loss of the other AZ's NAT gateway. Keeping one shared NAT gateway in AZ-A and associating it with both AZs' route tables is the exact configuration that caused the outage described, since AZ-B's traffic still depends on a resource that lives only in AZ-A. Giving AZ-A its own dedicated NAT gateway while leaving AZ-B's route table still pointed at AZ-A's NAT gateway only fixes half the design: AZ-A now has an independent path, but AZ-B's outbound traffic still depends on a resource in AZ-A, so an AZ-A failure still takes AZ-B's internet access down with it. Keeping a NAT instance in AZ-A and referencing it from AZ-B's route table again makes AZ-B's outbound path depend on a resource that lives in AZ-A, so an AZ-A failure still takes AZ-B's internet access down with it.",
+  "citationIds": [
+    "cite-saa-2-2-vpc-route-tables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

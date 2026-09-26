@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-K03"
   ],
-  "stem": "An exam scenario centers on: Basic networking concepts (for example, route tables). Which action matches it?",
+  "stem": "A logistics company's private subnets in AZ-A and AZ-B both lost internet access when the single NAT gateway in AZ-A failed, because AZ-B's route table also pointed its default route at that same NAT gateway.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Replace the NAT gateway with a NAT instance in AZ-A, but keep referencing it from both AZs' route tables"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Basic networking concepts (for example, route tables)"
+      "text": "Move both AZs' private subnets onto the VPC's main route table, pointed at the AZ-A NAT gateway"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create one NAT gateway per AZ and point each AZ's route table only at its own AZ's NAT gateway"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a second NAT gateway in AZ-A for redundancy within that same AZ"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Creating one NAT gateway per AZ and pointing each AZ's route table only at its own AZ's NAT gateway removes the cross-AZ dependency entirely, so a NAT gateway failure in one AZ no longer affects the other AZ's outbound path. Swapping the NAT gateway for a NAT instance in AZ-A but still referencing it from both AZs' route tables changes the technology but not the architecture: AZ-B's traffic still depends on a single resource that lives only in AZ-A, so the same outage would recur. Consolidating both AZs onto the VPC's main route table pointed at the AZ-A NAT gateway makes the dependency more explicit, not less, since every subnet in both AZs now shares one entry. Adding a second NAT gateway in AZ-A only protects against one NAT gateway failing inside that AZ; AZ-B's traffic would still be routed out through AZ-A, so losing AZ-A itself would still take down AZ-B's internet path.",
+  "citationIds": [
+    "cite-saa-2-2-vpc-route-tables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

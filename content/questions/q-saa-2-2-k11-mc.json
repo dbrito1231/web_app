@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-2.2-K11"
   ],
-  "stem": "In a design review, the requirement is: Storage options and characteristics (for example, durability, replication). Which action matches it?",
+  "stem": "A weather-data company needs objects durably stored across the loss of an entire Availability Zone, reachable by many stateless workers over a simple API, with no mount targets, VPC configuration, or replication scripts to maintain.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Storage options and characteristics (for example, durability, replication)"
+      "text": "Store the objects on an Amazon EFS file system, mounted from each worker over the VPC"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Store the objects in the S3 One Zone-IA storage class to reduce cost"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Store the objects in Amazon S3, using a storage class other than One Zone-IA"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Store the objects on an Amazon EBS io2 volume, relying on its 99.999% durability rating"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon S3, outside the One Zone classes, stores objects redundantly across a minimum of three Availability Zones by default and is designed for eleven nines of durability, reachable over a simple API with no mount targets, VPC networking, or replication scripts required, which satisfies every part of the requirement. Amazon EFS also replicates across AZs automatically, but reaching it requires mounting the file system from within the VPC using mount targets, which is exactly the mount-target and VPC configuration the requirement says to avoid. S3 One Zone-IA reduces cost precisely by giving up the multi-AZ redundancy that S3's other storage classes provide, storing data in a single Availability Zone instead, so it fails the AZ-loss durability requirement. An EBS io2 volume's 99.999% durability rating protects against drive failure within a single Availability Zone; it does not protect against the loss of that AZ, and it would also need to be attached to a single instance rather than reached by many workers over an API.",
+  "citationIds": [
+    "cite-saa-2-2-s3-durability",
+    "cite-saa-2-2-s3-storage-classes",
+    "cite-saa-2-2-efs-features",
+    "cite-saa-2-2-ebs-durability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

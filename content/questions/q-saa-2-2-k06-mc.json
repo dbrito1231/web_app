@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-K06"
   ],
-  "stem": "In a design review, the requirement is: Failover strategies. Which action matches it?",
+  "stem": "A subscription platform's database team wants automatic failover for its primary database plus two additional readable standby instances, all within the same Region, with no cross-Region requirement.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Failover strategies"
+      "text": "A Multi-AZ DB instance deployment"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A Multi-AZ DB cluster deployment"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A single read replica in a second Availability Zone"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An Aurora Global Database with a secondary cluster in another Region"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Multi-AZ DB cluster keeps a writer and two readable standby instances spread across three separate Availability Zones, which supplies both the automatic failover protection and the two additional readable standbys the requirement asks for, entirely within one Region. A Multi-AZ DB instance also gives automatic failover, but its standby is not readable, so it does not provide the two readable standbys the requirement specifically asks for. A read replica is an asynchronous, promotable copy meant to offload reads; it is not built to fail over automatically the way the requirement needs, and a single one of them does not match two additional readable standbys either. An Aurora Global Database extends a cluster with secondary, read-only clusters in other Regions, which addresses a cross-Region need the requirement explicitly says does not exist here, and its secondary clusters are not the same as in-Region readable standbys used for automatic failover.",
+  "citationIds": [
+    "cite-saa-2-2-rds-multiaz",
+    "cite-saa-2-2-rds-multiaz-cluster"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

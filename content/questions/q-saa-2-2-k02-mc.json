@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-K02"
   ],
-  "stem": "Which action is the right fit for this requirement: AWS Managed Services (AMS) with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)?",
+  "stem": "A media company's support team wants incoming customer emails automatically scored for sentiment, without provisioning, training, or patching any machine learning infrastructure themselves.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Submit the email text to Amazon Comprehend through its API for sentiment analysis"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Submit the email text to Amazon Polly through its API to generate spoken audio of each message"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: AWS Managed Services (AMS) with appropriate use cases (for example, Amazon Comprehend, Amazon Polly)"
+      "text": "Deploy a self-hosted sentiment-analysis model on an Auto Scaling group of EC2 instances behind an Application Load Balancer"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Build CloudWatch custom metrics from values parsed out of the stored email logs"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon Comprehend performs natural-language processing, including sentiment analysis, against text submitted through an API call, with no model-training infrastructure for the support team to run or patch, which matches every part of the requirement. Amazon Polly converts text into spoken audio; it does not analyze sentiment, so it does not perform the task the support team needs even though it is also an API-based managed service. A self-hosted model on an EC2 Auto Scaling group behind an Application Load Balancer could eventually produce a sentiment score, but the team would still have to provision, scale, and patch that fleet themselves, which is exactly what the requirement rules out. CloudWatch collects and graphs metrics, logs, and alarms; it has no natural-language processing capability, so building custom metrics from parsed log values cannot produce a sentiment score.",
+  "citationIds": [
+    "cite-saa-2-2-comprehend",
+    "cite-saa-2-2-polly"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-K10"
   ],
-  "stem": "The workload needs this outcome: Service quotas and throttling (for example, how to configure the service quotas for a workload in a standby environment). Which action should you take?",
+  "stem": "A hospital network's pilot-light DR environment normally runs at minimal scale, and when an actual disaster forced a failover, the recovery Region could not launch enough EC2 instances because the account's default vCPU quota in that Region was too low.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Service quotas and throttling (for example, how to configure the service quotas for a workload in a standby environment)"
+      "text": "Rely on the workload retrying with backoff whenever a request is throttled"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Request the vCPU quota increase in the recovery Region ahead of time, through Service Quotas"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Request the vCPU quota increase only in the primary Region where the workload normally runs"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Configure a Route 53 failover record pointing at the recovery Region"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Requesting the needed vCPU quota increase in the recovery Region ahead of time through Service Quotas raises the ceiling before it is ever tested under real disaster conditions, which closes exactly the gap that caused the failed failover. Retrying with backoff addresses a service throttling individual requests once a rate limit is hit; it does not raise an account-level vCPU quota, so it cannot let the recovery Region launch more instances than its quota allows. Requesting the increase only in the primary Region does nothing for the recovery Region, which is where the launch actually failed during the disaster. A Route 53 failover record correctly routes traffic to the recovery Region once it is healthy, but it does nothing to raise that Region's vCPU quota, so the same launch failure described in the scenario would still happen once traffic arrived and the Auto Scaling group tried to launch instances.",
+  "citationIds": [
+    "cite-saa-2-2-service-quotas",
+    "cite-saa-2-2-route53-failover"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
