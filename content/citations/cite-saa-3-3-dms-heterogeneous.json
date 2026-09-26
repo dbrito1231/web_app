@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-dms-heterogeneous",
+  "title": "Heterogeneous database migration (AWS SCT)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-sql-server/heterogeneous-migration-tools.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K06): confirmed a heterogeneous migration (different source and target database engines) is a two-step process that runs the AWS Schema Conversion Tool to convert the schema before migrating data with AWS DMS."
+}

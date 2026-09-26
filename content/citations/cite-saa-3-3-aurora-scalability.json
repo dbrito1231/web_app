@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-aurora-scalability",
+  "title": "Aurora scalability (storage auto scaling, read replicas, reader endpoint)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-scalability.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K06, K07, K08, S04): confirmed an Aurora cluster supports up to 15 low-latency read replicas sharing the primary's storage, a reader endpoint that load-balances across them, and storage that auto-scales in 10 GB increments up to 256 TiB."
+}

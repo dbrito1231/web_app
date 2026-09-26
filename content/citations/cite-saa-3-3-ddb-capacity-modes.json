@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-ddb-capacity-modes",
+  "title": "Read/write capacity mode",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/capacity-mode.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K04, K08): confirmed DynamoDB tables choose between on-demand capacity mode (pay-per-request, no pre-provisioning) and provisioned capacity mode (set RCUs/WCUs in advance, optionally with auto scaling)."
+}

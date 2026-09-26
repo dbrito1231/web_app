@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-rds-instance-classes",
+  "title": "DB instance class",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.Types.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K04): confirmed RDS DB instance classes fall into standard (general purpose), memory-optimized, and burstable-performance (db.t) families, each sized by vCPU and memory."
+}

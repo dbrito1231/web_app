@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-elasticache-engines",
+  "title": "Which engine version should you use? (ElastiCache for Valkey, Redis OSS, Memcached)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K02, K08): confirmed Amazon ElastiCache currently supports the Valkey, Memcached, and Redis OSS cache engines side by side, each with different tradeoffs for a caching workload."
+}

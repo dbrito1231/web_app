@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-timestream-eol",
+  "title": "Amazon Timestream for LiveAnalytics availability change",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K08): confirmed AWS closed new-customer access to Amazon Timestream for LiveAnalytics effective 6/20/25 and now directs new customers to Amazon Timestream for InfluxDB instead."
+}

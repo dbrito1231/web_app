@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-redshift-olap",
+  "title": "Amazon Redshift architecture",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/redshift/latest/dg/c_redshift_system_overview.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K08, S03): confirmed Amazon Redshift achieves its query performance through massively parallel processing, columnar data storage, and targeted compression, the architecture that makes it fit analytical (OLAP) rather than transactional (OLTP) workloads."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-ddb-secondary-indexes",
+  "title": "Improving data access with secondary indexes in DynamoDB",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (S02, S04): confirmed a global secondary index (GSI) can use a partition and sort key different from the base table and is created or removed at any time, while a local secondary index (LSI) shares the base table's partition key, uses a different sort key, and must be created at table creation."
+}

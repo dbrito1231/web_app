@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-dax",
+  "title": "DAX: How it works",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (K02, S05): confirmed DynamoDB Accelerator (DAX) is an in-memory cache that sits in front of DynamoDB, serving eventually consistent reads from cache on a hit and writing through to both DynamoDB and the cache on write operations."
+}
