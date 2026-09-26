@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-eks-concepts",
+  "title": "Amazon EKS and Kubernetes concepts (control plane)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-concepts.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K14): fetched from docs.aws.amazon.com and checked against the claim that Amazon EKS runs a managed Kubernetes control plane, which is the right fit when a team already standardizes on Kubernetes APIs and tooling."
+}

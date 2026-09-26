@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-rds-read-replicas",
+  "title": "Working with DB instance read replicas",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K15): fetched from docs.aws.amazon.com and checked against the claim that a read replica is an asynchronous, read-only copy used to scale out read-heavy traffic or to promote to a standalone instance, unlike a synchronous Multi-AZ standby."
+}

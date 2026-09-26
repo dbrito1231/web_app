@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-eventbridge-bus",
+  "title": "Amazon EventBridge event bus (default and Classic)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K05, K11): fetched from docs.aws.amazon.com and checked against the claims that EventBridge rules match events by pattern, that a rule can specify up to five targets, and that the default event bus automatically receives AWS service events."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-sns-fanout",
+  "title": "Amazon SNS fanout scenario",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/sns/latest/dg/welcome.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K11): fetched from docs.aws.amazon.com and checked against the claim that an SNS fanout pattern pushes one published message to multiple subscribed SQS queues for parallel, independent processing."
+}

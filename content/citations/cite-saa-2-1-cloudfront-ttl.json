@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-cloudfront-ttl",
+  "title": "Manage how long content stays in the CloudFront cache (expiration)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Expiration.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K07): fetched from docs.aws.amazon.com and checked against the claim that CloudFront honors Minimum/Maximum/Default TTL together with origin Cache-Control or Expires headers, with a 24-hour default TTL when no cache policy is set."
+}

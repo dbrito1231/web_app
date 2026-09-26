@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-microservices-whitepaper",
+  "title": "Microservices on AWS (orchestration and implementation patterns)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/microservices-on-aws/microservices.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K04): fetched from docs.aws.amazon.com and checked against the claim that microservices are small, independently deployable services each owning one responsibility, and that a stateless service keeps no session data on the instance so any instance can serve any request."
+}

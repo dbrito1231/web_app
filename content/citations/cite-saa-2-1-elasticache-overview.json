@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-elasticache-overview",
+  "title": "Amazon ElastiCache overview (Redis OSS and Memcached engines)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/scale-performance-elasticache/full.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K03): fetched from docs.aws.amazon.com and checked against the claim that Memcached is a simple, multithreaded, horizontally shardable pure cache with no persistence or replication, while Redis OSS supports persistence, replication, Multi-AZ failover, and richer data structures."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-multitier-whitepaper",
+  "title": "Multi-tier pattern (serverless multi-tier architectures whitepaper)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/introduction.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K10): fetched from docs.aws.amazon.com and checked against the claim that the classic three-tier pattern separates a presentation tier, a logic tier, and a data tier so each can scale and fail independently."
+}

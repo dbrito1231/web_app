@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-kinesis-streaming",
+  "title": "Choosing the right Kinesis service for your use case",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/build-modern-data-streaming-analytics-architectures/key-considerations-while-building-streaming-analytics.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 rewrite (K11): fetched from docs.aws.amazon.com and checked against the claim that Kinesis Data Streams is for ordered, replayable, high-throughput streaming data consumed by multiple applications, unlike a queue where a message disappears once processed."
+}
