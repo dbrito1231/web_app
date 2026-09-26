@@ -49,6 +49,8 @@ Never use these as a correct answer or as current advice. Mention one only if yo
 - AWS Copilot CLI: end of support 2026-06-12.
 - AWS Snow Family (Snowball Edge, Snowcone, Snowmobile): closed to new customers.
 - FSx File Gateway: closed to new customers.
+- Timestream for LiveAnalytics: closed to new customers (2025-06-20).
+- Renamed services: use the current name and give the old one once, e.g. "Amazon Data Firehose (formerly Kinesis Data Firehose)", "Amazon Managed Service for Apache Flink (formerly Kinesis Data Analytics)", "Amazon Quick Sight (formerly QuickSight)".
 - Check anything else before naming it, for example QLDB, Timestream for LiveAnalytics, CodeCommit, Cloud9 and CodeStar. Add new finds to this list in your report.
 
 ## Questions
