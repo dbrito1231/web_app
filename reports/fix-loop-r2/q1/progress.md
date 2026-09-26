@@ -20,7 +20,7 @@ Pipeline per task:
 | 4 | lesson-2-2 | 32 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (after s07-mc fix), Teacher close, Student 10/10 | ✔ | ✔ 2026-09-26 |
 | 5 | lesson-3-1 | 8 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (1 diversity fix), Teacher close, Student packet 7/7 | ✔ | ✔ 2026-09-26 |
 | 6 | lesson-3-2 | 16 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (1 diversity fix + K05 timeout sentence), Teacher close, Student packet 8/8 | ✔ | ✔ 2026-09-26 |
-| 7 | lesson-3-3 | 21 | ✔ | ✔ AWS + Teacher approve | ✔ | ✔ | AWS close (AWS-Q33-001 fixed 71fc6a8); Teacher round 2 running | | |
+| 7 | lesson-3-3 | 21 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 8/8 blind | ✔ (AWS-Q33-001, TEACHER-Q33-001) | ✔ 2026-09-26 |
 | 8 | lesson-3-4 | 13 | | | | | | | |
 | 9 | lesson-3-5 | 24 | | | | | | | |
 | 10 | lesson-4-1 | 35 | | | | | | | |

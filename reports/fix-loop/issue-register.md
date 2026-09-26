@@ -194,12 +194,13 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | Lesson 2.1 + SAA task 2.1 questions (Q1) | L1 for lesson 2.1; AWS-L21-*, TEACHER-L21-001–004; LD-Q21-001–003; AWS-Q21-001/002 | AWS 35/35, Teacher close, Student 9/10 (`fix-loop-r2/q1/`) |
 | Lesson 2.2 + SAA task 2.2 questions (Q1) | L1 for lesson 2.2; AWS-L22-001–003; TEACHER-L22-001; AWS-Q22-001–003; TEACHER-Q22-001 | AWS, Teacher close, Student 10/10 (`fix-loop-r2/q1/`) |
 | Lessons 3.1 + 3.2 and SAA tasks 3.1/3.2 questions (Q1) | L1 for lessons 3.1/3.2; AWS-L31-001–005, TEACHER-L31-001–003; AWS-L32-001–003, TEACHER-L32-001; AWS-Q31-001, AWS-Q32-001 | AWS, Teacher close, Student text packet 15/15 (`fix-loop-r2/q1/`) |
+| Lesson 3.3 + SAA task 3.3 questions (Q1) | L1 for lesson 3.3; AWS-L33-001–005, TEACHER-L33-001; AWS-Q33-001/002, TEACHER-Q33-001 | AWS, Teacher close, Student text packet 8/8 (`fix-loop-r2/q1/`) |
 
 ### Still open
 
 | ID | Item | Sev | Notes |
 |---|---|---|---|
-| L1 / Q1 | Lessons 3.3–4.4 and TF g1–g8 (15 lessons) not yet closed; ~259 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–3.2 closed 2026-09-26 (budget plan in effect); task 3.3 in round 2 |
+| L1 / Q1 | Lessons 3.4–4.4 and TF g1–g8 (14 lessons) not yet closed; ~238 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–3.3 closed 2026-09-26 (budget plan in effect); next: lesson 3.4 |
 | ISS-010 | Template question wording | High | Closes as Q1 batches complete |
 | O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | **Closed 2026-09-26.** AWS and Student approved, including the follow-up fixes (GL-10 handler, GL-12 logging, step titles) |
 | D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
