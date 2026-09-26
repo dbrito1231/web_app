@@ -189,12 +189,14 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | Wrong-letter rationales | N8 (interim fix, 185 files) | Teacher (all 185 by script + 20 read) |
 | Lesson 1.1 + SAA task 1.1 questions (Q1 pilot) | L1 for lesson 1.1; Q1-T1–T4; TEACHER-R4-001–008; TEACHER-R5-001–008; AWS-R4-001–009; AWS-R5-001/002 | Teacher, AWS, Student (`round-6/`), fairness 10/10 |
 | de-federation exercise | Q1-T2, AWS-R4-009, TEACHER-R4-008 | Teacher + AWS |
+| Lesson 1.2 + SAA task 1.2 questions (Q1) | L1 for lesson 1.2; lesson and question findings in `reports/fix-loop-r2/q1/*1-2*` | Teacher, AWS, Student (`fix-loop-r2/q1/`) |
+| Lesson 1.3 + SAA task 1.3 questions (Q1) | L1 for lesson 1.3; AWS-L13-001–004; TEACHER-L13-001; TEACHER-Q13-001; AWS-Q13-001 | Teacher + AWS re-checks, Student 10/10 (`fix-loop-r2/q1/`) |
 
 ### Still open
 
 | ID | Item | Sev | Notes |
 |---|---|---|---|
-| L1 / Q1 | Lessons 1.2–4.4 and TF g1–g8 (22 lessons) still boilerplate; ~410 questions still template-style | **High** | Lesson-first method approved (Amendment 2). Next: SAA task 1.2 |
+| L1 / Q1 | Lessons 2.1–4.4 and TF g1–g8 (19 lessons) still boilerplate; ~350 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–1.3 closed 2026-09-26; lesson 2.1 approved, 2.1 questions and lesson 2.2 in progress |
 | ISS-010 | Template question wording | High | Closes as Q1 batches complete |
 | O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | **Closed 2026-09-26.** AWS and Student approved, including the follow-up fixes (GL-10 handler, GL-12 logging, step titles) |
 | D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
