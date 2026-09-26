@@ -47,3 +47,11 @@ No giveaway words, no strawmen (no manual/anti-pattern distractors), no letter-r
 Task 3.3: not yet (pending TEACHER-Q33-001, a one-line citation fix)
 
 Overall: concerns
+
+## Follow-up confirmation (after b8f6de7)
+
+TEACHER-Q33-001: Gone. `cite-saa-2-2-rds-multiaz-cluster` was added to `q-saa-3-3-k07-mc.json`, and nothing else changed.
+
+Task 3.3: close
+
+Overall: approve
