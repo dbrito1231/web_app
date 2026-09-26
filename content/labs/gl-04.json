@@ -1,6 +1,6 @@
 {
   "id": "gl-04",
-  "title": "GL-04 — Customer-managed KMS key",
+  "title": "GL-04 \u2014 Customer-managed KMS key",
   "kind": "guided",
   "pairId": "ul-04",
   "region": "us-east-1",
@@ -124,7 +124,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "A customer-managed KMS key bills a monthly per-key fee (prorated) plus per-request charges for encrypt and decrypt calls; S3 adds storage and request charges. Scheduling deletion does not stop the monthly key fee until the 7-day waiting window ends.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -149,7 +149,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "CMK pending deletion may still appear until the waiting period ends."
       ]
@@ -193,7 +193,7 @@
       "aws s3api head-bucket --bucket $Bucket returns 404",
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-04 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources. CMK in pending deletion may still appear on bill until window ends.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources. CMK in pending deletion may still appear on bill until window ends.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-04 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-04. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

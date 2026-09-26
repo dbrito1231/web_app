@@ -82,6 +82,7 @@
       "bullets": [
         "Run `$AmiId = aws ssm get-parameters --names /aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64 --query \"Parameters[0].Value\" --output text`.",
         "Save gl09-lt.json with ImageId `$AmiId`, InstanceType t3.micro, Tag LabId gl-09.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl09Lt = @{ ImageId = $AmiId; InstanceType = 't3.micro'; TagSpecifications = @(@{ ResourceType = 'instance'; Tags = @(@{ Key = 'LabId'; Value = 'gl-09' }) }) }; [IO.File]::WriteAllText(\"$pwd\\gl09-lt.json\", ($Gl09Lt | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `$LaunchTemplateId = aws ec2 create-launch-template --launch-template-name workbook-gl09 --launch-template-data file://gl09-lt.json --query LaunchTemplate.LaunchTemplateId --output text`.",
         "Success: launch template id is set."
       ]
@@ -126,7 +127,7 @@
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "Launch templates and the Auto Scaling group itself carry no charge; the t3.micro instance the group launches bills hourly while it exists. Scaling to 0 stops that hourly charge, but the ASG resource still exists until you delete it in step s10.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },

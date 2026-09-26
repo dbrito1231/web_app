@@ -138,7 +138,7 @@
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "The Application Load Balancer bills hourly plus per LCU-hour, and the t3.micro target bills hourly while running. Stopping the instance instead of terminating it is not teardown, and the ALB keeps billing until you delete it.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },

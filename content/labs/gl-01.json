@@ -21,7 +21,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete the lab user, MFA device, boundary policy, and budget when you finish or stop early. This lab creates no instance. Stopping an instance is not teardown.",
+  "stopChargesPanel": "Delete the lab user, MFA device, boundary policy, and budget when you finish or stop early. IAM users, policies, MFA devices, and alert-only budgets carry no charge, so nothing in this lab bills hourly or otherwise.",
   "steps": [
     {
       "id": "s01",
@@ -81,6 +81,7 @@
         "First statement: Allow Action * on Resource *.",
         "Second statement: Deny cloudhsm:*, shield:*, directconnect:*, and outposts:* on Resource *.",
         "Those four denies are the whole extra restriction.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl01-boundary.json\", '{\"Version\":\"2012-10-17\",\"Statement\":[{\"Sid\":\"AllowAll\",\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"},{\"Sid\":\"DenyRestrictedServices\",\"Effect\":\"Deny\",\"Action\":[\"cloudhsm:*\",\"shield:*\",\"directconnect:*\",\"outposts:*\"],\"Resource\":\"*\"}]}', $utf8)`.",
         "Run `aws iam create-policy --policy-name gl01-boundary --policy-document file://gl01-boundary.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-01 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`.",
         "Success: the output Arn ends in policy/gl01-boundary. Copy that Arn into `$BoundaryArn`."
       ]
@@ -121,6 +122,7 @@
       "bullets": [
         "Save gl01-budget.json as BudgetName workbook-gl01, BudgetLimit Amount 10 Unit USD, TimeUnit MONTHLY, BudgetType COST.",
         "The 10 is only the budget baseline. Alerts are separate and do not stop spend.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl01-budget.json\", '{\"BudgetName\":\"workbook-gl01\",\"BudgetLimit\":{\"Amount\":\"10\",\"Unit\":\"USD\"},\"TimeUnit\":\"MONTHLY\",\"BudgetType\":\"COST\"}', $utf8)`.",
         "Run `aws budgets create-budget --account-id $AccountId --budget file://gl01-budget.json`.",
         "Do not call `create-budget-action`.",
         "Success: `aws budgets describe-budget --account-id $AccountId --budget-name workbook-gl01` returns that name."

@@ -132,7 +132,7 @@
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "The t3.micro bills hourly while running. Terminating it stops that charge, but the gp3 volume and the snapshot keep billing per GB-month until you delete them. Stopping an instance instead of terminating it is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },

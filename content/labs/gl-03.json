@@ -1,6 +1,6 @@
 {
   "id": "gl-03",
-  "title": "GL-03 — IAM role, resource policy, and STS",
+  "title": "GL-03 \u2014 IAM role, resource policy, and STS",
   "kind": "guided",
   "pairId": "ul-03",
   "region": "us-east-1",
@@ -82,6 +82,8 @@
       "title": "Create the IAM role",
       "bullets": [
         "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from s02.",
+        "Run `$CallerArn = aws sts get-caller-identity --query Arn --output text`.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl03Trust = @{ Version = '2012-10-17'; Statement = @(@{ Effect = 'Allow'; Principal = @{ AWS = $CallerArn }; Action = 'sts:AssumeRole' }) }; [IO.File]::WriteAllText(\"$pwd\\gl03-trust.json\", ($Gl03Trust | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `aws iam create-role --role-name workbook-gl03-role --assume-role-policy-document file://gl03-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-03 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
         "Run `$RoleArn = aws iam get-role --role-name workbook-gl03-role --query Role.Arn --output text`.",
         "Success: Role Arn is set in `$RoleArn`."
@@ -92,6 +94,7 @@
       "title": "Attach read-only inline policy",
       "bullets": [
         "Save gl03-s3read.json allowing s3:GetObject and s3:ListBucket on `$Bucket` only.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl03Read = @{ Version = '2012-10-17'; Statement = @(@{ Sid = 'AllowListBucket'; Effect = 'Allow'; Action = 's3:ListBucket'; Resource = \"arn:aws:s3:::$Bucket\" }, @{ Sid = 'AllowGetObject'; Effect = 'Allow'; Action = 's3:GetObject'; Resource = \"arn:aws:s3:::$Bucket/*\" }) }; [IO.File]::WriteAllText(\"$pwd\\gl03-s3read.json\", ($Gl03Read | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `aws iam put-role-policy --role-name workbook-gl03-role --policy-name gl03-read --policy-document file://gl03-s3read.json`.",
         "Success: get-role-policy returns the document."
       ]
@@ -127,7 +130,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "IAM roles and policies carry no charge; the only cost here is S3 storage and request charges for the one small object you uploaded. There is no instance to stop.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -152,7 +155,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -197,7 +200,7 @@
       "aws iam get-role --role-name workbook-gl03-role returns NoSuchEntity",
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-03 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-03. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

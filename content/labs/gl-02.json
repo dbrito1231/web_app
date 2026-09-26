@@ -1,6 +1,6 @@
 {
   "id": "gl-02",
-  "title": "GL-02 — Private S3 data controls",
+  "title": "GL-02 \u2014 Private S3 data controls",
   "kind": "guided",
   "pairId": "ul-02",
   "region": "us-east-1",
@@ -90,6 +90,7 @@
       "bullets": [
         "Run `aws s3api put-bucket-versioning --bucket $Bucket --versioning-configuration Status=Enabled`.",
         "Save lifecycle.json with one rule Expiration Days=1 on prefix `lab/` and Status Enabled.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\lifecycle.json\", '{\"Rules\":[{\"ID\":\"gl02-lab-expire\",\"Filter\":{\"Prefix\":\"lab/\"},\"Status\":\"Enabled\",\"Expiration\":{\"Days\":1}}]}', $utf8)`.",
         "Run `aws s3api put-bucket-lifecycle-configuration --bucket $Bucket --lifecycle-configuration file://lifecycle.json`.",
         "Success: versioning shows Enabled."
       ]
@@ -108,6 +109,7 @@
       "title": "Attach a bucket policy requiring TLS",
       "bullets": [
         "Save gl02-policy.json denying s3:PutObject unless aws:SecureTransport is true for bucket $Bucket.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl02Policy = @{ Version = '2012-10-17'; Statement = @(@{ Sid = 'DenyInsecureTransport'; Effect = 'Deny'; Principal = '*'; Action = 's3:PutObject'; Resource = \"arn:aws:s3:::$Bucket/*\"; Condition = @{ Bool = @{ 'aws:SecureTransport' = 'false' } } }) }; [IO.File]::WriteAllText(\"$pwd\\gl02-policy.json\", ($Gl02Policy | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `aws s3api put-bucket-policy --bucket $Bucket --policy file://gl02-policy.json`.",
         "Success: get-bucket-policy returns your document."
       ]
@@ -125,7 +127,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "S3 bills storage per GB-month and PUT/GET requests per request; nothing in this lab is hourly, and there is no instance to stop.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -150,7 +152,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -198,7 +200,7 @@
       "aws s3api head-bucket --bucket $Bucket returns 404 Not Found",
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-02 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-02 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-02. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

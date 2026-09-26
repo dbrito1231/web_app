@@ -71,6 +71,7 @@
       "title": "Create Lambda execution role",
       "bullets": [
         "Save gl10-trust.json for lambda.amazonaws.com.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl10-trust.json\", '{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"lambda.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}', $utf8)`.",
         "Run `aws iam create-role --role-name workbook-gl10-lambda --assume-role-policy-document file://gl10-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-10 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
         "Run `aws iam attach-role-policy --role-name workbook-gl10-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.",
         "Run `$LambdaRoleArn = aws iam get-role --role-name workbook-gl10-lambda --query Role.Arn --output text`.",
@@ -93,6 +94,7 @@
       "bullets": [
         "Run `aws sns subscribe --topic-arn $TopicArn --protocol sqs --notification-endpoint $QueueArn`.",
         "Save queue policy allowing SNS to sqs:SendMessage.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl10QueuePolicy = @{ Version = '2012-10-17'; Statement = @(@{ Sid = 'AllowSnsSendMessage'; Effect = 'Allow'; Principal = @{ Service = 'sns.amazonaws.com' }; Action = 'sqs:SendMessage'; Resource = $QueueArn; Condition = @{ ArnEquals = @{ 'aws:SourceArn' = $TopicArn } } }) }; [IO.File]::WriteAllText(\"$pwd\\gl10-queue-policy.json\", ($Gl10QueuePolicy | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `aws sqs set-queue-attributes --queue-url $QueueUrl --attributes Policy=file://gl10-queue-policy.json`.",
         "Success: subscription is confirmed."
       ]
@@ -129,7 +131,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "SNS, SQS, and Lambda all bill per request (each has its own monthly free tier), and CloudWatch Logs bills per GB stored. Nothing in this lab is hourly, and there is no instance to stop.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },

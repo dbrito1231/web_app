@@ -1,6 +1,6 @@
 {
   "id": "gl-05",
-  "title": "GL-05 — VPC segmentation",
+  "title": "GL-05 \u2014 VPC segmentation",
   "kind": "guided",
   "pairId": "ul-05",
   "region": "us-east-1",
@@ -132,7 +132,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
+        "VPCs, subnets, route tables, security groups, NACLs, and S3 gateway endpoints carry no hourly charge. This lab has no NAT gateway and no instance, so there is nothing hourly to stop.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -140,7 +140,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: VPC endpoint, NACL restore, route disassociation, subnets, IGW, SG, NACL, VPC",
+        "Teardown order for this lab: VPC endpoint, restore the private subnet's NACL association to the default NACL and delete the custom NACL, disassociate and delete both route tables, delete both subnets, detach and delete the internet gateway, delete the security group, then delete the VPC.",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -157,7 +157,7 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
         "Leftover tagged resources can still bill until deleted."
       ]
@@ -209,7 +209,7 @@
       "aws ec2 describe-vpcs --vpc-ids $VpcId returns InvalidVpcID.NotFound",
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-05 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-05 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-05. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",
