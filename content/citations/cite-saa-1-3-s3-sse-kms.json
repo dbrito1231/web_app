@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-s3-sse-kms",
+  "title": "Using server-side encryption with AWS KMS keys (SSE-KMS)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson rewrite (SAA task 1.3): SSE-S3 is the automatic default for new object uploads; SSE-KMS requires kms:GenerateDataKey/kms:Decrypt and the key must be in the same Region as the bucket."
+}

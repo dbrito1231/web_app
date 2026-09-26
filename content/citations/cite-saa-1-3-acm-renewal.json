@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-acm-renewal",
+  "title": "Managed certificate renewal in AWS Certificate Manager",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson rewrite (SAA task 1.3): a certificate is only eligible for automatic managed renewal when it is DNS-validated and attached to another AWS service or exported; imported certificates are never eligible."
+}

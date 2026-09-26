@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-kms-rotation",
+  "title": "Rotate AWS KMS keys",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson rewrite (SAA task 1.3): automatic annual rotation, custom rotation period, on-demand rotation, and manual rotation for asymmetric/HMAC keys."
+}

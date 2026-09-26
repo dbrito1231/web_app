@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-data-classification",
+  "title": "SEC 7. How do you classify your data?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/sec-07.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson rewrite (SAA task 1.3): classification categorizes data by criticality and sensitivity to determine the appropriate protection and retention controls."
+}

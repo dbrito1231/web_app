@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-kms-concepts",
+  "title": "AWS KMS keys",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson rewrite (SAA task 1.3): customer managed vs AWS managed vs AWS owned key comparison table, rotation and pricing differences."
+}
