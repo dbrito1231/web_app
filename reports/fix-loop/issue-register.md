@@ -172,3 +172,38 @@ Reports: `reports/fix-loop-r2/round-3/` (AWS, Teacher, Student, Python, Full-Sta
 | PY-R3-001, 004–006 | Inner-shape HTML 500; scanner case and false-positive gaps | Low | Python |
 
 Pilot verdicts: AWS **approve** (19/19 exam-realistic and correct); Student **approve** (7/7 fair, 7/7 correct); Teacher **concerns** (16 approve, 3 small fixes, and lessons don't teach).
+
+## Status after round 6 (2026-09-26)
+
+Rule: an item closes only when its original reporter and a second role mark it Gone. Every closure below meets that. Rows above keep their history; this section is the current state.
+
+### Closed
+
+| Area | Items | Closed by |
+|---|---|---|
+| Saves, explanations, lesson-drill links | ISS-001, 002, 003, 004 | earlier rounds (see above) |
+| Lab cleanup (CR-0017, Amendments 1 and 2) | N1, N2a–c, N3, N5, N6, N7, T1–T6, R1, R2, AWS-R3-001–011, AWS-R4L-001–006, TEACHER-R3-001–015, STUDENT-R3-004, STUDENT-R4-001–004, STUDENT-R5-001 | AWS (`round-5/AWS-labs.md`, `round-6/AWS-ul11.md`) + Student (`round-5/STUDENT.md`) |
+| Screens | O1–O7, R4, R5, FS-FINAL-001/002, FS-R2-2-001–008, FS-R3-001–004, FS-R4-001–005 | Full-Stack (`round-5/FULLSTACK.md`) + Student (`round-5/STUDENT.md`) |
+| Backend robustness | O10, ISS-060, PY-R2-2-*, PY-R3-001–006, PY-R4-001–004, 010, 011 | Python (`round-5/PYTHON.md`) + AWS/Teacher (checks pass on all content) |
+| Lab scanner (N5 and follow-ups) | "Scanner/loader work: close" | Python round 5 |
+| Wrong-letter rationales | N8 (interim fix, 185 files) | Teacher (all 185 by script + 20 read) |
+| Lesson 1.1 + SAA task 1.1 questions (Q1 pilot) | L1 for lesson 1.1; Q1-T1–T4; TEACHER-R4-001–008; TEACHER-R5-001–008; AWS-R4-001–009; AWS-R5-001/002 | Teacher, AWS, Student (`round-6/`), fairness 10/10 |
+| de-federation exercise | Q1-T2, AWS-R4-009, TEACHER-R4-008 | Teacher + AWS |
+
+### Still open
+
+| ID | Item | Sev | Notes |
+|---|---|---|---|
+| L1 / Q1 | Lessons 1.2–4.4 and TF g1–g8 (22 lessons) still boilerplate; ~410 questions still template-style | **High** | Lesson-first method approved (Amendment 2). Next: SAA task 1.2 |
+| ISS-010 | Template question wording | High | Closes as Q1 batches complete |
+| O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | Approved; not started |
+| D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
+| R6 / ISS-070 | Per-bullet official citations in lessons 4.2–4.4; coverage registry `implemented_unverified`; `mcpStatus: pending_recheck` on non-pilot questions | Medium | Folded into the lesson and question rewrites |
+| N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
+| N4 | Start here lists drills by raw ID | Low | Deferred to Q1 |
+| STUDENT-R6 notes | Lesson 1.1 has no in-lesson section links; S06/K04 dense on first read | Low | New, non-blocking |
+| PY-R5-001–003 | Scanner bypasses needing deliberate obfuscation (`iex`, aws via variable, Unicode dash) | Low | Python says close is fine; formal won't-fix needs your approval |
+| PY-R4-005/008/009, PY-R5-004/005 | Documented KISS trade-offs / info | Low/Info | As above |
+| Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
+
+DB fingerprint after round 6: `930f0e72…` (matches baseline).
