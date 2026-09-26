@@ -18,9 +18,9 @@ Pipeline per task:
 | 2 | lesson-1-3 | 20 | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ 2026-09-26 |
 | 3 | lesson-2-1 | 35 | ✔ | ✔ | ✔ | ✔ | ✔ AWS 35/35, Teacher close, Student 9/10 | ✔ (3 key-wording trims after Student note; Teacher approved 4e58e56) | ✔ 2026-09-26 |
 | 4 | lesson-2-2 | 32 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (after s07-mc fix), Teacher close, Student 10/10 | ✔ | ✔ 2026-09-26 |
-| 5 | lesson-3-1 | 8 | ✔ | ✔ | ✔ (AWS + Teacher re-check approve) | in progress | | | |
-| 6 | lesson-3-2 | 16 | ✔ | ✔ | ✔ (AWS + Teacher re-check approve) | in progress | | | |
-| 7 | lesson-3-3 | 21 | | | | | | | |
+| 5 | lesson-3-1 | 8 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (1 diversity fix), Teacher close, Student packet 7/7 | ✔ | ✔ 2026-09-26 |
+| 6 | lesson-3-2 | 16 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (1 diversity fix + K05 timeout sentence), Teacher close, Student packet 8/8 | ✔ | ✔ 2026-09-26 |
+| 7 | lesson-3-3 | 21 | ✔ | ✔ AWS + Teacher approve | ✔ | ✔ | AWS close (AWS-Q33-001 fixed 71fc6a8); Teacher round 2 running | | |
 | 8 | lesson-3-4 | 13 | | | | | | | |
 | 9 | lesson-3-5 | 24 | | | | | | | |
 | 10 | lesson-4-1 | 35 | | | | | | | |
