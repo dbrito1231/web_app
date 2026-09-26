@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-2.2-S08"
   ],
-  "stem": "During an architecture review, the goal is: Using purpose-built AWS services for workloads. Which action matches that goal?",
+  "stem": "A solutions architect must replace a homegrown script that polls two Regions and manually updates DNS records during a failover. Which purpose-built service replaces it?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A scheduled Lambda function that checks both endpoints and updates the Route 53 records through the API."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Using purpose-built AWS services for workloads"
+      "text": "CloudWatch alarms that page an on-call engineer when the primary endpoint's health check fails."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Elastic Disaster Recovery, failing traffic over between the two Regions."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon Route 53 with a failover routing policy backed by health checks."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Route 53 failover routing, paired with health checks, is the purpose-built managed feature that already monitors an endpoint and stops returning it in DNS answers once it is unhealthy, replacing the homegrown polling-and-update script entirely. A scheduled Lambda function that polls endpoints and updates records through the API is still custom-built tooling doing the same job as the homegrown script, not the purpose-built managed alternative. CloudWatch alarms that page an on-call engineer still rely on a human to make the DNS change, rather than replacing that manual step with an automated one. AWS Elastic Disaster Recovery fails over replicated servers between Regions; it does not perform DNS-level traffic routing, so it does not replace this particular script.",
+  "citationIds": [
+    "cite-saa-2-2-route53-failover",
+    "cite-saa-2-2-route53-routing",
+    "cite-saa-2-2-cloudwatch",
+    "cite-saa-2-2-drs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

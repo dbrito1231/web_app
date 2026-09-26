@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-2.2-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones",
+  "stem": "After a Regional outage drill, the design must add TWO services that keep both the workload's user traffic and its object storage available from a second Region. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An Amazon RDS Multi-AZ DB instance, with its standby in a second Availability Zone of the same Region."
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Elastic Disaster Recovery, replicating the application's servers into a staging area in the second Region."
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A Route 53 routing policy that spans both Regions, backed by health checks."
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon S3 Cross-Region Replication of the application's stored objects."
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon S3 One Zone-IA as the storage class for the replicated copies."
     }
   ],
   "correctAnswerIds": [
     "c",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Route 53 policy that spans both Regions, paired with health checks, is what redirects user traffic away from a Region that stops responding, which is the traffic-side half of Region-level availability. Cross-Region Replication keeps a second, independent copy of the objects in the other Region, which is what keeps the stored data itself available if the first Region is lost. A Multi-AZ DB instance's standby stays inside the same Region as the primary, so it protects against an Availability Zone failure, not a Regional one. AWS Elastic Disaster Recovery keeps replicated servers staged in the second Region, but those servers stay dormant until launched during a failover; it does not itself route live user traffic between Regions, and it does nothing for object storage. S3 One Zone-IA stores its objects in a single Availability Zone rather than spreading them across a Region, so choosing it for the replicated copies removes the redundancy the replication was meant to add.",
+  "citationIds": [
+    "cite-saa-2-2-route53-routing",
+    "cite-saa-2-2-s3-crr",
+    "cite-saa-2-2-rds-multiaz",
+    "cite-saa-2-2-drs",
+    "cite-saa-2-2-s3-storage-classes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

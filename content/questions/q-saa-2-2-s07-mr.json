@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-2.2-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+  "stem": "A legacy application that cannot be modified is exhausting its database's maximum connection limit whenever traffic spikes, and its single application server has no automated path back if that server itself is lost. Which TWO additions address these, without changing the application's code? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "An Application Load Balancer in front of the fleet."
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Backup for the database's storage."
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "RDS Proxy, placed between the application and the database."
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Elastic Disaster Recovery, configured for the application server."
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon RDS Multi-AZ automatic failover for the database."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "RDS Proxy pools many short-lived client connections onto fewer database connections without any change to the application, which directly relieves the connection-limit exhaustion. AWS Elastic Disaster Recovery keeps a continuously replicated copy of the server ready to launch as a fully booted recovery instance within minutes, giving the single server an automated recovery path with no code change. A load balancer can stop sending traffic to a server that fails its health check, but with only one application server it has no other healthy target to route to, so it does not by itself recover a lost server. AWS Backup protects the database's storage with scheduled backups; it does not reduce open connections and its restore process is not an automated, minutes-scale recovery for a lost application server. RDS Multi-AZ automatic failover protects the database against the loss of its own Availability Zone; it does nothing for the connection limit or for the loss of the separate application server.",
+  "citationIds": [
+    "cite-saa-2-2-rds-proxy",
+    "cite-saa-2-2-drs",
+    "cite-saa-2-2-elb-healthchecks",
+    "cite-saa-2-2-aws-backup",
+    "cite-saa-2-2-rds-multiaz"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

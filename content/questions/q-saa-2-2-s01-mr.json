@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-2.2-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining automation strategies to ensure infrastructure integrity",
+  "stem": "During a quarterly audit, reviewers find that some production fixes bypass the deployment pipeline and are applied straight to live instances. Which TWO practices close this gap? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Deploy changes as immutable images that replace the running instance rather than patching it in place."
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Provision every resource from an infrastructure-as-code template instead of making console changes."
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Apply patches directly to the currently running fleet on a fixed schedule."
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Rely on Auto Scaling health checks to replace any instance that fails a check."
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Schedule AWS Backup's policy-based backups for the fleet's volumes."
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Replacing an instance with a new immutable image instead of patching it removes the path by which a running resource is changed outside the pipeline. Provisioning every resource from an infrastructure-as-code template, instead of editing resources through the console, keeps the template as the single source of truth for what is deployed. Scheduled in-place patching of the running fleet is itself the kind of direct, off-pipeline change the audit is flagging, so it does not close the gap. Auto Scaling health checks replace instances that fail a check, but they say nothing about how a deliberate application change reaches the fleet in the first place. Scheduling policy-based backups protects data for restoration, but it does not change how application or configuration changes are deployed to running instances.",
+  "citationIds": [
+    "cite-saa-2-2-immutable",
+    "cite-saa-2-2-asg-multiaz",
+    "cite-saa-2-2-aws-backup"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

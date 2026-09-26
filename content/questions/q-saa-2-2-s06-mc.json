@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-S06"
   ],
-  "stem": "The workload needs this outcome: Selecting an appropriate DR strategy to meet business requirements. Which action should you take?",
+  "stem": "A solutions architect must recommend the least expensive DR strategy that still restores a workload within 24 hours of losing its primary Region, with a data loss window measured in hours being acceptable. Which strategy fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Selecting an appropriate DR strategy to meet business requirements"
+      "text": "Pilot light."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Backup and restore."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Warm standby."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Multi-site active/active."
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Backup and restore is the cheapest of the four DR strategies and its RTO of 24 hours or less, with an RPO measured in hours, matches the stated requirement exactly. Pilot light keeps core data stores already running in the recovery Region, achieving a faster RTO of tens of minutes and an RPO of minutes, which costs more than this requirement needs. Warm standby runs a scaled-down copy of the whole workload continuously, achieving an RTO of minutes and an RPO of seconds, well beyond what a 24-hour, hours-of-data-loss requirement calls for. Multi-site active/active runs the workload in multiple Regions at once for near-zero RTO and RPO, making it the most expensive option and far more than this requirement needs.",
+  "citationIds": [
+    "cite-saa-2-2-dr-strategies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

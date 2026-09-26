@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.2-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting an appropriate DR strategy to meet business requirements",
+  "stem": "After comparing several DR strategies against a stated requirement of losing no more than a few seconds of data, TWO strategies remain candidates before cost is considered. Which TWO are they? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Warm standby."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Multi-site active/active."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Backup and restore."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Pilot light."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An Amazon RDS Multi-AZ deployment within a single Region."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Warm standby's RPO is measured in seconds, which meets the few-seconds data-loss requirement. Multi-site active/active has a near-zero RPO, which also meets the requirement, making it the other remaining candidate before cost narrows the choice. Backup and restore has an RPO measured in hours, far exceeding a few-seconds data-loss tolerance. Pilot light has an RPO measured in minutes, which still exceeds a requirement of a few seconds. A Multi-AZ RDS deployment is a single-Region high-availability feature, not a cross-Region DR strategy, so it does not belong among the DR strategy candidates at all.",
+  "citationIds": [
+    "cite-saa-2-2-dr-strategies",
+    "cite-saa-2-2-rds-multiaz"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

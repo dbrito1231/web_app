@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.2-S03"
   ],
-  "stem": "Which action is the right fit for this requirement: Identifying metrics based on business requirements to deliver a highly available solution?",
+  "stem": "A solutions architect converts a stated limit of about 52 minutes of downtime per year into the correct metric and target for a service level agreement. Which is it?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An availability target of 99.9% for the same annual downtime budget."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An availability target of 99.99%."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Identifying metrics based on business requirements to deliver a highly available solution"
+      "text": "An RTO of 52 minutes."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An RPO of 52 minutes."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An annual downtime budget of about 52 minutes corresponds to 99.99% availability, since that is the uptime percentage that leaves roughly that amount of downtime across a full year. 99.9% availability corresponds to roughly 8.7 hours of downtime a year, which is far more downtime than the stated 52-minute limit allows. An RTO measures how long a specific workload may stay down after a disruption before it must be back, not the total downtime budget across an entire year, so it is the wrong metric for this stated limit. An RPO measures how much data may be lost, not how much downtime is acceptable, so it does not match a downtime figure at all.",
+  "citationIds": [
+    "cite-saa-2-2-reliability-pillar",
+    "cite-saa-2-2-dr-strategies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-2.2-S02"
   ],
-  "stem": "A teammate asks how to meet this requirement: Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones. Which action is appropriate?",
+  "stem": "An application's recovery plan requires the primary data store to keep accepting writes in a second Region within seconds of losing the first Region, with conflicting writes resolved automatically. Which service meets this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Aurora Global Database, with the secondary Region's cluster kept read-only until promoted."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An Amazon RDS Multi-AZ DB instance, with its standby kept in a second Availability Zone."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon DynamoDB global tables, configured across the two Regions."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Region"
+      "text": "Amazon S3 Cross-Region Replication of the application's data files."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DynamoDB global tables replicate a table across Regions in a multi-active configuration, so every Region's replica can accept writes, and conflicting writes on the same item are resolved automatically, which is exactly what the seconds-level, both-Regions-writable requirement calls for. Aurora Global Database keeps its secondary Region's cluster read-only until it is manually or automatically promoted, so it cannot accept writes in the second Region before a promotion happens. A Multi-AZ DB instance's standby lives in a second Availability Zone within the same Region, so it protects against losing one data center, not against losing the entire first Region. S3 Cross-Region Replication copies objects between buckets in two Regions, but it is an object-storage feature, not a database that accepts transactional writes with conflict resolution.",
+  "citationIds": [
+    "cite-saa-2-2-ddb-global-tables",
+    "cite-saa-2-2-aurora-global",
+    "cite-saa-2-2-rds-multiaz",
+    "cite-saa-2-2-s3-crr"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

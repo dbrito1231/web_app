@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.2-S04"
   ],
-  "stem": "You must choose one approach for: Implementing designs to mitigate single points of failure. Which action fits?",
+  "stem": "An application's recovery plan is undermined by a route table that sends every Availability Zone's outbound traffic through one NAT gateway placed in a single zone. Which change removes this single point of failure?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create one NAT gateway per Availability Zone, each referenced only by that zone's own route table."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a second NAT gateway in the same Availability Zone as the first, for redundancy."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Implementing designs to mitigate single points of failure"
+      "text": "Attach an internet gateway directly to each private subnet's route table."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Leave every subnet associated with the VPC's main route table, which already points at the existing NAT gateway."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Giving each Availability Zone its own NAT gateway, referenced only by that zone's own route table, removes the cross-AZ dependency: the loss of one zone's NAT gateway then only affects that zone's outbound path, not every zone's. A second NAT gateway in the same Availability Zone still leaves every other zone's outbound traffic dependent on that one zone, so the underlying cross-AZ dependency is unchanged. Attaching an internet gateway directly to a private subnet's route table gives that subnet a two-way path to the internet, turning it public rather than fixing the NAT gateway's single point of failure. Leaving every subnet on the VPC's main route table keeps every Availability Zone pointed at the one existing NAT gateway, which is the single point of failure the design needs to remove.",
+  "citationIds": [
+    "cite-saa-2-2-vpc-route-tables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

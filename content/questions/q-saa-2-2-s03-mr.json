@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-2.2-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Identifying metrics based on business requirements to deliver a highly available solution",
+  "stem": "During a stakeholder workshop, finance and engineering agree to record the maximum acceptable downtime and the maximum acceptable data loss as two separate numbers pulled from monitoring history. Which TWO metrics are they defining? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Recovery time objective (RTO)."
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The workload's overall availability percentage, such as 99.99%."
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A durability percentage, such as 99.999999999% (eleven nines)."
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "A service quota, such as an EC2 vCPU limit in the recovery Region."
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Recovery point objective (RPO)."
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "RTO is precisely the maximum acceptable downtime, expressed as a duration measured from when a disruption starts. RPO is precisely the maximum acceptable data loss, expressed as how far back in time the most recent recoverable data can be. An overall availability percentage summarizes uptime across a whole year rather than stating the maximum downtime or data loss allowed for a single incident, so it is a different, aggregate metric from the two the workshop is defining. A durability percentage such as eleven nines describes how unlikely stored data is to be lost to a storage failure over a year; it is a different, storage-level measure from the workshop's downtime and data-loss numbers, which apply to an incident, not to a year of storage. A service quota such as an EC2 vCPU limit caps how much of a resource an account can use in a Region; it is a capacity ceiling to plan around, not a statement of acceptable downtime or data loss.",
+  "citationIds": [
+    "cite-saa-2-2-dr-strategies",
+    "cite-saa-2-2-reliability-pillar",
+    "cite-saa-2-2-s3-durability",
+    "cite-saa-2-2-service-quotas"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

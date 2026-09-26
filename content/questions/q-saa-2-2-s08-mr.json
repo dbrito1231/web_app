@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-2.2-S08"
   ],
-  "stem": "Select TWO actions that support this requirement: Using purpose-built AWS services for workloads",
+  "stem": "An operations review finds two homegrown tools still in use: a cron job that snapshots a database on a fixed schedule, and a script that replicates a DynamoDB table's items to a second Region and resolves conflicting writes between the two copies by hand. Which TWO purpose-built services remove the need for them? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Backup, with a policy-based backup plan replacing the cron job."
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Backup Vault Lock in governance mode on the existing vault."
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon Aurora Global Database, with the secondary Region's cluster kept read-only."
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Elastic Disaster Recovery, replicating the database server at the block level."
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon DynamoDB global tables, replacing the custom cross-Region replication and conflict resolution."
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Backup's policy-based backup plans replace a hand-maintained cron job with a managed, scheduled backup service covering the database. DynamoDB global tables replicate a table across Regions in a multi-active configuration and resolve conflicting writes automatically, replacing exactly the custom replication-and-conflict-resolution script. Vault Lock only locks the retention settings of a vault that already has a backup plan; on its own it does not schedule the backups the cron job was performing. Aurora Global Database is a relational-database feature for an Aurora cluster, not a replication target for a DynamoDB table, and its secondary Region's cluster stays read-only until promoted, so it neither applies to this table nor accepts writes in both Regions the way the homegrown script does. AWS Elastic Disaster Recovery replicates whole servers at the block level for disaster recovery; it does not replicate individual table rows or resolve write conflicts between two active copies.",
+  "citationIds": [
+    "cite-saa-2-2-aws-backup",
+    "cite-saa-2-2-backup-vault-lock",
+    "cite-saa-2-2-ddb-global-tables",
+    "cite-saa-2-2-aurora-global",
+    "cite-saa-2-2-drs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

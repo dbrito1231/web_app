@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-2.2-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing designs to mitigate single points of failure",
+  "stem": "A post-incident review finds two components in an otherwise redundant stack that would each take down the whole application if they failed alone: a single EC2 instance running outside any Auto Scaling group, and a database with no standby. Which TWO fixes remove them? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Add an Application Load Balancer with health checks in front of the single instance, without placing it in an Auto Scaling group."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Place the instance in an Auto Scaling group that spans multiple Availability Zones."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Enable Multi-AZ for the database instance."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Take a manual snapshot of the database on a fixed schedule."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add a read replica to the database for reporting queries."
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Placing the instance in an Auto Scaling group spanning multiple Availability Zones means a healthy replacement can launch in another zone if the original instance or its zone fails, removing that single instance as a point of failure. Enabling Multi-AZ gives the database an automatic-failover standby in a second Availability Zone, so the loss of the primary's zone no longer takes the database down. A load balancer's health check can stop sending traffic to the instance if it fails a check, but with no Auto Scaling group there is still only one instance behind it, so its failure still takes the application down. A scheduled snapshot protects against data loss and supports point-in-time restore, but restoring from a snapshot takes time and does not provide the automatic failover that removes this single point of failure. A read replica offloads read traffic but is not designed to fail over automatically, so it does not replace the automatic-failover protection the database is missing.",
+  "citationIds": [
+    "cite-saa-2-2-asg-multiaz",
+    "cite-saa-2-2-rds-multiaz",
+    "cite-saa-2-2-aws-backup",
+    "cite-saa-2-2-elb-healthchecks"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

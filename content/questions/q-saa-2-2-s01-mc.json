@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-2.2-S01"
   ],
-  "stem": "You must choose one approach for: Determining automation strategies to ensure infrastructure integrity. Which action fits?",
+  "stem": "A solutions architect must ensure every production change is deployed through a versioned pipeline rather than applied directly to a running instance. Which practice satisfies this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Provision infrastructure from templates, and make configuration fixes directly in the console for routine changes."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Apply patches directly to the running fleet on a recurring schedule."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Determining automation strategies to ensure infrastructure integrity"
+      "text": "Use an Auto Scaling group's health checks to terminate and relaunch any instance that fails a check."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy every application change as a new machine image or template through the pipeline, replacing the running resource instead of modifying it in place."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Replacing a resource with a freshly built image or template each time a change is needed is immutable infrastructure: it makes every deployment atomic and leaves no running resource that was ever hand-edited, which is exactly what a versioned pipeline requires. Provisioning from templates but still allowing direct console fixes keeps one path where a resource is changed outside the pipeline, so the running fleet can still drift from what the template describes. Applying patches on a schedule directly to the running fleet changes resources in place rather than replacing them, which is the opposite of routing every change through the pipeline. Auto Scaling health checks only replace instances that fail a check; they do nothing to control how a deliberate application change is delivered, so they do not by themselves close the gap between the pipeline and the running fleet.",
+  "citationIds": [
+    "cite-saa-2-2-immutable",
+    "cite-saa-2-2-asg-multiaz",
+    "cite-saa-2-2-reliability-pillar"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

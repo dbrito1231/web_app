@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.2-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing strategies to ensure the durability and availability of data (for example, backups)",
+  "stem": "During a compliance review, auditors require that a backup vault's retention settings become impossible for any user, including the root user, to shorten once a cooling-off period passes. Which TWO configuration choices are required together? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Lock the vault in governance mode instead of compliance mode."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A mandatory grace period of 24 hours before the lock becomes final."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure AWS Backup's cross-Region copy for the vault's recovery points."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Lock the vault in compliance mode."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A mandatory grace period of at least 72 hours before the lock becomes final."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Compliance mode is the Vault Lock setting that becomes immutable and undeletable by any user, including the root user, which is exactly what the auditors are requiring. That lock does not take effect until its mandatory grace period, at least 72 hours, has elapsed; only after that period ends does the configuration become truly unchangeable, so this grace period is a required fact about how the lock becomes final. Governance mode can still be removed by a user with sufficient IAM permissions, which fails the requirement that no user, including root, be able to shorten the retention settings. AWS Backup Vault Lock's mandatory grace period is at least 72 hours, not 24 hours, so a 24-hour period does not match the minimum the service enforces. AWS Backup's cross-Region copy duplicates recovery points into another Region; it does not lock or otherwise protect the original vault's retention settings from being changed.",
+  "citationIds": [
+    "cite-saa-2-2-backup-vault-lock",
+    "cite-saa-2-2-aws-backup"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-2.2-S07"
   ],
-  "stem": "The workload needs this outcome: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible). Which action should you take?",
+  "stem": "A solutions architect must add automated, health-checked failover in front of a legacy application whose source code cannot be modified. Which addition meets this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for exa"
+      "text": "An Application Load Balancer or Network Load Balancer placed in front of the fleet, with health checks removing unhealthy targets from rotation."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use Amazon Route 53 failover routing with health checks, pointing at a single instance as the primary endpoint."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use AWS Elastic Disaster Recovery to replicate the servers into a staging area for a future failover."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use RDS Proxy to pool the application's database connections."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A load balancer placed in front of the existing fleet adds health-checked, automated failover between targets without touching the application itself, which is exactly what a legacy, unmodifiable codebase needs. Route 53 failover routing also needs no code change, but pointed at a single instance it is only monitoring and redirecting away from one endpoint at DNS-resolution speed; it does not continuously health-check and rebalance many targets in the fleet the way a load balancer does. AWS Elastic Disaster Recovery continuously replicates whole servers for a Regional disaster failover; it is not the mechanism that health-checks and routes everyday traffic between targets. RDS Proxy pools and manages database connections; it does not health-check or route application traffic between servers, so it does not add the failover this design needs.",
+  "citationIds": [
+    "cite-saa-2-2-elb-healthchecks",
+    "cite-saa-2-2-drs",
+    "cite-saa-2-2-rds-proxy",
+    "cite-saa-2-2-route53-failover"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
