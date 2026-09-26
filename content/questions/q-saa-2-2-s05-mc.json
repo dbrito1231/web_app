@@ -33,8 +33,7 @@
   "citationIds": [
     "cite-saa-2-2-aws-backup",
     "cite-saa-2-2-backup-vault-lock",
-    "cite-saa-2-2-s3-crr",
-    "cite-saa-2-2-rds-multiaz"
+    "cite-saa-2-2-s3-crr"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
