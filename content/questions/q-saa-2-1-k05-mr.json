@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "A rule can match incoming events against a pattern, such as an 'out-of-stock' status, and deliver only the matches to a target like a Lambda function"
+      "text": "An EventBridge rule can deliver only events matching an 'out-of-stock' pattern to a Lambda target"
     },
     {
       "id": "c",

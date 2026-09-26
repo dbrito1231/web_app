@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "An HTTP API, which gives lower latency and cost than a REST API for this Lambda backend, with built-in OIDC/OAuth 2.0"
+      "text": "An HTTP API with built-in OIDC/OAuth 2.0 authorization for the Lambda backend"
     },
     {
       "id": "b",

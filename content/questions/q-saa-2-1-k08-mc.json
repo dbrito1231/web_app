@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Use AWS App2Container to analyze the running application and generate the container image and ECS task definition"
+      "text": "Use AWS App2Container to generate a container image and an ECS task definition"
     }
   ],
   "correctAnswerIds": [
