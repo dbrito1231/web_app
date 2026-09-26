@@ -56,29 +56,55 @@ def load_lesson(lesson_id: str) -> dict:
 def _require_optional_list(value, path: Path, field: str, *, item_type: type | None = None) -> None:
     """Raise ContentParseError if `value` is present but not a list (of
     `item_type`, when given). `None`/missing is fine — callers already treat
-    an absent field as an empty list."""
+    an absent field as an empty list. `bool` is never accepted where
+    `item_type` is `str`, even though `bool` is technically an `int` subtype
+    (not relevant here since `str` items never match `bool`, but kept
+    explicit for clarity if a caller later passes `item_type=int`)."""
     if value is None:
         return
     if not isinstance(value, list) or (
         item_type is not None and not all(isinstance(item, item_type) for item in value)
     ):
-        detail = "a list of objects" if item_type is dict else "a list"
+        if item_type is dict:
+            detail = "a list of objects"
+        elif item_type is str:
+            detail = "a list of strings"
+        else:
+            detail = "a list"
         raise ContentParseError(
             f"Content file {path.name} field '{field}' must be {detail}"
         )
+
+
+def _require_choice_ids(choices, path: Path) -> None:
+    """Each choice's `id` must be a string; a list/int/etc. is unhashable or
+    otherwise breaks `create_attempt`'s `{choice.get("id") for choice in ...}`
+    set-build and `score_question`'s set comparisons."""
+    if not choices:
+        return
+    for choice in choices:
+        if not isinstance(choice, dict) or not isinstance(choice.get("id"), str):
+            raise ContentParseError(
+                f"Content file {path.name} has a choice with a non-string 'id'"
+            )
 
 
 def load_question(question_id: str) -> dict:
     path = content_root() / "questions" / f"{question_id}.json"
     question = _read_json(path, dict)
     _require_optional_list(question.get("choices"), path, "choices", item_type=dict)
-    _require_optional_list(question.get("objectiveIds"), path, "objectiveIds")
-    _require_optional_list(question.get("correctAnswerIds"), path, "correctAnswerIds")
+    _require_choice_ids(question.get("choices"), path)
+    _require_optional_list(question.get("objectiveIds"), path, "objectiveIds", item_type=str)
+    _require_optional_list(question.get("correctAnswerIds"), path, "correctAnswerIds", item_type=str)
     return question
 
 
 def load_lab(lab_id: str) -> dict:
-    return _read_json(content_root() / "labs" / f"{lab_id}.json", dict)
+    path = content_root() / "labs" / f"{lab_id}.json"
+    lab = _read_json(path, dict)
+    _require_optional_list(lab.get("steps"), path, "steps", item_type=dict)
+    _require_optional_list(lab.get("acceptanceCriteria"), path, "acceptanceCriteria", item_type=str)
+    return lab
 
 
 def load_coverage_registry() -> dict:
@@ -206,6 +232,10 @@ def saa_objective_domain_map() -> dict[str, str]:
             raise ContentParseError(
                 f"Content file {path.name} has an objective row missing 'id' or 'domain_id'"
             )
+        if not isinstance(row["id"], str):
+            raise ContentParseError(
+                f"Content file {path.name} has an objective row with a non-string 'id'"
+            )
         result[row["id"]] = row["domain_id"]
     return result
 
@@ -223,12 +253,18 @@ def terraform_objective_group_map() -> dict[str, int]:
             raise ContentParseError(
                 f"Content file {path.name} has an objective row missing 'id' or 'group'"
             )
-        try:
-            result[row["id"]] = int(row["group"])
-        except (TypeError, ValueError) as exc:
+        if not isinstance(row["id"], str):
             raise ContentParseError(
-                f"Content file {path.name} has a non-numeric 'group' for {row['id']}"
-            ) from exc
+                f"Content file {path.name} has an objective row with a non-string 'id'"
+            )
+        group = row["group"]
+        # `bool` is an `int` subclass in Python, so `True`/`False` would
+        # otherwise silently coerce to 1/0. `1.9` must not truncate to 1.
+        if isinstance(group, bool) or not isinstance(group, int):
+            raise ContentParseError(
+                f"Content file {path.name} has a non-integer 'group' for {row['id']!r}"
+            )
+        result[row["id"]] = group
     return result
 
 

@@ -19,7 +19,8 @@ def load_all(folder: str):
 
 
 def _normalize_criterion(text) -> str:
-    return re.sub(r"\s+", " ", str(text)).strip().lower()
+    normalized = re.sub(r"\s+", " ", str(text)).strip().lower()
+    return normalized.rstrip(".")
 
 
 def find_duplicate_criteria(criteria: list) -> list[str]:
@@ -33,6 +34,51 @@ def find_duplicate_criteria(criteria: list) -> list[str]:
             duplicates.append(str(c))
         seen.add(norm)
     return duplicates
+
+
+def _is_list_of(value, item_type: type) -> bool:
+    """True if `value` is missing/None (an absent field is fine — loader
+    treats it as empty) or a list whose items are all `item_type`. Mirrors
+    the shapes `content_loader.py` enforces at load time (PY-R4-010), so
+    lint can catch a bad shape before the API turns it into a 500."""
+    if value is None:
+        return True
+    if not isinstance(value, list):
+        return False
+    return all(isinstance(item, item_type) for item in value)
+
+
+def check_question_shape(question: dict) -> list[str]:
+    """Shape errors for one question, matching `load_question`'s checks:
+    `choices` a list of objects with string `id`s, `objectiveIds` and
+    `correctAnswerIds` lists of strings."""
+    errors: list[str] = []
+    qid = question.get("id", "?")
+    choices = question.get("choices")
+    if not _is_list_of(choices, dict):
+        errors.append(f"{qid} 'choices' must be a list of objects")
+    elif choices:
+        for choice in choices:
+            if not isinstance(choice.get("id"), str):
+                errors.append(f"{qid} has a choice with a non-string 'id'")
+                break
+    if not _is_list_of(question.get("objectiveIds"), str):
+        errors.append(f"{qid} 'objectiveIds' must be a list of strings")
+    if not _is_list_of(question.get("correctAnswerIds"), str):
+        errors.append(f"{qid} 'correctAnswerIds' must be a list of strings")
+    return errors
+
+
+def check_lab_shape(lab: dict) -> list[str]:
+    """Shape errors for one lab, matching `load_lab`'s checks: `steps` a
+    list of objects, `acceptanceCriteria` a list of strings."""
+    errors: list[str] = []
+    lab_id = lab.get("id", "?")
+    if not _is_list_of(lab.get("steps"), dict):
+        errors.append(f"{lab_id} 'steps' must be a list of objects")
+    if not _is_list_of(lab.get("acceptanceCriteria"), str):
+        errors.append(f"{lab_id} 'acceptanceCriteria' must be a list of strings")
+    return errors
 
 
 def main() -> int:
@@ -68,6 +114,7 @@ def main() -> int:
                 errors.append(f"module {m} has {n} < 20 questions")
 
     for q in questions:
+        errors.extend(check_question_shape(q))
         if q.get("type") not in ("mc", "mr"):
             errors.append(f"{q['id']} bad type {q.get('type')}")
         if not q.get("rationale"):
@@ -87,6 +134,12 @@ def main() -> int:
         errors.append(f"guided labs {len(guided)} < 20")
     if len(unguided) < 20:
         errors.append(f"unguided labs {len(unguided)} < 20")
+    for lab in labs:
+        errors.extend(check_lab_shape(lab))
+        crit = lab.get("acceptanceCriteria") or []
+        for dup in find_duplicate_criteria(crit):
+            errors.append(f"{lab['id']} duplicate acceptance criterion: {dup[:80]}")
+
     for lab in guided:
         steps = lab.get("steps") or []
         if len(steps) < 15:
@@ -103,8 +156,6 @@ def main() -> int:
         crit = lab.get("acceptanceCriteria") or []
         if len(crit) < 15:
             errors.append(f"{lab['id']} criteria {len(crit)} < 15")
-        for dup in find_duplicate_criteria(crit):
-            errors.append(f"{lab['id']} duplicate acceptance criterion: {dup[:80]}")
         if not (lab.get("teardown") or {}).get("orderedDeletesPowerShell"):
             errors.append(f"{lab['id']} teardown missing")
 

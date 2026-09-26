@@ -7,6 +7,7 @@ from django.test import Client, TestCase, override_settings
 from workbook.content_loader import (
     ContentParseError,
     _read_json,
+    load_lab,
     load_question,
     saa_objective_domain_map,
     terraform_objective_group_map,
@@ -257,4 +258,174 @@ class ContentParseTests(TestCase):
                         terraform_objective_group_map()
             finally:
                 saa_objective_domain_map.cache_clear()
+                terraform_objective_group_map.cache_clear()
+
+    # -- PY-R4-010: element types inside lists ------------------------------
+
+    def test_question_with_bad_choice_id_shape_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "questions").mkdir()
+            (root / "questions" / "q-bad-choice-id.json").write_text(
+                json.dumps({"id": "q-bad-choice-id", "choices": [{"id": ["a"]}]}),
+                encoding="utf-8",
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_question("q-bad-choice-id")
+
+    def test_question_with_good_choice_ids_loads(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "questions").mkdir()
+            (root / "questions" / "q-good-choices.json").write_text(
+                json.dumps(
+                    {
+                        "id": "q-good-choices",
+                        "choices": [{"id": "a"}, {"id": "b"}],
+                        "objectiveIds": ["SAA-1"],
+                        "correctAnswerIds": ["a"],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with override_settings(CONTENT_ROOT=root):
+                question = load_question("q-good-choices")
+        self.assertEqual(question["id"], "q-good-choices")
+
+    def test_question_with_non_string_objective_id_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "questions").mkdir()
+            (root / "questions" / "q-bad-objectives.json").write_text(
+                json.dumps({"id": "q-bad-objectives", "objectiveIds": [1]}), encoding="utf-8"
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_question("q-bad-objectives")
+
+    def test_question_with_non_string_correct_answer_id_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "questions").mkdir()
+            (root / "questions" / "q-bad-correct.json").write_text(
+                json.dumps({"id": "q-bad-correct", "correctAnswerIds": [["a"]]}),
+                encoding="utf-8",
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_question("q-bad-correct")
+
+    def test_lab_with_non_list_steps_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "labs").mkdir()
+            (root / "labs" / "lab-bad-steps.json").write_text(
+                json.dumps({"id": "lab-bad-steps", "steps": 7}), encoding="utf-8"
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_lab("lab-bad-steps")
+
+    def test_lab_with_non_list_acceptance_criteria_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "labs").mkdir()
+            (root / "labs" / "lab-bad-criteria.json").write_text(
+                json.dumps({"id": "lab-bad-criteria", "acceptanceCriteria": 5}), encoding="utf-8"
+            )
+            with override_settings(CONTENT_ROOT=root):
+                with self.assertRaises(ContentParseError):
+                    load_lab("lab-bad-criteria")
+
+    def test_lab_with_good_shape_loads(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "labs").mkdir()
+            (root / "labs" / "lab-good.json").write_text(
+                json.dumps(
+                    {
+                        "id": "lab-good",
+                        "steps": [{"id": "s01", "bullets": []}],
+                        "acceptanceCriteria": ["a", "b"],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with override_settings(CONTENT_ROOT=root):
+                lab = load_lab("lab-good")
+        self.assertEqual(lab["id"], "lab-good")
+
+    def test_summary_route_500s_on_a_lab_with_bad_steps_shape(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for sub in ("questions", "lessons", "labs", "coverage"):
+                (root / sub).mkdir()
+            (root / "labs" / "lab-bad.json").write_text(
+                json.dumps({"id": "lab-bad", "steps": "not-a-list"}), encoding="utf-8"
+            )
+            (root / "coverage" / "saa_registry.json").write_text(json.dumps({"rows": []}), encoding="utf-8")
+            with override_settings(CONTENT_ROOT=root), self.assertLogs("workbook.views", "ERROR"):
+                response = Client().get("/api/content/summary")
+        self.assertEqual(response.status_code, 500)
+        self.assertTrue(response["Content-Type"].startswith("application/json"))
+        self.assertIn("Content file", response.json()["error"])
+
+    def test_saa_objective_row_with_non_string_id_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "objectives").mkdir()
+            (root / "objectives" / "saa_c03.json").write_text(
+                json.dumps([{"id": ["x"], "domain_id": "d1"}]), encoding="utf-8"
+            )
+            saa_objective_domain_map.cache_clear()
+            try:
+                with override_settings(CONTENT_ROOT=root):
+                    with self.assertRaises(ContentParseError):
+                        saa_objective_domain_map()
+            finally:
+                saa_objective_domain_map.cache_clear()
+
+    def test_terraform_objective_row_with_bool_group_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "objectives").mkdir()
+            (root / "objectives" / "terraform_004.json").write_text(
+                json.dumps([{"id": "tf.1", "group": True}]), encoding="utf-8"
+            )
+            terraform_objective_group_map.cache_clear()
+            try:
+                with override_settings(CONTENT_ROOT=root):
+                    with self.assertRaises(ContentParseError):
+                        terraform_objective_group_map()
+            finally:
+                terraform_objective_group_map.cache_clear()
+
+    def test_terraform_objective_row_with_float_group_raises(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "objectives").mkdir()
+            (root / "objectives" / "terraform_004.json").write_text(
+                json.dumps([{"id": "tf.1", "group": 1.9}]), encoding="utf-8"
+            )
+            terraform_objective_group_map.cache_clear()
+            try:
+                with override_settings(CONTENT_ROOT=root):
+                    with self.assertRaises(ContentParseError):
+                        terraform_objective_group_map()
+            finally:
+                terraform_objective_group_map.cache_clear()
+
+    def test_terraform_objective_row_with_good_int_group_loads(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "objectives").mkdir()
+            (root / "objectives" / "terraform_004.json").write_text(
+                json.dumps([{"id": "tf.1", "group": 3}]), encoding="utf-8"
+            )
+            terraform_objective_group_map.cache_clear()
+            try:
+                with override_settings(CONTENT_ROOT=root):
+                    self.assertEqual(terraform_objective_group_map(), {"tf.1": 3})
+            finally:
                 terraform_objective_group_map.cache_clear()
