@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-alb-cross-zone",
+  "title": "Application Load Balancer target group attributes (cross-zone load balancing)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 fix (AWS-L21-001, K09): fetched from docs.aws.amazon.com and confirmed cross-zone load balancing is enabled by default on an Application Load Balancer but is a configurable `load_balancing.cross_zone.enabled` target-group attribute, not permanently on."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-kinesis-enhanced-fanout",
+  "title": "Kinesis Data Streams enhanced fan-out consumers",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/streams/latest/dev/enhanced-consumers.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 fix (TEACHER-L21-004, K11): fetched from docs.aws.amazon.com and checked against the claim that a shard's 2 MB/second read throughput is normally shared by all consumers, while each consumer registered for enhanced fan-out gets its own dedicated 2 MB/second per shard."
+}

@@ -95,3 +95,58 @@ The 34 questions under `content/questions/q-saa-2-1-*.json` are still the generi
 - `content/citations/cite-saa-2-1-step-functions-welcome.json`
 
 No questions, git commands, or servers were touched, per task scope.
+
+## Fixes (Amendment 3 — AWS + Teacher review follow-up)
+
+All numbers below were re-verified against current AWS documentation fetched today (2026-09-26) via the AWS Documentation MCP (`search_documentation` / `read_documentation`). Where the docs disagreed with the reviewers' suggested numbers, the docs won — noted explicitly below.
+
+1. **AWS-L21-001 (Medium, K09) — ALB cross-zone load balancing.**
+   - Before: "...HTTP/2, WebSockets, and always has cross-zone load balancing enabled..."
+   - After: "...HTTP/2, WebSockets, and has cross-zone load balancing enabled by default, though it is a `load_balancing.cross_zone.enabled` target-group attribute you can turn off per target group..."
+   - Doc quote (`elasticloadbalancing/latest/application/load-balancer-target-groups.html`, via MCP search context): "Configurable settings on a target group that control deregistration delay, cross-zone load balancing, client IP preservation..." and (`application-load-balancers.html` search context) "cross-zone load balancing... enabled by default on Application Load Balancers and configurable at the target group level."
+   - New citation: `content/citations/cite-saa-2-1-alb-cross-zone.json`.
+
+2. **AWS-L21-002 (Low, K11) — SQS FIFO throughput numbers.**
+   - Before: "300 API calls per second unbatched, 3,000 with batching, up to 30,000 in high-throughput mode."
+   - After: "300 transactions per second per API action unbatched, 3,000 with batching, and a further Region-dependent quota (up to 70,000 TPS unbatched, or 700,000 batched, in the highest-throughput Regions, less elsewhere) once high-throughput mode is turned on."
+   - Doc quote (`AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html`): "Each partition in a FIFO queue is limited to 300 transactions per second, per API action... If you use batching, non-high throughput FIFO queues support up to 3,000 messages per second..." and the high-throughput table: "US East (N. Virginia), US West (Oregon), and Europe (Ireland): Up to 70,000 transactions per second (TPS)... All other AWS Regions: Default throughput of 2,400 TPS" (batched: up to 700,000 / 24,000 respectively). The old lesson's flat "30,000" figure does not appear on the current quotas page and was replaced — the docs' Region-variable figures win, per the reviewer's own note that the quota is Region-variable.
+   - New citation: `content/citations/cite-saa-2-1-sqs-quotas-messages.json`.
+
+3. **TEACHER-L21-001 (K12) — Lambda maximum execution timeout.**
+   - Added: "A function has a hard maximum execution timeout of 900 seconds (15 minutes) per invocation, so work that could run longer belongs on Fargate, EC2, or in a Step Functions workflow instead."
+   - Doc quote (`lambda/latest/dg/configuration-timeout.html`): "The default value for this setting is 3 seconds, but you can adjust this in increments of 1 second up to a maximum value of 900 seconds (15 minutes)." (The same page also now documents a 5,400-second/90-minute ceiling for AWS Lambda Managed Instances async/event-source-mapping invocations — a newer, non-exam-scope exception — so the lesson keeps the standard 900-second figure the exam tests.)
+   - New citation: `content/citations/cite-saa-2-1-lambda-timeout.json`.
+
+4. **TEACHER-L21-002 (K11) — SQS retention, message size, visibility timeout.**
+   - Added: "A queue also retains a message for 4 days by default (up to 14 days maximum), accepts messages up to 1,048,576 bytes (1 MiB), and hides a received message from other consumers behind a visibility timeout that defaults to 30 seconds and can be extended up to 12 hours."
+   - Doc quote (`quotas-messages.html`): "Message retention... By default, a message is retained for 4 days... The maximum is 1,209,600 seconds (14 days)." / "Message size | The minimum message size is 1 byte... The maximum is 1,048,576 bytes (1 MiB)." / "Message visibility timeout | The default visibility timeout for a message is 30 seconds... The maximum is 12 hours." **Note:** the max message size is currently 1 MiB per the SQS Developer Guide's own quotas page, not the older 256 KB figure still shown on the AWS General Reference service-endpoints page (`general/latest/gr/sqs-service.html`) — the Developer Guide's dedicated quotas page is the more current, authoritative source, so 1 MiB was used.
+   - Reused citation: `content/citations/cite-saa-2-1-sqs-quotas-messages.json` (same page backs both #2 and #4).
+
+5. **TEACHER-L21-003 (K01/S01) — API Gateway integration timeout.**
+   - Added: "Both REST and HTTP APIs cap how long API Gateway waits for a backend integration to respond: an HTTP API's integration timeout is a fixed 30 seconds, while a Regional REST API's 50-millisecond-to-29-second integration timeout can be raised via a service quota request. Because that ceiling cannot be raised away entirely, long-running work belongs behind an asynchronous pattern — return immediately and let the client poll, or hand off to Step Functions or a queue — rather than a synchronous integration call."
+   - Doc quote (REST, `apigateway/latest/developerguide/api-gateway-execution-service-limits-table.html`): "Integration timeout for Regional APIs | 50 milliseconds - 29 seconds for all integration types... | Yes *" (increasable via a Service Quotas console link), versus "Integration timeout for edge-optimized APIs | 50 milliseconds - 29 seconds... | No". Doc quote (HTTP, `apigateway/latest/developerguide/http-api-quotas.html`): "Maximum integration timeout | 30 seconds | No". This confirms the Teacher's note that REST regional limits are now raisable while HTTP API's is not, and that REST and HTTP quotas differ.
+   - New citations: `content/citations/cite-saa-2-1-apigw-rest-quotas.json`, `content/citations/cite-saa-2-1-apigw-http-quotas.json`.
+
+6. **TEACHER-L21-004 (K11) — Kinesis Data Streams per-shard throughput.**
+   - Added: "Each shard supports up to 1 MB/second (1,000 records/second) of writes and up to 2 MB/second of reads, and that 2 MB/second read throughput is normally shared by every consumer reading the shard — a consumer that registers for enhanced fan-out instead gets its own dedicated 2 MB/second per shard."
+   - Doc quote (`streams/latest/dev/service-sizes-and-limits.html`): "Each shard can support up to 1 MB/sec or 1,000 records/sec write throughput or up to 2 MB/sec or 2,000 records/sec read throughput." Doc quote (`streams/latest/dev/enhanced-consumers.html`): "Read throughput | Fixed at a total of 2 MB/sec per shard. If there are multiple consumers reading from the same shard, they all share this throughput... | Scales as consumers register to use enhanced fan-out. Each consumer registered to use enhanced fan-out receives its own read throughput per shard, up to 2 MB/sec, independently of other consumers."
+   - New citations: `content/citations/cite-saa-2-1-kinesis-shard-limits.json`, `content/citations/cite-saa-2-1-kinesis-enhanced-fanout.json`.
+
+## Post-fix verification
+
+- `bodyMarkdown`: 0 single-asterisk spans (regex-checked), only `**bold**` and backticks used for the new `load_balancing.cross_zone.enabled` attribute name.
+- Word count: 3,325 (up from 3,101; all six additions are one or two sentences each).
+- All 7 new `citationIds` entries resolve to files in `content/citations/`; all pre-existing citations still resolve.
+- File written with `json.load` / `json.dumps(data, indent=2, ensure_ascii=True) + "\n"`, UTF-8 text mode, via `backend\.venv\Scripts\python.exe`.
+- `python scripts\content_lint.py` → PASS (429 questions, 21+21 labs, 23 lessons).
+
+## Files touched (this pass)
+
+- `content/lessons/lesson-2-1.json` (bodyMarkdown: K01, K09, K11, K12 sections; citationIds appended)
+- `content/citations/cite-saa-2-1-alb-cross-zone.json` (new)
+- `content/citations/cite-saa-2-1-sqs-quotas-messages.json` (new)
+- `content/citations/cite-saa-2-1-kinesis-shard-limits.json` (new)
+- `content/citations/cite-saa-2-1-kinesis-enhanced-fanout.json` (new)
+- `content/citations/cite-saa-2-1-lambda-timeout.json` (new)
+- `content/citations/cite-saa-2-1-apigw-rest-quotas.json` (new)
+- `content/citations/cite-saa-2-1-apigw-http-quotas.json` (new)

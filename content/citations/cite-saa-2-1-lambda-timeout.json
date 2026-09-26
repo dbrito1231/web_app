@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-lambda-timeout",
+  "title": "Configure Lambda function timeout",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 fix (TEACHER-L21-001, K12): fetched from docs.aws.amazon.com and checked against the claim that a Lambda function's execution timeout can be set up to a maximum of 900 seconds (15 minutes)."
+}
