@@ -19,7 +19,7 @@ Pipeline per task:
 | 3 | lesson-2-1 | 35 | ✔ | ✔ | ✔ | ✔ | ✔ AWS 35/35, Teacher close, Student 9/10 | ✔ (3 key-wording trims after Student note; Teacher approved 4e58e56) | ✔ 2026-09-26 |
 | 4 | lesson-2-2 | 32 | ✔ | ✔ | ✔ | ✔ | ✔ AWS (after s07-mc fix), Teacher close, Student 10/10 | ✔ | ✔ 2026-09-26 |
 | 5 | lesson-3-1 | 8 | ✔ | ✔ | ✔ (AWS + Teacher re-check approve) | in progress | | | |
-| 6 | lesson-3-2 | 16 | ✔ (89081d4) | AWS review running | | | | | |
+| 6 | lesson-3-2 | 16 | ✔ | ✔ | ✔ (AWS + Teacher re-check approve) | in progress | | | |
 | 7 | lesson-3-3 | 21 | | | | | | | |
 | 8 | lesson-3-4 | 13 | | | | | | | |
 | 9 | lesson-3-5 | 24 | | | | | | | |
