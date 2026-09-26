@@ -183,3 +183,13 @@ These are estimates from this session's per-agent numbers. Lead Dev will report 
 3. About **3 tasks per sitting**, then stop and wait for GO.
 4. Student check from the text packet, plus one browser smoke test at the end.
 5. **Haiku 4.5 is allowed** alongside Sonnet 5. Haiku is used for mechanical, low-judgment work: Student packet fairness checks and saving or formatting reports. Writers and the AWS and Teacher reviewers stay on Sonnet 5. No subagent uses Opus.
+
+## 10. Amendment: model substitution (sitting 3, 2026-09-26)
+
+Sonnet 5 and Haiku 4.5 are no longer offered as subagent models. The runtime's allowed list was checked directly and contains neither. Decision 5 above is therefore superseded for this sitting and until Sonnet 5 returns:
+
+- **Writers and the AWS and Teacher reviewers:** `gpt-5.3-codex`.
+- **Student packet fairness check:** `composer-2.5-fast`.
+- The no-Opus rule for subagents is unchanged, so `inherit` must not be used.
+
+Everything else — 2 subagents at a time, ~3 tasks per sitting, the text-packet Student check, the closure rule — is unchanged. Sitting 3 covers tasks 4.2, 4.3 and 4.4.
