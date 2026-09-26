@@ -126,7 +126,7 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
-        "RDS bills per instance-hour for db.t3.micro plus per GB-month of allocated storage and backups; stopping an instance still bills for storage, so only deletion in s09 stops the meter.",
+        "RDS bills per instance-hour for db.t3.micro plus per GB-month of allocated storage and backups; stopping an instance still bills for storage, so only deletion in the Delete without final snapshot step stops the meter.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
         "Success: you know what still bills if you walk away overnight."
       ]
@@ -135,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: RDS instance (wait until deleted), subnet group. If s09 already deleted the instance, delete-db-instance reports DBInstanceNotFound and the wait returns at once",
+        "Teardown order for this lab: RDS instance (wait until deleted), subnet group. If the Delete without final snapshot step already deleted the instance, delete-db-instance reports DBInstanceNotFound and the wait returns at once",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]

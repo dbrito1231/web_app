@@ -127,7 +127,7 @@
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Launch templates and the Auto Scaling group itself carry no charge; the t3.micro instance the group launches bills hourly while it exists. Scaling to 0 stops that hourly charge, but the ASG resource still exists until you delete it in step s10.",
+        "Launch templates and the Auto Scaling group itself carry no charge; the t3.micro instance the group launches bills hourly while it exists. Scaling to 0 stops that hourly charge, but the ASG resource still exists until you delete it in the Delete ASG step.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },

@@ -103,7 +103,7 @@
       "id": "s09",
       "title": "Create Lambda function",
       "bullets": [
-        "Zip gl10_lambda.py as function.zip with a handler that logs the event.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\lambda_function.py\", \"import json`n`ndef lambda_handler(event, context):`n    records = event.get('Records', [])`n    for record in records:`n        message = record.get('Sns', {}).get('Message', '')`n        print('Received SNS message: ' + str(message))`n    return {'recordCount': len(records)}`n\", $utf8); Compress-Archive -Path lambda_function.py -DestinationPath function.zip -Force`. This writes a handler that reads the SNS records this lab's subscription delivers, logs each message, and returns a record count, with LF endings and no BOM, then zips it to function.zip.",
         "Run `$FunctionArn = aws lambda create-function --function-name workbook-gl10 --runtime python3.12 --role $LambdaRoleArn --handler lambda_function.lambda_handler --zip-file fileb://function.zip --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-10 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query FunctionArn --output text`.",
         "Success: function is Active."
       ]

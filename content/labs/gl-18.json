@@ -135,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ECS cluster, then detach and delete the IAM role. Task definitions are free to leave registered, but s10 deregisters this one for tidiness.",
+        "Teardown order for this lab: ECS cluster, then detach and delete the IAM role. Task definitions are free to leave registered, but the Deregister task definition step deregisters this one for tidiness.",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]

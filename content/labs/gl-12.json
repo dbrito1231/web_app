@@ -19,7 +19,7 @@
     "Run aws sts get-caller-identity",
     "Review same-hour and 24-hour estimates"
   ],
-  "stopChargesPanel": "Delete state machine and IAM role used by Step Functions.",
+  "stopChargesPanel": "Delete state machine, its CloudWatch log group, and the IAM role used by Step Functions.",
   "steps": [
     {
       "id": "s01",
@@ -82,8 +82,11 @@
       "title": "State machine",
       "bullets": [
         "Run `$Asl = @{Comment='gl-12 minimal Standard workflow';StartAt='Hello';States=@{Hello=@{Type='Pass';Result='Hello from gl-12';Next='Done'};Done=@{Type='Succeed'}}} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl12.asl.json\", $Asl, $utf8)`. This saves an ASL definition with a Pass state that transitions to a Succeed state, as UTF-8 without a BOM.",
-        "Run `$SmArn = aws stepfunctions create-state-machine --name workbook-gl12 --definition file://gl12.asl.json --role-arn $SfnRoleArn --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query stateMachineArn --output text`.",
-        "Success: state machine Arn is set."
+        "Run `aws logs create-log-group --log-group-name /aws/vendedlogs/states/workbook-gl12 --tags Workbook=aws-tf-lab,LabId=gl-12,CreatedAt=$CreatedAt,ExpiresAt=$ExpiresAt`. This creates a dedicated CloudWatch Logs log group for the state machine's execution history.",
+        "Run `$LogGroupArn = aws logs describe-log-groups --log-group-name-prefix /aws/vendedlogs/states/workbook-gl12 --query \"logGroups[0].arn\" --output text`. Success: `$LogGroupArn` is set (it already ends with `:*`, which Step Functions requires).",
+        "Run `$LoggingConfig = @{ level = 'ERROR'; includeExecutionData = $true; destinations = @(@{ cloudWatchLogsLogGroup = @{ logGroupArn = $LogGroupArn } }) } | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl12-logging-config.json\", $LoggingConfig, $utf8)`. This saves the Step Functions logging configuration (ERROR level, execution data included, one CloudWatch Logs destination) as UTF-8 without a BOM.",
+        "Run `$SmArn = aws stepfunctions create-state-machine --name workbook-gl12 --definition file://gl12.asl.json --role-arn $SfnRoleArn --logging-configuration file://gl12-logging-config.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query stateMachineArn --output text`.",
+        "Success: state machine Arn is set and logging is enabled."
       ]
     },
     {
@@ -123,7 +126,7 @@
       "id": "s12",
       "title": "Cost checkpoint",
       "bullets": [
-        "Standard Workflows bill per state transition; this lab used two transitions (Pass, Succeed). There is no hourly charge and an idle state machine costs nothing.",
+        "Standard Workflows bill per state transition; this lab used two transitions (Pass, Succeed). CloudWatch Logs bills per-GB for log ingestion and per-GB-month for storage of the ERROR-level execution logs this lab now enables. There is no hourly charge and an idle state machine costs nothing.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
         "Success: you know what still bills if you walk away overnight."
       ]
@@ -132,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: state machine, IAM role",
+        "Teardown order for this lab: state machine, CloudWatch log group, IAM role",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -151,7 +154,7 @@
       "bullets": [
         "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources (the state machine and role) cost nothing while idle, but delete them anyway."
+        "Leftover tagged resources (the state machine and role) cost nothing while idle, but the CloudWatch log group can still bill for stored data if not deleted."
       ]
     }
   ],
@@ -184,6 +187,7 @@
     "regionScope": "us-east-1",
     "orderedDeletesPowerShell": [
       "aws stepfunctions delete-state-machine --state-machine-arn $SmArn",
+      "aws logs delete-log-group --log-group-name /aws/vendedlogs/states/workbook-gl12",
       "aws iam delete-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log",
       "aws iam delete-role --role-name workbook-gl12-sfn"
     ],
