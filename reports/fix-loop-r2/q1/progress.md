@@ -37,4 +37,4 @@ Pipeline per task:
 | 21 | lesson-tf-g8 | 20 | | | | | | | |
 
 Other approved work running alongside:
-- **O9** (lab sidecar templates and lab-specific s12–s15 steps). Status: not started.
+- **O9** (lab sidecar templates and lab-specific s12–s15 steps). Status: **closed 2026-09-26** (AWS: AWS-O9.md, AWS-O9-recheck.md; Student: STUDENT-O9.md, STUDENT-O9-recheck.md).

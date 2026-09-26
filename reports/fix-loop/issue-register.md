@@ -196,7 +196,7 @@ Rule: an item closes only when its original reporter and a second role mark it G
 |---|---|---|---|
 | L1 / Q1 | Lessons 1.2–4.4 and TF g1–g8 (22 lessons) still boilerplate; ~410 questions still template-style | **High** | Lesson-first method approved (Amendment 2). Next: SAA task 1.2 |
 | ISS-010 | Template question wording | High | Closes as Q1 batches complete |
-| O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | Approved; not started |
+| O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | **Closed 2026-09-26.** AWS and Student approved, including the follow-up fixes (GL-10 handler, GL-12 logging, step titles) |
 | D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
 | R6 / ISS-070 | Per-bullet official citations in lessons 4.2–4.4; coverage registry `implemented_unverified`; `mcpStatus: pending_recheck` on non-pilot questions | Medium | Folded into the lesson and question rewrites |
 | N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
