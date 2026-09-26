@@ -14,8 +14,8 @@ Pipeline per task:
 | # | Lesson | Questions | LW | LR | LF | QW | QR | QF | Closed |
 |---|---|---:|---|---|---|---|---|---|---|
 | 0 | lesson-1-1 (pilot) | 19 | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ 2026-09-26 |
-| 1 | lesson-1-2 | 20 | ✔ | ✔ | (AWS-L12-001 with QW) | | | | |
-| 2 | lesson-1-3 | 20 | | | | | | | |
+| 1 | lesson-1-2 | 16 | ✔ | ✔ | (AWS-L12-001 with QW) | | | | |
+| 2 | lesson-1-3 | 20 | ✔ | | | | | | |
 | 3 | lesson-2-1 | 35 | | | | | | | |
 | 4 | lesson-2-2 | 32 | | | | | | | |
 | 5 | lesson-3-1 | 8 | | | | | | | |
