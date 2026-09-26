@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-storage-gateway-types",
+  "title": "AWS Storage Gateway gateway types (S3 File Gateway, Volume Gateway, Tape Gateway)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K01: confirms the current Storage Gateway types (S3 File Gateway, FSx File Gateway, Tape Gateway, Volume Gateway) and their separate user guides."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-s3-express-one-zone",
+  "title": "S3 Express One Zone storage class performance",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-express-performance.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K03: confirms S3 Express One Zone's single-digit-millisecond first-byte latency and its default versus maximum directory-bucket request-rate figures (200,000/100,000 default, up to 2,000,000 reads and 200,000 writes per second)."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-ebs-hdd-volumes",
+  "title": "Amazon EBS Throughput Optimized HDD and Cold HDD volumes (st1 and sc1)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/ebs/latest/userguide/hdd-vols.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K03: confirms st1's baseline 40 MiB/s and burst 250 MiB/s per TiB (500 MiB/s cap) versus sc1's lower baseline 12 MiB/s and burst 80 MiB/s per TiB (250 MiB/s cap), and that neither volume type supports being a boot volume."
+}
