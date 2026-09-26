@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-2-aurora-global",
+  "title": "Working with Amazon Aurora Global Database",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.GlobalDatabase.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+}

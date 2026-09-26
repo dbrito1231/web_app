@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-2-efs-features",
+  "title": "Amazon EFS features",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/efs/latest/ug/features.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+}
