@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.3-S07"
   ],
-  "stem": "Pick the action that satisfies: Rotating encryption keys and renewing certificates.",
+  "stem": "A security team suspects a customer managed KMS key may have been exposed and wants new key material generated immediately, without waiting for the key's existing annual automatic rotation schedule and without changing any application code or the key's ARN. Which action meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Delete the key and create a brand-new customer managed key with a new key ID"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Wait for the next scheduled annual automatic rotation to occur"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Trigger on-demand rotation for the customer managed key"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Rotating encryption keys and renewing certificates"
+      "text": "Change the key's alias to point to a different, already-existing key"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "On-demand rotation generates new key material for a customer managed key immediately, independent of and without disrupting any automatic rotation schedule already configured, and it never changes the key's ARN or alias, so no application code needs to change. Deleting the key and creating a new one gives the key a different key ID, which breaks every application and policy that references the original key's ARN. Waiting for the next scheduled annual rotation does not meet the \"immediately\" requirement the security team has. Repointing the alias to a different existing key does not rotate any key material at all; it just changes which underlying key the alias resolves to, which is a different operation entirely.",
+  "citationIds": [
+    "cite-saa-1-3-kms-rotation"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

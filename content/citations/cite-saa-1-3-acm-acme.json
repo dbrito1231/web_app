@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-acm-acme",
+  "title": "Automation outside AWS integrated services - AWS Certificate Manager",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/acm/latest/userguide/automation-outside-integrated.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 question rewrite (SAA task 1.3): ACM's ACME protocol support lets a standard ACME client automate issuance and renewal of a certificate directly on infrastructure outside ACM's integrated services, such as a self-managed EC2 web server; ACME-issued certificates cannot be attached to Elastic Load Balancing, CloudFront, or API Gateway."
+}

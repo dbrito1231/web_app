@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing data backups and replications",
+  "stem": "That same insurance company also runs a customer-facing application backed by Amazon S3 that needs every new object also available for low-latency reads in a second Region within 15 minutes of being written, in addition to the point-in-time recovery already provided by AWS Backup. Which TWO features close this gap? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "S3 Batch Replication run once against the bucket's existing objects"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Relying on AWS Backup's existing cross-Region copy job on its own"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Cross-Region Replication (CRR) configured on the bucket"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "S3 Replication Time Control (S3 RTC) enabled on the replication rule"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "S3 Versioning enabled only on the destination bucket"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-Region Replication asynchronously copies new and updated objects to a second Region going forward, which is the ongoing live copy this scenario needs, and S3 Replication Time Control adds the service-level agreement to replicate 99.99% of new objects within 15 minutes, meeting the stated time bound. S3 Batch Replication replicates objects that already existed before replication was configured; it does not keep replicating new writes going forward on its own. AWS Backup's cross-Region copy job protects point-in-time recovery points on a backup schedule, not a near-real-time copy of every new object as it is written. Enabling versioning only on the destination bucket protects against accidental overwrite there, but it does not replicate anything from the source bucket or provide any replication time guarantee.",
+  "citationIds": [
+    "cite-saa-1-3-s3-replication",
+    "cite-saa-1-3-aws-backup"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

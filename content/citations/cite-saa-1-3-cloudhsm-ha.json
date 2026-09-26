@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-cloudhsm-ha",
+  "title": "Architect your cluster for high availability - AWS CloudHSM",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/bp-cluster-management.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 question rewrite (SAA task 1.3): an AWS CloudHSM cluster achieves redundancy and high availability by spreading its HSMs across multiple Availability Zones; the cluster automatically load-balances cryptographic operations across every HSM it contains."
+}

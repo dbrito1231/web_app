@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.3-S01"
   ],
-  "stem": "A teammate asks how to meet this requirement: Aligning AWS technologies to meet compliance requirements. Which action is appropriate?",
+  "stem": "A payments startup's auditor is preparing a PCI DSS assessment and has asked the security team to provide AWS's own current SOC 2 Type II report as evidence of the controls AWS operates under the shared responsibility model. Which action fulfills this request with the least effort?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Download the report from AWS Artifact"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Export the current findings from AWS Config for the Regions in scope"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Open a support case asking AWS to email the report directly to the auditor"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Aligning AWS technologies to meet compliance requirements"
+      "text": "Generate a summary of the account's IAM Access Analyzer findings"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Artifact gives on-demand, no-cost downloads of AWS's own compliance reports, including SOC reports, which is exactly the evidence of AWS's side of the shared responsibility model that this auditor is asking for. AWS Config findings describe how the startup's own resources are configured, not what AWS itself operates, so they answer a different question. Opening a support case adds a manual, multi-day round trip for a report that is already available on demand in Artifact. IAM Access Analyzer findings describe the account's own resource access, which again documents the customer's responsibility, not AWS's.",
+  "citationIds": [
+    "cite-saa-1-3-artifact"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

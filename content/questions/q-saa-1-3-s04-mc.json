@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.3-S04"
   ],
-  "stem": "An exam scenario centers on: Implementing access policies for encryption keys. Which action matches it?",
+  "stem": "A developer's IAM policy explicitly allows kms:Decrypt on a specific KMS key, yet every call using that permission still fails with an access-denied error, and no explicit IAM deny statement exists anywhere for that principal. What is the most likely cause?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The developer's temporary session credentials have expired and need to be refreshed"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Implementing access policies for encryption keys"
+      "text": "The KMS key is scheduled for deletion and is temporarily unavailable for any operation"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The KMS key belongs to a different AWS account than the developer's own account"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The key's key policy does not contain a statement that enables IAM policies to control access"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Unless a KMS key's key policy explicitly contains a statement enabling IAM policies, an IAM policy that allows an action on that key has no effect at all, which is exactly the symptom described: the IAM policy allows the action, there is no explicit deny, and the call still fails. Expired session credentials would cause the entire API call to fail with an authentication error before permissions are even evaluated, not a permission-scoped access-denied result tied specifically to this key. A key scheduled for deletion is a different, more drastic condition than the scenario describes and does not match \"the IAM policy allows it, nothing explicitly denies it.\" A key in a different AWS account would require a resource-based key policy granting the developer's account access; while related to the same root cause, the described symptom points specifically at the key's own policy missing the IAM-enabling statement, not at the account boundary itself.",
+  "citationIds": [
+    "cite-saa-1-3-kms-key-policies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

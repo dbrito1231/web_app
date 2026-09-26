@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.3-S06"
   ],
-  "stem": "A teammate asks how to meet this requirement: Implementing policies for data access, lifecycle, and protection. Which action is appropriate?",
+  "stem": "A law firm's Amazon S3 bucket has a bucket policy that denies every s3:DeleteObject and s3:PutObject call from any principal, yet objects keep transitioning to S3 Glacier Deep Archive and expiring on schedule exactly as an existing S3 Lifecycle rule defines. Why does the Lifecycle rule keep running despite the deny-all bucket policy?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The bucket policy's deny statements only apply to requests made outside business hours"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Lifecycle actions are performed by the S3 service itself and are not evaluated against the bucket policy the way a principal's request is"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An S3 Lifecycle rule is configured once at the bucket level and therefore always overrides any bucket policy statement that its scheduled transition or expiration actions would otherwise conflict with"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Implementing policies for data access, lifecycle, and protection"
+      "text": "The deny statement has no effect because it was written after the Lifecycle rule was created"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 Lifecycle transition and expiration actions are carried out by the S3 service itself against the object, and they are not evaluated against the bucket policy the way an external principal's request would be, which is exactly why a deny-all bucket policy does not stop them. Nothing in the scenario mentions time-of-day restrictions, and bucket policy deny statements are not limited to business hours by default. Framing this as the Lifecycle rule \"overriding\" the bucket policy is not accurate; the two are simply evaluated through different paths, not in a policy-priority contest. The order in which a policy statement and a Lifecycle rule were created has no bearing on whether either one applies.",
+  "citationIds": [
+    "cite-saa-1-3-s3-lifecycle"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

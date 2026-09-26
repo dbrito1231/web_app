@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing access policies for encryption keys",
+  "stem": "A logistics company wants to grant its billing team's automation role temporary decrypt access to a KMS key for one migration task without editing the key's policy, and separately needs to make sure its us-east-1 and eu-central-1 KMS keys are each governed correctly, given that every KMS key has its own key policy. Which TWO statements are accurate and support this design? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Editing the key policy directly is the only way AWS KMS supports temporary, revocable access to a key"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Creating a KMS grant lets the automation role use the key temporarily without modifying the key policy"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A single key policy written once automatically applies to every same-alias key in every Region"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "An IAM policy allowing kms:Decrypt is sufficient on its own, with no key policy involvement required"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The key policy for the us-east-1 key must be configured independently of the eu-central-1 key's policy, because key policies are Regional"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A KMS grant delegates a specific permission, such as decrypt access, to another principal programmatically, and it can be created and later retired without ever touching the key policy, which is exactly what the migration task needs. Key policies are Regional, so the us-east-1 key's policy and the eu-central-1 key's policy must each be configured and maintained on their own. Editing the key policy directly is not the only way to grant temporary access; KMS grants exist specifically to avoid that. A key policy does not automatically apply across Regions just because two keys share the same alias; each Region's key has its own independent policy. An IAM policy is never sufficient on its own, because the key policy must first contain a statement enabling IAM policies before any IAM-based permission takes effect.",
+  "citationIds": [
+    "cite-saa-1-3-kms-grants",
+    "cite-saa-1-3-kms-key-policies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

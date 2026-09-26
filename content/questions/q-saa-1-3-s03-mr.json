@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)",
+  "stem": "A university's platform team needs an Application Load Balancer's certificate to renew itself automatically with no manual steps, and separately needs a certificate on a self-managed EC2 web server that ACM does not directly integrate with, also renewed automatically. Which TWO approaches meet these two goals? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Import a third-party certificate into ACM and attach it to the Application Load Balancer"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Request a DNS-validated ACM certificate and attach it to the Application Load Balancer"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Attach the ACME-issued certificate directly to the Application Load Balancer instead of the EC2 host"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Run a standard ACME client on the EC2 web server against ACM's ACME endpoint"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Manually re-import a renewed certificate to the EC2 host every 90 days"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A DNS-validated ACM certificate attached to an integrated service such as an Application Load Balancer is eligible for ACM's automatic managed renewal, with nothing to schedule. ACM's ACME protocol support lets a standard ACME client automate issuance and renewal directly on infrastructure outside ACM's integrated services, such as this self-managed EC2 web server. An imported third-party certificate is never eligible for managed renewal, so it still requires the team to track its expiration and replace it manually. ACME-issued certificates cannot be attached to Elastic Load Balancing, CloudFront, or API Gateway, so attaching one to the Application Load Balancer is not possible. Manually re-importing a certificate every 90 days is exactly the scheduled manual work the requirement rules out.",
+  "citationIds": [
+    "cite-saa-1-3-acm-renewal",
+    "cite-saa-1-3-acm-acme"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

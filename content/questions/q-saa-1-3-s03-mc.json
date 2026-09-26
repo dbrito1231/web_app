@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-1.3-S03"
   ],
-  "stem": "During an architecture review, the goal is: Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS). Which action matches that goal?",
+  "stem": "A retailer's marketing site is served through Amazon CloudFront with an origin hosted in the eu-west-1 Region, and the security team needs an ACM certificate the distribution can actually use for the custom domain over HTTPS. In which Region must the certificate be requested?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "eu-west-1, matching the origin's Region"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Encrypting data in transit (for example, AWS Certificate Manager [ACM] using TLS)"
+      "text": "The Region closest to the majority of the site's visitors"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "US East (N. Virginia), regardless of the origin's Region"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Any Region, since ACM certificates are global resources"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A certificate used with a CloudFront distribution must be requested in US East (N. Virginia) no matter where the distribution's origin lives, so that Region is the correct answer here. Requesting it in eu-west-1 to match the origin ignores CloudFront's specific requirement and CloudFront will not be able to use the certificate. Choosing a Region based on visitor location has no bearing on where a CloudFront certificate must be requested. ACM certificates are Regional resources, not global ones, which is exactly why CloudFront's requirement to use US East (N. Virginia) specifically matters.",
+  "citationIds": [
+    "cite-saa-1-3-acm-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

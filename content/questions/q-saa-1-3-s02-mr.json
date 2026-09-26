@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.3-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Encrypting data at rest (for example, AWS KMS)",
+  "stem": "A genomics company just created a new S3 general purpose bucket and wants to keep using SSE-C there for a legacy pipeline that supplies its own encryption keys, while a separate team wants to cut the AWS KMS request costs on a different, SSE-KMS-encrypted bucket that receives millions of PUT requests a day. Which TWO actions address these two goals? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Assume SSE-C already works on the new bucket, since it always has in the past"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Explicitly re-enable SSE-C on the new bucket through its PutBucketEncryption configuration"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Enable an S3 Bucket Key on the high-volume SSE-KMS bucket"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Switch the high-volume bucket from SSE-KMS to DSSE-KMS to reduce its AWS KMS request costs"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Disable default encryption entirely on the new bucket so SSE-C requests are no longer blocked"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Since April 2026, S3 automatically disables SSE-C on new general purpose buckets, so the pipeline needs an explicit PutBucketEncryption configuration re-enabling it before SSE-C uploads will succeed. An S3 Bucket Key reuses a short-lived, bucket-level data key instead of calling AWS KMS on every request, cutting the KMS request costs on the high-volume bucket by up to 99%. Assuming SSE-C still works by default is exactly the assumption the April 2026 change breaks, since new buckets now reject SSE-C uploads until it is re-enabled. DSSE-KMS costs more than SSE-KMS because it performs additional KMS operations for its second encryption layer, which moves the high-volume bucket's costs in the wrong direction. Disabling default encryption controls a different setting entirely; it does not re-enable SSE-C and would leave uploads without any server-side encryption configured by default.",
+  "citationIds": [
+    "cite-saa-1-3-s3-sse-c-default-block",
+    "cite-saa-1-3-s3-bucket-keys",
+    "cite-saa-1-3-s3-dsse-kms"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

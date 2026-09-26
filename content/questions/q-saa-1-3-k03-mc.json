@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.3-K03"
   ],
-  "stem": "During an architecture review, the goal is: Data retention and classification. Which action matches that goal?",
+  "stem": "A pharmaceutical company must retain clinical trial records in Amazon S3 for seven years, and no principal, including the AWS account root user, may be able to shorten that period or delete the records early. Which control meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "S3 Object Lock in governance mode with a seven-year retention period"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Data retention and classification"
+      "text": "An S3 Lifecycle rule that transitions the objects to S3 Glacier Deep Archive after seven years"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "S3 Object Lock in compliance mode with a seven-year retention period"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A bucket policy that denies s3:DeleteObject to every principal except one emergency-access role"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Compliance mode is the S3 Object Lock setting where no principal, including the root user, can shorten the retention period or delete the protected object version before it expires, matching the stated requirement exactly. Governance mode gives similar protection, but a principal with the s3:BypassGovernanceRetention permission can still override it, so it does not meet a requirement that allows no exceptions at all. A Lifecycle rule only controls when objects transition or expire; it does not block a delete request from succeeding before that date. A bucket policy that denies deletes to everyone except one role still leaves that emergency-access role, and anyone who can edit the bucket policy, able to delete the records early, so it does not provide the same guaranteed immutability.",
+  "citationIds": [
+    "cite-saa-1-3-object-lock",
+    "cite-saa-1-3-s3-lifecycle"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

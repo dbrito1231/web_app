@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing policies for data access, lifecycle, and protection",
+  "stem": "A construction firm placed a governance-mode retention period on a set of contract documents in Amazon S3, and separately placed a legal hold on one document that is now part of active litigation. An administrator with the s3:BypassGovernanceRetention permission and the correct request header successfully deletes several documents that were only under the governance-mode retention period, but the same delete attempt fails on the document under legal hold. Which TWO statements explain this correctly? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Legal holds automatically expire as soon as the associated governance-mode retention period ends"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Compliance-mode retention would have allowed the same bypass permission to succeed"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "The s3:BypassGovernanceRetention permission and header let an authorized principal override a governance-mode retention period"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "The administrator's root user status, rather than the bypass permission, is what allowed the deletions"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A legal hold blocks deletion independently of any governance-mode bypass and must be removed on its own before the object can be deleted"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The s3:BypassGovernanceRetention permission, combined with the matching request header, is what lets an authorized principal override a governance-mode retention period, which is why the administrator succeeded on the documents that only had that protection. A legal hold is independent of retention periods and their bypass permission; it must be explicitly removed on its own before the object can be deleted, which is why the same delete attempt failed on the document under legal hold. A legal hold does not expire automatically alongside a retention period; the two are managed and removed separately. Compliance mode never allows a bypass for any principal, including the root user, so it would not have let the same permission succeed. The scenario does not depend on the administrator being the root user; it depends on holding the specific s3:BypassGovernanceRetention permission and header, which any authorized principal could hold.",
+  "citationIds": [
+    "cite-saa-1-3-object-lock-managing",
+    "cite-saa-1-3-object-lock"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

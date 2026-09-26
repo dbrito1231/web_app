@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.3-K04"
   ],
-  "stem": "You must choose one approach for: Encryption and appropriate key management. Which action fits?",
+  "stem": "A defense contractor is migrating an on-premises PKI application that currently talks directly to a hardware security module over PKCS #11, and the new AWS design must give the contractor exclusive administrative control of dedicated, single-tenant HSM hardware that AWS itself cannot access. Which service meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS KMS with a customer managed key"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS KMS with an AWS managed key"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Encryption and appropriate key management"
+      "text": "AWS Secrets Manager with automatic rotation enabled"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS CloudHSM"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS CloudHSM provisions single-tenant, FIPS-validated HSM hardware that the contractor administers directly, including its own users outside of IAM and application access through interfaces such as PKCS #11, with no visibility into the key material for AWS itself, which matches every part of this requirement. AWS KMS with a customer managed key still runs on multi-tenant HSMs that AWS operates, so the contractor never gets dedicated, single-tenant hardware. AWS KMS with an AWS managed key gives even less control, since AWS also manages the key policy and rotation. AWS Secrets Manager stores and rotates secrets such as passwords and API keys; it is not an HSM and does not provide PKCS #11 access to dedicated hardware.",
+  "citationIds": [
+    "cite-saa-1-3-cloudhsm",
+    "cite-saa-1-3-kms-concepts"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

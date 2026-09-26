@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.3-S02"
   ],
-  "stem": "A teammate asks how to meet this requirement: Encrypting data at rest (for example, AWS KMS). Which action is appropriate?",
+  "stem": "A research lab's compliance policy states that Amazon S3 must never receive or store the plaintext encryption key for a dataset, and the lab's own key-management system, not AWS, must supply a unique key on every upload and download request. Which encryption option meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "SSE-KMS using a customer managed key"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "SSE-C, with the key supplied by the caller on every request"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "SSE-S3 with the default Amazon S3 managed key"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Encrypting data at rest (for example, AWS KMS)"
+      "text": "DSSE-KMS with an S3 Bucket Key enabled"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "SSE-C has S3 perform the encryption but requires the caller to supply the raw key on every request, and S3 never stores that key, which matches a policy that keeps the key entirely under the lab's own key-management system. SSE-KMS still relies on AWS KMS to hold and use the key material on the lab's behalf, even with a customer managed key, so the key material is still inside an AWS-operated service. SSE-S3 uses a key that Amazon S3 manages entirely, which is the opposite of the lab supplying its own key. DSSE-KMS also depends on AWS KMS-generated key material for one of its two encryption layers, and S3 Bucket Keys are not even supported for DSSE-KMS, so neither detail satisfies a policy demanding a caller-supplied key.",
+  "citationIds": [
+    "cite-saa-1-3-s3-sse-c",
+    "cite-saa-1-3-s3-sse-kms",
+    "cite-saa-1-3-s3-dsse-kms"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

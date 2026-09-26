@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.3-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Aligning AWS technologies to meet compliance requirements",
+  "stem": "The same auditor also wants continuous proof, not just a point-in-time statement, that every S3 bucket holding cardholder data stays encrypted going forward, and that none of those objects can be deleted before the mandated three-year retention period ends. Which TWO controls satisfy this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "An AWS Config rule that evaluates each bucket's default encryption setting on an ongoing basis"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A one-time AWS Artifact download of the current PCI DSS Attestation of Compliance"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An S3 Lifecycle rule that expires the objects after three years"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "An IAM policy statement that denies s3:DeleteObject to every user"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "S3 Object Lock in compliance mode with a three-year retention period on the affected objects"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An AWS Config rule keeps checking the bucket's encryption setting on an ongoing basis, giving the continuous proof the auditor wants, and S3 Object Lock in compliance mode is the control that guarantees no principal can delete the affected objects before the three-year period ends. AWS Artifact's compliance documents describe AWS's own controls at a point in time; they say nothing about whether this startup's specific buckets stay encrypted or protected going forward. A Lifecycle expiration rule deletes objects once three years pass, but it does nothing to stop someone from deleting them early. An IAM policy that denies deletes to every user can be edited or overridden by anyone with permission to change IAM policies, so it does not give the same guaranteed immutability as Object Lock.",
+  "citationIds": [
+    "cite-saa-1-3-aws-config",
+    "cite-saa-1-3-object-lock",
+    "cite-saa-1-3-artifact"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

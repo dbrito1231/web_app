@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Rotating encryption keys and renewing certificates",
+  "stem": "A biotech company uses an asymmetric KMS key for code signing and a DNS-validated ACM certificate attached to its API Gateway custom domain, and wants to know which of these two credentials it must manually replace on a schedule versus which one AWS keeps current on its own. Which TWO statements are accurate? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS automatically rotates the asymmetric key's material every year, the same as an AWS managed key"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "The ACM certificate requires a manual re-import every 13 months to stay valid"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Enabling automatic rotation on the asymmetric key first requires converting it to a symmetric key"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The asymmetric KMS key is not eligible for automatic or on-demand rotation, so rotating it means creating a new key and switching applications to it"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "The DNS-validated ACM certificate attached to API Gateway renews automatically with no scheduled task required"
     }
   ],
   "correctAnswerIds": [
     "d",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Asymmetric KMS keys are not eligible for automatic or on-demand rotation, so the only way to rotate one is to create a new KMS key and switch applications or aliases to it, which the company would need to do manually on its own schedule. A DNS-validated ACM certificate attached to an integrated service such as API Gateway is eligible for ACM's automatic managed renewal, so it keeps itself current with no scheduled task needed. Automatic annual rotation applies to eligible symmetric keys, not to asymmetric keys, so the asymmetric key does not rotate itself the way an AWS managed key does. The certificate does not need a manual re-import at all, since it renews automatically because it is DNS-validated and attached to an integrated service. KMS does not offer any feature to convert an asymmetric key into a symmetric one; a key's key spec is fixed when it is created.",
+  "citationIds": [
+    "cite-saa-1-3-kms-rotation",
+    "cite-saa-1-3-acm-renewal"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

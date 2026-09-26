@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.3-K02"
   ],
-  "stem": "During an architecture review, the goal is: Data recovery. Which action matches that goal?",
+  "stem": "An analytics team accidentally overwrote a critical dataset on Amazon EBS-backed instances two hours ago and now needs to restore the affected volumes to their state from the night before, across dozens of instances, using one centralized, tag-based recovery workflow. Which service meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon S3 Cross-Region Replication configured on the application's log bucket"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Data recovery"
+      "text": "AWS Backup, using an existing backup plan that captures the affected volumes by tag"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "EBS encryption by default enabled for the Region"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An Amazon CloudWatch alarm that notifies the team when volume usage spikes"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Backup centralizes tag-based backup plans across many resource types, including Amazon EBS, and restoring from an existing recovery point returns each affected volume to the state captured the night before, which is exactly the centralized, tag-based recovery this scenario needs. Amazon S3 Cross-Region Replication only applies to S3 objects, not EBS volumes, and even for S3 it only propagates new and changed objects going forward rather than restoring a prior state. EBS encryption by default only controls whether new volumes and snapshot copies are encrypted; it has no recovery or restore capability at all. A CloudWatch alarm can notify the team about a usage spike, but it does not restore any data by itself.",
+  "citationIds": [
+    "cite-saa-1-3-aws-backup",
+    "cite-saa-1-3-ebs-encryption-by-default"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

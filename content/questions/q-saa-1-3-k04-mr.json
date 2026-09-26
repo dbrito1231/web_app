@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-1.3-K04"
   ],
-  "stem": "Select TWO actions that support this requirement: Encryption and appropriate key management",
+  "stem": "That contractor's compliance team also requires the AWS CloudHSM deployment to keep operating if an entire Availability Zone becomes unavailable, and requires the application to authenticate to the HSMs using the same PKCS #11 interface it already uses on premises. Which TWO design choices meet these requirements? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create the CloudHSM cluster with HSMs spread across at least two Availability Zones"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Create a single HSM in one Availability Zone and rely on AWS KMS as a warm standby for it"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Put an AWS KMS custom key store in front of the cluster so the application calls KMS APIs instead"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Integrate the application with the cluster using the CloudHSM PKCS #11 library"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Authenticate the application to the cluster using only the CloudHSM JCE provider"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Spreading a CloudHSM cluster's HSMs across at least two Availability Zones is exactly how AWS CloudHSM achieves redundancy and high availability, and the cluster automatically load-balances operations across every HSM it contains. Integrating the application through the CloudHSM PKCS #11 library preserves the same interface the application already uses on premises. A single HSM in one Availability Zone has no redundancy, and AWS KMS cannot act as a standby for a CloudHSM cluster since they are separate services with separate key material. Placing an AWS KMS custom key store in front of the cluster means the application talks to the KMS API, not PKCS #11, directly against the HSMs, so it does not preserve the required interface. The JCE provider is a Java-specific interface, not the PKCS #11 interface the application already depends on.",
+  "citationIds": [
+    "cite-saa-1-3-cloudhsm-ha",
+    "cite-saa-1-3-cloudhsm"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-kms-grants",
+  "title": "Grants in AWS KMS",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 question rewrite (SAA task 1.3): a KMS grant delegates specific, often temporary, permissions on a key to another principal programmatically; it can be created and later retired without editing the key policy or any IAM policy."
+}

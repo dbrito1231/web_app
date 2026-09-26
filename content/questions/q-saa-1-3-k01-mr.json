@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.3-K01"
   ],
-  "stem": "Select TWO actions that support this requirement: Data access and governance",
+  "stem": "A hospital network must both continuously verify that every Amazon S3 bucket keeps default encryption enabled and ensure every bucket carries an approved DataClassification tag, across all of its AWS Organizations accounts. Which TWO controls together satisfy this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "An AWS Config rule that evaluates each bucket's default encryption configuration on an ongoing basis"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A one-time manual review of every bucket's settings during the next audit cycle"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An AWS Organizations tag policy that defines the approved DataClassification values"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "An IAM permissions boundary that limits which S3 actions a role may take"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A Glacier Vault Lock policy applied to each bucket"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An AWS Config rule continuously evaluates whether each bucket's default encryption stays enabled, which is exactly the ongoing verification this scenario needs, and an AWS Organizations tag policy defines and enforces the approved DataClassification values across every account. A one-time manual review only captures a single point in time and does not continuously verify anything going forward. An IAM permissions boundary sets the maximum permissions a role can be granted; it does not evaluate resource configuration or tag values at all. Glacier Vault Lock is a WORM control for the legacy standalone Amazon Glacier vault service, not a control that can be applied to an S3 bucket.",
+  "citationIds": [
+    "cite-saa-1-3-aws-config",
+    "cite-saa-1-3-tag-policies",
+    "cite-saa-1-3-glacier-vault-lock"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
