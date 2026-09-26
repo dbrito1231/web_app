@@ -63,7 +63,8 @@ def main():
 
     # Lesson checks
     body = lesson.get("bodyMarkdown", "")
-    stripped = re.sub(r"\*\*[^*]+\*\*", "", body)
+    # Code spans render literally, so a wildcard like `/api/*` is not italics.
+    stripped = re.sub(r"`[^`]*`", "", re.sub(r"\*\*[^*]+\*\*", "", body))
     n_ast = len(SINGLE_AST.findall(stripped))
     report("PASS" if n_ast == 0 else "FAIL", f"lesson single-asterisk spans: {n_ast}")
     bad_md = [l for l in body.splitlines() if l.lstrip().startswith("|") or re.match(r"\s*\d+\.\s", l)]
