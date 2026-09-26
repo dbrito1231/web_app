@@ -57,7 +57,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Authorized route challenge complete."
   },
-  "stopChargesPanel": "Delete the API (with its authorizer and routes), the Lambda functions and log groups, any Cognito user pool, and the IAM role for ul-11.",
+  "stopChargesPanel": "Delete the API (with its authorizer and routes), the Lambda functions and log groups, any Cognito user pool (delete its domain first, default prefix or custom), and the IAM role for ul-11.",
   "teardown": {
     "labId": "ul-11",
     "regionScope": "us-east-1",
@@ -73,9 +73,9 @@
       "if ($FnName -and $FnName -ne 'None') { aws lambda delete-function --function-name $FnName }",
       "$LogGroup = aws logs describe-log-groups --log-group-name-prefix /aws/lambda/workbook-ul11-auth --query \"logGroups[?logGroupName=='/aws/lambda/workbook-ul11-auth'].logGroupName | [0]\" --output text",
       "if ($LogGroup -and $LogGroup -ne 'None') { aws logs delete-log-group --log-group-name $LogGroup }",
-      "# Cognito: if you added a user pool domain, delete it first (aws cognito-idp delete-user-pool-domain)",
+      "# Cognito: a domain (default prefix or custom) must be deleted before delete-user-pool, or the pool delete fails",
       "$PoolId = (aws cognito-idp list-user-pools --page-size 60 --query \"UserPools[?Name=='workbook-ul11']\" --output json | ConvertFrom-Json).Id",
-      "if ($PoolId -and $PoolId -ne 'None') { foreach ($Id in @($PoolId)) { if ($Id) { aws cognito-idp delete-user-pool --user-pool-id $Id } } }",
+      "if ($PoolId -and $PoolId -ne 'None') { foreach ($Id in @($PoolId)) { if ($Id) { $Domain = aws cognito-idp describe-user-pool --user-pool-id $Id --query \"UserPool.Domain\" --output text; if ($Domain -and $Domain -ne 'None') { aws cognito-idp delete-user-pool-domain --domain $Domain --user-pool-id $Id }; $CustomDomain = aws cognito-idp describe-user-pool --user-pool-id $Id --query \"UserPool.CustomDomain\" --output text; if ($CustomDomain -and $CustomDomain -ne 'None') { aws cognito-idp delete-user-pool-domain --domain $CustomDomain --user-pool-id $Id }; aws cognito-idp delete-user-pool --user-pool-id $Id } } }",
       "foreach ($P in (aws iam list-attached-role-policies --role-name workbook-ul11-lambda --query \"AttachedPolicies[].[PolicyArn]\" --output text)) { if ($P) { aws iam detach-role-policy --role-name workbook-ul11-lambda --policy-arn $P } }",
       "foreach ($P in ((aws iam list-role-policies --role-name workbook-ul11-lambda --query PolicyNames --output text) -split '\\s+')) { if ($P -and $P -ne 'None') { aws iam delete-role-policy --role-name workbook-ul11-lambda --policy-name $P } }",
       "aws iam delete-role --role-name workbook-ul11-lambda"

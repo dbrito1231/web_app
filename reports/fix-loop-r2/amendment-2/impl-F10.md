@@ -147,6 +147,49 @@ question.
   - Capped loop with an `aws` stub that resolves to `SUCCEEDED` on the 3rd call: exits after 3
     iterations, confirming the cap does not change normal (fast) teardown behavior.
 
+## F13: UL-11 Cognito domain
+
+**Problem (STUDENT-R5-001):** the UL-11 teardown's only guidance for a user pool domain was a
+comment — "Cognito: if you added a user pool domain, delete it first (aws cognito-idp
+delete-user-pool-domain)" — with no actual command. `delete-user-pool` fails while a domain
+(default prefix or custom) is still attached to the pool.
+
+**Before:**
+```
+"# Cognito: if you added a user pool domain, delete it first (aws cognito-idp delete-user-pool-domain)",
+"$PoolId = (aws cognito-idp list-user-pools --page-size 60 --query \"UserPools[?Name=='workbook-ul11']\" --output json | ConvertFrom-Json).Id",
+"if ($PoolId -and $PoolId -ne 'None') { foreach ($Id in @($PoolId)) { if ($Id) { aws cognito-idp delete-user-pool --user-pool-id $Id } } }",
+```
+
+**After:**
+```
+"# Cognito: a domain (default prefix or custom) must be deleted before delete-user-pool, or the pool delete fails",
+"$PoolId = (aws cognito-idp list-user-pools --page-size 60 --query \"UserPools[?Name=='workbook-ul11']\" --output json | ConvertFrom-Json).Id",
+"if ($PoolId -and $PoolId -ne 'None') { foreach ($Id in @($PoolId)) { if ($Id) { $Domain = aws cognito-idp describe-user-pool --user-pool-id $Id --query \"UserPool.Domain\" --output text; if ($Domain -and $Domain -ne 'None') { aws cognito-idp delete-user-pool-domain --domain $Domain --user-pool-id $Id }; $CustomDomain = aws cognito-idp describe-user-pool --user-pool-id $Id --query \"UserPool.CustomDomain\" --output text; if ($CustomDomain -and $CustomDomain -ne 'None') { aws cognito-idp delete-user-pool-domain --domain $CustomDomain --user-pool-id $Id }; aws cognito-idp delete-user-pool --user-pool-id $Id } } }",
+```
+
+Both `Domain` (the auto-generated Cognito prefix domain) and `CustomDomain` (a user-supplied custom
+domain) are looked up and deleted if present, since `describe-user-pool` returns them as separate
+fields and either can block `delete-user-pool`. `delete-user-pool-domain` takes `--domain` and
+`--user-pool-id` as its only two required parameters, so the same call shape works for both domain
+types. Everything stays inside the existing `if ($PoolId -and $PoolId -ne 'None') { foreach ($Id
+in @($PoolId)) { if ($Id) { ... } } }` guard, and none of the `aws` lines use `-ErrorAction`.
+
+`stopChargesPanel` updated to say "any Cognito user pool (delete its domain first, default prefix
+or custom)" instead of just "any Cognito user pool". `recovery` did not mention the domain and was
+left unchanged.
+
+Docs:
+- https://docs.aws.amazon.com/cli/latest/reference/cognito-idp/delete-user-pool-domain.html —
+  confirms the only required parameters are `--domain` and `--user-pool-id`.
+- https://docs.aws.amazon.com/cli/latest/reference/cognito-idp/describe-user-pool.html — confirms
+  `UserPool.Domain` (Cognito-hosted prefix) and `UserPool.CustomDomain` (custom domain) are
+  separate output fields.
+
+Checks: `content_lint.py` → PASS; `scan_lab_placeholders.py` → `PASS 42 labs scanned`; PS 5.1 AST
+parse-check (`[System.Management.Automation.Language.Parser]::ParseInput`) of the full
+`orderedDeletesPowerShell` array → 0 errors.
+
 ## Not changed
 
 `content_lint.py` and `scan_lab_placeholders.py` required no follow-up fixes. No other lab JSON,
