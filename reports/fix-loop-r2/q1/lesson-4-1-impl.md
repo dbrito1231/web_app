@@ -21,7 +21,8 @@
 | 8 | K06 | gp3 is ~20% lower price per GiB than gp2 at equal performance | https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html | "gp3 volumes offer a 20 percent lower price per GiB than General Purpose SSD (gp2) volumes" |
 | 9 | K06 | gp3 decouples IOPS/throughput provisioning from volume size | https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html | "helps you to scale volume performance independently of volume size" |
 | 10 | K10/S06 | EBS Snapshot Archive: up to 75% lower cost for snapshots kept 90+ days | https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-archive.html | "up to 75 percent lower snapshot storage costs for snapshots that you plan to store for 90 days" |
-| 11 | K07/K10 | EFS Lifecycle Management default transitions: 30 days to IA, 90 days to Archive | https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html | "files that are not accessed in Standard storage class for 30 days are transitioned into IA" |
+| 11 | K10 (fixed round 1, was written into claim table only) | EFS Lifecycle Management default transitions: 30 days to IA, 90 days to Archive, both configurable | https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html | "files that are not accessed in Standard storage class for 30 days are transitioned into IA" |
+| 21 | K10 (round 1 fix) | Glacier Flexible Retrieval tiers: Expedited 1–5 min, Standard 3–5 hrs, Bulk 5–12 hrs (free); Deep Archive: Standard within 12 hrs, Bulk within 48 hrs | https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html | "Expedited retrieval – Typically restores the object in 1–5 minutes" / "Bulk retrieval – Typically restores the object within 48 hours" |
 | 12 | K10/S08/S09 | S3 Standard-IA/One Zone-IA: 30-day minimum duration, 128 KB minimum billed size | https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html | "suitable for objects larger than 128 KB that you plan to store for at least 30 days" |
 | 13 | K10/S08/S09 | Glacier Instant/Flexible Retrieval: 90-day minimum; Deep Archive: 180-day minimum | https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html | "S3 Glacier Instant Retrieval \| 90 days ... S3 Glacier Deep Archive \| 180 days" |
 | 14 | K10/S08 | Glacier IR has 128 KB minimum object size | https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html | "minimum object size of 128 KB for data stored in the S3 Glacier Instant Retrieval storage class" |
@@ -63,6 +64,31 @@ Deleted placeholder `content/citations/cite-4-1.json` after confirming (`grep -r
 
 ## Files touched
 
-- `content/lessons/lesson-4-1.json` (rewritten)
-- `content/citations/cite-saa-4-1-*.json` (12 new files)
+- `content/lessons/lesson-4-1.json` (rewritten; round 1 fixes applied)
+- `content/citations/cite-saa-4-1-*.json` (12 new files; 1 note updated in round 1)
 - `content/citations/cite-4-1.json` (deleted, unreferenced placeholder)
+
+## Fixes (round 1)
+
+Applied per Teacher review (`lesson-4-1-TEACHER.md`); AWS raised no issues.
+
+**TEACHER-L41-001 (K09):** replaced the vague "tiered manually" with a named-mechanism contrast.
+- Old: "frequent but well-understood infrequent access can be tiered manually to save the monitoring fee that automatic tiering charges;"
+- New: "frequent but well-understood infrequent access can be tiered with a scheduled S3 Lifecycle rule instead of S3 Intelligent-Tiering, saving the per-object monitoring fee that Intelligent-Tiering charges for handling unknown or changing access;"
+
+**TEACHER-L41-002 (K10):** added one sentence with Glacier's retrieval tiers, doc-verified against `glacier-storage-classes.html` and stated the way the doc states them:
+- New sentence: "Within Glacier Flexible Retrieval you choose a retrieval tier — Expedited typically restores in 1–5 minutes, Standard in 3–5 hours, and Bulk (free) in 5–12 hours — while Glacier Deep Archive offers only Standard (within 12 hours) and Bulk (within 48 hours, at a fraction of Standard's cost)."
+- Doc basis: "Expedited retrieval – Typically restores the object in 1–5 minutes"; "Standard retrieval – Typically restores the object in 3–5 hours"; "Bulk retrieval – Typically restores the object within 5–12 hours. Bulk retrievals are free."; Deep Archive "Standard retrieval – Typically restores the object within 12 hours"; "Bulk retrieval – Typically restores the object within 48 hours at a fraction of the cost of the Standard retrieval tier."
+
+**TEACHER-L41-003 (K10):** added EFS Lifecycle Management's default transition thresholds, explicitly labeled as defaults/configurable (not fixed limits), matching the claim table row that already cited them:
+- New sentence: "By default, EFS Lifecycle Management moves files not accessed in 30 days into the IA storage class and not accessed in 90 days into the Archive storage class, though both thresholds are configurable lifecycle-policy settings, not fixed limits."
+- Doc basis: "By default, files that are not accessed in Standard storage class for 30 days are transitioned into IA" / "By default, files that are not accessed in the Standard storage class for 90 days are transitioned in to the Archive storage class" — both under a policy the doc calls configurable ("Instructs lifecycle management when to...").
+
+Placed both K10 additions between the existing minimum-duration sentence and the Storage Lens sentence in the K10 paragraph, per the Teacher's "K07 or K10" guidance.
+
+Updated `cite-saa-4-1-glacier-storage-classes.json`'s note to name the specific retrieval tiers now taught. No other citation files changed; `cite-saa-4-1-efs-lifecycle.json`'s existing note already covered the K10 default-transition-timing claim.
+
+**Verification after fixes:**
+- `q1_batch_check.py 4-1` (lesson lines only): PASS (single-asterisk spans 0, tables/numbered lines 0, citations unresolved [], one expected WARN for the correctly-labeled "Snowball" mention).
+- `content_lint.py`: PASS (lessons 23).
+- New word count: 3,436 (up from 3,336 after adding the two K10 sentences).

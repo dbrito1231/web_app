@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/glacier-storage-classes.html",
   "accessed": "2026-09-26",
-  "note": "Lesson 4.1, K10, S08, S09: confirms the 90/90/180-day minimum storage durations and retrieval-speed differences across the three Glacier classes."
+  "note": "Lesson 4.1, K10, S08, S09: confirms the 90/90/180-day minimum storage durations and the Expedited/Standard/Bulk (Flexible Retrieval) and Standard/Bulk (Deep Archive) retrieval-tier times."
 }
