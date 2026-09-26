@@ -36,7 +36,8 @@
   ],
   "rationale": "Cross-zone load balancing spreads requests evenly across targets in every enabled Availability Zone, which corrects the uneven five-to-one split. Moving the affected target to an instance family with enhanced networking raises the packet-per-second ceiling that was causing the dropped packets. Increasing the idle timeout changes how long an inactive connection stays open; it does not touch packet-per-second performance or the AZ imbalance. Reducing the load balancer to a single Availability Zone would remove the imbalance but also removes the multi-AZ resilience the deployment is meant to keep. Changing the target type from instance to IP address changes how targets are registered; it does not raise a target's packet-processing ceiling.",
   "citationIds": [
-    "cite-saa-2-1-alb-cross-zone"
+    "cite-saa-3-4-nlb-cross-zone",
+    "cite-saa-3-2-enhanced-networking"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
