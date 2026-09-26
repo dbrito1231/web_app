@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-kms-custom-key-store",
+  "title": "Key stores - AWS Key Management Service",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 question rewrite (SAA task 1.3): AWS KMS custom key stores (AWS CloudHSM key stores and external key stores) let a KMS key's cryptographic material be generated, stored, and used outside the standard KMS key store, but cryptographic operations on that KMS key are still invoked through the AWS KMS API, not by having the application call PKCS #11, JCE, or CNG directly against the backing HSMs."
+}

@@ -37,7 +37,8 @@
   "rationale": "Spreading a CloudHSM cluster's HSMs across at least two Availability Zones is exactly how AWS CloudHSM achieves redundancy and high availability, and the cluster automatically load-balances operations across every HSM it contains. Integrating the application through the CloudHSM PKCS #11 library preserves the same interface the application already uses on premises. A single HSM in one Availability Zone has no redundancy, and AWS KMS cannot act as a standby for a CloudHSM cluster since they are separate services with separate key material. Placing an AWS KMS custom key store in front of the cluster means the application talks to the KMS API, not PKCS #11, directly against the HSMs, so it does not preserve the required interface. The JCE provider is a Java-specific interface, not the PKCS #11 interface the application already depends on.",
   "citationIds": [
     "cite-saa-1-3-cloudhsm-ha",
-    "cite-saa-1-3-cloudhsm"
+    "cite-saa-1-3-cloudhsm",
+    "cite-saa-1-3-kms-custom-key-store"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

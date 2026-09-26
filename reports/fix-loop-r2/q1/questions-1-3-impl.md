@@ -118,3 +118,37 @@ No type is used in more than 3 of the 20 questions (15%).
   per Amendment 3's pipeline step 4 are still needed before this task can close in the tracker/register.
 - No `npm run build` or Terraform fixture check was run — this batch touched only JSON content, not
   frontend or lab-fixture code.
+
+## Fixes (TEACHER-Q13-001, AWS-Q13-001)
+
+**TEACHER-Q13-001 (Low).** `content/lessons/lesson-1-3.json`, K04 CloudHSM paragraph: added, right
+after the "customer-controlled key store" clause and before the multi-AZ HA sentence —
+
+- "When a KMS key is backed by a customer-controlled (custom) key store, applications still call
+  the AWS KMS API — not PKCS #11, JCE, or CNG directly against the HSMs."
+
+Verified against `https://docs.aws.amazon.com/kms/latest/developerguide/key-store-overview.html`
+(custom key stores let key material live in a customer-owned AWS CloudHSM cluster or an external
+key manager, but cryptographic operations on the KMS key are still performed through AWS KMS) and
+the `CreateCustomKeyStore` API reference (a cryptographic operation on a KMS key in a custom key
+store "is actually performed in your key store using your keys" — i.e. invoked via the AWS KMS
+API, not called by the application directly against the HSM). Added new citation
+`content/citations/cite-saa-1-3-kms-custom-key-store.json` (`accessed: "2026-09-26"`, same URL) and
+appended its id to `lesson-1-3.json`'s `citationIds` and to `content/questions/q-saa-1-3-k04-mr.json`'s
+`citationIds`. `q-saa-1-3-k04-mr`'s existing rationale for distractor c ("the application talks to
+the KMS API, not PKCS #11, directly against the HSMs") already matches the new lesson wording, so
+no rationale text was changed.
+
+**AWS-Q13-001 (Low).** `content/citations/cite-saa-1-3-cloudhsm-ha.json` repointed from
+`cloudhsm/latest/userguide/bp-cluster-management.html` to
+`https://docs.aws.amazon.com/cloudhsm/latest/userguide/cluster-high-availability-load-balancing.html`
+(title updated to match), after confirming that page states both halves of the lesson sentence
+directly: "When you create an AWS CloudHSM cluster with more than one HSM, you automatically get
+load balancing... [the client] distributes cryptographic operations across all HSMs in the
+cluster" and "When you create the HSMs in different AWS Availability Zones, you automatically get
+high availability." The citation `id` was kept unchanged, so no references broke.
+
+**Verification:** all `citationIds` across the touched files resolve to existing citation files; 0
+single-asterisk markdown spans in `lesson-1-3.json` `bodyMarkdown`; lesson `drillIds` still lists
+all 20 question ids; `backend\.venv\Scripts\python.exe scripts\content_lint.py` → PASS
+(`questions 429 aws 310 tf 119 / labs 21 + 21 / lessons 23`).
