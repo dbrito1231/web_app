@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S08"
   ],
-  "stem": "You must choose one approach for: Selecting the appropriate storage tier. Which action fits?",
+  "stem": "Compliance records are accessed roughly once a year, must be retrievable within 12 hours when needed, must remain in place at least 180 days, and the team wants the lowest possible storage cost.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "S3 Glacier Flexible Retrieval"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "S3 Standard-IA"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Selecting the appropriate storage tier"
+      "text": "S3 Intelligent-Tiering"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "S3 Glacier Deep Archive"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Glacier Deep Archive fits annual-or-rarer access, restores within 12 hours on its Standard retrieval tier, matches the 180-day minimum storage duration, and is the cheapest of the archival classes for data accessed this rarely. Glacier Flexible Retrieval can also meet the retrieval-time and duration requirements, but it costs more than Deep Archive for data accessed only about once a year, so it fails the lowest-cost requirement. Standard-IA is priced for infrequent but still regular access, with a 30-day minimum duration and a higher per-GB rate than the archival classes, making it more expensive for this pattern. Intelligent-Tiering is built for access patterns that are unknown or changing, and it adds a monitoring fee this known, once-a-year pattern does not need to pay.",
+  "citationIds": [
+    "cite-saa-4-1-glacier-storage-classes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate service for data migration to storage services",
+  "stem": "Monthly service reviews raise a question about how AWS DataSync, AWS Transfer Family, and AWS Storage Gateway differ, before a recommendation is made for two upcoming projects. Select TWO accurate statements about these services. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Storage Gateway is billed per GB transferred with no appliance to run"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Transfer Family needs an EC2-hosted FTP server to operate"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS DataSync provides managed SFTP and FTPS protocol endpoints"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Transfer Family provides managed SFTP, FTPS, and AS2 endpoints backed by S3 or EFS"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS DataSync is billed per GB transferred with no appliance to run"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Transfer Family provides managed SFTP, FTPS, and AS2 endpoints backed by S3 or EFS, letting external partners exchange files without a self-managed server. AWS DataSync is billed per GB transferred with no gateway appliance to run, which is what makes it a low-cost choice for bulk transfers. AWS Storage Gateway runs a gateway appliance or virtual machine to provide its local cache, so it is not an appliance-free, per-GB transfer service. Transfer Family is specifically built to avoid standing up and patching an EC2-hosted FTP server, so needing one contradicts what it provides. Managed SFTP and FTPS endpoints are Transfer Family's role, not something AWS DataSync provides.",
+  "citationIds": [
+    "cite-saa-2-1-transfer-family-what-is",
+    "cite-saa-3-1-datasync-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

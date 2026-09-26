@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S07"
   ],
-  "stem": "In a design review, the requirement is: Selecting the appropriate service for data migration to storage services. Which action matches it?",
+  "stem": "An application must keep running on-premises indefinitely while its data is served from a local cache backed by Amazon S3, rather than completing a one-time cutover.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Selecting the appropriate service for data migration to storage services"
+      "text": "Run a one-time AWS DataSync transfer job"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Set up AWS Transfer Family endpoints for the application"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Deploy AWS Storage Gateway"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Schedule a recurring AWS DataSync task between the on-premises share and S3"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Storage Gateway is built for exactly this pattern: keeping an on-premises application running indefinitely while it is served from a local cache backed by AWS storage, rather than a migration that finishes and disconnects. A one-time DataSync transfer job completes a migration and then stops running; it does not provide ongoing local-cache access afterward. Transfer Family provides managed file-protocol endpoints for external partners, not local application access to on-premises data. Even a recurring DataSync task only copies data between the share and S3 on a schedule; it does not serve the application from a local cache the way a gateway does.",
+  "citationIds": [
+    "cite-saa-3-1-storage-gateway-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

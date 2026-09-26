@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S08"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate storage tier",
+  "stem": "Object access patterns for a dataset change unpredictably month to month, and the team wants no retrieval fee ever charged regardless of how access changes, while still lowering cost compared with S3 Standard once objects go cold. Select TWO accurate statements. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "S3 Intelligent-Tiering monitors access and moves objects between tiers automatically with no retrieval fee"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "S3 Standard-IA never charges a retrieval fee regardless of access pattern"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "S3 One Zone-IA automatically adapts its tier to changing access patterns"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Glacier Instant Retrieval has no minimum storage duration commitment"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "S3 Intelligent-Tiering charges a small monitoring fee per object in exchange for that flexibility"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "a",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 Intelligent-Tiering monitors access and moves objects between its tiers automatically, and it never charges a retrieval fee no matter how the access pattern changes. In exchange for that flexibility, Intelligent-Tiering charges a small monitoring fee per object, the tradeoff the team accepts for not having to predict the access pattern. S3 Standard-IA does charge a retrieval fee; it is priced for infrequent but predictable access, not an unpredictable pattern with no retrieval charge. One Zone-IA is a fixed storage class that does not monitor or adapt to changing access on its own. Glacier Instant Retrieval carries a 90-day minimum storage duration, so it is not free of a minimum-duration commitment.",
+  "citationIds": [
+    "cite-saa-4-1-glacier-storage-classes",
+    "cite-saa-4-1-s3-storage-class-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

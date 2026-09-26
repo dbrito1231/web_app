@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.1-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Managing S3 object lifecycles",
+  "stem": "An audit of S3 lifecycle rules finds a bucket that has to delete incomplete multipart uploads after 7 days and permanently remove noncurrent object versions after 90 days. Select TWO actions the rule needs. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A transition action to Glacier Deep Archive"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "An S3 Object Lock retention rule"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A replication rule to a second bucket"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An expiration action for incomplete multipart uploads"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "An expiration action for noncurrent versions"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An expiration action targeting incomplete multipart uploads removes the abandoned parts after the stated number of days, stopping the storage they would otherwise keep billing for. A second expiration action targeting noncurrent versions permanently removes older versions once they pass the stated age. A transition action changes an object's storage class; it does not delete anything, so it cannot satisfy either deletion requirement. S3 Object Lock enforces retention and legal holds, preventing deletion rather than scheduling it. A replication rule copies objects to another bucket and has no expiration behavior at all.",
+  "citationIds": [
+    "cite-saa-4-1-s3-lifecycle-transitions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S09"
   ],
-  "stem": "During an architecture review, the goal is: Selecting the correct data lifecycle for storage. Which action matches that goal?",
+  "stem": "A retention policy calls for objects to move from S3 Standard to Standard-IA at 30 days, then to Glacier Flexible Retrieval at 45 days, then expire at 400 days, and a monthly bill shows early-transition charges the team did not expect.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The transition to Glacier Flexible Retrieval was scheduled before Standard-IA's 30-day minimum storage duration elapsed"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Selecting the correct data lifecycle for storage"
+      "text": "The 400-day expiration is longer than Glacier Flexible Retrieval's 90-day minimum storage duration"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The rule filtered objects by tag instead of by prefix"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The bucket's default 128 KB minimum object size blocked the transitions"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Objects reach Standard-IA at day 30 and are scheduled to leave for Glacier Flexible Retrieval at day 45, only 15 days later, which is less than Standard-IA's 30-day minimum storage duration and triggers an early-transition charge. The 400-day expiration being longer than Glacier Flexible Retrieval's 90-day minimum is true, but a later expiration than a minimum duration does not cause a charge, so it is not the source of the problem described. Whether a rule filters by tag or by prefix does not change how minimum storage durations are enforced. The 128 KB default minimum size, if it applied here, would block a transition entirely rather than let it happen early and generate a charge.",
+  "citationIds": [
+    "cite-saa-4-1-s3-lifecycle-transitions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

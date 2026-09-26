@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S06"
   ],
-  "stem": "Which action is the right fit for this requirement: Selecting the appropriate backup and/or archival solution?",
+  "stem": "A long-term retention requirement applies only to EBS volume history, with no other AWS resource type needing the same policy, and the team wants the lowest storage cost for snapshots kept well past 90 days.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create an AWS Backup plan across all resource types with a cold storage lifecycle"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Move the EBS snapshots to the EBS Snapshot Archive tier"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Selecting the appropriate backup and/or archival solution"
+      "text": "Copy the EBS snapshots into an S3 Glacier Deep Archive bucket manually"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable AWS Backup Vault Lock on the vault holding the snapshots"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The EBS Snapshot Archive tier is built for exactly this case: EBS-only, long-term retention without needing a cross-service policy engine, offering up to about 75% lower storage cost for snapshots kept 90 days or longer. Building an AWS Backup plan across every resource type adds a cross-service policy engine the requirement does not call for, since only EBS volume history needs the policy. Copying snapshots into an S3 Glacier bucket manually treats snapshot data as if it were object data, which is not how EBS snapshots are stored or archived. Vault Lock makes a backup vault's retention settings immutable for compliance; it does not lower the storage cost of keeping the snapshots.",
+  "citationIds": [
+    "cite-saa-4-1-ebs-snapshot-archive"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

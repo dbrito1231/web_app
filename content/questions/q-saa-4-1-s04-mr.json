@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.1-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining when storage auto scaling is required",
+  "stem": "Monthly cost reports show unexpected charges from a full EBS volume and a full FSx file system, both of which needed manual capacity increases. Select TWO storage layers whose capacity has to be requested or automated explicitly, because they do not grow unattended on their own. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon S3 buckets"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon EBS volumes"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon FSx file systems"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EFS file systems"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon S3 buckets using a Lifecycle policy"
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EBS volumes stay at their provisioned size until resized, so their capacity increases have to be requested or automated explicitly. Amazon FSx file systems also need capacity increases requested explicitly on most deployment types, matching the pattern in the report. Amazon S3 buckets scale storage capacity automatically with nothing to provision, so they never hit this problem. Amazon EFS file systems similarly grow and shrink with usage automatically. Applying a Lifecycle policy to an S3 bucket changes which storage class holds aging objects; it does not change that S3 capacity already scales on its own.",
+  "citationIds": [
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

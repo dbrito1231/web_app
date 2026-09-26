@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-s-ebs-elastic-volumes",
+  "title": "Amazon EBS Elastic Volumes",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, S02: confirms Elastic Volumes can increase size, change volume type, or adjust performance of a live volume without downtime."
+}

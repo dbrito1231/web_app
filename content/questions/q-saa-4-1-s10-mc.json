@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S10"
   ],
-  "stem": "In a design review, the requirement is: Selecting the most cost-effective storage service for a workload. Which action matches it?",
+  "stem": "A workload serves static website content with no need for a POSIX file interface, and the team wants the cheapest baseline storage service before adding any lifecycle policy.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Selecting the most cost-effective storage service for a workload"
+      "text": "Amazon FSx for Windows File Server"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon S3"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon EFS"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon EBS"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon S3 has no capacity to provision and bills only for what is stored plus requests, making it the cheapest baseline for object data with no POSIX file interface requirement. FSx for Windows File Server carries a premium for a managed Windows/AD-native engine that this workload does not need. EFS has a higher per-GB rate than S3 and exists to provide a POSIX file interface, which the workload does not require. EBS bills for provisioned capacity whether or not it is used and has to be attached to a single instance, which does not fit shared static content at the cheapest baseline cost.",
+  "citationIds": [
+    "cite-saa-4-1-s3-storage-class-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

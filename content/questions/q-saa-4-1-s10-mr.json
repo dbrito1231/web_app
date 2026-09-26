@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S10"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the most cost-effective storage service for a workload",
+  "stem": "A single-instance relational database needs guaranteed low-latency block storage, and a separate workload needs shared, POSIX-compliant file access with unpredictable growth and no capacity planning. Select TWO correct service matches. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon S3 for the single-instance database"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon FSx for the shared POSIX file access with no capacity planning"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EFS for the single-instance database"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon EBS for the single-instance database"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon EFS for the shared POSIX file access"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EBS provides the guaranteed low-latency block storage a single-instance database needs. Amazon EFS provides shared, POSIX-compliant file access that grows and shrinks with usage, with no capacity to plan ahead of time. Amazon S3 has no block interface and cannot be attached to an instance as a database volume. FSx needs provisioned storage capacity on most deployment types, which contradicts a requirement of no capacity planning. EFS is file storage, not the low-latency block interface a database instance needs, so it does not fit the database requirement.",
+  "citationIds": [
+    "cite-saa-4-1-ebs-general-purpose",
+    "cite-saa-4-1-efs-lifecycle"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

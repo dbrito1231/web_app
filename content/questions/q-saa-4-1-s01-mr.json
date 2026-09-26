@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.1-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+  "stem": "A single 800 GB file must be uploaded to S3 over an unreliable connection, and the storage team wants failed transfers to stop silently billing for storage. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use multipart upload to split the file into parts uploaded in parallel"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Add a Lifecycle rule that expires incomplete multipart uploads after a set number of days"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Enable S3 Object Lock on the bucket"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Turn on Requester Pays for the bucket"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Enable Cross-Region Replication for the object"
     }
   ],
   "correctAnswerIds": [
     "a",
     "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Multipart upload splits the 800 GB object into parts that upload in parallel and can be retried individually, which fits an unreliable connection far better than retrying the whole file. Because incomplete multipart uploads still bill for the storage they hold, a Lifecycle rule that expires them after a set number of days is the piece that stops the silent billing. Object Lock enforces retention and legal holds on objects that already exist; it plays no role in completing or cleaning up a failed multipart upload. Requester Pays shifts who pays for requests and downloads to the requester; it does not address upload reliability or abandoned parts. Cross-Region Replication copies completed objects to another bucket; it does not touch an upload that never finished.",
+  "citationIds": [
+    "cite-saa-4-1-s-multipart-upload"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

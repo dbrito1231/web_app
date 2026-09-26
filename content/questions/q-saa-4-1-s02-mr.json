@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the correct storage size for a workload",
+  "stem": "Two workloads are being sized for storage capacity: one on Amazon EFS with elastic throughput and one on Amazon FSx. Select TWO accurate statements about their capacity billing. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "EFS needs a fixed volume size selected before file data can be written"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "FSx bills only for what is actually stored, exactly like S3"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "EFS with elastic throughput bills for the data actually stored, not a pre-provisioned capacity"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "FSx needs provisioned storage capacity, similar to EBS"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "gp3 volumes bill only for data actually written, not their provisioned size"
     }
   ],
   "correctAnswerIds": [
     "c",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "EFS with elastic throughput grows and shrinks with usage and bills for the data actually stored, with no capacity provisioned ahead of time. FSx, in contrast, needs provisioned storage capacity in a way that resembles EBS rather than S3 or EFS. EFS never needs a fixed volume size selected before writing files; that describes a provisioned-capacity model, not how EFS works. FSx does not bill purely on stored data the way S3 does, because its deployment types need provisioned capacity. gp3 volumes bill for their provisioned size regardless of how much data is actually written, the opposite of usage-based billing.",
+  "citationIds": [
+    "cite-saa-4-1-s-ebs-elastic-volumes",
+    "cite-saa-4-1-efs-lifecycle"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

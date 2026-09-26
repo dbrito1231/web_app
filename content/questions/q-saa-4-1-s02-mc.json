@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-S02"
   ],
-  "stem": "In a design review, the requirement is: Determining the correct storage size for a workload. Which action matches it?",
+  "stem": "A new application needs low-latency block storage, and the team wants to avoid paying for capacity that sits unused for months while still being able to grow the volume later without downtime.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Determining the correct storage size for a workload"
+      "text": "Provision an io2 volume with the maximum provisioned IOPS from the start"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Start the EBS volume at a realistic size and use Elastic Volumes to increase it later as usage grows"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move the workload's data to Amazon EFS instead of EBS"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Provision the volume at the largest size the workload could ever need up front"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Starting at a realistic size and using Elastic Volumes to grow the volume later matches actual usage to spend instead of guessing high up front, and Elastic Volumes resizes a live volume with no downtime. Provisioning an io2 volume with maximum IOPS addresses performance, not the unused-capacity cost the team wants to avoid. Moving to Amazon EFS drops the guaranteed low-latency block interface the application needs, because EFS is file storage rather than block storage. Provisioning the largest size the workload could ever need up front is the over-provisioning approach that leaves capacity paid for and unused for months.",
+  "citationIds": [
+    "cite-saa-4-1-s-ebs-elastic-volumes",
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

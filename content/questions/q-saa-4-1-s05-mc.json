@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S05"
   ],
-  "stem": "The workload needs this outcome: Managing S3 object lifecycles. Which action should you take?",
+  "stem": "A bucket's Lifecycle rule is supposed to move 100 KB objects to Standard-IA after 30 days, but a monthly report shows most of those objects never transitioned.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Managing S3 object lifecycles"
+      "text": "The objects are smaller than the 128 KB default minimum size for transition"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The rule was scheduled to run before the source class's minimum storage duration elapsed"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The bucket has S3 Versioning disabled"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The rule targets objects using a prefix filter instead of a tag filter"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "By default, only objects of at least 128 KB transition under an S3 Lifecycle rule, so 100 KB objects sit below that floor and never move unless the rule adds an object-size filter to include them. S3 Standard has no minimum storage duration of its own to violate on the way into Standard-IA, so an early-transition timing problem is not what is blocking these objects. Whether S3 Versioning is enabled or disabled does not affect whether a Lifecycle rule's size threshold applies. A Lifecycle rule can filter by prefix or by tag; either filter type still respects the same 128 KB default floor, so the filter type is not the cause.",
+  "citationIds": [
+    "cite-saa-4-1-s3-lifecycle-transitions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

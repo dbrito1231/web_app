@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-s-batch-operations",
+  "title": "Performing large-scale batch operations on Amazon S3 objects",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, S01: confirms S3 Batch Operations performs a single large-scale action across many objects instead of one request per object."
+}

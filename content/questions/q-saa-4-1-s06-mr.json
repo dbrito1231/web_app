@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate backup and/or archival solution",
+  "stem": "A compliance requirement spans EBS, RDS, and DynamoDB with one shared retention policy that ages recovery points into cold storage automatically. Select TWO true statements about the solution that meets this. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Backup can apply one policy across all three resource types"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Backup backs up incrementally after the first full backup for supported resources"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "EBS Snapshot Archive can retain RDS and DynamoDB recovery points under the same policy"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "S3 Glacier Deep Archive natively manages EBS, RDS, and DynamoDB recovery points"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Backup needs a full backup every time, with no incremental option"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Backup centralizes policy-driven backup across many AWS resource types, so one plan can cover EBS, RDS, and DynamoDB together. After the first full backup, AWS Backup backs up incrementally for supported resources, keeping ongoing storage cost tied to changed data. The EBS Snapshot Archive tier is EBS-only, with no mechanism for RDS or DynamoDB recovery points. S3 Glacier Deep Archive stores object data directly; it does not natively manage recovery points from EBS, RDS, or DynamoDB. AWS Backup does not need a full backup every time; incremental backup after the first copy is exactly what keeps its ongoing cost down.",
+  "citationIds": [
+    "cite-saa-4-1-backup-plans",
+    "cite-saa-4-1-backup-cold-storage"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

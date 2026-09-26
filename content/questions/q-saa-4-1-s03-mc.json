@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S03"
   ],
-  "stem": "Pick the action that satisfies: Determining the lowest cost method of transferring data for a workload to AWS storage.",
+  "stem": "During a storage audit, 500 TB of archival data must move from an on-premises NAS to Amazon S3 over an existing network link on a recurring nightly schedule, and the goal is the lowest ongoing service fee for the transfer method itself.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy AWS Storage Gateway to keep serving the data indefinitely from a local cache"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Set up AWS Transfer Family SFTP endpoints for the transfer"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use AWS DataSync on a recurring schedule for the transfer"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining the lowest cost method of transferring data for a workload to AWS storage"
+      "text": "Request a one-time AWS Data Transfer Terminal shipment for this dataset"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS DataSync is billed per GB transferred with no appliance to run, and it can run on a recurring schedule over the existing network link, fitting both the recurring requirement and the lowest ongoing service fee. Storage Gateway is built for keeping an on-premises application running indefinitely against a local cache, not for a scheduled bulk migration job. Transfer Family provides managed SFTP, FTPS, and AS2 endpoints for external partners exchanging files, not a bulk NAS-to-S3 transfer job. AWS Data Transfer Terminal is a physical shipment path for datasets too large to move over the network in time, which does not fit a transfer that already has a usable network link.",
+  "citationIds": [
+    "cite-saa-3-1-datasync-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

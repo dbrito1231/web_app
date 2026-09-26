@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S09"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the correct data lifecycle for storage",
+  "stem": "A lifecycle schedule must respect two minimum storage durations before objects can move out of a class: Glacier Flexible Retrieval and S3 Glacier Deep Archive. Select TWO minimum-duration values correctly matched to their class. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Glacier Flexible Retrieval: 30 days"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Glacier Flexible Retrieval: 90 days"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Glacier Deep Archive: 180 days"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Glacier Deep Archive: 90 days"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "S3 Standard-IA: 90 days"
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Glacier Flexible Retrieval carries a 90-day minimum storage duration before an object can be deleted, overwritten, or transitioned out without an early charge. Glacier Deep Archive's minimum storage duration is 180 days, the longest of the classes covered in this lesson. The 30-day figure belongs to the IA classes, not Glacier Flexible Retrieval. The 90-day figure belongs to Glacier Instant and Flexible Retrieval, not Glacier Deep Archive. S3 Standard-IA's minimum storage duration is 30 days, not 90 days.",
+  "citationIds": [
+    "cite-saa-4-1-glacier-storage-classes",
+    "cite-saa-4-1-s3-storage-class-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

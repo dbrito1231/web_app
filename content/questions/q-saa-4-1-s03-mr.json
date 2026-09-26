@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the lowest cost method of transferring data for a workload to AWS storage",
+  "stem": "External partners need to exchange files over SFTP with an S3-backed destination, while a separate one-time 200 TB migration from an on-premises HDFS cluster must finish before the cluster is decommissioned. Select TWO correct service matches. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Transfer Family for the partner SFTP exchange"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Storage Gateway for the partner SFTP exchange"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Transfer Family for the HDFS migration"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Storage Gateway for the HDFS migration"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS DataSync for the one-time HDFS migration"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "a",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Transfer Family provides the managed SFTP endpoint the partners need, backed by S3. AWS DataSync fits a one-time bulk migration from an on-premises HDFS cluster, since it transfers data online with no appliance to run and finishes once the migration completes. Storage Gateway is for keeping an on-premises application running against a local cache indefinitely, not for an SFTP endpoint or a migration that finishes and disconnects. Transfer Family does not perform bulk cluster migrations; its endpoints exist for partner file protocols, not a one-time HDFS copy.",
+  "citationIds": [
+    "cite-saa-2-1-transfer-family-what-is",
+    "cite-saa-3-1-datasync-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-S04"
   ],
-  "stem": "Pick the action that satisfies: Determining when storage auto scaling is required.",
+  "stem": "A solutions architect must determine which storage layer needs an automated capacity-expansion process, such as a CloudWatch alarm triggering a resize, versus which layers already scale on their own.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An S3 bucket holding uploaded objects"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An EFS file system mounted by multiple instances"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An S3 bucket using Intelligent-Tiering"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining when storage auto scaling is required"
+      "text": "An EBS volume backing a database instance"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An EBS volume stays at its provisioned size and performance until it is resized, so it is the layer that needs an automated capacity-expansion process built and triggered deliberately. S3 buckets scale storage capacity automatically with nothing to provision, so there is no capacity decision to automate. EFS file systems also grow and shrink with usage automatically, with no size to provision in advance. Applying Intelligent-Tiering to an S3 bucket changes which storage class holds an object; it does not change that S3 capacity itself already scales without any automation.",
+  "citationIds": [
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
