@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-K11"
   ],
-  "stem": "The workload needs this outcome: Storage types with associated characteristics (for example, object, file, block). Which action should you take?",
+  "stem": "A ride-sharing startup's engineering team is comparing storage options for a workload that does not need a POSIX file interface and needs one whose bill reflects only the data actually stored, with no capacity to provision in advance.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Storage types with associated characteristics (for example, object, file, block)"
+      "text": "Amazon EBS"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon FSx for Lustre"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon S3"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon EFS"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon S3 has no capacity to provision and bills only for what is actually stored plus requests, matching both stated requirements exactly. Amazon EBS must be sized, and for io1/io2/gp3 provisioned for IOPS and throughput, in advance, and that provisioned capacity bills whether or not it is used, failing the no-advance-provisioning requirement. Amazon FSx for Lustre requires provisioning a file system's storage capacity similarly to EBS, also failing that same requirement. Amazon EFS bills for actual usage like S3, but it exists specifically to provide a POSIX file interface, which this workload does not need, so it is a mismatched choice even though its billing model is close.",
+  "citationIds": [
+    "cite-saa-4-1-s3-storage-class-intro",
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

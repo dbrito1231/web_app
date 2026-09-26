@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Backup strategies",
+  "stem": "A logistics company's compliance team is designing a backup strategy that must (1) cover its EBS volumes, EFS file systems, and DynamoDB tables under one retention policy with incremental backups after the first copy, and (2) automatically age old recovery points into a lower-cost storage tier where they stay locked for a required minimum retention period. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Move each EBS volume's snapshots directly to the EBS Snapshot Archive tier"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Create an AWS Backup plan that assigns all three resource types"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure an S3 Lifecycle rule on a bucket that stores exported backup files"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Turn on EFS Lifecycle Management for the EFS file systems"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Configure the AWS Backup plan's lifecycle to transition recovery points to cold storage"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Creating an AWS Backup plan that assigns EBS, EFS, and DynamoDB gives one policy across all three resource types with incremental backups after the first copy, meeting the first requirement. Configuring that plan's lifecycle to transition recovery points to cold storage automatically ages them into the lower-cost tier, where AWS Backup enforces a 90-day minimum before they can be deleted or restored back, meeting the second requirement. Moving EBS snapshots directly to the EBS Snapshot Archive tier only covers EBS; it does not back up EFS or DynamoDB, and it works outside of a single cross-service policy. An S3 Lifecycle rule on a bucket of exported files only manages those exported objects in S3; it neither creates the incremental backups nor covers the original EBS, EFS, and DynamoDB resources. EFS Lifecycle Management moves files between EFS storage classes based on access; it does not back up EBS volumes or DynamoDB tables, and it is not the incremental backup mechanism the requirement describes.",
+  "citationIds": [
+    "cite-saa-4-1-backup-plans",
+    "cite-saa-4-1-backup-cold-storage"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

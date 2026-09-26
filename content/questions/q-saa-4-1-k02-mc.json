@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K02"
   ],
-  "stem": "Which action is the right fit for this requirement: AWS cost management service features (for example, cost allocation tags, multi-account billing)?",
+  "stem": "A software company's finance team runs eight AWS accounts for different product teams and wants every account's usage combined into one payer account so the company reaches volume pricing tiers and every team's Reserved Instance purchases benefit the whole company.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Turn on AWS Budgets alerts on each of the eight accounts"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable consolidated billing for all eight accounts under one AWS Organizations payer account"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: AWS cost management service features (for example, cost allocation tags, multi-account billing)"
+      "text": "Activate cost allocation tags on each account's resources"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure an AWS Cost and Usage Report for each account"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Consolidated billing under AWS Organizations rolls every member account's usage into one payer account, which is what lets the company combine usage to reach volume pricing tiers and share the benefit of Reserved Instances purchased by any account. AWS Budgets only watches cost or usage against a threshold and sends an alert; it does not combine usage across accounts or share purchase benefits. Cost allocation tags break spend down by team or project inside a single account's reports; they do not merge billing across accounts. A Cost and Usage Report per account delivers granular line-item data for that account; run separately per account it still leaves usage unconsolidated.",
+  "citationIds": [
+    "cite-saa-4-1-cost-management-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

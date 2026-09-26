@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-K05"
   ],
-  "stem": "You must choose one approach for: Backup strategies. Which action fits?",
+  "stem": "A hospital IT team backs up dozens of EBS volumes, EFS file systems, and DynamoDB tables under one retention policy, and wants each resource's second and later backups to store only the data that changed since the previous backup.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Backup"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The EBS Snapshot Archive tier"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Backup strategies"
+      "text": "S3 Glacier Deep Archive"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "EFS Lifecycle Management"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Backup centralizes policy-driven backup across many AWS resource types under one plan, and after the first, full backup, most supported resources back up incrementally, matching both the cross-service policy requirement and the changed-data-only requirement. The EBS Snapshot Archive tier only lowers the storage cost of already-created EBS snapshots; it does not create backups of EFS file systems or DynamoDB tables under one policy. S3 Glacier Deep Archive is an S3 storage class for archiving object data; it does not back up EBS, EFS, or DynamoDB resources at all. EFS Lifecycle Management moves files between EFS storage classes based on access; it is not a backup mechanism and does not touch EBS volumes or DynamoDB tables.",
+  "citationIds": [
+    "cite-saa-4-1-backup-plans",
+    "cite-saa-4-1-backup-cold-storage"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

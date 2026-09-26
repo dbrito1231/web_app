@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-K01"
   ],
-  "stem": "Which action is the right fit for this requirement: Access options (for example, an S3 bucket with Requester Pays object storage)?",
+  "stem": "A geospatial research nonprofit's data team wants to publish a large public dataset from an S3 bucket so any researcher worldwide can download it, but the nonprofit does not want to pay for those downloads itself.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Turn on Requester Pays on the bucket"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Turn on S3 Intelligent-Tiering on the bucket"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Access options (for example, an S3 bucket with Requester Pays object storage)"
+      "text": "Activate cost allocation tags on the bucket"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Turn on S3 Storage Lens for the bucket"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Requester Pays makes the account downloading an object pay for the request and the data transfer, while the nonprofit keeps paying only for storage, which matches the requirement exactly. S3 Intelligent-Tiering automatically moves objects between access tiers to optimize the nonprofit's own storage cost; it does not change who pays for a download. Cost allocation tags break down the nonprofit's own AWS spend by team or project in its cost reports; they do not shift any cost to the people downloading the data. S3 Storage Lens gives organization-wide visibility into storage usage and cost-optimization opportunities; it is a reporting feature, not a mechanism that changes who is billed for a request.",
+  "citationIds": [
+    "cite-saa-4-1-requester-pays",
+    "cite-saa-4-1-storage-lens"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

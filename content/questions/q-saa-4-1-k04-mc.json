@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-K04"
   ],
-  "stem": "Pick the action that satisfies: AWS storage services with appropriate use cases (for example, Amazon FSx, Amazon EFS, Amazon S3, Amazon EBS).",
+  "stem": "A media company's archive team must store rarely restructured video files at the lowest possible per-GB cost, with no storage capacity to provision ahead of time and no need for a POSIX file interface.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon EBS"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon FSx for Windows File Server"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Backup"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS storage services with appropriate use cases (for example, Amazon FSx, Amazon EFS, Amazon S3, Amazon EBS)"
+      "text": "Amazon S3"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon S3 bills only for what is actually stored, by storage class, with no capacity to provision in advance, making it normally the cheapest option for object data at scale and matching every stated requirement. Amazon EBS must be sized in advance and bills for that provisioned capacity whether or not it is used, failing the 'no capacity to provision' requirement. Amazon FSx for Windows File Server prices a managed, purpose-built engine and requires provisioning file system storage capacity, and it is usually the most expensive of the storage services, failing both the cost and provisioning requirements. AWS Backup centralizes backup policy across resource types; it is not itself a primary storage service for holding the video files at all.",
+  "citationIds": [
+    "cite-saa-4-1-s3-storage-class-intro",
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

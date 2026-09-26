@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.1-K02"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS cost management service features (for example, cost allocation tags, multi-account billing)",
+  "stem": "A retail chain's finance team wants to see AWS spend broken down by internal cost center inside Cost Explorer, and also wants Reserved Instance discounts purchased by any of its twelve linked AWS accounts to benefit every account. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Activate cost allocation tags using a cost-center tag key"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Turn on AWS Budgets cost alerts for each of the twelve accounts"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Enable consolidated billing for all twelve accounts under one AWS Organizations payer account"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure an AWS Cost and Usage Report for one of the twelve accounts"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Set up AWS Billing Conductor custom billing groups"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Activating cost allocation tags on a cost-center key is what makes that tag appear as a breakdown column in Cost Explorer, meeting the first requirement. Consolidated billing under AWS Organizations rolls every linked account's usage into one payer account and shares the benefit of Reserved Instances purchased by any account, meeting the second requirement. AWS Budgets only alerts when cost or usage crosses a threshold; it neither breaks spend down by cost center nor shares Reserved Instance benefits. A Cost and Usage Report configured for a single account delivers that account's granular line items, but does nothing to combine usage or purchase benefits across all twelve accounts. AWS Billing Conductor models custom chargeback rates between accounts; it does not itself create a cost-center breakdown in Cost Explorer or share Reserved Instance discounts.",
+  "citationIds": [
+    "cite-saa-4-1-cost-management-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

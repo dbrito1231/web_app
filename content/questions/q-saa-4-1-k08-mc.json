@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.1-K08"
   ],
-  "stem": "You must choose one approach for: Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway). Which action fits?",
+  "stem": "A manufacturing company's external logistics partner needs to drop daily inventory files into AWS over SFTP, and the manufacturing company does not want to operate or patch its own FTP server.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS DataSync"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Storage Gateway"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway)"
+      "text": "Amazon FSx for Windows File Server"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Transfer Family"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Transfer Family provides managed SFTP, FTPS, AS2, and FTP endpoints backed by S3 or EFS specifically for exchanging files with external partners who require one of those protocols, without standing up and patching an EC2-hosted FTP server. AWS DataSync is built for a bulk, one-time, or recurring transfer or migration job; it does not expose an ongoing SFTP endpoint for an outside partner to connect to. AWS Storage Gateway (its S3 File Gateway type) presents an NFS or SMB share for on-premises applications; it does not offer an SFTP endpoint for a partner either. Amazon FSx for Windows File Server is a managed native Windows file system reached over SMB for internal Windows-based applications, not an SFTP exchange point for an external partner.",
+  "citationIds": [
+    "cite-saa-3-1-storage-gateway-types",
+    "cite-saa-3-1-datasync-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

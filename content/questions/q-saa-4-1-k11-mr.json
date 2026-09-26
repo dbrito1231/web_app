@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-K11"
   ],
-  "stem": "Select TWO actions that support this requirement: Storage types with associated characteristics (for example, object, file, block)",
+  "stem": "A backend engineering team is evaluating storage for two separate workloads: one needs a block volume that must be sized and provisioned for IOPS and throughput in advance and bills for that capacity whether or not it is used, and the other needs object storage billed only for what is actually stored with no capacity to provision. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon EBS"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon FSx for OpenZFS"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EFS"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon S3"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Storage Gateway"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EBS must be sized, and for several volume types provisioned for IOPS and throughput, in advance, and it bills for that provisioned capacity whether or not it is used, matching the first workload exactly. Amazon S3 has no capacity to provision and bills only for what is actually stored, matching the second workload exactly. Amazon FSx for OpenZFS requires provisioning a file system's storage capacity similarly to EBS, so it is a file storage type, not the described block volume or the described object storage. Amazon EFS bills for actual usage and needs no advance capacity provisioning, but it is file storage built around a POSIX interface, not the block volume or the object storage the two workloads describe. AWS Storage Gateway is a hybrid access gateway that presents on-premises applications with AWS-backed storage; it is not itself a storage type at all, so it fits neither described workload.",
+  "citationIds": [
+    "cite-saa-4-1-s3-storage-class-intro",
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

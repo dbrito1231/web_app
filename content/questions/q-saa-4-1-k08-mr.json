@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.1-K08"
   ],
-  "stem": "Select TWO actions that support this requirement: Hybrid storage options (for example, AWS DataSync, AWS Transfer Family, AWS Storage Gateway)",
+  "stem": "A hospital system is (1) migrating a one-time bulk archive of on-premises NFS scans into Amazon S3 before decommissioning an old file server, and (2) will keep serving its remaining on-premises radiology application from a local cache backed by AWS storage indefinitely afterward. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Transfer Family"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon FSx for NetApp ONTAP"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS DataSync"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Storage Gateway"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Backup"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS DataSync is billed per GB transferred with no appliance to run, fitting the one-time bulk migration of NFS scans into S3 before the old file server is decommissioned. AWS Storage Gateway keeps serving on-premises applications from a local cache backed by AWS storage indefinitely, which matches the second, ongoing requirement rather than a migration that finishes and disconnects. AWS Transfer Family provides managed SFTP/FTPS/AS2 endpoints for exchanging files with external partners; neither described need is an external partner file exchange. Amazon FSx for NetApp ONTAP is a managed file system for workloads that specifically need NetApp's engine; it is not a migration tool or a hybrid on-premises caching gateway. AWS Backup centralizes policy-driven backup across AWS resource types; it neither performs a one-time bulk migration nor keeps an on-premises application running against a local cache.",
+  "citationIds": [
+    "cite-saa-3-1-datasync-what-is",
+    "cite-saa-3-1-storage-gateway-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

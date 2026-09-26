@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K10"
   ],
-  "stem": "In a design review, the requirement is: Storage tiering (for example, cold tiering for object storage). Which action matches it?",
+  "stem": "A law firm's records team must be able to retrieve archived case files within a few hours, at most, on the rare occasions it needs them, and wants the lowest storage cost among the object storage archive classes that still meet that retrieval-time requirement.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Storage tiering (for example, cold tiering for object storage)"
+      "text": "S3 Glacier Instant Retrieval"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "S3 Glacier Flexible Retrieval"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "S3 Glacier Deep Archive"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "S3 Standard-IA"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 Glacier Flexible Retrieval's Standard retrieval tier typically restores an object in 3-5 hours, which meets the 'a few hours, at most' requirement, and its storage cost is lower than Glacier Instant Retrieval or Standard-IA. S3 Glacier Instant Retrieval meets the retrieval-time requirement trivially with millisecond access, but that instant-access design costs more than Flexible Retrieval for data that is only accessed this rarely, failing the lowest-cost requirement. S3 Glacier Deep Archive is the cheapest storage of the three, but its Standard retrieval tier typically takes up to 12 hours, which exceeds the 'a few hours, at most' requirement. S3 Standard-IA meets the retrieval-time requirement with millisecond access, but it is priced well above any of the Glacier classes, failing the lowest-cost requirement.",
+  "citationIds": [
+    "cite-saa-4-1-glacier-storage-classes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

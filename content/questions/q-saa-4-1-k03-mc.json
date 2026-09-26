@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K03"
   ],
-  "stem": "A teammate asks how to meet this requirement: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report). Which action is appropriate?",
+  "stem": "A startup's engineering lead wants an automatic email the moment forecasted monthly AWS spend is projected to exceed a set dollar limit, without having to open a dashboard to check.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Cost Explorer"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "S3 Storage Lens"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Budgets"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Re"
+      "text": "AWS Billing Conductor"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Budgets watches actual or forecasted cost or usage against a threshold and sends an alert by email or SNS the moment it is breached, which is exactly the automatic notification the engineering lead wants. AWS Cost Explorer visualizes and forecasts cost and usage in reports, but it does not push an alert on its own; someone has to open it. S3 Storage Lens reports on S3 storage usage, activity, and cost-optimization opportunities; it is not a billing-wide spend-threshold alerting tool. AWS Billing Conductor models custom chargeback rates across accounts for showback or chargeback purposes; it does not send spend-threshold alerts either.",
+  "citationIds": [
+    "cite-saa-4-1-cost-management-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

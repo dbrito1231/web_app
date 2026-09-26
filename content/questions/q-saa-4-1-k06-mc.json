@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K06"
   ],
-  "stem": "Which action is the right fit for this requirement: Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)?",
+  "stem": "A data-processing team runs several gp2 volumes attached to batch-processing instances that are mostly idle overnight, and wants to lower the volumes' storage bill without changing their current performance.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Migrate the volumes from gp2 to io2"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Migrate the volumes from gp2 to gp3"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Block storage options (for example, hard disk drive [HDD] volume types, solid state drive [SSD] volume types)"
+      "text": "Migrate the volumes from gp2 to sc1"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Increase each gp2 volume's provisioned size to raise its baseline IOPS"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "gp3 is about 20% lower price per GiB than gp2 at an equivalent performance level, because gp3 provisions IOPS and throughput independently of size, so migrating cuts the bill while keeping the same performance. io2 prices per provisioned IOPS on top of per-GiB storage, a premium worth paying only when a workload genuinely needs guaranteed high IOPS; applying it to an already-idle workload raises cost rather than lowering it. sc1 prices by throughput and is cheaper per GiB, but it is a Cold HDD type built for infrequent sequential access, so switching to it changes the volume's performance profile rather than keeping it unchanged. Increasing a gp2 volume's provisioned size raises its baseline IOPS because gp2 ties IOPS to size, but paying for more capacity to get more IOPS raises the bill instead of lowering it.",
+  "citationIds": [
+    "cite-saa-4-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

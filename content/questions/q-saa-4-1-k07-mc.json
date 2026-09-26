@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K07"
   ],
-  "stem": "Which action is the right fit for this requirement: Data lifecycles?",
+  "stem": "A genomics lab stores sequencing output as S3 objects that are heavily analyzed for the first month, referenced occasionally for the next few months, and almost never opened after that, and the lab wants the objects to move between cost tiers automatically as this known pattern unfolds, without staff intervention.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Turn on S3 Intelligent-Tiering on the bucket"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Turn on Requester Pays on the bucket"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Data lifecycles"
+      "text": "Configure an S3 Lifecycle configuration with transition rules"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run S3 Batch Operations to change each object's storage class"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An S3 Lifecycle configuration with transition rules moves objects between storage classes automatically after a set number of days, which fits a known, predictable multi-stage access pattern exactly. S3 Intelligent-Tiering is built for access patterns that are unknown or change over time and charges a per-object monitoring fee for that automatic monitoring; since this pattern is already known, a scheduled Lifecycle rule reaches the same tiering without paying that fee. Requester Pays only changes who pays for requests and downloads; it has no effect on which storage class an object lives in over time. S3 Batch Operations runs a large-scale, on-demand job across a list of objects one time; it is not an automatic, ongoing, age-based policy that keeps running as the lab's data ages.",
+  "citationIds": [
+    "cite-saa-4-1-s3-lifecycle-transitions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

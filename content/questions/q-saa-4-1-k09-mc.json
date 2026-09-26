@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.1-K09"
   ],
-  "stem": "Which action is the right fit for this requirement: Storage access patterns?",
+  "stem": "A social media company's photo-sharing team sees unpredictable access to user-uploaded photos: some go viral and are fetched constantly for days, others are never opened again, and which will happen cannot be known in advance.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "S3 Intelligent-Tiering"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "S3 Standard-IA"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Storage access patterns"
+      "text": "S3 Glacier Flexible Retrieval"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A scheduled S3 Lifecycle rule that moves objects to Standard-IA after a fixed number of days"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 Intelligent-Tiering is designed for access patterns that are unknown or changing, automatically moving each object between tiers with no retrieval fee, which matches photos whose popularity cannot be predicted. S3 Standard-IA assumes access is already known to be infrequent and charges a retrieval fee, so the frequently re-fetched viral photos would rack up retrieval charges. S3 Glacier Flexible Retrieval is an archival class with a retrieval time of minutes to hours; it cannot serve the instant, frequent access a viral photo needs. A scheduled S3 Lifecycle rule moving objects to Standard-IA after a fixed number of days assumes the access pattern is predictable and stable, which is exactly what this unpredictable, changing pattern is not.",
+  "citationIds": [
+    "cite-saa-4-1-s3-storage-class-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
