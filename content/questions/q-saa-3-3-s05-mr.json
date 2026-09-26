@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.3-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Integrating caching to meet business requirements",
+  "stem": "A team is deciding between DynamoDB Accelerator (DAX) and Amazon ElastiCache for two caching needs: one workload reads from a DynamoDB table with a small set of extremely popular keys, and the other reads from an Amazon RDS PostgreSQL database with a similarly skewed read pattern. Which TWO pairings correctly match a caching service to its workload? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "DAX for the DynamoDB workload"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "ElastiCache for the RDS PostgreSQL workload"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "DAX for the RDS PostgreSQL workload"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "ElastiCache exclusively for the DynamoDB workload, in place of DAX"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon Redshift as the cache layer for both workloads"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DAX is purpose-built to sit in front of DynamoDB and fits a DynamoDB table with a small set of hot keys, while ElastiCache sits in front of a relational database like RDS PostgreSQL and fits its skewed read pattern instead. DAX only works in front of DynamoDB, so pairing it with an RDS PostgreSQL database is not a supported combination. ElastiCache can technically cache anything, but choosing it over DAX for the DynamoDB workload gives up DAX's transparent, no-code-change fit for that exact case. Redshift is an analytical data warehouse, not a caching service, for either workload.",
+  "citationIds": [
+    "cite-saa-3-3-dax",
+    "cite-saa-3-3-elasticache-strategies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

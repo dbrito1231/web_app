@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K02"
   ],
-  "stem": "An exam scenario centers on: Caching strategies and services (for example, Amazon ElastiCache). Which action matches it?",
+  "stem": "A ticketing website caches popular event listings in Amazon ElastiCache using lazy loading, and product managers now require that once a listing's price changes in the database, the very next read of that listing reflect the new price rather than waiting for the current TTL to expire.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Keep lazy loading in place and shorten the cached item's TTL to a few seconds"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Caching strategies and services (for example, Amazon ElastiCache)"
+      "text": "Switch the caching strategy to write-through, updating the cache on every database price change"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add DynamoDB Accelerator (DAX) in front of the ElastiCache cluster to serve prices faster"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Lengthen the TTL on the cached listings so they stay in the cache longer between refreshes"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Write-through updates the cache at the same moment the database is updated, so the very next read always sees the new price, meeting the requirement directly. Shortening the TTL narrows the staleness window but still allows a stale read until that TTL expires, which does not guarantee the next read is current. DAX is DynamoDB's own cache and has no role sitting in front of an ElastiCache deployment. Lengthening the TTL moves in the opposite direction, keeping stale prices cached even longer.",
+  "citationIds": [
+    "cite-saa-3-3-elasticache-strategies"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-S01"
   ],
-  "stem": "An exam scenario centers on: Configuring read replicas to meet business requirements. Which action matches it?",
+  "stem": "A subscription analytics company's finance team runs heavy month-end reporting queries directly against the production RDS PostgreSQL primary instance, and those reports are now slowing down the live application's checkout flow during the same window.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create a read replica and point the finance team's reporting tool at the replica endpoint"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Configuring read replicas to meet business requirements"
+      "text": "Increase the primary instance's allocated storage to make room for report output"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable RDS Proxy in front of the primary instance for the finance team's reporting connections"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move the reporting queries to run through DynamoDB Accelerator (DAX) in front of the database"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Routing the reporting tool's queries to a read replica moves that heavy read load off the primary instance entirely, which is exactly what is slowing down checkout. More allocated storage does not address query load on the primary's compute and I/O. RDS Proxy pools connections; it does not reduce the query work the primary performs for each report. DAX only caches DynamoDB tables and has no role in front of an RDS PostgreSQL database.",
+  "citationIds": [
+    "cite-saa-3-3-rds-read-replicas"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

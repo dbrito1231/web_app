@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K05"
   ],
-  "stem": "A teammate asks how to meet this requirement: Database connections and proxies. Which action is appropriate?",
+  "stem": "A serverless order-processing application invokes hundreds of concurrent AWS Lambda functions, each opening its own short-lived connection to the same Amazon RDS for MySQL database, and the database has begun rejecting new connections during traffic spikes even though its CPU and storage metrics stay normal.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Put Amazon RDS Proxy in front of the database to pool the Lambda connections"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Upgrade the DB instance to a larger memory-optimized instance class"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Switch the database's storage from General Purpose SSD to Provisioned IOPS SSD"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Database connections and proxies"
+      "text": "Add a read replica and split the Lambda connections between the primary and the replica"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "RDS Proxy pools and multiplexes many short-lived client connections onto a much smaller number of database connections, which is the direct fix for a database refusing new connections while CPU and storage stay healthy. A larger instance class and a switch to Provisioned IOPS storage both raise compute or I/O headroom that this scenario already rules out as the problem. Splitting connections across a replica still opens one full, unpooled connection per Lambda invocation on each instance, so the same exhaustion pattern can recur on both.",
+  "citationIds": [
+    "cite-saa-3-3-rds-proxy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

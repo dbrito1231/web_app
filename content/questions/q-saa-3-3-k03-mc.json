@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K03"
   ],
-  "stem": "You must choose one approach for: Data access patterns (for example, read-intensive compared with write-intensive). Which action fits?",
+  "stem": "An ingestion pipeline for a ride-sharing company writes a new trip record to its relational database every time a ride starts or ends, far more often than anyone queries that data, and the database's write throughput has become the bottleneck during rush hour.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a read replica to offload query traffic from the primary instance"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add an ElastiCache cache in front of the database for frequently read trip records"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Data access patterns (for example, read-intensive compared with write-intensive)"
+      "text": "Increase the DB instance class and the storage's provisioned IOPS to raise write throughput"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Point reporting queries at the Aurora reader endpoint instead of the primary instance"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The bottleneck described is write throughput, so raising the writer's own compute and storage I/O capacity is the fix that relieves it. A read replica, an ElastiCache cache, and an Aurora reader endpoint all move read traffic off the primary instance, but this pipeline writes far more than it is read, so none of those three touch the actual bottleneck.",
+  "citationIds": [
+    "cite-saa-3-3-rds-storage-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

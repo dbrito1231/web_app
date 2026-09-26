@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-K01"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS global infrastructure (for example, Availability Zones, AWS Regions)",
+  "stem": "A logistics company's order-entry application runs entirely in the eu-west-1 Region, but a new backend service the team is building will run in the us-east-1 Region and will query the same order database heavily. The team wants to minimize the extra network latency the new service will experience. Which TWO actions help? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Deploy the new backend service in the eu-west-1 Region alongside the database instead of us-east-1"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Increase the primary database's provisioned IOPS"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Create a cross-Region read replica in us-east-1 for the new service's read queries"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Turn on RDS storage auto scaling for the primary database instance"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create an additional read replica in the eu-west-1 Region for the new service's queries"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Keeping the new service in the same Region as the database removes the cross-Region hop entirely, and a replica placed in us-east-1 gives the service a local copy to read from instead of crossing Regions on every query. Increasing provisioned IOPS and enabling storage auto scaling both improve the primary's own I/O performance but do nothing about the distance the new service's traffic must travel. A replica placed back in eu-west-1 sits exactly as far from a us-east-1 service as the primary does, so it does not shorten that path either.",
+  "citationIds": [
+    "cite-saa-3-3-rds-read-replicas"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-S02"
   ],
-  "stem": "The workload needs this outcome: Designing database architectures. Which action should you take?",
+  "stem": "A mobile game's DynamoDB table uses the player's country code as its partition key, and players in one country generate the overwhelming majority of traffic; the table is now throttling write requests even though its total provisioned write capacity has headroom left.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Designing database architectures"
+      "text": "Switch the table from provisioned capacity to on-demand mode, keeping the same partition key"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Redesign the partition key around a higher-cardinality attribute, such as player ID"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Increase the table's provisioned write capacity units further"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a global secondary index on the country code attribute to speed up queries"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A partition key with far too few distinct, evenly used values concentrates traffic on a single physical partition, so redesigning it around a high-cardinality attribute like player ID is what actually spreads the load and removes the hot partition. Switching billing modes changes how capacity is purchased, not how traffic is distributed across partitions, so the same key still concentrates traffic on one partition. Raising total provisioned capacity does not help when the table already has unused headroom; the problem is concentration, not total capacity. A secondary index on the same low-cardinality attribute inherits the same hot-key concentration rather than fixing it.",
+  "citationIds": [
+    "cite-saa-3-3-ddb-partition-key"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

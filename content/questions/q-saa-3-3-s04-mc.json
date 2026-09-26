@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.3-S04"
   ],
-  "stem": "The workload needs this outcome: Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB). Which action should you take?",
+  "stem": "A new mobile app's shopping cart stores each cart as a single item retrieved by a unique cart ID, at a scale that could grow from a handful of users to millions overnight, with no ability to forecast that growth in advance.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)"
+      "text": "Amazon RDS for MySQL with a fixed instance class sized for current traffic"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Redshift for the cart data"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon DynamoDB in provisioned capacity mode with a fixed throughput setting"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon DynamoDB in on-demand capacity mode"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A cart retrieved by a single unique key at unpredictable, potentially explosive scale is the key-value access pattern DynamoDB is built for, and on-demand capacity mode scales instantly with no capacity planning, matching the inability to forecast growth. A fixed relational instance class has to be sized in advance and cannot absorb an overnight jump from a handful of users to millions. Redshift is built for analytical queries over large datasets, not single-item lookups by key. DynamoDB provisioned capacity with a fixed throughput setting is the right service but the wrong mode for traffic that cannot be forecast.",
+  "citationIds": [
+    "cite-saa-3-3-ddb-capacity-modes",
+    "cite-saa-3-3-nosql-database-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

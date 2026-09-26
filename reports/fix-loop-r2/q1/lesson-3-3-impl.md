@@ -104,20 +104,20 @@ with the section, the claim, the doc URL, and a supporting quote (verbatim, <=20
 | K02 | Lazy loading only loads data into the cache after a miss and can leave the cache stale | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html | "lazy loading is a caching strategy that loads data into the cache only when necessary" |
 | K02 | Lazy loading's disadvantage is that data in the cache can become stale | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html | "data in the cache can become stale" |
 | K02 | Write-through updates the cache on every database write | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html | "write-through strategy adds data or updates data in the cache whenever data is written to the database" |
-| K02 | A TTL combines lazy loading and write-through while limiting staleness | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html | "Add a time to live value to each cache write to combine the benefits of lazy loading and write-through" |
+| K02 | A TTL combines lazy loading and write-through while limiting staleness | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html | "By adding a time to live (TTL) value to each write, you can have the advantages of each strategy" |
 | K04 | RDS storage choice is between gp3 (General Purpose SSD) and io2/io1 (Provisioned IOPS SSD) | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html | "Amazon RDS provides two storage types: Provisioned IOPS SSD ... and General Purpose SSD" |
-| K04 | gp3 baseline performance is 3,000 IOPS and 125 MiB/s | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html | "Amazon RDS provides a baseline storage performance of 3000 IOPS and 125 MiB/s" |
+| K04 | gp3 baseline performance is 3,000 IOPS/125 MiB/s up to a per-engine size threshold, then 12,000 IOPS/500 MiB/s once striped | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html | "Amazon RDS provides a baseline storage performance of 3000 IOPS and 125 MiB/s" / "Amazon RDS provides a baseline storage performance of 12,000 IOPS and 500 MiB/s" |
 | K04 | io2 Block Express is recommended for I/O-intensive, latency-sensitive workloads and scales to 256,000 IOPS | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html | "we recommend that you use Provisioned IOPS SSD io2 Block Express storage to achieve up to 256,000" IOPS |
-| K04 | RDS DB instance classes fall into general-purpose, memory-optimized, compute-optimized, and burstable-performance families | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.Types.html | "Amazon RDS supports DB instance classes for the following use cases: General-purpose ... Memory-optimized ... Compute-optimized ... Burstable-performance" |
+| K04 | RDS DB instance classes fall into general-purpose, memory-optimized, compute-optimized, burstable-performance, and Optimized Reads families | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.Types.html | "Amazon RDS supports DB instance classes for the following use cases: General-purpose ... Memory-optimized ... Compute-optimized ... Burstable-performance ... Optimized Reads" |
 | K05 | RDS Proxy pools/multiplexes many client connections onto fewer database connections | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-best-practices.usage-scenarios.html | "multiplex many client connections onto fewer database connections, enabling applications to scale beyond the database instance's connection limit" |
 | K06 | A homogeneous migration is between the same engine on source and target | https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-sql-server/heterogeneous-migration-tools.html | "AWS DMS supports homogeneous migrations such as migrating data from one SQL Server database to another" |
 | K06 | A heterogeneous migration needs AWS SCT to convert the schema before AWS DMS migrates data | https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-sql-server/heterogeneous-migration-tools.html | "AWS SCT makes heterogeneous database migrations predictable by automatically converting the source database schema" |
-| K07 | RDS read replicas are asynchronous, read-only copies used to offload reads | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html | "Special RDS DB instance created from a source DB instance using built-in replication, receiving asynchronous updates" |
+| K07 | RDS read replicas are asynchronous, read-only copies used to offload reads | https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html | "A read replica is a read-only copy of a DB instance" / "Amazon RDS copies them asynchronously to the read replica" |
 | K07 | An Aurora cluster supports up to 15 low-latency read replicas | https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-scalability.html | "You can create up to 15 read replicas to increase read throughput without impacting performance on the primary instance" |
 | K07 | Aurora Replicas share the primary's storage, giving single-digit-millisecond replica lag | https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-scalability.html | "reduces the replica lag time -- often down to single-digit milliseconds" |
 | K07 | Aurora provides a reader endpoint that load-balances across replicas automatically | https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-scalability.html | "Aurora provides a reader endpoint for automatic connection routing and load balancing across read replicas" |
 | K08 | Aurora storage auto-scales in 10 GB increments up to 256 TiB | https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-features-scalability.html | "database volume expands in increments of 10 GB up to a maximum of 256 TiB" |
-| K08 | Aurora Serverless scales compute automatically within a min/max ACU range, including to zero, with no connection-string change | https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html | "When your database is idle, Aurora will automatically scale down to zero" |
+| K08 | Aurora Serverless scales compute automatically within a min/max ACU range, including to zero, with no connection-string change | https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html | "With the minimum capacity of 0 ACUs, the cluster will scale to 0 when there is no workload running" |
 | K08 | ElastiCache currently supports Valkey, Memcached, and Redis OSS engines | https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/SelectEngine.html | "Amazon ElastiCache supports the Valkey, Memcached, and Redis OSS cache engines" |
 | K08 | DynamoDB is the AWS key-value database service | https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html | "Amazon DynamoDB -- Fast, flexible NoSQL database service for single-digit millisecond performance at any scale" |
 | K08 | Amazon DocumentDB is the AWS document database service | https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html | "Amazon DocumentDB (with MongoDB compatibility) -- Scale JSON workloads with ease" |
@@ -141,3 +141,50 @@ Conceptual sections without an independent number/citation (K01, K03, S01, S03, 
 directly on the specific claims above and on Multi-AZ/read-replica/Aurora facts already
 established and cited in the approved lesson 2.2; they were not re-cited here to avoid
 duplicate citation IDs across lessons.
+
+## Fixes (round 1)
+
+All fixes re-verified live against the cited doc page in this pass (not just re-copied
+from the reviewer report). `content_lint.py` -> PASS after every edit; lesson stayed at
+0 single-asterisk spans, 14 `### ` sections, word count 2,862.
+
+- **AWS-L33-001** (K04, gp3 "independent of volume size" was wrong): re-fetched
+  `AmazonRDS/latest/UserGuide/CHAP_Storage.html`. Confirmed: "Amazon RDS provides a baseline
+  storage performance of 3000 IOPS and 125 MiB/s" holds only up to a per-engine size
+  threshold; above it RDS stripes across four volumes and "Amazon RDS provides a baseline
+  storage performance of 12,000 IOPS and 500 MiB/s." Lesson K04 sentence changed to: "...a
+  baseline of 3,000 IOPS and 125 MiB/s up to a per-engine storage-size threshold, above
+  which RDS stripes the volume across four volumes and the baseline rises to 12,000 IOPS
+  and 500 MiB/s, and either baseline is tunable upward for an extra charge..." Citation
+  `cite-saa-3-3-rds-storage-types` note updated to match. Gone.
+- **AWS-L33-002** (K02, TTL claim-table quote was a paraphrase): re-fetched
+  `AmazonElastiCache/latest/dg/Strategies.html` (Adding TTL section). Exact page sentence:
+  "By adding a time to live (TTL) value to each write, you can have the advantages of each
+  strategy." Claim table row swapped to this verbatim sentence; lesson body prose (already
+  a paraphrase by design, not presented as a quote) left unchanged. Gone.
+- **AWS-L33-003** (K04, instance-class family list incomplete): re-fetched
+  `AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.Types.html`, confirmed five
+  categories: "General-purpose ... Memory-optimized ... Compute-optimized ...
+  Burstable-performance ... Optimized Reads." Lesson K04 sentence now lists all five and
+  adds one clause on what Optimized Reads adds (local NVMe storage for read-heavy
+  workloads). Citation `cite-saa-3-3-rds-instance-classes` note updated. Gone.
+- **AWS-L33-004** (K08, Aurora Serverless scale-to-zero quote/URL mismatch): re-fetched
+  `AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html` directly (not
+  the scalability page) and found the claim IS supported there, verbatim: "With the
+  minimum capacity of 0 ACUs, the cluster will scale to 0 when there is no workload
+  running." Claim table row's quote replaced with this exact sentence, same URL kept (no
+  citation file change needed -- the fact and the cited page were already correctly
+  paired; only the claim-table quote text was wrong). Gone.
+- **AWS-L33-005** (informational, DMS/SCT citation scoped to SQL Server migrations): no fix
+  requested; left as is per reviewer's own note. Gone (no action needed).
+- **TEACHER-L33-001** (K07, read-replica claim-table quote was a search-tool glossary blurb,
+  not page prose): re-fetched `AmazonRDS/latest/UserGuide/USER_ReadRepl.html` directly.
+  Confirmed page opens with "A *read replica* is a read-only copy of a DB instance." and
+  later states "Amazon RDS copies them asynchronously to the read replica." Claim table row
+  now quotes both exact sentences; citation `cite-saa-3-3-rds-read-replicas` note reworded
+  to track the verified wording. Gone.
+
+Noted but not actioned (out of this task's edit scope -- `RULES.md` is not one of the
+three file sets this task may edit): AWS's finder about RDS magnetic storage being
+deprecated (cannot create new instances; snapshot restores to it end 7/1/26) is worth
+adding to `RULES.md`'s retired-services list by whoever owns that file next.

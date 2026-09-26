@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.3-K08"
   ],
-  "stem": "You must choose one approach for: Database types and services (for example, serverless, relational compared with non-relational, in-memory). Which action fits?",
+  "stem": "A manufacturer collects millions of timestamped sensor readings per hour from factory equipment and wants a fully managed, purpose-built time-series database that is open to new customers today.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon Neptune"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon Keyspaces (for Apache Cassandra)"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Database types and services (for example, serverless, relational compared with non-relational, in-memory)"
+      "text": "Amazon Timestream for LiveAnalytics"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Timestream for InfluxDB"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Timestream for InfluxDB is AWS's current, purpose-built time-series offering and is open to new customers today. Timestream for LiveAnalytics is also a real, existing time-series database, but it stopped accepting new customers in mid-2025, so it fails the requirement to be open to new customers even though the underlying workloads it once targeted still exist. Neptune is a graph database built for traversing relationships, and Keyspaces is a wide-column, Cassandra-compatible database; neither is purpose-built for timestamped metrics at high ingest volume.",
+  "citationIds": [
+    "cite-saa-3-3-timestream-eol",
+    "cite-saa-3-3-nosql-database-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

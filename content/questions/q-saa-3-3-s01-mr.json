@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Configuring read replicas to meet business requirements",
+  "stem": "A company has just added several Aurora Replicas to reduce load on its Aurora MySQL primary and wants to confirm the operational steps that let the application benefit safely. Which TWO actions should the team take? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Promote each new replica to a standalone writer as soon as it is created"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Point read-only application traffic at the cluster's reader endpoint instead of each replica"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Send a portion of the write traffic directly to one of the new replicas to balance load"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Increase the primary instance's storage allocation to make room for the new replicas"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Monitor replica lag so read-only clients are not served noticeably stale data"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Routing read-only traffic through the reader endpoint lets the application pick up newly added or removed replicas automatically, and watching replica lag catches the case where a replica falls behind enough to return stale data to a read-only client. Promoting a replica to a standalone writer removes it from the reader pool instead of adding read capacity. Replicas are read-only, so sending writes to one would fail rather than balance load. Aurora Replicas share the primary's storage volume automatically, so the primary's storage allocation does not need to grow just because replicas were added.",
+  "citationIds": [
+    "cite-saa-3-3-aurora-scalability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

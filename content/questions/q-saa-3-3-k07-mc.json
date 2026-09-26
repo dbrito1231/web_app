@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K07"
   ],
-  "stem": "An exam scenario centers on: Database replication (for example, read replicas). Which action matches it?",
+  "stem": "An Aurora MySQL cluster's read traffic has grown enough that the team wants to add several more low-latency readers that share the primary's storage, with new readers picked up automatically by the application's existing connection string.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create standalone RDS read replicas of the cluster's engine and connect to each one directly"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Database replication (for example, read replicas)"
+      "text": "Enable a Multi-AZ DB cluster deployment with two additional readable standbys"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add Aurora Replicas to the cluster and connect the application through the reader endpoint"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Promote one of the existing Aurora Replicas to a standalone writer instance"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Aurora Replicas share the primary's underlying storage, and the cluster's reader endpoint automatically load-balances connections across whichever replicas are currently available, so the application never needs reconfiguring as replicas are added. Standalone RDS read replicas do not share Aurora's cluster storage and would need the application to track each endpoint on its own. A Multi-AZ DB cluster caps out at two readable standbys, short of the several more readers asked for here, and is a different deployment type from adding replicas to an existing Aurora cluster. Promoting a replica to a standalone writer removes it from the reader pool instead of adding read capacity.",
+  "citationIds": [
+    "cite-saa-3-3-aurora-scalability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

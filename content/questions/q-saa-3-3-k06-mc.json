@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K06"
   ],
-  "stem": "A teammate asks how to meet this requirement: Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations). Which action is appropriate?",
+  "stem": "A retailer is migrating its on-premises Microsoft SQL Server database to Amazon Aurora PostgreSQL and needs its stored procedures, views, and functions converted to the target engine's dialect before any data moves.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS DMS alone to convert the schema and migrate the data in a single pass"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Run AWS SCT to convert the schema and code, then use AWS DMS to migrate the data"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use AWS SCT alone to convert the schema and also move the data into Aurora PostgreSQL"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Database engines with appropriate use cases (for example, heterogeneous migrations, homogeneous migrations)"
+      "text": "Use AWS DMS's ongoing replication feature to automatically convert the stored procedures"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "This is a heterogeneous migration between two different engines, which calls for AWS SCT to convert the schema, views, stored procedures, and functions first, and only then AWS DMS to move the data. AWS DMS migrates and replicates data; it has no schema- or code-conversion capability, so using it alone skips the conversion step the scenario needs. AWS SCT converts schemas and code but does not move data itself, so it cannot complete the migration on its own. AWS DMS's ongoing replication keeps a target database in sync with source data changes; it does not convert stored procedures.",
+  "citationIds": [
+    "cite-saa-3-3-dms-heterogeneous"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

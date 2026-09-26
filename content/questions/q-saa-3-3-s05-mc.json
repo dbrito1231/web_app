@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-S05"
   ],
-  "stem": "The workload needs this outcome: Integrating caching to meet business requirements. Which action should you take?",
+  "stem": "A flash-sale application backed by DynamoDB sees the same handful of popular product IDs read thousands of times per second during a sale, and the team wants to cut DynamoDB read load for exactly those hot items while keeping the application's existing GetItem and Query calls as they are today.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Integrating caching to meet business requirements"
+      "text": "Add DynamoDB Accelerator (DAX) in front of the table"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add Amazon ElastiCache in front of the table and update the read calls to query it first"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Switch the table to provisioned capacity mode with a higher read capacity setting"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a global secondary index on the product ID attribute"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DAX sits transparently in front of DynamoDB and answers GetItem and Query calls from its own in-memory cache on a hit, cutting read load on the hottest keys with no change to the application's existing calls. ElastiCache would also cache the data, but it requires rewriting the application's read calls to check the cache first, which the requirement rules out. Raising provisioned read capacity increases the ceiling but still sends every one of those repeat reads through to DynamoDB. A secondary index on the same attribute changes what can be queried, not how often the hottest items are re-read from the table.",
+  "citationIds": [
+    "cite-saa-3-3-dax"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

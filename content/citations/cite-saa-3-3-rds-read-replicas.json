@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html",
   "accessed": "2026-09-26",
-  "note": "Lesson 3.3 (K07, S01): confirmed an RDS read replica is an asynchronous, read-only copy of a source DB instance used to offload read traffic, and can be created in the same Region or a different Region."
+  "note": "Lesson 3.3 (K07, S01): confirmed a read replica is a read-only copy of a DB instance that Amazon RDS updates asynchronously from the source, used to offload read traffic, and can be created in the same Region or a different Region."
 }

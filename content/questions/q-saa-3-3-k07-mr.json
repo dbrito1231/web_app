@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-K07"
   ],
-  "stem": "Select TWO actions that support this requirement: Database replication (for example, read replicas)",
+  "stem": "A team is designing a read-scaling plan for an Aurora MySQL cluster and wants to confirm the current mechanics and limits of Aurora Replicas before committing to the design. Which TWO statements about Aurora Replicas are accurate? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A single Aurora cluster can have up to 15 Aurora Replicas"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "The cluster's reader endpoint automatically load-balances connections across the Aurora Replicas"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Aurora Replicas are only supported in a different Region than the primary"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Aurora Replicas each maintain a separate full copy of the data, doubling storage per replica"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An Aurora Replica can only be added to or removed from a cluster by stopping the cluster"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An Aurora cluster supports up to 15 Aurora Replicas, and the reader endpoint automatically load-balances connections across whichever of them are currently healthy, both accurate mechanics of the feature. Aurora Replicas are commonly created in the same Region as the primary, so restricting them to a different Region is incorrect. They share the primary's underlying cluster storage rather than each holding a separate full copy, so they do not double storage per replica. Adding or removing an Aurora Replica does not require stopping the cluster.",
+  "citationIds": [
+    "cite-saa-3-3-aurora-scalability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

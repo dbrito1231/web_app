@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.3-K04"
   ],
-  "stem": "You must choose one approach for: Database capacity planning (for example, capacity units, instance types, Provisioned IOPS). Which action fits?",
+  "stem": "A financial trading firm's Oracle database on Amazon RDS needs a guaranteed, consistent number of IOPS well above the baseline that General Purpose SSD storage provides, for its order-matching workload.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Stay on General Purpose SSD (gp3) storage and enable RDS storage auto scaling on the volume"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Move the workload to a burstable-performance (db.t) instance class to reduce cost"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)"
+      "text": "Add a read replica using General Purpose SSD storage to share the I/O load"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Switch the storage to Provisioned IOPS SSD (io2) and provision the IOPS the workload needs"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Provisioned IOPS SSD (io2) storage is built for I/O-intensive, latency-sensitive workloads and lets the team provision a specific, guaranteed IOPS rate above gp3's baseline, matching the order-matching workload's requirement. Growing a gp3 volume with storage auto scaling raises its baseline performance only up to gp3's own ceiling, not an arbitrary guaranteed rate above it. A burstable instance class can be throttled once its CPU credits run out under sustained load, working against a consistency requirement. A read replica shares read traffic; it does not give the primary itself a higher guaranteed IOPS rate.",
+  "citationIds": [
+    "cite-saa-3-3-rds-storage-types",
+    "cite-saa-3-3-rds-instance-classes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

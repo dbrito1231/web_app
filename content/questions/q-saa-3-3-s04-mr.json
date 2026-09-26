@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining an appropriate database type (for example, Amazon Aurora, Amazon DynamoDB)",
+  "stem": "A social platform needs a database that can traverse friends-of-friends relationships for its recommendation feature, and separately needs a leaderboard that returns current top scores with sub-millisecond read latency. Which TWO services fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon Neptune for the relationship traversal"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon ElastiCache for the leaderboard"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon Keyspaces for the relationship traversal"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon Redshift for the leaderboard"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon DocumentDB for the relationship traversal"
     }
   ],
   "correctAnswerIds": [
     "a",
     "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Neptune stores nodes and edges and is built to traverse many-to-many relationships like a friends-of-friends graph, and ElastiCache delivers the sub-millisecond, in-memory reads a live leaderboard needs. Keyspaces is a wide-column, Cassandra-compatible database built for large numbers of variable columns per row, not relationship traversal. Redshift is built for analytical queries over large datasets, not sub-millisecond single-value lookups. DocumentDB stores and queries nested JSON-like documents, not graph relationships.",
+  "citationIds": [
+    "cite-saa-3-3-nosql-database-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

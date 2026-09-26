@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.3-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+  "stem": "An enterprise team is moving a SQL Server database to an open-source-compatible engine and wants its schema and stored procedures converted before any data moves, and separately is choosing an engine for a brand-new workload with no existing engine dependency that needs the highest throughput and read scaling available. Which TWO choices fit these two situations respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Use AWS SCT to convert the schema and AWS DMS to migrate the data, for the SQL Server move"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Choose Amazon Aurora for the new workload, compatible with either open-source SQL dialect"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Use AWS DMS alone to convert the schema and migrate the data, for the SQL Server move"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Choose Amazon RDS for SQL Server for the new workload, to stay compatible with T-SQL"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use AWS SCT alone to complete the entire SQL Server migration, including moving the data"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Converting a SQL Server schema to an open-source engine is a heterogeneous migration, which needs AWS SCT for the schema and code and AWS DMS for the data; a brand-new workload with no existing engine dependency is exactly the case where Aurora's higher throughput and read scaling make it the default choice. AWS DMS does not convert schemas, so using it alone for the SQL Server move skips a required step. Choosing RDS for SQL Server for the new workload keeps a dependency the scenario says does not exist and gives up Aurora's throughput and replica scaling. AWS SCT converts schemas and code but does not move data, so it cannot complete the migration by itself.",
+  "citationIds": [
+    "cite-saa-3-3-dms-heterogeneous",
+    "cite-saa-3-3-aurora-scalability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

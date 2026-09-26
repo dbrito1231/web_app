@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.3-K01"
   ],
-  "stem": "In a design review, the requirement is: AWS global infrastructure (for example, Availability Zones, AWS Regions). Which action matches it?",
+  "stem": "A retailer in Seattle runs its transactional MySQL database on Amazon RDS in the us-west-2 Region. A new regional reporting team in Sydney complains that their read-only dashboard queries against that same database take hundreds of milliseconds longer than the application's normal queries, and the retailer wants to shorten that gap for the Sydney team specifically.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: AWS global infrastructure (for example, Availability Zones, AWS Regions)"
+      "text": "Create a cross-Region read replica in the ap-southeast-2 Region and point the Sydney dashboard at it"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Upgrade the primary DB instance to a larger memory-optimized instance class"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Switch the primary DB instance's storage from General Purpose SSD to Provisioned IOPS SSD (io2)"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Put Amazon RDS Proxy in front of the primary DB instance to pool the dashboard's connections"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Placing a replica physically near the Sydney readers removes the long-haul network hop on every dashboard query, which is the actual source of the extra latency in this scenario. A larger memory-optimized instance class and a switch to Provisioned IOPS storage both raise compute or I/O performance, neither of which shortens a network path across oceans. RDS Proxy improves connection pooling and failover behavior, not the geographic distance a query has to travel.",
+  "citationIds": [
+    "cite-saa-3-3-rds-read-replicas"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.3-S03"
   ],
-  "stem": "Pick the action that satisfies: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL).",
+  "stem": "A healthcare analytics startup's application already depends on several PostgreSQL-specific extensions for geospatial queries, and the team wants the most throughput and read scaling available while keeping those extensions working.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Migrate to Amazon Aurora MySQL for its higher raw throughput"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Migrate to Amazon Redshift for the added query performance"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Migrate to Amazon Aurora PostgreSQL"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)"
+      "text": "Stay on Amazon RDS for PostgreSQL and rely only on read replicas for additional throughput"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Aurora PostgreSQL keeps full compatibility with the extensions the application depends on while adding Aurora's higher throughput, storage auto scaling, and up to 15 low-lag replicas. Aurora MySQL is a different SQL dialect and would break the PostgreSQL-specific extensions entirely. Redshift is built for analytical, read-heavy OLAP workloads, not the OLTP geospatial queries this application runs. Staying on RDS PostgreSQL keeps the extensions but caps out at ordinary RDS read replica lag and count, short of Aurora's replica scaling.",
+  "citationIds": [
+    "cite-saa-3-3-aurora-scalability",
+    "cite-saa-3-3-redshift-olap"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-K04"
   ],
-  "stem": "Select TWO actions that support this requirement: Database capacity planning (for example, capacity units, instance types, Provisioned IOPS)",
+  "stem": "A SaaS company's PostgreSQL database on Amazon RDS shows inconsistent query latency during nightly batch loads, and the database team has confirmed the bottleneck is storage I/O rather than compute. Which TWO changes directly relieve an I/O-bound RDS storage bottleneck? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Move the DB instance to a burstable-performance (db.t) instance class"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Provision additional IOPS on the existing General Purpose SSD (gp3) volume"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Increase only the DB instance's compute size to a larger memory-optimized class"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Migrate the volume to Provisioned IOPS SSD (io2) storage"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add a read replica in the same Region to run the nightly batch job's reporting queries"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Provisioning more IOPS on the existing gp3 volume and migrating to io2 storage both act directly on storage I/O capacity, which is the confirmed bottleneck here. A burstable instance class and a larger memory-optimized class both change compute, not storage I/O, and a burstable class can throttle under sustained load besides. A read replica moves read traffic to a separate instance but leaves the primary's own storage I/O bottleneck for its batch load untouched.",
+  "citationIds": [
+    "cite-saa-3-3-rds-storage-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

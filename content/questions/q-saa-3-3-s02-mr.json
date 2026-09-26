@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.3-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing database architectures",
+  "stem": "A retailer's DynamoDB table for customer orders was already in production when the team realized they also need to query orders by shipping status, an access pattern the original design never anticipated, and the table cannot go offline to add it. Which TWO facts about DynamoDB secondary indexes apply here? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A global secondary index can be added to an existing table at any time"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A local secondary index can be added to a table at any point after the table is created"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Both global and local secondary indexes have to be defined before the base table is created"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "A global secondary index can use a partition key different from the base table's partition key"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A local secondary index uses the same partition key as the base table, fitting any new pattern"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "a",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A global secondary index can be created after the base table already exists, and it is allowed its own partition key different from the base table's, both of which make it the right tool for a query pattern the original design never anticipated. A local secondary index, by contrast, must be defined when the table is created, so it cannot be added later the way this scenario needs. Claiming both index types must be defined up front is wrong specifically for global secondary indexes. A local secondary index shares the base table's partition key, which actually limits it to queries scoped to that same partition key, not any new pattern.",
+  "citationIds": [
+    "cite-saa-3-3-ddb-secondary-indexes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
