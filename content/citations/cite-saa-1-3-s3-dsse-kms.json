@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-3-s3-dsse-kms",
+  "title": "Using dual-layer server-side encryption with AWS KMS keys (DSSE-KMS)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingDSSEncryption.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 LW fix (Amendment 3): DSSE-KMS applies two independent AES-256 encryption layers (a KMS-generated data key, then a separate S3-managed key) to satisfy compliance requirements for multilayer encryption; it costs more than single-layer SSE-KMS due to additional KMS operations and processing overhead, and S3 Bucket Keys are not supported for it."
+}
