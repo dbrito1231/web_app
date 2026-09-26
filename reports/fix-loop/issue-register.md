@@ -197,7 +197,7 @@ Rule: an item closes only when its original reporter and a second role mark it G
 
 | ID | Item | Sev | Notes |
 |---|---|---|---|
-| L1 / Q1 | Lessons 2.1–4.4 and TF g1–g8 (19 lessons) still boilerplate; ~350 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–2.1 closed 2026-09-26; task 2.2 questions and lesson 3.1 in review |
+| L1 / Q1 | Lessons 2.2–4.4 and TF g1–g8 (18 lessons) not yet closed; ~315 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–2.1 closed 2026-09-26; task 2.2 questions and lesson 3.1 in review |
 | ISS-010 | Template question wording | High | Closes as Q1 batches complete |
 | O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | **Closed 2026-09-26.** AWS and Student approved, including the follow-up fixes (GL-10 handler, GL-12 logging, step titles) |
 | D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
