@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-lake-formation-terminology",
+  "title": "AWS Lake Formation terminology (data lake, Data Catalog, grant/revoke permissions)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/how-it-works-terminology.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K01/S01 claims that Lake Formation registers S3 paths into a governed data lake and layers a grant/revoke permission model on IAM."
+}

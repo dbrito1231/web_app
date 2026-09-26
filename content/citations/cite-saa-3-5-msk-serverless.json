@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-msk-serverless",
+  "title": "MSK Serverless automatic capacity",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/msk/latest/developerguide/serverless.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K06/K07 claim that MSK Serverless automatically provisions and scales Kafka capacity and bills by throughput."
+}

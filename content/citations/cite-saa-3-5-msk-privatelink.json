@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-msk-privatelink",
+  "title": "Amazon MSK Interface VPC Endpoints (AWS PrivateLink)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/msk/latest/developerguide/privatelink-vpc-endpoints.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K05 claim that an interface VPC endpoint keeps MSK ingestion traffic off the public internet."
+}

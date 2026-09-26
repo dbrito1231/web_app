@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-glue-data-catalog",
+  "title": "AWS Glue Data Catalog and crawlers",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/glue/latest/dg/catalog-and-crawler.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K04 claim that a Glue crawler scans data sources and populates the Data Catalog, a centralized metadata repository."
+}

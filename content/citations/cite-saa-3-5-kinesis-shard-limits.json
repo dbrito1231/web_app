@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-kinesis-shard-limits",
+  "title": "Amazon Kinesis Data Streams shard quotas",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K06/K07 claim that a provisioned Kinesis Data Streams shard supports up to 1 MiB/sec writes and 2 MiB/sec reads."
+}

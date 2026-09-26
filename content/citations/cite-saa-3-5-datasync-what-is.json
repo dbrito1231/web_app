@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-datasync-what-is",
+  "title": "AWS DataSync overview",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K03/S03 claim that DataSync is a secure, high-speed transfer service with built-in encryption and integrity validation."
+}

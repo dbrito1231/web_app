@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-emr-usage-patterns",
+  "title": "Amazon EMR ideal usage patterns and Hadoop cluster model",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/big-data-analytics-options/amazon-emr.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the S05 claim that EMR distributes big-data processing jobs across a managed Hadoop/Spark cluster."
+}

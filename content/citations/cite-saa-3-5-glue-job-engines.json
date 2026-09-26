@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-glue-job-engines",
+  "title": "AWS Glue for Spark, Python shell, and Glue for Ray job types",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/glue/latest/dg/how-it-works-engines.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K04 claim that Glue ETL jobs run as Spark, Python shell, or Ray engines with different scaling tradeoffs."
+}

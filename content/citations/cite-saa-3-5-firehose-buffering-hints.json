@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-firehose-buffering-hints",
+  "title": "Amazon Data Firehose BufferingHints API",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/firehose/latest/APIReference/API_BufferingHints.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K06 claim that Firehose buffers records by a configurable size and interval before delivery."
+}

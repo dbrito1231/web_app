@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-athena-columnar-optimize",
+  "title": "Amazon Athena columnar format and partition-key optimization",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning-data-optimization-techniques.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the S06/S07 claim that partition keys and columnar formats together reduce the bytes an Athena query scans."
+}
