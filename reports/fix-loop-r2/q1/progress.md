@@ -17,7 +17,7 @@ Pipeline per task:
 | 1 | lesson-1-2 | 16 | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ 2026-09-26 |
 | 2 | lesson-1-3 | 20 | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ 2026-09-26 |
 | 3 | lesson-2-1 | 34 | ✔ | ✔ | ✔ (4508cee; AWS + Teacher re-check approve) | in progress (2 writers) | | | |
-| 4 | lesson-2-2 | 32 | in progress | | | | | | |
+| 4 | lesson-2-2 | 32 | ✔ | ✔ | ✔ (AWS + Teacher re-check approve) | in progress (2 writers) | | | |
 | 5 | lesson-3-1 | 8 | | | | | | | |
 | 6 | lesson-3-2 | 16 | | | | | | | |
 | 7 | lesson-3-3 | 21 | | | | | | | |
