@@ -46,3 +46,18 @@ None used in any of the 13 questions.
 Task 3.4: not yet (blocked on AWS-Q34-001 and AWS-Q34-002; AWS-Q34-003 is minor and can close alongside)
 
 Overall: concerns
+
+## Round 2 follow-up
+
+**Gone lines:**
+- **AWS-Q34-001 (duplicate fact): Gone**, confirmed. `q-saa-3-4-s03-mr` no longer restates `s01-mc`'s private-subnet/security-group fact; it now pairs NAT-gateway/public-subnet placement with Local Zone vs. Wavelength vs. Direct Connect, per the Teacher's record.
+- **AWS-Q34-002 (citation mismatch): Gone**, confirmed. `s01-mc` and `s03-mr` now cite `cite-saa-3-4-route-tables` (`route-table-options.html`), and the lesson's `citationIds` list includes it — matches the fix I proposed.
+- **AWS-Q34-003 (weak citation): Gone**, confirmed. `s01-mr` now cites `cite-saa-3-4-vpn-dx-backup`, a page specific to VPN-as-DX-backup, replacing the bandwidth-only citation.
+- **TEACHER-Q34-001 (ALB citation used for an NLB claim, missing enhanced-networking cite): Gone.** Verified `commit d8f6e92` against the live AWS doc via `read_documentation`: the new citation `cite-saa-3-4-nlb-cross-zone` (`elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html`) quotes correctly — the page states verbatim "With Network Load Balancers and Gateway Load Balancers, cross-zone load balancing is disabled by default" and "each load balancer node distributes traffic only across the registered targets in its Availability Zone" when disabled. The new lesson 3.4 S04 sentence matches this exactly. `s04-mr`'s `citationIds` now correctly list `cite-saa-3-4-nlb-cross-zone` (backs choice b) and `cite-saa-3-2-enhanced-networking` (backs choice d) instead of the ALB-specific `cite-saa-2-1-alb-cross-zone`.
+- **`s04-mr` key (b, d) re-verified correct**: with cross-zone off (NLB's default), the AZ-B node routes its entire share of traffic only to the single AZ-B target — exactly the "zone with one target takes that node's whole share" scenario in the stem (5 targets in AZ A, 1 overloaded target in AZ B) — so enabling cross-zone (b) is the fix for the imbalance, and moving the target to an enhanced-networking-capable instance family (d) independently fixes the packet-per-second ceiling causing drops. Both remain necessary; `selectCount: 2` matches `correctAnswerIds: [b, d]`.
+
+`q1_batch_check.py 3-4` and `content_lint.py` both re-run: both PASS, no FAILs.
+
+Task 3.4: close
+
+Overall: approve
