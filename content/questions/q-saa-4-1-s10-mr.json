@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Amazon EFS for the single-instance database"
+      "text": "Amazon FSx for Windows File Server for the single-instance database"
     },
     {
       "id": "d",
@@ -34,7 +34,7 @@
     "d",
     "e"
   ],
-  "rationale": "Amazon EBS provides the guaranteed low-latency block storage a single-instance database needs. Amazon EFS provides shared, POSIX-compliant file access that grows and shrinks with usage, with no capacity to plan ahead of time. Amazon S3 has no block interface and cannot be attached to an instance as a database volume. FSx needs provisioned storage capacity on most deployment types, which contradicts a requirement of no capacity planning. EFS is file storage, not the low-latency block interface a database instance needs, so it does not fit the database requirement.",
+  "rationale": "Amazon EBS provides the guaranteed low-latency block storage a single-instance database needs. Amazon EFS provides shared, POSIX-compliant file access that grows and shrinks with usage, with no capacity to plan ahead of time. Amazon S3 has no block interface and cannot be attached to an instance as a database volume. FSx for the shared file access needs provisioned storage capacity on most deployment types, which contradicts a requirement of no capacity planning. FSx for Windows File Server is a managed file storage engine, not the low-latency block interface a database instance needs, so it does not fit the database requirement either.",
   "citationIds": [
     "cite-saa-4-1-ebs-general-purpose",
     "cite-saa-4-1-efs-lifecycle"

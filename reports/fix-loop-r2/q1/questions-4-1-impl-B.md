@@ -68,3 +68,26 @@ Family/Storage Gateway citations from lessons 2.1 and 3.1 (`cite-saa-2-1-transfe
 - `content_lint.py`: PASS (429 questions, 23 lessons).
 
 No lesson additions requested — every key and distractor traces to lesson 4.1's existing text.
+
+## AWS round-2 fix
+
+AWS-Q41-001: Amazon EFS was a wrong answer in 7 of 35 task questions (cap 5). Fixed by swapping
+the EFS distractor in the two Writer B questions named in the report (ignored the report's muddled
+"S3 Storage Lens" idea for s04-mr and chose a cleaner replacement instead):
+
+- **s04-mr, choice d**: "Amazon EFS file systems" → "An AWS Backup vault storing recovery points".
+  Still fails the stem's "capacity has to be requested or automated explicitly" test — AWS Backup
+  manages its own recovery-point storage with nothing for the team to provision or resize — and is
+  not a duplicate of any other choice's fact in this question. Added citation
+  `cite-saa-4-1-backup-plans` alongside the existing `cite-saa-4-1-ebs-general-purpose`; rationale
+  updated to explain the new choice by content.
+- **s10-mr, choice c**: "Amazon EFS for the single-instance database" → "Amazon FSx for Windows
+  File Server for the single-instance database" (the report's suggestion, confirmed lesson-taught:
+  K04/S10 name FSx for Windows File Server as one of FSx's purpose-built engines). Still fails the
+  stem's "guaranteed low-latency block storage" requirement — FSx for Windows File Server is a
+  managed file storage engine, not block storage — and fails a different fact than choice b's FSx
+  distractor (capacity planning), so it is not a duplicate within the question. Citations unchanged
+  (`cite-saa-4-1-ebs-general-purpose`, `cite-saa-4-1-efs-lifecycle`); rationale updated.
+
+Re-ran `q1_batch_check.py 4-1` (RESULT WARN, same pre-existing labeled Snowball mention only; all
+structural checks still PASS) and `content_lint.py` (PASS, 429 questions).
