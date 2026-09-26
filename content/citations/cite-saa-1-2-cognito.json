@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-cognito",
+  "title": "What is Amazon Cognito?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K04/K05 claims distinguishing Cognito user pools (authentication, JWTs) from identity pools (temporary AWS credentials via STS)."
+}

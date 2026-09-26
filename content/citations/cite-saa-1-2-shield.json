@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-shield",
+  "title": "How AWS Shield and Shield Advanced work",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K06/S03 claims distinguishing Shield Standard (automatic, free, layer 3/4) from Shield Advanced (paid, broader resource coverage, cost protection, SRT)."
+}

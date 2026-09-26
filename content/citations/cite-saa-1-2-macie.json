@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-macie",
+  "title": "What is Amazon Macie?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K05 claims that Macie is scoped to Amazon S3, finding sensitive data (PII) and bucket misconfiguration, distinct from GuardDuty's broader threat detection."
+}

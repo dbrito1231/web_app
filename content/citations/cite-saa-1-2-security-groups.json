@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-security-groups",
+  "title": "Control traffic to your AWS resources using security groups",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K03/S01 claims that security groups are stateful, allow-only, and attach to a resource's network interface."
+}
