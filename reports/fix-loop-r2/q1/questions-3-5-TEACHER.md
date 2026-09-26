@@ -47,4 +47,4 @@ Overall: approve
 
 ## Lead Dev action on TEACHER-Q35-001
 
-The made-up "broker nodes" choice in  is replaced with a real Kinesis option taught in lesson 3.5: "Register the stream's consumers for enhanced fan-out". It is wrong because it adds read throughput, not write distribution. The rationale is updated and  is added.
+The made-up "broker nodes" choice in `s06-mc` is replaced with a real Kinesis option taught in lesson 3.5: "Register the stream's consumers for enhanced fan-out". It is wrong because it adds read throughput, not write distribution. The rationale is updated and `cite-saa-2-1-kinesis-enhanced-fanout` is added.
