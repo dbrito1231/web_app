@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
   "accessed": "2026-09-26",
-  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+  "note": "Lesson 2.2 fix (AWS-L22-001, K11): re-fetched and confirmed this overview backs S3's range of storage classes, including that S3 One Zone-IA stores data in a single Availability Zone rather than the multi-AZ redundancy of S3's other classes; the page itself does not state the eleven-nines/three-plus-AZ durability figures, which were separately verified in the AWS-L22 review against the S3 DataDurability page."
 }

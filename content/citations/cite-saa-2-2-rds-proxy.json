@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html",
   "accessed": "2026-09-26",
-  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+  "note": "Lesson 2.2 fix (AWS-L22-001, K09): re-fetched and confirmed RDS Proxy pools and multiplexes short-lived client connections onto fewer database connections and holds client-side connections open across a failover, reducing the failover time an application perceives by up to 66%."
 }

@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
   "accessed": "2026-09-26",
-  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+  "note": "Lesson 2.2 fix (AWS-L22-001, K05): re-fetched and confirmed the Reliability Pillar's redundancy guidance underlies K05's claim that spreading redundant copies of a component across AZs removes any dependency on one specific instance or AZ."
 }

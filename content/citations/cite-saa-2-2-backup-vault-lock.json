@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-2-backup-vault-lock",
+  "title": "AWS Backup Vault Lock",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.2 fix (AWS-L22-003, S05): fetched from docs.aws.amazon.com and confirmed a governance-mode vault lock is removable by users with sufficient IAM permissions, while a compliance-mode vault lock becomes immutable (unchangeable and undeletable by any user, including the root user) once its mandatory cooling-off (grace) period, at least 3 days (72 hours), expires."
+}

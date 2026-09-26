@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/optimizing-postgresql-on-ec2-using-ebs/ebs-volume-features.html",
   "accessed": "2026-09-26",
-  "note": "Q1 lesson-first rewrite (SAA task 2.2): fetched from docs.aws.amazon.com and checked against the lesson claims."
+  "note": "Lesson 2.2 fix (AWS-L22-001, K11): re-fetched and confirmed an EBS io2 volume is designed for 99.999% durability within a single Availability Zone, so it does not protect against AZ loss without a snapshot copied elsewhere."
 }
