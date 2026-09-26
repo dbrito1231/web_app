@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-lambda-memory",
+  "title": "Configure Lambda function memory",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 K05 and S04: confirms Lambda memory is configurable from 128 MB to 10,240 MB in 1 MB increments and that a function reaches the equivalent of one full vCPU at 1,769 MB."
+}

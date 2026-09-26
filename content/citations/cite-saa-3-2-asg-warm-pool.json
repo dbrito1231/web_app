@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-asg-warm-pool",
+  "title": "Warm pools for Amazon EC2 Auto Scaling",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-warm-pool.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 K04: confirms a warm pool keeps pre-initialized instances in a Stopped, Running, or Hibernated state outside an Auto Scaling group's active capacity to speed up scale-out."
+}

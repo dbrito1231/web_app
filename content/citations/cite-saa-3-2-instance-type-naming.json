@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-instance-type-naming",
+  "title": "Amazon EC2 instance type naming conventions",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 S03: confirms an EC2 instance type name encodes series (for example M general purpose, C compute optimized, R memory optimized), generation, capability letters such as g for Graviton, and size."
+}

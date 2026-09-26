@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-graviton",
+  "title": "Amazon EC2 instance types (AWS Graviton processors)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 S03: confirms AWS Graviton is an AWS-designed Arm-based processor offering around 20 percent lower cost and 20 percent or greater performance improvement over comparable current-generation Intel-based instances."
+}

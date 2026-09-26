@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-batch-components",
+  "title": "AWS Batch components (job queues and compute environments)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/batch/latest/userguide/batch_components.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 K01: confirms AWS Batch schedules queued jobs onto EC2 (including Spot), ECS Managed Instances, or Fargate compute environments and scales that capacity to zero when idle."
+}

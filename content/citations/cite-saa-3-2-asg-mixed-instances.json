@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-asg-mixed-instances",
+  "title": "Auto Scaling groups with multiple instance types and purchase options",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-mixed-instances-group-manual-instance-type-selection.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 K04: confirms a mixed instances policy lets one Auto Scaling group launch multiple instance types and combine On-Demand and Spot purchase options."
+}

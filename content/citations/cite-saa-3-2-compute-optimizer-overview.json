@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-compute-optimizer-overview",
+  "title": "What is AWS Compute Optimizer?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 S02 and S04: confirms Compute Optimizer analyzes CloudWatch utilization history for EC2 instances, Auto Scaling groups, Lambda functions, EBS volumes, and ECS on Fargate to generate rightsizing recommendations."
+}

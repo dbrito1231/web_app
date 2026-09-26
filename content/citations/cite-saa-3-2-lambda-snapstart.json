@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-lambda-snapstart",
+  "title": "Improving startup performance with Lambda SnapStart",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/lambda/latest/dg/snapstart.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 K05: confirms SnapStart resumes new execution environments from a cached, encrypted snapshot of an already-initialized environment for supported runtimes (Java 11+, Python 3.12+, .NET 8+), and that provisioned concurrency fits stricter cold-start requirements than SnapStart addresses."
+}

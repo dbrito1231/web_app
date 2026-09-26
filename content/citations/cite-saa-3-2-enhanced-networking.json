@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-enhanced-networking",
+  "title": "Enable enhanced networking with ENA on your EC2 instances",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking-ena.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.2 S03: confirms the Elastic Network Adapter (ENA) provides the enhanced networking that raises per-flow bandwidth and packet-per-second performance an instance needs inside a cluster placement group."
+}
