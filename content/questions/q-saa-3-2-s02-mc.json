@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.2-S02"
   ],
-  "stem": "During an architecture review, the goal is: Identifying metrics and conditions to perform scaling actions. Which action matches that goal?",
+  "stem": "Before finalizing a fleet's Auto Scaling policy, a team wants to know whether the fleet's current instance type and size are already right, based on weeks of historical CPU and memory data, with a specific rightsizing recommendation.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Compute Optimizer"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Identifying metrics and conditions to perform scaling actions"
+      "text": "A CPU-utilization target tracking policy"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A scheduled scaling policy"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The SQS ApproximateNumberOfMessagesVisible metric alone"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Compute Optimizer analyzes CloudWatch history for EC2 instances and Auto Scaling groups and reports whether each is under-provisioned, over-provisioned, or already optimal, with a specific rightsizing recommendation, which is exactly what this team wants before finalizing a scaling policy. A target tracking policy is a live scaling mechanism that reacts to CPU utilization going forward; it does not analyze historical data to judge whether the current instance type and size are already correct. A scheduled scaling policy changes capacity on a fixed clock-time pattern and likewise offers no rightsizing analysis of the current instance choice. The SQS ApproximateNumberOfMessagesVisible metric measures a queue's backlog, not whether an EC2 instance type or size is already appropriately sized.",
+  "citationIds": [
+    "cite-saa-3-2-compute-optimizer-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

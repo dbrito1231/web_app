@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.2-K05"
   ],
-  "stem": "In a design review, the requirement is: Serverless technologies and patterns (for example, AWS Lambda, Fargate). Which action matches it?",
+  "stem": "A CPU-bound Lambda function runs slowly at its current 512 MB memory setting, and the team wants to shorten its execution duration without changing any code.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Serverless technologies and patterns (for example, AWS Lambda, Fargate)"
+      "text": "Enable provisioned concurrency"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable Lambda SnapStart"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Set reserved concurrency for the function"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Increase the function's memory setting toward 1,769 MB or higher"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lambda allocates CPU power linearly with the configured memory, reaching the equivalent of one full vCPU at 1,769 MB, so raising memory toward or beyond that point gives a CPU-bound function more compute and can shorten its execution duration with no code change. Provisioned concurrency pre-initializes execution environments to remove cold-start latency; it does not change the CPU available to an already-running invocation. Lambda SnapStart resumes new environments from a cached, already-initialized snapshot to cut cold starts; it does not add CPU power to a running function either. Reserved concurrency sets a floor and ceiling on how many invocations can run at once; it has no effect on how fast any single invocation executes.",
+  "citationIds": [
+    "cite-saa-3-2-lambda-memory",
+    "cite-saa-3-2-lambda-concurrency",
+    "cite-saa-3-2-lambda-snapstart"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

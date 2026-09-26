@@ -6,36 +6,43 @@
   "objectiveIds": [
     "SAA-3.1-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining storage services that can scale to accommodate future needs",
+  "stem": "A research lab's data platform must grow smoothly as its dataset expands: an EC2-attached volume backing an application's working set, and a migration pipeline that keeps moving new instrument output from campus storage into AWS as it is produced. Which TWO capabilities let each of these scale without a forklift replacement? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Local instance store volumes, adding more local disks as the dataset grows"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Snowball Edge devices, ordered again each time the dataset grows"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EBS Elastic Volumes, increasing size and IOPS on the attached volume without downtime"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A single Amazon S3 key prefix handling all of the pipeline's growing request volume"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS DataSync, scaling by running more tasks and agents in parallel"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Elastic Volumes let you increase an attached volume's size, change its type, or raise its provisioned IOPS and throughput live with no downtime, matching the working-set volume's need to grow in place. DataSync scales a migration pipeline by running more tasks or adding agents in parallel rather than by ordering a bigger physical device, matching the instrument-output pipeline. Instance store volumes are physically fixed to the instance type chosen at launch and cannot be grown or resized, and their data does not survive an instance stop. Snowball Edge is closed to new customers, so it is not an available way to keep scaling this pipeline. A single key prefix has a documented request-rate ceiling, so a pipeline whose request volume keeps growing should spread across multiple prefixes rather than staying on one.",
+  "citationIds": [
+    "cite-saa-3-1-ebs-general-purpose",
+    "cite-saa-3-1-ebs-provisioned-iops",
+    "cite-saa-3-1-datasync-what-is",
+    "cite-saa-3-1-instance-store",
+    "cite-saa-3-1-snowball-edge-eol",
+    "cite-saa-3-1-s3-performance-guidelines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

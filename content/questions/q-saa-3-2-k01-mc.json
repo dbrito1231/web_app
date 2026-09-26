@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.2-K01"
   ],
-  "stem": "The workload needs this outcome: AWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate). Which action should you take?",
+  "stem": "A research computing team needs to run a queue of thousands of independent Monte Carlo simulation jobs to completion, then scale all compute back to zero until the next batch arrives.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: AWS compute services with appropriate use cases (for example, AWS Batch, Amazon EMR, AWS Fargate)"
+      "text": "AWS Batch"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon EMR"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Fargate running a single long-lived ECS service"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Lambda invoking each simulation directly"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Batch provisions the EC2, ECS Managed Instances, or Fargate capacity a queued job needs and scales that capacity down to zero once the queue empties, which is exactly this run-to-completion, scale-to-zero job pattern. Amazon EMR partitions one large dataset across a cluster's nodes for distributed Hadoop or Spark analytics; it is not built around a queue of many independent jobs. Fargate running a single long-lived ECS service is designed to keep a service continuously running, not to scale an entire fleet to zero between batches of queued jobs. Invoking each simulation directly from Lambda skips the job-queue and compute-environment management Batch provides, and Lambda's execution limits make it a poor fit for long-running simulation jobs at this scale.",
+  "citationIds": [
+    "cite-saa-3-2-batch-components",
+    "cite-saa-3-2-emr-hardware",
+    "cite-saa-2-1-fargate-compute"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

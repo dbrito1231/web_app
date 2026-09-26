@@ -6,31 +6,37 @@
   "objectiveIds": [
     "SAA-3.1-K02"
   ],
-  "stem": "Pick the action that satisfies: Storage services with appropriate use cases (for example, Amazon S3, Amazon EFS, Amazon EBS).",
+  "stem": "A biotech firm runs genomic sequencing pipelines across thousands of EC2 instances that read the same multi-terabyte-per-second dataset in parallel, and wants the file system linked directly to objects already stored in an S3 data lake without a separate copy step.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon FSx for Windows File Server"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon FSx for NetApp ONTAP"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon FSx for Lustre with a data repository association to the S3 bucket"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Storage services with appropriate use cases (for example, Amazon S3, Amazon EFS, Amazon EBS)"
+      "text": "Amazon FSx for OpenZFS"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "FSx for Lustre delivers up to multiple terabytes per second of throughput across thousands of concurrently mounted instances, and a data repository association links it directly to an S3 bucket so objects are readable as files with no separate copy step. FSx for Windows File Server provides SMB and NTFS semantics for Windows applications, not this HPC-scale parallel throughput. FSx for NetApp ONTAP fits an existing NetApp shop with multi-protocol access, not petabyte-scale parallel reads tied to an S3 data lake. FSx for OpenZFS pushes very high IOPS through an in-memory cache, but it is not built for this massively parallel, multi-terabyte-per-second HPC access pattern linked to S3.",
+  "citationIds": [
+    "cite-saa-3-1-fsx-lustre",
+    "cite-saa-3-1-fsx-lustre-data-repo-associations",
+    "cite-saa-3-1-fsx-windows",
+    "cite-saa-3-1-fsx-ontap",
+    "cite-saa-3-1-fsx-openzfs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

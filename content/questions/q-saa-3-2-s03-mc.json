@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.2-S03"
   ],
-  "stem": "You must choose one approach for: Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements. Which action fits?",
+  "stem": "An HPC cluster running tightly coupled MPI simulations across many EC2 instances in one Availability Zone needs the lowest possible inter-node latency plus an OS-bypass low-latency transport for collective communication.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A partition placement group with enhanced networking (ENA)"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A spread placement group"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements"
+      "text": "Graviton instances with no placement group"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A cluster placement group with EFA"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A cluster placement group packs instances into one Availability Zone on the same high-bisection-bandwidth network segment for the lowest possible latency, and EFA adds the OS-bypass, low-latency transport that MPI-style collective communication needs beyond what ordinary enhanced networking provides. A partition placement group with ENA isolates hardware failures across racks for large distributed systems like HDFS, not the lowest possible latency between tightly coupled nodes. A spread placement group places a small number of instances on genuinely distinct hardware to avoid a shared failure domain, which does not give this cluster the tightest possible network proximity. Graviton instances change the processor architecture and price-performance, not network proximity or transport, and without a placement group the instances have no guaranteed proximity to each other at all.",
+  "citationIds": [
+    "cite-saa-3-2-placement-groups",
+    "cite-saa-3-2-efa",
+    "cite-saa-3-2-enhanced-networking"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

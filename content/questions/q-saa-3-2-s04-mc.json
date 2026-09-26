@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.2-S04"
   ],
-  "stem": "An exam scenario centers on: Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements. Which action matches it?",
+  "stem": "A CPU-bound Lambda function currently runs at 256 MB and finishes slowly, and before assuming the smallest memory setting is cheapest, the team wants to know whether raising memory would lower the total cost per invocation.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable reserved concurrency to guarantee available capacity"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirement"
+      "text": "Test several higher memory settings against real traffic"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable provisioned concurrency to remove cold starts"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Repackage the function as a container image at the same memory setting"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Because CPU scales with memory, testing several higher memory values against real traffic reveals whether a shorter billed duration outweighs the higher per-millisecond price, which is exactly how to check whether raising memory lowers total cost. Reserved concurrency only sets how many invocations can run at once; it does not change execution speed or cost per invocation. Provisioned concurrency removes cold-start latency for already-running capacity, but it does not address whether raising memory would speed up and cheapen an already-warm invocation. Repackaging as a container image changes how the function is deployed, not its CPU allocation, so it does not answer the memory-versus-cost question at all.",
+  "citationIds": [
+    "cite-saa-3-2-lambda-memory"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

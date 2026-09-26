@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.2-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate compute options and features (for example, EC2 instance types) to meet business requirements",
+  "stem": "A team must choose EC2 configurations for two separate needs: an application requiring genuinely isolated hardware for a small number of critical instances in one Availability Zone, and a large HDFS cluster that must contain any single rack failure to a limited blast radius. Which TWO placement group types fit? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A spread placement group"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A cluster placement group"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A partition placement group"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "EFA enabled without any placement group"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Graviton instances placed in a single partition placement group"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A spread placement group places a small number of critical instances each on genuinely distinct hardware within an Availability Zone, matching the requirement for isolated hardware for a few critical instances. A partition placement group divides instances into partitions on separate racks with independent power and networking, containing a single hardware failure to one partition, which matches the HDFS cluster's blast-radius requirement. A cluster placement group packs instances together on the same network segment for the lowest latency, the opposite of the hardware isolation both scenarios call for. EFA adds a low-latency transport for HPC workloads; it does not by itself provide hardware isolation or failure-domain containment without a placement group. Putting Graviton instances in a single partition still concentrates them in one partition, so it does not contain a rack failure to a limited blast radius the way spreading across multiple partitions does.",
+  "citationIds": [
+    "cite-saa-3-2-placement-groups",
+    "cite-saa-3-2-efa"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-3.1-K01"
   ],
-  "stem": "Select TWO actions that support this requirement: Hybrid storage solutions to meet business requirements",
+  "stem": "A media company must move 200 TB of archival footage from an on-premises data center with a slow, unreliable WAN link into Amazon S3, and separately wants a small set of frequently edited project files to stay available locally over SMB while the bulk of the archive lives in S3. Which TWO approaches fit? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS DataSync"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Snowball Edge shipped to the site for offline transfer"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon S3 File Gateway configured as an SMB share"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Storage Gateway Volume Gateway in stored volume mode"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS DataSync alone, writing directly into an S3 bucket with no local file share configured"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DataSync is the online transfer service built for exactly this move, with a purpose-built protocol, encryption, and integrity checks that tolerate a slow or unreliable link. S3 File Gateway supplies the local SMB share the edited project files need while the durable copy stays in S3, matching the second half of the requirement. Snowball Edge is closed to new customers, so it is not an available option for this transfer. Volume Gateway in stored volume mode presents iSCSI block volumes, not the SMB file share the editors need. Running DataSync by itself into S3 handles the bulk transfer but leaves no local SMB share for the frequently edited files, so it only satisfies half the requirement.",
+  "citationIds": [
+    "cite-saa-3-1-datasync-what-is",
+    "cite-saa-3-1-storage-gateway-types",
+    "cite-saa-3-1-snowball-edge-eol"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

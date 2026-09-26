@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.1-S02"
   ],
-  "stem": "You must choose one approach for: Determining storage services that can scale to accommodate future needs. Which action fits?",
+  "stem": "A logistics company's application writes an ever-growing volume of shipment documents to a single storage location and wants that storage to grow automatically with no capacity to provision ahead of time and no resize operation ever required.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon EBS with Elastic Volumes used to resize as needed"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon S3"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Determining storage services that can scale to accommodate future needs"
+      "text": "Amazon EFS with Provisioned throughput mode"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon FSx for Lustre with a Scratch deployment"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon S3 has effectively unlimited object storage capacity with nothing to provision ahead of time, which matches a requirement for growth with no capacity planning and no resize ever needed. EBS Elastic Volumes let you resize a volume live, but a resize action is still a required step, and a volume is capped at 64 TiB in a single Availability Zone, unlike S3. EFS with Provisioned throughput mode still requires setting and later adjusting a specific throughput number as the workload changes, which is a form of ongoing capacity planning. FSx for Lustre in a Scratch deployment is meant for short-lived, non-replicated processing and does not durably retain data, so it is not the growing, persistent store this document archive needs.",
+  "citationIds": [
+    "cite-saa-3-1-s3-performance-guidelines",
+    "cite-saa-3-1-efs-performance",
+    "cite-saa-3-1-fsx-lustre"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

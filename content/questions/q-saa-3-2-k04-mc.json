@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.2-K04"
   ],
-  "stem": "A teammate asks how to meet this requirement: Scalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling). Which action is appropriate?",
+  "stem": "An Auto Scaling group hosts an application with a multi-minute startup routine, and the platform team wants scale-out events to reach a healthy state much faster without changing the AMI.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure a warm pool for the Auto Scaling group"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Run an instance refresh"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Apply a mixed instances policy"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Scalability capabilities with appropriate use cases (for example, Amazon EC2 Auto Scaling, AWS Auto Scaling)"
+      "text": "Rely on the two-minute Spot Instance interruption notice"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A warm pool keeps pre-initialized instances in a Stopped, Running, or Hibernated state outside the group's active capacity, so a scale-out event can resume an already-initialized instance instead of booting one from cold, cutting the time to become healthy without touching the AMI. Instance refresh replaces instances with new ones built from an updated launch template or AMI; it addresses rolling out a new AMI, not speeding up an individual scale-out event. A mixed instances policy widens the pool of available capacity and instance types and mixes purchase options, but it does not by itself change how long an instance takes to boot and become healthy. The two-minute Spot interruption notice only warns that a Spot Instance is about to be reclaimed; it has nothing to do with how fast a newly launched instance starts.",
+  "citationIds": [
+    "cite-saa-3-2-asg-warm-pool",
+    "cite-saa-3-2-asg-instance-refresh",
+    "cite-saa-3-2-asg-mixed-instances",
+    "cite-saa-3-2-spot-interruption"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.2-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Decoupling workloads so that components can scale independently",
+  "stem": "A platform team must let a checkout service and an inventory-update service scale independently of each other's request rate, and separately let an image-processing worker fleet scale on the backlog of pending jobs rather than the rate images arrive. Which TWO buffering approaches address these needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An Amazon EventBridge bus routing checkout events to the inventory-update service"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "An SQS queue that the image-processing fleet scales against using queue depth"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A Network Load Balancer placed between checkout and inventory-update"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "CPU-utilization target tracking on the image-processing fleet"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A mixed instances policy on the image-processing fleet's Auto Scaling group"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An EventBridge bus between checkout and inventory-update lets each service scale on its own event volume instead of the other service's request rate, which is the decoupling this requirement asks for. An SQS queue that the image-processing fleet scales against by queue depth lets that fleet's size track the actual backlog of pending jobs rather than the rate images arrive. A Network Load Balancer passes connections straight through without buffering, so it does not decouple the two services' request rates from each other. CPU-utilization target tracking scales the image-processing fleet on how busy it already is, not on the backlog of pending jobs the requirement specifically calls for. A mixed instances policy changes what instance types and purchase options an Auto Scaling group can launch; it does not provide a backlog-based scaling metric.",
+  "citationIds": [
+    "cite-saa-3-2-sqs-scaling-metric"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

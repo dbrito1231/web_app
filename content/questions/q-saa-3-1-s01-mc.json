@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.1-S01"
   ],
-  "stem": "Which action is the right fit for this requirement: Determining storage services and configurations that meet performance demands?",
+  "stem": "An analytics company's clients across multiple continents upload large multi-gigabyte files directly to a single S3 bucket in one Region, and uploads from clients far from that Region are consistently slower because of the physical distance the traffic must travel.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Split each upload into more multipart upload parts"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use byte-range GET requests against the uploaded objects"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Determining storage services and configurations that meet performance demands"
+      "text": "Spread the uploads across additional S3 key prefixes"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Enable S3 Transfer Acceleration on the bucket"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 Transfer Acceleration routes an upload through the nearest CloudFront edge location and over AWS's backbone network instead of the public internet, cutting the latency caused by the physical distance between a distant client and the bucket's Region. Adding more multipart upload parts parallelizes a single object's own upload but does not address the added latency of crossing the public internet to reach a distant Region. Byte-range GET requests parallelize a download of an existing object, not an upload of a new one. Spreading uploads across additional key prefixes raises the request-rate ceiling for a high volume of concurrent requests, but it does nothing about the distance-driven latency any single distant client experiences.",
+  "citationIds": [
+    "cite-saa-3-1-s3-transfer-acceleration",
+    "cite-saa-3-1-s3-performance-design-patterns",
+    "cite-saa-3-1-s3-performance-guidelines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

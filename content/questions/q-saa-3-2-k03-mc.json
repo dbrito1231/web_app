@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.2-K03"
   ],
-  "stem": "During an architecture review, the goal is: Queuing and messaging concepts (for example, publish/subscribe). Which action matches that goal?",
+  "stem": "An order-processing fleet's size should track the backlog of pending work rather than each worker's CPU utilization, since individual work items vary widely in processing time.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A target tracking policy on CPU utilization"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Queuing and messaging concepts (for example, publish/subscribe)"
+      "text": "A scheduled scaling policy for predictable daily peaks"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A target tracking policy on the queue's ApproximateNumberOfMessagesVisible metric"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A target tracking policy on network in/out"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Scaling on the SQS queue's ApproximateNumberOfMessagesVisible metric ties the fleet's size directly to the backlog of pending work, which is what this scenario asks for when item processing time varies too much for CPU to be a reliable proxy. CPU utilization target tracking scales on how busy each worker already is, not on how much work is waiting, so it does not track backlog directly. A scheduled policy scales on a fixed clock-time pattern, not on the actual amount of pending work, which does not fit workloads with unpredictable, variable-duration items. Network in/out target tracking reflects data transfer volume, not the number of queued work items waiting to be processed.",
+  "citationIds": [
+    "cite-saa-3-2-sqs-scaling-metric"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

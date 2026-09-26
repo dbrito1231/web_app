@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-3.2-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Serverless technologies and patterns (for example, AWS Lambda, Fargate)",
+  "stem": "A public-facing API's Lambda function must respond with consistent low double-digit-millisecond latency on every invocation, including the very first one after a new deploy. Which TWO approaches address that cold start specifically? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Reserved concurrency"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Provisioned concurrency"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Compute Optimizer's Lambda memory recommendation"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Lambda SnapStart"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Increasing the function's memory setting alone"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Provisioned concurrency pre-initializes a chosen number of execution environments so invocations skip the cold-start Init phase entirely, giving consistent response times including the first request. Lambda SnapStart resumes new environments from an already-initialized snapshot instead of re-running startup code, cutting cold starts to as low as sub-second for supported runtimes. Reserved concurrency only sets a floor and ceiling on how many invocations run at once; it does not pre-initialize anything or change how fast the first invocation starts. Compute Optimizer's memory recommendation is about right-sizing cost and duration from utilization history, not about eliminating a cold start. Increasing memory alone can shorten execution once a function is running, but it does not remove the Init-phase cold start on a fresh environment the way provisioned concurrency or SnapStart does.",
+  "citationIds": [
+    "cite-saa-3-2-lambda-concurrency",
+    "cite-saa-3-2-lambda-snapstart",
+    "cite-saa-3-2-compute-optimizer-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

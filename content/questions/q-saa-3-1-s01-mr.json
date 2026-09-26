@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-3.1-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining storage services and configurations that meet performance demands",
+  "stem": "A video production company runs two workloads: dozens of render nodes that all read and write many small files on one shared file system at once, and a nightly batch job that streams a large sequential dataset from a single attached volume. Which TWO configurations meet these performance needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon EFS with General Purpose performance mode and Provisioned throughput"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EFS with Max I/O performance mode and Elastic throughput"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An sc1 Cold HDD volume for the nightly job"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "An st1 Throughput Optimized HDD volume for the nightly job"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A gp3 general purpose SSD volume for the nightly job"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Max I/O trades a little per-operation latency for higher aggregate throughput and IOPS across a very large number of concurrently connected clients doing small parallel operations, which matches the render-node pattern, and Elastic throughput scales bandwidth automatically as demand grows. st1's baseline and burst throughput profile is built for large sequential workloads accessed frequently, matching a nightly streaming batch job. General Purpose performance mode gives the lowest latency for a single client's operations, not the best fit for dozens of nodes doing many small parallel operations at once, and Provisioned throughput is meant for a small, hot file system rather than this many concurrent clients. gp3 is an SSD priced and tuned for IOPS-oriented random access, not the throughput-priced profile a large sequential streaming job needs. sc1 is priced for infrequently accessed data at a lower baseline throughput than st1, not a job that streams data every night.",
+  "citationIds": [
+    "cite-saa-3-1-efs-performance",
+    "cite-saa-3-1-ebs-hdd-volumes",
+    "cite-saa-3-1-ebs-general-purpose"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

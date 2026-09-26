@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.2-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Identifying metrics and conditions to perform scaling actions",
+  "stem": "A platform team is deciding, separately, which CloudWatch-based metric should drive a worker fleet's scale-out when its real bottleneck is a growing backlog rather than CPU, and whether that fleet's instance type is already right-sized. Which TWO choices are correct? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "CPU-utilization target tracking"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A predictive scaling schedule"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A target tracking policy on ApproximateNumberOfMessagesVisible"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "A target tracking policy on network in/out"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Compute Optimizer's analysis of the fleet and its Auto Scaling group"
     }
   ],
   "correctAnswerIds": [
     "c",
-    "d"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A target tracking policy on ApproximateNumberOfMessagesVisible ties scale-out directly to the queue backlog, matching a bottleneck that is a growing backlog rather than CPU. Compute Optimizer's analysis of the fleet and its Auto Scaling group is what answers whether the instance type is already right-sized, based on historical CloudWatch data. CPU-utilization target tracking scales on how busy instances already are, which the scenario says is not the real bottleneck here. A predictive scaling schedule forecasts and pre-scales for a recurring load pattern; it does not target a backlog metric or address rightsizing at all. Network in/out target tracking reflects data transfer volume, not the number of queued jobs waiting to be processed.",
+  "citationIds": [
+    "cite-saa-3-2-sqs-scaling-metric",
+    "cite-saa-3-2-compute-optimizer-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.2-K06"
   ],
-  "stem": "In a design review, the requirement is: The orchestration of containers (for example, Amazon ECS, Amazon EKS). Which action matches it?",
+  "stem": "A team runs an ECS service entirely on Fargate and wants the number of running tasks to increase automatically as request latency rises, without provisioning or scaling any EC2 capacity themselves.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: The orchestration of containers (for example, Amazon ECS, Amazon EKS)"
+      "text": "Add an EC2 Auto Scaling group behind the service through ECS Capacity Providers"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure Application Auto Scaling target tracking directly on the ECS service"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Apply a mixed instances policy to the underlying compute"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Configure the EKS Cluster Autoscaler for the service's nodes"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Application Auto Scaling target tracking applied to the ECS service adds or removes running tasks to hold a metric like request latency at a target, and because the service runs on Fargate there is no EC2 capacity to add underneath it. Adding an EC2 Auto Scaling group through Capacity Providers is exactly the EC2 capacity management this Fargate service does not need. A mixed instances policy is an EC2 Auto Scaling group feature for launching multiple instance types and purchase options; a Fargate service has no EC2 instances for it to apply to. The EKS Cluster Autoscaler manages EC2 node capacity for an EKS cluster, not an ECS service, and it would still be unnecessary EC2 management on Fargate.",
+  "citationIds": [
+    "cite-saa-2-1-fargate-compute",
+    "cite-saa-3-2-asg-mixed-instances"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

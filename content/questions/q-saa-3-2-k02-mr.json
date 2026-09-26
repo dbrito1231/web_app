@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-3.2-K02"
   ],
-  "stem": "Select TWO actions that support this requirement: Distributed computing concepts supported by AWS global infrastructure and edge services",
+  "stem": "A logistics company wants to run inference physically inside its own warehouse facility for data-residency reasons, and separately wants to serve city-based mobile users from an AWS-operated metro location without deploying any private hardware. Which TWO services fit? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Outposts"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Wavelength"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Local Zones"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An EC2 partition placement group"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Compute Optimizer analyzing the workload's EC2 usage"
     }
   ],
   "correctAnswerIds": [
-    "b",
+    "a",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Outposts brings AWS-managed infrastructure into a customer's own facility, matching the warehouse's data-residency requirement. AWS Local Zones extend AWS compute into AWS-operated metro locations near end users, matching the city-based mobile users' need with no private hardware to deploy. AWS Wavelength embeds compute inside a telecom provider's 5G network specifically, which is neither the customer's own facility nor a general metro location. A partition placement group only controls proximity of instances to each other within one Availability Zone; it does not change which physical facility a workload runs in. Compute Optimizer analyzes utilization history to recommend rightsizing; it has nothing to do with where a workload physically runs.",
+  "citationIds": [
+    "cite-saa-3-2-local-zones-overview",
+    "cite-saa-3-2-wavelength-overview",
+    "cite-saa-3-2-placement-groups",
+    "cite-saa-3-2-compute-optimizer-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

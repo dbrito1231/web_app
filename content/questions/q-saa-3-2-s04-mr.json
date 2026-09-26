@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-3.2-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements",
+  "stem": "A team wants AWS Compute Optimizer's own rightsizing findings for two different resources: an EC2 Auto Scaling group whose instance type might already be wrong, and a Lambda function whose memory setting might already be wrong. Which TWO statements about Compute Optimizer are correct? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Compute Optimizer requires enhanced infrastructure metrics enabled before it can analyze anything"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Compute Optimizer analyzes the Lambda function's duration and memory-utilization history and recommends a specific memory value"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "A mixed instances policy automatically rightsizes the ASG's instance type"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Compute Optimizer analyzes the ASG's history and flags it as under- or over-provisioned"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Lambda SnapStart automatically adjusts the function's memory setting"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Compute Optimizer analyzes a Lambda function's actual CloudWatch duration and memory-utilization history and can recommend a specific memory value, directly answering whether the current setting is already right. It likewise analyzes an EC2 Auto Scaling group's history and reports it as under-provisioned, over-provisioned, or already optimal. Enhanced infrastructure metrics is an optional paid feature that extends the lookback window to 93 days; Compute Optimizer analyzes up to 14 days of history by default without it, so it is not a requirement to get any analysis at all. A mixed instances policy only changes which instance types and purchase options an Auto Scaling group can launch; it does not analyze utilization or automatically pick a rightsized type. Lambda SnapStart snapshots and resumes an already-initialized execution environment to cut cold starts; it does not analyze or adjust the function's memory setting.",
+  "citationIds": [
+    "cite-saa-3-2-compute-optimizer-overview",
+    "cite-saa-3-2-lambda-memory",
+    "cite-saa-3-2-asg-mixed-instances",
+    "cite-saa-3-2-lambda-snapstart"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.2-K02"
   ],
-  "stem": "A teammate asks how to meet this requirement: Distributed computing concepts supported by AWS global infrastructure and edge services. Which action is appropriate?",
+  "stem": "A telecom's mobile game backend must process input from 5G devices with the lowest possible network latency by running compute inside the telecom's own network infrastructure.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Local Zones"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Wavelength"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Outposts"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Distributed computing concepts supported by AWS global infrastructure and edge services"
+      "text": "An EC2 cluster placement group in the nearest AWS Region"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Wavelength embeds AWS compute and storage inside a telecom provider's 5G network, which is exactly the requirement to run compute inside the telecom's own infrastructure with the lowest latency to 5G devices. AWS Local Zones extend AWS services to AWS-operated metro locations, not into a telecom's own network. AWS Outposts brings AWS infrastructure into a customer's own facility, not a telecom's 5G network. A cluster placement group only controls proximity between instances inside a single Availability Zone in a Region; it does not move compute into the telecom's network at all.",
+  "citationIds": [
+    "cite-saa-3-2-wavelength-overview",
+    "cite-saa-3-2-local-zones-overview",
+    "cite-saa-3-2-placement-groups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

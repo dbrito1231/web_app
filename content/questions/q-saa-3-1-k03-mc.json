@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.1-K03"
   ],
-  "stem": "A teammate asks how to meet this requirement: Storage types with associated characteristics (for example, object, file, block). Which action is appropriate?",
+  "stem": "A fintech company runs a mission-critical relational database on EC2 that requires guaranteed IOPS in the hundreds of thousands with sub-millisecond average latency and the highest available EBS durability.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An io2 Block Express volume"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A gp3 general purpose SSD volume"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An io1 Provisioned IOPS SSD volume"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Storage types with associated characteristics (for example, object, file, block)"
+      "text": "An st1 Throughput Optimized HDD volume"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "io2 Block Express is the highest-performance EBS type, delivering up to 256,000 IOPS and 4,000 MiB/s with sub-millisecond average latency and 99.999% durability, matching every part of this requirement. gp3 can be provisioned up to only 80,000 IOPS, well short of the hundreds-of-thousands ceiling this database needs. io1 tops out at 64,000 IOPS and 1,000 MiB/s with lower durability than io2 Block Express, so it falls short of both the IOPS ceiling and the durability bar. st1 is priced by throughput rather than IOPS and is built for large sequential workloads, not a low-latency, high-IOPS database.",
+  "citationIds": [
+    "cite-saa-3-1-ebs-provisioned-iops",
+    "cite-saa-3-1-ebs-general-purpose",
+    "cite-saa-3-1-ebs-hdd-volumes"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

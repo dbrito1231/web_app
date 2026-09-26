@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.2-S01"
   ],
-  "stem": "Pick the action that satisfies: Decoupling workloads so that components can scale independently.",
+  "stem": "A ticket-purchase web tier's traffic spikes independently of how fast a downstream fulfillment worker fleet can process orders, and the team wants the fulfillment fleet to scale on its own backlog without throttling the web tier.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Increase the web tier's Auto Scaling group size to match the backlog"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Have the fulfillment fleet scale on CPU utilization instead of backlog"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Insert an SQS queue between the tiers and scale the fulfillment fleet on queue depth"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Decoupling workloads so that components can scale independently"
+      "text": "Place a Network Load Balancer between the two tiers"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Inserting an SQS queue between the web tier and the fulfillment fleet lets the fleet scale on its own queue depth, absorbing the difference between the producer's spikes and the consumer's processing rate without either tier throttling the other. Resizing the web tier's own Auto Scaling group does nothing for the separately scaling fulfillment fleet and does not decouple the two tiers. Scaling the fulfillment fleet on CPU utilization ties its scaling to how busy it already is, not to the actual backlog the requirement calls out. A Network Load Balancer passes connections straight through to a target without buffering a backlog, so it does not let the fulfillment fleet scale on pending work the way a queue does.",
+  "citationIds": [
+    "cite-saa-3-2-sqs-scaling-metric"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
