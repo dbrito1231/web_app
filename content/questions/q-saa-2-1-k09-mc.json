@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "A Network Load Balancer, since it offers the lowest possible latency for the traffic"
+      "text": "A Network Load Balancer with a TCP listener forwarding to each target group"
     },
     {
       "id": "c",

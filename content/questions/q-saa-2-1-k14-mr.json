@@ -11,11 +11,11 @@
   "choices": [
     {
       "id": "a",
-      "text": "Amazon EKS, since it standardizes on Kubernetes APIs and manifests"
+      "text": "Amazon EKS with pods running on AWS Fargate"
     },
     {
       "id": "b",
-      "text": "Amazon ECS as the orchestrator, since it has an AWS-native scheduler with no separate control plane to manage"
+      "text": "Amazon ECS as the orchestrator"
     },
     {
       "id": "c",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "AWS Fargate as the launch type, so the team does not provision the underlying EC2 instances"
+      "text": "AWS Fargate as the launch type"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "b",
     "d"
   ],
-  "rationale": "Amazon ECS is AWS's own container orchestrator with an AWS-native scheduler and no separate control plane to run or patch, and running its tasks on AWS Fargate removes the EC2 layer entirely, so the team never provisions the underlying instances. Amazon EKS runs a managed Kubernetes control plane, which is a Kubernetes-style control plane the team explicitly does not want to deal with, even though AWS manages it. Running ECS tasks on self-managed EC2 instances still requires the team to provision and patch those instances, which fails the 'no EC2 to provision' half of the requirement. A self-managed Kubernetes cluster on EC2 fails both halves at once: it is a Kubernetes control plane the team runs itself, on EC2 instances the team also provisions and patches.",
+  "rationale": "Amazon ECS is AWS's own container orchestrator with an AWS-native scheduler and no separate control plane to run or patch, and running its tasks on AWS Fargate removes the EC2 layer entirely, so the team never provisions the underlying instances. Amazon EKS runs a managed Kubernetes control plane even when its pods run on Fargate, and that Kubernetes-style control plane is exactly what the team does not want to deal with. Running ECS tasks on self-managed EC2 instances still requires the team to provision and patch those instances, which fails the 'no EC2 to provision' half of the requirement. A self-managed Kubernetes cluster on EC2 fails both halves at once: it is a Kubernetes control plane the team runs itself, on EC2 instances the team also provisions and patches.",
   "citationIds": [
     "cite-saa-2-1-ecs-welcome",
     "cite-saa-2-1-fargate-compute"

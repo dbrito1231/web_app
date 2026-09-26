@@ -11,11 +11,11 @@
   "choices": [
     {
       "id": "a",
-      "text": "Amazon ECS, since it can also run containers without provisioning EC2 instances"
+      "text": "Amazon ECS with the EC2 launch type"
     },
     {
       "id": "b",
-      "text": "Amazon EKS, which runs a managed Kubernetes control plane and keeps the team on standard Kubernetes tooling"
+      "text": "Amazon EKS running the team's existing Kubernetes manifests"
     },
     {
       "id": "c",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "AWS Fargate for ECS tasks, since it removes the EC2 layer for the team's containers"
+      "text": "Amazon ECS with the Fargate launch type"
     }
   ],
   "correctAnswerIds": [

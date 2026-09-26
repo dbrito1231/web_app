@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "An SQS standard queue, accepting that consumers must handle duplicates and out-of-order delivery"
+      "text": "An SQS standard queue read by a single consumer"
     },
     {
       "id": "b",
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "An SQS FIFO queue, giving exactly-once processing and strict ordering per message group"
+      "text": "An SQS FIFO queue using the customer ID as the message group ID"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "An SQS FIFO queue adds exactly-once processing and strict per-group ordering, which directly satisfies the payment team's requirement, at a throughput level well suited to a moderate, predictable rate. An SQS standard queue gives only best-effort ordering with possible duplicates, which fails the strict-ordering and exactly-once requirements outright. An SNS topic with multiple subscribers is a fan-out pattern for delivering one event to many independent consumers; it has no mechanism for exactly-once, strictly ordered processing of a single event stream. Kinesis Data Streams is built for an ordered, replayable stream read by multiple independent consumers at their own pace, which is a different problem than a moderate-throughput, exactly-once payment queue, and adds operational complexity the requirement does not call for.",
+  "rationale": "An SQS FIFO queue adds exactly-once processing and strict ordering within each message group, so using the customer ID as the group ID gives per-customer ordering, which directly satisfies the payment team's requirement, at a throughput level well suited to a moderate, predictable rate. An SQS standard queue gives only best-effort ordering with possible duplicates, which fails the strict-ordering and exactly-once requirements outright; reading it with a single consumer does not change that, because the queue itself can still deliver a message more than once and out of order. An SNS topic with multiple subscribers is a fan-out pattern for delivering one event to many independent consumers; it has no mechanism for exactly-once, strictly ordered processing of a single event stream. Kinesis Data Streams is built for an ordered, replayable stream read by multiple independent consumers at their own pace, which is a different problem than a moderate-throughput, exactly-once payment queue, and adds operational complexity the requirement does not call for.",
   "citationIds": [
     "cite-saa-2-1-sqs-types"
   ],

@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "A Step Functions Express workflow, since it supports a much higher event rate"
+      "text": "A Step Functions Express workflow"
     },
     {
       "id": "b",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "A Step Functions Standard workflow, which runs up to a year and keeps full execution history"
+      "text": "A Step Functions Standard workflow"
     }
   ],
   "correctAnswerIds": [
