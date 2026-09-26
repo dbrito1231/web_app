@@ -121,8 +121,8 @@
       "id": "s12",
       "title": "Cost checkpoint",
       "bullets": [
+        "CloudTrail management-event logging is free; the S3 bucket that stores trail data bills per GB-month, and the CloudWatch alarm bills a small per-alarm-month charge while it exists.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -149,7 +149,7 @@
       "bullets": [
         "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (the trail bucket and alarm) can still bill until deleted."
       ]
     }
   ],

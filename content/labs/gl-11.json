@@ -69,9 +69,11 @@
       "id": "s06",
       "title": "Lambda role and function",
       "bullets": [
+        "Run `$Trust = @{Version='2012-10-17';Statement=@(@{Effect='Allow';Principal=@{Service='lambda.amazonaws.com'};Action='sts:AssumeRole'})} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl11-trust.json\", $Trust, $utf8)`. This writes the Lambda trust policy (Principal Service `lambda.amazonaws.com`) as UTF-8 without a BOM.",
         "Run `aws iam create-role --role-name workbook-gl11-lambda --assume-role-policy-document file://gl11-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-11 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
         "Run `aws iam attach-role-policy --role-name workbook-gl11-lambda --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.",
         "Run `$LambdaRoleArn = aws iam get-role --role-name workbook-gl11-lambda --query Role.Arn --output text`.",
+        "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\lambda_function.py\", \"def lambda_handler(event, context):`n    return {'statusCode': 200, 'body': 'hello from gl-11'}`n\", $utf8); Compress-Archive -Path lambda_function.py -DestinationPath function.zip -Force`. This writes the handler with LF endings and no BOM, then zips it to function.zip for the function's `--zip-file fileb://function.zip`.",
         "Run `$FunctionArn = aws lambda create-function --function-name workbook-gl11 --runtime python3.12 --role $LambdaRoleArn --handler lambda_function.lambda_handler --zip-file fileb://function.zip --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-11 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query FunctionArn --output text`.",
         "Success: function Arn is set."
       ]
@@ -124,8 +126,8 @@
       "id": "s12",
       "title": "Cost checkpoint",
       "bullets": [
+        "Lambda bills per request and per GB-second of execution time; the HTTP API bills per million requests; CloudWatch Logs bills for stored log data. None of this is hourly.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -133,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: HTTP API, Lambda, IAM role",
+        "Teardown order for this lab: HTTP API, Lambda function, CloudWatch log group, then detach and delete the IAM role",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -152,7 +154,7 @@
       "bullets": [
         "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (mainly the CloudWatch log group) can still bill until deleted."
       ]
     }
   ],

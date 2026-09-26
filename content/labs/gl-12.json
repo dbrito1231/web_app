@@ -1,6 +1,6 @@
 {
   "id": "gl-12",
-  "title": "GL-12 — Step Functions",
+  "title": "GL-12 \u2014 Step Functions",
   "kind": "guided",
   "pairId": "ul-12",
   "region": "us-east-1",
@@ -69,7 +69,9 @@
       "id": "s06",
       "title": "Execution role",
       "bullets": [
+        "Run `$Trust = @{Version='2012-10-17';Statement=@(@{Effect='Allow';Principal=@{Service='states.amazonaws.com'};Action='sts:AssumeRole'})} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl12-trust.json\", $Trust, $utf8)`. This writes the Step Functions trust policy (Principal Service `states.amazonaws.com`) as UTF-8 without a BOM.",
         "Run `aws iam create-role --role-name workbook-gl12-sfn --assume-role-policy-document file://gl12-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `$LogPolicy = @{Version='2012-10-17';Statement=@(@{Effect='Allow';Action=@('logs:CreateLogDelivery','logs:CreateLogStream','logs:GetLogDelivery','logs:UpdateLogDelivery','logs:DeleteLogDelivery','logs:ListLogDeliveries','logs:PutLogEvents','logs:PutResourcePolicy','logs:DescribeResourcePolicies','logs:DescribeLogGroups');Resource='*'})} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl12-log-policy.json\", $LogPolicy, $utf8)`. This is the AWS-documented CloudWatch Logs permission set for a Step Functions execution role.",
         "Run `aws iam put-role-policy --role-name workbook-gl12-sfn --policy-name gl12-log --policy-document file://gl12-log-policy.json`.",
         "Run `$SfnRoleArn = aws iam get-role --role-name workbook-gl12-sfn --query Role.Arn --output text`.",
         "Success: role Arn is set."
@@ -79,7 +81,7 @@
       "id": "s07",
       "title": "State machine",
       "bullets": [
-        "Save gl12.asl.json with Pass state ending Succeed.",
+        "Run `$Asl = @{Comment='gl-12 minimal Standard workflow';StartAt='Hello';States=@{Hello=@{Type='Pass';Result='Hello from gl-12';Next='Done'};Done=@{Type='Succeed'}}} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl12.asl.json\", $Asl, $utf8)`. This saves an ASL definition with a Pass state that transitions to a Succeed state, as UTF-8 without a BOM.",
         "Run `$SmArn = aws stepfunctions create-state-machine --name workbook-gl12 --definition file://gl12.asl.json --role-arn $SfnRoleArn --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-12 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt --query stateMachineArn --output text`.",
         "Success: state machine Arn is set."
       ]
@@ -121,8 +123,8 @@
       "id": "s12",
       "title": "Cost checkpoint",
       "bullets": [
+        "Standard Workflows bill per state transition; this lab used two transitions (Pass, Succeed). There is no hourly charge and an idle state machine costs nothing.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -147,9 +149,9 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (the state machine and role) cost nothing while idle, but delete them anyway."
       ]
     }
   ],
@@ -188,7 +190,7 @@
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-12 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-12. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

@@ -1,6 +1,6 @@
 {
   "id": "gl-18",
-  "title": "GL-18 — ECS on Fargate",
+  "title": "GL-18 \u2014 ECS on Fargate",
   "kind": "guided",
   "pairId": "ul-18",
   "region": "us-east-1",
@@ -71,6 +71,7 @@
       "title": "Cluster and roles",
       "bullets": [
         "Run `aws ecs create-cluster --cluster-name workbook-gl18 --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-18 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",
+        "Run `$Trust = @{Version='2012-10-17';Statement=@(@{Effect='Allow';Principal=@{Service='ecs-tasks.amazonaws.com'};Action='sts:AssumeRole'})} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl18-trust.json\", $Trust, $utf8)`. This writes the ECS task trust policy (Principal Service `ecs-tasks.amazonaws.com`) as UTF-8 without a BOM.",
         "Run `aws iam create-role --role-name workbook-gl18-task --assume-role-policy-document file://gl18-trust.json`.",
         "Run `aws iam attach-role-policy --role-name workbook-gl18-task --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy`.",
         "Run `$TaskRoleArn = aws iam get-role --role-name workbook-gl18-task --query Role.Arn --output text`.",
@@ -81,7 +82,7 @@
       "id": "s07",
       "title": "Task definition",
       "bullets": [
-        "Save gl18-task.json Fargate awsvpc public subnet from default VPC, tiny CPU/memory.",
+        "Run `$TaskDefJson = @{family='workbook-gl18';networkMode='awsvpc';requiresCompatibilities=@('FARGATE');cpu='256';memory='512';executionRoleArn=$TaskRoleArn;containerDefinitions=@(@{name='app';image='public.ecr.aws/docker/library/hello-world:latest';essential=$true})} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl18-task.json\", $TaskDefJson, $utf8)`. This saves a Fargate task definition (awsvpc network mode, 256 CPU units, 512 MiB memory, one container) as UTF-8 without a BOM.",
         "Run `aws ecs register-task-definition --cli-input-json file://gl18-task.json`.",
         "Run `$TaskDef = aws ecs describe-task-definition --task-definition workbook-gl18 --query taskDefinition.taskDefinitionArn --output text`.",
         "Success: task definition registered."
@@ -91,7 +92,8 @@
       "id": "s08",
       "title": "Run task",
       "bullets": [
-        "Run `@{awsvpcConfiguration=@{subnets=@($SubnetId);assignPublicIp='ENABLED'}} | ConvertTo-Json -Compress | Set-Content -Encoding ascii network.json`. Run `aws ecs run-task --cluster workbook-gl18 --launch-type FARGATE --task-definition $TaskDef --network-configuration file://network.json`.",
+        "Run `$VpcId = aws ec2 describe-vpcs --filters Name=isDefault,Values=true --query \"Vpcs[0].VpcId\" --output text`. Run `$SubnetId = aws ec2 describe-subnets --filters Name=vpc-id,Values=$VpcId --query \"Subnets[0].SubnetId\" --output text`. This picks a subnet in the default VPC for the task's `awsvpc` network configuration.",
+        "Run `$Network = @{awsvpcConfiguration=@{subnets=@($SubnetId);assignPublicIp='ENABLED'}} | ConvertTo-Json -Depth 10 -Compress; $utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\network.json\", $Network, $utf8)`. Run `aws ecs run-task --cluster workbook-gl18 --launch-type FARGATE --task-definition $TaskDef --network-configuration file://network.json`.",
         "Success: task reaches STOPPED after the container exits."
       ]
     },
@@ -124,8 +126,8 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
+        "Fargate bills per vCPU-second and per GB-second only while a task is RUNNING; a STOPPED task stops billing immediately, and the cluster shell and task definition cost nothing to leave registered.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -133,7 +135,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: ECS cluster, task definition, IAM role",
+        "Teardown order for this lab: ECS cluster, then detach and delete the IAM role. Task definitions are free to leave registered, but s10 deregisters this one for tidiness.",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
@@ -150,9 +152,9 @@
       "id": "s15",
       "title": "Check the bill later",
       "bullets": [
-        "After 8–12 hours, review today's charges in the Billing console.",
+        "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (a still-RUNNING task, if any) can still bill until deleted."
       ]
     }
   ],
@@ -191,7 +193,7 @@
     "verification": [
       "aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18 returns an empty ResourceTagMappingList in $env:AWS_REGION"
     ],
-    "stillBillingNote": "Time already used, transfer, tax, and 8–12h billing lag may still appear. Alerts do not delete resources.",
+    "stillBillingNote": "Time already used, transfer, tax, and 8\u201312h billing lag may still appear. Alerts do not delete resources.",
     "recovery": "If teardown fails, stop. Confirm $env:AWS_REGION is us-east-1 and the caller is not root. Run aws sts get-caller-identity and type that Account value before any delete. List LabId=gl-18 with aws resourcegroupstaggingapi get-resources --tag-filters Key=LabId,Values=gl-18. Delete only those ids. Never delete untagged resources."
   },
   "executionStatus": "unexecuted",

@@ -124,8 +124,8 @@
       "title": "Cost checkpoint",
       "bullets": [
         "Confirm you typed `I ACCEPT THE COST RISK` in the card before any hourly create.",
+        "ElastiCache bills per node-hour for cache.t3.micro the entire time the cluster is available; there is no stop feature, so only `delete-cache-cluster` ends the charge.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -152,7 +152,7 @@
       "bullets": [
         "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (the ElastiCache cluster) can still bill per node-hour until deleted."
       ]
     }
   ],

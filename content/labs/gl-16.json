@@ -120,8 +120,8 @@
       "id": "s12",
       "title": "Cost checkpoint",
       "bullets": [
+        "A private hosted zone bills a small prorated monthly charge per zone plus per-million-query charges; the VPC itself is free, and there is no EC2 instance in this lab.",
         "Re-read the same-hour and forgotten-24h estimates on this lab card.",
-        "Stopping an instance or scaling to zero is not teardown.",
         "Success: you know what still bills if you walk away overnight."
       ]
     },
@@ -148,7 +148,7 @@
       "bullets": [
         "After 8\u201312 hours, review today's charges in the Billing console.",
         "Record actual spend in your notes.",
-        "Leftover tagged resources can still bill until deleted."
+        "Leftover tagged resources (the hosted zone) can still bill until deleted."
       ]
     }
   ],
