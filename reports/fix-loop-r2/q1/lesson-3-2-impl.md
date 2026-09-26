@@ -62,3 +62,11 @@ None of the objective's named services (AWS Batch, Amazon EMR, AWS Fargate, EC2 
 - All 18 `citationIds` resolve to files in `content/citations/`; all 16 `drillIds` resolve to files in `content/questions/`.
 - `python scripts\content_lint.py` → PASS (429 questions, 23 lessons, 21+21 labs).
 - Deleted `content/citations/cite-3-2.json` after confirming (via grep) it was referenced only by the old `lesson-3-2.json` body being replaced.
+
+## Fixes (AWS-L32-001..003, TEACHER-L32-001), applied by Lead Dev
+
+- **AWS-L32-001:** `cite-saa-3-2-graviton` now points to `prescriptive-guidance/latest/optimize-costs-microsoft-workloads/right-size-selection.html`, which states the 20%/20% figure; the title and note were updated. The lesson sentence is unchanged.
+- **AWS-L32-002 / TEACHER-L32-001:** this sentence was added to K04 after the mixed instances policy sentence, using the reviewer's doc-verified wording: "Because Spot capacity can be reclaimed, Amazon EC2 sends a **two-minute Spot Instance interruption notice** as an EventBridge event and an instance metadata item before interrupting a Spot Instance, and it can send an earlier **rebalance recommendation** when a Spot Instance is at elevated risk of interruption; an Auto Scaling group or fleet can use either signal to drain work and launch a replacement before the hard interruption."
+  - The new citation `cite-saa-3-2-spot-rebalance` backs the rebalance recommendation part.
+  - The `cite-saa-3-2-spot-interruption` note is re-scoped to K04.
+- **AWS-L32-003 (optional):** the S02 Compute Optimizer list now adds "(it also covers several database, cache, and other resource types beyond compute)".
