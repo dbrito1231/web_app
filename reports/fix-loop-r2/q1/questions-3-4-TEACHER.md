@@ -51,3 +51,9 @@ RESULT: PASS
 Task 3.4: not yet (blocked only on TEACHER-Q34-001, a minor citation fix)
 
 Overall: concerns
+
+## Follow-up confirmation (after d8f6e92)
+
+TEACHER-Q34-001: Gone. The citations are now split correctly: the NLB cross-zone default-off page backs choice b, and the enhanced-networking page backs choice d. The new S04 sentence explains the ALB-on / NLB-off default clearly.
+
+Task 3.4: close
