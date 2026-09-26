@@ -118,7 +118,7 @@
       "id": "s11",
       "title": "Prepare delete",
       "bullets": [
-        "Delete state machine, then IAM role policy and role.",
+        "Delete state machine, then the CloudWatch log group, then the IAM role policy and role.",
         "Success: Stop charges order is clear."
       ]
     },

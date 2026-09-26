@@ -136,3 +136,47 @@ Verified against AWS docs (AWS Knowledge MCP `search_documentation` / `read_docu
   fix wires it up rather than replacing it, per AWS-O9's suggested fix (a)).
 - No AWS calls were made, no `terraform plan`/`apply`/`destroy` was run, and `git`/`git stash`
   were not used.
+
+## Leftovers — AWS-O9-R-001 / AWS-O9-R-002 (Amendment 3 follow-up)
+
+Fixes `reports/fix-loop-r2/amendment-3/AWS-O9-recheck.md` findings AWS-O9-R-001 and
+AWS-O9-R-002. Edited files: `content/labs/gl-03.json`, `gl-12.json`, `gl-16.json`. Same
+`backend\.venv\Scripts\python.exe` / `json.load` / `json.dumps(data, indent=2,
+ensure_ascii=True) + "\n"` / UTF-8 text-mode process as above. No `git`, no AWS calls, no
+`terraform plan`/`apply`/`destroy`.
+
+### AWS-O9-R-001 (Low) — `content/labs/gl-12.json`, step `s11`
+
+**Before:** "Delete state machine, then IAM role policy and role."
+
+**After:** "Delete state machine, then the CloudWatch log group, then the IAM role policy and
+role."
+
+Now matches `s13` ("state machine, CloudWatch log group, IAM role") and
+`teardown.orderedDeletesPowerShell` (state machine → log group → role policy → role).
+
+### AWS-O9-R-002 (Low) — raw step-ID references in student-facing text
+
+| File | Step | Before | After |
+| --- | --- | --- | --- |
+| `gl-16.json` | s13 | "...If s10 already deleted the record, the DELETE returns InvalidChangeBatch..." | "...If \"Delete record\" already deleted the record, the DELETE returns InvalidChangeBatch..." |
+| `gl-16.json` | s10 | "...A DELETE must repeat the exact name, type, TTL, and value from s08." | "...A DELETE must repeat the exact name, type, TTL, and value from \"Private record\"." (found in this batch's own sweep, not in the recheck report's two named lines, same defect pattern) |
+| `gl-03.json` | s07 | "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from s02." | "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from \"Confirm who is signed in\"." |
+
+**Full-workbook scan** (`grep -rnE "\bs0[0-9]\b|\bs1[0-9]\b" content/labs/*.json | grep -v
+'"id"'`), run before and after the edits above:
+
+- Before: 3 matches — `gl-16.json:132` (s10, in s13's bullet), `gl-16.json:105` (s08, in s10's
+  bullet — not named in the recheck report but caught by the same grep pattern), and
+  `gl-03.json:84` (s02, in s07's bullet).
+- After: 0 matches. All three were inside the three files this task was scoped to, so no
+  out-of-scope leftovers to report.
+
+### Verification
+
+- `python scripts\content_lint.py` — `PASS` (`questions 429 aws 310 tf 119`, `labs 21 + 21`,
+  `lessons 23`).
+- `python scripts\scan_lab_placeholders.py` — `PASS 42 labs scanned`.
+- `gl-03.json`, `gl-12.json`, `gl-16.json` re-serialized with `json.load`/`json.dumps` after
+  editing; `git diff` confirms only the intended bullet-text lines changed (no reordering, no
+  stray whitespace).

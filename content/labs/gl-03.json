@@ -81,7 +81,7 @@
       "id": "s07",
       "title": "Create the IAM role",
       "bullets": [
-        "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from s02.",
+        "Save gl03-trust.json allowing sts:AssumeRole for your IAM user Arn from \"Confirm who is signed in\".",
         "Run `$CallerArn = aws sts get-caller-identity --query Arn --output text`.",
         "Run `$utf8 = New-Object System.Text.UTF8Encoding $false; $Gl03Trust = @{ Version = '2012-10-17'; Statement = @(@{ Effect = 'Allow'; Principal = @{ AWS = $CallerArn }; Action = 'sts:AssumeRole' }) }; [IO.File]::WriteAllText(\"$pwd\\gl03-trust.json\", ($Gl03Trust | ConvertTo-Json -Depth 10 -Compress), $utf8)`.",
         "Run `aws iam create-role --role-name workbook-gl03-role --assume-role-policy-document file://gl03-trust.json --tags Key=Workbook,Value=aws-tf-lab Key=LabId,Value=gl-03 Key=CreatedAt,Value=$CreatedAt Key=ExpiresAt,Value=$ExpiresAt`",

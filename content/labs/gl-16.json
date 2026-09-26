@@ -102,7 +102,7 @@
       "id": "s10",
       "title": "Delete record",
       "bullets": [
-        "Run `$Utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl16-record-delete.json\", '{\"Changes\":[{\"Action\":\"DELETE\",\"ResourceRecordSet\":{\"Name\":\"app.workbook.gl16.local\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"10.160.1.10\"}]}}]}', $Utf8)`. A DELETE must repeat the exact name, type, TTL, and value from s08.",
+        "Run `$Utf8 = New-Object System.Text.UTF8Encoding $false; [IO.File]::WriteAllText(\"$pwd\\gl16-record-delete.json\", '{\"Changes\":[{\"Action\":\"DELETE\",\"ResourceRecordSet\":{\"Name\":\"app.workbook.gl16.local\",\"Type\":\"A\",\"TTL\":300,\"ResourceRecords\":[{\"Value\":\"10.160.1.10\"}]}}]}', $Utf8)`. A DELETE must repeat the exact name, type, TTL, and value from \"Private record\".",
         "Run `aws route53 change-resource-record-sets --hosted-zone-id $ZoneId --change-batch file://gl16-record-delete.json`.",
         "Success: only NS/SOA remain."
       ]
@@ -129,7 +129,7 @@
       "id": "s13",
       "title": "Order the deletes",
       "bullets": [
-        "Teardown order for this lab: the app A record (DELETE change batch), zone, VPC. If s10 already deleted the record, the DELETE returns InvalidChangeBatch (not found); continue with the next line",
+        "Teardown order for this lab: the app A record (DELETE change batch), zone, VPC. If \"Delete record\" already deleted the record, the DELETE returns InvalidChangeBatch (not found); continue with the next line",
         "Open Stop charges and read each PowerShell line top to bottom.",
         "Success: dependents are deleted before parents."
       ]
