@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-storage-lens",
+  "title": "Monitoring storage activity and usage with Amazon S3 Storage Lens",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, K10: confirms Storage Lens gives organization-wide visibility and cost-optimization recommendations, with free and paid advanced metric tiers."
+}

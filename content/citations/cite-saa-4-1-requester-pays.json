@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-requester-pays",
+  "title": "Using Requester Pays general purpose buckets",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, K01: confirms the requester pays request and data-transfer cost while the owner always pays storage, and that anonymous access is disallowed."
+}

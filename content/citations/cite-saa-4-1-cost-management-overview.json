@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-cost-management-overview",
+  "title": "AWS Cost Management category overview",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/aws-cost-management.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, K02 and K03: confirms Cost Explorer's reporting/forecasting role, Budgets' threshold alerting, and Billing Conductor's chargeback purpose."
+}

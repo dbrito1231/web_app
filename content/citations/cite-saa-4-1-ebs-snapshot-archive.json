@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-ebs-snapshot-archive",
+  "title": "Archive Amazon EBS snapshots",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/ebs/latest/userguide/snapshot-archive.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, K10 and S06: confirms the EBS Snapshot Archive tier offers up to 75 percent lower storage cost for snapshots kept 90+ days."
+}

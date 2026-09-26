@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-1-s3-storage-class-intro",
+  "title": "Understanding and managing Amazon S3 storage classes",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.1, K04, K10, K11, S08, S10: confirms S3 Standard-IA/One Zone-IA's 30-day minimum duration and 128 KB minimum billed object size."
+}
