@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-wavelength",
+  "title": "AWS Wavelength",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/wavelength/latest/developerguide/what-is-wavelength.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 S03: confirms AWS Wavelength embeds AWS infrastructure within telecommunications providers' 5G networks for ultra-low-latency edge placement."
+}

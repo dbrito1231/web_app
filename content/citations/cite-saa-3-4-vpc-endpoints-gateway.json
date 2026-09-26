@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-vpc-endpoints-gateway",
+  "title": "Types of VPC endpoints for Amazon S3",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K04: confirms a gateway endpoint is a route table target at no charge, while an interface endpoint uses PrivateLink and bills hourly plus per GB."
+}

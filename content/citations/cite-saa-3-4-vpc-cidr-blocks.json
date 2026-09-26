@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-vpc-cidr-blocks",
+  "title": "VPC CIDR blocks",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-cidr-blocks.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K02/S02: confirms a VPC's allowed IPv4 CIDR block size is between a /16 and /28 netmask and recommends an RFC 1918 private range."
+}

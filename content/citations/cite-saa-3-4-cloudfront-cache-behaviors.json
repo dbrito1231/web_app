@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-cloudfront-cache-behaviors",
+  "title": "Cache behavior settings",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistValuesCacheBehavior.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K01: confirms a CloudFront cache behavior matches a path pattern to a specific origin, TTL, and viewer protocol policy within one distribution."
+}

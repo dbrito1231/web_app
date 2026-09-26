@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-dx-lag",
+  "title": "Direct Connect link aggregation groups (LAGs)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/lags.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K04: confirms a Direct Connect LAG uses LACP to combine same-bandwidth dedicated connections at one endpoint into a single managed connection."
+}

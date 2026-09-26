@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-privatelink-concepts",
+  "title": "AWS PrivateLink concepts",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K04: confirms an endpoint service is a PrivateLink-powered service that other accounts reach through an interface VPC endpoint, not a full VPC peer."
+}

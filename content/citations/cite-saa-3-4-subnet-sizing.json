@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-subnet-sizing",
+  "title": "Subnet CIDR blocks",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K02: confirms a subnet's IPv4 CIDR block is between a /28 and /16 netmask and that AWS reserves five IP addresses in every subnet."
+}
