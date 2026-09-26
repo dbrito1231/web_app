@@ -23,15 +23,16 @@
     },
     {
       "id": "d",
-      "text": "Point reporting queries at the Aurora reader endpoint instead of the primary instance"
+      "text": "Convert the database to a Multi-AZ DB instance deployment with a standby in a second AZ"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The bottleneck described is write throughput, so raising the writer's own compute and storage I/O capacity is the fix that relieves it. A read replica, an ElastiCache cache, and an Aurora reader endpoint all move read traffic off the primary instance, but this pipeline writes far more than it is read, so none of those three touch the actual bottleneck.",
+  "rationale": "The bottleneck described is write throughput, so raising the writer's own compute and storage I/O capacity is the fix that relieves it. A read replica and an ElastiCache cache both move read traffic off the primary instance, but this pipeline writes far more than it is read, so neither touches the actual bottleneck. A Multi-AZ DB instance deployment adds a synchronous standby for failover; the standby does not serve traffic, and every write still goes through the single primary, so write throughput does not increase.",
   "citationIds": [
-    "cite-saa-3-3-rds-storage-types"
+    "cite-saa-3-3-rds-storage-types",
+    "cite-saa-2-2-rds-multiaz"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
