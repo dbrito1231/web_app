@@ -84,10 +84,19 @@ Reviewed commit `4603939` (Writer B's AWS-Q41-001 fix) against `content/question
 
 AWS-Q41-001 (EFS over-represented as a wrong answer): **Gone.** Lead Dev's count of 5/35 (k11-mc, k11-mr, s02-mc, s04-mc, s10-mc) is confirmed correct and at the cap, not over it; k05-mc/k05-mr (EFS Lifecycle Management, a different fact/type) and s02-mr (a false statement tested about EFS itself, not EFS-as-wrong-answer-for-another-service) are correctly excluded from the count.
 
-Task 4.1: not yet
+Reviewed commit `0856d7c`: `s04-mr` choice d is now "Amazon EBS snapshots moved to the snapshot archive tier," rationale "snapshots are stored and billed by the data they hold, with no capacity to request or resize," citation `cite-saa-4-1-ebs-snapshot-archive`. Doc-verified: EBS snapshot billing "is determined by the size of the snapshot data rather than the size of the source volume" (`docs.aws.amazon.com/ebs/latest/userguide/how_snapshots_work.html`) — matches the rationale exactly, including for archived snapshots. This fact is taught in lesson 4.1: K05 establishes that AWS Backup/snapshot-style backups bill incrementally by changed data (not a provisioned capacity), and K07/K10/S06 name the EBS Snapshot Archive tier as a lifecycle/cold-tier mechanism, so a student can correctly place snapshots on the "billed by data held, nothing to provision" side of the S04 framework. It fails the stem's "capacity has to be requested or automated explicitly" test on its own distinct fact (snapshots aren't a capacity concept at all), and does not duplicate choices b (EBS volumes), c (FSx), or e (S3 with Lifecycle).
+
+AWS-Q41-002: Gone.
+
+Task 4.1: close
 
 ## Verdict
 
-Task 4.1: not yet
+Task 4.1: close
 
-Overall: concerns
+Overall: approve
+
+## Lead Dev closure note
+
+- s04-mr and s10-mr were changed after the Student text-packet run: the AWS-Q41-001 and AWS-Q41-002 distractor swaps. Both keys are unchanged.
+- AWS (the reporter) confirmed both fixes. Lead Dev checked the EFS count with a script (5 of 35).
