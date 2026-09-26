@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.2-K04"
   ],
-  "stem": "During an architecture review, the goal is: Secure application access. Which action matches that goal?",
+  "stem": "A retail company's mobile app lets shoppers sign in with a username and password, and after sign-in each shopper must be able to upload photos directly to their own folder in an S3 bucket using temporary AWS credentials tied to their identity. Which service combination meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An individual IAM user created for each shopper, with long-term access keys embedded in the app"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Secure application access"
+      "text": "An IAM role attached to the mobile app's backend EC2 host that every shopper session assumes"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A Cognito user pool alone, since its JSON Web Tokens can be presented directly to S3 for uploads"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A Cognito user pool for sign-in, paired with a Cognito identity pool that vends temporary AWS credentials"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Cognito user pool authenticates the shopper and issues a token after sign-in, and a Cognito identity pool exchanges that token for temporary AWS credentials from AWS STS, which is exactly the mechanism for letting a signed-in end user access their own S3 objects directly. Creating an individual IAM user per shopper with long-term access keys embedded in the app does not scale and embeds long-lived credentials in a client application, which is the opposite of temporary, identity-tied credentials. An IAM role attached to an EC2 host provides credentials to that one AWS resource, not to individual end users of a mobile app, so it cannot hand out per-shopper temporary credentials. A Cognito user pool issues JSON Web Tokens for authentication, but S3 does not accept a JWT directly; a token still has to be exchanged for AWS credentials through an identity pool before it can be used to call S3.",
+  "citationIds": [
+    "cite-saa-1-2-cognito",
+    "cite-saa-1-2-iam-role-ec2"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-1.2-S04"
   ],
-  "stem": "During an architecture review, the goal is: Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect). Which action matches that goal?",
+  "stem": "A company needs an encrypted connection between its headquarters and its AWS VPC within the next two days to support a time-limited project, and it can tolerate the variable latency of a connection that runs over the public internet. Which option fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Direct Connect, provisioned through a Direct Connect partner"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)"
+      "text": "AWS Site-to-Site VPN between a customer gateway and a virtual private gateway"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An interface endpoint for the specific AWS services headquarters needs to reach"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A NAT gateway configured to accept inbound connections from headquarters"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Site-to-Site VPN creates an IPsec-encrypted connection over the public internet between a customer gateway and a virtual private gateway or transit gateway, and it is quick to provision, which fits both the two-day deadline and the tolerance for internet-path latency. Direct Connect typically requires a colocation facility or a Direct Connect partner and takes considerably longer to provision, which does not fit a two-day deadline. An interface endpoint connects a VPC to individual AWS services over PrivateLink; it does not provide connectivity between an entire on-premises headquarters network and a VPC. A NAT gateway only supports outbound-initiated connections from resources inside the VPC and provides no encryption and no mechanism for headquarters to initiate an inbound connection, so it cannot serve as a site-to-site link at all.",
+  "citationIds": [
+    "cite-saa-1-2-vpn",
+    "cite-saa-1-2-direct-connect",
+    "cite-saa-1-2-privatelink",
+    "cite-saa-1-2-nat-gateway"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

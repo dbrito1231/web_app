@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.2-K02"
   ],
-  "stem": "A teammate asks how to meet this requirement: AWS service endpoints. Which action is appropriate?",
+  "stem": "A media analytics team runs batch jobs on EC2 instances in a private subnet with no internet gateway route, and those jobs must read terabytes of input objects from Amazon S3 every night without adding a per-hour charge for the connectivity. Which solution meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add a NAT gateway in the private subnet and route the S3 traffic through it"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a gateway endpoint for Amazon S3 to the private subnet's route table"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create an interface endpoint (PrivateLink) for Amazon S3 in the private subnet"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS service endpoints"
+      "text": "Attach an internet gateway directly to the private subnet's route table"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A gateway endpoint for Amazon S3 is a route-table entry, not a network interface, and it costs nothing extra, so adding one to the private subnet's route table gives the batch jobs private, no-per-hour-charge access to S3. A NAT gateway must sit in a public subnet, is billed hourly, and would still send the S3 traffic out through an internet gateway rather than keeping it on the AWS network. An interface endpoint works for S3 too, but it creates a billed elastic network interface with hourly and data-processing charges, which is the opposite of the no-extra-cost requirement here. Attaching an internet gateway to the private subnet's route table would make the subnet public and send traffic over the public internet, contradicting both the private-connectivity and no-added-charge goals.",
+  "citationIds": [
+    "cite-saa-1-2-privatelink",
+    "cite-saa-1-2-nat-gateway",
+    "cite-saa-1-2-vpc-endpoint-billing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

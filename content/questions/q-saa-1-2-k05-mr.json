@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-1.2-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie)",
+  "stem": "A compliance officer at a healthcare SaaS company wants to know which S3 buckets in the account are publicly accessible and which of those buckets contain files with patient names or ID numbers. Which TWO Amazon Macie capabilities address this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Continuously analyze VPC flow logs and DNS query logs for malicious activity"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Issue JSON Web Tokens after a user signs in"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Build an inventory of the account's S3 buckets and flag buckets that are publicly accessible"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Attach a web ACL rule that blocks requests containing patient identifiers"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use machine learning and pattern matching to find sensitive data such as PII inside S3 objects"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon Macie builds an inventory of an account's S3 buckets and flags ones that are misconfigured, including buckets made public, which directly answers the first part of the requirement. Macie also uses machine learning and pattern matching to find sensitive data such as personally identifiable information inside S3 objects, generating a finding when patient names or ID numbers are present, which answers the second part. Analyzing VPC flow logs and DNS query logs is a GuardDuty capability, not a Macie one; Macie's scope is S3 data and configuration, not network or DNS activity. Issuing JSON Web Tokens after sign-in is a Cognito user pool capability and has nothing to do with data discovery. Attaching a web ACL rule to block requests is an AWS WAF capability that inspects incoming requests; it does not discover or classify data already stored in S3.",
+  "citationIds": [
+    "cite-saa-1-2-macie",
+    "cite-saa-1-2-guardduty",
+    "cite-saa-1-2-cognito",
+    "cite-saa-1-2-waf"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

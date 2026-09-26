@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.2-K01"
   ],
-  "stem": "Which action is the right fit for this requirement: Application configuration and credentials security?",
+  "stem": "A logistics startup's platform team currently hardcodes the production RDS password inside an environment file that ships with every container image, and the security lead wants the credential rotated automatically every 30 days without any code change. Which approach meets this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Store the password in AWS Secrets Manager and turn on automatic rotation"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Store the password as a Systems Manager Parameter Store SecureString parameter and rely on its built-in rotation schedule"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Application configuration and credentials security"
+      "text": "Keep the password in the environment file, but restrict which principals can pull the container image"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Bake the password into a new AMI every 30 days and redeploy instances from the updated AMI"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Secrets Manager is built to store credentials like a database password and can automatically rotate a supported secret on a schedule by invoking a rotation function, so the application always retrieves the current value at runtime with no code change or redeploy. Parameter Store SecureString values are encrypted with KMS but Parameter Store has no built-in rotation feature, so a rotation schedule cannot be configured there. Restricting who can pull the container image does not remove the hardcoded password from the environment file, so the credential is still exposed to anyone with image access and still is not rotated. Baking the password into a new AMI on a schedule still embeds a long-lived credential in a build artifact, and it requires redeploying instances every cycle, which is exactly the code-change-free rotation the requirement rules out.",
+  "citationIds": [
+    "cite-saa-1-2-secrets-manager",
+    "cite-saa-1-2-parameter-store"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

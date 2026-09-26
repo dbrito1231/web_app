@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-iam-role-ec2",
+  "title": "IAM roles for Amazon EC2",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 rewrite (SAA task 1.2, K01/K04 questions): fetched from docs.aws.amazon.com and checked against the claim that an EC2 instance profile or Lambda execution role hands an application temporary, automatically rotated credentials with nothing stored on disk."
+}

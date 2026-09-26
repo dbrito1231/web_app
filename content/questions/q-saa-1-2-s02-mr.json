@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-1.2-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining network segmentation strategies (for example, using public subnets and private subnets)",
+  "stem": "A three-tier web application needs its load balancer reachable directly from internet users, while its database tier must never be reachable from, or route out to, the internet. Which TWO subnet placements satisfy this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Place the database in the same public subnet as the load balancer"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Place the load balancer in a public subnet with a route to an internet gateway"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Give the application tier a direct route to an internet gateway so it can reach the load balancer"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Place the database in an isolated subnet with no route out of the VPC"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Place the load balancer in an isolated subnet with no route out of the VPC"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "b",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A public subnet's route table points to an internet gateway, which is exactly what lets internet users reach the load balancer directly, so placing the load balancer there satisfies the first requirement. An isolated subnet has no route out of the VPC at all, which satisfies the requirement that the database never be reachable from, or route out to, the internet. Placing the database in the same public subnet as the load balancer would give it a route to an internet gateway, directly violating the no-reachability requirement. The application tier does not need a direct route to an internet gateway to reach the load balancer, since traffic between tiers stays inside the VPC; adding one only creates unnecessary internet exposure. Placing the load balancer in an isolated subnet would remove its route to an internet gateway, making it unreachable from internet users and contradicting the stated requirement.",
+  "citationIds": [
+    "cite-saa-1-2-subnets"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

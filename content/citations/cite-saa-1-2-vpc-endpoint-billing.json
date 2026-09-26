@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-1-2-vpc-endpoint-billing",
+  "title": "Amazon VPC usage reports (interface endpoint hourly and data billing)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-billing-usage-reports.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 rewrite (SAA task 1.2, K02 lesson bullet and questions): fetched from docs.aws.amazon.com and checked against the claim that an interface endpoint, unlike a gateway endpoint, is billed per endpoint-hour plus a per-GB data processing charge."
+}

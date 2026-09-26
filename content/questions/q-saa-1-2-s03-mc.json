@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.2-S03"
   ],
-  "stem": "The workload needs this outcome: Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager). Which action should you take?",
+  "stem": "A platform team wants to eliminate a hard-coded database password that currently sits inside their application's source code, without changing how the application is protected from malicious web traffic. Which single service change addresses this specific gap?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Mana"
+      "text": "Add an AWS WAF web ACL in front of the application"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Subscribe to AWS Shield Advanced for the application's load balancer to add broader DDoS resource coverage"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move the workforce administrators who manage the application into IAM Identity Center"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Move the database password into AWS Secrets Manager and have the application retrieve it at runtime"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Secrets Manager is designed to hold credentials like a database password outside application source code, with the application making a runtime call to retrieve the current value, which removes the hard-coded password without touching the application's request-filtering layer at all. Adding a WAF web ACL filters incoming request content for things like SQL injection and cross-site scripting; it does not remove a credential stored in source code. Shield Advanced adds broader DDoS resource coverage and cost protection for a load balancer, which is unrelated to how the application stores its database password. Moving workforce administrators into IAM Identity Center governs which staff can sign in to manage AWS resources; it says nothing about a credential embedded in the application's own code.",
+  "citationIds": [
+    "cite-saa-1-2-secrets-manager",
+    "cite-saa-1-2-waf",
+    "cite-saa-1-2-shield"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

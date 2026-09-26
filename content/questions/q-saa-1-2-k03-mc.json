@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.2-K03"
   ],
-  "stem": "An exam scenario centers on: Control ports, protocols, and network traffic on AWS. Which action matches it?",
+  "stem": "A hospital network's security team discovers that a single compromised EC2 instance in a shared subnet is scanning other hosts, and they need to block all traffic from that specific instance's IP address at the subnet level while leaving every other instance's security group untouched. Which control should they use?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a security group rule on every other instance in the subnet denying that IP address"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Control ports, protocols, and network traffic on AWS"
+      "text": "Rely on the subnet's default network ACL, which already denies traffic from unrecognized sources"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add a numbered deny rule for that IP address to the subnet's network ACL"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Remove the compromised instance's security group so its traffic is no longer stateful"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A network ACL is attached to the subnet and evaluates numbered rules in order, and it can both allow and deny, so adding a deny rule for the compromised instance's IP address blocks it at the subnet level for every other instance without touching any instance's own security group. Security groups contain only allow rules, so there is no way to add a security-group rule that denies a specific IP address. The default network ACL allows all traffic in both directions until it is customized, so relying on it does not block anything. Removing a security group does not change whether traffic is stateful, since statefulness is a property of security groups themselves, and it would remove the compromised instance's own allow rules rather than blocking its traffic at the subnet level.",
+  "citationIds": [
+    "cite-saa-1-2-nacl",
+    "cite-saa-1-2-security-groups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-1.2-K05"
   ],
-  "stem": "In a design review, the requirement is: Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie). Which action matches it?",
+  "stem": "An operations team notices unusual API calls made with a set of temporary credentials that were never issued to any of their applications, along with a spike in outbound network traffic from one EC2 instance that resembles cryptomining. Which service is purpose-built to surface this kind of finding?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Security services with appropriate use cases (for example, Amazon Cognito, Amazon GuardDuty, Amazon Macie)"
+      "text": "Amazon GuardDuty, which continuously analyzes CloudTrail, VPC flow log, and DNS activity for this kind of threat"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Macie, which scans S3 buckets for sensitive data and public exposure"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon Cognito, configured to flag suspicious end-user sign-in attempts"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS WAF, with a rate-based rule added to its web ACL"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon GuardDuty continuously analyzes AWS CloudTrail management events, VPC flow logs, and DNS logs using threat-intelligence feeds and machine learning, which is exactly the mix needed to flag a compromised credential being used unexpectedly and cryptomining behavior on an EC2 instance. Amazon Macie is scoped to Amazon S3, where it inventories buckets and finds sensitive data and misconfigurations; it does not analyze account activity or network traffic for credential misuse. Amazon Cognito authenticates the end users of an application and is not a threat-detection service for account-wide API activity. AWS WAF inspects HTTP and HTTPS requests reaching a protected resource such as a load balancer or CloudFront distribution; it does not analyze CloudTrail events or EC2 network traffic for compromised credentials.",
+  "citationIds": [
+    "cite-saa-1-2-guardduty",
+    "cite-saa-1-2-macie"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

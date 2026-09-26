@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.2-S02"
   ],
-  "stem": "During an architecture review, the goal is: Determining network segmentation strategies (for example, using public subnets and private subnets). Which action matches that goal?",
+  "stem": "A financial services company's database tier must never be reachable from the internet in either direction, including no outbound path for patches or updates, per a strict internal control. Which subnet design meets this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Place the database in a subnet whose route table has no route to an internet gateway or a NAT gateway"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Determining network segmentation strategies (for example, using public subnets and private subnets)"
+      "text": "Place the database in a private subnet with outbound access through a NAT gateway"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Place the database in a public subnet protected by a restrictive security group"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Place the database in a private subnet and rely on a network ACL rule to block all outbound traffic instead of removing the route to the internet"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A subnet with no route to an internet gateway or a NAT gateway at all is an isolated subnet, and since a subnet's public, private, or isolated status is determined entirely by what its route table points to, this is the only listed design with zero path in or out of the internet, satisfying the strict no-outbound requirement. A private subnet with a NAT gateway still gives the database an outbound path to the internet for patches, which the control explicitly forbids. A public subnet has a route to an internet gateway by definition, so it has an inbound-capable path regardless of how tight the security group is. Relying on a network ACL to block outbound traffic does not remove the underlying route to the internet in the route table; the route table, not the NACL, is what determines whether a path out of the VPC exists at all.",
+  "citationIds": [
+    "cite-saa-1-2-subnets",
+    "cite-saa-1-2-nat-gateway",
+    "cite-saa-1-2-nacl"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

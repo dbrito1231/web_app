@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.2-K06"
   ],
-  "stem": "An exam scenario centers on: Threat vectors external to AWS (for example, DDoS, SQL injection). Which action matches it?",
+  "stem": "A web application's login form has started receiving crafted input designed to manipulate its backend SQL queries, and the security team wants to block these requests before they reach the application servers. Which control addresses this specific threat?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Shield Standard, which is enabled automatically on every AWS account"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Threat vectors external to AWS (for example, DDoS, SQL injection)"
+      "text": "A network ACL rule denying the source IP addresses seen in the requests"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Shield Advanced, subscribed for the affected Application Load Balancer"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS WAF, with a managed rule group written to catch SQL injection patterns"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "SQL injection is an application-layer attack that exploits how a web application parses request content, and AWS WAF's managed rule groups are written specifically to catch SQL injection and cross-site scripting patterns in each request before it reaches the application. AWS Shield Standard defends against common network- and transport-layer (layer 3/4) DDoS attacks; it does not inspect request content, so it does nothing against a crafted SQL payload. A network ACL rule can only match source IP addresses and ports, not the content of an HTTP request, and attackers routinely rotate source IPs, so this does not reliably stop the payloads either. AWS Shield Advanced adds broader DDoS resource coverage, automatic layer-7 mitigation for volumetric attacks, and cost protection; it is still a DDoS-focused service and is not the control that inspects request content for injection patterns.",
+  "citationIds": [
+    "cite-saa-1-2-waf",
+    "cite-saa-1-2-shield",
+    "cite-saa-1-2-nacl"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

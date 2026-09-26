@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.2-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways)",
+  "stem": "An architecture review flags that a compromised application server in a shared subnet could currently reach every other resource in the VPC, with no restriction beyond the default security group. Which TWO changes add defense in depth without redesigning the VPC's subnets? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Replace the default security group with one that allows only the specific ports the application needs"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Remove the subnet's route table entirely so no traffic can be evaluated"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Move the NAT gateway into the same subnet as the application server"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Add a custom network ACL to the subnet with numbered rules that deny unexpected traffic"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Disable the VPC's default network ACL so no rules apply"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Replacing the default security group with one scoped to only the ports the application needs shrinks what the compromised server's resource-level allow list permits, limiting lateral movement to other resources. Adding a custom network ACL to the subnet layers a stateless, numbered-rule control above the security group, which is the subnet-level defense-in-depth layer the review is asking for. Removing the subnet's route table would break all connectivity, including legitimate traffic, rather than adding a security control, so it does not achieve defense in depth. Moving the NAT gateway into the same subnet changes where outbound internet traffic exits, but it does nothing to restrict east-west traffic between resources already inside the subnet. Disabling the default network ACL removes a filtering layer rather than adding one, which is the opposite of the goal, and a subnet's NACL association cannot simply be turned off without another NACL taking its place.",
+  "citationIds": [
+    "cite-saa-1-2-security-groups",
+    "cite-saa-1-2-nacl",
+    "cite-saa-1-2-nat-gateway"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

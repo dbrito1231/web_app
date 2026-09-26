@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.2-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Securing external network connections to and from the AWS Cloud (for example, VPN, AWS Direct Connect)",
+  "stem": "A network engineer is comparing AWS Site-to-Site VPN and AWS Direct Connect for a hybrid design and wants two statements that correctly describe how the two can work together or independently. Which TWO statements are correct? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Direct Connect encrypts traffic by default without needing a VPN"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A Site-to-Site VPN connection uses two IPsec tunnels for redundancy"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "A Site-to-Site VPN generally offers more consistent bandwidth and latency than Direct Connect"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A Site-to-Site VPN can run over a Direct Connect public virtual interface to add encryption to the dedicated link"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Direct Connect is billed per connection-hour, the same way a Site-to-Site VPN connection is"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Site-to-Site VPN connection is built from two IPsec tunnels to a customer gateway for redundancy, which is a correct standalone fact about the service. The two services are also not mutually exclusive: a Site-to-Site VPN can run over a Direct Connect public virtual interface, layering IPsec encryption on top of the dedicated link, which correctly describes how they work together. Direct Connect is a dedicated private network connection, but it does not encrypt traffic itself; that is exactly why a VPN is sometimes layered on top of it, so the claim that it encrypts by default is backwards. The comparison on bandwidth and latency is also reversed: Direct Connect, not Site-to-Site VPN, is the one that offers more consistent bandwidth and latency because it bypasses the public internet. Site-to-Site VPN is billed per connection-hour, but Direct Connect's pricing is based on port-hours and data transfer for a dedicated connection, not the VPN's per-connection-hour model, so treating the two as billed the same way is incorrect.",
+  "citationIds": [
+    "cite-saa-1-2-vpn",
+    "cite-saa-1-2-direct-connect",
+    "cite-saa-1-2-direct-connect-pricing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

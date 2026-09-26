@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-1.2-K02"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS service endpoints",
+  "stem": "A fintech company keeps its order-processing Lambda functions in a VPC and needs those functions to reach both Amazon DynamoDB and Amazon Kinesis Data Streams without any traffic crossing the public internet. Which TWO endpoint choices satisfy this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Route both services' traffic through a NAT gateway placed in a public subnet"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Add a gateway endpoint for DynamoDB to the VPC's route tables"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Add a gateway endpoint for Kinesis Data Streams to the VPC's route tables"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Attach an endpoint policy directly to the Lambda functions' execution roles"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create an interface endpoint (PrivateLink) for Kinesis Data Streams in the VPC"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A gateway endpoint works for DynamoDB, so adding one to the VPC's route tables keeps that traffic on the AWS network with no network interface involved. Kinesis Data Streams is not one of the two services gateway endpoints support, so it needs an interface endpoint (PrivateLink), which creates an elastic network interface with a private IP that the functions can reach over DNS. Routing both services through a NAT gateway sends the traffic out through an internet gateway to each service's public endpoint, which is exactly the public-internet path the requirement rules out. Gateway endpoints only support Amazon S3 and DynamoDB, so one cannot be created for Kinesis Data Streams. An endpoint policy is a resource policy attached to the VPC endpoint itself to limit which principals and actions may use it; it is not something attached to a Lambda function's execution role.",
+  "citationIds": [
+    "cite-saa-1-2-privatelink"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-1.2-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
+  "stem": "A design review lists two separate gaps: attackers have been submitting SQL injection payloads through a public form, and the same application still stores its database password in a plaintext configuration file. Which TWO changes close these two specific gaps? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Attach an AWS WAF web ACL with a managed rule group for SQL injection"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Subscribe to AWS Shield Standard for the public form's load balancer"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Move the database password into AWS Secrets Manager with rotation turned on"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Move the application's external customers into IAM Identity Center for sign-in"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Bake the database password into the application's next AMI build"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Attaching a WAF web ACL with a managed rule group written for SQL injection inspects and blocks the crafted requests before they reach the application, closing the first gap. Moving the database password into Secrets Manager with rotation turned on removes it from the plaintext configuration file and replaces it with a runtime retrieval, closing the second gap. Shield Standard is already enabled automatically for every account and defends against network- and transport-layer DDoS traffic; it does not inspect request content, so it does nothing against SQL injection payloads. IAM Identity Center federates workforce users into AWS accounts and permission sets; the application's external customers are not workforce users, so this does not apply here and does not touch either stated gap. Baking the password into the next AMI build still leaves it as a hard-coded credential in a build artifact, just relocated rather than removed.",
+  "citationIds": [
+    "cite-saa-1-2-waf",
+    "cite-saa-1-2-secrets-manager",
+    "cite-saa-1-2-shield"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

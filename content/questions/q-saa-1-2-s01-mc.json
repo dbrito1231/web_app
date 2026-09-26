@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-1.2-S01"
   ],
-  "stem": "A teammate asks how to meet this requirement: Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gateways). Which action is appropriate?",
+  "stem": "A design calls for application servers in a private subnet to download security patches from the internet on their own schedule, but nothing on the internet should ever be able to initiate a connection to those servers. Which component belongs in the design?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A security group rule on the application servers allowing all outbound traffic"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An internet gateway attached directly to the private subnet's route table"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A NAT gateway placed in a public subnet, with the private subnet's route table pointing to it"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Designing VPC architectures with security components (for example, security groups, route tables, network ACLs, NAT gate"
+      "text": "A network ACL rule on the private subnet allowing outbound traffic on port 443"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A NAT gateway sits in a public subnet with an Elastic IP, and a private subnet's route table can point its outbound default route at it, which lets the application servers start outbound connections such as patch downloads while remaining unreachable from any inbound connection initiated from the internet. Attaching an internet gateway directly to the private subnet's route table would give the subnet a two-way route to the internet, making it reachable from outside and directly contradicting the no-inbound requirement. A security group rule only controls what is allowed to and from the servers themselves; if the subnet's route table has no path to the internet at all, an outbound-allow security group rule still cannot get the traffic there. A network ACL rule on the subnet works the same way: it can permit outbound traffic on a port, but it does not create a route to the internet, so patches still could not be downloaded without a NAT gateway in place.",
+  "citationIds": [
+    "cite-saa-1-2-nat-gateway",
+    "cite-saa-1-2-security-groups",
+    "cite-saa-1-2-nacl"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
