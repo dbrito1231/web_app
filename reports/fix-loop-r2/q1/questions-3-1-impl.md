@@ -1,5 +1,9 @@
 # Task 3.1 question rewrite — implementation report
 
+## AWS review fixes
+
+- **AWS-Q31-001** (`q-saa-3-1-s02-mr` choice b): "AWS Snowball Edge devices, ordered again each time the dataset grows" → "S3 Transfer Acceleration enabled for the pipeline's uploads to cut per-transfer latency". Rationale clause updated to match. `citationIds` swapped `cite-saa-3-1-snowball-edge-eol` → `cite-saa-3-1-s3-transfer-acceleration`. Re-run of `q1_batch_check.py 3-1`: RESULT WARN (no FAIL; only the two expected labelled-retired-service WARNs remain, down from three).
+
 ## Batch-check result
 
 ```

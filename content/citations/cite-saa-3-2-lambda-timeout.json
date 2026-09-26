@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-2-lambda-timeout",
+  "title": "Configuring Lambda function options (timeout)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html",
+  "accessed": "2026-09-26",
+  "note": "AWS review fix (Q32-001) for q-saa-3-2-k05-mr: backs the claim that a Lambda function's configurable timeout, up to 15 minutes, only limits how long a single invocation may run and has no effect on Init-phase cold-start latency."
+}

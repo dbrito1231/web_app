@@ -1,5 +1,10 @@
 # Task 3.2 question rewrite — implementation report
 
+## AWS review fixes
+
+- **AWS-Q32-001** (`q-saa-3-2-k05-mr` choice a): "Reserved concurrency" → "Increasing the function's timeout setting to the maximum". Rationale clause updated to match. Added `citationIds` entry `cite-saa-3-2-lambda-timeout` (new citation file, `https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html`). Re-run of `q1_batch_check.py 3-2`: RESULT PASS, no FAIL/WARN.
+  - **Open item:** AWS's fix note also calls for a lesson-3-2 K05 addition ("Each function also has a separate configurable timeout... raising it does not pre-initialize anything and has no effect on cold-start latency") so the new distractor's fact is taught before it is tested. This session's edit scope was restricted to question files only (per coordinator instruction), so the lesson body was **not** touched. Until that lesson addition is made and Teacher-validated per AGENTS.md's content-impact check, `q-saa-3-2-k05-mr` choice a rests on a fact not yet present in lesson-3-2.json — flagging this for Lead Dev to schedule the lesson edit rather than working around it silently.
+
 ## Batch-check result
 
 ```

@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "AWS Snowball Edge devices, ordered again each time the dataset grows"
+      "text": "S3 Transfer Acceleration enabled for the pipeline's uploads to cut per-transfer latency"
     },
     {
       "id": "c",
@@ -34,13 +34,13 @@
     "c",
     "e"
   ],
-  "rationale": "Elastic Volumes let you increase an attached volume's size, change its type, or raise its provisioned IOPS and throughput live with no downtime, matching the working-set volume's need to grow in place. DataSync scales a migration pipeline by running more tasks or adding agents in parallel rather than by ordering a bigger physical device, matching the instrument-output pipeline. Instance store volumes are physically fixed to the instance type chosen at launch and cannot be grown or resized, and their data does not survive an instance stop. Snowball Edge is closed to new customers, so it is not an available way to keep scaling this pipeline. A single key prefix has a documented request-rate ceiling, so a pipeline whose request volume keeps growing should spread across multiple prefixes rather than staying on one.",
+  "rationale": "Elastic Volumes let you increase an attached volume's size, change its type, or raise its provisioned IOPS and throughput live with no downtime, matching the working-set volume's need to grow in place. DataSync scales a migration pipeline by running more tasks or adding agents in parallel rather than by ordering a bigger physical device, matching the instrument-output pipeline. Instance store volumes are physically fixed to the instance type chosen at launch and cannot be grown or resized, and their data does not survive an instance stop. S3 Transfer Acceleration reduces the distance-driven latency of an individual upload; it adds no parallel transfer capacity to a growing migration pipeline the way running more DataSync tasks or agents does. A single key prefix has a documented request-rate ceiling, so a pipeline whose request volume keeps growing should spread across multiple prefixes rather than staying on one.",
   "citationIds": [
     "cite-saa-3-1-ebs-general-purpose",
     "cite-saa-3-1-ebs-provisioned-iops",
     "cite-saa-3-1-datasync-what-is",
     "cite-saa-3-1-instance-store",
-    "cite-saa-3-1-snowball-edge-eol",
+    "cite-saa-3-1-s3-transfer-acceleration",
     "cite-saa-3-1-s3-performance-guidelines"
   ],
   "reviewedOn": "2026-09-26",

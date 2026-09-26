@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Reserved concurrency"
+      "text": "Increasing the function's timeout setting to the maximum"
     },
     {
       "id": "b",
@@ -34,11 +34,12 @@
     "b",
     "d"
   ],
-  "rationale": "Provisioned concurrency pre-initializes a chosen number of execution environments so invocations skip the cold-start Init phase entirely, giving consistent response times including the first request. Lambda SnapStart resumes new environments from an already-initialized snapshot instead of re-running startup code, cutting cold starts to as low as sub-second for supported runtimes. Reserved concurrency only sets a floor and ceiling on how many invocations run at once; it does not pre-initialize anything or change how fast the first invocation starts. Compute Optimizer's memory recommendation is about right-sizing cost and duration from utilization history, not about eliminating a cold start. Increasing memory alone can shorten execution once a function is running, but it does not remove the Init-phase cold start on a fresh environment the way provisioned concurrency or SnapStart does.",
+  "rationale": "Provisioned concurrency pre-initializes a chosen number of execution environments so invocations skip the cold-start Init phase entirely, giving consistent response times including the first request. Lambda SnapStart resumes new environments from an already-initialized snapshot instead of re-running startup code, cutting cold starts to as low as sub-second for supported runtimes. Increasing the function's timeout only changes how long a single invocation may run before Lambda terminates it; it does not pre-initialize any execution environment and has no effect on Init-phase cold-start latency. Compute Optimizer's memory recommendation is about right-sizing cost and duration from utilization history, not about eliminating a cold start. Increasing memory alone can shorten execution once a function is running, but it does not remove the Init-phase cold start on a fresh environment the way provisioned concurrency or SnapStart does.",
   "citationIds": [
     "cite-saa-3-2-lambda-concurrency",
     "cite-saa-3-2-lambda-snapstart",
-    "cite-saa-3-2-compute-optimizer-overview"
+    "cite-saa-3-2-compute-optimizer-overview",
+    "cite-saa-3-2-lambda-timeout"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
