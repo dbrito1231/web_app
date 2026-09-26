@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.4-S04"
   ],
-  "stem": "A teammate asks how to meet this requirement: Selecting the appropriate load balancing strategy. Which action is appropriate?",
+  "stem": "A trading platform's matching engine speaks a custom TCP protocol, needs the lowest achievable added latency between clients and matching servers, and needs one static IP address per Availability Zone for clients to hard-code.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy an Application Load Balancer with path-based routing rules"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Split traffic across two target groups using Route 53 weighted routing"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy a Classic Load Balancer for the matching engine"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Selecting the appropriate load balancing strategy"
+      "text": "Deploy a Network Load Balancer in front of the matching servers"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Network Load Balancer operates at the connection level with minimal added latency, handles a custom TCP protocol without inspecting it, and exposes one static IP per Availability Zone, matching every part of the requirement. An Application Load Balancer's path-based routing adds Layer 7 processing overhead that is unnecessary for a custom TCP protocol and does not by itself provide a static per-AZ IP. Route 53 weighted routing splits traffic at the DNS layer between target groups; it does not change what either load balancer does with a connection and adds nothing toward the latency or static-IP requirement. A Classic Load Balancer is the previous generation of Elastic Load Balancing and does not match a current Network Load Balancer's throughput and latency profile.",
+  "citationIds": [
+    "cite-saa-2-1-alb-elb",
+    "cite-saa-2-1-classic-lb-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

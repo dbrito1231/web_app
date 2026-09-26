@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.4-S01"
   ],
-  "stem": "An exam scenario centers on: Creating a network topology for various architectures (for example, global, hybrid, multi-tier). Which action matches it?",
+  "stem": "An application's data tier has to stay unreachable from the internet no matter how the tier grows, and it needs to be spread across three Availability Zones for resilience. The team is finalizing the subnet design for this tier.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Place the data tier in private subnets across three Availability Zones, with route tables that have no route to an internet gateway"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Creating a network topology for various architectures (for example, global, hybrid, multi-tier)"
+      "text": "Place the data tier in public subnets across three Availability Zones and add security group rules that deny all inbound internet traffic"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Place the entire data tier in one subnet that spans all three Availability Zones"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Place the data tier in private subnets across three Availability Zones and route their outbound traffic through a NAT gateway"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A subnet's route table, not a security group, is what actually determines whether traffic from the internet can reach it, so private subnets with no internet gateway route in any of the three Availability Zones keep the tier unreachable while still spreading it for resilience. Public subnets still have a route to an internet gateway; security group rules filter traffic at the instance level but do not remove that underlying network path, so the tier is not truly unreachable. A single subnet cannot span three Availability Zones at all, since every subnet maps to exactly one Availability Zone. Routing outbound traffic through a NAT gateway gives the tier a path toward the internet gateway for outbound connections, which conflicts with keeping it unreachable from the internet in every direction.",
+  "citationIds": [
+    "cite-saa-3-4-vpc-cidr-blocks"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

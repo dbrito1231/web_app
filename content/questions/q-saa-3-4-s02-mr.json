@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.4-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining network configurations that can scale to accommodate future needs",
+  "stem": "A company operates six VPCs today, all connected to each other and to on-premises through direct pairwise connections, and expects to add many more VPCs that all need to reach each other and the on-premises network over the existing Direct Connect connection. Select TWO actions that let this connectivity keep scaling. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create a full mesh of VPC peering connections between every VPC"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Attach every VPC to a Transit Gateway instead of creating individual VPC peering connections"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Peer every VPC to one central VPC and route the other VPCs' traffic through that central VPC"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Provision a new dedicated Direct Connect connection for each additional VPC"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Attach the on-premises Direct Connect connection to the same Transit Gateway through a Direct Connect gateway"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "b",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Attaching every VPC to a Transit Gateway turns each new VPC into one additional attachment instead of a growing set of pairwise connections, and the transit gateway's route tables handle routing between them. Attaching the Direct Connect connection to that same Transit Gateway through a Direct Connect gateway lets every attached VPC reach on-premises through the one hub instead of a separate connection each. A full mesh of VPC peering connections grows fast as VPCs are added and becomes hard to manage well before reaching dozens of VPCs. Routing traffic through one central VPC assumes VPC peering can forward traffic between the VPCs peered to it, but peering does not support transitive routing, so the other VPCs still cannot reach each other that way. Provisioning a new dedicated Direct Connect connection for every VPC repeats an expensive physical connection instead of fanning one connection out through a hub.",
+  "citationIds": [
+    "cite-saa-3-4-vpc-peering-transitive"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

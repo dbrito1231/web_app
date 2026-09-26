@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-3.4-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate load balancing strategy",
+  "stem": "A Network Load Balancer's target group has five targets in Availability Zone A and one target in Availability Zone B that keeps dropping packets under heavy traffic, and the dropped-packet target runs on an older instance family. Select TWO actions that address these two problems. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Increase the Network Load Balancer's connection idle timeout"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Enable cross-zone load balancing on the Network Load Balancer's target group"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Reduce the Network Load Balancer to a single Availability Zone"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Move the affected target to an instance family that supports enhanced networking"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Change the target group's target type from instance to IP address"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-zone load balancing spreads requests evenly across targets in every enabled Availability Zone, which corrects the uneven five-to-one split. Moving the affected target to an instance family with enhanced networking raises the packet-per-second ceiling that was causing the dropped packets. Increasing the idle timeout changes how long an inactive connection stays open; it does not touch packet-per-second performance or the AZ imbalance. Reducing the load balancer to a single Availability Zone would remove the imbalance but also removes the multi-AZ resilience the deployment is meant to keep. Changing the target type from instance to IP address changes how targets are registered; it does not raise a target's packet-processing ceiling.",
+  "citationIds": [
+    "cite-saa-2-1-alb-cross-zone"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

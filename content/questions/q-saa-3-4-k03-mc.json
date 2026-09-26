@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.4-K03"
   ],
-  "stem": "You must choose one approach for: Load balancing concepts (for example, Application Load Balancer [ALB]). Which action fits?",
+  "stem": "A real-time multiplayer game's backend accepts a custom UDP protocol and needs to handle millions of packets per second with the lowest possible added latency, plus one static IP address per Availability Zone that clients can hard-code.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Deploy an Application Load Balancer and enable HTTP/2 for the game traffic"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy a Gateway Load Balancer and register the game servers as its targets"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Load balancing concepts (for example, Application Load Balancer [ALB])"
+      "text": "Deploy a Network Load Balancer in front of the game servers"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Keep an existing Application Load Balancer and enable cross-zone load balancing on its target group"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Network Load Balancer operates at the connection level, supports UDP, scales to millions of packets per second at very low latency, and exposes one static IP per Availability Zone, matching every part of the requirement. An Application Load Balancer parses HTTP(S) requests at Layer 7, which adds processing overhead and does not support a raw UDP protocol, whatever protocol version is enabled. A Gateway Load Balancer is built to insert third-party virtual appliances transparently into a traffic path, not to balance client game traffic directly to game servers. Enabling cross-zone load balancing changes how evenly an existing load balancer spreads requests across Availability Zones; it does not add UDP support, static per-AZ IPs, or the throughput ceiling the scenario needs.",
+  "citationIds": [
+    "cite-saa-2-1-alb-elb"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.4-K03"
   ],
-  "stem": "Select TWO actions that support this requirement: Load balancing concepts (for example, Application Load Balancer [ALB])",
+  "stem": "An Application Load Balancer's target group has six registered targets in Availability Zone A and only one target in Availability Zone B, and requests are overloading that single target in AZ B. A separate tier of the same application needs to handle millions of requests per second at the connection level with the lowest possible latency. Select TWO actions that address these two needs. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Enable cross-zone load balancing on the Application Load Balancer's target group"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use a Network Load Balancer for the tier that needs millions of requests per second"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Add a second Application Load Balancer in Availability Zone B"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use a Gateway Load Balancer for the tier that needs millions of requests per second"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Reduce the target group's deregistration delay to rebalance requests faster"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-zone load balancing spreads requests evenly across every target in every enabled Availability Zone rather than only the targets in the zone that received the request, which fixes the overloaded single target in AZ B. A Network Load Balancer operates at the connection level and is built for the millions-of-requests-per-second, lowest-latency profile the second tier needs. Adding a second Application Load Balancer in AZ B creates a separate load balancer with its own target group rather than fixing the existing one's uneven distribution. A Gateway Load Balancer inserts third-party appliances transparently into a path; it is not built to serve as the client-facing balancer for a high-throughput tier. Reducing the deregistration delay changes how quickly a target is removed during deregistration; it does not rebalance traffic across Availability Zones.",
+  "citationIds": [
+    "cite-saa-2-1-alb-cross-zone",
+    "cite-saa-2-1-alb-elb"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

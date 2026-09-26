@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.4-S02"
   ],
-  "stem": "An exam scenario centers on: Determining network configurations that can scale to accommodate future needs. Which action matches it?",
+  "stem": "A company's VPC was created with a /24 primary CIDR block. New subnets are needed for additional tiers, but the block has no unused address space left, and the team cannot take an outage to rebuild the VPC.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Resize the VPC's existing primary CIDR block to a larger netmask"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Determining network configurations that can scale to accommodate future needs"
+      "text": "Associate an additional, non-overlapping secondary IPv4 CIDR block with the VPC"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create the new subnets using a CIDR range that overlaps the existing primary block"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create a VPC peering connection to a second VPC and route new traffic through its address space"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A VPC accepts additional, non-overlapping secondary IPv4 CIDR blocks after creation, which supplies the extra address space the new subnets need without touching the existing block or causing an outage. An existing CIDR block cannot be resized larger or smaller once the VPC is created, so that option is not available. A new subnet's CIDR range must not overlap any CIDR block already associated with the VPC, so an overlapping range cannot be created. VPC peering connects two VPCs' networks so they can route to each other; it does not lend one VPC's address space to another or add usable address space to the first VPC.",
+  "citationIds": [
+    "cite-saa-3-4-vpc-cidr-blocks"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

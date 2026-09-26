@@ -74,3 +74,10 @@ None of the retired/closed/EOL services in RULES.md (Copilot CLI, Snow Family, F
 
 - drillIds are in objective order (K01, K02, K03-mc, K03-mr, K04, S01-mc, S01-mr, S02-mc, S02-mr, S03-mc, S03-mr, S04-mc, S04-mr), matching the existing placeholder question IDs exactly.
 - The lesson does not re-teach ALB/NLB/GWLB fundamentals, cross-zone mechanics in detail, Global Accelerator vs. CloudFront basics, or Route 53 policies — those stay in Lessons 2.1/2.2 and are only referenced back to, per the task brief.
+
+## Fixes (round 1)
+
+- **AWS-L34-001** (misattributed callback, K01): the opening sentence of the K01 section said "Lesson 2.2 already contrasts CloudFront with Global Accelerator at a high level," but that content actually lives in **Lesson 2.1, section K07** ("How to appropriately use edge accelerators") — Lesson 2.2 has zero mentions of either service. Fixed in `content/lessons/lesson-3-4.json` by changing the reference to "Lesson 2.1 K07." No other wording in that sentence or section changed.
+- **TEACHER-L34-002** (`/images/*` asterisks in K01): no lesson change needed. Lead Dev's fix was to the checker itself (asterisks inside backtick code spans, e.g. `` `/images/*` ``, render literally and are not Markdown emphasis), not to the lesson content.
+
+Both items closed: Gone, confirmed by AWS and Teacher.

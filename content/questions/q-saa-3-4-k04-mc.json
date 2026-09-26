@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.4-K04"
   ],
-  "stem": "An exam scenario centers on: Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink). Which action matches it?",
+  "stem": "A hospital network's data center needs a connection to a VPC with bandwidth well beyond what a single internet-based tunnel can sustain, encryption for every byte in transit, and no leg of the path allowed to cross the public internet.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Provision a standard AWS Site-to-Site VPN connection over the internet"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Network connection options (for example, AWS VPN, AWS Direct Connect, AWS PrivateLink)"
+      "text": "Provision an AWS Direct Connect dedicated connection with no VPN"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create an AWS PrivateLink interface endpoint and connect the hospital's whole on-premises network to it directly"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Provision a private Site-to-Site VPN over the Direct Connect connection through a transit gateway"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Running a private-IP Site-to-Site VPN over a Direct Connect connection through a transit gateway supplies Direct Connect's dedicated, high-bandwidth private line while adding the IPsec encryption Direct Connect does not provide on its own, and none of the traffic crosses the public internet. A standard Site-to-Site VPN travels over the internet and is capped at a fraction of what a dedicated line delivers, failing the bandwidth and no-internet requirements. A Direct Connect connection with no VPN gives the private, high-bandwidth path but carries no encryption in transit, failing that requirement. PrivateLink publishes one specific service through an interface endpoint's elastic network interface; it has no mechanism to terminate an entire on-premises network's traffic, so it cannot stand in for a site-to-site connection.",
+  "citationIds": [
+    "cite-saa-3-4-vpn-tunnel-bandwidth",
+    "cite-saa-3-4-privatelink-concepts"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

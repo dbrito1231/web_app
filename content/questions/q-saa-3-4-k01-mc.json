@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.4-K01"
   ],
-  "stem": "The workload needs this outcome: Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator). Which action should you take?",
+  "stem": "A media company's CloudFront distribution serves a global audience from a single S3 origin. During a launch event, cache misses from edge locations on several continents all reach the origin at once and the origin's request rate spikes hard enough to throttle. The distribution's cache behaviors and TTL settings are already tuned per content type. Which change reduces the number of requests that reach the origin during a spike like this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Edge networking services with appropriate use cases (for example, Amazon CloudFront, AWS Global Accelerator)"
+      "text": "Add Amazon CloudFront Origin Shield in front of the origin"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add more cache behaviors that route different path patterns to the same origin"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Put an AWS Global Accelerator accelerator in front of the origin instead of CloudFront"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Move the origin to a Region physically closer to the largest audience"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Origin Shield adds a caching layer that consolidates requests from every CloudFront caching layer into a single location before they reach the origin, which is what cuts the number of near-simultaneous requests an origin sees on a cache miss. Adding more cache behaviors only changes which path patterns map to which origin and TTL settings; it does not consolidate the requests that already-tuned behaviors send on a miss. Global Accelerator routes traffic to the closest healthy regional endpoint over the AWS network, but it does not cache content or reduce origin request volume. Moving the origin closer to the largest audience can shorten round-trip time for that audience, but it does nothing to consolidate the simultaneous cache-miss requests arriving from edge locations worldwide.",
+  "citationIds": [
+    "cite-saa-3-4-origin-shield",
+    "cite-saa-3-4-cloudfront-cache-behaviors"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

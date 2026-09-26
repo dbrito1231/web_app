@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.4-K02"
   ],
-  "stem": "Pick the action that satisfies: How to design network architecture (for example, subnet tiers, routing, IP addressing).",
+  "stem": "A team is finalizing the primary IPv4 CIDR block for a new VPC before any subnets exist. They expect to need roughly 40,000 addresses of headroom for future subnets, want to stay inside the CIDR block size AWS allows for a VPC, and want to draw from the address range AWS recommends for a VPC.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "10.0.0.0/8"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "10.0.0.0/16"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "203.0.113.0/16"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: How to design network architecture (for example, subnet tiers, routing, IP addressing)"
+      "text": "10.0.0.0/30"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A /16 netmask gives 65,536 addresses, sits at the largest end of the /16-to-/28 range AWS allows for a VPC's CIDR block, and 10.0.0.0/16 falls inside the RFC 1918 private range AWS recommends. A /8 netmask is far larger than the /16 maximum AWS allows for a VPC block, so it cannot be used even though it would supply more than enough headroom. 203.0.113.0/16 is the right size, but that address space is a publicly routable documentation range rather than one of the RFC 1918 private ranges AWS recommends. A /30 netmask supplies only 4 addresses, nowhere near the 40,000 addresses of headroom the team needs.",
+  "citationIds": [
+    "cite-saa-3-4-vpc-cidr-blocks"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-3.4-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Creating a network topology for various architectures (for example, global, hybrid, multi-tier)",
+  "stem": "A company connects its on-premises data center to AWS over a single Direct Connect connection and wants an automatic path if that connection fails. Separately, its public-facing application serves users on several continents and needs each user's traffic to enter the AWS network at the location closest to them. Select TWO actions that address these two needs. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Create a VPC peering connection between the on-premises network and the VPC"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Create a Transit Gateway peering connection to a Transit Gateway in another Region for on-premises resiliency"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure a Site-to-Site VPN connection as an automatic backup path for the Direct Connect connection"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Place a CloudFront distribution or Global Accelerator accelerator in front of the public-facing application"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Route global user traffic through a NAT gateway to reach the application"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Site-to-Site VPN configured as a backup path takes over automatically if the Direct Connect connection fails, giving the on-premises link its resiliency. CloudFront or Global Accelerator gives global users a nearby AWS entry point, which is exactly what the second requirement asks for. VPC peering connects two VPCs' networks to each other; it has no mechanism to connect to an on-premises data center. Transit Gateway peering connects two Transit Gateways, typically across Regions, and has nothing to do with failing over an on-premises connection. A NAT gateway provides outbound internet access for private subnets; it does not bring inbound global user traffic in through a nearby edge location.",
+  "citationIds": [
+    "cite-saa-3-4-vpn-tunnel-bandwidth",
+    "cite-saa-3-4-global-accelerator-how-it-works"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
