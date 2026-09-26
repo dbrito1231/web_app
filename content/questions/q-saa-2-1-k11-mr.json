@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.1-K11"
   ],
-  "stem": "Select TWO actions that support this requirement: Queuing and messaging concepts (for example, publish/subscribe)",
+  "stem": "A news publisher's engineering team wants one 'article published' event delivered in parallel to a search-indexing SQS queue and an alerting Lambda function, with the publisher not waiting on either downstream system. Which TWO statements about the correct design are accurate? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The publisher calls the SQS queue and then invokes the Lambda function directly, one after the other"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A single SQS queue, with both the indexer and the alerting logic polling it"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Publishing to a single SNS topic with both the queue and the function subscribed delivers the event to each of them"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon Kinesis Data Streams, with the indexer and the alerting logic each reading from the stream independently"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "SNS's fan-out delivery gives each subscriber its own copy of the message, so neither subscriber blocks the other"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "c",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Publishing to a single SNS topic with the SQS queue and the Lambda function both subscribed delivers the event to each of them, and SNS's fan-out delivery gives each subscriber its own independent copy, so the publisher does not wait on either downstream system. Calling the queue and then invoking the function directly, one after the other, reintroduces exactly the synchronous coupling and blocking the team wants to avoid, and it makes the publisher responsible for both deliveries succeeding. A single SQS queue with two different pieces of logic polling it does not fan out one message to two independent consumers the way SNS does; whichever consumer receives the message first hides it from the other during its visibility timeout, so only one of them processes any given message. Kinesis Data Streams lets multiple consumers read the same stream independently, but it is built for ordered, replayable streaming data; it is unnecessary complexity for a single fan-out notification to two known subscribers, which SNS already handles directly.",
+  "citationIds": [
+    "cite-saa-2-1-sns-fanout"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-2.1-S01"
   ],
-  "stem": "You must choose one approach for: Designing event-driven, microservice, and/or multi-tier architectures based on requirements. Which action fits?",
+  "stem": "A solutions architect is designing an order system in which three independently deployable services must react the instant an order's status changes, and none of the three should have to repeatedly ask the others whether anything new has happened. Which design satisfies this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An event-driven design in which each service publishes order-status changes and interested services subscribe to react to them"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Step Functions with a single central state machine that calls each of the three services in a fixed sequence"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Designing event-driven, microservice, and/or multi-tier architectures based on requirements"
+      "text": "Each service calling the other two synchronously over HTTP and blocking until it receives a direct response"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A stateful service design in which a client's session is pinned to the one instance that first handled it"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An event-driven design lets a producer publish a fact, such as an order-status change, without knowing or polling for which consumers will act on it, which is exactly the 'react instantly, no repeated asking' requirement. A Step Functions state machine that calls each service in a fixed sequence is a real, current AWS orchestration pattern, but the state machine itself is the one deciding when each service runs and waiting on each call in turn, so the services still depend on a central controller reaching them in order rather than reacting independently to a published fact. Calling the other services synchronously and blocking for a direct response is the opposite of the requirement: it forces each service to wait on the others instead of reacting to a published fact, and a slow callee stalls the caller. Pinning a client's session to one instance is a stateful design concern about session affinity, not about how services learn of a status change, so it does not address the requirement at all.",
+  "citationIds": [
+    "cite-saa-2-1-eventbridge-bus",
+    "cite-saa-2-1-microservices-whitepaper",
+    "cite-saa-2-1-step-functions-welcome"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

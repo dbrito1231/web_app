@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.1-K14"
   ],
-  "stem": "Which action is the right fit for this requirement: The orchestration of containers (for example, Amazon ECS, Amazon EKS)?",
+  "stem": "A fintech company's platform team already standardizes on Kubernetes APIs and manifests and wants a managed Kubernetes control plane so its workloads stay portable across clouds.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon ECS, since it can also run containers without provisioning EC2 instances"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon EKS, which runs a managed Kubernetes control plane and keeps the team on standard Kubernetes tooling"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: The orchestration of containers (for example, Amazon ECS, Amazon EKS)"
+      "text": "A self-managed Kubernetes control plane the team installs and patches on its own EC2 instances"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Fargate for ECS tasks, since it removes the EC2 layer for the team's containers"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EKS runs a managed Kubernetes control plane, which fits a team that already standardizes on Kubernetes APIs, manifests, and the broader Kubernetes ecosystem, including portability to other clouds. Amazon ECS is AWS's own container orchestrator with an AWS-native scheduler; it does not expose the Kubernetes API the team has already standardized on, no matter how its compute is provisioned. A self-managed Kubernetes control plane on EC2 the team installs and patches itself is the opposite of a managed control plane, putting the operational burden the team wants to avoid back on them. Fargate for ECS removes the EC2 layer for ECS tasks specifically, but ECS tasks still are not the Kubernetes API and manifests the team's tooling depends on.",
+  "citationIds": [
+    "cite-saa-2-1-eks-concepts",
+    "cite-saa-2-1-ecs-welcome"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

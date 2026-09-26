@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-2.1-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the AWS services required to achieve loose coupling based on requirements",
+  "stem": "A retailer needs one event producer to reach many independent subscribers without the producer knowing who they are, and separately needs client requests to be handled by whichever backend instance is healthy rather than one fixed instance. Which TWO AWS services achieve loose coupling for these two needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "An SNS topic that fans a published message out to every subscribed endpoint"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An Amazon EventBridge rule that matches the event and delivers it to one target"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An Application Load Balancer distributing requests across a target group of instances"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "An SQS FIFO queue read by exactly one consumer that deletes each message after processing"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "An Application Load Balancer with only one instance registered in its target group"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An SNS topic's fan-out pattern publishes one message to many subscribed endpoints without the publisher knowing who they are, matching the many-independent-subscribers requirement. An Application Load Balancer with several instances in its target group decouples a client from the specific backend instance handling a request by routing to whichever registered instance is healthy, matching the second requirement. An EventBridge rule that delivers a matching event to one target routes an event, but only to that single target, rather than fanning it out to many independent subscribers the producer does not know about. An SQS FIFO queue read by exactly one consumer moves work between a producer and one consumer, but it does not fan a single message out to many independent subscribers either. An Application Load Balancer with only one instance registered still sends every request to that same instance, so a different healthy instance is never the one that answers.",
+  "citationIds": [
+    "cite-saa-2-1-sns-fanout",
+    "cite-saa-2-1-alb-elb",
+    "cite-saa-2-1-eventbridge-bus"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

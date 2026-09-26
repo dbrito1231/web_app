@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K10"
   ],
-  "stem": "Which action is the right fit for this requirement: Multi-tier architectures?",
+  "stem": "A university's registration-system team wants to isolate its web layer, business logic, and database each in their own security boundary so any tier can scale, fail, or be secured independently of the others.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Combine the presentation and logic tiers behind one Auto Scaling group, with only the data tier in its own subnet and security group"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Place the presentation, logic, and data tiers in their own subnets and security groups, each scaling and failing independently"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Multi-tier architectures"
+      "text": "Place the database tier in a public subnet alongside the web tier, restricting access with a security group rule that allows only the app tier"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Route requests from an Application Load Balancer directly to AWS Lambda functions with no separate data tier, keeping state in the functions' own memory"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Placing the presentation, logic, and data tiers in their own subnets and security groups is the classic multi-tier design: each tier can scale, fail, and be secured independently because it sits behind its own boundary. Combining the presentation and logic tiers into one Auto Scaling group is a two-tier design: it still isolates the data tier, but the web layer and the business logic now share one scaling and failure boundary instead of two, which the team's requirement to isolate each of the three tiers rules out. Placing the database tier in a public subnet still uses a security group to limit who can reach it, but the subnet itself is internet-routable, so the data tier no longer sits behind the network-level boundary the design calls for. Routing an ALB straight to Lambda functions with state kept in the functions' own memory removes the data tier entirely, so there is no persistent, independently scaled and secured data layer at all.",
+  "citationIds": [
+    "cite-saa-2-1-multitier-whitepaper"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

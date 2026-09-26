@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.1-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Event-driven architectures",
+  "stem": "A media retailer's inventory team is designing an out-of-stock alert: it must route only 'out-of-stock' events to a Lambda function, and it must pick up events that AWS services already emit automatically with no extra setup on the producing side. Which TWO EventBridge facts does this design rely on? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "An SQS standard queue can match events against a pattern the same way an EventBridge rule does"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "A rule can match incoming events against a pattern, such as an 'out-of-stock' status, and deliver only the matches to a target like a Lambda function"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A custom event bus must be created before any AWS service event becomes visible to the account"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Every AWS account has a default event bus that automatically receives events emitted by AWS services"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "A Lambda function must poll the inventory table on a fixed schedule to detect the out-of-stock condition"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An EventBridge rule matches incoming events against a pattern and delivers only the matches to a target, which is how only the 'out-of-stock' events reach the alert Lambda function, and every account already has a default event bus that receives AWS service events automatically, which is why no extra setup is needed on the producing side. An SQS standard queue has no pattern-matching capability at all; it delivers whatever is sent to it in order received, so it cannot filter by event content the way a rule does. A custom event bus is not required to see AWS service events, since the default bus already receives them. Polling the inventory table on a schedule is exactly the delay-and-waste pattern an event-driven design avoids; it is not part of this EventBridge-based design.",
+  "citationIds": [
+    "cite-saa-2-1-eventbridge-bus"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

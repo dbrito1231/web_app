@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.1-S05"
   ],
-  "stem": "A teammate asks how to meet this requirement: Determining when to use serverless technologies and patterns. Which action is appropriate?",
+  "stem": "A workload runs in several short bursts a day, sits idle the rest of the time, and the team wants no servers or containers to patch or manage. Which compute choice fits best?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Lambda, triggered by the events that start each burst"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "EC2 Reserved Instances sized for the workload's peak burst"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "EC2 On-Demand instances left running continuously to avoid startup delay"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining when to use serverless technologies and patterns"
+      "text": "AWS Fargate running one container kept running continuously to handle each burst"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Lambda scales automatically from zero, runs only in response to the events that start each burst, bills only for the compute time actually consumed, and requires no server or container patching, matching every part of the stated requirement. EC2 Reserved Instances commit to paying for capacity sized for peak load even while idle the rest of the day, which is the wasted idle-capacity cost the team wants to avoid, and the team would still patch and manage the instances. On-Demand instances left running continuously have the same idle-capacity and management problem, just without the Reserved discount. Fargate running one container continuously still needs the team to build and manage that container image, and paying for it to run around the clock wastes the same idle capacity the team wants to avoid.",
+  "citationIds": [
+    "cite-saa-2-1-lambda-welcome",
+    "cite-saa-2-1-fargate-compute"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

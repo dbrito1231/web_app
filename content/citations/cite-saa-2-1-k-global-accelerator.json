@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-k-global-accelerator",
+  "title": "AWS Global Accelerator: how it works (static IP addresses, TCP/UDP)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html",
+  "accessed": "2026-09-26",
+  "note": "Q1 task 2.1 writer A (K07): fetched via the AWS Documentation MCP and checked against the claim that Global Accelerator assigns static anycast IP addresses for the lifetime of the accelerator and routes TCP/UDP client traffic, including non-cacheable and non-HTTP workloads, to the healthiest endpoint, unlike CloudFront's HTTP(S) edge caching."
+}

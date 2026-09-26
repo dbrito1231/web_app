@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.1-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining scaling strategies for components used in an architecture design",
+  "stem": "During a traffic spike planning session, an e-commerce team explains two needs: capacity must already be in place for a specific calendar date they know in advance, and separately, an unplanned spike should trigger a larger capacity jump the more severely a CloudWatch alarm is breached. Which TWO Auto Scaling policies together meet these needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Target tracking that holds one metric at a constant value"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Scheduled scaling that changes capacity at a set date and time"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Predictive scaling that forecasts capacity from historical recurring load"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A scheduled scaling action already configured for last year's peak sales date"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Step scaling that sizes each capacity change to the alarm's breach amount"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "b",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Scheduled scaling that changes capacity at a set date and time matches the known-calendar-date requirement. Step scaling that sizes each capacity change to the alarm's breach amount matches the requirement for a larger jump on a more severe unplanned spike. Target tracking only holds one metric at one constant value; it does not give a differently sized reaction to different breach severities. Predictive scaling forecasts from a recurring historical pattern, not from a single known calendar date the team already has in hand. A scheduled scaling action already configured for last year's peak sales date is the same feature correctly used, but for the wrong date: it is scheduled scaling, just not pointed at the date this team needs capacity in place for.",
+  "citationIds": [
+    "cite-saa-2-1-asg-dynamic-scaling"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

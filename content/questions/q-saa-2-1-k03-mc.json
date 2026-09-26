@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K03"
   ],
-  "stem": "You must choose one approach for: Caching strategies. Which action fits?",
+  "stem": "A gaming leaderboard company's platform team needs an in-memory cache for player rank data that must survive an instance restart and fail over automatically to a replica with no manual intervention.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon ElastiCache for Memcached"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon CloudFront configured to cache the leaderboard API responses at edge locations"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Caching strategies"
+      "text": "Amazon ElastiCache for Redis OSS, with persistence and automatic failover enabled"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An API Gateway stage cache in front of the leaderboard endpoint"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon ElastiCache for Redis OSS adds persistence through snapshots and append-only files plus replication with Multi-AZ automatic failover, which is exactly what a cache that must survive a restart and fail over on its own needs. Memcached is a simpler, multithreaded pure cache with no persistence and no replication, so an instance loss or restart loses the cached rank data outright. CloudFront caches whole HTTP responses at the edge to reduce origin load; it does not give the leaderboard service itself a durable, failover-capable in-memory data store. An API Gateway stage cache only caches responses for a single API stage to reduce backend calls; like CloudFront, it does not provide the durable, replicated cache the scenario asks for.",
+  "citationIds": [
+    "cite-saa-2-1-elasticache-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

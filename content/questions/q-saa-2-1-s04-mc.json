@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-S04"
   ],
-  "stem": "An exam scenario centers on: Determining when to use containers. Which action matches it?",
+  "stem": "An application currently runs as a Java process on an on-premises server. The team wants to containerize it for portability without rewriting its source code or refactoring it into separate microservices first. Which approach fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Rewrite the application into several independently deployable microservices before packaging anything"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Determining when to use containers"
+      "text": "Deploy the existing server process unchanged onto AWS Lambda"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS App2Container to containerize the application, then refactor its business logic into separate microservices before deploying"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use AWS App2Container to analyze the running application and generate a container image and ECS task definition"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS App2Container analyzes an application already running on a server, identifies its runtime and dependencies, and packages it into a container image with a generated ECS task definition, without requiring source code changes, which is exactly the no-rewrite containerization the team wants. Rewriting the application into microservices first contradicts the stated requirement of not refactoring it before containerizing. Deploying the existing server process unchanged onto Lambda does not work: Lambda runs short, event-triggered functions within its own runtime model, not an arbitrary standing server process moved over as-is. Using App2Container and then still refactoring the business logic into microservices adds back the exact refactoring step the team said it wanted to avoid doing first, even though App2Container itself is the right tool.",
+  "citationIds": [
+    "cite-saa-2-1-app2container"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

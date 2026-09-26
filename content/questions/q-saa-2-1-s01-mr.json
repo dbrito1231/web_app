@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.1-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing event-driven, microservice, and/or multi-tier architectures based on requirements",
+  "stem": "The operations team at a retailer is rebuilding order processing to combine event-driven and microservice practices. They need order-status changes to reach interested services without polling, and they need any healthy service instance to be able to handle the next request from a given client. Which TWO design choices satisfy these two needs? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Publish order-status changes to an event bus for interested services to consume"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Each service repeatedly querying a shared database table to check for new order-status rows"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Have every service call the others synchronously and wait for a direct response before continuing"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Externalize each service's session state to a shared data store such as DynamoDB or ElastiCache"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Each service instance caching its own local copy of a client's session data, refreshed from the database only when that instance restarts"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Publishing order-status changes to an event bus lets interested services consume them as they happen, matching the first requirement. Externalizing session state to a shared data store is what lets any healthy instance pick up a client's next request, matching the second requirement. Having each service repeatedly query a shared database table for new rows is still polling: a real, workable technique, but the interested services are still the ones doing the asking, rather than reacting to a published event. Calling every service synchronously and waiting for a response creates a direct, blocking dependency between services instead of a published event, which is also the opposite of the polling-free requirement. Caching session data locally on each instance and only refreshing it from the database on restart still pins a client to whichever instance is holding the freshest copy of its session, so a different healthy instance cannot simply pick up the next request.",
+  "citationIds": [
+    "cite-saa-2-1-eventbridge-bus",
+    "cite-saa-2-1-microservices-whitepaper"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

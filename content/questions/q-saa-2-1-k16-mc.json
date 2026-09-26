@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K16"
   ],
-  "stem": "During an architecture review, the goal is: Workflow orchestration (for example, AWS Step Functions). Which action matches that goal?",
+  "stem": "An insurance claims company's workflow team is building a claims-approval process that must run for up to several months per claim, with full execution history retained for audits.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A Step Functions Express workflow, since it supports a much higher event rate"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Workflow orchestration (for example, AWS Step Functions)"
+      "text": "Chain Amazon SQS delay queues between the approval steps, with each queue holding the claim until the next stage begins"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Chain several Step Functions Express workflows together, starting the next one when the previous one finishes"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A Step Functions Standard workflow, which runs up to a year and keeps full execution history"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Step Functions Standard workflow gives exactly-once execution, runs for up to a year, and keeps full execution history for auditing, which matches a months-long, auditable claims-approval process. An Express workflow trades that away for a much higher event rate, but it runs for at most five minutes, far short of the months this process needs. Chaining SQS delay queues between steps can sequence work, but a queue's maximum retention is 14 days, nowhere near the several months a claim may need to wait between stages, and a queue keeps no execution history for an audit. Chaining several Express workflows together still caps each individual workflow at five minutes and creates a separate execution record for each link in the chain instead of the single, continuous, fully auditable execution a Standard workflow provides.",
+  "citationIds": [
+    "cite-saa-2-1-step-functions-welcome"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-2.1-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Using purpose-built AWS services for workloads",
+  "stem": "A team's database credentials currently live in a flat configuration file with no automatic rotation, and separately, its multi-step order workflow is coordinated by custom retry code the team wrote and must keep maintaining. Which TWO managed services replace this self-managed work? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Systems Manager Parameter Store standard parameters, configured to rotate the credentials automatically"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Secrets Manager with automatic rotation configured for the database credentials"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EventBridge invoking a Lambda function on a fixed schedule to advance the workflow to its next step"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Secrets Manager storing the credentials, with automatic rotation left turned off"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Step Functions coordinating the multi-step order workflow as a state machine"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Secrets Manager with automatic rotation configured replaces the flat configuration file that has no rotation at all. AWS Step Functions coordinates a multi-step workflow as a state machine instead of the custom orchestration and retry code the team would otherwise have to write and maintain, replacing the second self-managed piece. Systems Manager Parameter Store standard parameters store values but do not rotate them automatically, so configuring them to do so is not something the service supports; it does not replace the rotation the team needs. An EventBridge rule invoking a Lambda function on a fixed schedule only triggers the next step at set intervals; it still leaves the team to write and maintain the logic that tracks workflow state and retries failures, rather than replacing that orchestration outright. Secrets Manager with rotation left turned off is the right service for storing the credentials, but without rotation enabled it does not solve the 'no automatic rotation' problem the team has today.",
+  "citationIds": [
+    "cite-saa-2-1-secrets-manager-rotate",
+    "cite-saa-2-1-step-functions-welcome",
+    "cite-saa-2-1-eventbridge-bus"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.1-K02"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager)",
+  "stem": "A logistics company's integration team has two requirements: outside partners must keep uploading shipment manifests over their existing SFTP clients with no new software to install, and the RDS credentials the manifest-processing service uses must rotate automatically on a schedule. Which TWO managed services satisfy these two requirements? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Transfer Family, giving partners a managed SFTP endpoint in front of S3 with no change to their existing client software"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A self-managed SFTP server on an EC2 instance that the team patches and scales itself"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Secrets Manager, rotating the RDS credentials automatically on a schedule"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Systems Manager Parameter Store, holding the RDS credentials as a stored configuration value"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS DataSync, scheduled to move manifest files between the partners' storage and S3 on a recurring basis"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Transfer Family gives partners a fully managed SFTP, FTPS, FTP, or AS2 endpoint in front of S3 or EFS, so they keep their existing file-transfer clients while the team runs no server infrastructure, and AWS Secrets Manager rotates the RDS credentials automatically on a schedule using a rotation function. A self-managed SFTP server on EC2 would work for partners, but it puts patching and scaling back on the team instead of using the managed service built for this. Parameter Store can store the RDS credentials, but it does not rotate them on a schedule the way Secrets Manager does. AWS DataSync moves data between storage systems on a schedule or one-time basis; it is not an interactive SFTP endpoint that partners connect to with their existing clients.",
+  "citationIds": [
+    "cite-saa-2-1-transfer-family-what-is",
+    "cite-saa-2-1-secrets-manager-rotate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

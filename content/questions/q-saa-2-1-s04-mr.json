@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.1-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining when to use containers",
+  "stem": "A platform team is choosing compute for two upcoming workloads: one needs a consistent runtime that behaves identically across dev, test, and production, and the other is a short function triggered only when a file arrives, with nothing the team wants to containerize. Which TWO choices correctly match a workload to its need? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An EC2 instance configuration copied and reapplied by hand across the dev, test, and production environments"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Containers for the workload that needs a consistent runtime across every environment"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "An EC2 Auto Scaling group with a minimum capacity of one instance kept running at all times to handle the file-triggered function"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Lambda for the function triggered when a file arrives"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Fargate running a long-lived container that continuously polls for new files to process"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "b",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Containers package a consistent runtime that behaves the same across dev, test, and production, matching the first workload's requirement directly. Lambda runs short, event-triggered code such as a function that fires when a file arrives, matching the second workload without the team having to build or maintain a container image. Copying and reapplying one EC2 instance's configuration by hand across each environment relies on a manual process that can drift out of sync between environments, rather than packaging one runtime that is guaranteed to behave identically everywhere. An Auto Scaling group kept at a minimum of one instance running at all times is a standing server the team must patch and pay for continuously, which does not fit a short function that only needs to run when a file arrives. AWS Fargate running a long-lived container that polls continuously still requires the team to build and manage a container image, which is exactly what they said they did not want for this short, event-triggered job.",
+  "citationIds": [
+    "cite-saa-2-1-lambda-welcome"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-2.1-K12"
   ],
-  "stem": "A teammate asks how to meet this requirement: Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda). Which action is appropriate?",
+  "stem": "A video-transcoding startup's operations team runs a nightly batch job that must run for up to 40 minutes per invocation, with no EC2 instances to patch or scale.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Lambda, with the function's timeout raised to 40 minutes"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Lambda with provisioned concurrency enabled to keep the function warm for the full 40 minutes"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An EC2 Spot Fleet that the team patches and scales itself"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Serverless technologies and patterns (for example, AWS Fargate, AWS Lambda)"
+      "text": "AWS Fargate, running the transcoding job as a container with no EC2 instances to manage"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Fargate runs a container with a specified CPU and memory for as long as the job needs, without the team provisioning or patching any underlying EC2 instances, which fits a 40-minute batch job with no servers to manage. A Lambda function has a hard maximum execution timeout of 900 seconds (15 minutes) per invocation, so a 40-minute timeout cannot be configured at all. Provisioned concurrency only keeps a function's execution environment warm to reduce cold starts; it does not raise the 15-minute hard ceiling, so the same 40-minute job still cannot run to completion. An EC2 Spot Fleet could run the job for 40 minutes, but the team would be back to patching and scaling instances itself, which the requirement explicitly rules out.",
+  "citationIds": [
+    "cite-saa-2-1-lambda-timeout",
+    "cite-saa-2-1-fargate-compute"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

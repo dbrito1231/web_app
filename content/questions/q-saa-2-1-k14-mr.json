@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.1-K14"
   ],
-  "stem": "Select TWO actions that support this requirement: The orchestration of containers (for example, Amazon ECS, Amazon EKS)",
+  "stem": "A biotech company's platform team wants an AWS-native container orchestrator with no separate Kubernetes-style control plane to run or patch, and it wants to run its tasks without provisioning the underlying EC2 instances. Which TWO choices together satisfy this? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon EKS, since it standardizes on Kubernetes APIs and manifests"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon ECS as the orchestrator, since it has an AWS-native scheduler with no separate control plane to manage"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A self-managed Kubernetes cluster installed on EC2 instances the team controls directly"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Fargate as the launch type, so the team does not provision the underlying EC2 instances"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "ECS tasks running on self-managed EC2 instances that the team provisions and patches"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "b",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon ECS is AWS's own container orchestrator with an AWS-native scheduler and no separate control plane to run or patch, and running its tasks on AWS Fargate removes the EC2 layer entirely, so the team never provisions the underlying instances. Amazon EKS runs a managed Kubernetes control plane, which is a Kubernetes-style control plane the team explicitly does not want to deal with, even though AWS manages it. Running ECS tasks on self-managed EC2 instances still requires the team to provision and patch those instances, which fails the 'no EC2 to provision' half of the requirement. A self-managed Kubernetes cluster on EC2 fails both halves at once: it is a Kubernetes control plane the team runs itself, on EC2 instances the team also provisions and patches.",
+  "citationIds": [
+    "cite-saa-2-1-ecs-welcome",
+    "cite-saa-2-1-fargate-compute"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

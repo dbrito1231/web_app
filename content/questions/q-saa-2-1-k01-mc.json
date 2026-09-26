@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K01"
   ],
-  "stem": "Which action is the right fit for this requirement: API creation and management (for example, Amazon API Gateway, REST API)?",
+  "stem": "A ticket-resale startup's mobile team is building a new backend where a mobile app calls a single Lambda function per request. The team wants the lowest possible latency and cost, built-in OIDC/OAuth 2.0 support, and no need for usage plans or API keys. Which API type should it choose?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An HTTP API, which gives lower latency and cost than a REST API for this Lambda backend, with built-in OIDC/OAuth 2.0"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A REST API with usage plans and API keys configured for the mobile backend"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: API creation and management (for example, Amazon API Gateway, REST API)"
+      "text": "A WebSocket API, which keeps a persistent bidirectional connection open for each mobile client"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A Regional REST API with its integration timeout raised through a service quota request"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An HTTP API is built for exactly this case: a Lambda backend, lower latency and cost than a REST API, and native OIDC/OAuth 2.0 support, with no need for usage plans or API keys. A REST API adds usage plans and API keys, which meter and authorize individual callers; the team has no requirement to meter or key callers here, so that machinery adds cost and complexity without buying anything. A WebSocket API keeps a persistent, bidirectional connection open, which this simple per-request mobile call does not need. Raising a REST API's integration timeout through a service quota request only changes how long API Gateway waits for the backend; it does not lower the latency or cost gap against an HTTP API or add the OIDC/OAuth 2.0 support the team wants.",
+  "citationIds": [
+    "cite-saa-2-1-apigw-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

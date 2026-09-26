@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-S06"
   ],
-  "stem": "Which action is the right fit for this requirement: Recommending appropriate compute, storage, networking, and database technologies based on requirements?",
+  "stem": "A new order-processing service needs several EC2 instances to concurrently mount and write to the same filesystem of generated output files. Which storage choice satisfies this requirement?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An Amazon EBS volume attached to one of the instances"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon EFS, mounted concurrently by every instance that needs the shared files"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Recommending appropriate compute, storage, networking, and database technologies based on requirements"
+      "text": "Amazon S3 accessed through its API from each instance"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Instance store volumes physically attached to each individual instance's host"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EFS is a shared, network-mounted filesystem that many instances can mount concurrently, which is exactly the multi-instance, same-filesystem requirement stated. An EBS volume attaches to a single EC2 instance at a time, so it cannot be the shared, concurrently mounted filesystem multiple instances need. Amazon S3 is accessed through an API rather than mounted as a filesystem, so instances that need actual filesystem semantics for shared output files cannot use it as stated. Instance store volumes are physically attached to one host and are not shared across instances at all, and the data on them is lost whenever that instance stops or terminates, so it fails both the sharing and durability parts of the requirement.",
+  "citationIds": [
+    "cite-saa-2-1-ec2-storage-options"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

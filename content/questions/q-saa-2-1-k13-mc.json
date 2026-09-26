@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K13"
   ],
-  "stem": "A teammate asks how to meet this requirement: Storage types with associated characteristics (for example, object, file, block). Which action is appropriate?",
+  "stem": "A visual-effects studio's rendering team needs 200 render nodes to concurrently read and write the same shared working directory of frame files during a render job.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon EFS, mounted concurrently on every render node as a shared network filesystem"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Enable EBS Multi-Attach on a single io2 volume so it can attach directly to the render nodes"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Instance store volumes on each render node, holding each node's own copy of the frames"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Storage types with associated characteristics (for example, object, file, block)"
+      "text": "An Amazon S3 bucket mounted with a custom FUSE driver so every node can write to it as a POSIX filesystem"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EFS is a shared, network-mounted filesystem that many instances can mount concurrently, which is exactly what 200 render nodes need to read and write the same working directory at once. EBS Multi-Attach lets a single Provisioned IOPS volume attach to more than one instance, but only up to 16 Nitro-based instances in the same Availability Zone, and it requires a cluster-aware filesystem to avoid corruption, so it falls far short of 200 render nodes sharing one working directory the way EFS does. Instance store gives each node its own local, ephemeral block storage that is lost when that instance stops or terminates, and it is not shared between nodes at all, which is the opposite of a common working directory. S3 is accessed through an API rather than a filesystem; bolting on a custom FUSE driver to fake POSIX semantics is not the concurrent, low-latency shared filesystem access this render job needs.",
+  "citationIds": [
+    "cite-saa-2-1-ec2-storage-options"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

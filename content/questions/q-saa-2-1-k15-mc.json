@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K15"
   ],
-  "stem": "An exam scenario centers on: When to use read replicas. Which action matches it?",
+  "stem": "A hotel-booking company's data team needs to offload read-heavy nightly reporting queries from its primary RDS instance so those reports stop competing with live booking writes.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable a Multi-AZ standby for the primary instance and send the reporting queries to it"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: When to use read replicas"
+      "text": "Vertically resize the primary instance so it has enough headroom for both writes and reports"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create a read replica and point the nightly reporting queries at it"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Run the reporting queries against the primary instance, but only during its lowest-traffic hours"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Creating a read replica gives the reporting workload its own asynchronous, read-only copy of the data, which is exactly how a read replica is meant to offload read-heavy traffic from the primary. A Multi-AZ standby replicates synchronously purely for automatic failover and, on a standard RDS instance, is not available to serve read traffic, so it does not solve the offload problem. Vertically resizing the primary instance can add headroom, but it still runs both the writes and the reports on the same instance, so the two workloads keep competing for its resources. Restricting the reports to low-traffic hours reduces contention but does not remove it, and it does not scale if reporting needs to run more often or the low-traffic window shrinks.",
+  "citationIds": [
+    "cite-saa-2-1-rds-read-replicas"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

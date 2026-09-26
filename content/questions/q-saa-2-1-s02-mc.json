@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-S02"
   ],
-  "stem": "A teammate asks how to meet this requirement: Determining scaling strategies for components used in an architecture design. Which action is appropriate?",
+  "stem": "An application's CPU utilization rises and falls throughout the day in rough proportion to its request rate, with no fixed schedule and no known recurring pattern the team can point to. Which Auto Scaling policy should they configure?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Scheduled scaling that changes capacity at fixed times of day"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Target tracking that keeps average CPU utilization at a set value"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Predictive scaling driven by machine learning over historical load"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining scaling strategies for components used in an architecture design"
+      "text": "Step scaling that adjusts capacity in fixed amounts sized to alarm breaches"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Target tracking keeps a chosen metric such as average CPU utilization at a set value and is the recommended default for variable traffic that moves roughly in proportion to load, exactly the pattern described. Scheduled scaling requires a known time to change capacity, but the team has no fixed schedule to act on. Predictive scaling forecasts capacity from a recurring historical pattern, but the team has no known recurring pattern to learn from. Step scaling is built to size its response to how far an alarm has been breached, which suits traffic that spikes in uneven jumps, not utilization that simply rises and falls in proportion to load.",
+  "citationIds": [
+    "cite-saa-2-1-asg-dynamic-scaling"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

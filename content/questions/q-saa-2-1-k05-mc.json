@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K05"
   ],
-  "stem": "The workload needs this outcome: Event-driven architectures. Which action should you take?",
+  "stem": "A parcel-tracking company's engineering team wants its billing service to react immediately whenever a shipment's status changes in DynamoDB, without the billing service repeatedly asking the tracking table whether anything changed.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Event-driven architectures"
+      "text": "Publish a status-change event and use an EventBridge rule to route matching events to the billing service"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create an EventBridge Scheduler schedule that invokes the billing service on a fixed one-minute rate"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Have the billing service call GetItem against the tracking table before every billing transaction to check the current status"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable DynamoDB Streams on the tracking table and have the billing service call GetRecords against the stream on a fixed interval"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Publishing a status-change event and routing it with an EventBridge rule is an event-driven design: the billing service reacts the moment a matching event arrives, with no polling and no knowledge of the tracking table's internals. An EventBridge Scheduler schedule invokes its target at a fixed rate regardless of whether a status actually changed, so it is still time-driven rather than reacting to the real change, and it adds up to a minute of delay after a change happens. Having the billing service call GetItem before every transaction couples it tightly and synchronously to the tracking table instead of reacting to a decoupled event. Enabling DynamoDB Streams captures the change data, but calling GetRecords on a fixed interval still means the billing service is repeatedly asking whether anything new arrived, rather than being invoked automatically when a record does.",
+  "citationIds": [
+    "cite-saa-2-1-eventbridge-bus"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

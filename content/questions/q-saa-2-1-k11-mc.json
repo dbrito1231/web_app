@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K11"
   ],
-  "stem": "In a design review, the requirement is: Queuing and messaging concepts (for example, publish/subscribe). Which action matches it?",
+  "stem": "An order-processing company's payments team needs strict per-customer ordering and exactly-once processing for payment events, at a moderate, predictable message rate.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Queuing and messaging concepts (for example, publish/subscribe)"
+      "text": "An SQS standard queue, accepting that consumers must handle duplicates and out-of-order delivery"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An SNS topic with multiple subscribers, so each subscriber gets its own copy of every payment event"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An SQS FIFO queue, giving exactly-once processing and strict ordering per message group"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An Amazon Kinesis Data Streams stream with the default single consumer reading the shard"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An SQS FIFO queue adds exactly-once processing and strict per-group ordering, which directly satisfies the payment team's requirement, at a throughput level well suited to a moderate, predictable rate. An SQS standard queue gives only best-effort ordering with possible duplicates, which fails the strict-ordering and exactly-once requirements outright. An SNS topic with multiple subscribers is a fan-out pattern for delivering one event to many independent consumers; it has no mechanism for exactly-once, strictly ordered processing of a single event stream. Kinesis Data Streams is built for an ordered, replayable stream read by multiple independent consumers at their own pace, which is a different problem than a moderate-throughput, exactly-once payment queue, and adds operational complexity the requirement does not call for.",
+  "citationIds": [
+    "cite-saa-2-1-sqs-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

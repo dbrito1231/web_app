@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K04"
   ],
-  "stem": "During an architecture review, the goal is: Design principles for microservices (for example, stateless workloads compared with stateful workloads). Which action matches that goal?",
+  "stem": "A ride-hailing company's platform team wants its Application Load Balancer to be able to send the next request from the same rider to any healthy instance in the fleet, with no sticky sessions and no instance holding rider-specific state.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable sticky sessions on the target group so each rider's requests keep going to the same instance"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Design principles for microservices (for example, stateless workloads compared with stateful workloads)"
+      "text": "Keep each rider's session data in the memory of the instance that first handled their request"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Vertically resize the instance that is holding the most active rider sessions"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Externalize rider session state to a shared store such as DynamoDB or ElastiCache"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Externalizing rider session state to a shared store such as DynamoDB or ElastiCache is what makes the service stateless: no single instance holds session data, so the load balancer can freely send any request to any healthy instance. Enabling sticky sessions does the opposite of what the team wants, since it pins a rider to one instance instead of letting any instance serve any request. Keeping session data in an instance's own memory is the same stateful pattern under a different name, and it is lost entirely if that instance is replaced. Vertically resizing the busiest instance does not remove the state that instance holds; it only makes that single point of failure larger, and it does nothing to let other instances serve that rider's requests.",
+  "citationIds": [
+    "cite-saa-2-1-microservices-whitepaper"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

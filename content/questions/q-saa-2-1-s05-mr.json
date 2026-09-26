@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-2.1-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining when to use serverless technologies and patterns",
+  "stem": "A finance workload runs 24 hours a day at high, steady utilization, and a separate reporting job runs for two minutes once a night with no container image the team wants to build for it. Which TWO compute choices correctly match a workload to its need? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "EC2 On-Demand pricing charged hourly for the steady, high-utilization 24-hour workload"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Lambda running the steady, high-utilization 24-hour workload"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "EC2 with Reserved Instance pricing for the steady, high-utilization 24-hour workload"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Fargate running the two-minute nightly job"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Lambda running the two-minute nightly job"
     }
   ],
   "correctAnswerIds": [
     "c",
-    "d"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "EC2 with Reserved Instance pricing suits utilization high and constant enough that a reserved commitment beats per-invocation serverless pricing, matching the steady 24-hour workload. Lambda fits a short, per-invocation job like the two-minute nightly report and needs no container image, matching the stated preference. On-Demand pricing charged hourly for the same steady workload costs more than a Reserved commitment for constant utilization, so it does not fit as well as the Reserved option for that workload. Lambda has a hard maximum execution timeout of 900 seconds per invocation and is billed per invocation, which does not fit a workload that must run continuously for 24 hours. Fargate requires building and managing a container image, which is exactly what the team said it did not want for the short nightly job.",
+  "citationIds": [
+    "cite-saa-2-1-lambda-welcome",
+    "cite-saa-2-1-lambda-timeout"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

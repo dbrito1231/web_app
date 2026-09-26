@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-S07"
   ],
-  "stem": "Pick the action that satisfies: Using purpose-built AWS services for workloads.",
+  "stem": "External partners need to upload files over SFTP using their existing SFTP clients, and the team wants to avoid installing, patching, or operating any SFTP server software itself. Which service should the architect choose?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A self-managed SFTP server running on an EC2 instance the team maintains"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon EFS mounted directly by each partner over the internet"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Transfer Family providing a managed SFTP endpoint in front of Amazon S3"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Using purpose-built AWS services for workloads"
+      "text": "Amazon S3 presigned URLs that the team generates individually and emails to each partner ahead of every upload"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Transfer Family is a fully managed SFTP, FTPS, FTP, or AS2 endpoint in front of S3 or EFS, so partners keep using their existing SFTP clients while the team runs no server infrastructure, matching the requirement exactly. A self-managed SFTP server on EC2 is precisely the server software the team said it wants to avoid installing, patching, and operating. Presigned URLs generated and emailed manually do not give partners an SFTP endpoint at all, and the manual distribution process does not match how the partners currently connect. Amazon EFS mounted directly by external partners over the internet is not how partners currently connect (over SFTP) and exposes a network filesystem to outside parties rather than a managed transfer endpoint.",
+  "citationIds": [
+    "cite-saa-2-1-transfer-family-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K06"
   ],
-  "stem": "Which action is the right fit for this requirement: Horizontal scaling and vertical scaling?",
+  "stem": "A subscription-box retailer's web team runs a stateless web tier and must add capacity during flash sales with no downtime and no ceiling imposed by a single instance's size.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Update the launch template to a larger instance type and run an instance refresh across the fleet before the sale"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add more instances behind the load balancer through Auto Scaling as demand rises"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Horizontal scaling and vertical scaling"
+      "text": "Increase the Auto Scaling group's maximum capacity, without attaching a scaling policy that would launch new instances as demand rises"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Consolidate the fleet onto fewer, larger instances to simplify operations before the sale"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Adding more instances behind the load balancer through Auto Scaling is horizontal scaling: it can happen with no downtime and, because the tier is stateless, has no real ceiling from any single instance's size. Updating the launch template to a larger instance type and running an instance refresh is vertical scaling by replacement: each instance is still stopped and replaced in turn, which is a rolling form of the same brief-outage-per-instance tradeoff, and the fleet is still capped at whatever the new instance type's ceiling is. Raising the Auto Scaling group's maximum capacity without a scaling policy attached does not actually add instances when demand rises; the group has room to grow but nothing tells it to, so capacity stays flat exactly when the flash sale needs it most. Consolidating onto fewer, larger instances reduces the fleet's elasticity and reintroduces the same per-instance ceiling the team is trying to avoid during a demand spike.",
+  "citationIds": [
+    "cite-saa-2-1-asg-dynamic-scaling"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

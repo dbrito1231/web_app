@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K02"
   ],
-  "stem": "Pick the action that satisfies: AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager).",
+  "stem": "A payments processor's backend team stores a database password that compliance requires to rotate automatically on a fixed schedule, with the rotation Lambda updating both the secret and the database together, without a maintenance window.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Store the password as an AWS Systems Manager Parameter Store SecureString parameter"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Store the password in AWS Secrets Manager with automatic rotation configured"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Store the password in AWS Secrets Manager, but leave automatic rotation turned off and update it from the console when needed"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS managed services with appropriate use cases (for example, AWS Transfer Family, Amazon SQS, AWS Secrets Manager)"
+      "text": "Store the password as an AWS AppConfig configuration profile and deploy updates to it through AppConfig"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Secrets Manager is built to rotate a stored secret automatically on a schedule, using a rotation function that updates the secret and the backing database together, which is exactly the compliance requirement here. Parameter Store can hold the same value as a SecureString parameter, but it has no built-in scheduled rotation, so the password would still need a separate process to change. Storing the password in Secrets Manager but leaving rotation turned off drops the one requirement that matters most: nothing changes the password automatically, so it is no different from a value that never rotates. AWS AppConfig deploys configuration and feature-flag data to an application on a schedule the team controls; it has no credential-rotation capability and does not update a database's password as part of a deployment.",
+  "citationIds": [
+    "cite-saa-2-1-secrets-manager-rotate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

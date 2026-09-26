@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-2.1-S03"
   ],
-  "stem": "Pick the action that satisfies: Determining the AWS services required to achieve loose coupling based on requirements.",
+  "stem": "A payment service currently calls a fraud-check service directly and waits for its response before completing a transaction. When the fraud-check service is slow, the payment service also becomes slow, and when it is unavailable, payments fail outright. Which change achieves loose coupling between the two?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Place two fraud-check service instances behind an Application Load Balancer that the payment service calls directly for every transaction"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Package the payment and fraud-check logic as two containers within the same ECS task definition"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Insert a queue between the payment service and the fraud-check service"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining the AWS services required to achieve loose coupling based on requirements"
+      "text": "Add automatic retries to the payment service's existing direct synchronous call to the fraud-check service, so failures are retried automatically until they succeed or time out"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Inserting a queue between the two services buffers work between a producer and a consumer that runs at a different pace, so the payment service can hand off a request and continue without depending on the fraud-check service being immediately available or fast. Placing two fraud-check instances behind an Application Load Balancer improves the fraud-check service's own availability, but the payment service is still calling that load balancer directly and synchronously for every transaction, so a slowdown or a simultaneous outage of both instances still stalls or fails the payment. Packaging both services as containers in the same ECS task definition ties their lifecycles together in one task rather than decoupling them: if the task is replaced or one container fails, both are affected together, and the call between them is still direct. Adding retries to a direct synchronous call still leaves the payment service waiting on the fraud-check service's response, so an unavailable fraud-check service still blocks or fails the payment.",
+  "citationIds": [
+    "cite-saa-2-1-sqs-types",
+    "cite-saa-2-1-alb-elb",
+    "cite-saa-2-1-ecs-welcome"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

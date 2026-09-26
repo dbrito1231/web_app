@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K07"
   ],
-  "stem": "The workload needs this outcome: How to appropriately use edge accelerators (for example, content delivery network [CDN]). Which action should you take?",
+  "stem": "A multiplayer game studio's network team runs a UDP-based matchmaking service and needs static IP addresses with fast failover to the healthiest regional endpoint; the traffic cannot be cached.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: How to appropriately use edge accelerators (for example, content delivery network [CDN])"
+      "text": "Amazon CloudFront, configured to cache the matchmaking traffic at edge locations"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Route 53 latency-based routing alone, relying on DNS TTL expiry for failover"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Global Accelerator, using static anycast IP addresses and health-based routing to the healthiest endpoint"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An API Gateway stage cache placed in front of the matchmaking service"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Global Accelerator uses static anycast IP addresses and the AWS global network to route TCP/UDP traffic, including non-cacheable and non-HTTP workloads, to the healthiest endpoint, which is exactly what this UDP matchmaking service needs. CloudFront caches HTTP(S) content at the edge; it has no role for non-cacheable UDP traffic. Route 53 latency-based routing on its own depends on clients honoring DNS TTLs, so failover is only as fast as those TTLs expire and re-resolve, which is slower than Global Accelerator's health-based routing over static IPs. An API Gateway stage cache only caches HTTP API responses for a stage; it has nothing to do with routing raw UDP traffic to a healthy endpoint.",
+  "citationIds": [
+    "cite-saa-2-1-k-global-accelerator"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

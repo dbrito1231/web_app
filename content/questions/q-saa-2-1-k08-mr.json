@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-2.1-K08"
   ],
-  "stem": "Select TWO actions that support this requirement: How to migrate applications into containers",
+  "stem": "A financial-services team is containerizing an existing .NET application with AWS App2Container instead of a source rewrite. Which TWO outcomes does the tool provide? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "It analyzes the running application's runtime and dependencies without requiring source code changes"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "It rewrites the application's source code into a set of independent microservices"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "It requires the team to hand-write the container's Dockerfile from scratch before packaging the image"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "It automatically provisions and configures a new EKS cluster with no further input from the team"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "It generates deployment artifacts such as an ECS task definition or an EKS Kubernetes manifest"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "a",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS App2Container analyzes an application already running on a server, identifying its runtime and dependencies, and it generates deployment artifacts such as an ECS task definition, an EKS Kubernetes manifest, or an App Runner configuration, all without requiring source code changes. It does not rewrite the application's source code into microservices; it packages the existing application as-is. It also does not require the team to hand-write a Dockerfile, since building the container image is part of what the tool automates. Finally, it generates deployment artifacts for the team to use, but it does not itself provision and configure a running EKS cluster with no further input.",
+  "citationIds": [
+    "cite-saa-2-1-app2container"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

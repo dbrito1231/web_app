@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-2.1-K09"
   ],
-  "stem": "A teammate asks how to meet this requirement: Load balancing concepts (for example, Application Load Balancer [ALB]). Which action is appropriate?",
+  "stem": "An ad-tech company's platform team needs one load balancer that routes HTTP requests to different target groups based on the URL path of each request.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An Application Load Balancer, using path-based routing rules to send requests to the matching target group"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A Network Load Balancer, since it offers the lowest possible latency for the traffic"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A Gateway Load Balancer, placed in front of a third-party inspection appliance"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Load balancing concepts (for example, Application Load Balancer [ALB])"
+      "text": "Amazon Route 53 weighted routing records pointing at each target group's own endpoint"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An Application Load Balancer operates at the application layer and supports path- and host-based routing, so it can inspect the URL path of an HTTP request and send it to the matching target group, which is exactly this requirement. A Network Load Balancer operates at the connection level and has no concept of an HTTP URL path to route on, even though it offers very low latency for raw TCP/UDP traffic. A Gateway Load Balancer exists to transparently pass traffic through third-party virtual appliances such as firewalls; it is not designed to route application requests by path. Route 53 weighted routing distributes DNS answers across endpoints by weight; it operates before a connection is even made and cannot inspect an HTTP request's URL path the way an ALB rule can.",
+  "citationIds": [
+    "cite-saa-2-1-alb-elb"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
