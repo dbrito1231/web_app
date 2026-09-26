@@ -150,3 +150,58 @@ All numbers below were re-verified against current AWS documentation fetched tod
 - `content/citations/cite-saa-2-1-lambda-timeout.json` (new)
 - `content/citations/cite-saa-2-1-apigw-rest-quotas.json` (new)
 - `content/citations/cite-saa-2-1-apigw-http-quotas.json` (new)
+
+## Additions for task 2.1 questions
+
+The rewritten task 2.1 question files use several distractor services/behaviors that lesson 2.1 did not yet teach. One or two doc-verified sentences were added to the named section for each, next to the related text. All source pages were fetched today (2026-09-26) via the AWS Documentation MCP (`search_documentation` / `read_documentation`).
+
+1. **K02** — added after the Secrets Manager sentence: "**AWS AppConfig** deploys configuration and feature-flag data to an application through a controlled, gradual rollout with monitoring and automatic rollback; it does not rotate credentials the way Secrets Manager does."
+   - Doc: `https://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html` — confirmed AppConfig's use cases (feature flags/toggles, application tuning) and safety features (deployment strategies for gradual rollout, monitoring + automatic rollback); the page has no credential-rotation feature.
+   - Citation: `content/citations/cite-saa-2-1-appconfig-overview.json`.
+
+2. **K05** — added at the end of the EventBridge paragraph: "**Amazon EventBridge Scheduler** runs a one-time or recurring invocation of a target on a schedule you define — it is time-driven, unlike a rule, which reacts to a matching event."
+   - Doc: `https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html` — confirmed the three schedule types (rate-based, cron-based, one-time), all of which invoke a target on a schedule rather than in reaction to an event.
+   - Citation: `content/citations/cite-saa-2-1-eventbridge-scheduler-types.json`.
+
+3. **K08** — added after the App2Container paragraph: "**AWS Copilot** instead deploys an application that is already containerized — built from a Dockerfile or an existing image — onto Amazon ECS or Fargate; it does not analyze or containerize a running server the way App2Container does. **AWS Application Migration Service (MGN)** rehosts a server onto EC2 largely as-is, using continuous block-level replication, and produces no container image at all." Also extended the exam tip.
+   - Docs: `https://docs.aws.amazon.com/AmazonECS/latest/developerguide/copilot-deploy.html` (Copilot deploys from a `--dockerfile` flag against an existing Dockerfile, to ECS/Fargate) and `https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html` (MGN does continuous block-level replication and converts servers "for launch on AWS," no container step).
+   - Citations: `content/citations/cite-saa-2-1-copilot-cli.json`, `content/citations/cite-saa-2-1-mgn-overview.json`.
+   - **Flags for the Lead Dev / Teacher:** (a) the Copilot page now carries an End-of-Support notice — the AWS Copilot CLI reaches end-of-support **June 12, 2026**, which is before today's access date (2026-09-26); no new features, security patches, or support after that date, though existing deployments keep working. Worth deciding whether task 2.1's distractor should still lean on Copilot given it's now unsupported. (b) the MGN doc page has been rebranded to "AWS Transform MGN" in the docs; the lesson keeps the SAA-C03 exam-guide name "AWS Application Migration Service (MGN)" since that's the term the exam uses, but flagging the rename in case a future content pass wants to add it as a synonym.
+
+4. **K09** — added after the Gateway Load Balancer sentence: "A **Classic Load Balancer** is a previous-generation load balancer that cannot route by URL path; use an ALB when path-based routing is required."
+   - Doc: `https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html` — confirmed Classic Load Balancer is "the previous generation of load balancers" and its listed benefits (TCP/SSL listeners, application-cookie sticky sessions) do not include path-based routing.
+   - Citation: `content/citations/cite-saa-2-1-classic-lb-intro.json`.
+
+5. **K13** — added after the file storage sentence: "**EBS Multi-Attach** lets a single Provisioned IOPS (io1/io2) volume attach to up to 16 Nitro-based instances in the same Availability Zone, but it needs a cluster-aware file system on top and is not a general-purpose shared file system like EFS."
+   - Doc: `https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html` — confirmed "up to 16 instances built on the Nitro System that are in the same Availability Zone" and "Standard file systems, such as XFS and EXT4, are not designed to be accessed simultaneously by multiple servers... You should use a clustered file system."
+   - Citation: `content/citations/cite-saa-2-1-ebs-multi-attach.json`.
+
+6. **K16** — added after the Standard/Express paragraph: "An **SQS** queue is not a workflow engine: it retains a message for at most 14 days and keeps no execution history, while a Standard Step Functions workflow can run for up to a year with full history for every execution."
+   - Reused the existing `cite-saa-2-1-sqs-quotas-messages` citation for the 14-day retention figure (already verified in the Amendment-3 pass above); the Standard-workflow figures (one year, full history) were already in the lesson body and its existing `cite-saa-2-1-step-functions-welcome` citation. No new citation needed for this item.
+
+### Post-addition verification
+
+- `bodyMarkdown`: 0 single-asterisk spans (regex-checked), only `**bold**` and backticks, `###`/`####` headings and `- ` bullets only.
+- Word count: 3,597 (up from 3,350; six additions, one to two sentences each, plus small exam-tip extensions).
+- `drillIds`: unchanged, still 35 (checked programmatically: `len(data['drillIds']) == 35`; only `citationIds` and `bodyMarkdown` were edited).
+- All 6 new `citationIds` entries resolve to files in `content/citations/`; all pre-existing citations still resolve (34 total).
+- File written with `json.load` / `json.dumps(data, indent=2, ensure_ascii=True) + "\n"`, UTF-8 text mode, via `backend\.venv\Scripts\python.exe`.
+- `python scripts\content_lint.py` → PASS (429 questions, 21+21 labs, 23 lessons).
+- No question files, git commands, or servers were touched, per task scope.
+
+### Files touched (this pass)
+
+- `content/lessons/lesson-2-1.json` (bodyMarkdown: K02, K05, K08, K09, K13, K16 sections; citationIds appended)
+- `content/citations/cite-saa-2-1-appconfig-overview.json` (new)
+- `content/citations/cite-saa-2-1-eventbridge-scheduler-types.json` (new)
+- `content/citations/cite-saa-2-1-copilot-cli.json` (new)
+- `content/citations/cite-saa-2-1-mgn-overview.json` (new)
+- `content/citations/cite-saa-2-1-classic-lb-intro.json` (new)
+- `content/citations/cite-saa-2-1-ebs-multi-attach.json` (new)
+
+### Lead Dev follow-up to the additions
+
+- The additions agent reported that the AWS Copilot CLI reached end of support on 2026-06-12. Retired tools are banned, so the Copilot sentence was removed from K08 and `cite-saa-2-1-copilot-cli` was deleted.
+- `q-saa-2-1-k08-mc` choice a is now "Deploy the application to Amazon EKS using a Kubernetes manifest the team writes". The rationale was updated to match, and it gained the missing Lambda-rewrite sentence and lost its stale "leaving it on EC2" sentence.
+- MGN keeps its exam-guide name. The docs now brand it "AWS Transform MGN"; this is noted for a later pass.
+- The new citations were linked to the questions that use those services (see below).

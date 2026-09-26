@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use AWS Copilot to deploy the application to ECS from a Dockerfile the team writes based on the existing server's dependencies"
+      "text": "Deploy the application to Amazon EKS using a Kubernetes manifest the team writes"
     },
     {
       "id": "b",
@@ -29,9 +29,10 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "AWS App2Container analyzes an application already running on a server, identifies its runtime and dependencies, packages it into a container image, and generates the ECS task definition, all without requiring source code changes, which is exactly the lift-and-shift the team wants. AWS Copilot deploys and operates a containerized application on ECS or Fargate, but it still expects the team to supply a Dockerfile or existing container image; it does not analyze the running server and discover its dependencies the way App2Container does, so the team is back to writing the Dockerfile itself. AWS Application Migration Service rehosts a server onto a new EC2 instance as a lift-and-shift migration, but it does not produce a container image or an ECS task definition, so the application ends up on EC2, not in a container. Leaving the application running unchanged on EC2 does not containerize anything at all, so it does not meet the stated goal either.",
+  "rationale": "AWS App2Container analyzes an application already running on a server, identifies its runtime and dependencies, packages it into a container image, and generates the ECS task definition, all without requiring source code changes, which is exactly the lift-and-shift the team wants. Amazon EKS runs Kubernetes, not the Amazon ECS target the team chose, and a hand-written manifest still needs a container image that nothing in this option builds from the running server. AWS Application Migration Service rehosts a server onto a new EC2 instance as a lift-and-shift migration, but it does not produce a container image or an ECS task definition, so the application ends up on EC2, not in a container. Rewriting the application as a set of Lambda functions changes its source code, which the team explicitly wants to avoid, and does not put it into ECS containers.",
   "citationIds": [
-    "cite-saa-2-1-app2container"
+    "cite-saa-2-1-app2container",
+    "cite-saa-2-1-mgn-overview"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

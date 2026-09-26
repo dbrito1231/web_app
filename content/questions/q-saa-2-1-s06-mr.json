@@ -37,7 +37,8 @@
   "rationale": "AWS Lambda runs code on demand in response to an event and bills only for compute time consumed, matching the short, event-triggered function requirement. An Application Load Balancer supports path-based routing across a target group, matching the URL-path routing requirement directly. An Auto Scaling group kept at a minimum of one instance running at all times is a standing server the team pays for and patches continuously, rather than compute that runs only when the event occurs. A Classic Load Balancer can distribute requests round-robin across instances, but it does not evaluate the request's URL path the way the routing requirement calls for. An EC2 instance running a script that checks once a minute is polling on an interval rather than reacting immediately to the event, and it still requires the team to operate and patch that instance.",
   "citationIds": [
     "cite-saa-2-1-lambda-welcome",
-    "cite-saa-2-1-alb-elb"
+    "cite-saa-2-1-alb-elb",
+    "cite-saa-2-1-classic-lb-intro"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

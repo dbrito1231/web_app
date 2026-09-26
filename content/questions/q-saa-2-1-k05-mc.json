@@ -31,7 +31,8 @@
   ],
   "rationale": "Publishing a status-change event and routing it with an EventBridge rule is an event-driven design: the billing service reacts the moment a matching event arrives, with no polling and no knowledge of the tracking table's internals. An EventBridge Scheduler schedule invokes its target at a fixed rate regardless of whether a status actually changed, so it is still time-driven rather than reacting to the real change, and it adds up to a minute of delay after a change happens. Having the billing service call GetItem before every transaction couples it tightly and synchronously to the tracking table instead of reacting to a decoupled event. Enabling DynamoDB Streams captures the change data, but calling GetRecords on a fixed interval still means the billing service is repeatedly asking whether anything new arrived, rather than being invoked automatically when a record does.",
   "citationIds": [
-    "cite-saa-2-1-eventbridge-bus"
+    "cite-saa-2-1-eventbridge-bus",
+    "cite-saa-2-1-eventbridge-scheduler-types"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

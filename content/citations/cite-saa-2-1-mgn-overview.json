@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-2-1-mgn-overview",
+  "title": "What Is AWS Transform MGN?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 2.1 addition for task 2.1 questions (K08, distractor for q-saa-2-1-k08-mc/mr): fetched from docs.aws.amazon.com and confirmed the service (still commonly called AWS Application Migration Service / MGN, matching the SAA-C03 exam guide) rehosts physical, virtual, and cloud servers onto AWS via continuous block-level replication, converting them for launch on AWS with minimal downtime and no container image produced. Flag: the page has been rebranded in the console/docs to \"AWS Transform MGN\"; the lesson keeps the exam-guide name \"AWS Application Migration Service (MGN)\" since that is the term SAA-C03 uses, but a maintainer may want to add the new name as a synonym."
+}
