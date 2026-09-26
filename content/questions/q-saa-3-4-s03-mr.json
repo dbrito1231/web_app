@@ -6,12 +6,12 @@
   "objectiveIds": [
     "SAA-3.4-S03"
   ],
-  "stem": "A company's data tier has to stay unreachable from the internet regardless of how the tier grows, and its metro-area gaming audience needs compute placed closer than the parent Region can reach. Select TWO actions that meet these two requirements. (Select TWO.)",
+  "stem": "A three-tier application's NAT gateway needs to sit somewhere it can actually reach the internet so the private tiers behind it get outbound access, and a metro-area gaming audience needs compute placed closer than the parent Region can reach. Select TWO placements that meet these two requirements. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Place the data tier in public subnets and add security group rules that deny all inbound internet traffic"
+      "text": "Place the NAT gateway in a public subnet with a route to an internet gateway"
     },
     {
       "id": "b",
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Place the data tier in private subnets across multiple Availability Zones with no route table entry to an internet gateway"
+      "text": "Place the NAT gateway in the same private subnet as the tiers it serves"
     },
     {
       "id": "d",
@@ -31,12 +31,12 @@
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "a",
     "e"
   ],
-  "rationale": "Private subnets with no internet gateway route in their route tables keep the data tier unreachable from the internet no matter how many subnets the tier grows into. A Local Zone extends the parent Region to a location closer to a metro-area audience, which fits a general gaming audience with no stated carrier-network requirement. Public subnets still carry a route to an internet gateway, so security group rules alone do not make the tier unreachable. A Wavelength Zone is built for workloads embedded inside a telecom carrier's own network; nothing in the scenario ties the gaming audience to a specific carrier's 5G network, so a Local Zone fits better. Direct Connect links an on-premises network to AWS; it is not a way to reach a general public gaming audience.",
+  "rationale": "A NAT gateway only has somewhere to send internet-bound traffic if it sits in a public subnet with its own route to an internet gateway; that placement is what lets it forward the private tiers' outbound connections. A Local Zone extends the parent Region to a location closer to a metro-area audience, which fits a general gaming audience with no stated carrier-network requirement. Placing the NAT gateway in the same private subnet as the tiers it serves leaves it without a route to an internet gateway itself, so it has no internet path to forward traffic to. A Wavelength Zone is built for workloads embedded inside a telecom carrier's own network; nothing in the scenario ties the gaming audience to a specific carrier's 5G network, so a Local Zone fits better. Direct Connect links an on-premises network to AWS; it is not a way to reach a general public gaming audience.",
   "citationIds": [
-    "cite-saa-3-4-vpc-cidr-blocks",
+    "cite-saa-3-4-route-tables",
     "cite-saa-3-4-local-zones",
     "cite-saa-3-4-wavelength"
   ],

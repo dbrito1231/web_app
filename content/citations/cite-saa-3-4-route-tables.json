@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-4-route-tables",
+  "title": "Example routing options",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/route-table-options.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.4 K02/S01/S03: confirms a subnet becomes public only by adding a route table entry to an internet gateway, and that a NAT gateway or NAT instance for a private subnet's outbound traffic must sit in a public subnet."
+}

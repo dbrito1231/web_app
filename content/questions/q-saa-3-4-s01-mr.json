@@ -36,7 +36,7 @@
   ],
   "rationale": "A Site-to-Site VPN configured as a backup path takes over automatically if the Direct Connect connection fails, giving the on-premises link its resiliency. CloudFront or Global Accelerator gives global users a nearby AWS entry point, which is exactly what the second requirement asks for. VPC peering connects two VPCs' networks to each other; it has no mechanism to connect to an on-premises data center. Transit Gateway peering connects two Transit Gateways, typically across Regions, and has nothing to do with failing over an on-premises connection. A NAT gateway provides outbound internet access for private subnets; it does not bring inbound global user traffic in through a nearby edge location.",
   "citationIds": [
-    "cite-saa-3-4-vpn-tunnel-bandwidth",
+    "cite-saa-3-4-vpn-dx-backup",
     "cite-saa-3-4-global-accelerator-how-it-works"
   ],
   "reviewedOn": "2026-09-26",

@@ -82,6 +82,19 @@ Each row is one confusable pair taught in Lesson 3.4 (or its 2.1/3.2 callbacks).
 
 No distractor invokes a retired or closed service (Copilot, Snow Family, FSx File Gateway, QLDB, etc.) — confirmed by the `RETIRED` regex check built into the writing script (zero matches) and by `q1_batch_check.py`'s own retired-service scan producing no WARNs.
 
+## AWS round-2 fixes
+
+- **AWS-Q34-001** (duplicate fact, `s01-mc` vs `s03-mr`) — reworked `q-saa-3-4-s03-mr` so it no longer tests the "route table, not security group, determines internet reachability" fact already covered by `s01-mc`. The private-subnet/public-subnet+security-group pair was dropped entirely; the question now pairs the (unchanged) Local-Zone-vs-Wavelength placement choice with a new NAT-gateway-placement pair, a different S03 resource-placement fact.
+  - Old stem: "A company's data tier has to stay unreachable from the internet regardless of how the tier grows, and its metro-area gaming audience needs compute placed closer than the parent Region can reach..." with choices `a` (public subnet + SG deny), `c` (private subnet, no IGW route — **key**), `e` (Local Zone — **key**), `b` (Wavelength), `d` (Direct Connect for users).
+  - New stem: "A three-tier application's NAT gateway needs to sit somewhere it can actually reach the internet so the private tiers behind it get outbound access, and a metro-area gaming audience needs compute placed closer than the parent Region can reach..." with choices `a` (NAT gateway in a public subnet with an IGW route — **key**), `e` (Local Zone — **key**, unchanged), `b` (Wavelength, unchanged), `d` (Direct Connect for users, unchanged), `c` (NAT gateway in the same private subnet as the tiers it serves — new distractor).
+  - `correctAnswerIds` changed from `["c", "e"]` to `["a", "e"]`.
+- **AWS-Q34-002** (citation mismatch) — added `content/citations/cite-saa-3-4-route-tables.json` (https://docs.aws.amazon.com/vpc/latest/userguide/route-table-options.html, "Routing to an internet gateway" / "Routing to a NAT device" sections) and added it to `lesson-3-4.json`'s `citationIds`. Swapped it in for `cite-saa-3-4-vpc-cidr-blocks` on `q-saa-3-4-s01-mc` (old: `["cite-saa-3-4-vpc-cidr-blocks"]` → new: `["cite-saa-3-4-route-tables"]`) and used it as the lead citation on the reworked `q-saa-3-4-s03-mr` (old: `["cite-saa-3-4-vpc-cidr-blocks", "cite-saa-3-4-local-zones", "cite-saa-3-4-wavelength"]` → new: `["cite-saa-3-4-route-tables", "cite-saa-3-4-local-zones", "cite-saa-3-4-wavelength"]`).
+- **AWS-Q34-003** (weak citation) — added `content/citations/cite-saa-3-4-vpn-dx-backup.json` (https://docs.aws.amazon.com/reference-architecture-diagrams/latest/hybrid-connectivity-transit-gateway/hybrid-dx-primary-vpn-backup.html, "Having a VPN connection as backup line allows you to achieve high availability in the hybrid setup") and added it to `lesson-3-4.json`'s `citationIds`. Swapped it in for `cite-saa-3-4-vpn-tunnel-bandwidth` on `q-saa-3-4-s01-mr` (old: `["cite-saa-3-4-vpn-tunnel-bandwidth", "cite-saa-3-4-global-accelerator-how-it-works"]` → new: `["cite-saa-3-4-vpn-dx-backup", "cite-saa-3-4-global-accelerator-how-it-works"]`).
+
+Re-ran both checks after all three fixes:
+- `q1_batch_check.py 3-4`: `RESULT: PASS` (MC key positions unchanged `{'a': 2, 'b': 2, 'c': 2, 'd': 2}`; MR key slots now `{'a': 2, 'b': 3, 'c': 1, 'd': 2, 'e': 2}`, still touching all five letters; no new duplicate openings; longest-is-key still 0/8).
+- `content_lint.py`: `PASS` (`questions 429 aws 310 tf 119`, `labs 21 + 21`, `lessons 23`).
+
 ## Notes for reviewers
 
 - All 13 `objectiveIds`, `type`, `module`, and `selectCount` values were left unchanged from the placeholder files, as required.
