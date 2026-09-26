@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/fsx/latest/OpenZFSGuide/what-is-fsx.html",
   "accessed": "2026-09-26",
-  "note": "Lesson 3.1, K02: confirms FSx for OpenZFS exposes ZFS snapshot and cloning features over NFS with an in-memory read cache capable of over 1,000,000 IOPS at sub-millisecond latency."
+  "note": "Lesson 3.1, K02: confirms FSx for OpenZFS exposes ZFS snapshot and cloning features over NFS with an in-memory read cache capable of up to 2,000,000 IOPS at latencies of a few hundred microseconds."
 }

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-ebs-single-az",
+  "title": "Features and benefits of Amazon EBS volumes (data availability)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/ebs/latest/userguide/EBSFeatures.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K03: confirms every EBS volume is automatically replicated within, and can only attach to instances in, a single Availability Zone \u2014 true of all six volume types, not just io2 Block Express."
+}

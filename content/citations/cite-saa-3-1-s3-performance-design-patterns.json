@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-design-patterns.html",
   "accessed": "2026-09-26",
-  "note": "Lesson 3.1, S01: confirms S3 scales request rate per key prefix, so spreading a high-request-rate workload across more prefixes increases achievable aggregate throughput."
+  "note": "Lesson 3.1, S01: confirms S3 scales request rate per key prefix, so spreading a high-request-rate workload across more prefixes increases achievable aggregate throughput, and gives the baseline of at least 3,500 PUT/COPY/POST/DELETE and 5,500 GET/HEAD requests per second per prefix."
 }

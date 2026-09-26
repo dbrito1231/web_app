@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-fsx-lustre-data-repo-associations",
+  "title": "Overview of data repositories (Amazon FSx for Lustre)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/fsx/latest/LustreGuide/overview-dra-data-repo.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K02: confirms linking FSx for Lustre to S3 uses a data repository association, and that data repository associations are not available on Scratch 1 (or 2.10) file systems \u2014 only on Persistent and Scratch 2 deployments."
+}

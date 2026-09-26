@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-1-snowball-edge-overview",
+  "title": "What is Snowball Edge?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.1, K01: confirms what Snowball Edge physically was \u2014 a rugged, on-board storage-and-compute device that transported data via a regional carrier rather than the internet \u2014 alongside the same page's current end-of-availability notice."
+}
