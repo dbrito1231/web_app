@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-2.2-S07"
   ],
-  "stem": "A legacy application whose source code cannot be modified runs on a fleet of four EC2 instances in one Region behind a single DNS name. A solutions architect must add automated, health-checked failover that stops sending requests to any unhealthy instance within seconds, without waiting on DNS changes to propagate to clients. Which addition meets this?",
+  "stem": "A legacy application whose source code cannot be modified runs on a fleet of four EC2 instances in one Region behind a single DNS name. A solutions architect must add automated, health-checked failover that stops sending requests to any unhealthy instance without depending on DNS changes reaching clients. Which addition meets this?",
   "selectCount": 1,
   "choices": [
     {
