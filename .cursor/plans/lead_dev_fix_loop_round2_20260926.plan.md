@@ -325,6 +325,55 @@ The Teacher re-validates the finished lab changes (AGENTS.md "after implementati
 
 The freeze and reopen rules apply as before.
 
+## Amendment 3 (2026-09-26): full lesson-first rewrite, O9, closures
+
+**Your decisions (2026-09-26):**
+1. **Run the lesson-first rewrite until it's done.** That covers 21 lessons (SAA 1.2–4.4, TF g1–g8) and 408 questions. Stop only for:
+   - a reviewer disagreement;
+   - a reviewer concern Lead Dev can't resolve within the approved rules;
+   - usage limits.
+2. **Do O9:** lab sidecar-file templates, and lab-specific s12–s15 steps.
+3. **Deferred by your choice:** D6 (dated pricing and design-exercise templates) and the small screen items (N9 exam card layout, in-lesson section links). They stay open in the register.
+4. **Won't-fix accepted:** PY-R5-001, PY-R5-002 and PY-R5-003. These scanner bypasses need deliberate obfuscation, and the labs are also reviewed directly by AWS and Student.
+
+**Subagent rules:** every subagent runs Sonnet 5, with at most 3 running at once. Only Lead Dev (the main session) uses Opus.
+
+**Pipeline, per exam task, in the order of the progress tracker (`reports/fix-loop-r2/q1/progress.md`):**
+1. **Lesson writer.** Rewrite `bodyMarkdown` so it teaches every objective bullet of the task (`content/objectives/*.json`) and every concept the task's current questions touch.
+   - Check facts with WebFetch against official docs: docs.aws.amazon.com, or developer.hashicorp.com for Terraform.
+   - Add `citationIds`.
+   - Use only the markdown subset: `###`/`####` headings, `- ` bullets, `**bold**` and backticks.
+   - Aim for about 1,200–2,500 words, with an exam tip per objective.
+2. **Lesson review.** Teacher and AWS review the lesson; for TF lessons the Teacher uses HashiCorp docs. Fixes repeat until both approve.
+3. **Question writer.** Tasks with more than 25 questions are split between two writers on disjoint files. Pilot rules apply:
+   - realistic scenario stems, with no two sharing a 6-word opening;
+   - real, plausible distractors, each wrong for one stated requirement;
+   - no distractor type used in more than 15% of the task's questions (at most 3 when a task has 19 or fewer);
+   - no made-up or retired features, no cross-references between choices, no letter references;
+   - the right answer is the longest choice in at most 35% of questions, and key positions stay balanced;
+   - each rationale covers the key and every distractor;
+   - every question is cited, with `mcpStatus: verified` and `reviewedOn` set;
+   - IDs, objective IDs and `selectCount` stay unchanged;
+   - the lesson's `drillIds` list every question for the task.
+4. **Question review.**
+   - Teacher: quality, the batch script and teach-before-test.
+   - AWS: keys and facts. For TF tasks, the Teacher checks the Terraform facts against HashiCorp docs and AWS checks only the AWS-provider items.
+   - Student: fairness at least 90% and 100% teach-before-test.
+   - Fixes repeat until all three approve.
+5. **Close.** Restore the DB to its baseline fingerprint, update the register and tracker, and commit.
+
+Tasks overlap when slots are free, e.g. the next lesson is written while the current questions are under review. Files never overlap between agents.
+
+**O9 batches (Sonnet):**
+- **O9-A:** GL-01–GL-10.
+- **O9-B:** GL-11–GL-21.
+
+Each batch:
+- writes every `file://` sidecar inline in the step that needs it, using `[IO.File]::WriteAllText` with UTF-8 without BOM, as in GL-08;
+- makes s12–s15 (cost checkpoint, order the deletes, teardown, bill check) specific to the lab's services and billing model.
+
+AWS and Student review both batches. Teacher checks the wording.
+
 ## Learning content impact
 
 Yes, and it is large. Q1 rewrites most of the SAA and TF question bank, and O6–O9 plus R1, R2 and R6 change labs and lessons. Every content WP needs a Teacher verdict before your approval and again after the fix.
