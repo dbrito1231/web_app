@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "An AWS Backup vault storing recovery points"
+      "text": "Amazon EBS snapshots moved to the snapshot archive tier"
     },
     {
       "id": "e",
@@ -34,10 +34,10 @@
     "b",
     "c"
   ],
-  "rationale": "Amazon EBS volumes stay at their provisioned size until resized, so their capacity increases have to be requested or automated explicitly. Amazon FSx file systems also need capacity increases requested explicitly on most deployment types, matching the pattern in the report. Amazon S3 buckets scale storage capacity automatically with nothing to provision, so they never hit this problem. An AWS Backup vault's storage grows on its own as backups are taken, since AWS Backup manages the underlying recovery-point storage itself, with no capacity for the team to request or resize. Applying a Lifecycle policy to an S3 bucket changes which storage class holds aging objects; it does not change that S3 capacity already scales on its own.",
+  "rationale": "Amazon EBS volumes stay at their provisioned size until resized, so their capacity increases have to be requested or automated explicitly. Amazon FSx file systems also need capacity increases requested explicitly on most deployment types, matching the pattern in the report. Amazon S3 buckets scale storage capacity automatically with nothing to provision, so they never hit this problem. EBS snapshots, including those moved to the archive tier, are stored and billed by the data they hold; there is no snapshot capacity for the team to request or resize. Applying a Lifecycle policy to an S3 bucket changes which storage class holds aging objects; it does not change that S3 capacity already scales on its own.",
   "citationIds": [
     "cite-saa-4-1-ebs-general-purpose",
-    "cite-saa-4-1-backup-plans"
+    "cite-saa-4-1-ebs-snapshot-archive"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

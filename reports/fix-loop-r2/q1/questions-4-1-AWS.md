@@ -74,6 +74,18 @@ No other issues found. No invented prices, no strawmen, no citation mismatches, 
 - `backend\.venv\Scripts\python.exe scripts\content_lint.py`: PASS (questions 429, lessons 23).
 - All 3 of Writer B's new citation files (`cite-saa-4-1-s-multipart-upload`, `cite-saa-4-1-s-batch-operations`, `cite-saa-4-1-s-ebs-elastic-volumes`) exist, and their claims (multipart parallel upload + incomplete-upload billing; Batch Operations for large-scale jobs; Elastic Volumes resize/retype/re-tune live with no downtime) are already taught in lesson 4.1's S01/S02 sections — re-verified the Elastic Volumes claim directly against `ebs-modify-volume.html` ("you can increase the volume size, change the volume type, or adjust the performance... without detaching the volume or restarting the instance").
 
+## Round 2 follow-up
+
+Reviewed commit `4603939` (Writer B's AWS-Q41-001 fix) against `content/questions/q-saa-4-1-s04-mr.json` and `q-saa-4-1-s10-mr.json`.
+
+- **s10-mr, choice c** ("Amazon FSx for Windows File Server for the single-instance database"): correct, real, current service; fails the stated "guaranteed low-latency block access" requirement only (not a duplicate of choice `b`'s FSx-capacity-planning fact); fully taught — K04 names FSx for Windows File Server as one of FSx's engines, K11/S10 establish FSx as file storage requiring provisioning "similarly to EBS," and S10 explicitly separates FSx's SMB/engine use case from "a single-instance database or boot volume needing guaranteed low-latency block access is EBS." No issue.
+- **s04-mr, choice d** ("An AWS Backup vault storing recovery points"): the underlying claim is factually true (a backup vault is a managed logical container for recovery points, not a volume a team sizes or resizes) and it is a real, current AWS resource. However, this specific reasoning — that AWS Backup vault storage needs no capacity request or resize — is **not taught anywhere in lesson 4.1**. K05 covers AWS Backup's incremental-backup model and cold-storage lifecycle, but never states that vault storage is unprovisioned/auto-managed the way K04/K11/S04 state it for S3 and EFS. AWS Backup is also outside objective S04's own example list (S3, EFS, EBS, FSx). This is a teach-before-test gap, not a factual error.
+  - **AWS-Q41-002** (low-moderate, s04-mr choice d / lesson K05): distractor relies on an untaught fact. Fix: add one clause to lesson 4.1's K05 paragraph, doc-supportable as written — "AWS Backup vaults are managed containers for recovery points, with no storage capacity for you to provision or resize" — placed after the existing cold-storage-tier sentence. Once added, this distractor is teach-before-test clean with no change to the question itself.
+
+AWS-Q41-001 (EFS over-represented as a wrong answer): **Gone.** Lead Dev's count of 5/35 (k11-mc, k11-mr, s02-mc, s04-mc, s10-mc) is confirmed correct and at the cap, not over it; k05-mc/k05-mr (EFS Lifecycle Management, a different fact/type) and s02-mr (a false statement tested about EFS itself, not EFS-as-wrong-answer-for-another-service) are correctly excluded from the count.
+
+Task 4.1: not yet
+
 ## Verdict
 
 Task 4.1: not yet
