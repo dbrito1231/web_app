@@ -23,17 +23,18 @@
     },
     {
       "id": "d",
-      "text": "Add more broker nodes to the Kinesis Data Streams cluster"
+      "text": "Register the stream's consumers for enhanced fan-out"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "A partition key with too few distinct values, or one where most traffic lands on a small number of values, creates a hot shard that throttles requests well before the stream's total capacity is exhausted, so a key with more distinct, evenly distributed values spreads the load instead. Increasing the retention period only changes how long records stay available for replay, it does nothing about which shard receives the traffic. Changing the Firehose buffer interval affects how Firehose batches records for delivery downstream, it has no effect on how Kinesis Data Streams routes records to shards. Kinesis Data Streams has shards, not broker nodes; broker nodes are an MSK concept, not a Kinesis Data Streams setting.",
+  "rationale": "A partition key with too few distinct values, or one where most traffic lands on a small number of values, creates a hot shard that throttles requests well before the stream's total capacity is exhausted, so a key with more distinct, evenly distributed values spreads the load instead. Increasing the retention period only changes how long records stay available for replay, it does nothing about which shard receives the traffic. Changing the Firehose buffer interval affects how Firehose batches records for delivery downstream, it has no effect on how Kinesis Data Streams routes records to shards. Enhanced fan-out gives each registered consumer its own dedicated read throughput per shard, but the overload here is on the write side of one shard, so extra read capacity does not spread the incoming records.",
   "citationIds": [
     "cite-saa-3-5-kinesis-shard-limits",
     "cite-saa-3-5-firehose-buffering-hints",
-    "cite-saa-3-5-msk-serverless"
+    "cite-saa-3-5-msk-serverless",
+    "cite-saa-2-1-kinesis-enhanced-fanout"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
