@@ -6,31 +6,37 @@
   "objectiveIds": [
     "SAA-3.5-S03"
   ],
-  "stem": "An exam scenario centers on: Designing data transfer solutions. Which action matches it?",
+  "stem": "A hospital network needs a persistent NFS file share that its on-premises imaging application can keep using every day, backed by S3 with a local cache for recently accessed images, indefinitely.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Run a nightly AWS DataSync task to copy new images into S3"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Designing data transfer solutions"
+      "text": "Stream each image through Amazon Kinesis Data Streams into S3"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy an Amazon S3 File Gateway"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Register the S3 bucket with AWS Lake Formation for the application to mount"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An S3 File Gateway presents a persistent NFS share backed by S3, with a local cache for low-latency access to recently used files, matching an application that keeps using the share every day indefinitely. A nightly DataSync task moves a batch of files at a scheduled time but does not keep an NFS share continuously mounted and available between runs. Kinesis Data Streams ingests continuous event records, not files served over NFS. Lake Formation grants and audits access to cataloged analytics tables; it has no file-share or mount capability.",
+  "citationIds": [
+    "cite-saa-3-1-storage-gateway-types",
+    "cite-saa-3-5-datasync-what-is",
+    "cite-saa-3-1-datasync-what-is",
+    "cite-saa-3-5-q-kinesis-consumers",
+    "cite-saa-3-5-lake-formation-terminology"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

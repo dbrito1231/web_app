@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-3.5-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Building and securing data lakes",
+  "stem": "A data lake team is migrating from unmanaged S3 permissions to AWS Lake Formation gradually, and needs one capability that lets some tables stay on IAM and S3 permissions while others move to Lake Formation, plus a role that can grant Lake Formation permissions to everyone else. Which TWO concepts fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A Glue crawler for the gradual migration capability"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Hybrid access mode for the gradual migration capability"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "S3 storage class analysis for the permission-granting role"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A data lake administrator for the permission-granting role"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "An EMR Serverless application for the permission-granting role"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Hybrid access mode is Lake Formation's capability for letting some tables keep IAM and S3 permissions while others move to Lake Formation's own model, enabling an incremental migration. A data lake administrator is the principal designated first, who can then grant Lake Formation permissions to every other principal. A Glue crawler only discovers schema and has no say in which permission model applies to a table. S3 storage class analysis studies object access patterns to optimize storage cost, unrelated to granting permissions. An EMR Serverless application is a compute runtime for processing jobs, with no role in the Lake Formation permission model.",
+  "citationIds": [
+    "cite-saa-3-5-lake-formation-terminology",
+    "cite-saa-3-5-glue-data-catalog",
+    "cite-saa-3-5-emr-serverless"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

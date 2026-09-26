@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Implementing visualization strategies",
+  "stem": "A BI team is assembling a visualization pipeline for data that starts as raw CSV files in S3, and needs one service to catalog the files' schema and a separate service QuickSight can connect to as its data source. Which TWO services fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An Amazon S3 access point for the schema cataloging"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An AWS Glue crawler for the schema cataloging"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon EMR Serverless for the QuickSight data source"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon Athena for the QuickSight data source"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Lake Formation for the QuickSight data source"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Glue crawler scans the raw CSV files and writes their schema into the Data Catalog, and QuickSight connects to Athena as its data source to query cataloged S3 tables for a dashboard. An S3 access point only scopes network and permission access to a bucket; it does not scan files or discover their schema. EMR Serverless runs Spark or Hive processing jobs; it is not a data source QuickSight connects to directly. Lake Formation manages permissions on the catalog, it is not itself a queryable data source that QuickSight connects to.",
+  "citationIds": [
+    "cite-saa-3-5-glue-data-catalog",
+    "cite-saa-3-5-q-athena-serverless",
+    "cite-saa-3-5-emr-serverless",
+    "cite-saa-3-5-lake-formation-terminology",
+    "cite-saa-3-5-s3-access-points"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

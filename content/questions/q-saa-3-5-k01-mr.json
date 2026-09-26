@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-K01"
   ],
-  "stem": "Select TWO actions that support this requirement: Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Amazon Quick)",
+  "stem": "A data team needs one service to enforce centrally managed, fine-grained permissions on S3-backed tables across many users, and a separate service to build interactive dashboards for business stakeholders. Which TWO services fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Lake Formation for the centrally managed permissions"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon Athena for the centrally managed permissions"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "A Glue ETL job for the interactive dashboards"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon QuickSight for the interactive dashboards"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon EMR for the centrally managed permissions"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lake Formation's grant/revoke model centrally manages fine-grained permissions on Data Catalog tables and databases, and QuickSight builds the interactive dashboards business stakeholders view. Athena queries cataloged data but has no permission-management model of its own. A Glue ETL job runs a scheduled data transform; it has no dashboard-building capability at all. EMR is a compute cluster for processing jobs, with no role in managing table-level permissions.",
+  "citationIds": [
+    "cite-saa-3-5-lake-formation-terminology",
+    "cite-saa-3-5-q-athena-serverless",
+    "cite-saa-3-5-quicksight-rename",
+    "cite-saa-3-5-emr-usage-patterns",
+    "cite-saa-3-5-glue-job-engines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

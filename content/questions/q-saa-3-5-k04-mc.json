@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-K04"
   ],
-  "stem": "During an architecture review, the goal is: Data transformation services with appropriate use cases (for example, AWS Glue). Which action matches that goal?",
+  "stem": "A data engineering team wants a repeatable, scriptable transform that joins terabytes of JSON in S3 against a lookup table and writes partitioned Parquet output on a nightly schedule, without provisioning a server.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Build the join visually in AWS Glue DataBrew"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Data transformation services with appropriate use cases (for example, AWS Glue)"
+      "text": "Run a Glue crawler over the S3 path each night"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run the join once as an ad hoc Amazon Athena query"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Write and schedule a Glue ETL job using Apache Spark"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Glue ETL job running on Apache Spark is the serverless, scriptable, schedulable pipeline built for a repeated join-and-write transform. DataBrew is a visual, no-code tool for an analyst cleaning data, not a scripted, scheduled join. A Glue crawler only scans a source and updates the Data Catalog's schema; it performs no joins and writes no transformed output. An ad hoc Athena query can express the join once, but running and maintaining it as a nightly, repeatable pipeline is the ETL job's role, not a one-off query's.",
+  "citationIds": [
+    "cite-saa-3-5-glue-job-engines",
+    "cite-saa-3-5-glue-databrew",
+    "cite-saa-3-5-glue-data-catalog",
+    "cite-saa-3-5-q-athena-serverless"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

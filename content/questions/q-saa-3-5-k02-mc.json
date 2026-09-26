@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.5-K02"
   ],
-  "stem": "An exam scenario centers on: Data ingestion patterns (for example, frequency). Which action matches it?",
+  "stem": "A retailer's fraud-detection system must react to a suspicious card charge within seconds of the charge occurring and cannot wait for a scheduled job to run.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Schedule an hourly batch export of transactions into the data lake"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Data ingestion patterns (for example, frequency)"
+      "text": "Ingest each transaction as a streaming record the moment it occurs"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Buffer transactions for fifteen minutes before loading them as a micro-batch"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Load the day's transactions in one batch once daily traffic is low"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Streaming ingestion delivers each record continuously, within seconds of it occurring, matching a seconds-level freshness requirement. An hourly batch export collects data over an hour before loading it, far slower than the stated need. A fifteen-minute micro-batch is closer to real time than a full batch job but still buffers well beyond a within-seconds requirement. A once-daily batch load is the slowest option and cannot support a same-second fraud reaction at all.",
+  "citationIds": [
+    "cite-saa-3-5-firehose-buffering-hints",
+    "cite-saa-3-5-q-kinesis-consumers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

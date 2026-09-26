@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-S07"
   ],
-  "stem": "In a design review, the requirement is: Transforming data between formats (for example, .csv to .parquet). Which action matches it?",
+  "stem": "A team's Athena queries over a large CSV dataset in S3 are scanning far more data, and costing far more, than the team expects for the columns each query actually needs.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Transforming data between formats (for example, .csv to .parquet)"
+      "text": "Increase the number of shards behind the ingestion stream"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Move the dataset into AWS Glue DataBrew for permanent storage"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Convert the dataset to Parquet with a Glue ETL job or an Athena CTAS query"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable enhanced fan-out for the Athena queries"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Converting the dataset from row-based CSV into columnar Parquet, via a Glue ETL job or an Athena CTAS query, lets Athena read only the columns and byte ranges a query needs, which cuts the data scanned and the resulting cost. Increasing shard count is a Kinesis Data Streams ingestion concept and has no effect on how an already-landed S3 dataset is scanned by Athena. DataBrew is a data-preparation tool, not a permanent storage location, and moving data into it does not change its file format. Enhanced fan-out is a Kinesis Data Streams consumer feature; Athena queries have no such setting at all.",
+  "citationIds": [
+    "cite-saa-3-5-columnar-format-cost-benchmark",
+    "cite-saa-3-5-athena-columnar-optimize",
+    "cite-saa-3-5-kinesis-shard-limits",
+    "cite-saa-3-5-glue-databrew"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

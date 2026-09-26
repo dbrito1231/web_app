@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.5-K07"
   ],
-  "stem": "Pick the action that satisfies: Streaming data services with appropriate use cases (for example, Amazon Kinesis).",
+  "stem": "A monitoring team wants to run a custom, stateful, windowed aggregation over a live event stream, computing a rolling five-minute average per device using SQL logic they will maintain over time.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Managed Service for Apache Flink"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Amazon Data Firehose delivering to Amazon S3"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon MSK broker cluster running alone"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Streaming data services with appropriate use cases (for example, Amazon Kinesis)"
+      "text": "A scheduled AWS Glue ETL job"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Managed Service for Apache Flink is the managed runtime built for custom, windowed, stateful stream computation in SQL, Java, Python, or Scala, matching a rolling five-minute average the team maintains itself. Data Firehose only buffers and delivers records toward a configured destination, with no windowed-aggregation logic of its own. MSK is the Kafka-compatible transport that carries the stream; it needs a separate processing layer to compute anything over the data. A scheduled Glue ETL job processes data in batch runs; it does not perform continuous, low-latency computation over a live, still-arriving stream.",
+  "citationIds": [
+    "cite-saa-3-5-managed-flink-what-is",
+    "cite-saa-3-5-q-firehose-what-is",
+    "cite-saa-3-5-q-msk-kafka-compat"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

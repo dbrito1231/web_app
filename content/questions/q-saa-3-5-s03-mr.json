@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing data transfer solutions",
+  "stem": "A logistics company must choose transfer approaches for two different needs: moving a one-time 200 TB archive from a data center with no viable network bandwidth for the transfer, and separately ingesting a continuous stream of GPS pings from delivery trucks into the data lake. Which TWO approaches fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The physical AWS Data Transfer Terminal facility for the offline archive"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "An AWS DataSync task for the offline archive"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An S3 File Gateway for the continuous GPS stream"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An Amazon EMR cluster for the continuous GPS stream"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Amazon Kinesis Data Streams for the continuous GPS stream"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "With no viable network path for a 200 TB transfer, AWS now directs customers to the physical AWS Data Transfer Terminal facility for a large offline transfer, since Snowball Edge devices are no longer available to new customers. Kinesis Data Streams is built to continuously ingest a stream of small telemetry records like GPS pings at whatever ordered, replayable throughput the fleet needs. AWS DataSync moves data online over the network; with no viable network bandwidth for a transfer this size, DataSync is not a fit, which is exactly why AWS points to the physical Data Transfer Terminal facility instead. An S3 File Gateway presents a persistent file share for an application that reads and writes files, not a target for a continuous stream of individual location events. An EMR cluster processes data already sitting in storage; it isn't an ingestion path for a live stream.",
+  "citationIds": [
+    "cite-saa-3-1-snowball-edge-eol",
+    "cite-saa-3-5-q-kinesis-consumers",
+    "cite-saa-3-1-storage-gateway-types",
+    "cite-saa-3-5-emr-usage-patterns",
+    "cite-saa-3-1-datasync-what-is"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

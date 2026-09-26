@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-3.5-K06"
   ],
-  "stem": "During an architecture review, the goal is: Sizes and speeds needed to meet business requirements. Which action matches that goal?",
+  "stem": "A telemetry pipeline must ingest 8,500 records per second into a provisioned Kinesis Data Streams stream, and the team wants the minimum shard count that satisfies that write throughput.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "4 shards"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Sizes and speeds needed to meet business requirements"
+      "text": "6 shards"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "9 shards"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "17 shards"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Each provisioned shard supports up to 1,000 records per second of write throughput, so covering 8,500 records per second needs at least 9 shards, providing 9,000 records per second of capacity. Four shards cap out at 4,000 records per second and six shards at 6,000, both short of the requirement. Seventeen shards provisions roughly twice the needed capacity, more than the stated minimum calls for.",
+  "citationIds": [
+    "cite-saa-3-5-kinesis-shard-limits"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

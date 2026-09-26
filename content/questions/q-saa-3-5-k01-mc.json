@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-K01"
   ],
-  "stem": "During an architecture review, the goal is: Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Amazon Quick). Which action matches that goal?",
+  "stem": "A company stores raw clickstream files in Amazon S3 and wants to run occasional ad hoc SQL queries directly against those files without provisioning or operating any query infrastructure.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Launch an Amazon EMR cluster running Presto against the files"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Data analytics and visualization services with appropriate use cases (for example, Amazon Athena, AWS Lake Formation, Am"
+      "text": "Import the files into Amazon QuickSight and query them there"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Query the files directly with Amazon Athena"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Register the S3 path with AWS Lake Formation and query it from there"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Athena runs ad hoc SQL directly against data in S3 and is serverless, so there is no infrastructure to set up or manage, matching the requirement exactly. An EMR cluster running Presto can query the same data but first requires provisioning and operating a cluster, which the requirement rules out. QuickSight builds dashboards and visuals from a connected dataset; it does not run ad hoc SQL directly against raw files in S3. Lake Formation registers S3 paths and manages fine-grained permissions on the catalog; it is not a query engine.",
+  "citationIds": [
+    "cite-saa-3-5-q-athena-serverless",
+    "cite-saa-3-5-emr-usage-patterns",
+    "cite-saa-3-5-quicksight-rename",
+    "cite-saa-3-5-lake-formation-terminology"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

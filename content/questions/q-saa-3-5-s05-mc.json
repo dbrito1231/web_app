@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-S05"
   ],
-  "stem": "During an architecture review, the goal is: Selecting appropriate compute options for data processing (for example, Amazon EMR). Which action matches that goal?",
+  "stem": "A data platform team runs a long-lived Spark cluster with custom-tuned instance types and third-party software installed, processing a sustained, heavy workload around the clock.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Query the workload's data ad hoc with Amazon Athena instead"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Selecting appropriate compute options for data processing (for example, Amazon EMR)"
+      "text": "Move the workload to a Glue ETL job with no cluster to manage"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Move the workload to Amazon EMR Serverless"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Keep the workload on Amazon EMR in cluster mode"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Amazon EMR in cluster mode is built for a long-lived, tunable, multi-node cluster with custom software and fine-grained control over instance types, matching a sustained, heavy, always-on workload with third-party software installed. Athena runs ad hoc SQL over S3 data; it has no concept of a persistent, custom-tuned cluster. A Glue ETL job is serverless and scriptable but does not expose the fine-grained instance-type tuning or ability to install arbitrary third-party software a persistent EMR cluster does. EMR Serverless removes the cluster to manage, which also removes the custom instance-type tuning and installed third-party software the requirement depends on.",
+  "citationIds": [
+    "cite-saa-3-5-emr-usage-patterns",
+    "cite-saa-3-5-q-athena-serverless",
+    "cite-saa-3-5-glue-job-engines",
+    "cite-saa-3-5-emr-serverless"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

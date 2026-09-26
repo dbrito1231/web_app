@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-3.5-S01"
   ],
-  "stem": "You must choose one approach for: Building and securing data lakes. Which action fits?",
+  "stem": "A company wants raw data landing in S3 to be governed centrally, with database and table-level permissions granted to specific analyst groups instead of being managed through individual S3 bucket policies.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Attach a separate IAM policy to every analyst granting direct S3 permissions"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Enable S3 Intelligent-Tiering on the raw data bucket"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Building and securing data lakes"
+      "text": "Run a Glue for Ray job that filters rows before analysts see them"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Register the S3 path with AWS Lake Formation and grant permissions there"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lake Formation registers an S3 path into a governed data lake and grants access through its own database and table permission model layered on IAM, matching the centralized, table-level control the requirement describes. Attaching individual IAM policies per analyst manages access permission by permission rather than by database and table, and becomes unmanageable as analysts and tables grow. S3 Intelligent-Tiering only manages storage cost tiers and has nothing to do with granting access. Filtering rows in a Glue for Ray job changes what data an output contains; it provides no centrally managed grant/revoke permission system over the catalog.",
+  "citationIds": [
+    "cite-saa-3-5-lake-formation-terminology",
+    "cite-saa-3-5-glue-job-engines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

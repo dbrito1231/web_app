@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Transforming data between formats (for example, .csv to .parquet)",
+  "stem": "A nightly job needs to both shrink the storage footprint of a raw CSV export and let downstream Athena queries scan less data on read. Which TWO actions accomplish these two goals respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Increase the Kinesis Data Streams retention period for the storage footprint"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Convert the export to compressed Apache Parquet for the storage footprint"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Enable S3 Transfer Acceleration for the query scan reduction"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Add more MSK broker storage for the query scan reduction"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Partition the converted Parquet table by date for the query scan reduction"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Converting the export to compressed, columnar Parquet shrinks the storage footprint the way the benchmark in the lesson describes, and partitioning that same Parquet table by date lets a query prune to only the relevant date partitions instead of scanning the whole table, reducing what each query reads. Increasing Kinesis Data Streams retention only changes how long stream records stay available for replay, it has nothing to do with the size of a CSV export already sitting in S3. S3 Transfer Acceleration speeds up uploads and downloads over long distances; it does not change how much data a query scans. Adding MSK broker storage is a Kafka-cluster capacity setting with no relationship to how an Athena query prunes a Parquet table.",
+  "citationIds": [
+    "cite-saa-3-5-columnar-format-cost-benchmark",
+    "cite-saa-3-5-athena-partitions",
+    "cite-saa-3-5-kinesis-shard-limits",
+    "cite-saa-3-5-msk-serverless",
+    "cite-saa-3-1-s3-transfer-acceleration"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

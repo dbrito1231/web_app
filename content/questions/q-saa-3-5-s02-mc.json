@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-S02"
   ],
-  "stem": "The workload needs this outcome: Designing data streaming architectures. Which action should you take?",
+  "stem": "A design calls for one durable, ordered ingestion layer that a real-time fraud-scoring application and a separate archival pipeline both read independently, each at its own pace, without either consumer affecting the other's progress.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Designing data streaming architectures"
+      "text": "Amazon Data Firehose as the shared ingestion layer"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon Kinesis Data Streams as the shared ingestion layer"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An AWS Glue ETL job as the shared ingestion layer"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon QuickSight as the shared ingestion layer"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Kinesis Data Streams retains an ordered, replayable stream that separate consumer applications can each read independently at their own pace, matching a fraud-scoring application and an archival pipeline reading the same ingested events without interfering with one another. Data Firehose only buffers and forwards records toward one configured destination; it does not offer multiple independent readers of a retained stream. A Glue ETL job transforms data that has already landed somewhere; it is not itself a durable ingestion layer that multiple consumers read from. QuickSight visualizes already-processed data in dashboards and plays no role in ingesting or streaming events.",
+  "citationIds": [
+    "cite-saa-3-5-q-kinesis-consumers",
+    "cite-saa-3-5-q-firehose-what-is",
+    "cite-saa-3-5-quicksight-rename",
+    "cite-saa-3-5-glue-job-engines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.5-K05"
   ],
-  "stem": "Which action is the right fit for this requirement: Secure access to ingestion access points?",
+  "stem": "Several independent application teams write to the same shared S3 ingestion bucket, and security wants each team scoped to only its own prefix and limited to requests from inside the company's VPC, without one large bucket policy.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Attach a single bucket policy with a conditional statement per team"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create a separate S3 access point per team, scoped to a VPC and a prefix"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Secure access to ingestion access points"
+      "text": "Grant each team's role full IAM access and rely on prefix naming conventions"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Designate one AWS Lake Formation data lake administrator for the whole bucket"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "An S3 access point is a named endpoint with its own access point policy that can be restricted to a specific VPC, giving each team a separately scoped, auditable entry point to only its prefix. A single bucket policy with per-team conditions is the large, hard-to-audit policy the requirement wants to avoid. Full IAM access plus a naming convention grants broad bucket-wide permissions and relies on discipline rather than an enforced boundary. A data lake administrator hands out broad Lake Formation permission-granting authority; it is a governance role, not a narrow, per-team, per-prefix network boundary.",
+  "citationIds": [
+    "cite-saa-3-5-s3-access-points",
+    "cite-saa-3-5-s3-access-points-limits",
+    "cite-saa-3-5-lake-formation-terminology"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

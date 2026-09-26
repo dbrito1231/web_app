@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-K07"
   ],
-  "stem": "Select TWO actions that support this requirement: Streaming data services with appropriate use cases (for example, Amazon Kinesis)",
+  "stem": "A platform team is choosing streaming services for two different needs: one service must deliver a copy of the stream into S3 with no custom code, and a separate service must let three independent applications each replay the full ordered stream at their own pace. Which TWO services fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon Data Firehose for delivering the copy to S3"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Glue for Ray for delivering the copy to S3"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon Kinesis Data Streams for the independent replay"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon Managed Service for Apache Flink for the independent replay"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "An Amazon S3 access point for the independent replay"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Data Firehose is the managed delivery service built to move stream data into a destination like S3 with no code, and Kinesis Data Streams retains an ordered stream that multiple independent consumers can each read and replay at their own pace. Glue for Ray runs Python compute jobs and has no role delivering a stream to S3. Managed Service for Apache Flink is itself a consumer that processes a stream; it doesn't give several separate applications their own independent replay of the raw records the way the underlying stream does. An S3 access point only scopes network and permission access to a bucket; it has no concept of a stream or independent consumer replay.",
+  "citationIds": [
+    "cite-saa-3-5-q-firehose-what-is",
+    "cite-saa-3-5-glue-job-engines",
+    "cite-saa-3-5-q-kinesis-consumers",
+    "cite-saa-3-5-managed-flink-what-is",
+    "cite-saa-3-5-s3-access-points"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

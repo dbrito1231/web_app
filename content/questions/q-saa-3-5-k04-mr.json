@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-K04"
   ],
-  "stem": "Select TWO actions that support this requirement: Data transformation services with appropriate use cases (for example, AWS Glue)",
+  "stem": "A pipeline team needs one tool for visually cleaning messy fields without writing code, and a separate tool that automatically discovers the schema of new files and registers them in a shared metadata catalog. Which TWO tools fit these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "An Athena CREATE TABLE AS SELECT query for the schema discovery"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Glue DataBrew for the visual cleaning"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "An EMR Serverless Spark job for the visual cleaning"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A Glue for Ray job for the schema discovery"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An AWS Glue crawler for the schema discovery"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DataBrew's point-and-click interface cleans messy fields without any code, and a Glue crawler scans new files, infers their schema, and registers the result in the Data Catalog. A CTAS query builds a new table from data Athena can already query through an existing table definition; it doesn't discover the schema of files nobody has cataloged yet. An EMR Serverless Spark job and a Glue for Ray job both run code a developer writes, and neither offers a no-code visual cleaning interface.",
+  "citationIds": [
+    "cite-saa-3-5-glue-databrew",
+    "cite-saa-3-5-glue-data-catalog",
+    "cite-saa-3-5-athena-partitions",
+    "cite-saa-3-5-emr-serverless",
+    "cite-saa-3-5-glue-job-engines"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

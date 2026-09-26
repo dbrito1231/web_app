@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-5-q-kinesis-consumers",
+  "title": "Kinesis Data Streams producers, consumers, and applications",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html",
+  "accessed": "2026-09-26",
+  "note": "Backs question claims that Kinesis Data Streams consumers are independent applications that read the stream, unlike a delivery-only service."
+}

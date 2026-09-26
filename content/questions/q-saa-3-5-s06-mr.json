@@ -6,36 +6,41 @@
   "objectiveIds": [
     "SAA-3.5-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting appropriate configurations for ingestion",
+  "stem": "An S3 landing zone for a data lake is queried heavily by date range, and the ingestion job currently writes every day's files into one flat prefix with no structure. Which TWO configuration changes would improve query pruning for two different parts of the pipeline? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Increase the number of Kinesis Data Streams shards feeding the landing zone"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Lower the Firehose buffer size to deliver files faster"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Write the landing-zone objects into a year/month/day partition scheme"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Convert the existing Athena table to matching Hive-style partition keys"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Enable S3 Intelligent-Tiering on the landing-zone bucket"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Writing objects into a year/month/day partition scheme, and defining the Athena table with matching Hive-style partition keys, together let a date-range query prune everything outside the requested partitions instead of scanning the whole dataset. Adding more Kinesis Data Streams shards increases ingest throughput capacity but has no effect on how the resulting files are organized in S3 or how a query prunes them. Lowering the Firehose buffer size delivers more, smaller files sooner; it adds no partition structure. S3 Intelligent-Tiering moves objects between storage cost tiers based on access patterns, it has no effect on query pruning.",
+  "citationIds": [
+    "cite-saa-3-5-athena-partitions",
+    "cite-saa-3-5-athena-columnar-optimize",
+    "cite-saa-3-5-kinesis-shard-limits",
+    "cite-saa-3-5-firehose-buffering-hints"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

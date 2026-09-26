@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-3.5-S06"
   ],
-  "stem": "The workload needs this outcome: Selecting appropriate configurations for ingestion. Which action should you take?",
+  "stem": "A streaming pipeline keeps overloading a single Kinesis Data Streams shard even though the stream's total provisioned capacity is far from exhausted, because nearly every record uses the same partition-key value.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Selecting appropriate configurations for ingestion"
+      "text": "Increase the stream's retention period"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Choose a partition key with more distinct, evenly distributed values"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Switch the Firehose buffer interval to zero seconds"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add more broker nodes to the Kinesis Data Streams cluster"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A partition key with too few distinct values, or one where most traffic lands on a small number of values, creates a hot shard that throttles requests well before the stream's total capacity is exhausted, so a key with more distinct, evenly distributed values spreads the load instead. Increasing the retention period only changes how long records stay available for replay, it does nothing about which shard receives the traffic. Changing the Firehose buffer interval affects how Firehose batches records for delivery downstream, it has no effect on how Kinesis Data Streams routes records to shards. Kinesis Data Streams has shards, not broker nodes; broker nodes are an MSK concept, not a Kinesis Data Streams setting.",
+  "citationIds": [
+    "cite-saa-3-5-kinesis-shard-limits",
+    "cite-saa-3-5-firehose-buffering-hints",
+    "cite-saa-3-5-msk-serverless"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

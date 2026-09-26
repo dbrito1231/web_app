@@ -6,31 +6,36 @@
   "objectiveIds": [
     "SAA-3.5-K03"
   ],
-  "stem": "You must choose one approach for: Data transfer services with appropriate use cases (for example, AWS DataSync, AWS Storage Gateway). Which action fits?",
+  "stem": "An analytics team needs to move a one-time 40 TB historical export from an on-premises NFS share into Amazon S3 as fast as the network link allows, with no ongoing hybrid access needed afterward.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Run an AWS DataSync task against the NFS share"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy an Amazon S3 File Gateway to present the share"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Data transfer services with appropriate use cases (for example, AWS DataSync, AWS Storage Gateway)"
+      "text": "Stream the files into Amazon Kinesis Data Streams record by record"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure an AWS Glue crawler to crawl the on-premises share directly"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DataSync is built for a one-time, high-speed online transfer from an on-premises NFS share into S3, using a purpose-built protocol that can saturate the available link. An S3 File Gateway is designed to keep serving an NFS share on an ongoing basis with a local cache, which is more than a one-time transfer with no further hybrid access needs. Kinesis Data Streams ingests a continuous stream of small records with a 1 MB per-record limit, not a bulk export of large files. A Glue crawler scans a data source that is already reachable to catalog its schema; it does not transfer files across a network.",
+  "citationIds": [
+    "cite-saa-3-5-datasync-what-is",
+    "cite-saa-3-1-datasync-what-is",
+    "cite-saa-3-1-storage-gateway-types",
+    "cite-saa-3-5-q-kinesis-consumers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

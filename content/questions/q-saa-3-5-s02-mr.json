@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-3.5-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing data streaming architectures",
+  "stem": "A streaming architecture has five downstream applications that each need a guaranteed, dedicated read throughput from the same Kinesis data stream, and separately needs a way to keep the S3 copies a Firehose stage delivers from turning into too many tiny files. Which TWO configuration choices address these two needs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Reducing the stream's retention period for the dedicated throughput need"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Switching the stream to on-demand capacity mode for the dedicated throughput need"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Registering each application as an enhanced fan-out consumer for the dedicated throughput need"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Lowering the Firehose buffer size to its minimum for the tiny-file problem"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Raising the Firehose buffer size and interval before delivery for the tiny-file problem"
     }
   ],
   "correctAnswerIds": [
     "c",
-    "d"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Registering each application as an enhanced fan-out consumer gives it its own dedicated 2 MiB-per-second read throughput per shard, independent of how many other consumers read the same stream. Raising Firehose's buffer size and interval accumulates more records into each delivered file before writing it to S3, producing fewer, larger files instead of many tiny ones. The stream's retention period only controls how long records stay available for replay, not per-consumer throughput. On-demand mode automatically scales the stream's total capacity but does not grant any one consumer a guaranteed dedicated share of it. Lowering the buffer size delivers smaller batches more often, which increases the number of small files rather than reducing it.",
+  "citationIds": [
+    "cite-saa-3-5-kinesis-shard-limits",
+    "cite-saa-3-5-firehose-buffering-hints",
+    "cite-saa-3-5-q-kinesis-consumers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

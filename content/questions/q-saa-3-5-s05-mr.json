@@ -6,36 +6,42 @@
   "objectiveIds": [
     "SAA-3.5-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting appropriate compute options for data processing (for example, Amazon EMR)",
+  "stem": "A team is picking compute for two jobs: an occasional SQL query over log files already sitting in S3, and an existing Spark job they want to run without provisioning or sizing a cluster. Which TWO compute options fit these two jobs respectively? (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Amazon Athena for the occasional SQL query"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Amazon EMR in cluster mode for the occasional SQL query"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Amazon EMR Serverless for the existing Spark job"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "An Amazon S3 access point for the existing Spark job"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Lake Formation for the occasional SQL query"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Athena runs the occasional ad hoc SQL query directly against the log files in S3 with nothing to provision, and EMR Serverless runs the existing Spark job on the same open-source framework without provisioning or sizing a cluster. Running EMR in cluster mode for an occasional query means standing up and paying for a persistent cluster for infrequent work, more infrastructure than the job needs. An S3 access point only scopes network and permission access to a bucket; it has no compute capability to run a Spark job at all. Lake Formation manages catalog permissions, it does not execute SQL queries itself.",
+  "citationIds": [
+    "cite-saa-3-5-q-athena-serverless",
+    "cite-saa-3-5-emr-usage-patterns",
+    "cite-saa-3-5-emr-serverless",
+    "cite-saa-3-5-lake-formation-terminology",
+    "cite-saa-3-5-s3-access-points"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
