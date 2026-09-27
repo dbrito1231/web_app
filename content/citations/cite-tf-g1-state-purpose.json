@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-state-purpose",
+  "title": "Purpose of Terraform State",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/state/purpose",
+  "accessed": "2026-09-27",
+  "note": "Backs the claim that terraform plan must know the current state of resources to determine the changes needed to reach the desired configuration (drift comparison)."
+}

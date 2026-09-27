@@ -6,36 +6,42 @@
   "objectiveIds": [
     "tf.004.2c"
   ],
-  "stem": "Select TWO actions that support this requirement: Write Terraform configuration using multiple providers",
+  "stem": "(Select TWO.) Birchwood Freight's configuration accidentally gives two entirely different providers the same preferred local name. Which TWO statements correctly describe how to resolve this?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Edit the second provider's local package name in its own source code so the two no longer collide."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Delete the block that declares each provider's version constraint entirely, so Terraform infers both providers automatically from the resource types used."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Give both providers the same `alias`; `alias` is what distinguishes one provider package from another."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Combine each provider's namespace with its type name into a compound local name joined with a dash, so both providers can be referenced without colliding."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Each argument inside the `required_providers` block enables exactly one provider, so the two colliding providers still need two separate entries there regardless of naming."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A compound local name that joins each provider's namespace and type with a dash lets both be referenced without colliding, and each still needs its own entry in `required_providers` because each argument there enables exactly one provider. Renaming a third-party provider's own resource types is not something a consuming configuration can do. Deleting `required_providers` removes the version-constraint declaration and does not resolve a naming collision. `alias` distinguishes multiple configurations of the same provider, not two different providers, so giving both the same alias does not address this at all.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

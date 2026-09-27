@@ -6,31 +6,37 @@
   "objectiveIds": [
     "tf.004.2d"
   ],
-  "stem": "In a design review, the requirement is: Explain how Terraform uses and manages state. Which action matches it?",
+  "stem": "Widderburn Analytics re-runs `terraform apply` on a configuration that already created a specific database instance. Nothing about that resource's configuration changed, yet Terraform still needs to know it already exists so it does not try to create a duplicate. What provides that link?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Explain how Terraform uses and manages state"
+      "text": "The state file's mapping, which records the identity of the already-created object against that particular resource block."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The block that declares the provider and its version constraint, which lists which provider owns the database resource type."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The resource block's own arguments; identical settings will always resolve to the same real object."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The file that records installed provider versions and checksums, which tracks every resource ever created by a given provider version."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "State's mapping purpose records the identity of the already-created remote object against that specific resource block, which is exactly the link needed to avoid a duplicate. `required_providers` only names which provider and version are needed, unrelated to tracking a specific created object. Identical arguments do not by themselves identify one particular already-created object; without a recorded mapping, re-running could create a second object with the same settings. The dependency lock file tracks provider versions and checksums, not individual created resources.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

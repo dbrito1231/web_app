@@ -6,36 +6,42 @@
   "objectiveIds": [
     "tf.004.2a"
   ],
-  "stem": "Select TWO actions that support this requirement: Install and version Terraform providers",
+  "stem": "(Select TWO.) Hallowmere Systems reviews a colleague's `required_providers` block and needs to know precisely which future releases each constraint would allow.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`>= 3.2.0` allows only version 3.2.0 and nothing newer."
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "`!= 3.2.0` allows every release except exactly version 3.2.0."
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "`= 3.2.0` allows 3.2.0 and any later patch release such as 3.2.1."
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`<= 3.2.0` allows every version except 3.2.0 itself."
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "`~> 3.2.0` allows Terraform to install 3.2.1 or 3.2.9, but not 3.3.0."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`!=` excludes only the one named exact version and allows everything else, matching the first key. `~>` allows only the right-most component to increment, so `~> 3.2.0` allows 3.2.1 or 3.2.9 but not 3.3.0, matching the second key. `>= 3.2.0` allows 3.2.0 and everything greater, not only that one version. `= 3.2.0` allows only that exact version and blocks later patch releases too. `<= 3.2.0` includes 3.2.0 itself along with everything below it, so it does not exclude 3.2.0.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

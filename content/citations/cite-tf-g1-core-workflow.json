@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-core-workflow",
+  "title": "The Core Terraform Workflow",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/intro/core-workflow",
+  "accessed": "2026-09-27",
+  "note": "Backs the write/plan/apply stage names and that terraform plan previews proposed changes for review before any modification occurs."
+}

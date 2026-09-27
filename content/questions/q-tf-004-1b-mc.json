@@ -6,31 +6,39 @@
   "objectiveIds": [
     "tf.004.1b"
   ],
-  "stem": "During an architecture review, the goal is: Describe the advantages of IaC patterns. Which action matches that goal?",
+  "stem": "Nordlicht Freight's operations team provisions 40 resources that have no dependencies on each other. They want the ones with no relationship to run at the same time, without anyone hand-ordering the steps. Which capability provides that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A script that lists all 40 resources in a fixed order, run top to bottom."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Describe the advantages of IaC patterns"
+      "text": "A scheduled job that recreates the entire environment from scratch every night to catch anything missed."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A dependency graph that starts each resource as soon as its own prerequisites finish, so resources with no dependency between them run at the same time."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A checklist that groups the 40 resources by owning team, with each individual team provisioning its own share of the resources independently of every other team's schedule."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key describes Terraform's resource graph, which walks a node as soon as its own dependencies are finished, so independent resources proceed together automatically. A script written in a fixed order runs strictly serially by construction, even for resources with no relationship. A nightly full rebuild does not address ordering or parallelism and wastes effort recreating things that have not changed. Splitting work by owning team groups resources by an organizational boundary, not by actual dependency, so two unrelated resources on the same team still wait on each other in sequence.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

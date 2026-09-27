@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-graph",
+  "title": "Resource Graph - Terraform Internals",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/internals/graph",
+  "accessed": "2026-09-27",
+  "note": "Backs the claim that Terraform walks the dependency graph so a node proceeds once its dependencies are walked, with a default concurrency limit of 10 nodes adjustable via -parallelism."
+}

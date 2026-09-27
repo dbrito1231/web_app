@@ -2,35 +2,41 @@
   "id": "q-tf-004-2b-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.2b"
   ],
-  "stem": "Quick check \u2014 Describe how Terraform uses providers. Which practice is correct?",
+  "stem": "Pemberton Labs' new hire asks why a `resource \"aws_instance\"` block works when Terraform's core program has never heard of an EC2 instance. Which answer is correct?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform core ships with a small built-in library of the most common cloud resource types, including EC2 instances."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The `aws` provider itself defines the `aws_instance` resource type; Terraform core just calls whichever provider owns a resource type's implementation."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The Terraform Registry rewrites the configuration file at `init` time to replace `aws_instance` with the provider's own private syntax."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe how Terraform uses providers"
+      "text": "The block that names the provider and its version constraint itself contains the full definition of every resource type that provider can create, including all of its individual arguments."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe how Terraform uses providers'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The provider itself adds the resource types it supports, so `aws_instance` exists because the `aws` provider defines it, not because Terraform core knows about EC2. Terraform core has no built-in catalog of cloud resource types; that contradicts the plugin model entirely. The registry distributes provider plugins; it does not rewrite a user's configuration file at `init` time. `required_providers` only names a provider and a version constraint, not a catalog of that provider's resource-type definitions.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

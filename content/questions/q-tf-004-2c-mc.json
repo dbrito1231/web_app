@@ -6,31 +6,37 @@
   "objectiveIds": [
     "tf.004.2c"
   ],
-  "stem": "Pick the action that satisfies: Write Terraform configuration using multiple providers.",
+  "stem": "Thornbury Retail's configuration must create resources in two different AWS Regions from one configuration, with some resources going to each Region. What must the second `aws` provider block include that a normal single-Region setup does not need?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A second entry naming a different version constraint for `aws`, declared alongside the first, one per Region."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A separate `random` provider configuration to generate a unique name for each Region's resources."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "An `alias` argument, so resources can select the second configuration explicitly with a `provider = aws.<alias>` argument."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Write Terraform configuration using multiple providers"
+      "text": "A second copy of the entire configuration file, one per Region, each applied as its own separate and independently scheduled `terraform apply` run."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A second, non-default configuration of the same provider needs an `alias`, and resources that should use it are pointed there with an explicit `provider = aws.<alias>` argument. `required_providers` declares the provider and version once for the whole configuration; it is not where a second Region's settings go. A `random` provider block is a different provider entirely and does not address a second AWS Region. Duplicating the entire file into two configurations applied separately abandons the requirement of doing this from one configuration.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

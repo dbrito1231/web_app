@@ -2,35 +2,41 @@
   "id": "q-tf-004-2c-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.2c"
   ],
-  "stem": "Quick check \u2014 Write Terraform configuration using multiple providers. Which practice is correct?",
+  "stem": "Applecross Systems' configuration includes both `aws_instance` and `random_pet` resources, with exactly one `aws` provider block and one `random` provider block, and neither carries an `alias`. Which statement correctly describes how each resource picks its provider?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Write Terraform configuration using multiple providers"
+      "text": "Each resource is routed to the default configuration of the provider that owns its resource type."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Both resources use whichever provider block appears first in the configuration file, regardless of resource type."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Because neither block has an `alias`, Terraform cannot determine which provider configuration to use and the configuration fails."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Both resources need an explicit `provider` argument, or Terraform will apply the `aws` block's settings to both."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Write Terraform configuration using multiple providers'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Each resource type is owned by the provider that defines it, so it is routed to that provider's default configuration automatically, with no alias needed for a single default configuration per provider. Routing is by resource-type ownership, not by which block happens to appear first in the file. An `alias` is only required when a provider has multiple configurations; a single default configuration needs none, so the configuration does not fail for lacking one. Neither resource needs an explicit `provider` argument to use its own type's default configuration, and there is no mechanism by which `aws` settings would apply to a `random` resource.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

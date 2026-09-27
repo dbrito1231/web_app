@@ -2,35 +2,43 @@
   "id": "q-tf-004-1a-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.1a"
   ],
-  "stem": "Quick check \u2014 Explain what IaC is. Which practice is correct?",
+  "stem": "Vela Systems adds a rule: no infrastructure change may take effect until someone can see exactly what will be added, changed, or destroyed, and approve it first. Which workflow step provides that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Explain what IaC is"
+      "text": "Apply the configuration directly and roll back immediately if the result turns out to be wrong."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Generate an execution plan that lists every proposed addition, change, and deletion, and have a reviewer sign off on it before anything is applied."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Have the author write a short comment in the pull request describing what they intend to change, then apply."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Ask a second, independent engineer to re-read the entire configuration file line by line for correctness and style before it is ever applied to any environment."
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Explain what IaC is'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key describes the plan stage, which previews every proposed addition, change, and deletion before anything is modified, matching the stated requirement directly. Applying first and rolling back afterward means the effect is discovered only after it already happened. A written PR comment is a human description that can be incomplete or wrong, not a generated list of the actual proposed changes. A line-by-line read of the configuration file does not reveal what will actually change against infrastructure that already exists.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

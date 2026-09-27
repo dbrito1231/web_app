@@ -6,36 +6,44 @@
   "objectiveIds": [
     "tf.004.1b"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe the advantages of IaC patterns",
+  "stem": "(Select TWO.) Solvent Analytics' five engineers currently trust whoever last touched the servers to remember what is actually running, and nobody double-checks an edit before it goes live. Leadership wants a second set of eyes on every edit, and a way for any of the five to check what is actually running without asking that person.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Put the configuration in a version-controlled repository and require a pull-request approval before any edit is merged."
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Email the configuration file to teammates whenever it changes."
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Keep the configuration file only on the laptop of whoever wrote it most recently, and announce changes in a chat channel."
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Keep the record of what already exists in a location every engineer's tooling can read, not only on the machine of whoever last ran a change."
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Store a copy of the configuration in each engineer's home directory, and remind everyone to keep their copies in sync."
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A version-controlled repository with required pull-request approval is the second-set-of-eyes half of the requirement. Keeping the built-infrastructure record somewhere every engineer's own tooling can read, rather than on one person's machine, is the shared-visibility half, which is what HCP Terraform's shared state adds on top of plain version control. Emailing the file whenever it changes has no review gate and no single authoritative copy. Keeping the file on only one person's laptop and announcing changes in chat is exactly the problem the stem describes. Copies in every engineer's home directory rely on manual syncing and can drift apart silently.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

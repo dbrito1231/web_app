@@ -2,35 +2,41 @@
   "id": "q-tf-004-2d-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.2d"
   ],
-  "stem": "Quick check \u2014 Explain how Terraform uses and manages state. Which practice is correct?",
+  "stem": "Carrow Metals wants to know exactly where the record of their already-built infrastructure lives, before they have configured any remote backend. Where is it?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Inside the `.tf` configuration files themselves, appended automatically at the end of every successful apply run."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "In a local file named `terraform.tfstate` in the working directory, separate from the `.tf` configuration files."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "In the dependency lock file, alongside the provider checksums."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Explain how Terraform uses and manages state"
+      "text": "Nowhere on disk; Terraform re-discovers all existing resources by querying every provider's API on each run."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Explain how Terraform uses and manages state'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Without a configured remote backend, state defaults to a local file named `terraform.tfstate`, kept separate from the `.tf` configuration files. Configuration files describe the desired end state and are not rewritten with built-infrastructure records after an apply. The dependency lock file only records provider versions and checksums, not resource state. Querying every provider's API on every run is exactly the performance problem a stored state file avoids.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

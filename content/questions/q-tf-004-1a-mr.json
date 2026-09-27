@@ -6,36 +6,44 @@
   "objectiveIds": [
     "tf.004.1a"
   ],
-  "stem": "Select TWO actions that support this requirement: Explain what IaC is",
+  "stem": "(Select TWO.) Aurora Fittings wants two independent proofs that a new provisioning approach is genuine declarative Infrastructure as Code before they adopt it for every project.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "An operator runs a fixed sequence of console clicks recorded in a checklist, repeated for consistency each time."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The configuration file is committed to version control and used every time the infrastructure is created or changed."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "The file states which resources should exist once finished, without listing the ordered steps needed to create them."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A script issues API calls in a specific order to build resources from an empty account."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "The infrastructure was created once from a file, and later changes are made directly in the console without ever updating that same file afterward."
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Committing the file to version control and reusing it for every change is the IaC half of the proof; stating the desired end result rather than an ordered procedure is the declarative half. A recorded checklist of console clicks is neither a file nor an end-state description. An ordered API-call script may be versioned but lists steps rather than an end state, so it is imperative, not declarative. Editing infrastructure by hand after the fact breaks the file's claim to be the source of truth, since reality no longer matches it.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

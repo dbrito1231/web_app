@@ -6,36 +6,44 @@
   "objectiveIds": [
     "tf.004.1c"
   ],
-  "stem": "Select TWO actions that support this requirement: Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows",
+  "stem": "(Select TWO.) Corriedale Metals runs some servers on-premises and some in the cloud, and wants to add both kinds of infrastructure using one configuration language and one applied workflow, rather than a separate native tool for each environment.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Use the cloud vendor's own native provisioning tool for the cloud servers, and a separate on-premises automation tool for the on-premises servers."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Provision the cloud servers first, then have an engineer manually rack and configure the on-premises servers to match."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Declare an on-premises provider alongside a cloud provider in the same configuration, and apply both through the same plan-and-apply sequence."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Export the cloud configuration as a template and hand it to the on-premises team to reimplement in their own tool."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Rely on the provider model so the same core engine calls whichever plugin is appropriate to the platform, cloud or on-premises, that a given resource block targets."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Declaring an on-premises provider next to a cloud provider in one configuration, applied through one workflow, is the direct mechanism for a hybrid setup. That mechanism works because the same core engine simply calls whichever plugin matches a given resource block's platform. Using the cloud vendor's native tool plus a separate on-premises tool is exactly the two-toolchain outcome they want to avoid. Manually racking and configuring on-premises servers means that side is never provisioned by any tool at all. Exporting a template for the on-premises team to reimplement in their own tool still ends up as two separate representations, not one configuration language.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

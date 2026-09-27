@@ -2,35 +2,41 @@
   "id": "q-tf-004-2a-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.2a"
   ],
-  "stem": "Quick check \u2014 Install and version Terraform providers. Which practice is correct?",
+  "stem": "Greymont Foundry needs its build server and every engineer's laptop to install the identical provider build, byte for byte, every time `terraform init` runs, not merely a version that satisfies the same range. What guarantees that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A `~>` version constraint tight enough that only a single specific patch release could ever possibly match at any given time."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Install and version Terraform providers"
+      "text": "Every machine runs `terraform init` on the same calendar day so they all see the same latest release."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The provider is downloaded once and manually copied into every machine's plugin cache folder."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A dependency lock file recording the exact version and checksum has been committed to version control and is present when `init` runs."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Install and version Terraform providers'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A committed dependency lock file records the exact version and checksum, so every `init` verifies against the same recorded build rather than merely a range. A tight `~>` constraint is still a range, and a new release could later appear that matches it, so it cannot guarantee the identical build over time. Running `init` on the same calendar day is coincidental and gives no guarantee. Manually copying a downloaded provider into each machine's cache works once but is an error-prone manual process, not something `terraform init` itself verifies.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

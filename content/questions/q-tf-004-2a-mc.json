@@ -6,31 +6,37 @@
   "objectiveIds": [
     "tf.004.2a"
   ],
-  "stem": "Pick the action that satisfies: Install and version Terraform providers.",
+  "stem": "Fenwick Analytics wants to pin a provider so patch-level updates install automatically, but an accidental jump to the next minor version is blocked. Which constraint expresses that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`>= 2.4.0`"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`= 2.4.0`"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`~> 2.4.0`"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Install and version Terraform providers"
+      "text": "`!= 2.5.0`"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `~>` operator allows only the right-most component to increment, so `~> 2.4.0` allows patch releases like 2.4.1 but blocks 2.5.0. `>= 2.4.0` allows any later version at all, including future minor and major releases, so it does not block anything. `= 2.4.0` blocks every update, including the patch releases the requirement wants to allow automatically. `!= 2.5.0` only excludes that one exact version and still allows 2.6.0 or 3.0.0, so it does not block the next minor version in general.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

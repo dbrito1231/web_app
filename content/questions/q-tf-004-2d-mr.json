@@ -6,36 +6,42 @@
   "objectiveIds": [
     "tf.004.2d"
   ],
-  "stem": "Select TWO actions that support this requirement: Explain how Terraform uses and manages state",
+  "stem": "(Select TWO.) Dunbeath Systems asks a new hire to explain, in their own words, TWO different jobs the state file does besides simply existing.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "It records which already-created real object corresponds to a specific resource block, so re-running a command does not create a duplicate."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "It keeps track of metadata, such as resource dependencies, so Terraform still knows the correct order for a change even if the configuration was later edited."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "It stores a full daily backup of every resource's own data, such as a database's rows, in case a resource needs to be restored."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "It enforces which team members are allowed to run `terraform apply` against a given configuration."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "It automatically rewrites the `.tf` configuration files so they always match whatever was actually built."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "State's mapping purpose links an already-created real object to its resource block so a re-run does not duplicate it, and its metadata purpose keeps information such as dependencies available even after the configuration itself has changed. State tracks Terraform's own bookkeeping about resources, not an application's internal data such as database rows, so it is not a data backup mechanism. Access control over who may run `terraform apply` is not a function the state file performs. State also does not rewrite the `.tf` configuration files; configuration stays the desired-state input while state is a separate record of what was actually built.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

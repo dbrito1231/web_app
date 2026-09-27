@@ -2,35 +2,43 @@
   "id": "q-tf-004-1c-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.1c"
   ],
-  "stem": "Quick check \u2014 Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows. Which practice is correct?",
+  "stem": "Thistlewood Media wants one tool to provision both its cloud compute resources and its DNS records at a third-party domain registrar that is not a cloud platform at all, using the same workflow for both. Which property of the tool makes this possible?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The tool maintains a built-in, hardcoded list of cloud vendors it understands, updated by the vendor whenever a new cloud is added."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The tool's engine calls a plugin for any platform or service with an API, whether a cloud, an on-premises system, or a non-cloud SaaS product."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows"
+      "text": "The tool's workflow only manages compute and storage resources, leaving DNS and other services to be configured separately by hand."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The tool automatically converts any REST API it encounters into a fully managed resource without a plugin, so no provider development is ever required."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key is the service-agnostic property: the engine calls a plugin for any platform or service with an API, cloud or not, which covers a domain registrar as well as a cloud. A hardcoded, vendor-maintained cloud list contradicts the plugin model and would not extend to a non-cloud SaaS registrar. Limiting the workflow to compute and storage only explicitly fails the stated DNS requirement. Claiming automatic conversion of any REST API without a plugin misdescribes the actual mechanism, which is the provider plugin itself.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

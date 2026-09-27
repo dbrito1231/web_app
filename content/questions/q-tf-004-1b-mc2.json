@@ -2,35 +2,43 @@
   "id": "q-tf-004-1b-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
+  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.1b"
   ],
-  "stem": "Quick check \u2014 Describe the advantages of IaC patterns. Which practice is correct?",
+  "stem": "Bellhaven Labs re-runs the same automation weekly, but changes made by hand in the console during the week are never detected before the next run overwrites them silently. They want a tool that specifically compares real infrastructure against the desired configuration before making any change. Which mechanism gives them that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Describe the advantages of IaC patterns"
+      "text": "A cron job that re-applies the same script every week regardless of what changed after the previous run."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A monitoring dashboard that alerts an engineer by email when a resource's configuration changes."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A backup snapshot of the environment taken before each weekly run, in case the run needs to be undone."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A tracked state record the tool consults before planning, so it can compare current resources with the configuration they are supposed to match, and show only the actual differences."
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe the advantages of IaC patterns'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key describes state-backed comparison: Terraform consults its tracked state before a plan, so it can compare real infrastructure against the configuration and show only the real differences, which is exactly the missing comparison step. A cron job that blindly reapplies the same script is the failure already described in the stem, not a fix. An email alert is purely observational and does not feed into any tool's own decision about what to change. A backup snapshot supports rollback, not detection of what actually changed before applying.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

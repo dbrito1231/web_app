@@ -6,31 +6,39 @@
   "objectiveIds": [
     "tf.004.1a"
   ],
-  "stem": "In a design review, the requirement is: Explain what IaC is. Which action matches it?",
+  "stem": "Mile High Robotics is standardizing how its platform team provisions cloud servers across three regional offices. They want the exact target setup captured somewhere any engineer can read, diff, and re-run instead of re-deriving it from memory. Which practice satisfies this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Explain what IaC is"
+      "text": "Keep the desired resource configuration in a versioned file that states the end result, and apply it through the same process every time."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Have engineers configure resources through the console for each office and document the steps afterward in a shared wiki page."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Write a script that issues a fixed sequence of cloud CLI commands whenever a new office's servers are needed."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Record each office's server settings in a spreadsheet that the operations team updates after every change."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key states the desired end result in a versioned file and reapplies it through one consistent process, which is exactly what Infrastructure as Code is. A wiki-documented manual procedure is not a file that can be diffed against the running infrastructure. An ordered CLI script encodes steps rather than an end state, so it cannot be diffed against what already exists the way a declarative file can. A spreadsheet is a passive record that nothing can re-run to reach that state.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

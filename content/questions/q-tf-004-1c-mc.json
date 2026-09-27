@@ -6,31 +6,39 @@
   "objectiveIds": [
     "tf.004.1c"
   ],
-  "stem": "During an architecture review, the goal is: Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows. Which action matches that goal?",
+  "stem": "Kestrel Devices runs workloads on two different public cloud vendors and wants both provisioned from the same configuration language and the same review-and-apply workflow, without maintaining two separate toolchains. Which approach satisfies that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A tool whose plugin model lets one configuration call each vendor's API through its own plugin, all run through the same process."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Explain how Terraform manages multi-cloud, hybrid cloud, and service-agnostic workflows"
+      "text": "AWS CloudFormation for the AWS resources, and the second vendor's own native template tool for its resources, coordinated by a shared runbook."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A configuration management tool that logs into each server after it already exists and installs the same packages on both vendors' servers."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "One vendor's infrastructure template language, with the second vendor's resources described in a comment for a human to provision by hand later."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The key describes Terraform's provider model, where one configuration and one workflow call a plugin per vendor. CloudFormation's engine and template syntax only understand one vendor's resources, so pairing it with a second vendor's native tool means two toolchains, not one. A configuration management tool acts on servers after they already exist and does not provision the underlying cloud resources at all. Describing the second vendor's resources only in a comment for a human to build later means that vendor is never actually provisioned by any tool.",
+  "citationIds": [
+    "cite-tf-g1-intro",
+    "cite-tf-g1-vs-cloudformation",
+    "cite-tf-g1-core-workflow",
+    "cite-tf-g1-graph",
+    "cite-tf-g1-state-purpose",
+    "cite-tf-g1-hcp-terraform",
+    "cite-tf-g1-providers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

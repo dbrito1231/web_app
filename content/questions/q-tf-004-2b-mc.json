@@ -6,31 +6,37 @@
   "objectiveIds": [
     "tf.004.2b"
   ],
-  "stem": "Which action is the right fit for this requirement: Describe how Terraform uses providers?",
+  "stem": "Oakmire Devices' configuration successfully runs `terraform init` and downloads the AWS provider, but `terraform plan` then fails because no region is set for it. What block was missing or misconfigured?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The `provider` block for `aws`, which is where runtime settings such as region are supplied to an already-downloaded plugin."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The `required_providers` block, which only declares that a provider and version are needed, not its runtime settings."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Describe how Terraform uses providers"
+      "text": "The resource block for the database instance, which declares its own region directly instead of inheriting one from any provider configuration."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The file that records each provider's installed version and checksum, which needed to record the region there too."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Runtime settings like region belong in the `provider` block, which configures an already-downloaded plugin so it can act; that block was missing or incomplete. The `required_providers` block only declares which provider and version are needed, and it being present is exactly why `init` succeeded, so pointing back at it does not explain the plan failure. Resource blocks do not redeclare a region directly; region is a provider-level setting. The dependency lock file only records provider versions and checksums, never runtime settings like region.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

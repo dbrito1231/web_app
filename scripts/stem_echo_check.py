@@ -84,6 +84,16 @@ def load_waivers(task: str) -> dict:
 
 def main(task: str) -> int:
     files = sorted((ROOT / "content/questions").glob(f"q-*-{task}-*.json"))
+    lesson_path = ROOT / f"content/lessons/lesson-{task}.json"
+    if lesson_path.exists():
+        # Objective-group tasks (e.g. tf-g1) don't have a filename token that
+        # matches the task id directly, so select by the lesson's own
+        # objectiveIds instead -- the same approach q1_batch_check.py uses.
+        objs = set(json.loads(lesson_path.read_text(encoding="utf-8"))["objectiveIds"])
+        files = sorted(
+            f for f in (ROOT / "content/questions").glob("q-*.json")
+            if objs & set(json.loads(f.read_text(encoding="utf-8")).get("objectiveIds", []))
+        )
     if not files:
         print(f"no question files for task {task}")
         return 1

@@ -6,36 +6,42 @@
   "objectiveIds": [
     "tf.004.2b"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe how Terraform uses providers",
+  "stem": "(Select TWO.) Rosewell Analytics wants to confirm exactly how Terraform will resolve a provider that a colleague referred to only by its local name.",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "If no `source` argument is given, Terraform assumes the provider comes from `registry.terraform.io/hashicorp/<LOCAL NAME>`."
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A source address always requires an explicit hostname; there is no default registry Terraform assumes."
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "A full source address is structured as `[<HOSTNAME>/]<NAMESPACE>/<TYPE>`, with the hostname optional."
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The local name in a configuration always exactly matches the provider's registry `<TYPE>` segment and cannot be reassigned."
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "The `<NAMESPACE>` segment of a source address is optional and can always be left out safely."
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Omitting `source` makes Terraform assume the implied default `registry.terraform.io/hashicorp/<LOCAL NAME>`, and a full address is structured `[<HOSTNAME>/]<NAMESPACE>/<TYPE>` with the hostname optional, matching both keys. Claiming there is no default registry contradicts the implied-source rule directly. Claiming a local name can never be reassigned ignores that a compound local name can be used to resolve a naming collision between two providers. Claiming the namespace segment can always be left out is wrong; only the hostname is optional, not the namespace.",
+  "citationIds": [
+    "cite-tf-g2-providers",
+    "cite-tf-g2-provider-requirements",
+    "cite-tf-g2-provider-configuration",
+    "cite-tf-g2-version-constraints",
+    "cite-tf-g2-state"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

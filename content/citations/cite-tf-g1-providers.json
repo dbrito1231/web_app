@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-providers",
+  "title": "Providers - Configuration Language",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/providers",
+  "accessed": "2026-09-27",
+  "note": "Backs the claim that providers let Terraform interact with cloud providers, SaaS providers, and other APIs, grounding 'service-agnostic' beyond multi-cloud."
+}

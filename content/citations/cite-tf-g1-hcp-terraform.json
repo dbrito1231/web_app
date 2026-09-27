@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-hcp-terraform",
+  "title": "HCP Terraform Overview",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs",
+  "accessed": "2026-09-27",
+  "note": "Backs the definition of HCP Terraform as an application that helps teams use Terraform together, with shared state, access controls for approving changes, and a private module registry."
+}
