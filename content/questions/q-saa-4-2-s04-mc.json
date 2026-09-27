@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Place QA on Outposts and keep checkout in one Local Zone"
+      "text": "Run checkout in one AZ with pilot-light recovery scripts and run QA in two AZs"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Tiered availability design maps high-impact production to multi-AZ resilience and lower-impact QA to leaner scheduled capacity. One-AZ deployment for checkout misses production availability expectations. Outposts and single Local Zone do not align to the stated class-based resilience plan. Fully mirroring production capacity in QA can add unnecessary cost without matching business impact.",
+  "rationale": "Tiered availability design maps high-impact production to multi-AZ resilience and lower-impact QA to leaner scheduled capacity. One-AZ deployment for checkout misses production availability expectations. Using pilot-light recovery while keeping checkout in one AZ still leaves production outside the stated high-availability class. Fully mirroring production capacity in QA can add unnecessary cost without matching business impact.",
   "citationIds": [
     "cite-saa-4-2-multiaz-reliability"
   ],

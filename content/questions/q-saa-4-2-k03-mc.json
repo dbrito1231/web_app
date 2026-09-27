@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "Move the workload to one Outposts rack in a datacenter"
+      "text": "Shift the API to a single Outposts deployment in one on-premises site"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Running compute across at least two Availability Zones with load balancing addresses single-AZ failure resilience. Keeping everything in one AZ leaves a zonal single point of failure regardless of purchase option. A single Local Zone does not replace multi-AZ resilience for Regional workloads. A single Outposts rack in one facility does not provide Regional multi-AZ fault isolation.",
+  "rationale": "Running compute across at least two Availability Zones with load balancing addresses single-AZ failure resilience. Keeping everything in one AZ leaves a zonal single point of failure regardless of purchase option. A single Local Zone does not replace multi-AZ resilience for Regional workloads. A single Outposts deployment in one facility does not provide the Regional multi-AZ fault-isolation target.",
   "citationIds": [
     "cite-saa-4-2-multiaz-reliability",
     "cite-saa-4-2-regions-azs"

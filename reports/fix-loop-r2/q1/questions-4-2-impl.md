@@ -40,6 +40,10 @@
 
 ## Distractor type table
 
+Pre-check note (Lead Dev, before round-2 review): I removed recycled Outposts wording, replaced off-area Outposts/Local Zones distractors in `s03-mr`, `s04-mc`, and `s06-mr`, and replaced the likely strawman in `s06-mr`.
+
+Counting method: counted **distractor choices only** (not correct answers). Each distractor is assigned one primary wrong-answer concept, then grouped across all 24 questions.
+
 | Distractor type | Count | Question IDs |
 |---|---:|---|
 | Cost visibility vs control tool confusion | 3 | k01-mc, k02-mc, k02-mr |
@@ -53,6 +57,7 @@
 | Mixed compute service mapping and sizing mismatch | 2 | s03-mc, s06-mc |
 
 - Highest distractor-type count: **3** (15% cap = 3 for 24 questions).
+- Placement-subtype check: Outposts distractors = **3** (`k03-mc`, `k05-mc`, `k05-mr`), Local Zone distractors = **3** (`k03-mc`, `k05-mc`, `k06-mc`).
 
 ## Balance stats
 

@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Disable Auto Scaling and keep a fixed fleet size"
+      "text": "Switch to Compute Savings Plans while keeping current oversized instance sizes"
     },
     {
       "id": "d",
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "Move the workload to one Outposts rack"
+      "text": "Downsize all nodes and lower Auto Scaling maximum to the new baseline"
     }
   ],
   "correctAnswerIds": [
     "b",
     "d"
   ],
-  "rationale": "Rightsizing down where long-term headroom exists directly reduces baseline spend. Keeping Auto Scaling preserves the ability to scale back out during peak periods after rightsizing. Spot-only replacement for all capacity can add interruption risk for noninterruptible baseline traffic. Disabling Auto Scaling removes elasticity needed for peak protection. Migrating to Outposts changes deployment model and does not directly address the identified in-Region rightsizing objective.",
+  "rationale": "Rightsizing down where long-term headroom exists directly reduces baseline spend. Keeping Auto Scaling preserves the ability to scale back out during peak periods after rightsizing. Spot-only replacement for all capacity can add interruption risk for noninterruptible baseline traffic. Applying Savings Plans to an oversized fleet improves price rate but keeps utilization waste from oversizing. Lowering Auto Scaling maximum to the new baseline can block required peak-hour scale-out.",
   "citationIds": [
     "cite-saa-4-2-c7g-table",
     "cite-saa-4-2-target-tracking"

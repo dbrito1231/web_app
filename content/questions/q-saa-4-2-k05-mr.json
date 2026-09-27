@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Move both workloads to a single Outposts rack"
+      "text": "Host both tiers on one Outposts deployment at a company facility"
     },
     {
       "id": "d",
@@ -34,7 +34,7 @@
     "a",
     "e"
   ],
-  "rationale": "Local Zones are designed for low-latency workloads near users, which fits matchmaking response requirements. Keeping account-management services in the parent Region preserves access to broader Regional services and operations. Moving account-management databases to Wavelength-only placement conflicts with the requirement to keep that tier in full Regional environment. A single Outposts rack changes the operating model and does not match the stated architecture target. Placing all components in one AZ removes the intended distributed placement strategy.",
+  "rationale": "Local Zones are designed for low-latency workloads near users, which fits matchmaking response requirements. Keeping account-management services in the parent Region preserves access to broader Regional services and operations. Hosting both tiers on one Outposts deployment changes the operating model and does not match the stated split-edge architecture target. Moving account-management databases to Wavelength-only placement conflicts with the requirement to keep that tier in full Regional environment. Placing all components in one AZ removes the intended distributed placement strategy.",
   "citationIds": [
     "cite-saa-4-2-localzone-faq",
     "cite-saa-4-2-regions-azs"
