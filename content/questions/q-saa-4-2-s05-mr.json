@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.2-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate instance family for a workload",
+  "stem": "Tidal Metrics is right-sizing two services: one is CPU-bound and one is memory-bound. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "T family for both services"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "M family for both services"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "C family for the CPU-bound service"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "I family for the memory-bound service"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "R family for the memory-bound service"
     }
   ],
   "correctAnswerIds": [
     "c",
-    "d"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "C families are designed for compute-optimized workloads, fitting the CPU-bound service. R families are designed for memory-optimized workloads, fitting the memory-bound service. Applying one family to both services usually overprovisions one resource dimension. I families target storage-optimized profiles rather than primary memory bottlenecks. Burstable T families are not the primary fit for sustained CPU-bound production tiers.",
+  "citationIds": [
+    "cite-saa-4-2-instance-names"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

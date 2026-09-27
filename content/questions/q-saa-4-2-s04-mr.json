@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining the required availability for different classes of workloads (for example, production workloads, non-production workloads)",
+  "stem": "Summit Retail separates customer checkout from dev sandbox environments and wants availability aligned to business impact. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Run customer checkout across multiple Availability Zones"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Use smaller single-AZ or scheduled capacity for dev sandbox workloads"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Route checkout and sandbox through one shared instance"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Store the checkout database on instance store volumes only"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Keep both environments active-active across two Regions continuously"
     }
   ],
   "correctAnswerIds": [
     "a",
     "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Multi-AZ deployment fits high-impact checkout availability targets, while lower-impact sandbox workloads can use smaller or scheduled capacity to control spend. Routing both environments through one instance creates a shared failure point. Instance-store-only persistence is not an availability strategy for critical checkout data. Two-Region active-active for both environments may be valid in special cases but is not a cost-aligned default for a dev sandbox.",
+  "citationIds": [
+    "cite-saa-4-2-multiaz-reliability",
+    "cite-saa-4-2-regions-azs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

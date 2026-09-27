@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Distributed compute strategies (for example, edge processing)",
+  "stem": "MetroPlay runs latency-sensitive game matchmaking near city users but keeps account-management services in a full AWS Region. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Place matchmaking services in a Local Zone near end users"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Place account-management databases in a Wavelength Zone only"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Move both workloads to a single Outposts rack"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Place all components in one Availability Zone in the Region"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Keep core account-management services in the parent Region"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "a",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Local Zones are designed for low-latency workloads near users, which fits matchmaking response requirements. Keeping account-management services in the parent Region preserves access to broader Regional services and operations. Moving account-management databases to Wavelength-only placement conflicts with the requirement to keep that tier in full Regional environment. A single Outposts rack changes the operating model and does not match the stated architecture target. Placing all components in one AZ removes the intended distributed placement strategy.",
+  "citationIds": [
+    "cite-saa-4-2-localzone-faq",
+    "cite-saa-4-2-regions-azs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

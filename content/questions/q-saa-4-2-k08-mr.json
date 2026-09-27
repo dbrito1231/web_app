@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-K08"
   ],
-  "stem": "Select TWO actions that support this requirement: Optimization of compute utilization (for example, containers, serverless computing, microservices)",
+  "stem": "HarborPay is decomposing a monolith into containerized services and wants to cut idle EC2 host spend while moving away from server patch cycles. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Keep containers on fixed On-Demand EC2 hosts"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Move each service to AWS Lambda zip functions"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Run containers on AWS Fargate tasks"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Scale microservices independently so only busy components grow"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Purchase Standard Reserved Instances for every current EC2 node"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Running containers on Fargate removes host management and ties billing to task-level resource usage. Scaling microservices independently reduces overprovisioning because only active components scale up. Fixed EC2 hosts keep patch and capacity-management burden. Lambda zip packaging is not a direct replacement for many containerized service patterns in this scenario. Reserving current EC2 nodes can lower unit price but does not remove patch cycles or idle host structure.",
+  "citationIds": [
+    "cite-saa-4-2-fargate-pricing",
+    "cite-saa-4-2-lambda-pricing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

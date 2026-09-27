@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-4.2-K04"
   ],
-  "stem": "Pick the action that satisfies: AWS purchasing options (for example, Spot Instances, Reserved Instances, Savings Plans).",
+  "stem": "Pioneer Genomics runs constant baseline compute plus nightly interruptible rendering jobs and wants the lowest blended EC2 price profile.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run all instances as On-Demand for full flexibility"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Purchase Zonal Reserved Instances for entire peak demand and avoid Spot"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use Spot Instances for baseline and rendering capacity"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: AWS purchasing options (for example, Spot Instances, Reserved Instances, Savings Plans)"
+      "text": "Cover baseline with commitments and run rendering on Spot."
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Baseline demand is predictable and fits commitment discounts, while interruptible rendering jobs are a strong Spot candidate. All On-Demand ignores available commitment savings. Covering full peak with Reserved capacity often overcommits for transient rendering bursts. Spot-only baseline risks interruption on steady-state workload that should be stable.",
+  "citationIds": [
+    "cite-saa-4-2-savingsplans-vs-ri",
+    "cite-saa-4-2-spot-interruptions",
+    "cite-saa-4-2-reserved-instances"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

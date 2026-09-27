@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.2-K03"
   ],
-  "stem": "You must choose one approach for: AWS global infrastructure (for example, Availability Zones, AWS Regions). Which action fits?",
+  "stem": "During a redesign at Cedar Health, the booking API has to stay online if one Availability Zone fails inside a single Region.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Place all instances in one Availability Zone and buy Savings Plans"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use at least two Availability Zones behind one load balancer."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: AWS global infrastructure (for example, Availability Zones, AWS Regions)"
+      "text": "Use one Local Zone subnet instead of multiple Availability Zones"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Move the workload to one Outposts rack in a datacenter"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Running compute across at least two Availability Zones with load balancing addresses single-AZ failure resilience. Keeping everything in one AZ leaves a zonal single point of failure regardless of purchase option. A single Local Zone does not replace multi-AZ resilience for Regional workloads. A single Outposts rack in one facility does not provide Regional multi-AZ fault isolation.",
+  "citationIds": [
+    "cite-saa-4-2-multiaz-reliability",
+    "cite-saa-4-2-regions-azs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

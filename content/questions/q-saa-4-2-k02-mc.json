@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.2-K02"
   ],
-  "stem": "In a design review, the requirement is: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report). Which action matches it?",
+  "stem": "BlueOrbit Retail sees a sudden rise in EC2 cost and the CFO wants a forecast by linked account and cost-center tag for next quarter.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Re"
+      "text": "AWS Budgets with forecast threshold alerts"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "AWS Cost and Usage Report exported to Amazon S3 and queried with Athena"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Cost Explorer grouped by linked account and tag"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "AWS Cost Anomaly Detection monitor"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cost Explorer is built for visualization and forecasting with filtering and grouping dimensions such as account and tags. Budgets is best for threshold alerts and actions, not exploratory forecasting views. Cost and Usage Report is granular line-item export data for custom analytics, not the fastest interactive forecast tool for leadership. Cost Anomaly Detection flags unusual spend patterns rather than providing detailed quarter forecasting by selected dimensions.",
+  "citationIds": [
+    "cite-saa-4-2-cloud-financial-tools"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

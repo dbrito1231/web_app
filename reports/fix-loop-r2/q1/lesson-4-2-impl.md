@@ -35,7 +35,7 @@
 | 19 | K04 | Compute Savings Plans can save up to 66 percent | https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-ris.html | "Compute Savings Plans provide savings up to 66% off On-Demand" |
 | 20 | K04 | EC2 Instance Savings Plans can save up to 72 percent | https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-ris.html | "EC2 Instance Savings Plans offer savings up to 72% off of On-Demand" |
 | 21 | K04 | Compute Savings Plans apply to EC2, Fargate, Lambda | https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-ris.html | "automatically reduce your cost on EC2 instance usage, Fargate, and Lambda" |
-| 22 | K04 | Reserved Instances terms are one or three years | https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html | "payment options are available for Reserved Instances" |
+| 22 | K04 | Reserved Instances terms are one or three years | https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html | "You can purchase a Reserved Instance for a one-year or three-year commitment" |
 | 23 | K04 | Reserved payment options include all/partial/no upfront | https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html | "All Upfront ... Partial Upfront ... No Upfront" |
 | 24 | K05 | Local Zones target single-digit millisecond latency | https://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/ | "Local Zones ... run workloads that require single-digit millisecond latency" |
 | 25 | K05 | Wavelength is for ultralow-latency 5G applications | https://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/ | "Wavelength is designed to deliver ultralow-latency applications to 5G devices" |
@@ -45,6 +45,7 @@
 | 29 | K07 | First family position indicates series | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "The first position ... indicates the series" |
 | 30 | K07 | Second family position indicates generation | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "The second position indicates the generation" |
 | 31 | K07 | Third family position indicates options | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "The third position indicates the options" |
+| 55 | K07 | Instance sizes include `metal` for bare metal instances | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "or `metal` for bare metal instances." |
 | 32 | K07 | `C` series means compute optimized | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "C - Compute optimized" |
 | 33 | K07 | `R` series means memory optimized | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "R - Memory optimized" |
 | 34 | K07 | `M` series means general purpose | https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html | "M - General purpose" |
@@ -53,6 +54,7 @@
 | 37 | K08 | Lambda functions priced by requests and duration | https://aws.amazon.com/lambda/pricing/ | "priced based on the number of requests served and the duration your code runs" |
 | 38 | K08 | Lambda timeout default is 3 seconds | https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html | "default value for this setting is 3 seconds" |
 | 39 | K08 | Lambda timeout max is 900 seconds (15 minutes) | https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html | "maximum value of 900 seconds (15 minutes)" |
+| 56 | K08 | Lambda timeout can be set from 1 to 900 seconds for standard functions | https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html | "adjust this in increments of 1 second up to a maximum value of 900 seconds" |
 | 40 | K09 | Target tracking adds/removes capacity to keep metric near target | https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html | "adds and removes capacity ... to keep the metric at ... the specified target value" |
 | 41 | K09 | Above target scales out; below target scales in | https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html | "above the target value ... scales out ... below the target value ... scales in" |
 | 42 | K09/S02 | Hibernation saves RAM to EBS root volume | https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html | "Hibernation saves the contents from the instance memory (RAM) to ... EBS root volume" |
@@ -66,7 +68,7 @@
 | 50 | S06 | c7g.large has 2 vCPU and 4 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.large | 2 | 4" |
 | 51 | S06 | c7g.xlarge has 4 vCPU and 8 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.xlarge | 4 | 8" |
 | 52 | S06 | c7g.2xlarge has 8 vCPU and 16 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.2xlarge | 8 | 16" |
-| 53 | S03 | On-Demand allows per-second pay-as-you-go compute | https://docs.aws.amazon.com/decision-guides/latest/decision-guides/ec2-purchasing-options-aws-how-to-choose.html | "pay-as-you-go pricing with no long-term commitments" |
+| 53 | S03 | On-Demand allows per-second pay-as-you-go compute | https://docs.aws.amazon.com/decision-guides/latest/decision-guides/ec2-purchasing-options-aws-how-to-choose.html | "pay only for the compute time you use, with billing granularity as low as per-second for Linux, RHEL, and Windows instances" |
 | 54 | S03 | EC2 Spot can be up to 90 percent lower than On-Demand | https://aws.amazon.com/ec2/pricing/ | "discount of up to 90% compared to On-Demand prices" |
 
 ## New citation files

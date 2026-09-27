@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
+  "stem": "CypherNet must insert third-party firewalls inline between VPCs and scale appliance capacity as traffic grows. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Application Load Balancer with path rules"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Gateway Load Balancer as the traffic insertion point"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Network Load Balancer with static IP addresses"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Global Accelerator endpoint group"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Register firewall appliances in Gateway Load Balancer target groups"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Gateway Load Balancer is built for virtual appliance insertion and traffic steering at network layer behavior. Registering firewall appliances in GWLB target groups supports scalable appliance fleets. Application Load Balancer focuses on Layer 7 HTTP routing and is not the intended inline security insertion model. Network Load Balancer can provide high-performance transport balancing but does not provide the same appliance insertion workflow. Global Accelerator optimizes global entry routing, not inline firewall service chaining.",
+  "citationIds": [
+    "cite-saa-4-2-elbv2-overview",
+    "cite-saa-4-2-load-balancer-type"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

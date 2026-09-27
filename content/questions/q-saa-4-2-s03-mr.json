@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-4.2-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate)",
+  "stem": "Redwood Bio runs two workloads: short event handlers and long-running container jobs that exceed 15 minutes, and the team wants to avoid managing servers. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "AWS Lambda for the short event handlers"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Lambda for the long-running container jobs"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Outposts for the short event handlers"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Fargate tasks for the long-running container jobs"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Amazon EC2 Auto Scaling group for the long-running container jobs"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lambda matches short event-handler execution patterns, and Fargate supports long-running containers without server patch management. Lambda is not the right fit for long-running container jobs that exceed standard function duration limits. Outposts solves hybrid placement constraints rather than this serverless compute split. EC2 Auto Scaling can run the jobs but reintroduces host management that the scenario explicitly wants to avoid.",
+  "citationIds": [
+    "cite-saa-4-2-lambda-timeout",
+    "cite-saa-4-2-fargate-pricing",
+    "cite-saa-4-2-lambda-pricing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

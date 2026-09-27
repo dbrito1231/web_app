@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.2-S04"
   ],
-  "stem": "The workload needs this outcome: Determining the required availability for different classes of workloads (for example, production workloads, non-production workloads). Which action should you take?",
+  "stem": "Beacon Bank classifies customer checkout as tier-1 production and internal QA as tier-3 nonproduction with tighter budget limits.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Determining the required availability for different classes of workloads (for example, production workloads, non-product"
+      "text": "Run checkout in multiple AZs and keep QA on scheduled smaller capacity."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy checkout and QA in one Availability Zone with the same instance count at all times"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Place QA on Outposts and keep checkout in one Local Zone"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Mirror production multi-AZ capacity in QA at all times"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Tiered availability design maps high-impact production to multi-AZ resilience and lower-impact QA to leaner scheduled capacity. One-AZ deployment for checkout misses production availability expectations. Outposts and single Local Zone do not align to the stated class-based resilience plan. Fully mirroring production capacity in QA can add unnecessary cost without matching business impact.",
+  "citationIds": [
+    "cite-saa-4-2-multiaz-reliability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

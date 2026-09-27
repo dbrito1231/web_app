@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-4.2-S03"
   ],
-  "stem": "An exam scenario centers on: Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate). Which action matches it?",
+  "stem": "Nimbus Labs has one component triggered by S3 events for short transformations and another service that runs containers all day.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Run both components on AWS Lambda"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Far"
+      "text": "Run both components on AWS Fargate"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run both components on fixed EC2 instances"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use Lambda for event transforms and Fargate for all-day containers."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lambda is optimized for short event-driven execution, while Fargate fits long-running container workloads without host management. Running both on Lambda can conflict with long-duration container service behavior. Running both on Fargate can work but often overpays for short event bursts relative to Lambda billing model. Running both on fixed EC2 can increase operational overhead and idle-capacity cost.",
+  "citationIds": [
+    "cite-saa-4-2-lambda-pricing",
+    "cite-saa-4-2-fargate-pricing",
+    "cite-saa-4-2-lambda-timeout"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

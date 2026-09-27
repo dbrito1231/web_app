@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation)",
+  "stem": "Pinecone Social expects unpredictable flash crowds and also wants to reduce cold-start delay for an EC2 cache tier. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Use horizontal Auto Scaling for the stateless front-end fleet"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Replace the cache tier with Spot-only instances for all hours"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Hibernate pre-warmed cache instances during idle windows for faster resume"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Move all traffic to one larger instance"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Disable scale-in so fleet size never shrinks"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Horizontal Auto Scaling addresses unpredictable flash-crowd traffic by adjusting fleet size with demand. Hibernating pre-warmed cache instances can reduce restart delay by preserving in-memory state. Spot-only cache capacity for all hours increases interruption risk for stateful warm tiers. A single larger instance increases failure impact and limits elasticity. Disabling scale-in prevents cost-efficient contraction after demand drops.",
+  "citationIds": [
+    "cite-saa-4-2-target-tracking",
+    "cite-saa-4-2-hibernate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

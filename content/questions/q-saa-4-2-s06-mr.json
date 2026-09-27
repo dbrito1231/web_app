@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.2-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate instance size for a workload",
+  "stem": "Vertex News found sustained low utilization on a c7g fleet and wants lower cost while preserving peak-hour performance. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Replace all instances with Spot capacity only"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Step down one size where metrics show sustained headroom"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Disable Auto Scaling and keep a fixed fleet size"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Keep Auto Scaling so peak-hour scale-out still occurs after rightsizing"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Move the workload to one Outposts rack"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Rightsizing down where long-term headroom exists directly reduces baseline spend. Keeping Auto Scaling preserves the ability to scale back out during peak periods after rightsizing. Spot-only replacement for all capacity can add interruption risk for noninterruptible baseline traffic. Disabling Auto Scaling removes elasticity needed for peak protection. Migrating to Outposts changes deployment model and does not directly address the identified in-Region rightsizing objective.",
+  "citationIds": [
+    "cite-saa-4-2-c7g-table",
+    "cite-saa-4-2-target-tracking"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

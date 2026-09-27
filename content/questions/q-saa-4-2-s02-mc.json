@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.2-S02"
   ],
-  "stem": "A teammate asks how to meet this requirement: Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation). Which action is appropriate?",
+  "stem": "At Solace Travel, API demand swings hourly and each web node is stateless behind a load balancer.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Increase one instance from m6i.large to m6i.4xlarge"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use horizontal Auto Scaling driven by target tracking metrics"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Hibernate each node during traffic spikes"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vert"
+      "text": "Pin all traffic to one Availability Zone"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Stateless web tiers with variable demand align well with horizontal Auto Scaling driven by target tracking. Vertical-only growth on a single node increases failure impact and reduces elasticity granularity. Hibernation is for preserving RAM state during stop/start windows, not spike handling. Constraining traffic to one AZ conflicts with resilient elastic scaling patterns.",
+  "citationIds": [
+    "cite-saa-4-2-target-tracking",
+    "cite-saa-4-2-multiaz-reliability"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

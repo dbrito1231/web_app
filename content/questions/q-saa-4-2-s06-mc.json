@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.2-S06"
   ],
-  "stem": "During an architecture review, the goal is: Selecting the appropriate instance size for a workload. Which action matches that goal?",
+  "stem": "Quartz Media already chose c7g family and now needs the smallest size that safely handles 95th percentile CPU peaks above current large capacity.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "c7g.large"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Selecting the appropriate instance size for a workload"
+      "text": "c7g.xlarge"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "c7g.8xlarge"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "c7g.metal"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Moving from large to xlarge is the next incremental size step and often the right first adjustment when current large capacity is exceeded. Staying on large leaves the known peak issue unresolved. Jumping to 8xlarge or metal introduces far more capacity and cost than the scenario indicates is necessary.",
+  "citationIds": [
+    "cite-saa-4-2-c7g-table",
+    "cite-saa-4-2-instance-names"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

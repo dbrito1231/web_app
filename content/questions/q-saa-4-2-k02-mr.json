@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.2-K02"
   ],
-  "stem": "Select TWO actions that support this requirement: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report)",
+  "stem": "Greenfield Logistics needs budget alarms before monthly overspend and also wants raw billing rows in S3 for Athena queries. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "AWS Billing Conductor custom billing groups"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "AWS Budgets with actual and forecast notifications"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "AWS Cost Explorer saved reports"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "AWS Cost and Usage Report delivered to Amazon S3"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Activate user-defined cost allocation tags"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "AWS Budgets provides actual and forecast threshold notifications for proactive overspend warning. Cost and Usage Report delivers comprehensive line-item billing data to S3 for Athena analysis. Billing Conductor models internal rates but does not replace budget alarming or raw export delivery. Cost Explorer provides analysis views rather than line-item export files. Cost allocation tags improve attribution, but tags alone do not create threshold alarms or substitute for CUR export.",
+  "citationIds": [
+    "cite-saa-4-2-cloud-financial-tools"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

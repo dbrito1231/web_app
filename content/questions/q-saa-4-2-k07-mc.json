@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.2-K07"
   ],
-  "stem": "You must choose one approach for: Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization). Which action fits?",
+  "stem": "Atlas Payments is migrating a licensed appliance that needs direct physical host access for compliance testing in AWS.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "c7g.4xlarge"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "c7g.metal"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Instance types, families, and sizes (for example, memory optimized, compute optimized, virtualization)"
+      "text": "t3.large"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "m7g.xlarge"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The metal size indicates bare metal, which aligns with direct host access requirements. Standard large and xlarge instance sizes are virtualized options and do not express the bare-metal size requirement in the instance name. Choosing a different virtualized family does not satisfy the physical host constraint.",
+  "citationIds": [
+    "cite-saa-4-2-instance-names"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

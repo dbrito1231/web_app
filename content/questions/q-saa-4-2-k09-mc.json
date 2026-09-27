@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.2-K09"
   ],
-  "stem": "In a design review, the requirement is: Scaling strategies (for example, auto scaling, hibernation). Which action matches it?",
+  "stem": "Orchid Search preloads a large in-memory index each morning and startup takes 14 minutes, but daytime traffic is elastic.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Scaling strategies (for example, auto scaling, hibernation)"
+      "text": "Hibernate pre-warmed instances and use Auto Scaling for daytime demand."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Stop instances nightly and rebuild the index every morning"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Replace scaling policy with vertical-only resizing"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use Reserved Instances while keeping current scaling behavior."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Hibernation preserves RAM state for faster resume of pre-warmed instances, and Auto Scaling handles daytime elasticity. Stopping instances clears RAM and forces full reload. Vertical-only resizing does not address startup-time recovery pattern. Reserved pricing can reduce cost rate but does not solve the warm-start behavior requirement.",
+  "citationIds": [
+    "cite-saa-4-2-hibernate",
+    "cite-saa-4-2-target-tracking"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

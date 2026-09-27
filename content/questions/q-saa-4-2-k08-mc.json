@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.2-K08"
   ],
-  "stem": "Pick the action that satisfies: Optimization of compute utilization (for example, containers, serverless computing, microservices).",
+  "stem": "Maple Tickets receives event bursts for webhook processing, each run takes under 30 seconds, and traffic is idle overnight.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Amazon EC2 Auto Scaling group"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "AWS Fargate service with always-on tasks"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Amazon ECS on EC2 capacity provider"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Optimization of compute utilization (for example, containers, serverless computing, microservices)"
+      "text": "AWS Lambda function triggered by events"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Lambda aligns to short event-driven execution with pay-per-request and duration billing, reducing idle cost for overnight gaps. EC2 Auto Scaling and ECS on EC2 still require host fleet management and can leave idle baseline spend. Always-on Fargate services can work functionally, but they are less cost-efficient for this bursty, short-running pattern.",
+  "citationIds": [
+    "cite-saa-4-2-lambda-pricing",
+    "cite-saa-4-2-lambda-timeout"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
