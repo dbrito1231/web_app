@@ -6,33 +6,34 @@
   "objectiveIds": [
     "SAA-4.3-K04"
   ],
-  "stem": "An audit policy requires Aurora backups for 30 days plus immutable long-term monthly copies that never expire until explicitly removed.",
+  "stem": "An audit policy requires Aurora recovery points for 30 days and separate long-term monthly copies that remain until explicitly deleted.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Keep automated backup retention at 30 days and create monthly cluster snapshots."
+      "text": "Set 30-day automated retention and create monthly manual cluster snapshots."
     },
     {
       "id": "b",
-      "text": "Set Aurora automated backup retention to 0 days and rely on weekly exports only."
+      "text": "Set 30-day automated retention and rely on automated backups only for long-term copies."
     },
     {
       "id": "c",
-      "text": "Use only read replicas as the long-term backup mechanism."
+      "text": "Enable PITR with a 35-day window as the sole long-term retention mechanism."
     },
     {
       "id": "d",
-      "text": "Use ElastiCache snapshots as the authoritative durable archive for relational recovery."
+      "text": "Deploy Multi-AZ standbys and use failover topology as the retention strategy."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Aurora supports automated retention windows and manual snapshots that do not expire until deleted, satisfying both operational and long-term needs. Aurora backups cannot be disabled with retention 0 in this context. Read replicas are for scaling and failover, not immutable long-term backup policy. ElastiCache snapshotting is for cache state, not relational system-of-record backup strategy.",
+  "rationale": "Automated backups cover operational retention windows, while manual snapshots provide explicit long-term copies that do not expire until deletion. Automated retention alone cannot satisfy open-ended monthly copy retention. PITR windows are bounded and do not replace indefinite snapshot retention. Multi-AZ topology improves availability but is not a backup-retention instrument.",
   "citationIds": [
     "cite-saa-4-3-aurora-backups",
-    "cite-saa-4-3-rds-snapshots"
+    "cite-saa-4-3-rds-snapshots",
+    "cite-saa-4-3-dynamodb-pitr"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

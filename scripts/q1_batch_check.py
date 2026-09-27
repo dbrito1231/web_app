@@ -86,6 +86,7 @@ def main():
     openings = collections.Counter()
     mc = long_key = 0
     mc_pos, mr_pos = collections.Counter(), collections.Counter()
+    mr_sets = collections.Counter()
     for q in questions:
         qid = q["id"]
         openings[" ".join(q["stem"].lower().split()[:6])] += 1
@@ -99,6 +100,7 @@ def main():
             if len(ch) != 4:
                 report("FAIL", f"{qid}: MC has {len(ch)} choices")
         else:
+            mr_sets[",".join(sorted(keys))] += 1
             for k in keys:
                 mr_pos[k] += 1
             if len(ch) != 5:
@@ -143,6 +145,15 @@ def main():
         report("PASS" if spread <= max(2, mc // 4) else "WARN", f"MC key positions {dict(sorted(mc_pos.items()))}")
     if mr_pos:
         report("PASS" if len(mr_pos) >= 4 else "WARN", f"MR key slots {dict(sorted(mr_pos.items()))}")
+        # Distinct slots alone hide the real tell: the same key combination
+        # repeated. "Always answer a,b" must not score well without reading.
+        n_mr = sum(mr_sets.values())
+        combo, hits = mr_sets.most_common(1)[0]
+        report(
+            "PASS" if n_mr < 4 or hits / n_mr <= 0.4 else "FAIL",
+            f"MR key sets: most common '{combo}' in {hits}/{n_mr} "
+            f"({hits / n_mr:.0%}); all {dict(mr_sets.most_common())}",
+        )
     print("RESULT:", "FAIL" if "FAIL" in results else ("WARN" if "WARN" in results else "PASS"))
     return 1 if "FAIL" in results else 0
 

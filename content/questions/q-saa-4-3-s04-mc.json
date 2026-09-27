@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-S04"
   ],
-  "stem": "A media company runs large aggregations across billions of event rows and needs a cost-effective store optimized for analytical scans across selected columns.",
+  "stem": "A media company needs consistently fast dashboard queries over very large column subsets and sustained analytical concurrency.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use Amazon RDS for OLTP and treat it as the default petabyte analytics warehouse."
+      "text": "Use Amazon Redshift with columnar storage for analytical scan workloads."
     },
     {
       "id": "b",
-      "text": "Use Amazon API Gateway caching as the historical columnar data warehouse."
+      "text": "Use Athena as the primary always-on warehouse with guaranteed low-latency concurrency targets."
     },
     {
       "id": "c",
-      "text": "Use AWS Step Functions execution history as the long-term SQL analytics store."
+      "text": "Use a transactional relational instance as the long-term analytics warehouse."
     },
     {
       "id": "d",
-      "text": "Use Amazon Redshift with columnar storage for analytical workloads."
+      "text": "Use a key-value primary table and aggregate with point-lookups for warehouse queries."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "Redshift columnar storage is optimized for analytical scan patterns and reduced disk I/O. RDS OLTP engines can run analytics but are not the default fit for this warehouse requirement. API Gateway caching and Step Functions history are not data warehouse platforms.",
+  "rationale": "Redshift is designed for columnar analytical scan performance and high-concurrency warehouse use cases. Athena is excellent for many ad hoc patterns but does not match this always-on warehouse latency target framing. Transactional relational instances are not the primary fit for large-scale analytical warehouse concurrency. Key-value point-lookups are mismatched to broad analytic scan and aggregation needs.",
   "citationIds": [
     "cite-saa-4-3-redshift-columnar"
   ],

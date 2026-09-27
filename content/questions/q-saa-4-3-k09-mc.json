@@ -6,33 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K09"
   ],
-  "stem": "A gaming backend stores session state by key with extremely high request rates and needs predictable low-latency lookups without SQL joins.",
+  "stem": "A gaming backend stores session state by key at very high request rates and needs predictable low-latency lookups without SQL joins.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use Amazon Redshift as the transactional session-state store."
+      "text": "Use Aurora PostgreSQL as the primary session-state system of record."
     },
     {
       "id": "b",
-      "text": "Use Amazon Neptune for flat key-value session retrieval."
+      "text": "Use a general-purpose managed MySQL instance with read replicas for key lookups."
     },
     {
       "id": "c",
-      "text": "Use Amazon OpenSearch Service as the source-of-truth transactional key store."
+      "text": "Use ElastiCache as the only durable system of record for all sessions."
     },
     {
       "id": "d",
-      "text": "Use Amazon DynamoDB as the primary data store."
+      "text": "Use DynamoDB as the primary key-value datastore."
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "DynamoDB is optimized for key-based, low-latency, high-scale access patterns. Redshift is an analytic warehouse. Neptune targets graph relationships. OpenSearch Service targets search and analytics workloads rather than acting as the primary transactional key-value system of record.",
+  "rationale": "DynamoDB matches high-scale key-based low-latency access patterns without join dependencies. Aurora PostgreSQL and MySQL can serve key lookups but are relational-first approaches for this specific access profile. ElastiCache is an in-memory cache tier and should not be the only durable system-of-record store.",
   "citationIds": [
     "cite-saa-4-3-dynamodb-ondemand",
-    "cite-saa-4-3-redshift-columnar"
+    "cite-saa-4-3-elasticache-what-is"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

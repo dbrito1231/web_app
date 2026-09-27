@@ -6,39 +6,40 @@
   "objectiveIds": [
     "SAA-4.3-S01"
   ],
-  "stem": "A startup wants lower backup storage cost but still needs rapid operational recovery and long-term retention for quarterly audits. (Select TWO.)",
+  "stem": "A startup wants lower backup storage spend while keeping fast operational recovery and quarterly long-term retention evidence. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use only cache-node snapshots as the legal data-retention record."
+      "text": "Keep automated backups for day-to-day operational restore needs."
     },
     {
       "id": "b",
-      "text": "Keep automated backups for day-to-day operational restore windows."
+      "text": "Keep quarterly manual snapshots and remove superseded long-term copies by policy."
     },
     {
       "id": "c",
-      "text": "Replace all backups with read replicas and remove retention policies."
+      "text": "Use read replicas as the only backup and retention control."
     },
     {
       "id": "d",
-      "text": "Keep fewer long-term copies by deleting old manual snapshots per policy."
+      "text": "Use PITR windows alone as quarterly long-term archive evidence."
     },
     {
       "id": "e",
-      "text": "Set every environment to the maximum retention window by default."
+      "text": "Set maximum retention and indefinite snapshot retention in every environment."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "d"
+    "a",
+    "b"
   ],
-  "rationale": "Automated backups support operational recovery windows, while manual snapshot lifecycle policy controls long-term storage growth. Cache snapshots do not replace authoritative relational backup controls. Read replicas are not backup-policy substitutes. Maximum retention everywhere increases cost without workload-class justification.",
+  "rationale": "Automated backups support operational restore goals, and manual snapshot lifecycle policy controls long-term storage growth while preserving required evidence points. Read replicas do not replace backup retention strategy. PITR windows are bounded and do not provide open-ended quarterly archives by themselves. Maximum retention everywhere usually raises cost without workload-class justification.",
   "citationIds": [
     "cite-saa-4-3-rds-backup-retention",
     "cite-saa-4-3-rds-snapshots",
-    "cite-saa-4-3-aurora-backups"
+    "cite-saa-4-3-aurora-backups",
+    "cite-saa-4-3-dynamodb-pitr"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

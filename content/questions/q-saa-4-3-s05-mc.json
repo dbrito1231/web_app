@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-S05"
   ],
-  "stem": "A manufacturer is migrating from an on-premises Oracle source to an on-premises PostgreSQL target and asks whether AWS DMS can do that directly.",
+  "stem": "A manufacturer wants to migrate from an on-premises Oracle source to an on-premises PostgreSQL target and asks whether AWS DMS can do this directly.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Yes; DMS directly supports on-premises to on-premises migration with no AWS endpoint."
+      "text": "Yes; AWS DMS supports direct on-premises to on-premises endpoint pairs when schemas are converted first."
     },
     {
       "id": "b",
-      "text": "No; with AWS DMS at least one endpoint needs to be on an AWS service."
+      "text": "No; AWS DMS requires at least one endpoint, source or target, on an AWS service."
     },
     {
       "id": "c",
-      "text": "Yes; if you register both endpoints in AWS Systems Manager Parameter Store."
+      "text": "Yes; AWS DMS allows both endpoints on premises when replication traffic uses VPN links."
     },
     {
       "id": "d",
-      "text": "No; because DMS supports only homogeneous migrations within one engine family."
+      "text": "No; AWS DMS supports only homogeneous engine migrations."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "DMS documentation states one endpoint must be on an AWS service, so purely on-premises source-to-target migration is unsupported in that direct form. Parameter Store registration does not alter this endpoint constraint. DMS supports both homogeneous and heterogeneous engine migrations when the endpoint rule is satisfied.",
+  "rationale": "AWS DMS requires at least one endpoint on an AWS service, so direct on-premises-to-on-premises endpoint pairing is not supported. Schema conversion and VPN transport do not remove the endpoint-location constraint. DMS supports both homogeneous and heterogeneous migrations when endpoint requirements are met.",
   "citationIds": [
     "cite-saa-4-3-dms-introduction"
   ],

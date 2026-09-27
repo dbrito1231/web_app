@@ -6,38 +6,39 @@
   "objectiveIds": [
     "SAA-4.3-S03"
   ],
-  "stem": "A fintech platform is deciding between DynamoDB pricing modes for two workloads: one has unpredictable spikes, the other has stable known throughput. (Select TWO.)",
+  "stem": "A fintech team is choosing DynamoDB billing modes for two workloads: one is highly unpredictable and one is stable with known throughput. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use Amazon MQ broker instance classes to bill DynamoDB table capacity."
+      "text": "Use on-demand mode for the unpredictable workload."
     },
     {
       "id": "b",
-      "text": "Use AWS App Runner service quotas to define DynamoDB RCU commitments."
+      "text": "Use provisioned mode with auto scaling for the stable workload."
     },
     {
       "id": "c",
-      "text": "Use AWS Backup Audit Manager controls to define DynamoDB throughput limits."
+      "text": "Use provisioned fixed throughput for the unpredictable workload to avoid adaptive scaling."
     },
     {
       "id": "d",
-      "text": "Use on-demand mode for the unpredictable workload to avoid idle capacity planning."
+      "text": "Use on-demand mode for the stable workload to maximize commitment discount opportunities."
     },
     {
       "id": "e",
-      "text": "Use provisioned mode with auto scaling for the stable workload profile."
+      "text": "Buy reserved capacity before any stable baseline usage pattern is known."
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "On-demand mode fits unpredictable spikes, while provisioned mode with auto scaling aligns with stable known throughput where tuning can reduce cost. MQ, App Runner, and Snowball controls are unrelated to DynamoDB table capacity billing modes.",
+  "rationale": "On-demand mode fits unpredictable traffic, while provisioned with auto scaling fits stable known-throughput profiles and tuning. Fixed provisioned throughput on unpredictable loads can under- or over-provision. On-demand does not leverage provisioned reserved-capacity commitment economics for stable baselines. Reserved capacity before baseline discovery can create commitment mismatch risk.",
   "citationIds": [
     "cite-saa-4-3-dynamodb-ondemand",
-    "cite-saa-4-3-dynamodb-provisioned"
+    "cite-saa-4-3-dynamodb-provisioned",
+    "cite-saa-4-3-dynamodb-reserved-capacity"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

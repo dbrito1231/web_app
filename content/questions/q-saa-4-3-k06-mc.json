@@ -6,32 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K06"
   ],
-  "stem": "Orbit Claims sees frequent short-lived Lambda database connections causing connection-limit alarms and wants lower failover disruption during Multi-AZ events.",
+  "stem": "Orbit Claims runs many short-lived Lambda database calls and sees connection-limit alarms plus failover disruption during Multi-AZ events.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Move credentials to AWS KMS keys only and keep direct client-to-database connections."
+      "text": "Increase DB instance size and keep direct client connections unchanged."
     },
     {
       "id": "b",
-      "text": "Place Amazon RDS Proxy in front of the database to pool connections and improve failover behavior."
+      "text": "Place Amazon RDS Proxy in front of the database for connection pooling."
     },
     {
       "id": "c",
-      "text": "Use AWS DataSync agents to keep idle connection pools warm."
+      "text": "Keep direct connections and add one read replica for each AZ."
     },
     {
       "id": "d",
-      "text": "Use Amazon Route 53 geolocation routing as the database connection pooling layer."
+      "text": "Reduce DNS TTL values and leave connection fan-out unchanged."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "RDS Proxy is designed for high connection churn patterns and can reduce observed failover disruption for Multi-AZ instances. KMS key storage does not pool runtime DB connections. Route 53 routing is DNS traffic control, not SQL connection multiplexing. DataSync handles data transfer jobs, not connection lifecycle management.",
+  "rationale": "RDS Proxy addresses high connection churn by pooling and reusing backend connections and can reduce failover disruption. Instance upsizing can help capacity but does not directly solve connection storm behavior. Read replicas target read scaling, not connection pooling for write paths. DNS tuning can help endpoint refresh behavior but does not replace connection pooling logic.",
   "citationIds": [
-    "cite-saa-4-3-rds-proxy-planning"
+    "cite-saa-4-3-rds-proxy-planning",
+    "cite-saa-4-3-rds-read-replicas"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

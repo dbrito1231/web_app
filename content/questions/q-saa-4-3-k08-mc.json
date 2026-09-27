@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-K08"
   ],
-  "stem": "A ticketing platform needs to offload heavy reporting reads from its writer while accepting eventual consistency lag for those reports.",
+  "stem": "A ticketing platform needs to offload heavy reporting reads from the writer and can accept asynchronous replica lag in report data.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Create read replicas and route reporting traffic to replica endpoints."
+      "text": "Create read replicas and route reporting queries to replica endpoints."
     },
     {
       "id": "b",
-      "text": "Rely on a Multi-AZ standby as the reporting read endpoint."
+      "text": "Use a Multi-AZ DB instance standby as the reporting query endpoint."
     },
     {
       "id": "c",
-      "text": "Use AWS Backup copy jobs as the online reporting query endpoint."
+      "text": "Increase writer instance class and keep all reports on the writer endpoint."
     },
     {
       "id": "d",
-      "text": "Use Elastic Disaster Recovery staging servers for near-real-time read scaling."
+      "text": "Rely on automated backup snapshots as the reporting read path."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Read replicas are asynchronous read-only copies intended for read scaling and reporting. Multi-AZ standby replicas are for high availability and do not serve read traffic in that deployment mode. Backup copy jobs are for protection workflows, not query serving. Elastic Disaster Recovery staging infrastructure is for recovery orchestration, not primary reporting read paths.",
+  "rationale": "Read replicas are the intended mechanism for asynchronous read offload. Multi-AZ DB instance standbys support failover but do not serve read traffic. Upsizing the writer can add capacity but does not implement dedicated read offload architecture. Backup snapshots are protection artifacts, not online reporting endpoints.",
   "citationIds": [
     "cite-saa-4-3-rds-read-replicas",
     "cite-saa-4-3-multiaz-concepts"

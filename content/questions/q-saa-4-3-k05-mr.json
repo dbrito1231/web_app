@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.3-K05"
   ],
-  "stem": "A team is documenting DynamoDB capacity math for a payment ledger table that has mixed read consistency requirements. (Select TWO.)",
+  "stem": "A team is documenting DynamoDB throughput unit definitions for a payment ledger that mixes read and write operations. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "One on-demand request unit always equals one 8 KB transactional write."
+      "text": "In pay-per-request mode, one request unit is always one 8 KB transactional write."
     },
     {
       "id": "d",
@@ -34,7 +34,7 @@
     "a",
     "d"
   ],
-  "rationale": "The documented definitions are 1 RCU for a 4 KB strongly consistent read per second and 1 WCU for a 1 KB write per second. The reversed statements swap read and write semantics and are incorrect. On-demand request billing is not defined as a fixed 8 KB transactional write unit across all operations.",
+  "rationale": "The defined units are 1 RCU for a 4 KB strongly consistent read per second and 1 WCU for a 1 KB write per second. The alternatives that swap read/write meanings are incorrect. On-demand billing is not represented by a single fixed 8 KB transactional-write definition.",
   "citationIds": [
     "cite-saa-4-3-dynamodb-provisioned",
     "cite-saa-4-3-dynamodb-ondemand"

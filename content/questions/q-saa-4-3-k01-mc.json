@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-K01"
   ],
-  "stem": "Northbridge Retail has four AWS accounts and wants shared RDS commitment savings plus team-level chargeback by application owner tags.",
+  "stem": "Northbridge Retail uses four AWS accounts and needs shared database commitment savings plus team-level chargeback by application owner tags.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use AWS Budgets only and keep all resources untagged."
+      "text": "Use AWS Budgets alerts and skip activating cost allocation tags."
     },
     {
       "id": "b",
-      "text": "Use CloudWatch logs as the primary source for cost allocation and commitment sharing."
+      "text": "Use Cost Explorer grouped by service only and skip account-level sharing controls."
     },
     {
       "id": "c",
-      "text": "Use Compute Savings Plans as the only database discount instrument for RDS instance hours."
+      "text": "Use Compute Savings Plans as the sole discount strategy for standard RDS DB instance hours."
     },
     {
       "id": "d",
-      "text": "Use consolidated billing and activate cost allocation tags for chargeback reporting."
+      "text": "Use consolidated billing and activate cost allocation tags for chargeback."
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Consolidated billing enables RDS reserved discount sharing across accounts, and activated cost allocation tags drive chargeback visibility. Budgets alone does not replace tagging data. Compute Savings Plans scope does not cover standard RDS DB instance hours. CloudWatch logs are operational telemetry, not billing allocation or discount-sharing control.",
+  "rationale": "Consolidated billing enables sharing of reserved database discounts across organization accounts, and activated cost allocation tags support chargeback reporting. Budgets alerts do not replace tag activation for allocation data. Cost Explorer service grouping alone does not configure commitment sharing policy. Compute Savings Plans do not apply to standard RDS DB instance hours.",
   "citationIds": [
     "cite-saa-4-3-rds-reserved",
     "cite-saa-4-3-savingsplans-services"

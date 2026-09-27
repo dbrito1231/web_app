@@ -6,35 +6,35 @@
   "objectiveIds": [
     "SAA-4.3-S04"
   ],
-  "stem": "A telemetry team is designing new time-series ingestion on AWS in 2026 and must avoid retired guidance while selecting current cost-aware patterns. (Select TWO.)",
+  "stem": "A telemetry group is selecting a new time-series platform in 2026 and must avoid closed-to-new-customer guidance while choosing current options. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Treat Timestream for LiveAnalytics as closed to new customers during service selection."
+      "text": "Treat Timestream for LiveAnalytics as closed to new customers during solution selection."
     },
     {
       "id": "b",
-      "text": "Evaluate Timestream for InfluxDB as a current alternative for similar time-series use cases."
+      "text": "Evaluate Timestream for InfluxDB as a current alternative for similar capabilities."
     },
     {
       "id": "c",
-      "text": "Use AWS CloudTrail Lake as the primary high-frequency sensor write database by default."
+      "text": "Standardize on Timestream for LiveAnalytics for all new customer onboarding."
     },
     {
       "id": "d",
-      "text": "Use Amazon SES event publishing as the main time-series storage engine."
+      "text": "Standardize on a transactional relational instance as the primary high-ingest time-series platform."
     },
     {
       "id": "e",
-      "text": "Use Amazon Lex V2 bot sessions as the durable IoT metric archive."
+      "text": "Standardize on a key-value primary table for every time-series query pattern without evaluating specialized options."
     }
   ],
   "correctAnswerIds": [
     "a",
     "b"
   ],
-  "rationale": "The availability change notice says Timestream for LiveAnalytics is closed to new customers and recommends evaluating Timestream for InfluxDB for similar capabilities. CloudTrail Lake, SES, and Lex session storage are not primary general time-series database selections for this requirement.",
+  "rationale": "The service-status guidance says Timestream for LiveAnalytics is closed to new customers and recommends evaluating Timestream for InfluxDB for similar capabilities. Selecting LiveAnalytics for new-customer onboarding conflicts with that status. Transactional relational and pure key-value defaults can be useful in some contexts but are not the direct closed-service replacement strategy asked for here.",
   "citationIds": [
     "cite-saa-4-3-timestream-liveanalytics-change"
   ],

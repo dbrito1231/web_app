@@ -6,24 +6,24 @@
   "objectiveIds": [
     "SAA-4.3-K02"
   ],
-  "stem": "Lumen Health wants chargeback-grade database spend data for custom SQL analysis and proactive warnings before crossing monthly limits. (Select TWO.)",
+  "stem": "Lumen Health wants chargeback-grade database cost records for SQL analysis and proactive warning before monthly overspend. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Rely on Amazon EventBridge health events as the main cost analytics dataset."
+      "text": "Use Cost Explorer dashboards as the only source for detailed line-item SQL reconciliation."
     },
     {
       "id": "b",
-      "text": "Publish AWS Cost and Usage Report data for detailed line-item analysis."
+      "text": "Publish Cost and Usage Report data for line-item chargeback analysis."
     },
     {
       "id": "c",
-      "text": "Use AWS Secrets Manager rotation reports as the monthly spend forecasting source."
+      "text": "Purchase additional reserved capacity in each account to produce monthly cost alerts."
     },
     {
       "id": "d",
-      "text": "Track RDS failover events only to represent database cost behavior."
+      "text": "Use Performance Insights load charts as the monthly chargeback dataset."
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "b",
     "e"
   ],
-  "rationale": "CUR provides the most detailed billing dataset for SQL-based chargeback analysis. AWS Budgets provides threshold-based alerts on actual or forecasted spending. EventBridge health events are operational notifications, not cost line items. Secrets Manager reports do not model full database spending. Failover events reflect availability transitions, not cost forecasting.",
+  "rationale": "Cost and Usage Report provides line-item billing data that fits SQL-based chargeback analysis, and AWS Budgets provides proactive threshold alerts. Cost Explorer is useful for trend analysis but not the most granular line-item SQL source by itself. Buying reserved capacity changes pricing exposure but does not create alerting controls. Performance Insights is performance telemetry, not billing line-item data.",
   "citationIds": [
     "cite-saa-4-3-savingsplans-services"
   ],

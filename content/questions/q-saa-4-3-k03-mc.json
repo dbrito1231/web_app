@@ -6,32 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K03"
   ],
-  "stem": "Pinecast has a DynamoDB table with hot read keys during live events and needs lower read latency and lower read-capacity overprovisioning.",
+  "stem": "Pinecast has a hot-key DynamoDB read pattern and wants microsecond read latency plus lower provisioned read overbuy without changing table semantics.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Move the table to Amazon S3 Glacier Flexible Retrieval."
+      "text": "Add ElastiCache for Redis and redesign all data access around a custom cache schema."
     },
     {
       "id": "b",
-      "text": "Use AWS Storage Gateway file cache as the primary key-value acceleration layer."
+      "text": "Switch the table to Standard-IA to reduce storage cost and rely on existing read latency."
     },
     {
       "id": "c",
-      "text": "Add a DynamoDB Accelerator cluster in front of the table."
+      "text": "Add DynamoDB Accelerator in front of the table."
     },
     {
       "id": "d",
-      "text": "Replace the table with Amazon Aurora Serverless v2 readers only."
+      "text": "Increase provisioned RCUs and keep all reads on the base table."
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "DAX is DynamoDB-compatible, designed for microsecond eventually consistent reads, and can reduce read-capacity overprovisioning. S3 Glacier is archival storage, not low-latency key-value serving. Aurora readers are relational and not a direct DynamoDB cache substitute. Storage Gateway file caching targets file or hybrid storage patterns, not DynamoDB API acceleration.",
+  "rationale": "DynamoDB Accelerator is purpose-built for DynamoDB read acceleration and reducing read-capacity overprovisioning pressure. ElastiCache can be useful but requires different integration patterns and is not DynamoDB API-compatible in the same way. Standard-IA is a table-class cost lever, not a microsecond read accelerator. Increasing RCUs alone can raise cost without the cache-latency benefit.",
   "citationIds": [
-    "cite-saa-4-3-dax"
+    "cite-saa-4-3-dax",
+    "cite-saa-4-3-dynamodb-table-classes"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

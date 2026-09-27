@@ -6,35 +6,35 @@
   "objectiveIds": [
     "SAA-4.3-S02"
   ],
-  "stem": "A SaaS team is finalizing engine choice for a new managed relational platform and wants options aligned to documented discriminator criteria. (Select TWO.)",
+  "stem": "A SaaS platform is defining engine-selection rules and wants criteria that separate compatibility-first workloads from advanced-feature workloads. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Prioritize MySQL when framework compatibility and simpler transactional behavior are the top needs."
+      "text": "Choose MySQL when broad framework compatibility and simpler transactional patterns are priority."
     },
     {
       "id": "b",
-      "text": "Prioritize AWS Glue DataBrew for OLTP row-level transaction durability."
+      "text": "Choose PostgreSQL when advanced JSON handling and custom extensions are required."
     },
     {
       "id": "c",
-      "text": "Prioritize PostgreSQL when custom extensions and advanced JSON processing are needed."
+      "text": "Choose MySQL when extension-heavy analytics and complex JSON operators are core requirements."
     },
     {
       "id": "d",
-      "text": "Prioritize Amazon Kendra as the SQL extension compatibility layer."
+      "text": "Choose PostgreSQL when only broad compatibility and simple transactional behavior are needed."
     },
     {
       "id": "e",
-      "text": "Prioritize Amazon Athena ACID mode for high-throughput online writes."
+      "text": "Choose MariaDB when PostgreSQL extension requirements are primary."
     }
   ],
   "correctAnswerIds": [
     "a",
-    "c"
+    "b"
   ],
-  "rationale": "The documented discriminator says MySQL fits broad tool compatibility and simpler transactional workloads, while PostgreSQL fits advanced JSON, complex queries, and custom extensions. Glue DataBrew and Kendra are not relational OLTP engines. Athena is a query service over data lakes and not a primary online transactional engine.",
+  "rationale": "The discriminator teaches MySQL for compatibility and simpler transactional patterns, and PostgreSQL for advanced JSON, complex queries, and extensions. The remaining options reverse those criteria or claim extension equivalence that is not taught as valid selection guidance.",
   "citationIds": [
     "cite-saa-4-3-rds-choosing-engine"
   ],

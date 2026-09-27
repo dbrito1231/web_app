@@ -6,35 +6,35 @@
   "objectiveIds": [
     "SAA-4.3-K08"
   ],
-  "stem": "A bank wants both faster failover and read scale in an RDS design. The architect must separate high-availability and read-scaling mechanisms clearly. (Select TWO.)",
+  "stem": "A bank wants automatic high availability and separate read scaling for an RDS workload, and needs distinct mechanisms for each goal. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use one NAT gateway per VPC as the database failover control plane."
+      "text": "Use Multi-AZ DB instance deployment for synchronous standby failover."
     },
     {
       "id": "b",
-      "text": "Use IAM Access Analyzer findings as the replication channel."
+      "text": "Use read replicas for asynchronous read traffic offload."
     },
     {
       "id": "c",
-      "text": "Use Multi-AZ for synchronous standby failover protection."
+      "text": "Use read replicas as the only failover mechanism for synchronous high availability."
     },
     {
       "id": "d",
-      "text": "Use AWS Config snapshot history as a read-scaling target."
+      "text": "Use Multi-AZ standby topology as the dedicated read-scaling endpoint."
     },
     {
       "id": "e",
-      "text": "Use read replicas for asynchronous read traffic offload."
+      "text": "Use manual snapshots taken every hour as the read-scaling strategy."
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "Multi-AZ deployment handles high availability with synchronous standby behavior, while read replicas handle asynchronous read scaling. NAT gateway topology addresses networking egress, not DB replication and failover semantics. Access Analyzer is a permissions analysis service. AWS Config snapshots track configuration state and are not query replicas.",
+  "rationale": "Multi-AZ DB instance deployment addresses synchronous standby failover, while read replicas address asynchronous read scaling. Read replicas alone do not replace synchronous Multi-AZ failover design. Multi-AZ standbys in that deployment type are not read endpoints. Manual snapshots are backup artifacts, not live read-scaling infrastructure.",
   "citationIds": [
     "cite-saa-4-3-rds-read-replicas",
     "cite-saa-4-3-multiaz-concepts",

@@ -6,35 +6,35 @@
   "objectiveIds": [
     "SAA-4.3-S05"
   ],
-  "stem": "A logistics company is planning a cross-engine migration and wants the lowest rework risk during cutover while honoring AWS DMS constraints. (Select TWO.)",
+  "stem": "A logistics company is planning a cross-engine migration and wants to minimize rework risk while staying inside AWS DMS endpoint constraints. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Assume all SQL dialect and data-type behavior carries over unchanged between engines."
+      "text": "Classify the migration as heterogeneous and plan schema and query conversion work."
     },
     {
       "id": "b",
-      "text": "Use Amazon Inspector findings as the migration replication channel."
-    },
-    {
-      "id": "c",
-      "text": "Classify the move as heterogeneous and budget time for schema and query conversion."
-    },
-    {
-      "id": "d",
       "text": "Place at least one endpoint on an AWS service when using AWS DMS."
     },
     {
+      "id": "c",
+      "text": "Treat the migration as homogeneous to skip SQL dialect validation."
+    },
+    {
+      "id": "d",
+      "text": "Assume data types and SQL behavior carry over unchanged across engines."
+    },
+    {
       "id": "e",
-      "text": "Rely on AWS Shield Advanced policies to transform schemas during cutover."
+      "text": "Keep both endpoints on premises and rely on network connectivity alone for DMS eligibility."
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "b"
   ],
-  "rationale": "Cross-engine moves are heterogeneous and usually need schema and query conversion planning. DMS requires at least one AWS-hosted endpoint. Assuming unchanged SQL and data-type behavior creates migration risk. Inspector and Shield Advanced are security services and do not provide schema or data migration channels.",
+  "rationale": "Cross-engine moves are heterogeneous and need schema and query conversion planning, and DMS requires one endpoint on AWS. Treating the move as homogeneous skips needed conversion checks. Assuming unchanged data types and SQL behavior increases migration risk. Network connectivity alone does not satisfy DMS endpoint-location rules.",
   "citationIds": [
     "cite-saa-4-3-dms-introduction"
   ],

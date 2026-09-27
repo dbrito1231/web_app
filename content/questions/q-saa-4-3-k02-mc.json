@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-K02"
   ],
-  "stem": "A finance team needs weekly visualization and forecast of Aurora spend trends, plus a hard monthly notification threshold for the dev account.",
+  "stem": "A finance lead needs weekly trend and forecast views for Aurora spend and a monthly threshold alert for development accounts.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use AWS Database Migration Service for forecasting and billing notifications."
+      "text": "Use AWS Database Migration Service dashboards for spend forecasting and thresholds."
     },
     {
       "id": "b",
-      "text": "Use Cost Explorer for trends and forecasts, then Budgets alerts for the monthly threshold."
+      "text": "Use Cost Explorer for trend and forecast analysis, then configure AWS Budgets for threshold alerts."
     },
     {
       "id": "c",
-      "text": "Use AWS Backup vault metrics for all database spend analysis and threshold alerting."
+      "text": "Use AWS Backup recovery-point inventory as the primary total-spend forecasting source."
     },
     {
       "id": "d",
-      "text": "Use Amazon CloudWatch alarms on CPU utilization as the only cost forecast and threshold control."
+      "text": "Use RDS failover event notifications as the monthly budget threshold mechanism."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Cost Explorer is the billing trend and forecast tool, while Budgets provides threshold notifications. DMS handles data migration, not cost analytics. AWS Backup metrics focus on backup operations, not full spend forecasting. CPU alarms monitor performance and cannot replace billing forecasts.",
+  "rationale": "Cost Explorer is the billing trend and forecast analysis tool, and AWS Budgets provides threshold-based alerting. Database Migration Service is for data migration, not spend forecasting. Backup inventory does not represent total database spend by billing dimensions. Failover events are availability signals, not budget controls.",
   "citationIds": [
     "cite-saa-4-3-savingsplans-services"
   ],

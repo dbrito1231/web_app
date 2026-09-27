@@ -6,33 +6,34 @@
   "objectiveIds": [
     "SAA-4.3-S03"
   ],
-  "stem": "A payment API has a steady baseline relational load but periodic month-end spikes and wants better cost predictability with lower idle overprovisioning risk.",
+  "stem": "A payment API has steady relational baseline traffic plus periodic spikes and wants lower idle overprovisioning while keeping managed relational operations.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use Aurora Serverless v2 with a bounded ACU range for burst elasticity."
+      "text": "Use Aurora Serverless v2 with a bounded ACU range for elasticity."
     },
     {
       "id": "b",
-      "text": "Use AWS Batch as the relational database hosting layer."
+      "text": "Use Aurora provisioned capacity sized for peak demand at all times."
     },
     {
       "id": "c",
-      "text": "Use Amazon EMR as the primary OLTP engine for payment records."
+      "text": "Use DynamoDB on-demand as a drop-in relational replacement for SQL joins."
     },
     {
       "id": "d",
-      "text": "Use AWS Transfer Family as the database compute autoscaler."
+      "text": "Use fixed provisioned relational instances and schedule manual resize windows."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Aurora Serverless v2 scales compute ACUs within configured boundaries, reducing idle overprovisioning in variable workloads while keeping relational semantics. AWS Batch and EMR are compute and analytics platforms, not managed relational OLTP engines. Transfer Family handles file transfer endpoints, not database compute scaling.",
+  "rationale": "Aurora Serverless v2 aligns with variable relational demand by scaling compute within configured bounds. Peak-sized provisioned clusters can carry idle cost between spikes. DynamoDB on-demand is a different data model and not a drop-in relational SQL-join replacement. Manual resize windows add operational overhead and can miss unexpected spikes.",
   "citationIds": [
     "cite-saa-4-3-aurora-serverless-v2",
-    "cite-saa-4-3-aurora-billing"
+    "cite-saa-4-3-aurora-billing",
+    "cite-saa-4-3-dynamodb-ondemand"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

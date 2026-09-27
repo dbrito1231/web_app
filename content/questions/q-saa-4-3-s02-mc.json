@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-S02"
   ],
-  "stem": "An insurance analytics team needs a managed relational engine for advanced JSON processing, custom extension usage, and complex SQL query plans.",
+  "stem": "An insurance analytics team needs a managed relational engine for advanced JSON processing, custom extension support, and complex SQL query plans.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use MySQL on Amazon RDS for extension-heavy JSON workloads by default."
+      "text": "Use MySQL on Amazon RDS for broad compatibility and simpler transactional workloads."
     },
     {
       "id": "b",
-      "text": "Use Amazon DocumentDB as the primary PostgreSQL extension host."
-    },
-    {
-      "id": "c",
       "text": "Use PostgreSQL on Amazon RDS."
     },
     {
+      "id": "c",
+      "text": "Use MySQL on Amazon RDS with read replicas for extension compatibility."
+    },
+    {
       "id": "d",
-      "text": "Use Amazon MemoryDB as the relational JSON query engine."
+      "text": "Use MariaDB to match PostgreSQL extension behavior."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "RDS guidance identifies PostgreSQL for advanced JSON handling, complex queries, and extensibility needs. MySQL is often preferred for broader compatibility and simpler transactional patterns. DocumentDB and MemoryDB are different data models and do not replace the required relational feature profile.",
+  "rationale": "The lesson explicitly maps PostgreSQL to advanced JSON handling, complex queries, and custom extensions. MySQL and MariaDB are compatibility-focused options for other workload profiles. Read replicas improve read scaling but do not add PostgreSQL-style extension support.",
   "citationIds": [
     "cite-saa-4-3-rds-choosing-engine"
   ],

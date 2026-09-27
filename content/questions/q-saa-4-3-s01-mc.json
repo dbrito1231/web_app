@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-S01"
   ],
-  "stem": "Solstice Payroll classifies its core DB as high criticality and defines a small blast radius goal for failures while balancing backup cost.",
+  "stem": "Solstice Payroll classifies core production data as high criticality and wants backup policy that limits blast radius impact while controlling cost.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use one monthly manual snapshot only across production, staging, and test databases to simplify policy administration."
+      "text": "Use one monthly manual snapshot schedule for production, staging, and test databases."
     },
     {
       "id": "b",
-      "text": "Use tighter restore-point intervals and isolate failures so unaffected components stay outside the impact scope."
+      "text": "Use tighter recovery coverage for critical components and isolate boundaries to reduce impact scope."
     },
     {
       "id": "c",
-      "text": "Disable PITR to simplify retention governance and reduce restore options."
+      "text": "Turn off PITR for all critical tables to reduce retention complexity."
     },
     {
       "id": "d",
-      "text": "Use one shared development retention policy for every workload class."
+      "text": "Apply one shared development retention profile to every workload class."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Critical workloads with tight recovery goals need stronger backup cadence and fault isolation that limits affected scope. Monthly-only snapshots are too coarse for this requirement. Disabling PITR removes useful recovery flexibility. Applying one dev-oriented policy to all classes ignores business criticality differences.",
+  "rationale": "High-criticality workloads need tighter recovery objectives and isolation boundaries that limit impacted scope when failures happen. Monthly-only snapshots across all tiers are too coarse for this requirement. Turning off PITR reduces recovery flexibility. One development profile for all classes ignores business-criticality differences.",
   "citationIds": [
     "cite-saa-4-3-waf-rel-10",
     "cite-saa-4-3-rds-backup-retention",

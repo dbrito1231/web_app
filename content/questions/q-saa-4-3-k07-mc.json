@@ -6,30 +6,30 @@
   "objectiveIds": [
     "SAA-4.3-K07"
   ],
-  "stem": "Meridian Labs is choosing a managed engine for a new app that stores rich JSON documents and runs complex analytical SQL predicates.",
+  "stem": "Meridian Labs is selecting a managed relational engine for rich JSON queries and extension-heavy analytic SQL workloads.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Select MySQL only because all relational engines expose identical JSON and query behavior."
+      "text": "Choose MySQL to prioritize broad tool compatibility and simpler transactional patterns."
     },
     {
       "id": "b",
-      "text": "Select Amazon Neptune as the default relational OLTP engine for SQL joins."
+      "text": "Choose MariaDB to maximize compatibility with MySQL-oriented workflows."
     },
     {
       "id": "c",
-      "text": "Select PostgreSQL as the engine baseline for advanced JSON and complex query support."
+      "text": "Choose PostgreSQL for advanced JSON handling, complex queries, and extension support."
     },
     {
       "id": "d",
-      "text": "Select Amazon Keyspaces as a drop-in PostgreSQL engine with extension compatibility."
+      "text": "Choose MySQL with read replicas to substitute for extension requirements."
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "RDS guidance contrasts PostgreSQL for advanced JSON and complex query requirements versus MySQL for broader compatibility and simpler transactional patterns. MySQL does not make every advanced feature equivalent. Neptune is a graph database, not a relational SQL default replacement. Keyspaces is Cassandra-compatible and not PostgreSQL-compatible.",
+  "rationale": "The lesson discriminator maps PostgreSQL to advanced JSON handling, complex queries, and custom extensions. MySQL and MariaDB are strong compatibility-focused choices for simpler transactional profiles, but they are not the best fit for this stated feature set. Adding read replicas does not replace extension and query-capability requirements.",
   "citationIds": [
     "cite-saa-4-3-rds-choosing-engine"
   ],

@@ -6,32 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K05"
   ],
-  "stem": "Bluegrain Media expects sudden read spikes on a new DynamoDB table and wants minimal preplanning while avoiding throttling from mode-switching mistakes.",
+  "stem": "Bluegrain Media expects unpredictable traffic spikes on a new DynamoDB table and wants minimal capacity planning overhead during launch.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use provisioned mode only because on-demand cannot scale beyond prior peaks."
+      "text": "Run provisioned capacity with fixed RCUs and WCUs sized from prelaunch estimates."
     },
     {
       "id": "b",
-      "text": "Use Amazon Kinesis Data Streams shards as the table throughput billing control."
+      "text": "Run provisioned capacity with auto scaling and switch between provisioned and on-demand several times each day."
     },
     {
       "id": "c",
-      "text": "Use Aurora provisioned instances and manually tune DynamoDB demand windows each week to bypass table mode limits."
+      "text": "Pre-purchase reserved capacity before traffic patterns are known."
     },
     {
       "id": "d",
-      "text": "Use on-demand mode and remember provisioned-to-on-demand switching is limited to four times per 24 hours."
+      "text": "Use on-demand capacity mode for launch traffic."
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "On-demand suits unpredictable spikes and scales to prior and new peaks, while the switching-limit fact prevents incorrect operational assumptions. Provisioned mode alone increases planning burden for this requirement. Aurora pricing controls are different from DynamoDB capacity modes. Kinesis shards are streaming units, not DynamoDB table throughput modes.",
+  "rationale": "On-demand capacity is designed for unpredictable traffic without upfront throughput planning. Fixed provisioned sizing requires accurate forecasting and can miss sudden spikes or waste capacity. Frequent mode switching is constrained and adds operational complexity. Reserved capacity is a commitment instrument better aligned to predictable provisioned usage.",
   "citationIds": [
-    "cite-saa-4-3-dynamodb-ondemand"
+    "cite-saa-4-3-dynamodb-ondemand",
+    "cite-saa-4-3-dynamodb-reserved-capacity"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
