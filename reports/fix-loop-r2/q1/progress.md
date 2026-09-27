@@ -26,7 +26,7 @@ Pipeline per task:
 | 10 | lesson-4-1 | 35 | ✔ | ✔ | ✔ | ✔ (2 writers) | ✔ AWS close, Teacher close, Student packet 35/35 | ✔ (AWS-Q41-001/002) | ✔ 2026-09-26 |
 | 11 | lesson-4-2 | 24 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 24/24 | ✔ (AWS-Q42-001, TEACHER-Q42-001–003; Lead Dev pre-check: recycled Outposts phrasing + s06-mr strawman) | ✔ 2026-09-26 |
 | 12 | lesson-4-3 | 22 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 22/22 | ✔ (TEACHER-Q43-001–004; Lead Dev: read replica 6→3 and snapshot 4→3 after fixing a plural-matching bug in distractor_type_audit.py) | ✔ 2026-09-26 |
-| 13 | lesson-4-4 | 23 | | | | | | | |
+| 13 | lesson-4-4 | 23 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 23/23 | ✔ (AWS-L44-001–003, TEACHER-L44-001–003 + 2 lesson additions; AWS-Q44-001; TEACHER-Q44-001–003 stem echoes; Lead Dev: s06-mr strawman + absolutism tell, 2 avoidable stem leaks after Student) | ✔ 2026-09-27 |
 | 14 | lesson-tf-g1 | 9 | | | | | | | |
 | 15 | lesson-tf-g2 | 12 | | | | | | | |
 | 16 | lesson-tf-g3 | 21 | | | | | | | |
