@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g2-version-constraints",
+  "title": "Version Constraints - Configuration Language",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/expressions/version-constraints",
+  "accessed": "2026-09-26",
+  "note": "Backs the meaning of each version constraint operator (=, !=, >, >=, <, <=, ~>) including the ~> 1.0.4 example allowing 1.0.5 and 1.0.10 but not 1.1.0."
+}

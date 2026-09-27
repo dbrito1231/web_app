@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g1-vs-cloudformation",
+  "title": "Terraform vs. CloudFormation",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/intro/vs/cloudformation",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that Terraform's provider model orchestrates multiple clouds and third-party services with one unified syntax, unlike a single-cloud-specific tool."
+}

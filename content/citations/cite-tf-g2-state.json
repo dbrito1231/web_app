@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g2-state",
+  "title": "State - Terraform Language",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/state",
+  "accessed": "2026-09-26",
+  "note": "Backs why Terraform stores state (mapping, metadata, performance) and that state defaults to a local file named terraform.tfstate."
+}

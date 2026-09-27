@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g2-provider-requirements",
+  "title": "Provider Requirements - Configuration Language",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/providers/requirements",
+  "accessed": "2026-09-26",
+  "note": "Backs the required_providers block syntax, provider source address format and implied default namespace, and that each argument in the block enables one provider."
+}

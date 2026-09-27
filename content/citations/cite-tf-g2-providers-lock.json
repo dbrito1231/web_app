@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g2-providers-lock",
+  "title": "Command: providers lock",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/providers/lock",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that a committed dependency lock file records provider versions and checksums so every teammate installs the identical provider version."
+}
