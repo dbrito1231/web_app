@@ -91,7 +91,16 @@ Re-checked every claim-table quote in both updated impl reports by word count: a
 
 No claim in either lesson or in any of the 21 questions is stated as current but is actually version-specific or stale; the `~>`/`>=`/`=`/`!=` operator semantics, `required_providers` nesting, provider source-address structure, and the local `terraform.tfstate` default are all current on the live docs with no deprecation notice. No newly-deprecated or newly-renamed term surfaced beyond what round 1 already covered.
 
-Task tf-g1: not yet — hold for AWS-Qg1-001 (choice b in `q-tf-004-1b-mc`).
-Task tf-g2: close.
+### Round 2 follow-up (commit 733b1a4)
 
-Overall: concerns
+- **AWS-Qg1-001 — Gone.** `q-tf-004-1b-mc` choice b now reads "Split the 40 resources across several scripts that run at the same time, with an engineer deciding which resources go in which script." — a real, true practice with no claim about any tool's internals, so the CloudFormation-serial misstatement is removed entirely.
+- **Rationale accuracy — confirmed for all four choices.** a: fixed-order script is serial by construction (unchanged, accurate). b: "does produce parallelism, but a person has to decide the split, which is the hand-ordering the team wants to avoid" — correctly states the new choice is a real parallel practice that still fails the stem's specific "without anyone hand-ordering" requirement. c (key): resource graph, unchanged, accurate. d: config-management tool only converges already-existing servers, unchanged, accurate.
+- **Nothing else broke.** Stem, choices a/c/d, `correctAnswerIds`, `citationIds`, `reviewedOn`, and `mcpStatus` are all unchanged from the version I already cleared; only choice b's text and its clause in the rationale changed.
+- **TEACHER-Qg2-001 — confirmed, concur Gone.** Claim-table row 8 now reads "To ensure Terraform always installs the same provider versions... create a dependency lock file and commit it to version control" (20 words). The elision keeps "To ensure... [outcome], ... create a dependency lock file" intact, so it still asserts the causal claim — a committed lock file is what makes the identical install happen — not a bare "Terraform always does this" assertion. This matches the live doc sentence's structure with only the linking clause ("for a given configuration, you can use Terraform CLI to") removed. Agrees with the Teacher's finding; over-trim risk is resolved.
+
+Noted for g3–g8: will check tool-behavior claims inside distractors, not just keys, given this defect's origin (a real-tool swap that introduced an unverified behavioral claim).
+
+Task tf-g1: close
+Task tf-g2: close
+
+Overall: approve

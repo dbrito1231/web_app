@@ -99,6 +99,33 @@ Never use these as a correct answer or as current advice. Mention one only if yo
 - **Rationale:** explains the key and every distractor by content. No letter references.
 - **Citations:** each question has `citationIds`, `mcpStatus: "verified"` and `reviewedOn: "2026-09-26"`.
 
+## After applying a fix
+
+Three consecutive tasks had a repair introduce a new defect: task 4.3's fix pass
+left one sentence stated three times, task 4.4's `k03-mc` had its key cleaned of an
+echo while the stem kept carrying it, and tf-g1/g2 produced both a false claim about
+a real tool and a quote trimmed until it asserted more than its source. So a fix is
+not done when the diff looks right. Before marking any finding Gone:
+
+1. **Re-run the whole automated chain against the whole file, not the diff.**
+   `content_lint.py`, `q1_batch_check.py`, `distractor_type_audit.py`,
+   `stem_echo_check.py` and `claim_prose_check.py`, every time, even for a
+   one-clause change. Each of those three regressions is something one of these
+   scripts already detects globally; they were missed because the fix was checked
+   locally, against the field that changed, rather than against the file it now
+   lives in.
+2. **Read the new fragment in isolation and ask whether it still asserts its claim
+   at the same strength** -- not a stronger or weaker one. Cover everything except
+   the new quote, sentence or choice text and check it against the claim-table row
+   or rationale it supports, without the surrounding context that was in your head
+   but is not in the file. This is what catches an over-trim.
+3. **For a rewritten distractor, ask two separate questions, not one:** is this a
+   real practice, **and** is the reason it is now wrong taught in the lesson. These
+   are different properties. The tf-g1 CloudFormation distractor passed the first
+   (native template tools are real) and failed the second (its serial-provisioning
+   claim was neither taught nor true). A fix aimed at one of these will keep letting
+   the other slip through.
+
 ## Reviews
 
 - **Round 1 (lesson):** AWS and the Teacher each review the lesson.
