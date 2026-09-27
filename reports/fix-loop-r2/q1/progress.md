@@ -24,7 +24,7 @@ Pipeline per task:
 | 8 | lesson-3-4 | 13 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 13/13 | ✔ (AWS-Q34-001–003, TEACHER-Q34-001) | ✔ 2026-09-26 |
 | 9 | lesson-3-5 | 24 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 24/24 | ✔ (DataBrew diversity, TEACHER-Q35-001) | ✔ 2026-09-26 |
 | 10 | lesson-4-1 | 35 | ✔ | ✔ | ✔ | ✔ (2 writers) | ✔ AWS close, Teacher close, Student packet 35/35 | ✔ (AWS-Q41-001/002) | ✔ 2026-09-26 |
-| 11 | lesson-4-2 | 24 | | | | | | | |
+| 11 | lesson-4-2 | 24 | ✔ | | | | | | |
 | 12 | lesson-4-3 | 22 | | | | | | | |
 | 13 | lesson-4-4 | 23 | | | | | | | |
 | 14 | lesson-tf-g1 | 9 | | | | | | | |
