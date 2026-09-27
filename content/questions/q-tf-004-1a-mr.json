@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "An operator runs a fixed sequence of console clicks recorded in a checklist, repeated for consistency each time."
+      "text": "Follow a documented runbook of console steps that provisions the same infrastructure by hand, in the same order, for every new environment."
     },
     {
       "id": "b",
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "The infrastructure was created once from a file, and later changes are made directly in the console without ever updating that same file afterward."
+      "text": "Build the environment once from a golden image, then apply one-off manual fixes directly to the running servers as issues come up, without rebuilding the image."
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Committing the file to version control and reusing it for every change is the IaC half of the proof; stating the desired end result rather than an ordered procedure is the declarative half. A recorded checklist of console clicks is neither a file nor an end-state description. An ordered API-call script may be versioned but lists steps rather than an end state, so it is imperative, not declarative. Editing infrastructure by hand after the fact breaks the file's claim to be the source of truth, since reality no longer matches it.",
+  "rationale": "Committing the file to version control and reusing it for every change is the IaC half of the proof; stating the desired end result rather than an ordered procedure is the declarative half. A documented runbook is still a set of ordered manual steps, not a file the tool itself reads and reapplies. An ordered API-call script may be versioned but lists steps rather than an end state, so it is imperative, not declarative. Patching a golden image's running servers by hand means the image no longer matches what is actually deployed, so nothing is left that is both current and declarative.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",

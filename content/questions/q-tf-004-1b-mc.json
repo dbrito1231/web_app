@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "A scheduled job that recreates the entire environment from scratch every night to catch anything missed."
+      "text": "A cloud vendor's own native template tool that provisions every resource strictly in the order it is listed in the template, one at a time."
     },
     {
       "id": "c",
@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "A checklist that groups the 40 resources by owning team, with each individual team provisioning its own share of the resources independently of every other team's schedule."
+      "text": "A configuration-management tool that converges each server's settings on its own recurring schedule, independent of how the servers were originally provisioned."
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The key describes Terraform's resource graph, which walks a node as soon as its own dependencies are finished, so independent resources proceed together automatically. A script written in a fixed order runs strictly serially by construction, even for resources with no relationship. A nightly full rebuild does not address ordering or parallelism and wastes effort recreating things that have not changed. Splitting work by owning team groups resources by an organizational boundary, not by actual dependency, so two unrelated resources on the same team still wait on each other in sequence.",
+  "rationale": "The key describes Terraform's resource graph, which walks a node as soon as its own dependencies are finished, so independent resources proceed together automatically. A script written in a fixed order runs strictly serially by construction, even for resources with no relationship. A native template tool that provisions strictly in listed order is declarative but still serial, so it does not give the independent resources any parallelism either. A configuration-management tool converges settings on servers that already exist on its own schedule; it does not address how those 40 resources get provisioned or ordered in the first place.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",

@@ -18,6 +18,21 @@
 
 No two questions in this task test the identical fact; 1a-mc and 1a-mr both touch "versioned file," but 1a-mc tests it alone against non-file alternatives while 1a-mr pairs it with the separate declarative property against imperative/manual-drift alternatives.
 
+## Round 2 — distractor pass (caricatures replaced with real practices)
+
+Lead Dev's pre-check flagged 9 distractors across 6 questions as strawmen (spreadsheet, emailing the file, home-directory copies with a sync reminder, a comment addressed to a human, manual racking, a checklist grouped by team, console-then-wiki, console-clicks-never-written-back) — real teams do not do these, so a student could eliminate them without understanding IaC. Replaced all 9 with practices from the coordinator's in-bounds list (click-ops, imperative CLI scripts, golden images, native single-vendor template languages, configuration-management tools that act after servers exist, manual runbooks), keeping every key unchanged:
+
+| Question | Old distractor(s) | New distractor(s) |
+|---|---|---|
+| 1a-mc | b: console + wiki doc; d: spreadsheet | b: console click-ops from memory; d: golden image (opaque, not diffable) |
+| 1a-mr | a: console-clicks checklist; e: console edits never written back | a: documented manual runbook (ordered steps, not a file); e: golden image + manual in-place patches (drifts from the image) |
+| 1b-mc | b: nightly full rebuild; d: checklist grouped by team | b: vendor's native template tool, strictly serial by design; d: config-management tool converging existing servers on a schedule |
+| 1b-mr | b: email the file; e: home-directory copies + sync reminder | b: config-management tool pushed straight from a laptop, no review gate; e: applied from one laptop with the built-record kept only there |
+| 1c-mc | d: comment addressed to a human | d: one vendor's native template language plus a general-purpose script calling the other vendor's CLI (two languages, two toolchains) |
+| 1c-mr | b: manually rack and configure on-premises servers | b: cloud vendor's native tool for the cloud side, a config-management tool for the on-premises side (configures existing machines, does not provision them) |
+
+Rationale text for each changed choice was rewritten to match its new wrong-answer reason. One new stem/key giveaway appeared as a side effect (1a-mr: replacing the old "infrastructure was created once from a file..." distractor removed the only other occurrence of the word "infrastructure," leaving it shared by only the stem and key b); fixed by adding "infrastructure" into the reworded choice a instead of waiving it. Re-ran `stem_echo_check.py tf-g1` after every substitution.
+
 ## Distractor type table (`distractor_type_audit.py tf-g1`)
 
 | Term | Count | % of 9 | Questions |

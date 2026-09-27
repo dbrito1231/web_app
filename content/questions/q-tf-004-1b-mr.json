@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Email the configuration file to teammates whenever it changes."
+      "text": "Push settings to the servers directly from whichever engineer's laptop is making the change, using a configuration-management tool with no shared review step in between."
     },
     {
       "id": "c",
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "Store a copy of the configuration in each engineer's home directory, and remind everyone to keep their copies in sync."
+      "text": "Apply the configuration from whichever engineer's laptop is making the change, with the resulting record of what was built kept only on that engineer's own machine."
     }
   ],
   "correctAnswerIds": [
     "a",
     "d"
   ],
-  "rationale": "A version-controlled repository with required pull-request approval is the second-set-of-eyes half of the requirement. Keeping the built-infrastructure record somewhere every engineer's own tooling can read, rather than on one person's machine, is the shared-visibility half, which is what HCP Terraform's shared state adds on top of plain version control. Emailing the file whenever it changes has no review gate and no single authoritative copy. Keeping the file on only one person's laptop and announcing changes in chat is exactly the problem the stem describes. Copies in every engineer's home directory rely on manual syncing and can drift apart silently.",
+  "rationale": "A version-controlled repository with required pull-request approval is the second-set-of-eyes half of the requirement. Keeping the built-infrastructure record somewhere every engineer's own tooling can read, rather than on one person's machine, is the shared-visibility half, which is what HCP Terraform's shared state adds on top of plain version control. Pushing settings straight from a laptop through a configuration-management tool has no review gate at all. Keeping the file on only one person's laptop and announcing changes in chat is exactly the problem the stem describes. Applying from a laptop with the record of what was built kept on that same machine leaves every other engineer unable to see what is actually running without asking.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",

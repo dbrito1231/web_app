@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "One vendor's infrastructure template language, with the second vendor's resources described in a comment for a human to provision by hand later."
+      "text": "One vendor's own native template language for that vendor's resources, plus a general-purpose scripting language that calls the second vendor's CLI for its resources."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The key describes Terraform's provider model, where one configuration and one workflow call a plugin per vendor. CloudFormation's engine and template syntax only understand one vendor's resources, so pairing it with a second vendor's native tool means two toolchains, not one. A configuration management tool acts on servers after they already exist and does not provision the underlying cloud resources at all. Describing the second vendor's resources only in a comment for a human to build later means that vendor is never actually provisioned by any tool.",
+  "rationale": "The key describes Terraform's provider model, where one configuration and one workflow call a plugin per vendor. CloudFormation's engine and template syntax only understand one vendor's resources, so pairing it with a second vendor's native tool means two toolchains, not one. A configuration management tool acts on servers after they already exist and does not provision the underlying cloud resources at all. A native template language for one vendor plus a separate scripting language calling the other vendor's CLI is still two different languages and two different toolchains, not one configuration language.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",

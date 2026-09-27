@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Have engineers configure resources through the console for each office and document the steps afterward in a shared wiki page."
+      "text": "Configure each new office's servers directly through the cloud console, matching the previous office's settings from memory each time."
     },
     {
       "id": "c",
@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "Record each office's server settings in a spreadsheet that the operations team updates after every change."
+      "text": "Bake a golden server image with the desired setup once, and redeploy new instances from that image at each office."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The key states the desired end result in a versioned file and reapplies it through one consistent process, which is exactly what Infrastructure as Code is. A wiki-documented manual procedure is not a file that can be diffed against the running infrastructure. An ordered CLI script encodes steps rather than an end state, so it cannot be diffed against what already exists the way a declarative file can. A spreadsheet is a passive record that nothing can re-run to reach that state.",
+  "rationale": "The key states the desired end result in a versioned file and reapplies it through one consistent process, which is exactly what Infrastructure as Code is. Configuring each office through the console from memory has nothing written down to read or diff at all. An ordered CLI script encodes steps rather than an end state, so it cannot be diffed against what already exists the way a declarative file can. A golden image bakes the setup into an opaque artifact; an engineer cannot read or diff the individual settings inside it the way they can a configuration file.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",
