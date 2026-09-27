@@ -37,7 +37,8 @@ Load with `json.load`. Write with `json.dumps(data, indent=2, ensure_ascii=True)
   - Clear for a college IT student.
   - Contrast the options people confuse.
   - Each section ends with an `**Exam tip:**` line.
-- **Markdown subset:** `###`/`####` headings, `- ` bullets, `**bold**` and backticks. No tables, links or numbered lists, and no single-asterisk italics.
+- **Markdown subset:** one `##` lesson title at the top, then `###`/`####` headings, `- ` bullets, `**bold**` and backticks. No tables, links or numbered lists, and no single-asterisk italics.
+  - The single `##` title is the established pattern in all 22 lessons, including every closed one. Do not report it as a violation, and do not "fix" one lesson to `###` on its own.
 - **drillIds:** list every question id for the task, both `-mc` and `-mr`, in objective order.
 - **Citations:** one file per doc page, `cite-saa-<task>-*.json` or `cite-tf-<g>-*.json`, with `accessed: "2026-09-26"`. The `note` names, in one sentence, the specific claim the page backs. List each id in `citationIds`.
 - **Claim table:** the writer's impl report must contain one. It lists every fact and number, with its section, doc URL, and a verbatim quote of 20 words or fewer. Reviewers verify against this table.
