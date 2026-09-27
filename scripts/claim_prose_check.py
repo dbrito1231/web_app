@@ -1,4 +1,4 @@
-"""Flag numbers that a task's claim table verifies but the lesson prose never states.
+"""Flag claim-table rows the lesson prose does not back up, and over-long quotes.
 
 Teach-before-test means a question may only rely on a fact the learner actually
 read. A number that lives only in the writer's claim table is not taught. This
@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+QUOTE_WORD_CAP = 20  # RULES.md: "a verbatim quote of 20 words or fewer"
 
 # Bare small integers and years are too noisy to be useful signal.
 IGNORE = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "2026", "2025", "004"}
@@ -29,6 +30,7 @@ def main(task: str) -> int:
 
     report = ROOT / f"reports/fix-loop-r2/q1/lesson-{task}-impl.md"
     missing = []
+    long_quotes = []
     for line in report.read_text(encoding="utf-8").splitlines():
         if not line.startswith("|"):
             continue
@@ -38,6 +40,19 @@ def main(task: str) -> int:
         section, claim = cells[1], cells[2]
         for n in sorted(numbers_in(claim) - body_nums):
             missing.append((cells[0], section, n, claim[:90]))
+        # RULES.md caps the supporting quote at 20 words. A long quote tends to
+        # carry more than the claim beside it, which is how a quote ends up
+        # verbatim but supporting a different statement.
+        quote = cells[-1].strip().strip('"')
+        words = len(quote.split())
+        if words > QUOTE_WORD_CAP:
+            long_quotes.append((cells[0], words, quote[:70]))
+
+    if long_quotes:
+        print(f"WARN: {len(long_quotes)} claim-table quotes over "
+              f"{QUOTE_WORD_CAP} words")
+        for row, words, quote in long_quotes:
+            print(f"  row {row} {words}w  <- {quote}")
 
     print(f"task {task}: {len(body_nums)} distinct numbers in lesson prose")
     if missing:
