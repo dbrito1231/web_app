@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.4-S01"
   ],
-  "stem": "Pick the action that satisfies: Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone).",
+  "stem": "Prairie Systems runs private-subnet workloads in three Availability Zones and has been told that if any single Availability Zone has a problem, workloads in the other two must keep reaching the internet without interruption.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Deploy one NAT gateway in a single Availability Zone and route all three subnets through it regardless of where each subnet lives"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Deploy one NAT gateway and add a second Elastic IP address for redundancy"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy a NAT gateway in each Availability Zone but keep one shared route table pointing at only one of them"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gate"
+      "text": "Deploy a NAT gateway in each Availability Zone and route each subnet to its own Availability Zone's gateway"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A NAT gateway is redundant only within its own Availability Zone, so each subnet needs its own Availability Zone's gateway to keep egress isolated from a failure elsewhere. Routing all subnets to one Availability Zone's gateway, however many Elastic IP addresses it holds, still ties every subnet's egress to that single Availability Zone. Deploying a gateway in each Availability Zone but sharing one route table still sends every subnet's traffic through only one of them, so the isolation is not actually achieved.",
+  "citationIds": [
+    "cite-saa-4-4-nat-az-independence",
+    "cite-saa-4-4-nat-gateway-pricing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

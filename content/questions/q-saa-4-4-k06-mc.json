@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.4-K06"
   ],
-  "stem": "Pick the action that satisfies: Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering).",
+  "stem": "Ferro Systems has two VPCs that need direct connectivity today, but its roadmap already lists eleven more VPCs and three VPN sites joining over the next year, and leadership wants to avoid re-architecting the hub each time one joins.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Create a VPC peering connection between the two VPCs today"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Build the connectivity on a Transit Gateway hub"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add a new VPC peering connection each time a VPC joins"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)"
+      "text": "Attach each new VPC directly to the existing hybrid gateway without a transit hub"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Transit Gateway hub lets new VPCs and VPN sites attach without re-architecting existing connectivity. Peering meets today's two-VPC need but does not scale without adding a new connection for every future VPC. Attaching each new VPC to an existing hybrid gateway does not give VPCs a way to route to each other, so it is not a substitute for a VPC-to-VPC transit hub.",
+  "citationIds": [
+    "cite-saa-4-4-transit-gateway",
+    "cite-saa-4-4-vpc-peering"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

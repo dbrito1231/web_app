@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-K03"
   ],
-  "stem": "Select TWO actions that support this requirement: Load balancing concepts (for example, Application Load Balancer [ALB])",
+  "stem": "Corrigan Freight's partner-facing payments API must give partner firewalls a small, fixed set of addresses to allowlist no matter how traffic grows, and separately its internal microservices need requests routed by URL path to different backend teams without partners seeing that routing. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Front the partner-facing payments API with a Network Load Balancer"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Route the internal microservice traffic through an Application Load Balancer using path-based rules"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Front the partner-facing payments API with a Gateway Load Balancer"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Route the internal microservice traffic through a Network Load Balancer using path-based rules"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Merge both flows behind one Application Load Balancer using host-based rules only"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Network Load Balancer provides the small set of static entry-point addresses partners need to allowlist. An Application Load Balancer's path-based rules route internal requests to different backend teams on the same domain. Gateway Load Balancer is built for appliance insertion, not for giving partners a stable set of client-facing addresses. Network Load Balancer has no path-based routing, so it cannot split internal traffic by URL. A single Application Load Balancer with only host-based rules does not give partners the small, fixed address set a Network Load Balancer provides.",
+  "citationIds": [
+    "cite-saa-4-4-elb-layers",
+    "cite-saa-4-4-gwlb-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.4-S02"
   ],
-  "stem": "The workload needs this outcome: Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet). Which action should you take?",
+  "stem": "Overlook Mutual wants an encrypted backup path for its production Direct Connect link so hybrid traffic keeps flowing during a Direct Connect maintenance window, usable within days rather than the weeks a new cross-connect takes.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)"
+      "text": "Configure a Site-to-Site VPN connection as a backup path alongside the existing Direct Connect connection"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Order a second dedicated Direct Connect connection at a different location"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Route hybrid traffic over the public internet without encryption during maintenance windows"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Increase the existing Direct Connect connection's bandwidth with a link aggregation group"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A Site-to-Site VPN can be stood up in days and provides an encrypted path independent of the Direct Connect connection during its maintenance window. A second dedicated Direct Connect connection is a sound long-term pattern but its cross-connect provisioning takes weeks. Routing unencrypted traffic over the internet fails the encryption requirement. A link aggregation group bundles connections on the same device, so it gives no separate path if that connection needs maintenance.",
+  "citationIds": [
+    "cite-saa-4-4-vpn-tunnels",
+    "cite-saa-4-4-direct-connect-lens"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

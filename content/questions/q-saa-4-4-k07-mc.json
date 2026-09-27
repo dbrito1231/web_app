@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-K07"
   ],
-  "stem": "An exam scenario centers on: Network services with appropriate use cases (for example, DNS). Which action matches it?",
+  "stem": "Lakeshore Retail wants shoppers typing its storefront domain name to land on whichever of two Regional endpoints currently responds fastest, without shoppers ever having to change a URL.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Insert a Gateway Load Balancer in front of both Regional endpoints"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Network services with appropriate use cases (for example, DNS)"
+      "text": "Publish two separate domain names, one per Region, for shoppers to choose"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Configure Amazon Route 53 latency-based routing for the domain"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Put a Network Load Balancer in front of both Regional endpoints"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Route 53 latency-based routing resolves one domain name to whichever Region currently gives the shopper the best latency, with no URL change required. A Gateway Load Balancer inspects traffic through appliances, it does not choose between independent Regional endpoints by latency. Publishing two domain names forces shoppers to pick one themselves. A Network Load Balancer distributes connections within one deployment, it does not route DNS lookups between separate Regional endpoints.",
+  "citationIds": [
+    "cite-saa-4-4-route53-dns"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

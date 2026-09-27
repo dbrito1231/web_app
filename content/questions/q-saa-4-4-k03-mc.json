@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-K03"
   ],
-  "stem": "A teammate asks how to meet this requirement: Load balancing concepts (for example, Application Load Balancer [ALB]). Which action is appropriate?",
+  "stem": "Fenwick Robotics needs to insert a scaling fleet of third-party intrusion-detection appliances so every IP packet crossing a set of VPCs is inspected at one entry point before reaching any workload.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Front the VPCs with a Network Load Balancer"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Front the VPCs with an Application Load Balancer"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Place a Gateway Load Balancer in front of the appliance fleet"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Load balancing concepts (for example, Application Load Balancer [ALB])"
+      "text": "Configure Amazon Route 53 weighted routing across the VPCs"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Gateway Load Balancer is built to insert a scalable fleet of virtual appliances transparently at a single entry and exit point for all IP traffic. Network Load Balancer distributes transport-layer connections to targets but is not built for appliance-fleet insertion. Application Load Balancer only understands HTTP/HTTPS, not every IP packet. Route 53 weighted routing directs DNS resolution between resources, it does not insert an inspection point into the traffic path.",
+  "citationIds": [
+    "cite-saa-4-4-gwlb-overview"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

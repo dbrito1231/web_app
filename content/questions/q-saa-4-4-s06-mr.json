@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.4-S06"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting an appropriate throttling strategy",
+  "stem": "Overbrook Data's internal analytics API on API Gateway gets an unpredictable burst of traffic from one internal reporting job every night, and the team separately wants a configured ceiling so requests to the API never exceed the account-level throttling limit AWS enforces for the Region. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Increase the reporting job's EC2 instance size so it finishes faster"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Remove all throttling settings so the reporting job is never throttled"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Configure a stage-level burst limit sized to absorb the nightly reporting job's traffic pattern"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Rely on the AWS account-level throttling limit alone as the API's only ceiling"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Configure a usage plan quota for the reporting job's API key set below the Region's account-level limit"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A stage-level burst limit is exactly the setting built to absorb a short traffic spike like the nightly job. A usage plan quota set below the account-level limit gives the team a configured ceiling instead of depending on the fixed AWS-side limit. Resizing the reporting job's EC2 instance does not change the API's request rate at all. Removing throttling settings removes protection instead of adding a ceiling. The account-level limit is set by AWS and cannot be tuned per API, so relying on it alone gives the team no configured ceiling and does not address the nightly burst.",
+  "citationIds": [
+    "cite-saa-4-4-apigateway-throttling"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

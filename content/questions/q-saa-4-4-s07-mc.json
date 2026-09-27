@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.4-S07"
   ],
-  "stem": "A teammate asks how to meet this requirement: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed). Which action is appropriate?",
+  "stem": "Ashford Manufacturing measured its factory-to-AWS traffic at a sustained 3 Gbps and expects it to keep growing, and its only existing hybrid link is a single standard Site-to-Site VPN tunnel.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add a second standard Site-to-Site VPN tunnel on the same connection for redundancy"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move the connection to a dedicated Direct Connect connection at the 10 Gbps tier"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Keep the single tunnel and enable a Large Bandwidth Tunnel on the same standalone VPN attachment"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VP"
+      "text": "Keep the single tunnel and request a bandwidth increase beyond its standard ceiling"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A 10 Gbps dedicated Direct Connect connection covers the current 3 Gbps load with headroom for growth. A second standard tunnel on the same VPN connection is for tunnel failover, it does not add throughput. Large Bandwidth Tunnels are only available for VPN connections attached to Transit Gateway or Cloud WAN, not a plain standalone Site-to-Site VPN. Standard tunnel bandwidth is fixed at up to 1.25 Gbps by default with no simple in-place increase.",
+  "citationIds": [
+    "cite-saa-4-4-direct-connect-lens",
+    "cite-saa-4-4-vpn-tunnels"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

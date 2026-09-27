@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-S05"
   ],
-  "stem": "A teammate asks how to meet this requirement: Reviewing existing workloads for network optimizations. Which action is appropriate?",
+  "stem": "Nightingale Health's cloud team has been told spend on cross-boundary network traffic has grown for three months straight, but nobody can say which resource, path, or Region is driving it.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Increase the size of every EC2 instance behind the flagged egress path"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Move every workload behind CloudFront regardless of content type"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Purchase a Compute Savings Plan sized to current EC2 usage"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Reviewing existing workloads for network optimizations"
+      "text": "Enable VPC Flow Logs and review CloudWatch and Cost Explorer data by usage type"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "VPC Flow Logs plus CloudWatch and Cost Explorer broken down by usage type is how you identify which resource, path, or Region is actually driving the growing charge before changing anything. Resizing instances adds compute cost without identifying or addressing the driver. Moving every workload behind CloudFront skips finding the cause and does not help traffic that is not cacheable. A compute commitment discount addresses EC2 pricing, not the cause of network transfer cost.",
+  "citationIds": [
+    "cite-saa-4-4-data-transfer-cost"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

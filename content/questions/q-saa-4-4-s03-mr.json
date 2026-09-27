@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+  "stem": "Talbot Media's architecture team is reviewing a workload that calls DynamoDB from private subnets and also replicates a nightly batch file to a second Region purely as an extra off-site copy that no application currently reads. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Create a gateway endpoint for DynamoDB in the VPC"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Enable AWS Global Accelerator to speed up the nightly replication job"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Confirm whether the nightly cross-Region copy is still needed before continuing to pay for it"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Add more read capacity to DynamoDB to absorb the private-subnet calls"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Replace the cross-Region copy with a same-Region VPC peering connection"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A gateway endpoint removes the DynamoDB calls from the NAT/internet path with no additional charge. Confirming whether the cross-Region copy is actually needed matches the practice of treating a multi-Region path as a deliberate decision rather than a default. Global Accelerator improves routing performance for TCP/UDP endpoints, it does not reduce or remove the inter-Region data-transfer charge for a batch replication job. Adding DynamoDB read capacity does not change how the traffic is routed or reduce its transfer cost. A same-Region peering connection cannot substitute for placing a copy in a different Region.",
+  "citationIds": [
+    "cite-saa-4-4-vpc-endpoints-gateway",
+    "cite-saa-4-4-data-transfer-cost"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Configuring appropriate network connections (for example, AWS Direct Connect compared with VPN compared with internet)",
+  "stem": "Amherst Legal has no hybrid connection today, needs to reach AWS for a small pilot by tomorrow, and separately expects a future compliance audit to require a dedicated, non-internet path once the pilot becomes permanent. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Order a hosted Direct Connect connection through a partner and expect it ready by tomorrow"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Route the pilot's traffic over a Site-to-Site VPN and treat it as the eventual non-internet compliance answer"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Configure Route 53 latency-based routing to reach the pilot environment by tomorrow"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Reach AWS over the public internet with TLS for tomorrow's pilot traffic"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Begin the Direct Connect ordering process now so a dedicated connection is ready before the audit"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Public internet access with TLS is available immediately, meeting tomorrow's pilot deadline, while starting the Direct Connect order now gets a dedicated, non-internet connection in place before the audit. A hosted Direct Connect connection still takes longer than one day to provision. A Site-to-Site VPN always rides the public internet, so it can never satisfy the later non-internet requirement. Route 53 routing policies resolve names to endpoints, they do not establish network reachability by themselves.",
+  "citationIds": [
+    "cite-saa-4-4-direct-connect-lens",
+    "cite-saa-4-4-vpn-tunnels"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

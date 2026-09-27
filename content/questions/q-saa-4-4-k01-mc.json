@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-K01"
   ],
-  "stem": "You must choose one approach for: AWS cost management service features (for example, cost allocation tags, multi-account billing). Which action fits?",
+  "stem": "Meridian Health tags every VPN and Direct Connect resource with a cost-center key across its AWS Organizations member accounts, but three weeks later the billing console still shows those charges as untagged, and finance wants the tag key on cost reports without re-tagging anything.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Activate the cost-center tag key on the Billing and Cost Management cost allocation tags page"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Generate a Cost and Usage Report for the management account"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: AWS cost management service features (for example, cost allocation tags, multi-account billing)"
+      "text": "Turn on Reserved Instance and Savings Plans discount sharing for the organization"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Apply an organization-wide tagging policy across every member account that enforces the cost-center tag on new resources"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Activating the tag key in Billing and Cost Management is the step that makes an already-applied user-defined tag appear on cost reports. A Cost and Usage Report exports usage data but does not activate a tag key. Reserved Instance and Savings Plans discount sharing controls commitment-discount sharing across accounts, not tag visibility. A tagging policy can enforce the tag going forward but does not activate it for existing billing reports.",
+  "citationIds": [
+    "cite-saa-4-4-activating-tags"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

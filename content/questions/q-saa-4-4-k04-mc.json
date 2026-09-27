@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-K04"
   ],
-  "stem": "An exam scenario centers on: NAT gateways (for example, NAT instance costs compared with NAT gateway costs). Which action matches it?",
+  "stem": "Torrance Outfitters has one private subnet with steady, low, predictable outbound traffic, wants the lowest total monthly egress bill, and its two-person ops team has agreed to patch and manage a device themselves to get there.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Deploy a NAT gateway in the subnet's Availability Zone"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: NAT gateways (for example, NAT instance costs compared with NAT gateway costs)"
+      "text": "Deploy a NAT gateway in every Availability Zone the VPC uses"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Route egress through a Gateway Load Balancer appliance fleet sized for traffic inspection, not internet access"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Launch a right-sized EC2 NAT instance and manage its patching"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "For steady, low, predictable traffic where the team is willing to manage the device, a right-sized NAT instance's EC2 cost can undercut a NAT gateway's fixed hourly charge. A single NAT gateway or one per Availability Zone keeps its hourly charge regardless of how little data it processes, which does not minimize the bill for this small workload. A Gateway Load Balancer appliance fleet is built for traffic inspection, not for providing or pricing internet egress.",
+  "citationIds": [
+    "cite-saa-4-4-nat-comparison"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

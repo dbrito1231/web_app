@@ -4,5 +4,5 @@
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html",
   "accessed": "2026-09-26",
-  "note": "Backs the claim that Transit Gateway is a network transit hub used to interconnect VPCs and on-premises networks through attachments, contrasted with direct VPC peering."
+  "note": "Backs the claim that Transit Gateway is a network transit hub interconnecting VPCs and on-premises networks, and (Pricing section) that it bills hourly for each attachment plus for the amount of traffic processed."
 }

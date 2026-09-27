@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.4-S04"
   ],
-  "stem": "Pick the action that satisfies: Determining strategic needs for content delivery networks (CDNs) and edge caching.",
+  "stem": "Brightwell Media serves the same set of product images and videos to a worldwide audience thousands of times a day and wants to stop paying full Regional data-transfer rates for every repeat view of the same file.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add AWS Global Accelerator in front of the origin bucket"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Create additional S3 buckets in more Regions for users to pick from"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Put Amazon CloudFront in front of the S3 bucket"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining strategic needs for content delivery networks (CDNs) and edge caching"
+      "text": "Increase the EC2 fleet size serving the files behind an Application Load Balancer"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "CloudFront caches the images and videos at edge locations, so repeat views are served without generating a fresh Regional data-transfer charge each time. Global Accelerator improves routing performance for TCP/UDP endpoints, it does not cache HTTP objects. Additional Regional buckets require users to pick one themselves and still charge full Regional rates per fetch. Adding EC2 capacity behind a load balancer increases compute cost without reducing data-transfer cost or caching anything.",
+  "citationIds": [
+    "cite-saa-4-4-cloudfront-gamecost",
+    "cite-saa-4-4-cloudfront-intro"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

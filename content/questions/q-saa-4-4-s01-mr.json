@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Configuring appropriate NAT gateway types for a network (for example, a single shared NAT gateway compared with NAT gateways for each Availability Zone)",
+  "stem": "Redcliff Media's finance team wants next month's NAT-related spend to go down without weakening the Availability Zone isolation Redcliff already committed to for its three-Availability-Zone private subnets. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Remove two of the three NAT gateways and route all subnets through the one that remains"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Replace all three NAT gateways with a single NAT instance sized for peak traffic"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Create a gateway endpoint for the Amazon S3 traffic driving most of the NAT data-processing charge"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Confirm each Availability Zone's subnets route through the NAT gateway in that same Availability Zone"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Turn off cost allocation tags on the NAT gateways to lower the monthly bill"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A gateway endpoint removes the S3 traffic from the NAT gateway's per-GB charge entirely without touching the per-Availability-Zone topology. Confirming Availability-Zone-local routing keeps the isolation Redcliff committed to and avoids any accidental cross-Availability-Zone processing charge. Removing gateways or replacing them all with one instance both collapse the deployment back to a single point of failure. Turning off cost allocation tags has no effect on the underlying resource cost.",
+  "citationIds": [
+    "cite-saa-4-4-vpc-endpoints-gateway",
+    "cite-saa-4-4-nat-az-independence"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

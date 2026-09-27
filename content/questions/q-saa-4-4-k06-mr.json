@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-K06"
   ],
-  "stem": "Select TWO actions that support this requirement: Network routing, topology, and peering (for example, AWS Transit Gateway, VPC peering)",
+  "stem": "Dunmore Analytics keeps three VPCs today that all need direct, low-cost connectivity to each other, and separately wants inter-VPC traffic that stays inside one Availability Zone to avoid a per-gigabyte data-transfer charge. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Build a Transit Gateway hub for the three VPCs"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Create VPC peering connections between the three VPCs"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Keep the peered resources that exchange the most traffic in the same Availability Zone"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Route inter-VPC traffic through a shared internet-egress device across all three VPCs"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Attach the three VPCs to each other through a cross-Region Transit Gateway peering connection"
     }
   ],
   "correctAnswerIds": [
     "b",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "VPC peering gives three VPCs direct, low-cost connectivity without a hub's per-attachment and per-GB charges. Keeping same-Availability-Zone traffic between the peered resources qualifies it for the free same-AZ data transfer over the peering connection. A Transit Gateway hub adds per-attachment-hour and per-GB charges that a simple three-VPC peering mesh does not need. A shared internet-egress device is for outbound internet access, not inter-VPC traffic, and adds its own processing charge. Cross-Region Transit Gateway peering adds inter-Region charges, the opposite of the same-AZ-free goal.",
+  "citationIds": [
+    "cite-saa-4-4-vpc-peering",
+    "cite-saa-4-4-transit-gateway"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

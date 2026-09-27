@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-S06"
   ],
-  "stem": "An exam scenario centers on: Selecting an appropriate throttling strategy. Which action matches it?",
+  "stem": "Kestrel Payments runs a public REST API on API Gateway and needs each free-tier partner individually limited to 5 requests per second while a separate paid tier gets a higher limit, without changing the backend service.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Create separate usage plans with different throttle and quota settings tied to each partner's API key"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Selecting an appropriate throttling strategy"
+      "text": "Lower the account-level throttling limit for the Region to 5 requests per second"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Lower the stage-level throttle settings on the production stage to 5 requests per second for every caller on that stage"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Publish rate-limit guidance in the API documentation for partners to follow"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Usage plans tied to API keys let each partner tier get its own throttle and quota, which is the only option here that gives free-tier and paid partners different limits. Account-level and stage-level throttle settings apply uniformly to every caller, so neither can separate the two tiers. Publishing guidance for partners to follow has no enforcement, so it does not actually create the two tiers.",
+  "citationIds": [
+    "cite-saa-4-4-apigateway-throttling"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

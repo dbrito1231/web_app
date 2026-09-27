@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.4-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining strategic needs for content delivery networks (CDNs) and edge caching",
+  "stem": "Corville Streaming already has CloudFront in front of its video origin, and three partner CDNs also pull from that same origin whenever their own edge caches miss, which the origin team says is driving up origin load and cost. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Add more compute capacity to the origin fleet to absorb the extra partner-CDN requests"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Enable CloudFront Origin Shield in the Region closest to the origin"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Ask each partner CDN to independently increase its own cache size"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Confirm which origin content is actually cacheable and extend its cache duration"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Enable AWS WAF rate-based rules in front of the origin"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Origin Shield adds a consolidating caching layer that reduces how often any of the CDNs, including the partners, needs to reach the origin. Extending cache duration on content that is actually cacheable reduces how often it needs to be refetched at all. Adding compute capacity does not reduce the number of redundant requests reaching the origin. Asking partners to change their own cache sizing is outside the team's control and does not consolidate the three separate CDNs' fetches. WAF rate-based rules address malicious or excessive request volume, not legitimate multi-CDN cache-miss traffic.",
+  "citationIds": [
+    "cite-saa-4-4-cloudfront-gamecost"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

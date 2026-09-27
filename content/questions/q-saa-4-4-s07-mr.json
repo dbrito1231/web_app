@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.4-S07"
   ],
-  "stem": "Select TWO actions that support this requirement: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+  "stem": "Wexford Labs runs two factories, one sending a steady 800 Mbps of sensor data and the other sending a steady 40 Gbps of video inspection data, and wants each site's hybrid link sized to what it actually needs rather than one size for both. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Connect the 800 Mbps site with a hosted Direct Connect connection through a partner"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Connect the 800 Mbps site with a 400 Gbps dedicated hybrid port"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Connect the 40 Gbps site with a single standard Site-to-Site VPN tunnel"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Connect the 40 Gbps site with a dedicated hybrid port at the 100 Gbps tier"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Connect both sites through one shared 10 Gbps dedicated hybrid port"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A hosted Direct Connect connection covers 50 Mbps up to 25 Gbps, which comfortably fits the 800 Mbps site without a full dedicated port. A dedicated 100 Gbps connection right-sizes the 40 Gbps site from the 1/10/100/400 Gbps dedicated tiers. A 400 Gbps dedicated port for 800 Mbps of traffic is far oversized. A single standard VPN tunnel tops out at 1.25 Gbps, far below the 40 Gbps site's need. Sharing one 10 Gbps port between both sites undersizes the 40 Gbps site and ignores each site's own requirement.",
+  "citationIds": [
+    "cite-saa-4-4-direct-connect-lens"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

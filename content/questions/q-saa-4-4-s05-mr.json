@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.4-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Reviewing existing workloads for network optimizations",
+  "stem": "After reviewing its VPC flow logs, Ashcombe Logistics finds most of the flagged cross-boundary traffic is EC2 instances in one Availability Zone calling a NAT gateway in a different Availability Zone, plus a nightly job copying data to another Region that nobody remembers requesting. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Add a NAT gateway in the same Availability Zone as those EC2 instances and repoint their route table to it"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Increase the instance size of the EC2 fleet behind the flagged egress path"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Enable CloudFront Origin Shield for the nightly cross-Region copy job"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Run the nightly cross-Region copy more frequently in smaller pieces"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Confirm with the business whether the nightly cross-Region copy is still required, and stop it if not"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Adding a same-Availability-Zone NAT gateway and repointing the route table removes exactly the cross-Availability-Zone traffic the flow logs identified. Confirming the copy is still needed, and stopping it if not, addresses spend that nobody can even justify. Resizing the EC2 fleet does not change the cross-Availability-Zone routing. Origin Shield consolidates CDN-to-origin HTTP requests, it does not apply to a batch replication job. Running the copy more often does not reduce the total data moved.",
+  "citationIds": [
+    "cite-saa-4-4-nat-az-independence",
+    "cite-saa-4-4-data-transfer-cost"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.4-K05"
   ],
-  "stem": "The workload needs this outcome: Network connectivity (for example, private lines, dedicated lines, VPNs). Which action should you take?",
+  "stem": "Cascade Biotech's new manufacturing site must move large CAD files to AWS daily, and its network engineer has told leadership the link needs a bandwidth guarantee and none of that traffic can cross the public internet.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Network connectivity (for example, private lines, dedicated lines, VPNs)"
+      "text": "Order a dedicated AWS Direct Connect connection sized for the daily transfer volume"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Establish a Site-to-Site VPN connection over the site's existing internet circuit"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Send the CAD files to an S3 bucket over the public internet with TLS"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Attach a Transit Gateway VPN attachment to the manufacturing site's router"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A dedicated Direct Connect connection provides a guaranteed-bandwidth, private path that bypasses the public internet. A Site-to-Site VPN, whether standalone or attached to a Transit Gateway, still carries traffic over the public internet even though it is encrypted. Sending files to S3 over the internet with TLS also crosses the public internet and offers no bandwidth guarantee.",
+  "citationIds": [
+    "cite-saa-4-4-direct-connect-lens"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

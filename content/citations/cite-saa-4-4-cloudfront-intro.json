@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-cloudfront-intro",
+  "title": "What is Amazon CloudFront?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that CloudFront is a web service for static and dynamic web content, used for the CloudFront-vs-Global-Accelerator HTTP/HTTPS discriminator."
+}

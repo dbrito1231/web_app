@@ -1,8 +1,0 @@
-{
-  "id": "cite-saa-4-4-elbv2-overview",
-  "title": "elbv2 (Elastic Load Balancing v2) overview",
-  "publisher": "AWS",
-  "url": "https://docs.aws.amazon.com/cli/latest/reference/elbv2/index.html",
-  "accessed": "2026-09-26",
-  "note": "Backs the claim that ALB operates at layer 7, NLB at layer 4, and GWLB at layer 3, used to contrast their cost-relevant use cases."
-}
