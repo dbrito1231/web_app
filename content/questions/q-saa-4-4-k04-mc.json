@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.4-K04"
   ],
-  "stem": "Torrance Outfitters has one private subnet with steady, low, predictable outbound traffic, wants the lowest total monthly egress bill, and its two-person ops team has agreed to patch and manage a device themselves to get there.",
+  "stem": "Torrance Outfitters has one private subnet with steady, low, predictable outbound traffic, wants the lowest total monthly egress bill, and its two-person ops team has agreed to take on the day-to-day upkeep of a self-run device to get there.",
   "selectCount": 1,
   "choices": [
     {

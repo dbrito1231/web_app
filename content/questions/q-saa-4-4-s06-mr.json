@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.4-S06"
   ],
-  "stem": "Overbrook Data's internal analytics API on API Gateway gets an unpredictable burst of traffic from one internal reporting job every night, and the team separately wants a configured ceiling so requests to the API never exceed the account-level throttling limit AWS enforces for the Region. (Select TWO.)",
+  "stem": "Overbrook Data's internal analytics API on API Gateway gets an unpredictable spike of traffic from one internal reporting job every night, and the team separately wants a configured ceiling so requests to the API never exceed the account-level throttling limit AWS enforces for the Region. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {

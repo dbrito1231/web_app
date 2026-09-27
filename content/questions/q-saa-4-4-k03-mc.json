@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.4-K03"
   ],
-  "stem": "Fenwick Robotics needs to insert a scaling fleet of third-party intrusion-detection appliances so every IP packet crossing a set of VPCs is inspected at one entry point before reaching any workload.",
+  "stem": "Fenwick Robotics needs every packet between a growing group of VPCs to pass through a set of third-party network-security boxes that AWS scales automatically, before any of it reaches a workload.",
   "selectCount": 1,
   "choices": [
     {

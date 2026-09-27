@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-cloudfront-http-only",
+  "title": "How CloudFront processes HTTP and HTTPS requests",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HTTPandHTTPSRequests.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the 'HTTP and HTTPS only' framing for CloudFront: the entire page describes CloudFront's request handling only in terms of HTTP and HTTPS protocols, with no other protocol described anywhere in the CloudFront developer guide."
+}

@@ -49,6 +49,7 @@
 | 31 | S04 | CloudFront does not charge origin retrieval fees for AWS-based origins such as EC2 and S3 | https://docs.aws.amazon.com/wellarchitected/latest/games-industry-lens/gamecost02-bp01.html | "CloudFront does not charge origin retrieval fees for AWS-based origins, such as Amazon EC2 and Amazon S3" |
 | 32 | S04 | CloudFront Origin Shield (now named explicitly in the prose, not just described) consolidates requests when multiple CDNs sit in front of one origin | https://docs.aws.amazon.com/wellarchitected/latest/games-industry-lens/gamecost02-bp01.html | "provide an additional layer of caching to consolidate and reduce the number of origin requests" |
 | 41 | S04 | CloudFront is a web service for static and dynamic web content (used for the CloudFront-vs-Global-Accelerator HTTP-only discriminator requested by Teacher) | https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html | "Amazon CloudFront is a web service that speeds up distribution of your static and dynamic web content" |
+| 41b | S04 | CloudFront's request handling is described only in terms of HTTP and HTTPS (added per the AWS reviewer's low-severity sourcing finding, to support the "only" framing that the CloudFront-Introduction quote does not itself carry) | https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HTTPandHTTPSRequests.html | "CloudFront accepts requests in both HTTP and HTTPS protocols for objects in a CloudFront distribution" |
 | 42 | S04/S03 | Global Accelerator listeners are configured for TCP, UDP, or both, not HTTP specifically (Teacher's requested discriminator, other side) | https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-components.html | "A listener can be configured for TCP, UDP, or both TCP and UDP protocols." |
 | 33 | S05 | CloudWatch and VPC flow logs are used to capture data-transfer and network usage details | https://docs.aws.amazon.com/wellarchitected/2025-02-25/framework/cost_data_transfer_optimized_components.html | "Use Amazon CloudWatch and VPC flow logs to capture details about your data transfer and network usage" |
 | 34 | S05 | Cost Explorer, CUDOS Dashboards, or CloudWatch are used to understand a workload's data transfer cost | https://docs.aws.amazon.com/wellarchitected/2025-02-25/framework/cost_data_transfer_optimized_components.html | "AWS Cost Explorer, CUDOS Dashboards, or CloudWatch to understand data transfer cost of your workload" |
@@ -97,3 +98,16 @@ Confirmed rows 1–31, 33–40 already carried their full substance (not just nu
 `citationIds` now has 23 entries (was 21): removed `cite-saa-4-4-elbv2-overview` and `cite-saa-4-4-tgw-cost-sample`; added `cite-saa-4-4-gwlb-overview`, `cite-saa-4-4-elb-layers`, `cite-saa-4-4-cloudfront-intro`, `cite-saa-4-4-global-accelerator-listener`.
 
 Verification after fixes: `content_lint.py` PASS; `claim_prose_check.py 4-4` PASS (19 distinct numbers, all present); `q1_batch_check.py 4-4` lesson-only lines PASS (single-asterisk spans 0, tables/numbered lines 0, citations unresolved [], exam tips 14/14).
+
+## Round 2b — Teacher stem-echo fixes and AWS citation fix
+
+**AWS-Q44-001 (Gone):** Added second citation `cite-saa-4-4-cloudfront-http-only` (`HTTPandHTTPSRequests.html`) to support the "only" framing in S04's "CloudFront caches and accelerates HTTP and HTTPS content only" sentence; the original `cite-saa-4-4-cloudfront-intro` citation only supported "CloudFront is a web-content service," not the exclusivity. `citationIds` now has 24 entries. Claim table row 41b added.
+
+**TEACHER-Q44-001/002/003 (stem-only rewords, no key moved):**
+- `q-saa-4-4-k03-mc`: stem reworded to drop "fleet"/"appliance" and stop paraphrasing GWLB's doc definition — now "...needs every packet between a growing group of VPCs to pass through a set of third-party network-security boxes that AWS scales automatically, before any of it reaches a workload." Choice text unchanged.
+- `q-saa-4-4-k04-mc`: stem's closing clause reworded from "agreed to patch and manage a device themselves" to "agreed to take on the day-to-day upkeep of a self-run device." Choice text unchanged (key still says "manage its patching," but that word no longer appears in the stem).
+- `q-saa-4-4-s06-mr`: stem's "unpredictable burst of traffic" changed to "unpredictable spike of traffic." Choice text unchanged (key still says "burst limit," but "burst" no longer appears in the stem).
+
+Re-read all three reworded stems against their own choices: no distinctive word is now shared between a stem and only its key. Checked all 20 other stems' first-six-words for a collision with the three new stems — none (company names differ; `q1_batch_check.py`'s duplicate-6-word-opening check also confirms this programmatically).
+
+Verification: `content_lint.py` PASS; `q1_batch_check.py 4-4` PASS; `distractor_type_audit.py 4-4` PASS; `claim_prose_check.py 4-4` PASS.
