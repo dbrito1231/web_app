@@ -62,6 +62,18 @@ Never use these as a correct answer or as current advice. Mention one only if yo
   - No two stems in a task may share their first 6 words.
   - Never paste objective text.
   - MR stems say "(Select TWO.)" or the right count.
+  - **Paraphrase; do not echo (applies from task 4.4 onward).** State the requirement in the
+    scenario's own operational language, not in the lesson's distinctive keywords, and do not
+    let the key repeat the stem's wording. If a reader can pick the key by spotting the one
+    option that shares a distinctive term with the stem, the question tests reading, not
+    knowledge. Closed tasks 1.1-4.3 were written before this rule and are not reopened.
+    - Bad: stem says "needs advanced JSON handling and custom extensions", key says
+      "PostgreSQL for advanced JSON handling and custom extensions".
+    - Good: stem describes what the team actually does - "stores semi-structured claim
+      documents and runs analysts' ad-hoc queries against them" - and the key names the
+      service without repeating the stem.
+    - This cuts both ways: a distractor that echoes the stem is just as bad, because it
+      misleads a reader who has understood the material.
 - **Choices:**
   - MC has 4 choices; MR has 5.
   - All real and current, from the same area.
@@ -98,3 +110,8 @@ Never use these as a correct answer or as current advice. Mention one only if yo
 - **Every report ends with** `Overall: approve` or `Overall: concerns`.
 - **Closure:** an item closes only when its reporter and a second role both mark it Gone.
 - **Student:** answers from the text packet in the scratchpad before opening the answers file. Records each answer and a one-line reason first, then judges fairness. The target is 90% or better.
+  The Student also reports **how many stems were answerable by matching wording between the
+  stem and one option**, without understanding the concept. From task 4.4 onward that count
+  should be near zero; a high count is a finding against the questions, not against the
+  Student. On tasks 3.5, 4.1, 4.2 and 4.3 the Student scored 100%, and on 4.3 reported 9 of
+  22 stems as keyword-guessable, which is what prompted the paraphrase rule above.
