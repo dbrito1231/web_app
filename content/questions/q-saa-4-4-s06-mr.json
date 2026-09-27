@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Remove all throttling settings so the reporting job is never throttled"
+      "text": "Request an AWS Support increase to the Region's account-level throttling limit"
     },
     {
       "id": "c",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Rely on the AWS account-level throttling limit alone as the API's only ceiling"
+      "text": "Leave throttling at the account-level default with no stage or usage-plan settings configured for this API"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "c",
     "e"
   ],
-  "rationale": "A stage-level burst limit is exactly the setting built to absorb a short traffic spike like the nightly job. A usage plan quota set below the account-level limit gives the team a configured ceiling instead of depending on the fixed AWS-side limit. Resizing the reporting job's EC2 instance does not change the API's request rate at all. Removing throttling settings removes protection instead of adding a ceiling. The account-level limit is set by AWS and cannot be tuned per API, so relying on it alone gives the team no configured ceiling and does not address the nightly burst.",
+  "rationale": "A stage-level burst limit is exactly the setting built to absorb a short traffic spike like the nightly job. A usage plan quota set below the account-level limit gives the team a configured ceiling instead of depending on the fixed AWS-side limit. Resizing the reporting job's EC2 instance does not change the API's request rate at all. Raising the account-level limit through Support moves the ceiling upward for every API in the Region rather than giving this API a ceiling of its own. Leaving throttling at the account-level default means no stage or usage-plan setting exists to absorb the nightly spike, and the account-level limit is set by AWS and cannot be tuned per API.",
   "citationIds": [
     "cite-saa-4-4-apigateway-throttling"
   ],
