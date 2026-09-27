@@ -11,28 +11,28 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use Cost Explorer dashboards as the only source for detailed line-item SQL reconciliation."
-    },
-    {
-      "id": "b",
       "text": "Publish Cost and Usage Report data for line-item chargeback analysis."
     },
     {
-      "id": "c",
+      "id": "b",
       "text": "Purchase additional reserved capacity in each account to produce monthly cost alerts."
     },
     {
+      "id": "c",
+      "text": "Use Cost Explorer dashboards as the only source for detailed line-item SQL reconciliation."
+    },
+    {
       "id": "d",
-      "text": "Use Performance Insights load charts as the monthly chargeback dataset."
+      "text": "Create AWS Budgets alerts on actual and forecasted spend thresholds."
     },
     {
       "id": "e",
-      "text": "Create AWS Budgets alerts on actual and forecasted spend thresholds."
+      "text": "Use Performance Insights load charts as the monthly chargeback dataset."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "e"
+    "a",
+    "d"
   ],
   "rationale": "Cost and Usage Report provides line-item billing data that fits SQL-based chargeback analysis, and AWS Budgets provides proactive threshold alerts. Cost Explorer is useful for trend analysis but not the most granular line-item SQL source by itself. Buying reserved capacity changes pricing exposure but does not create alerting controls. Performance Insights is performance telemetry, not billing line-item data.",
   "citationIds": [

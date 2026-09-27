@@ -11,28 +11,28 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use Multi-AZ DB instance deployment for synchronous standby failover."
-    },
-    {
-      "id": "b",
-      "text": "Use read replicas for asynchronous read traffic offload."
-    },
-    {
-      "id": "c",
       "text": "Use read replicas as the only failover mechanism for synchronous high availability."
     },
     {
-      "id": "d",
+      "id": "b",
       "text": "Use Multi-AZ standby topology as the dedicated read-scaling endpoint."
     },
     {
-      "id": "e",
+      "id": "c",
+      "text": "Use Multi-AZ DB instance deployment for synchronous standby failover."
+    },
+    {
+      "id": "d",
       "text": "Use manual snapshots taken every hour as the read-scaling strategy."
+    },
+    {
+      "id": "e",
+      "text": "Use read replicas for asynchronous read traffic offload."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "e"
   ],
   "rationale": "Multi-AZ DB instance deployment addresses synchronous standby failover, while read replicas address asynchronous read scaling. Read replicas alone do not replace synchronous Multi-AZ failover design. Multi-AZ standbys in that deployment type are not read endpoints. Manual snapshots are backup artifacts, not live read-scaling infrastructure.",
   "citationIds": [

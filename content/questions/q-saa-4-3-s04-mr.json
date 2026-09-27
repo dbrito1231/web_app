@@ -11,15 +11,15 @@
   "choices": [
     {
       "id": "a",
-      "text": "Treat Timestream for LiveAnalytics as closed to new customers during solution selection."
+      "text": "Standardize on Timestream for LiveAnalytics for all new customer onboarding."
     },
     {
       "id": "b",
-      "text": "Evaluate Timestream for InfluxDB as a current alternative for similar capabilities."
+      "text": "Treat Timestream for LiveAnalytics as closed to new customers during solution selection."
     },
     {
       "id": "c",
-      "text": "Standardize on Timestream for LiveAnalytics for all new customer onboarding."
+      "text": "Evaluate Timestream for InfluxDB as a current alternative for similar capabilities."
     },
     {
       "id": "d",
@@ -31,8 +31,8 @@
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "c"
   ],
   "rationale": "The service-status guidance says Timestream for LiveAnalytics is closed to new customers and recommends evaluating Timestream for InfluxDB for similar capabilities. Selecting LiveAnalytics for new-customer onboarding conflicts with that status. Transactional relational and pure key-value defaults can be useful in some contexts but are not the direct closed-service replacement strategy asked for here.",
   "citationIds": [

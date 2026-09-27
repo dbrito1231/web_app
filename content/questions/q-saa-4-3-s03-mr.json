@@ -11,28 +11,28 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use on-demand mode for the unpredictable workload."
-    },
-    {
-      "id": "b",
-      "text": "Use provisioned mode with auto scaling for the stable workload."
-    },
-    {
-      "id": "c",
       "text": "Use provisioned fixed throughput for the unpredictable workload to avoid adaptive scaling."
     },
     {
+      "id": "b",
+      "text": "Buy reserved capacity before any stable baseline usage pattern is known."
+    },
+    {
+      "id": "c",
+      "text": "Use on-demand mode for the unpredictable workload."
+    },
+    {
       "id": "d",
-      "text": "Use on-demand mode for the stable workload to maximize commitment discount opportunities."
+      "text": "Use provisioned mode with auto scaling for the stable workload."
     },
     {
       "id": "e",
-      "text": "Buy reserved capacity before any stable baseline usage pattern is known."
+      "text": "Use on-demand mode for the stable workload to maximize commitment discount opportunities."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "c",
+    "d"
   ],
   "rationale": "On-demand mode fits unpredictable traffic, while provisioned with auto scaling fits stable known-throughput profiles and tuning. Fixed provisioned throughput on unpredictable loads can under- or over-provision. On-demand does not leverage provisioned reserved-capacity commitment economics for stable baselines. Reserved capacity before baseline discovery can create commitment mismatch risk.",
   "citationIds": [

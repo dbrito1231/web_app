@@ -64,3 +64,5 @@ Method: counted each non-key choice by first matching AWS service/token in the c
 - Replaced category-error distractors with plausible database architecture alternatives that miss exactly one stated requirement.
 - Removed giveaway and self-justifying phrasing from options and refreshed rationales to explain each distractor by content.
 - Rebalanced wording and option lengths to keep longest-is-key within policy while preserving key-slot distribution.
+- Reordered MR choices to remove key-pattern bias while keeping option text and correctness unchanged.
+- MR key-set distribution: ad:1, ae:1, bc:1, bd:1, be:1, cd:1, ce:1, de:1.

@@ -11,28 +11,28 @@
   "choices": [
     {
       "id": "a",
-      "text": "Classify the migration as heterogeneous and plan schema and query conversion work."
-    },
-    {
-      "id": "b",
-      "text": "Place at least one endpoint on an AWS service when using AWS DMS."
-    },
-    {
-      "id": "c",
       "text": "Treat the migration as homogeneous to skip SQL dialect validation."
     },
     {
-      "id": "d",
+      "id": "b",
       "text": "Assume data types and SQL behavior carry over unchanged across engines."
     },
     {
-      "id": "e",
+      "id": "c",
       "text": "Keep both endpoints on premises and rely on network connectivity alone for DMS eligibility."
+    },
+    {
+      "id": "d",
+      "text": "Classify the migration as heterogeneous and plan schema and query conversion work."
+    },
+    {
+      "id": "e",
+      "text": "Place at least one endpoint on an AWS service when using AWS DMS."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "d",
+    "e"
   ],
   "rationale": "Cross-engine moves are heterogeneous and need schema and query conversion planning, and DMS requires one endpoint on AWS. Treating the move as homogeneous skips needed conversion checks. Assuming unchanged data types and SQL behavior increases migration risk. Network connectivity alone does not satisfy DMS endpoint-location rules.",
   "citationIds": [

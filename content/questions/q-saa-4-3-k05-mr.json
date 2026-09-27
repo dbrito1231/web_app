@@ -11,11 +11,11 @@
   "choices": [
     {
       "id": "a",
-      "text": "One RCU supports one strongly consistent read per second for an item up to 4 KB."
+      "text": "One RCU supports one write per second for an item up to 4 KB."
     },
     {
       "id": "b",
-      "text": "One RCU supports one write per second for an item up to 4 KB."
+      "text": "One RCU supports one strongly consistent read per second for an item up to 4 KB."
     },
     {
       "id": "c",
@@ -23,16 +23,16 @@
     },
     {
       "id": "d",
-      "text": "One WCU supports one write per second for an item up to 1 KB."
+      "text": "One WCU supports one strongly consistent read per second for an item up to 1 KB."
     },
     {
       "id": "e",
-      "text": "One WCU supports one strongly consistent read per second for an item up to 1 KB."
+      "text": "One WCU supports one write per second for an item up to 1 KB."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "d"
+    "b",
+    "e"
   ],
   "rationale": "The defined units are 1 RCU for a 4 KB strongly consistent read per second and 1 WCU for a 1 KB write per second. The alternatives that swap read/write meanings are incorrect. On-demand billing is not represented by a single fixed 8 KB transactional-write definition.",
   "citationIds": [

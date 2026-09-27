@@ -15,24 +15,24 @@
     },
     {
       "id": "b",
-      "text": "Choose PostgreSQL when advanced JSON handling and custom extensions are required."
-    },
-    {
-      "id": "c",
       "text": "Choose MySQL when extension-heavy analytics and complex JSON operators are core requirements."
     },
     {
-      "id": "d",
+      "id": "c",
       "text": "Choose PostgreSQL when only broad compatibility and simple transactional behavior are needed."
     },
     {
-      "id": "e",
+      "id": "d",
       "text": "Choose MariaDB when PostgreSQL extension requirements are primary."
+    },
+    {
+      "id": "e",
+      "text": "Choose PostgreSQL when advanced JSON handling and custom extensions are required."
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "e"
   ],
   "rationale": "The discriminator teaches MySQL for compatibility and simpler transactional patterns, and PostgreSQL for advanced JSON, complex queries, and extensions. The remaining options reverse those criteria or claim extension equivalence that is not taught as valid selection guidance.",
   "citationIds": [

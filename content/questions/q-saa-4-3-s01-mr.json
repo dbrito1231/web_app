@@ -11,28 +11,28 @@
   "choices": [
     {
       "id": "a",
-      "text": "Keep automated backups for day-to-day operational restore needs."
-    },
-    {
-      "id": "b",
-      "text": "Keep quarterly manual snapshots and remove superseded long-term copies by policy."
-    },
-    {
-      "id": "c",
       "text": "Use read replicas as the only backup and retention control."
     },
     {
+      "id": "b",
+      "text": "Keep automated backups for day-to-day operational restore needs."
+    },
+    {
+      "id": "c",
+      "text": "Set maximum retention and indefinite snapshot retention in every environment."
+    },
+    {
       "id": "d",
-      "text": "Use PITR windows alone as quarterly long-term archive evidence."
+      "text": "Keep quarterly manual snapshots and remove superseded long-term copies by policy."
     },
     {
       "id": "e",
-      "text": "Set maximum retention and indefinite snapshot retention in every environment."
+      "text": "Use PITR windows alone as quarterly long-term archive evidence."
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "d"
   ],
   "rationale": "Automated backups support operational restore goals, and manual snapshot lifecycle policy controls long-term storage growth while preserving required evidence points. Read replicas do not replace backup retention strategy. PITR windows are bounded and do not provide open-ended quarterly archives by themselves. Maximum retention everywhere usually raises cost without workload-class justification.",
   "citationIds": [
