@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-vpc-peering",
+  "title": "What is VPC peering?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that creating a VPC peering connection is free, same-AZ data transfer over the connection is free, and cross-AZ or cross-Region data transfer over it is charged."
+}

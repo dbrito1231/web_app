@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-apigateway-throttling",
+  "title": "Throttle requests to your REST APIs for better throughput in API Gateway",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claims that API Gateway throttles using a token bucket algorithm, returns 429 Too Many Requests when limits are exceeded, and that usage plans let you set per-client throttles and quotas."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-vpn-tunnels",
+  "title": "Tunnel options for your AWS Site-to-Site VPN connection",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claims that each Site-to-Site VPN connection has two tunnels for redundancy, standard bandwidth is up to 1.25 Gbps per tunnel by default, and Large Bandwidth Tunnels reach up to 5 Gbps per tunnel on Transit Gateway or Cloud WAN."
+}

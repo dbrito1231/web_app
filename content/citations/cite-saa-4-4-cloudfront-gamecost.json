@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-cloudfront-gamecost",
+  "title": "GAMECOST02-BP01 Optimize the cost of data transfer across the internet",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/wellarchitected/latest/games-industry-lens/gamecost02-bp01.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that CloudFront reduces data transfer cost because delivering from CloudFront points-of-presence costs less than from Regions directly, and CloudFront does not charge origin retrieval fees for AWS-based origins."
+}

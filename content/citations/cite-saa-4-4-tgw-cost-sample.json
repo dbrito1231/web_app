@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-tgw-cost-sample",
+  "title": "Centralized Network Inspection on AWS: Cost",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/solutions/latest/centralized-network-inspection-on-aws/cost.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that Transit Gateway bills separately as a per-VPC-attachment hourly charge and a per-gigabyte data-processed charge, shown as distinct line items in the sample cost table."
+}

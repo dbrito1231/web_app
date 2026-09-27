@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-vpc-endpoints-gateway",
+  "title": "Gateway endpoints",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that there is no additional charge for using gateway endpoints to reach Amazon S3 or DynamoDB, unlike interface endpoints."
+}

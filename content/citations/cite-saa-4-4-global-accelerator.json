@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-global-accelerator",
+  "title": "What is AWS Global Accelerator?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that a standard Global Accelerator accelerator improves availability and performance for internet applications with a global audience by directing traffic over the AWS global network."
+}

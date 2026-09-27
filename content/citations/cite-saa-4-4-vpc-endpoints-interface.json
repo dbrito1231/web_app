@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-vpc-endpoints-interface",
+  "title": "Pricing for interface VPC endpoints (AWS PrivateLink)",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/iot-mi/latest/devguide/vpc-endpoints-pricing.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that interface VPC endpoints are charged at standard AWS PrivateLink rates, unlike the free gateway endpoint type."
+}

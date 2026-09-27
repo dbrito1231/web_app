@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-nat-comparison",
+  "title": "Compare NAT gateways and NAT instances",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-comparison.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the claim that NAT gateways are recommended over NAT instances for better availability and bandwidth with less administrative effort, and that NAT instance cost tracks EC2 instance type and size."
+}
