@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Edit the second provider's local package name in its own source code so the two no longer collide."
+      "text": "Give each provider a distinct `source` address in its own declared entry, but keep both entries under the same local name."
     },
     {
       "id": "b",
@@ -34,7 +34,7 @@
     "d",
     "e"
   ],
-  "rationale": "A compound local name that joins each provider's namespace and type with a dash lets both be referenced without colliding, and each still needs its own entry in `required_providers` because each argument there enables exactly one provider. Renaming a third-party provider's own resource types is not something a consuming configuration can do. Deleting `required_providers` removes the version-constraint declaration and does not resolve a naming collision. `alias` distinguishes multiple configurations of the same provider, not two different providers, so giving both the same alias does not address this at all.",
+  "rationale": "A compound local name that joins each provider's namespace and type with a dash lets both be referenced without colliding, and each still needs its own entry in `required_providers` because each argument there enables exactly one provider. Terraform requires a unique local name for each provider in a module, so pointing two entries at distinct `source` addresses while keeping them under the same local name does not resolve the collision; the local name itself is still shared. Deleting `required_providers` removes the version-constraint declaration and does not resolve a naming collision. `alias` distinguishes multiple configurations of the same provider, not two different providers, so giving both the same alias does not address this at all.",
   "citationIds": [
     "cite-tf-g2-providers",
     "cite-tf-g2-provider-requirements",

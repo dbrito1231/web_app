@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Every machine runs `terraform init` on the same calendar day so they all see the same latest release."
+      "text": "Have every engineer run `terraform init -upgrade` before each build, so each machine picks up the newest version that still matches the configured constraint."
     },
     {
       "id": "c",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "A committed dependency lock file records the exact version and checksum, so every `init` verifies against the same recorded build rather than merely a range. A tight `~>` constraint is still a range, and a new release could later appear that matches it, so it cannot guarantee the identical build over time. Running `init` on the same calendar day is coincidental and gives no guarantee. Manually copying a downloaded provider into each machine's cache works once but is an error-prone manual process, not something `terraform init` itself verifies.",
+  "rationale": "A committed dependency lock file records the exact version and checksum, so every `init` verifies against the same recorded build rather than merely a range. A tight `~>` constraint is still a range, and a new release could later appear that matches it, so it cannot guarantee the identical build over time. Running `terraform init -upgrade` explicitly tells Terraform to ignore the versions recorded in the dependency lock file and install the newest version that still matches the constraint, so two machines that run it on different days can still end up with different builds. Manually copying a downloaded provider into each machine's cache works once but is an error-prone manual process, not something `terraform init` itself verifies.",
   "citationIds": [
     "cite-tf-g2-providers",
     "cite-tf-g2-provider-requirements",
