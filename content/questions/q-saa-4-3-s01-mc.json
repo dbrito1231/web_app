@@ -6,31 +6,35 @@
   "objectiveIds": [
     "SAA-4.3-S01"
   ],
-  "stem": "During an architecture review, the goal is: Designing appropriate backup and retention policies (for example, snapshot frequency). Which action matches that goal?",
+  "stem": "Solstice Payroll classifies its core DB as high criticality and defines a small blast radius goal for failures while balancing backup cost.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use one monthly manual snapshot only across production, staging, and test databases to simplify policy administration."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Designing appropriate backup and retention policies (for example, snapshot frequency)"
+      "text": "Use tighter restore-point intervals and isolate failures so unaffected components stay outside the impact scope."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Disable PITR to simplify retention governance and reduce restore options."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use one shared development retention policy for every workload class."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Critical workloads with tight recovery goals need stronger backup cadence and fault isolation that limits affected scope. Monthly-only snapshots are too coarse for this requirement. Disabling PITR removes useful recovery flexibility. Applying one dev-oriented policy to all classes ignores business criticality differences.",
+  "citationIds": [
+    "cite-saa-4-3-waf-rel-10",
+    "cite-saa-4-3-rds-backup-retention",
+    "cite-saa-4-3-dynamodb-pitr"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

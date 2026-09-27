@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.3-S04"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining cost-effective AWS database types (for example, time series format, columnar format)",
+  "stem": "A telemetry team is designing new time-series ingestion on AWS in 2026 and must avoid retired guidance while selecting current cost-aware patterns. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Treat Timestream for LiveAnalytics as closed to new customers during service selection."
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Evaluate Timestream for InfluxDB as a current alternative for similar time-series use cases."
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Use AWS CloudTrail Lake as the primary high-frequency sensor write database by default."
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use Amazon SES event publishing as the main time-series storage engine."
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Use Amazon Lex V2 bot sessions as the durable IoT metric archive."
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "b"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The availability change notice says Timestream for LiveAnalytics is closed to new customers and recommends evaluating Timestream for InfluxDB for similar capabilities. CloudTrail Lake, SES, and Lex session storage are not primary general time-series database selections for this requirement.",
+  "citationIds": [
+    "cite-saa-4-3-timestream-liveanalytics-change"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

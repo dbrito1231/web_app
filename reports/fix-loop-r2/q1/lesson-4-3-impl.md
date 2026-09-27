@@ -53,6 +53,10 @@
 | 38 | K09/S03 | 50% storage-to-throughput threshold for Standard-IA cost benefit | https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.tableclasses.html | "When storage exceeds 50% of the throughput (reads and writes) cost" |
 | 39 | S04 | Redshift columnar storage reduces disk I/O for analytics | https://docs.aws.amazon.com/redshift/latest/dg/c_challenges_achieving_high_performance_queries.html | "Columnar storage for database tables drastically reduces the overall disk I/O requirements" |
 | 40 | S04 | Timestream for LiveAnalytics is closed to new customers (2025-06-20) | https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html | "close new customer access ... effective 6/20/25." |
+| 41 | S02 | MySQL vs PostgreSQL selection discriminator for compatibility vs advanced features | https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/choosing-engine.html | "Choose MySQL ... broad compatibility ... Choose PostgreSQL ... advanced features" |
+| 42 | S05/K07 | DMS requires one endpoint on AWS and cannot do direct on-prem to on-prem | https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.html | "one of your endpoints must be on an AWS service." |
+| 43 | S01 | Fault-isolated boundaries limit failure impact to part of workload | https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/rel-10.html | "Components outside of the boundary are unaffected by the failure." |
+| 44 | K09 | ACID in DynamoDB transactions means all-or-nothing correctness-preserving writes | https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html | "Transactions provide atomicity, consistency, isolation, and durability (ACID)" |
 
 ## New citation files
 
@@ -80,6 +84,12 @@
 - `content/citations/cite-saa-4-3-dms-introduction.json`
 - `content/citations/cite-saa-4-3-redshift-columnar.json`
 - `content/citations/cite-saa-4-3-timestream-liveanalytics-change.json`
+
+- `content/citations/cite-saa-4-3-rds-choosing-engine.json`
+
+- `content/citations/cite-saa-4-3-waf-rel-10.json`
+
+- `content/citations/cite-saa-4-3-dynamodb-transactions.json`
 
 ## Retired / renamed / closed-service finds
 

@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-waf-rel-10",
+  "title": "REL 10. How do you use fault isolation to protect your workload?",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/rel-10.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 S01 definition of blast radius and fault-isolated boundaries."
+}

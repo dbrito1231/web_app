@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.3-K04"
   ],
-  "stem": "Pick the action that satisfies: Data retention policies.",
+  "stem": "An audit policy requires Aurora backups for 30 days plus immutable long-term monthly copies that never expire until explicitly removed.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Keep automated backup retention at 30 days and create monthly cluster snapshots."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Set Aurora automated backup retention to 0 days and rely on weekly exports only."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use only read replicas as the long-term backup mechanism."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Data retention policies"
+      "text": "Use ElastiCache snapshots as the authoritative durable archive for relational recovery."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Aurora supports automated retention windows and manual snapshots that do not expire until deleted, satisfying both operational and long-term needs. Aurora backups cannot be disabled with retention 0 in this context. Read replicas are for scaling and failover, not immutable long-term backup policy. ElastiCache snapshotting is for cache state, not relational system-of-record backup strategy.",
+  "citationIds": [
+    "cite-saa-4-3-aurora-backups",
+    "cite-saa-4-3-rds-snapshots"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

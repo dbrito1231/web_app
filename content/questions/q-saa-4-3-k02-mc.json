@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K02"
   ],
-  "stem": "An exam scenario centers on: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Report). Which action matches it?",
+  "stem": "A finance team needs weekly visualization and forecast of Aurora spend trends, plus a hard monthly notification threshold for the dev account.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use AWS Database Migration Service for forecasting and billing notifications."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: AWS cost management tools with appropriate use cases (for example, AWS Cost Explorer, AWS Budgets, AWS Cost and Usage Re"
+      "text": "Use Cost Explorer for trends and forecasts, then Budgets alerts for the monthly threshold."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS Backup vault metrics for all database spend analysis and threshold alerting."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use Amazon CloudWatch alarms on CPU utilization as the only cost forecast and threshold control."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cost Explorer is the billing trend and forecast tool, while Budgets provides threshold notifications. DMS handles data migration, not cost analytics. AWS Backup metrics focus on backup operations, not full spend forecasting. CPU alarms monitor performance and cannot replace billing forecasts.",
+  "citationIds": [
+    "cite-saa-4-3-savingsplans-services"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

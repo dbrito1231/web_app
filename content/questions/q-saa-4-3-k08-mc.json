@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.3-K08"
   ],
-  "stem": "The workload needs this outcome: Database replication (for example, read replicas). Which action should you take?",
+  "stem": "A ticketing platform needs to offload heavy reporting reads from its writer while accepting eventual consistency lag for those reports.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Database replication (for example, read replicas)"
+      "text": "Create read replicas and route reporting traffic to replica endpoints."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Rely on a Multi-AZ standby as the reporting read endpoint."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use AWS Backup copy jobs as the online reporting query endpoint."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use Elastic Disaster Recovery staging servers for near-real-time read scaling."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Read replicas are asynchronous read-only copies intended for read scaling and reporting. Multi-AZ standby replicas are for high availability and do not serve read traffic in that deployment mode. Backup copy jobs are for protection workflows, not query serving. Elastic Disaster Recovery staging infrastructure is for recovery orchestration, not primary reporting read paths.",
+  "citationIds": [
+    "cite-saa-4-3-rds-read-replicas",
+    "cite-saa-4-3-multiaz-concepts"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

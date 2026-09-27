@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-4.3-K08"
   ],
-  "stem": "Select TWO actions that support this requirement: Database replication (for example, read replicas)",
+  "stem": "A bank wants both faster failover and read scale in an RDS design. The architect must separate high-availability and read-scaling mechanisms clearly. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Use one NAT gateway per VPC as the database failover control plane."
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Use IAM Access Analyzer findings as the replication channel."
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use Multi-AZ for synchronous standby failover protection."
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "Use AWS Config snapshot history as a read-scaling target."
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use read replicas for asynchronous read traffic offload."
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Multi-AZ deployment handles high availability with synchronous standby behavior, while read replicas handle asynchronous read scaling. NAT gateway topology addresses networking egress, not DB replication and failover semantics. Access Analyzer is a permissions analysis service. AWS Config snapshots track configuration state and are not query replicas.",
+  "citationIds": [
+    "cite-saa-4-3-rds-read-replicas",
+    "cite-saa-4-3-multiaz-concepts",
+    "cite-saa-4-3-multiaz-failover-instance"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "SAA-4.3-S03"
   ],
-  "stem": "You must choose one approach for: Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless). Which action fits?",
+  "stem": "A payment API has a steady baseline relational load but periodic month-end spikes and wants better cost predictability with lower idle overprovisioning risk.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use Aurora Serverless v2 with a bounded ACU range for burst elasticity."
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use AWS Batch as the relational database hosting layer."
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon "
+      "text": "Use Amazon EMR as the primary OLTP engine for payment records."
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS Transfer Family as the database compute autoscaler."
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Aurora Serverless v2 scales compute ACUs within configured boundaries, reducing idle overprovisioning in variable workloads while keeping relational semantics. AWS Batch and EMR are compute and analytics platforms, not managed relational OLTP engines. Transfer Family handles file transfer endpoints, not database compute scaling.",
+  "citationIds": [
+    "cite-saa-4-3-aurora-serverless-v2",
+    "cite-saa-4-3-aurora-billing"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-K03"
   ],
-  "stem": "The workload needs this outcome: Caching strategies. Which action should you take?",
+  "stem": "Pinecast has a DynamoDB table with hot read keys during live events and needs lower read latency and lower read-capacity overprovisioning.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Caching strategies"
+      "text": "Move the table to Amazon S3 Glacier Flexible Retrieval."
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS Storage Gateway file cache as the primary key-value acceleration layer."
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a DynamoDB Accelerator cluster in front of the table."
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Replace the table with Amazon Aurora Serverless v2 readers only."
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DAX is DynamoDB-compatible, designed for microsecond eventually consistent reads, and can reduce read-capacity overprovisioning. S3 Glacier is archival storage, not low-latency key-value serving. Aurora readers are relational and not a direct DynamoDB cache substitute. Storage Gateway file caching targets file or hybrid storage patterns, not DynamoDB API acceleration.",
+  "citationIds": [
+    "cite-saa-4-3-dax"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

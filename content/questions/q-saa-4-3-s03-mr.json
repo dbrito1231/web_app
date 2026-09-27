@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.3-S03"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining cost-effective AWS database services with appropriate use cases (for example, DynamoDB compared with Amazon RDS, serverless)",
+  "stem": "A fintech platform is deciding between DynamoDB pricing modes for two workloads: one has unpredictable spikes, the other has stable known throughput. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use Amazon MQ broker instance classes to bill DynamoDB table capacity."
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Use AWS App Runner service quotas to define DynamoDB RCU commitments."
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use AWS Backup Audit Manager controls to define DynamoDB throughput limits."
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Use on-demand mode for the unpredictable workload to avoid idle capacity planning."
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Use provisioned mode with auto scaling for the stable workload profile."
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "d",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "On-demand mode fits unpredictable spikes, while provisioned mode with auto scaling aligns with stable known throughput where tuning can reduce cost. MQ, App Runner, and Snowball controls are unrelated to DynamoDB table capacity billing modes.",
+  "citationIds": [
+    "cite-saa-4-3-dynamodb-ondemand",
+    "cite-saa-4-3-dynamodb-provisioned"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

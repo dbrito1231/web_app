@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.3-S02"
   ],
-  "stem": "Select TWO actions that support this requirement: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+  "stem": "A SaaS team is finalizing engine choice for a new managed relational platform and wants options aligned to documented discriminator criteria. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Prioritize MySQL when framework compatibility and simpler transactional behavior are the top needs."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Prioritize AWS Glue DataBrew for OLTP row-level transaction durability."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Prioritize PostgreSQL when custom extensions and advanced JSON processing are needed."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Prioritize Amazon Kendra as the SQL extension compatibility layer."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Prioritize Amazon Athena ACID mode for high-throughput online writes."
     }
   ],
   "correctAnswerIds": [
-    "b",
+    "a",
     "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The documented discriminator says MySQL fits broad tool compatibility and simpler transactional workloads, while PostgreSQL fits advanced JSON, complex queries, and custom extensions. Glue DataBrew and Kendra are not relational OLTP engines. Athena is a query service over data lakes and not a primary online transactional engine.",
+  "citationIds": [
+    "cite-saa-4-3-rds-choosing-engine"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

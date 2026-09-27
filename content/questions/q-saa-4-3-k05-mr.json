@@ -6,36 +6,39 @@
   "objectiveIds": [
     "SAA-4.3-K05"
   ],
-  "stem": "Select TWO actions that support this requirement: Database capacity planning (for example, capacity units)",
+  "stem": "A team is documenting DynamoDB capacity math for a payment ledger table that has mixed read consistency requirements. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "One RCU supports one strongly consistent read per second for an item up to 4 KB."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "One RCU supports one write per second for an item up to 4 KB."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "One on-demand request unit always equals one 8 KB transactional write."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "One WCU supports one write per second for an item up to 1 KB."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "One WCU supports one strongly consistent read per second for an item up to 1 KB."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The documented definitions are 1 RCU for a 4 KB strongly consistent read per second and 1 WCU for a 1 KB write per second. The reversed statements swap read and write semantics and are incorrect. On-demand request billing is not defined as a fixed 8 KB transactional write unit across all operations.",
+  "citationIds": [
+    "cite-saa-4-3-dynamodb-provisioned",
+    "cite-saa-4-3-dynamodb-ondemand"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

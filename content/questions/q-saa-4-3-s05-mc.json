@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-S05"
   ],
-  "stem": "An exam scenario centers on: Migrating database schemas and data to different locations and/or different database engines. Which action matches it?",
+  "stem": "A manufacturer is migrating from an on-premises Oracle source to an on-premises PostgreSQL target and asks whether AWS DMS can do that directly.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Yes; DMS directly supports on-premises to on-premises migration with no AWS endpoint."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Migrating database schemas and data to different locations and/or different database engines"
+      "text": "No; with AWS DMS at least one endpoint needs to be on an AWS service."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Yes; if you register both endpoints in AWS Systems Manager Parameter Store."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "No; because DMS supports only homogeneous migrations within one engine family."
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "DMS documentation states one endpoint must be on an AWS service, so purely on-premises source-to-target migration is unsupported in that direct form. Parameter Store registration does not alter this endpoint constraint. DMS supports both homogeneous and heterogeneous engine migrations when the endpoint rule is satisfied.",
+  "citationIds": [
+    "cite-saa-4-3-dms-introduction"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

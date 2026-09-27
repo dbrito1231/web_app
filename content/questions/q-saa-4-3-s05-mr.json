@@ -6,36 +6,38 @@
   "objectiveIds": [
     "SAA-4.3-S05"
   ],
-  "stem": "Select TWO actions that support this requirement: Migrating database schemas and data to different locations and/or different database engines",
+  "stem": "A logistics company is planning a cross-engine migration and wants the lowest rework risk during cutover while honoring AWS DMS constraints. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Assume all SQL dialect and data-type behavior carries over unchanged between engines."
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Use Amazon Inspector findings as the migration replication channel."
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Classify the move as heterogeneous and budget time for schema and query conversion."
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Place at least one endpoint on an AWS service when using AWS DMS."
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Rely on AWS Shield Advanced policies to transform schemas during cutover."
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Cross-engine moves are heterogeneous and usually need schema and query conversion planning. DMS requires at least one AWS-hosted endpoint. Assuming unchanged SQL and data-type behavior creates migration risk. Inspector and Shield Advanced are security services and do not provide schema or data migration channels.",
+  "citationIds": [
+    "cite-saa-4-3-dms-introduction"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

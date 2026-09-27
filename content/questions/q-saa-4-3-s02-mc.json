@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-S02"
   ],
-  "stem": "Pick the action that satisfies: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL).",
+  "stem": "An insurance analytics team needs a managed relational engine for advanced JSON processing, custom extension usage, and complex SQL query plans.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use MySQL on Amazon RDS for extension-heavy JSON workloads by default."
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use Amazon DocumentDB as the primary PostgreSQL extension host."
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use PostgreSQL on Amazon RDS."
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)"
+      "text": "Use Amazon MemoryDB as the relational JSON query engine."
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "RDS guidance identifies PostgreSQL for advanced JSON handling, complex queries, and extensibility needs. MySQL is often preferred for broader compatibility and simpler transactional patterns. DocumentDB and MemoryDB are different data models and do not replace the required relational feature profile.",
+  "citationIds": [
+    "cite-saa-4-3-rds-choosing-engine"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

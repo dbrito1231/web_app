@@ -6,36 +6,40 @@
   "objectiveIds": [
     "SAA-4.3-S01"
   ],
-  "stem": "Select TWO actions that support this requirement: Designing appropriate backup and retention policies (for example, snapshot frequency)",
+  "stem": "A startup wants lower backup storage cost but still needs rapid operational recovery and long-term retention for quarterly audits. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Use only cache-node snapshots as the legal data-retention record."
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Keep automated backups for day-to-day operational restore windows."
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Replace all backups with read replicas and remove retention policies."
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Keep fewer long-term copies by deleting old manual snapshots per policy."
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Set every environment to the maximum retention window by default."
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "b",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Automated backups support operational recovery windows, while manual snapshot lifecycle policy controls long-term storage growth. Cache snapshots do not replace authoritative relational backup controls. Read replicas are not backup-policy substitutes. Maximum retention everywhere increases cost without workload-class justification.",
+  "citationIds": [
+    "cite-saa-4-3-rds-backup-retention",
+    "cite-saa-4-3-rds-snapshots",
+    "cite-saa-4-3-aurora-backups"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

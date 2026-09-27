@@ -6,31 +6,33 @@
   "objectiveIds": [
     "SAA-4.3-S04"
   ],
-  "stem": "During an architecture review, the goal is: Determining cost-effective AWS database types (for example, time series format, columnar format). Which action matches that goal?",
+  "stem": "A media company runs large aggregations across billions of event rows and needs a cost-effective store optimized for analytical scans across selected columns.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Use Amazon RDS for OLTP and treat it as the default petabyte analytics warehouse."
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Determining cost-effective AWS database types (for example, time series format, columnar format)"
+      "text": "Use Amazon API Gateway caching as the historical columnar data warehouse."
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Use AWS Step Functions execution history as the long-term SQL analytics store."
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Use Amazon Redshift with columnar storage for analytical workloads."
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Redshift columnar storage is optimized for analytical scan patterns and reduced disk I/O. RDS OLTP engines can run analytics but are not the default fit for this warehouse requirement. API Gateway caching and Step Functions history are not data warehouse platforms.",
+  "citationIds": [
+    "cite-saa-4-3-redshift-columnar"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
