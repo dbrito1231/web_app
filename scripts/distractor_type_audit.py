@@ -63,8 +63,12 @@ def main(task: str) -> int:
             low = ch["text"].lower()
             for t in TERMS:
                 # Word-boundary match: a bare "RDS" must not match inside
-                # "shards" or "records".
-                if re.search(rf"(?<![a-z0-9]){re.escape(t.lower())}(?![a-z0-9])", low):
+                # "shards" or "records". The trailing guard allows a plural
+                # suffix, because it previously hid "read replicas" (6 of 22
+                # questions in task 4.3) behind the singular "read replica".
+                if re.search(
+                    rf"(?<![a-z0-9]){re.escape(t.lower())}(?:es|s)?(?![a-z0-9])", low
+                ):
                     seen.add(t)
         short = d["id"].replace(f"q-saa-{task}-", "").replace(f"q-tf-004-{task}-", "")
         for t in seen:

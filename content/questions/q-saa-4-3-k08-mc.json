@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "Rely on automated backup snapshots as the reporting read path."
+      "text": "Restore the latest automated backup into a separate reporting instance."
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Read replicas are the intended mechanism for asynchronous read offload. Multi-AZ DB instance standbys support failover but do not serve read traffic. Upsizing the writer can add capacity but does not implement dedicated read offload architecture. Backup snapshots are protection artifacts, not online reporting endpoints.",
+  "rationale": "Read replicas receive asynchronous updates from the writer and serve read traffic on their own endpoints, which is what offloading heavy reporting requires. A Multi-AZ DB instance standby is a failover target and does not serve read queries. Increasing the writer instance class adds capacity but leaves reporting contending with production writes on the same endpoint. Restoring an automated backup produces a point-in-time copy that is stale the moment it comes up and has to be repeated, so it is not a continuous read offload.",
   "citationIds": [
     "cite-saa-4-3-rds-read-replicas",
     "cite-saa-4-3-multiaz-concepts"

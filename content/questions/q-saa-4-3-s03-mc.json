@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Use DynamoDB on-demand as a drop-in relational replacement for SQL joins."
+      "text": "Use ElastiCache in front of a peak-sized cluster to absorb the traffic spikes."
     },
     {
       "id": "d",
@@ -29,11 +29,11 @@
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Aurora Serverless v2 aligns with variable relational demand by scaling compute within configured bounds. Peak-sized provisioned clusters can carry idle cost between spikes. DynamoDB on-demand is a different data model and not a drop-in relational SQL-join replacement. Manual resize windows add operational overhead and can miss unexpected spikes.",
+  "rationale": "Aurora Serverless v2 aligns with variable relational demand by scaling compute within configured bounds. Peak-sized provisioned clusters can carry idle cost between spikes. A cache can offload repeated reads, but the relational cluster stays provisioned at peak size, so the idle cost it was meant to remove is still paid. Manual resize windows add operational overhead and can miss unexpected spikes.",
   "citationIds": [
     "cite-saa-4-3-aurora-serverless-v2",
     "cite-saa-4-3-aurora-billing",
-    "cite-saa-4-3-dynamodb-ondemand"
+    "cite-saa-4-3-elasticache-what-is"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

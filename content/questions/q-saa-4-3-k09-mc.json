@@ -15,11 +15,11 @@
     },
     {
       "id": "b",
-      "text": "Use a general-purpose managed MySQL instance with read replicas for key lookups."
+      "text": "Use a general-purpose managed MySQL instance with secondary indexes for key lookups."
     },
     {
       "id": "c",
-      "text": "Use ElastiCache as the only durable system of record for all sessions."
+      "text": "Use ElastiCache as the durable system of record for session data."
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "DynamoDB matches high-scale key-based low-latency access patterns without join dependencies. Aurora PostgreSQL and MySQL can serve key lookups but are relational-first approaches for this specific access profile. ElastiCache is an in-memory cache tier and should not be the only durable system-of-record store.",
+  "rationale": "DynamoDB matches high-scale key-based low-latency access patterns without join dependencies. Aurora PostgreSQL and MySQL can serve key lookups, and secondary indexes speed them up, but they remain relational-first approaches for this specific access profile. ElastiCache is an in-memory cache tier, so it is not a durable system-of-record store for session data.",
   "citationIds": [
     "cite-saa-4-3-dynamodb-ondemand",
     "cite-saa-4-3-elasticache-what-is"

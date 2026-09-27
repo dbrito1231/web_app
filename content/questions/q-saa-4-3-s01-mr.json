@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use read replicas as the only backup and retention control."
+      "text": "Use read replicas to meet backup and point-in-time retention needs."
     },
     {
       "id": "b",

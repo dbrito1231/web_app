@@ -6,31 +6,32 @@
   "objectiveIds": [
     "SAA-4.3-K07"
   ],
-  "stem": "Meridian Labs is selecting a managed relational engine for rich JSON queries and extension-heavy analytic SQL workloads.",
+  "stem": "Cobalt Freight runs self-managed Oracle databases and wants to remove commercial engine licensing cost, accepting schema and application query rework across a multi-quarter project.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Choose MySQL to prioritize broad tool compatibility and simpler transactional patterns."
+      "text": "Move to Oracle on Amazon EC2, keeping the same engine and its current licensing profile."
     },
     {
       "id": "b",
-      "text": "Choose MariaDB to maximize compatibility with MySQL-oriented workflows."
+      "text": "Move to Amazon Aurora MySQL-Compatible Edition and keep the existing SQL dialect unchanged."
     },
     {
       "id": "c",
-      "text": "Choose PostgreSQL for advanced JSON handling, complex queries, and extension support."
+      "text": "Move to Amazon RDS for PostgreSQL and plan schema, data type, and query conversion."
     },
     {
       "id": "d",
-      "text": "Choose MySQL with read replicas to substitute for extension requirements."
+      "text": "Move to PostgreSQL and rely on AWS DMS alone to convert stored procedures and application SQL."
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The lesson discriminator maps PostgreSQL to advanced JSON handling, complex queries, and custom extensions. MySQL and MariaDB are strong compatibility-focused choices for simpler transactional profiles, but they are not the best fit for this stated feature set. Adding read replicas does not replace extension and query-capability requirements.",
+  "rationale": "Oracle to PostgreSQL is a heterogeneous migration: the engine changes, so the commercial licensing cost goes away, and schema, data type, and application query conversion become first-class project work. Self-managing Oracle on Amazon EC2 is a homogeneous move that keeps the same engine and therefore the same licensing profile. Moving to Aurora MySQL-Compatible Edition is also a heterogeneous move, so SQL dialect and data type differences still have to be evaluated rather than assumed to carry over. AWS DMS moves data between endpoints and does not by itself convert stored procedures or application SQL, so a heterogeneous move still needs separate schema and code conversion work.",
   "citationIds": [
+    "cite-saa-4-3-dms-introduction",
     "cite-saa-4-3-rds-choosing-engine"
   ],
   "reviewedOn": "2026-09-26",

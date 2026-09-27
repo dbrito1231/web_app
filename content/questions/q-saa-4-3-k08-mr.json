@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Use read replicas as the only failover mechanism for synchronous high availability."
+      "text": "Use read replicas to provide synchronous standby failover."
     },
     {
       "id": "b",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Use manual snapshots taken every hour as the read-scaling strategy."
+      "text": "Use a larger writer instance class as the read-scaling mechanism."
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "c",
     "e"
   ],
-  "rationale": "Multi-AZ DB instance deployment addresses synchronous standby failover, while read replicas address asynchronous read scaling. Read replicas alone do not replace synchronous Multi-AZ failover design. Multi-AZ standbys in that deployment type are not read endpoints. Manual snapshots are backup artifacts, not live read-scaling infrastructure.",
+  "rationale": "A Multi-AZ DB instance deployment provides synchronous standby failover for availability, and read replicas provide asynchronous read offload for scaling, which gives each goal its own mechanism. Read replicas are asynchronous and are not a synchronous failover target. A Multi-AZ standby does not serve reads, so it cannot be the read-scaling endpoint. Scaling the writer up adds capacity to the single endpoint rather than giving read scaling a mechanism distinct from the availability design.",
   "citationIds": [
     "cite-saa-4-3-rds-read-replicas",
     "cite-saa-4-3-multiaz-concepts",

@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Use MySQL on Amazon RDS with read replicas for extension compatibility."
+      "text": "Use MySQL on Amazon RDS with a larger instance class for extension compatibility."
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The lesson explicitly maps PostgreSQL to advanced JSON handling, complex queries, and custom extensions. MySQL and MariaDB are compatibility-focused options for other workload profiles. Read replicas improve read scaling but do not add PostgreSQL-style extension support.",
+  "rationale": "The lesson explicitly maps PostgreSQL to advanced JSON handling, complex queries, and custom extensions. MySQL and MariaDB are compatibility-focused options for other workload profiles. A larger instance class adds capacity but does not add PostgreSQL-style extension support.",
   "citationIds": [
     "cite-saa-4-3-rds-choosing-engine"
   ],
