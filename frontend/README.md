@@ -1,50 +1,11 @@
-# React + TypeScript + Vite
+# Workbook frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory is the **AWS + Terraform Lab Workbook** React SPA (Vite + TypeScript), not a generic Vite starter.
 
-Currently, two official plugins are available:
+**Setup, architecture, testing, and all commands:** see the [root README](../README.md).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Quick facts:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Dev UI: `http://127.0.0.1:5173` (use `npm run dev -- --host 127.0.0.1 --port 5173` or [`start.ps1`](../start.ps1))
+- API base: optional `VITE_API_BASE` in `.env` (default `http://127.0.0.1:8000`) — see [`src/api/client.ts`](src/api/client.ts)
+- Scripts: `npm run dev`, `build`, `lint`, `preview`, `test:e2e` — see [`package.json`](package.json)

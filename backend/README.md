@@ -2,6 +2,8 @@
 
 Local JSON API for the AWS + Terraform workbook. Binds to **127.0.0.1** only.
 
+Full project setup, architecture, and testing: see the [root README](../README.md).
+
 ## Setup
 
 ```powershell
