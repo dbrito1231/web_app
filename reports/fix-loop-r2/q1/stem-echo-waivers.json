@@ -1,0 +1,3 @@
+{
+  "_README": "Per-task, per-question waivers for scripts/stem_echo_check.py. A waiver records that a reviewer judged a flagged stem/key term to be a structural scenario reference under RULES.md, not keyword leakage. Cite the report that says so. Tasks 1.1-4.4 closed before the gate existed and have no entries."
+}

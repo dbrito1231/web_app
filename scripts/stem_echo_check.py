@@ -16,13 +16,31 @@ An ECHO is the same idea measured in bulk: the key shares strictly more
 distinctive stem tokens than any distractor does. A question can echo without
 having a giveaway when the overlap is spread across common terms.
 
-ADVISORY ONLY -- it never fails a task. It over-flags badly: on task 4.3 it
-flagged 15 of 22 where the Student, reading properly, found 9, and on task 4.4
-most flags turned out to be coincidences ("separate", "fleet", "billing")
-rather than tells. It also cannot see a paraphrase that is still a one-to-one
-mapping ("semi-structured documents" -> "JSON"). Treat the output as a reading
-list for the Lead Dev and reviewers, and keep asking the Student packet for a
-guessable-stem count -- that number is the real measure.
+Detecting the candidates is the easy half; classifying them is not, and no
+script does it. RULES.md exempts a term that "simply names an object,
+resource, or job the stem itself introduced into the scenario" -- a
+structural scenario reference rather than a defect. So each flagged question
+is classified by a reviewer and recorded in WAIVERS with a reason. An
+unwaived giveaway fails the task; a waived one is listed and does not.
+
+Filtering by how common a token is was tried and removed. It does nothing:
+on task 4.4 every false positive ("billing", "daily", "audit", "dedicated",
+"cloudfront") appeared in exactly one stem, because a coincidental rare word
+and a genuine tell are both rare. No frequency threshold separates them, and
+one set high enough to drop "availability" also dropped "gateway", "private"
+and "hybrid", which are the terms most likely to carry a real tell.
+
+Waivers are reviewer judgement, not a mute button. Add one only when a role
+has said in a report that the reference is structural, and cite that report.
+
+The gate applies from **task tf-g1 onward**, the same way the stem-paraphrase
+rule applied from 4.4 onward. Tasks 1.1-4.4 closed before it existed and have
+no waiver entries, so running it on them reports failures that were never
+assessed against this standard.
+
+Still blind to a paraphrase that is a one-to-one mapping ("semi-structured
+documents" -> "JSON"), so the Student packet's two counts remain the real
+measure.
 
 Read-only. Usage: stem_echo_check.py <task>    e.g. 4-4, tf-g1
 """
@@ -50,11 +68,18 @@ STOP = {
 }
 
 MIN_LEN = 5  # shorter words are rarely distinctive
+WAIVERS_PATH = ROOT / "reports/fix-loop-r2/q1/stem-echo-waivers.json"
 
 
 def tokens(text: str) -> set:
     words = re.findall(r"[a-z][a-z0-9-]+", text.lower())
     return {w for w in words if len(w) >= MIN_LEN and w not in STOP}
+
+
+def load_waivers(task: str) -> dict:
+    if not WAIVERS_PATH.exists():
+        return {}
+    return json.loads(WAIVERS_PATH.read_text(encoding="utf-8")).get(task, {})
 
 
 def main(task: str) -> int:
@@ -63,9 +88,11 @@ def main(task: str) -> int:
         print(f"no question files for task {task}")
         return 1
 
-    giveaway, echo = [], []
-    for f in files:
-        d = json.loads(f.read_text(encoding="utf-8"))
+    docs = [json.loads(f.read_text(encoding="utf-8")) for f in files]
+    waivers = load_waivers(task)
+
+    giveaway, echo, waived = [], [], []
+    for d in docs:
         keys = set(d["correctAnswerIds"])
         stem = tokens(d["stem"])
         per_choice = {c["id"]: tokens(c["text"]) & stem for c in d["choices"]}
@@ -83,12 +110,15 @@ def main(task: str) -> int:
             (len(t) for cid, t in per_choice.items() if cid not in keys), default=0
         )
         short = d["id"].replace(f"q-saa-{task}-", "").replace(f"q-tf-004-{task}-", "")
-        if hits:
+        if hits and short in waivers:
+            waived.append((short, sorted(hits), waivers[short]))
+        elif hits:
             giveaway.append((short, sorted(hits)))
         elif key_max > dis_max and key_max > 0:
             echo.append((short, key_max, dis_max))
 
-    print(f"task {task}: {len(files)} questions\n")
+    print(f"task {task}: {len(files)} questions, "
+          f"{len(waivers)} waiver(s) on file\n")
     if giveaway:
         print(f"GIVEAWAY -- a stem token appears in the key and no distractor ({len(giveaway)}):")
         for qid, hits in giveaway:
@@ -98,14 +128,21 @@ def main(task: str) -> int:
         print(f"\nECHO -- key shares more stem wording than any distractor ({len(echo)}):")
         for qid, km, dm in echo:
             print(f"  {qid:10} key={km} tokens, best distractor={dm}")
-    if not giveaway and not echo:
+    if waived:
+        print(f"\nWAIVED -- reviewer recorded these as structural ({len(waived)}):")
+        for qid, hits, why in waived:
+            pairs = ", ".join(f"{t} -> {c}" for t, c in hits)
+            print(f"  {qid:10} {pairs}")
+            print(f"{'':13}{why}")
+    if not giveaway and not echo and not waived:
         print("no stem/key echo found")
 
-    total = len(giveaway) + len(echo)
-    print(f"\n{total} of {len(files)} questions flagged -- read them, do not")
-    print("treat them as defects; see the module docstring on over-flagging.")
-    print("RESULT: ADVISORY")
-    return 0
+    print(f"\n{len(giveaway)} unwaived giveaway, {len(waived)} waived, "
+          f"{len(echo)} bulk echo, of {len(files)} questions")
+    if echo:
+        print("Bulk echo is advisory: read those, do not assume a defect.")
+    print(f"RESULT: {'FAIL' if giveaway else 'PASS'}")
+    return 1 if giveaway else 0
 
 
 if __name__ == "__main__":

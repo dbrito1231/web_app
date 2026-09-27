@@ -19,6 +19,12 @@ Plans: `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` (Amendments 2â€
 - **Helper scripts:** put them in `C:\Users\dbadmin\AppData\Local\Temp\claude\C--Users-dbadmin-Desktop-GitServ-ccna-web-app\a6f21a3f-b237-427b-b80d-d927c3db310e\scratchpad`, with a unique prefix.
 - **Lint:** `backend\.venv\Scripts\python.exe scripts\content_lint.py` must PASS.
 - **Batch check:** `backend\.venv\Scripts\python.exe scripts\q1_batch_check.py <task>` (e.g. `3-1` or `tf-g1`) must show no FAIL.
+- **Stem echo gate (from task tf-g1):** `scripts\stem_echo_check.py <task>` must show no FAIL. It
+  reports each token that appears in the stem and in the key but in **no distractor** -- the test
+  in the Student section above. It cannot tell keyword leakage from a structural scenario
+  reference, so a reviewer classifies each flag and the Lead Dev records the structural ones in
+  `reports/fix-loop-r2/q1/stem-echo-waivers.json`, citing the report that says so. Anything not
+  waived fails. Do not add a waiver to silence a flag you have not had a role look at.
 
 ## Budget
 
@@ -110,8 +116,18 @@ Never use these as a correct answer or as current advice. Mention one only if yo
 - **Every report ends with** `Overall: approve` or `Overall: concerns`.
 - **Closure:** an item closes only when its reporter and a second role both mark it Gone.
 - **Student:** answers from the text packet in the scratchpad before opening the answers file. Records each answer and a one-line reason first, then judges fairness. The target is 90% or better.
-  The Student also reports **how many stems were answerable by matching wording between the
-  stem and one option**, without understanding the concept. From task 4.4 onward that count
-  should be near zero; a high count is a finding against the questions, not against the
-  Student. On tasks 3.5, 4.1, 4.2 and 4.3 the Student scored 100%, and on 4.3 reported 9 of
-  22 stems as keyword-guessable, which is what prompted the paraphrase rule above.
+  The Student also reports on stem/key wording, as **two separate numbers**. For each stem,
+  after recording the answer and reason, check every choice that shares a distinctive word or
+  phrase with the stem. For each shared term, apply one test: **does that same word also
+  appear in at least one distractor?**
+  - **No** -- the term appears only in the stem and the key: count the stem as
+    **keyword-guessable (defect)**.
+  - **Yes** -- the term also appears in a wrong choice, or it simply names an object,
+    resource, or job the stem itself introduced into the scenario: **not** a defect. Count it
+    separately as a **structural scenario reference**.
+  Report both: "N stems keyword-guessable (defect)" and "M stems with a structural scenario
+  reference (not a defect)". Only N is a finding against the questions.
+  This replaces a single combined count, which could not tell the two apart. On task 4.3 the
+  Student reported 9 of 22, and on 4.4 -- the first task under the paraphrase rule -- 9 of 23.
+  Reading those nine showed most were structural, and the Teacher independently read 20 of the
+  23 stems as genuine paraphrases. One number scored a defect and a property we want the same.
