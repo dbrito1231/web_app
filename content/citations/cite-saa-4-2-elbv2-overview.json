@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-elbv2-overview",
+  "title": "elbv2 command reference overview",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/cli/latest/reference/elbv2/index.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 S01: confirms ALB is layer 7, NLB is layer 4, and GWLB operates at layer 3 in Elastic Load Balancing types."
+}

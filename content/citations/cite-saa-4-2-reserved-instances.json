@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-reserved-instances",
+  "title": "Reserved Instances for Amazon EC2 overview",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K04: confirms Reserved Instances support one-year or three-year terms and All Upfront, Partial Upfront, or No Upfront payment options."
+}

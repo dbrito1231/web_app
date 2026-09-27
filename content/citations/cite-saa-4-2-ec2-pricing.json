@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-ec2-pricing",
+  "title": "Amazon EC2 pricing",
+  "publisher": "AWS",
+  "url": "https://aws.amazon.com/ec2/pricing/",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K04 and S06: confirms EC2 per-second billing with a 60-second minimum and highlights Spot discount language."
+}

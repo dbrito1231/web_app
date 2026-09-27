@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-target-tracking",
+  "title": "How target tracking scaling for Application Auto Scaling works",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/autoscaling/application/userguide/target-tracking-scaling-policy-overview.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K09: confirms target tracking scales out above target and scales in below target to maintain desired metric values."
+}

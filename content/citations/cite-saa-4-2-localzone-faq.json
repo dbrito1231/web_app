@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-localzone-faq",
+  "title": "AWS Local Zones FAQs",
+  "publisher": "AWS",
+  "url": "https://aws.amazon.com/about-aws/global-infrastructure/localzones/faqs/",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K05 and K06: contrasts when to use Local Zones, Wavelength, and Outposts for low-latency and local processing requirements."
+}

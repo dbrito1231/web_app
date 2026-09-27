@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-nat-gateway-pricing",
+  "title": "Pricing for NAT gateways",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-pricing.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K03: confirms NAT gateways incur hourly and per-gigabyte processing charges and recommends same-AZ placement to reduce transfer charges."
+}

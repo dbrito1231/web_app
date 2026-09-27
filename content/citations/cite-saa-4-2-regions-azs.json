@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-2-regions-azs",
+  "title": "AWS Regions and Availability Zones",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-regions-availability-zones.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 4.2 K03: defines Regions, Availability Zones, Local Zones, and Wavelength Zones and why single-location designs risk availability loss."
+}
