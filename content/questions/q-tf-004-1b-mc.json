@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "A cloud vendor's own native template tool that provisions every resource strictly in the order it is listed in the template, one at a time."
+      "text": "Split the 40 resources across several scripts that run at the same time, with an engineer deciding which resources go in which script."
     },
     {
       "id": "c",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The key describes Terraform's resource graph, which walks a node as soon as its own dependencies are finished, so independent resources proceed together automatically. A script written in a fixed order runs strictly serially by construction, even for resources with no relationship. A native template tool that provisions strictly in listed order is declarative but still serial, so it does not give the independent resources any parallelism either. A configuration-management tool converges settings on servers that already exist on its own schedule; it does not address how those 40 resources get provisioned or ordered in the first place.",
+  "rationale": "The key describes Terraform's resource graph, which walks a node as soon as its own dependencies are finished, so independent resources proceed together automatically. A script written in a fixed order runs strictly serially by construction, even for resources with no relationship. Splitting the resources across scripts that run at the same time does produce parallelism, but a person has to decide the split, which is the hand-ordering the team wants to avoid. A configuration-management tool converges settings on servers that already exist on its own schedule; it does not address how those 40 resources get provisioned or ordered in the first place.",
   "citationIds": [
     "cite-tf-g1-intro",
     "cite-tf-g1-vs-cloudformation",
