@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Store the checkout database on instance store volumes only"
+      "text": "Run checkout in one Availability Zone with larger instances"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "a",
     "b"
   ],
-  "rationale": "Multi-AZ deployment fits high-impact checkout availability targets, while lower-impact sandbox workloads can use smaller or scheduled capacity to control spend. Routing both environments through one instance creates a shared failure point. Instance-store-only persistence is not an availability strategy for critical checkout data. Two-Region active-active for both environments may be valid in special cases but is not a cost-aligned default for a dev sandbox.",
+  "rationale": "Multi-AZ deployment fits high-impact checkout availability targets, while lower-impact sandbox workloads can use smaller or scheduled capacity to control spend. Routing both environments through one instance creates a shared failure point. Running checkout in one Availability Zone, even on larger instances, still misses the production multi-AZ availability requirement. Two-Region active-active for both environments may be valid in special cases but is not a cost-aligned default for a dev sandbox.",
   "citationIds": [
     "cite-saa-4-2-multiaz-reliability",
     "cite-saa-4-2-regions-azs"

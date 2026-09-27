@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.2-S03"
   ],
-  "stem": "Redwood Bio runs two workloads: short event handlers and long-running container jobs that exceed 15 minutes, and the team wants to avoid managing servers. (Select TWO.)",
+  "stem": "Redwood Bio runs two workloads: short event handlers and long-running container jobs that exceed 15 minutes, and the team wants the lowest-cost fit for bursty short handlers while avoiding server management. (Select TWO.)",
   "selectCount": 2,
   "choices": [
     {
@@ -34,7 +34,7 @@
     "a",
     "d"
   ],
-  "rationale": "Lambda matches short event-handler execution patterns, and Fargate supports long-running containers without server patch management. Lambda is not the right fit for long-running container jobs that exceed standard function duration limits. Using Fargate for short event handlers can work technically, but it misses the strongest pay-per-request fit taught for bursty event handlers. EC2 Auto Scaling can run the jobs but reintroduces host management that the scenario explicitly wants to avoid.",
+  "rationale": "Lambda matches short event-handler execution patterns, and Fargate supports long-running containers without server patch management. Lambda is not the right fit for long-running container jobs that exceed standard function duration limits. Using Fargate for short event handlers can work technically, but it is not the lowest-cost fit for bursty short handlers compared with Lambda request-and-duration billing. EC2 Auto Scaling can run the jobs but reintroduces host management that the scenario explicitly wants to avoid.",
   "citationIds": [
     "cite-saa-4-2-lambda-timeout",
     "cite-saa-4-2-fargate-pricing",

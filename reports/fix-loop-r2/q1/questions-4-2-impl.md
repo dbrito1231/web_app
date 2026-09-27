@@ -69,3 +69,10 @@ Counting method: counted **distractor choices only** (not correct answers). Each
 
 - `backend\.venv\Scripts\python.exe scripts\q1_batch_check.py 4-2` -> **RESULT: PASS**.
 - `backend\.venv\Scripts\python.exe scripts\content_lint.py` -> **PASS**.
+
+## Round-2 fixes (post-review)
+
+- **AWS-Q42-001 (`s03-mr`)**: tightened the stem to require the lowest-cost fit for bursty short handlers while still avoiding server management; kept key `a,d`.
+- **TEACHER-Q42-001 (`s01-mc`)**: chose the "teach it" remedy; kept Classic Load Balancer distractor and added a lesson S01 sentence that CLB is previous-generation and not recommended for new environments.
+- **TEACHER-Q42-002 (`s01-mr`)**: chose the "replace distractor" remedy; replaced Global Accelerator with `Classic Load Balancer for inline firewall traffic` to avoid near-duplicate ALB/NLB choices and keep a distinct, taught wrong reason.
+- **TEACHER-Q42-003 (`s04-mr`)**: replaced `Store the checkout database on instance store volumes only` with `Run checkout in one Availability Zone with larger instances`, which fails the explicitly taught production multi-AZ requirement.

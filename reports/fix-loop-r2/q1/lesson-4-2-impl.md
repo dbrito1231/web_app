@@ -65,6 +65,7 @@
 | 47 | S01 | GWLB operates at network layer (layer 3) | https://docs.aws.amazon.com/cli/latest/reference/elbv2/index.html | "Gateway Load Balancer - Operates at the network layer (layer 3)." |
 | 48 | S01 | ALB supports host-based and path-based routing | https://docs.aws.amazon.com/help-panel/elasticbeanstalk/latest/helppanel/f-load-balancer-type.html | "advanced features like host-based routing, path-based routing" |
 | 49 | S01 | NLB provides static IP addresses | https://docs.aws.amazon.com/help-panel/elasticbeanstalk/latest/helppanel/f-load-balancer-type.html | "provides ultra-high performance with static IP addresses" |
+| 57 | S01 | Classic Load Balancer is previous-generation and not recommended for new environments | https://docs.aws.amazon.com/help-panel/elasticbeanstalk/latest/helppanel/f-load-balancer-type.html | "is not recommended for new environments." |
 | 50 | S06 | c7g.large has 2 vCPU and 4 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.large | 2 | 4" |
 | 51 | S06 | c7g.xlarge has 4 vCPU and 8 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.xlarge | 4 | 8" |
 | 52 | S06 | c7g.2xlarge has 8 vCPU and 16 GiB memory | https://aws.amazon.com/ec2/instance-types/c7g/ | "c7g.2xlarge | 8 | 16" |

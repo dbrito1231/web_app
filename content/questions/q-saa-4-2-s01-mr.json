@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "AWS Global Accelerator endpoint group"
+      "text": "Classic Load Balancer for inline firewall traffic"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "b",
     "e"
   ],
-  "rationale": "Gateway Load Balancer is built for virtual appliance insertion and traffic steering at network layer behavior. Registering firewall appliances in GWLB target groups supports scalable appliance fleets. Application Load Balancer focuses on Layer 7 HTTP routing and is not the intended inline security insertion model. Network Load Balancer can provide high-performance transport balancing but does not provide the same appliance insertion workflow. Global Accelerator optimizes global entry routing, not inline firewall service chaining.",
+  "rationale": "Gateway Load Balancer is built for virtual appliance insertion and traffic steering at network layer behavior. Registering firewall appliances in GWLB target groups supports scalable appliance fleets. Application Load Balancer focuses on Layer 7 HTTP routing and is not the intended inline security insertion model. Network Load Balancer can provide high-performance transport balancing but does not provide the same appliance insertion workflow. Classic Load Balancer is a previous-generation option and is not the recommended choice for this inline appliance design.",
   "citationIds": [
     "cite-saa-4-2-elbv2-overview",
     "cite-saa-4-2-load-balancer-type"
