@@ -78,3 +78,58 @@ No other key choice in the remaining 20 questions contains a number. All numeric
 Task 4.3: close
 
 Overall: approve
+
+## Round 2 recheck
+
+Re-reviewed after Teacher's `TEACHER-Q43-001` through `-004` and the corrected distractor-cap violations landed (commit `dcd1633`, per coordinator). Re-read the eight changed files (`q-saa-4-3-k07-mc`, `k08-mc`, `k08-mr`, `k09-mc`, `s02-mc`, `s03-mc`, `k02-mr`, `s01-mr`), re-ran `distractor_type_audit.py 4-3`, `q1_batch_check.py 4-3`, `content_lint.py`, and re-checked the lesson body for the duplicated-sentence artifact I had flagged as non-blocking. Verified new/changed claims against AWS docs via `mcp-exec`.
+
+### Second-role check on Teacher's findings
+
+- **TEACHER-Q43-001 (high, `q-saa-4-3-k07-mc` tested S02's fact instead of K07's)** - **Gone.** The rewritten question now tests K07's own objective (homogeneous vs. heterogeneous migration and its cost/effort consequences), not the S02 JSON/extensions discriminator. No overlap remains with `s02-mc` (which still tests the JSON/extensions criterion) or with `s05-mc`/`s05-mr` (which test the DMS AWS-endpoint constraint and heterogeneous-classification planning) - `k07-mc` instead tests licensing-cost impact of homogeneous vs. heterogeneous engine choice, a distinct fact. Doc-verified all four choices:
+  - Key (c), "Move to Amazon RDS for PostgreSQL and plan schema, data type, and query conversion": Oracle -> PostgreSQL is heterogeneous (different engine), matching `CHAP_Introduction.html`'s own worked example, "such as from an Oracle database to a PostgreSQL database," and correctly requires conversion work.
+  - (a), Oracle on EC2, same engine/licensing: confirmed homogeneous (same engine, only hosting changes) and confirmed Oracle requires a commercial license under both License-Included and BYOL models per `https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Oracle.Concepts.Licensing.html` and the Oracle-on-AWS best-practices whitepaper - self-managing Oracle on EC2 does not remove that licensing requirement, so "keeping ... its current licensing profile" is accurate.
+  - (b), Aurora MySQL-Compatible Edition from Oracle: confirmed heterogeneous. AWS's own DMS sample playbook is titled "AWS DMS heterogeneous migration" for exactly this Oracle-to-Aurora-MySQL case (`https://docs.aws.amazon.com/dms/latest/oracle-to-aurora-mysql-migration-playbook/chap-oracle-aurora-mysql.tools.awsdms.html`), so "keep the existing SQL dialect unchanged" is correctly the flaw (dialect and data types do change).
+  - (d), "rely on AWS DMS alone to convert stored procedures and application SQL": confirmed wrong. AWS's own migration guides pair DMS (data movement) with a separate tool - AWS SCT or DMS Schema Conversion - specifically for stored procedures/schema/code conversion (e.g., "AWS SCT for schema conversion and AWS DMS for data migration," `https://docs.aws.amazon.com/dms/latest/sbs/chap-sqlserver2aurora.html`). DMS does not by itself convert stored procedures or application SQL, so (d) is a real but incomplete option, not a strawman.
+  - Rationale explains each option by content, no letter references, no giveaway wording. **Confirmed Gone.**
+- **TEACHER-Q43-002 / -003 (moderate, duplicated lesson prose in S02/S05, plus K05's "four times in 24 hours" tripled)** - **Gone.** Re-scanned `content/lessons/lesson-4-3.json` bodyMarkdown for any sentence longer than 40 characters repeated more than once: none found (script check, see below). The S02 MySQL/PostgreSQL sentence, the S05 DMS-endpoint sentence, and the K05 switch-limit sentence each now appear exactly once.
+- **TEACHER-Q43-004 (low, `s03-mc` choice (c) strawman)** - **Gone.** Choice (c) is now "Use ElastiCache in front of a peak-sized cluster to absorb the traffic spikes" - a real, plausible architecture choice, not an anti-pattern. The rationale correctly explains why it misses the stated requirement (the relational cluster stays provisioned at peak size, so the idle-cost problem the question asks to solve is not actually removed). No strawman wording remains.
+
+### Doc verification of new/changed choice text and rationale (8 files)
+
+- `q-saa-4-3-k07-mc`: all four choices and the rationale doc-verified above under TEACHER-Q43-001.
+- `q-saa-4-3-k08-mc`: new distractor (d), "Restore the latest automated backup into a separate reporting instance," is a real but stale/non-continuous approach - consistent with K04/S01 teaching that restores create point-in-time copies, not live continuous replicas. No factual issues; key (a) unchanged and previously verified.
+- `q-saa-4-3-k08-mr`: choice (a) reworded to "Use read replicas to provide synchronous standby failover" (still a real-option-applied-wrong distractor: read replicas are asynchronous per `USER_ReadRepl.html`, so pairing them with "synchronous standby failover" is the stated error). Choice (d) reworded to "Use a larger writer instance class as the read-scaling mechanism" - real action, correctly insufficient as a distinct read-scaling mechanism. Key (c, e) unchanged and previously verified.
+- `q-saa-4-3-k09-mc`: distractor (b) now "MySQL instance with secondary indexes for key lookups" and (c) now "ElastiCache as the durable system of record for session data" - both real, on-topic distractors; (c)'s flaw (ElastiCache is not a durable system of record) is accurate per ElastiCache's in-memory-cache positioning. Key (d) unchanged.
+- `q-saa-4-3-s02-mc`: distractor (c) reworded to "MySQL on Amazon RDS with a larger instance class for extension compatibility" - real action, correctly does not add PostgreSQL-style extensions. Key (b) unchanged and previously doc-verified against `choosing-engine.html`.
+- `q-saa-4-3-s03-mc`: distractor (c) verified above under TEACHER-Q43-004. Key (a) unchanged and previously verified.
+- `q-saa-4-3-k02-mr`: choice (c) reworded to "Use Cost Explorer dashboards for detailed line-item SQL reconciliation" (dropped "as the only source," removing a giveaway-adjacent absolute qualifier) - still correctly wrong because Cost Explorer is trend/forecast-oriented, not a line-item SQL reconciliation source; CUR is. Key (a, d) unchanged.
+- `q-saa-4-3-s01-mr`: choice (a) reworded to "Use read replicas to meet backup and point-in-time retention needs" - real service, correctly wrong (read replicas are not a backup/PITR mechanism). Key (b, d) unchanged and previously verified.
+
+No new `AWS-Q43-###` issues found in the reworked or surrounding content.
+
+### Numbers-in-keys re-check
+
+None of the eight changed files introduced a new number in a correct-answer choice. The two numeric keys identified in round 2 (`q-saa-4-3-k05-mr`'s 4 KB/1 KB RCU/WCU definitions, and `q-saa-4-3-k04-mc`'s 30-day scenario value, both untouched by this round's edits) remain doc-verified as reported above.
+
+### Script re-verification
+
+- `distractor_type_audit.py 4-3` (word-boundary fix applied): **PASS**, 15% cap = 3 questions. Highest counts are now RDS 3 (14%, `k01-mc,k02-mc,s02-mc`), Aurora 3 (14%, `k07-mc,k09-mc,s03-mc`), ElastiCache 3 (14%, `k03-mc,k09-mc,s03-mc`), Multi-AZ 3 (14%, `k04-mc,k08-mc,k08-mr`), DMS 3 (14%, `k07-mc,s05-mc,s05-mr`), read replica 3 (14%, `k06-mc,k08-mr,s01-mr`). All other types at or below 9%. No type exceeds the cap.
+- `q1_batch_check.py 4-3`: **PASS** on every check (lesson formatting, drillIds, exam tips, duplicate stem openings, longest-is-key 21%, MC key positions, MR key slots, MR key-set distribution).
+- `content_lint.py`: **PASS** across the full project (429 AWS + 119 TF questions, 21+21 labs, 23 lessons).
+- Lesson-prose duplicate-sentence scan: **0 duplicates found** (previously 3: S02, K05, S05).
+
+### RDS adjudication re-confirmed
+
+RDS-family terms remain at 3 of 22 (14%), unchanged from round 1's adjudication and still under the 15% cap. The corrected audit now also shows Aurora, ElastiCache, Multi-AZ, DMS, and read replica each at exactly 3 of 22 (14%) as well - six service families tied at the same count, none over cap. This is a *more* even spread across on-topic database services than the pre-fix state (which had concentrated overuse in read replica at 27% and snapshot at 18%, now both corrected to 14% and 9% respectively). **Verdict unchanged: acceptable, on-topic** - a databases lesson naturally cites RDS, Aurora, Multi-AZ, DMS, ElastiCache, and read replicas repeatedly across its 14 objectives; each occurrence tests a different fact (discount scope, engine choice, failover vs. read-scaling, migration classification, caching durability), and no single type crosses the 15% ceiling.
+
+### Summary
+
+- `TEACHER-Q43-001` (high): Gone, confirmed with full doc verification of the rewritten question.
+- `TEACHER-Q43-002`/`-003` (moderate, duplicated prose): Gone, confirmed via lesson-body scan.
+- `TEACHER-Q43-004` (low, strawman): Gone, confirmed.
+- Distractor-cap corrections (read replica 27%->14%, snapshot 18%->9%): confirmed via re-run of `distractor_type_audit.py`, both now PASS.
+- New `AWS-Q43-###` issues from this round: **0**.
+
+Task 4.3: close
+
+Overall: approve
