@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-redshift-columnar",
+  "title": "Amazon Redshift Performance",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/redshift/latest/dg/c_challenges_achieving_high_performance_queries.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 columnar-format claims that Redshift columnar storage reduces disk I/O for analytics."
+}

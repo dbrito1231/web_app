@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-aurora-serverless-v2",
+  "title": "How Aurora serverless works",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.how-it-works.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 Aurora Serverless v2 capacity-unit definitions, ACU ranges, and scaling increment claims."
+}

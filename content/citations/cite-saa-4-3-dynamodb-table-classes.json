@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-dynamodb-table-classes",
+  "title": "Considerations when choosing a table class in DynamoDB",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.tableclasses.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 distinctions between DynamoDB Standard and Standard-IA table classes and their storage-versus-throughput break-even guidance."
+}

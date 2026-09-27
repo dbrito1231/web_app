@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-dynamodb-reserved-capacity",
+  "title": "DynamoDB reserved capacity",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/reserved-capacity.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 claims on DynamoDB reserved capacity unit blocks, one-year and three-year terms, and discount percentages."
+}

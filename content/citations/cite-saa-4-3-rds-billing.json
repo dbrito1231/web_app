@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-3-rds-billing",
+  "title": "DB instance billing for Amazon RDS",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/User_DBInstanceBilling.html",
+  "accessed": "2026-09-26",
+  "note": "Supports Lesson 4.3 contrasts for RDS pricing components, one-second billing, and 10-minute minimum usage charge behavior."
+}
