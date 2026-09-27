@@ -6,7 +6,7 @@
   "objectiveIds": [
     "SAA-4.4-S02"
   ],
-  "stem": "Overlook Mutual wants an encrypted backup path for its production Direct Connect link so hybrid traffic keeps flowing during a Direct Connect maintenance window, usable within days rather than the weeks a new cross-connect takes.",
+  "stem": "Overlook Mutual needs hybrid traffic to keep flowing, still encrypted, while its production Direct Connect link is down for a maintenance window, and needs it working within days rather than the weeks a new cross-connect takes.",
   "selectCount": 1,
   "choices": [
     {

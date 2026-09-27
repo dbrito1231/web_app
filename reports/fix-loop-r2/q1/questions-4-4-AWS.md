@@ -71,3 +71,16 @@ Overall: approve
 Task 4.4: close
 
 Overall: approve
+
+## Round 2 recheck — addendum: `q-saa-4-4-s06-mr` choices b/d replaced
+
+Re-fetched `apigateway/latest/developerguide/api-gateway-request-throttling.html` to verify new choice (b).
+
+1. **Realism check:** Both replacements are real actions a competent architect might actually propose, each failing exactly one stated requirement rather than being a strawman. (b) "Request an AWS Support increase to the Region's account-level throttling limit" is a legitimate, commonly-used lever — it just doesn't give *this API* its own configured ceiling, it raises the shared ceiling for every API in the account/Region. (d) "Leave throttling at the account-level default with no stage or usage-plan settings configured" is the plausible do-nothing/default state — it fails the "configured ceiling" requirement by definition, not because it's an absurd action.
+2. **Choice (b) fact-check — confirmed accurate.** The doc states verbatim: "To request an increase of account-level throttling limits per Region, contact the AWS Support Center," and separately, "By default, API Gateway limits the steady-state requests per second (RPS) across all APIs within an AWS account, per Region." This exactly matches the choice's two assertions: the increase path is an AWS Support request, and the limit it changes is account-wide per Region (i.e., shared across every API in that account/Region), not scoped to one API. No factual error.
+3. **Rationale accuracy — confirmed.** "Raising the account-level limit through Support moves the ceiling upward for every API in the Region rather than giving this API a ceiling of its own" matches the doc's account-wide, per-Region scope exactly. "Leaving throttling at the account-level default means no stage or usage-plan setting exists to absorb the nightly spike, and the account-level limit is set by AWS and cannot be tuned per API" is also accurate and consistent with (2) — the account-level limit can only be raised account/Region-wide (via choice b's mechanism), never tuned for a single API, which is exactly why neither (b) nor (d) gives Overbrook Data a per-API ceiling the way (c) and (e) do.
+4. **No duplication:** (b) is an active request to raise the shared account/Region limit; (d) is passively leaving the default with no additional configuration. Distinct actions, neither overlaps (a) (EC2 resizing, unrelated to throttling), (c) (stage-level burst limit), or (e) (usage-plan quota).
+
+Task 4.4: close
+
+Overall: approve
