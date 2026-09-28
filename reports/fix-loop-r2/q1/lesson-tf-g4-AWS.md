@@ -522,3 +522,47 @@ sentence reworded), not a broader rework.
 
 Task tf-g4: not yet
 Overall: concerns
+
+## Round 2c (confirmation, 157e12a)
+
+Re-fetched `resources/terraform-data` this turn with `curl -sL` + `r2aws_strip.py`, never WebFetch.
+Ran the full chain against the whole task: `content_lint.py` PASS; `q1_batch_check.py tf-g4` PASS
+(longest-is-key 6%, shortest-is-key 12%, MC keys a:4/b:4/c:4/d:4, all 8 MR key-sets distinct);
+`distractor_type_audit.py tf-g4` PASS (max 12%, cap 15%; `for_each` no longer appears, since Q's
+replacement choice dropped it); `stem_echo_check.py tf-g4` PASS (0 unwaived, 0 waived, 0 bulk echo);
+`claim_prose_check.py tf-g4` PASS.
+
+- **AWS-Qg4-009 — Gone.** `q-tf-004-4d-mr` choice d is now `` `null == ""` evaluates to `true`,
+  treating a null and an empty string as the same absent value ``. **Real?** Yes — treating `null`
+  and `""` as interchangeably "empty" is a common, plausible mistake. **Taught?** Yes — 4d states
+  verbatim "`null` is not the same as an empty string or a zero," and the rewritten rationale now
+  states this explicitly for this choice ("`null` represents absence, while an empty string is a
+  real, present value, so `null == \"\"` is false"). It now plausibly answers the stem's `==` need
+  (the other stated need, map keys, is covered by choices b/c/e), satisfying the MR-join rule. The
+  banned word "since" from my original proposed text was correctly dropped. `cite-tf-g4-for-each`
+  was correctly removed from `citationIds` now that the `for_each` distractor is gone.
+- **AWS-Qg4-010 — Gone.** 4a's `terraform_data` sentence now ends "It needs no companion resource:
+  the docs describe it as useful 'for triggering provisioners when there is no other logical managed
+  resource in which to place them.'" Re-fetched `resources/terraform-data` this turn — exact
+  verbatim match, new claim row 89. `q-tf-004-4a-mr` choice e's refutation is now actually taught in
+  lesson prose, not just the claim table.
+- **AWS-Lg4-013 — Gone.** 4f now reads "`replace_triggered_by` answers a different question from
+  sequencing a replacement, because it decides whether a replacement happens at all:" — this is
+  exactly the wording I proposed, states the real relationship (different axis, not an inversion),
+  and doesn't overstate the source.
+
+**Second-role check, TEACHER-Qg4-010 / TEACHER-Qg4-011 — both Gone,** same verification as
+AWS-Qg4-009 and AWS-Lg4-013 above (these are the same two findings under the Teacher's numbering).
+One correction for the record: the Teacher's own round-2b report states, for the `4a-mr`/
+`terraform_data` point, "Its refutation is taught by row 82's sentence... No fix needed" — that was
+wrong at the time (row 82 is a claim-table row, not lesson prose, and a regex confirmed the "no
+other logical managed resource" language was absent from `bodyMarkdown`), which is why AWS-Qg4-010
+was opened despite the Teacher's contrary read, and why the Lead Dev's fix log correctly credits the
+AWS finding rather than treating it as already resolved. No open discrepancy remains now that the
+sentence is actually in the lesson.
+
+All three new findings from round 2b are Gone, no further new issues found this round, and the full
+script chain passes clean on the whole task.
+
+Task tf-g4: close
+Overall: approve
