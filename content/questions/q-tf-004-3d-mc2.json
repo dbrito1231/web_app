@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "-target extends the selection to include whatever the targeted resource itself depends on, so the security group the instance references is pulled into the same plan. Leaving the security group out entirely ignores that extension. -target narrows the plan; it does not fall back to covering everything. -target is accepted by plan as well as by apply and destroy, so refusing to run is not what happens.",
+  "rationale": "-target extends the selection to include whatever the targeted resource itself depends on, so the security group the instance references is pulled into the same plan. Leaving the security group out entirely ignores that extension. -target narrows the plan; it does not fall back to covering everything. -target is accepted by plan, which this lesson covers alongside its use with destroy, so refusing to run is not what happens.",
   "citationIds": [
     "cite-tf-g3-plan"
   ],
