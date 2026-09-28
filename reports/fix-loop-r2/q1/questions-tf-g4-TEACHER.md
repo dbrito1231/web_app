@@ -107,3 +107,18 @@ AWS-Qg4-001 … 008: **all Gone** (verified independently against files). LD-Qg4
 
 Task tf-g4: not yet
 Overall: concerns
+
+---
+
+# Teacher round 2c — tf-g4 (157e12a)
+
+Saved by the Lead Dev from the Teacher's reply (condensed).
+
+- **TEACHER-Qg4-010 — Gone.** `4d-mr` choice d (`null == ""` evaluates to `true`) addresses the stem's `==` need, and all five choices now map onto one of the two stated needs.
+- **TEACHER-Qg4-011 — Gone.** 4f now describes `replace_triggered_by` as deciding whether a replacement happens, which is a separate question from ordering.
+- **Second-role check on AWS-Qg4-010: agree, and Gone.** The Teacher's round-2b verdict that this was "taught" was wrong: the four terms had 0 hits in the prose. The new 4a sentence teaches it, using the quote already verified against `resources/terraform-data`.
+- **New `4d-mr` choice d:** it is a real thing a learner might try. It is wrong for a reason 4d states verbatim ("`null` is not the same as an empty string or a zero"). The rationale covers both keys and all three distractors by content.
+- **Chain:** the Teacher ran four of the scripts (lint, batch check, stem echo, claim prose); all PASS.
+
+Task tf-g4: close
+Overall: approve
