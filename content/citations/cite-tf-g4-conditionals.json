@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-conditionals",
+  "title": "Conditional Expressions",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/expressions/conditionals",
+  "accessed": "2026-09-26",
+  "note": "Backs the condition ? true_val : false_val syntax, the self object in postconditions, the can-with-regex validation pattern, and the alltrue/anytrue for-expression pattern."
+}

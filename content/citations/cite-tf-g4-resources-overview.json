@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-resources-overview",
+  "title": "Create and manage resources overview",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/resources",
+  "accessed": "2026-09-26",
+  "note": "Backs the general resource-vs-data framing referenced when introducing resource blocks in objective 4a."
+}

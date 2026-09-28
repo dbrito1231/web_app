@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-outputs",
+  "title": "Use outputs to expose module data",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/values/outputs",
+  "accessed": "2026-09-26",
+  "note": "Backs what an output block is for, the module.<CHILD_MODULE_NAME>.<OUTPUT_NAME> reference syntax, and the sensitive/ephemeral arguments on outputs including the terraform output -json/-raw caveat."
+}

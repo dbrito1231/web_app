@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-data-sources",
+  "title": "Query data from external sources",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/data-sources",
+  "accessed": "2026-09-26",
+  "note": "Backs that data blocks only read and never create or modify resources, the data.<TYPE>.<LABEL>.<ATTRIBUTE> reference syntax, and that Terraform may defer a data read to the apply phase when it depends on a resource being changed in the same plan."
+}

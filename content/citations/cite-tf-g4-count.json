@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-count",
+  "title": "count meta-argument reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/meta-arguments/count",
+  "accessed": "2026-09-26",
+  "note": "Backs count.index, when to prefer count over for_each, and that count is used for nearly-identical instances."
+}

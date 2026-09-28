@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-variables",
+  "title": "Use input variables to add module arguments",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/values/variables",
+  "accessed": "2026-09-26",
+  "note": "Backs what a variable block is for, that Terraform prompts for a missing value with no default before generating a plan, and the sensitive/ephemeral arguments on variables."
+}

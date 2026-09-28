@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-merge",
+  "title": "merge Function",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/functions/merge",
+  "accessed": "2026-09-26",
+  "note": "Backs that merge combines multiple maps/objects into one, with later arguments taking precedence on key collisions."
+}

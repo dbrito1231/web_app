@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-locals",
+  "title": "Use locals to reuse expressions",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/values/locals",
+  "accessed": "2026-09-26",
+  "note": "Backs that a locals block is scoped to the module that defines it and is never visible to a parent module, unlike a variable or output."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-depends-on",
+  "title": "depends_on meta-argument reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/meta-arguments/depends_on",
+  "accessed": "2026-09-26",
+  "note": "Backs what depends_on is for, that it should only be used as a last resort in favor of expression references, and that it affects processing order for an entire module when the dependency is a module."
+}

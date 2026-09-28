@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-lookup",
+  "title": "lookup Function",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/functions/lookup",
+  "accessed": "2026-09-26",
+  "note": "Backs that lookup retrieves one map value by key with a fallback default when the key is missing."
+}

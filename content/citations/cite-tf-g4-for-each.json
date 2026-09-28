@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-for-each",
+  "title": "for_each meta-argument reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/meta-arguments/for_each",
+  "accessed": "2026-09-26",
+  "note": "Backs each.key/each.value, when to prefer for_each over count, that for_each values must be known before any remote resource operation, and that sensitive values cannot be used as for_each arguments."
+}

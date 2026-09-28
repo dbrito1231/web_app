@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-for-expr",
+  "title": "for Expressions",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/expressions/for",
+  "accessed": "2026-09-26",
+  "note": "Backs what a for expression does, its optional if-clause filtering, and that toset() converts a for expression result into a set."
+}
