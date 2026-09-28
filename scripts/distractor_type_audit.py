@@ -46,10 +46,16 @@ TERMS = [
     "CloudFormation", "HCP Terraform", "required_providers", "provider block",
     "dependency lock file", "resource graph", "terraform.tfstate", "random_pet",
     "random provider",
-    # Terraform core workflow commands/flags (tf-g3)
+    # Terraform core workflow flags (tf-g3). Flags are distinctive enough to
+    # be a distractor "type"; the bare command names are not, and are
+    # deliberately absent. "terraform apply" appears incidentally in choices
+    # that are not about apply at all ("...allowed to run terraform apply"),
+    # and counting those tripped the cap on tf-g2 over two passing mentions.
+    # Same call as leaving the bare word "provider" out for a providers
+    # lesson, and RDS for a databases lesson: subject vocabulary is not a
+    # reused distractor type.
     "-upgrade", "-auto-approve", "-out", "-target", "-refresh-only", "-destroy",
-    "-check", "-recursive", "-backend=false", "terraform init", "terraform validate",
-    "terraform plan", "terraform apply", "terraform destroy", "terraform fmt",
+    "-check", "-recursive", "-backend=false",
 ]
 
 
