@@ -56,6 +56,16 @@ TERMS = [
     # reused distractor type.
     "-upgrade", "-auto-approve", "-out", "-target", "-refresh-only", "-destroy",
     "-check", "-recursive", "-backend=false",
+    # Terraform configuration language named constructs (tf-g4). Named
+    # meta-arguments, lifecycle arguments, functions, and mechanisms are
+    # distinctive enough to be a distractor "type", the same call as the
+    # tf-g3 flags above. Bare words already covered by ordinary subject
+    # vocabulary (resource, data, variable, local, output) are deliberately
+    # left out, the same way bare command names were left out for tf-g3.
+    "for_each", "depends_on", "create_before_destroy", "prevent_destroy",
+    "ignore_changes", "precondition", "postcondition", "validation",
+    "check block", "terraform_data", "nonsensitive", "ephemeral",
+    "write-only", "tolist", "tomap", "toset",
 ]
 
 

@@ -2,40 +2,42 @@
   "id": "q-tf-004-4g-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4g"
   ],
-  "stem": "Select TWO actions that support this requirement: Validate configuration using custom conditions",
+  "stem": "(Select TWO.) Bellweather Analytics needs the correct order and scope of its configuration checks. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Terraform evaluates postconditions before it evaluates preconditions, on every resource in the configuration"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A `precondition` block can reference a resource's own final attributes through `self`, the same way a `postcondition` can"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "Terraform executes input variable validations immediately, before it generates a plan"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A variable `validation` block can only evaluate the variable it is attached to, not a resource's computed attributes"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "`check` blocks run before Terraform generates a plan, ahead of every other kind of condition"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c reverses the real order; Terraform evaluates preconditions after generating a plan but before creating the object, and postconditions only afterward. d is wrong; self inside a precondition would refer to an object that doesn't exist yet, since preconditions run before creation -- self is a postcondition tool. e is wrong; check blocks run at the end of a plan or apply operation, not before a plan exists.",
+  "citationIds": [
+    "cite-tf-g4-validate",
+    "cite-tf-g4-conditionals"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-nonsensitive",
+  "title": "nonsensitive Function",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/functions/nonsensitive",
+  "accessed": "2026-09-26",
+  "note": "Backs what nonsensitive() does (strips the sensitive marking, exposing the value) and the documented disclosure risk of misusing it."
+}

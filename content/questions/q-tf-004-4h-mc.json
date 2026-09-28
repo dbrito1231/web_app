@@ -2,35 +2,36 @@
   "id": "q-tf-004-4h-mc",
   "type": "mc",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4h"
   ],
-  "stem": "You must choose one approach for: Sensitive data best practices including Vault; ephemeral values and write-only arguments. Which action fits?",
+  "stem": "Underhill Systems marks a database password variable `sensitive = true` and wants to know what that alone accomplishes for their state file. Which statement is accurate?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The password is left out of the state file entirely, the same way an `ephemeral` value would be"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The password is stored in the state file, but Terraform encrypts that specific value at rest automatically"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Sensitive data best practices including Vault; ephemeral values and write-only arguments"
+      "text": "The password is still written to the state file in plain form; `sensitive` only redacts it from CLI and UI output"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The password is stored in the state file only as a one-way hash derived from the sensitive value, never as the original value itself"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "sensitive is a display control only -- it redacts the value from CLI and UI output, but the real value is still written to both the state and plan files, readable by anyone with access to those files. Leaving a value out of state entirely is what ephemeral does, not sensitive alone. sensitive doesn't trigger automatic encryption of that one value; state encryption, where it exists, is a property of the backend, not of marking a value sensitive. Terraform doesn't hash the value before storing it either -- the real value is what's written.",
+  "citationIds": [
+    "cite-tf-g4-sensitive-data"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

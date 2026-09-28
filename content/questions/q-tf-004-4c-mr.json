@@ -2,40 +2,42 @@
   "id": "q-tf-004-4c-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4c"
   ],
-  "stem": "Select TWO actions that support this requirement: Use variables and outputs",
+  "stem": "(Select TWO.) Pemberton Robotics' child module has a `locals` block, and a teammate wants to reuse one of those local values directly from the parent module. Which two statements about how locals, variables, and outputs actually behave are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A value defined in a `locals` block is accessible only in the module that defines it"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A parent module can read a child module's local values directly with `module.<NAME>.<LOCAL_NAME>` syntax"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A `locals` block accepts a value from outside the module at run time, the same way a `variable` block does"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "A `locals` block always mirrors the value of an `output` block with the matching name in the same module"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A `locals` block is referenced elsewhere in the module with `local.<NAME>`, the singular form of the block's own plural name `locals`"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is wrong; a parent module can only reach a child's output blocks, never its locals directly. d is wrong; a locals block computes its value from an expression inside the module, it does not accept an externally supplied value the way a variable does. e is wrong; there is no automatic mirroring between a local and an output of the same name -- an output only exposes what its own value argument computes.",
+  "citationIds": [
+    "cite-tf-g4-locals",
+    "cite-tf-g4-outputs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

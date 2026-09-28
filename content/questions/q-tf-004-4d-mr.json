@@ -2,40 +2,41 @@
   "id": "q-tf-004-4d-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4d"
   ],
-  "stem": "Select TWO actions that support this requirement: Understand and use complex types",
+  "stem": "(Select TWO.) Kestrel Analytics is deciding whether a resource argument written as `tags = { 3 = \"prod\" }` will work, and whether comparing a number to its text form with `==` will ever be treated as equal. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "Automatic type conversion between numbers and strings also applies when comparing two values with the equality operator"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A map can use a number or a boolean as one of its keys, as long as every key in that map is the same type"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "The keys in a map are always strings"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "A list and a tuple behave differently in every situation, so the two terms can never be used interchangeably in Terraform's own documentation"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Terraform automatically converts number and bool values to strings when a string is expected"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is wrong; automatic conversion happens for most arguments but never for the equality operator, where a number and the string of that number are not treated as equal. d is wrong; map keys must be strings regardless of how consistent the key types otherwise look -- a number or boolean key isn't valid. e is wrong; Terraform's own documentation treats list and tuple as interchangeable terms whenever the distinction between them doesn't matter for the point being made.",
+  "citationIds": [
+    "cite-tf-g4-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

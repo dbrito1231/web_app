@@ -2,35 +2,37 @@
   "id": "q-tf-004-4h-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4h"
   ],
-  "stem": "Quick check \u2014 Sensitive data best practices including Vault; ephemeral values and write-only arguments. Which practice is correct?",
+  "stem": "Castlemere Robotics is on Terraform 1.9 and wants to pass a freshly generated password into a resource's write-only argument without it ever touching the state file. Can they, on this version?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "No -- write-only arguments need Terraform 1.5 or later, the same floor as `check` blocks"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Yes -- write-only arguments have no minimum version requirement at all"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Yes, as long as the value is also marked `sensitive` first, which is the flag that unlocks write-only argument support for that resource"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Sensitive data best practices including Vault; ephemeral values and write-only arguments"
+      "text": "No -- write-only arguments need Terraform 1.11 or later, and this version doesn't meet that floor"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Sensitive data best practices including Vault; ephemeral values and write-only arguments'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Write-only arguments need Terraform 1.11 or later, and 1.9 doesn't meet that floor, so this configuration would not work as described on that version. b names a real version floor, but it's the one for check blocks, not write-only arguments. c is wrong because a minimum version does exist. d is wrong; sensitive and write-only are unrelated mechanisms, and marking a value sensitive doesn't unlock or enable write-only argument support.",
+  "citationIds": [
+    "cite-tf-g4-write-only",
+    "cite-tf-g4-validate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

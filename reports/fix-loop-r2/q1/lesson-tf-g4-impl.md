@@ -54,7 +54,7 @@ All fetches were done with the Browser pane's `get_page_text` (rendered page tex
 | 24 | 4e | A for expression creates a complex type value by transforming another complex type value | https://developer.hashicorp.com/terraform/language/expressions/for | "A for expression creates a complex type value by transforming another complex type value." |
 | 25 | 4e | A for expression can include an optional if clause to filter elements from the source | https://developer.hashicorp.com/terraform/language/expressions/for | "A for expression can also include an optional if clause to filter elements from the source collection," |
 | 26 | 4e | Use the count argument to create nearly identical instances | https://developer.hashicorp.com/terraform/language/meta-arguments/count | "Use the count argument when you want to create nearly identical instances," |
-| 27 | 4e | Use for_each when instance arguments must have distinct values not derivable from an integer index | https://developer.hashicorp.com/terraform/language/meta-arguments/for_each | "Use for_each when some instance arguments must have distinct values that can't be directly derived from an integer index" |
+| 27 | 4e | Use for_each when instance arguments must have distinct values not derivable from an integer index | https://developer.hashicorp.com/terraform/language/meta-arguments/count | "Use for_each when some instance arguments must have distinct values that can't be directly derived from an integer index" |
 | 28 | 4e | for_each values must be known before Terraform performs any remote resource operations | https://developer.hashicorp.com/terraform/language/meta-arguments/for_each | "All values that the for_each argument iterates over must be known before Terraform performs any remote resource operations." |
 | 29 | 4e | Sensitive values cannot be used as for_each arguments | https://developer.hashicorp.com/terraform/language/meta-arguments/for_each | "You cannot use sensitive values, such as sensitive input variables, sensitive outputs, or sensitive resource attributes, as arguments in for_each," |
 | 30 | 4e | try returns the result of the first argument expression that does not error | https://developer.hashicorp.com/terraform/language/functions/try | "returns the result of the first one that does not produce any errors" |
@@ -102,6 +102,30 @@ All fetches were done with the Browser pane's `get_page_text` (rendered page tex
 | 72 | 4h | Vault's provider generates appropriately scoped, short-lived cloud credentials for Terraform to use | https://developer.hashicorp.com/terraform/tutorials/secrets/secrets-vault | "leverage Terraform's Vault provider to generate appropriately scoped & short-lived AWS credentials" |
 | 73 | 4h | The problem Vault solves: operators otherwise manage many static, long-lived, variously-scoped cloud credentials | https://developer.hashicorp.com/terraform/tutorials/secrets/secrets-vault | "Operators need to manage a large number of static, long-lived AWS IAM credentials with varying scope," |
 | 74 | 4h | Short-lived, Vault-issued credentials reduce the risk of a compromised credential in a Terraform run | https://developer.hashicorp.com/terraform/tutorials/secrets/secrets-vault | "reduces the risk from a compromised AWS credential in a Terraform run" |
+
+## Round 1 review fixes (AWS + Teacher, commit 564ae39)
+
+- **AWS-Lg4-001 (fixed):** row 27's quote is genuine but was attributed to the wrong page (`for_each` instead of `count`, where the "...integer index" wording actually lives). Fixed in the table above; no lesson-prose change needed since the quote text itself was already correct.
+- **AWS-Lg4-002 (fixed):** added version floors where each feature is taught — `precondition`/`postcondition` (1.2+) and `check` (1.5+) in 4g; `ephemeral` (1.10+) and write-only arguments (1.11+) in 4h. New claim-table rows 75–78 below, all quoted from each page's own "Requirements" list.
+- **`nonsensitive()` (fixed, both reviewers' finding):** added one paragraph at the end of 4h, fetched fresh this turn from `language/functions/nonsensitive` (not reused from either reviewer's report, per the hard ban on quoting without fetching it myself this turn). New rows 79–81.
+- **TEACHER-Lg4-001 (fixed):** added a claim-table row (82) for the `terraform_data` prose claim in 4a, quoted from `language/resources/terraform-data`, fetched fresh this turn.
+- **TEACHER-Lg4-002 (fixed):** defined "meta-argument" in 4a before it does discriminator work, using a real quote from `language/meta-arguments` (row 83) — a clean one-sentence definition exists on that page after all, so no paraphrase-without-quote was needed.
+
+Self-consistency re-read (RULES.md "After applying a fix" #2): re-read 4a, 4g, and 4h in full after editing. The new `nonsensitive()` paragraph states it "does not touch state, does not make a value ephemeral, and does not undo anything already written to disk," which matches rather than contradicts the preceding `sensitive`/`ephemeral` paragraphs (still CLI/UI-only, still in state) — no new contradiction introduced. The `check` version-floor clause ("the newest of the four") is consistent with the stated order of `validation` (0.13, oldest, per the Requirements list, not separately re-quoted in-lesson since it wasn't a review finding), `precondition`/`postcondition` (1.2), and `check` (1.5).
+
+New claim-table rows for the round-1 fixes:
+
+| # | Section | Claim | Doc URL | Quote (≤20 words) |
+|---|---|---|---|---|
+| 75 | 4g | precondition/postcondition require Terraform 1.2.0 or later | https://developer.hashicorp.com/terraform/language/validate | "Terraform v1.2.0 or later for preconditions and postconditions" |
+| 76 | 4g | check blocks require Terraform 1.5.0 or later | https://developer.hashicorp.com/terraform/language/validate | "Terraform v1.5.0 or later for check blocks" |
+| 77 | 4h | the ephemeral argument requires Terraform 1.10 or later | https://developer.hashicorp.com/terraform/language/manage-sensitive-data | "Use Terraform 1.10 or later to add the ephemeral argument to variables and child module outputs" |
+| 78 | 4h | write-only arguments require Terraform 1.11 or later | https://developer.hashicorp.com/terraform/language/manage-sensitive-data | "Use Terraform 1.11 or later to use a write-only argument on a managed resource." |
+| 79 | 4h | nonsensitive strips the sensitive marking from a value, exposing it | https://developer.hashicorp.com/terraform/language/functions/nonsensitive | "takes a sensitive value and returns a copy of that value with the sensitive marking removed" |
+| 80 | 4h | nonsensitive is meant for deriving genuinely non-sensitive results (e.g. a hash) from sensitive values | https://developer.hashicorp.com/terraform/language/functions/nonsensitive | "you may wish to write expressions that derive non-sensitive results from sensitive values," |
+| 81 | 4h | Misusing nonsensitive exposes values Terraform would otherwise keep redacted | https://developer.hashicorp.com/terraform/language/functions/nonsensitive | "will cause values that Terraform would normally have considered as sensitive to be treated as normal values and shown clearly" |
+| 82 | 4a | terraform_data stores values under the managed-resource lifecycle and triggers provisioners with no other resource to hold them | https://developer.hashicorp.com/terraform/language/resources/terraform-data | "useful for storing values which need to follow a manage resource lifecycle, and for triggering provisioners" |
+| 83 | 4a | Meta-arguments are built into the language and control how Terraform creates/manages infrastructure, regardless of provider | https://developer.hashicorp.com/terraform/language/meta-arguments | "Meta-arguments are a class of arguments built into the Terraform configuration language that control how Terraform creates and manages" |
 
 ## Retired / renamed / closed-to-new-customers findings
 

@@ -2,40 +2,41 @@
   "id": "q-tf-004-4b-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4b"
   ],
-  "stem": "Select TWO actions that support this requirement: Refer to resource attributes and create cross-resource references",
+  "stem": "(Select TWO.) Sundrop Analytics is deciding whether to add an explicit `depends_on` argument or rely on automatic inference. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "Adding `depends_on` to every resource pair, even when an attribute reference already exists, is good defensive practice with no downside"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`depends_on` is needed only when a resource depends on another resource's behavior without reading any of its data in an argument"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "`depends_on` can accept any expression that computes a resource address at plan time, not only a literal list"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "When a resource's argument already reads an attribute exported by another resource, Terraform infers the ordering from that reference alone"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Terraform only tracks dependencies for resources; module blocks cannot declare a `depends_on` argument of their own"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is wrong because layering a redundant depends_on onto a pair that already has an attribute reference is discouraged, not harmless -- it makes Terraform treat more of the dependency's future values as unknown than the attribute reference alone would. d is wrong because depends_on takes a literal list of resource or module addresses, never an arbitrary computed expression. e is wrong because module blocks can declare depends_on just as resource blocks can.",
+  "citationIds": [
+    "cite-tf-g4-depends-on"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

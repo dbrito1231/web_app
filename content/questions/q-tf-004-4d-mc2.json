@@ -2,35 +2,36 @@
   "id": "q-tf-004-4d-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4d"
   ],
-  "stem": "Quick check \u2014 Understand and use complex types. Which practice is correct?",
+  "stem": "Amberfield Robotics sets an optional resource argument to `null` in their configuration. What is the practical effect?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform stores an empty string in place of the argument's real value"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform stores the number zero in place of the argument's real value, treating `null` as equivalent to a numeric zero"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Understand and use complex types"
+      "text": "Terraform treats `null` as an error and refuses to plan the configuration"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform treats the argument as omitted, falling back to its default or an error"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Understand and use complex types'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Setting an argument to null is Terraform's way of expressing that the argument was not set at all -- its default kicks in, or Terraform errors if the argument is mandatory and has no default. null is not the same value as an empty string or a numeric zero; both of those are real, present values, while null represents the absence of one. null is also a valid, typeless literal in the language, not an error.",
+  "citationIds": [
+    "cite-tf-g4-types"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

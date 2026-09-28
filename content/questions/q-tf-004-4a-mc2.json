@@ -2,35 +2,36 @@
   "id": "q-tf-004-4a-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4a"
   ],
-  "stem": "Quick check \u2014 Use and differentiate resource and data blocks. Which practice is correct?",
+  "stem": "Cattermole Systems has a `data` block whose only filter value comes from an attribute of a resource this same plan is scheduled to change. What happens to that data block's read?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform halts planning entirely until the referenced resource finishes changing outside this run"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Use and differentiate resource and data blocks"
+      "text": "Terraform defers reading the data source until the apply phase"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform reads the data source immediately during planning"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform rejects the configuration, treating a data block that references a changing resource as invalid"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Use and differentiate resource and data blocks'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Terraform may defer reading a data source until apply specifically when its arguments depend on a resource this same plan is about to change. It doesn't halt the whole plan waiting on an out-of-band change, it doesn't read ahead of the pending change and report a stale value, and referencing a resource under change is ordinary configuration, not an invalid one.",
+  "citationIds": [
+    "cite-tf-g4-data-sources"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

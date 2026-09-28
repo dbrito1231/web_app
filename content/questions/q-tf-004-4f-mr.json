@@ -2,40 +2,41 @@
   "id": "q-tf-004-4f-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4f"
   ],
-  "stem": "Select TWO actions that support this requirement: Define resource dependencies in configuration (includes depends_on and create_before_destroy lifecycle)",
+  "stem": "(Select TWO.) Greymoor Analytics hit two real limits of the `lifecycle` block. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`prevent_destroy` does not stop Terraform from destroying a resource if its block is removed from the configuration entirely"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "`prevent_destroy` blocks a destroy plan under every circumstance, including when the resource's own block is deleted from the configuration"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`create_before_destroy` can be set to a computed expression such as `var.replace_first`, the same way `count` can"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Only literal values are allowed inside a `lifecycle` block; Terraform processes that block before it evaluates arbitrary expressions for the run"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A `lifecycle` block can appear more than once inside the same resource block, with Terraform merging the settings from each copy"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "a",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is wrong and directly contradicts a; prevent_destroy has a documented gap where removing the resource's own configuration block bypasses it. d is wrong; lifecycle arguments only accept literal values, not a variable-derived expression, unlike count. e is wrong; a resource has a single lifecycle block, not several merged together.",
+  "citationIds": [
+    "cite-tf-g4-resource"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

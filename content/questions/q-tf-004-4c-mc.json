@@ -2,35 +2,37 @@
   "id": "q-tf-004-4c-mc",
   "type": "mc",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4c"
   ],
-  "stem": "You must choose one approach for: Use variables and outputs. Which action fits?",
+  "stem": "Thistledown Analytics wants a name that a parent module can read after a child module finishes running. Which block should the child module declare for that name?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "An `output` block"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A `variable` block"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Use variables and outputs"
+      "text": "A `locals` block"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A `data` block"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Output blocks are exactly how a child module exposes a value to whatever calls it. A variable block is an input the parent sets before the child runs, not a way for the child to hand information back. A locals block is confined to the module that defines it and is never visible to a parent module, however useful it is inside the child. A data block reads external information from a provider; it has nothing to do with returning a value up to a caller.",
+  "citationIds": [
+    "cite-tf-g4-outputs",
+    "cite-tf-g4-locals"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

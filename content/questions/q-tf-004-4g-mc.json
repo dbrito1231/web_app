@@ -2,35 +2,37 @@
   "id": "q-tf-004-4g-mc",
   "type": "mc",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4g"
   ],
-  "stem": "During an architecture review, the goal is: Validate configuration using custom conditions. Which action matches that goal?",
+  "stem": "Oldbury Systems wants to confirm, after an EC2 instance is created, that it actually received a public DNS hostname, using the instance's own final attributes. Which mechanism fits, on Terraform 1.2 or later?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "a `postcondition` block referencing `self.public_dns`"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Validate configuration using custom conditions"
+      "text": "a `precondition` block referencing `self.public_dns`"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "a variable `validation` block referencing the resource's `public_dns` attribute"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "a `check` block that only runs during `terraform plan`, never during `apply`"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A postcondition checks the object's actual, final attributes after Terraform creates it, referenced through self -- exactly this scenario, and it needs Terraform 1.2 or later, matching the stated version. A precondition instead runs before the resource is created, so self.public_dns wouldn't yet reflect a real created instance. A variable validation block can only see the variable it's attached to, not a resource's own computed attributes. A check block runs at both plan and apply, not plan only, so that description is wrong regardless of anything else.",
+  "citationIds": [
+    "cite-tf-g4-validate",
+    "cite-tf-g4-conditionals"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -2,35 +2,37 @@
   "id": "q-tf-004-4e-mc",
   "type": "mc",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4e"
   ],
-  "stem": "Pick the action that satisfies: Write dynamic configuration using expressions and functions.",
+  "stem": "Wrenfield Systems needs three server instances, each with genuinely different tags and instance types that can't be derived from a plain index number. Which meta-argument should they use?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`for_each`"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`count`"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`depends_on`"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Write dynamic configuration using expressions and functions"
+      "text": "a `for` expression assigned directly to the resource block"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "for_each fits exactly when instance arguments must have distinct values that can't be directly derived from an integer index. count is for nearly identical instances, not ones needing genuinely distinct configuration per instance. depends_on only orders resources against each other; it doesn't create multiple instances of anything. A for expression produces a value, not repeated resource blocks, and can't be assigned to a resource block the way for_each or count are for repetition.",
+  "citationIds": [
+    "cite-tf-g4-for-each",
+    "cite-tf-g4-count"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

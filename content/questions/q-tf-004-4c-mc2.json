@@ -2,35 +2,36 @@
   "id": "q-tf-004-4c-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4c"
   ],
-  "stem": "Quick check \u2014 Use variables and outputs. Which practice is correct?",
+  "stem": "Oakhurst Freight's `subnet_id` variable has no `default` argument, and the caller doesn't supply one before running `terraform plan`. What does Terraform do?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform treats it as an empty string and continues"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform prompts for a value before it generates a plan"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Use variables and outputs"
+      "text": "Terraform substitutes the value of an identically-named environment variable automatically, with no `TF_VAR_` prefix needed"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform reuses whatever value that variable held on the previous successful apply"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Use variables and outputs'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "With no default, Terraform prompts the user to supply a value before it can generate a plan; it doesn't guess an empty string, and there is no silent fallback. Automatic substitution from an identically-named environment variable does not happen -- Terraform only reads environment variables carrying the TF_VAR_ prefix. Terraform also doesn't remember a variable's value across runs on its own, so there is nothing to reuse from a prior apply.",
+  "citationIds": [
+    "cite-tf-g4-variables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

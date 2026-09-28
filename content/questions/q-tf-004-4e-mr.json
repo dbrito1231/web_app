@@ -2,40 +2,43 @@
   "id": "q-tf-004-4e-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4e"
   ],
-  "stem": "Select TWO actions that support this requirement: Write dynamic configuration using expressions and functions",
+  "stem": "(Select TWO.) Copperfield Analytics is refactoring a module that narrows a list with a `for` expression and merges two maps of default settings. Which two statements about how these functions and expressions behave are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "`lookup` errors immediately whenever the requested key is missing from the map, with no way to supply a fallback"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A `for` expression can include an optional `if` clause that filters elements out of the result"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`merge` combines multiple maps into one, and when two source maps share a key, the value from the later argument wins"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "A `for` expression can generate repeated nested configuration blocks inside a resource, the same way a `dynamic` block does"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`merge` requires every map passed to it to already share the exact same set of keys"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "b",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is wrong; lookup accepts an optional default value and returns that instead of erroring when the key is missing. d is wrong; a for expression only ever produces a value, not a configuration block, and generating repeated nested blocks is what dynamic blocks are for. e is wrong; merge accepts maps with completely different keys and combines them all, it doesn't require the inputs to already match.",
+  "citationIds": [
+    "cite-tf-g4-for-expr",
+    "cite-tf-g4-merge",
+    "cite-tf-g4-lookup"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

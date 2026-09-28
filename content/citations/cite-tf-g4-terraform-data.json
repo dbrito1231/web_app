@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-terraform-data",
+  "title": "terraform_data resource reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/resources/terraform-data",
+  "accessed": "2026-09-26",
+  "note": "Backs the 4a claim that terraform_data is a resource type that stores values and triggers provisioners without creating real infrastructure."
+}

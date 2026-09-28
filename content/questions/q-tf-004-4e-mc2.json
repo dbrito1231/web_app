@@ -2,35 +2,37 @@
   "id": "q-tf-004-4e-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4e"
   ],
-  "stem": "Quick check \u2014 Write dynamic configuration using expressions and functions. Which practice is correct?",
+  "stem": "Larkspur Robotics is writing a variable `validation` condition and needs a plain true/false result indicating whether `regex()` would succeed against the input, without needing the matched value itself. Which function fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`try`"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Write dynamic configuration using expressions and functions"
+      "text": "`can`, boolean-only"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`lookup`"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`merge`"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Write dynamic configuration using expressions and functions'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "can evaluates an expression and returns a boolean indicating whether it produced a result without error -- exactly the true/false a validation condition needs. try instead returns the actual result of the first expression that doesn't error, a fallback value rather than a boolean, so it's the wrong shape here. lookup and merge are map-handling functions with nothing to do with catching an expression error.",
+  "citationIds": [
+    "cite-tf-g4-can",
+    "cite-tf-g4-try"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

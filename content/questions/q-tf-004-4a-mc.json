@@ -2,35 +2,37 @@
   "id": "q-tf-004-4a-mc",
   "type": "mc",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4a"
   ],
-  "stem": "Which action is the right fit for this requirement: Use and differentiate resource and data blocks?",
+  "stem": "Bramblewood Freight wants to look up the ID of an AMI that already exists in their AWS account, without creating or changing anything, so the value can be reused elsewhere in the configuration.",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Declare a `data` block for the AMI"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Use and differentiate resource and data blocks"
+      "text": "Declare a `resource` block"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Declare a `variable` block for the AMI ID"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Declare a `terraform_data` resource for the AMI"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A data block only performs read operations and never creates or modifies a resource, matching the requirement exactly. A resource block would create or manage an object, which isn't being asked for here. A variable block only accepts a value passed in from outside; it can't query AWS to find an existing AMI on its own. A terraform_data resource stores a value under the managed-resource lifecycle for later use, but it doesn't query provider data either -- it only holds what a configuration already gives it.",
+  "citationIds": [
+    "cite-tf-g4-data-sources",
+    "cite-tf-g4-resource"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -2,40 +2,42 @@
   "id": "q-tf-004-4h-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4h"
   ],
-  "stem": "Select TWO actions that support this requirement: Sensitive data best practices including Vault; ephemeral values and write-only arguments",
+  "stem": "(Select TWO.) Two facts about `nonsensitive()` and Vault-issued credentials matter most for Rutherglen Analytics. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "`nonsensitive()` also removes the value from the state file, the same way marking a variable `ephemeral` would"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`nonsensitive()` strips the sensitive marking and exposes the value in Terraform's output, so it should only be used once the value has genuinely been reduced to non-sensitive content, like a hash"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "Calling `nonsensitive()` on a value that was never marked sensitive quietly returns that same value with no warning"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Vault-issued credentials are stored directly as Terraform language keywords, separate from the `sensitive`, `ephemeral`, and write-only mechanisms"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Vault's provider can issue short-lived cloud credentials for a Terraform run, reducing how long a leaked credential would remain valid compared to a static one"
     }
   ],
   "correctAnswerIds": [
     "b",
-    "c"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c is the dangerous misconception this objective exists to prevent -- nonsensitive only lifts the CLI/UI redaction; it does nothing to keep a value out of state, unlike ephemeral. d is wrong; calling nonsensitive on an already non-sensitive value is documented as an error, not a quiet no-op. e is wrong; Vault is an external secrets engine the provider talks to, not a Terraform-language keyword alongside sensitive, ephemeral, or write-only arguments.",
+  "citationIds": [
+    "cite-tf-g4-nonsensitive",
+    "cite-tf-g4-vault-tutorial"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

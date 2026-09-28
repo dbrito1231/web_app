@@ -2,40 +2,41 @@
   "id": "q-tf-004-4a-mr",
   "type": "mr",
   "module": "T2",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.4a"
   ],
-  "stem": "Select TWO actions that support this requirement: Use and differentiate resource and data blocks",
+  "stem": "(Select TWO.) Dunmore Analytics' newest engineer is explaining a teammate's theories about what a `data` block can and cannot do, after one block's value showed as unresolved until the apply step. Which two of the following statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A data block can only perform read operations; it never creates or modifies a resource"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "A data block always creates a placeholder object in the state file that stays there until a `terraform destroy` clears it out"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Terraform may defer a data block's read until the apply phase when its arguments depend on a resource being changed in the same plan"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A data block appears in plan output as an add, change, or destroy action once Terraform reaches the apply step, the same as a resource block"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Once a data block is first read, its value is locked and can never be refreshed on a later run"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "c misstates data blocks as managing a stateful placeholder object the way a resource does; a data block's presence in state records only what it read. d is wrong because data blocks never appear as add, change, or destroy -- at most as read. e is wrong because Terraform re-reads a data source on each run in the ordinary case; there is no permanent lock after the first read.",
+  "citationIds": [
+    "cite-tf-g4-data-sources"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

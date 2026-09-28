@@ -2,35 +2,36 @@
   "id": "q-tf-004-4g-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4g"
   ],
-  "stem": "Quick check \u2014 Validate configuration using custom conditions. Which practice is correct?",
+  "stem": "Farrow Robotics wants a validation that only ever produces a warning and never stops `terraform apply`, even when the condition it tests turns out false. Which mechanism fits, and what is its minimum Terraform version?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "a `precondition` block, available from Terraform 1.5 onward"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "a `check` block, available only from Terraform 1.5 onward"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Validate configuration using custom conditions"
+      "text": "a `check` block, available from Terraform 1.2 onward"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "a variable `validation` block, available from Terraform 1.5 onward"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Validate configuration using custom conditions'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "check blocks are the one mechanism that only ever warns and lets the run continue, and they need Terraform 1.5 or later. A precondition halts the run with an error on failure -- the opposite of what's wanted -- and its own version floor is 1.2, not 1.5. Pairing the right mechanism (check) with the wrong version (1.2) is still wrong, because check blocks specifically need the newer 1.5 floor. A variable validation block also halts the run on failure rather than just warning, so it doesn't fit either, regardless of the version stated.",
+  "citationIds": [
+    "cite-tf-g4-validate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

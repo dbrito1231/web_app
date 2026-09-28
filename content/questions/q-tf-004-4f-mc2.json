@@ -2,35 +2,36 @@
   "id": "q-tf-004-4f-mc2",
   "type": "mc",
   "module": "T2",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.4f"
   ],
-  "stem": "Quick check \u2014 Define resource dependencies in configuration (includes depends_on and create_before_destroy lifecycle). Which practice is correct?",
+  "stem": "Thackeray Freight wants a load balancer target group's replacement created before the existing one is destroyed, so there is no gap with zero healthy targets. Which lifecycle argument fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`prevent_destroy = true`"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`count = 2` (creates two independent instances instead of sequencing one resource's own replacement)"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`ignore_changes = [all]`"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Define resource dependencies in configuration (includes depends_on and create_before_destroy lifecycle)"
+      "text": "`create_before_destroy = true`"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Define resource dependencies in configuration (includes depends_on and create_before_destroy lifecycle)'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "create_before_destroy is exactly the argument that creates a replacement resource before destroying the one it replaces, avoiding a gap. prevent_destroy instead rejects a destroy plan outright; it blocks removal rather than sequencing a replacement. ignore_changes tells Terraform to stop tracking changes to specific attributes; it has nothing to do with replacement ordering. count only controls how many separate instances of a resource exist -- setting it to 2 creates a second, independent instance rather than sequencing the replacement of the one target group already in use.",
+  "citationIds": [
+    "cite-tf-g4-resource"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

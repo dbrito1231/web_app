@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g4-meta-arguments",
+  "title": "Meta-arguments",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/meta-arguments",
+  "accessed": "2026-09-26",
+  "note": "Backs the definition of meta-argument used in 4a to explain why resource and data blocks sharing meta-arguments does not make them the same kind of block."
+}
