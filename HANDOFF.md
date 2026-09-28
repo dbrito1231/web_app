@@ -1,4 +1,4 @@
-# HANDOFF: Q1 lesson-first content rewrite (as of 2026-09-27, mid sitting 5)
+# HANDOFF: Q1 lesson-first content rewrite (as of 2026-09-28, sitting 5)
 
 Read this first, then `AGENTS.md`, then `reports/fix-loop-r2/q1/RULES.md`.
 
@@ -9,27 +9,20 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 17 of 22 tasks closed. Task 18 (tf-g4) is in flight — see below.** HEAD is `db11570`, the working tree is clean, the DB is at baseline, no agents are running.
+**Status: 18 of 22 tasks closed (tf-g4 closed 2026-09-28).** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Next: the user must approve a plan for reopening `4-3`, `4-1` and `1-3` (not yet written), then D6/ISS-080, then g5.**
 
-## Where tf-g4 stands (resume here)
+## tf-g4 closed (2026-09-28)
 
-| Step | State |
-|---|---|
-| Lesson written | Done. 8 objectives, 4,072 words, 75 claim rows, 20 citations |
-| Lesson reviewed | Done. Both reviewers approve for question writing |
-| Lesson fixed | Done. All 5 round-1 findings applied |
-| Questions written | Done. 24, three per objective |
-| Lead Dev pre-check | Done. Two findings, both fixed |
-| **Round 2** | **Not started. Resume here.** |
-| Student packet | Not started. Use `make_student_packet.py tf-g4 24` |
-| Close | Not started |
+Both reviewers close/approve, Student 24/24 (0 keyword-guessable, 10 structural). It took rounds 2, 2b and 2c. Reports: `lesson-tf-g4-AWS.md` (rounds 1–2c), `questions-tf-g4-TEACHER.md` (2–2c), `questions-tf-g4-leaddev-precheck.md`, `questions-tf-g4-fixspec.md`, `questions-tf-g4-STUDENT.md`.
 
-Everything is committed at `db11570` and all five scripts PASS. Round-1 reports are `reports/fix-loop-r2/q1/lesson-tf-g4-AWS.md` and `lesson-tf-g4-TEACHER.md`; the impl reports are `lesson-tf-g4-impl.md` and `questions-tf-g4-impl.md`.
+**What this task taught, which should go into the next pre-check:**
+- **Letter references in rationales, shifted by a key-balance reorder.** 10 of 24 rationales named choices by letter, and after the reorder two of them called a correct key "wrong". No script checks for this; `q1_batch_check` should (a script change, so it needs a plan). Until then, grep every rationale for a lone `[a-e]` followed by "is"/"misstates"/"reverses", and watch for false hits like "account B invoke".
+- **Check that a distractor is actually wrong in practice, not only by the doc's wording.** `sort()` on a set returns a list, so "sort it first" was a working answer.
+- **Version-sensitive behaviour.** The `nonsensitive()` behaviour on an unmarked value flipped after v1.5. Pinned doc pages (`/v1.5.x/`) show the history.
+- **Reviewer replacement proposals repeat the defect classes.** Of about 12 proposed replacements, 6 were rejected: they were untaught, version-sensitive, possibly true, or a true/false pair that points at the key. Put the proposals through the same two-question test.
+- **A fix can break an MR join.** A replacement distractor must answer one of the stem's stated needs.
 
-**Carry into round 2:**
-- Round-1 findings to confirm Gone: `AWS-Lg4-001` (row 27 cited to the wrong page), `AWS-Lg4-002` (version floors — precondition/postcondition 1.2+, check 1.5+, ephemeral 1.10+, write-only 1.11+), `TEACHER-Lg4-001` (terraform_data claim had no row), `TEACHER-Lg4-002` ("meta-argument" undefined), plus `nonsensitive()` added at both reviewers' request.
-- **One observation to put to the reviewers, not yet raised:** after the key-length rebalance, 94% of MC keys sit at length rank 2 or 3 of 4, against 50% by chance. Both caps pass (6% longest, 0% shortest) and the fix was made honestly by tightening verbose distractors, but "eliminate the longest and the shortest" would beat chance. Ask whether that is a real tell or over-fitting a metric.
-- The 4h questions carry real-world stakes (what `sensitive` does and does not protect). Weight those.
+**Key-length rank: open, for the user.** 13 of 16 MC keys are neither the longest nor the shortest option. The Teacher reads this as partly a real cross-task tell; the technical reviewer reads it as the arithmetic of the two caps. Neither blocks.
 
 ## Decisions taken by the user on 2026-09-28
 
@@ -119,8 +112,8 @@ Ordered by how much trouble each has caused.
 
 | # | Task | Qs | State |
 |---|---|---:|---|
-| 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** |
-| 17 | lesson-tf-g4 | 24 | **In flight — resume at round 2** |
+| 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 to be reopened for shortest-is-key) |
+| 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | Not started |
 | 19 | lesson-tf-g6 | 12 | Not started |
 | 20 | lesson-tf-g7 | 9 | Not started |
@@ -139,7 +132,7 @@ Terraform question files are named `q-tf-004-<group><letter>-*`; every script ma
 
 ## Session-scoped agent ids (this session only)
 
-tf-g4 writer `a1cf8112155f521c2`, technical reviewer `a47139ae689c3845a`, Teacher `a7c6198e7e76fa9da`. Useless in a new session — start fresh agents and hand them the reports.
+None in flight. Agent ids never carry across sessions; start fresh agents and hand them the reports.
 
 ## Optional later
 
