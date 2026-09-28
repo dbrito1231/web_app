@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g3-init",
+  "title": "terraform init - Command: init",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/init",
+  "accessed": "2026-09-26",
+  "note": "Backs what terraform init does on first and later runs (backend init, module/provider installation, dependency lock file write, safe to re-run, only new modules installed on re-run) and the -upgrade flag overriding the lock file to fetch the newest constraint-matching version."
+}

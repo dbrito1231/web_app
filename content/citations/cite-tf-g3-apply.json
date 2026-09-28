@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g3-apply",
+  "title": "terraform apply - Command: apply",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/apply",
+  "accessed": "2026-09-26",
+  "note": "Backs what terraform apply does without a saved plan (auto-generates a plan and prompts for approval), the -auto-approve flag skipping that prompt, applying a saved -out plan file without re-prompting, and the apply -destroy planning mode."
+}

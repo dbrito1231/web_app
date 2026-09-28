@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g3-validate",
+  "title": "terraform validate - Command: validate",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/validate",
+  "accessed": "2026-09-26",
+  "note": "Backs that validate checks syntax and internal consistency and attribute names/types, that it does not validate remote services such as remote state or provider APIs, and that it still requires an initialized working directory with plugins and modules installed."
+}

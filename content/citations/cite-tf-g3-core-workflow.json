@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g3-core-workflow",
+  "title": "Terraform Core Workflow",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/intro/core-workflow",
+  "accessed": "2026-09-26",
+  "note": "Backs the write/plan/apply stage names and descriptions, and the team-workflow additions of reviewing plan output in a pull request and re-checking the final plan against the merged branch and latest state before apply."
+}
