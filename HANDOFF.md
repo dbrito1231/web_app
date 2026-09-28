@@ -147,6 +147,18 @@ Terraform question files are named `q-tf-004-*`. The checker matches questions t
 **Final sitting:**
 - a browser Student smoke test of about 10 questions across tasks 3.1 to TF g8, then restore the DB;
 - close L1/Q1 and ISS-010 in the register;
+- **reconcile the whole register (user decision, 2026-09-27).** `reports/fix-loop/issue-register.md`
+  lists **53 rows under "Still open"** and that number is not real. Several are superseded by the Q1
+  rewrite and should be closed with a reason, not carried forward:
+  - `L1` ("lessons don't teach, ~50% boilerplate") is precisely what the rewrite fixed;
+  - `N8` ("133 rationales name wrong letters") -- every one of those questions was rewritten;
+  - `R6 / ISS-070` -- its own Source column already says "folded into the lesson and question rewrites";
+  - `Q1-T2`, `Q1-T3`, `Q1-T4` -- pilot-era findings against content that no longer exists.
+  Genuinely still live and independent of the rewrite: `FS-R3-001` (header hidden behind an 80px
+  scroll margin), `AWS-R3-002` (GL-14/19/21 subnet lookup returns a tab-joined string, breaking
+  cluster creation), `TEACHER-R3-001/002/003` (lab criteria), the `PY-R3-002/003` scanner items, and
+  `D6 / ISS-080`, which the user chose "fix" on 2026-09-25 and which was never started.
+  Leave a true open list, so the count stops obscuring the dozen or so that need work.
 - update `docs/status.md`;
 - run `python manage.py test workbook`, `scripts\content_lint.py` and `npm run build`.
 
