@@ -18,7 +18,7 @@
     },
     {
       "id": "c",
-      "text": "Have one engineer lock the entire repository until their change is finished"
+      "text": "Have each engineer create a separate branch for their change, but never merge it back into the shared branch for review"
     },
     {
       "id": "d",
@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Saving changes to separate version-control branches is the practice the team workflow describes for avoiding collisions. Editing the same branch and reconciling by hand invites the exact conflicts branching avoids. Locking the whole repository blocks unrelated work rather than allowing parallel branches. Applying independently from separate laptops bypasses the shared review and state process entirely.",
+  "rationale": "Saving changes to separate version-control branches is the practice the team workflow describes for avoiding collisions. Editing the same branch and reconciling by hand invites the exact conflicts branching avoids. Branching per change but never merging back leaves each engineer's work permanently isolated, so it never reaches the shared branch or the review the workflow depends on. Applying independently from separate laptops bypasses the shared review and state process entirely.",
   "citationIds": [
     "cite-tf-g3-core-workflow"
   ],

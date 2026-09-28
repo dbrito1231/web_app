@@ -26,14 +26,14 @@
     },
     {
       "id": "e",
-      "text": "Deleting the instance's block also removes the security group's block from the configuration file"
+      "text": "Deleting the instance's block and running `terraform apply` also destroys the security group that the instance depended on"
     }
   ],
   "correctAnswerIds": [
     "a",
     "b"
   ],
-  "rationale": "destroy -target extends to whatever the targeted resource depends on, so the security group is destroyed along with the instance in one run; deleting only the instance's block and applying does not touch the security group at all, since plan only proposes destroying what the edited configuration no longer describes. The two routes therefore do not end with the same result here, because the instance has a dependency. destroy -target is not limited to the exact named resource alone. Deleting a resource's block does not remove any other block from the configuration file.",
+  "rationale": "destroy -target extends to whatever the targeted resource depends on, so the security group is destroyed along with the instance in one run; deleting only the instance's block and applying does not touch the security group at all, since plan only proposes destroying what the edited configuration no longer describes. The two routes therefore do not end with the same result here, because the instance has a dependency. destroy -target is not limited to the exact named resource alone. The block-deletion route does not cascade the other way either: plan proposes destroying only the object the edited configuration stops describing, not anything that object depended on.",
   "citationIds": [
     "cite-tf-g3-destroy"
   ],

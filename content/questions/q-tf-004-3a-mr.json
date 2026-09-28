@@ -18,7 +18,7 @@
     },
     {
       "id": "c",
-      "text": "Merge changes without any plan review, trusting the tool to catch mistakes automatically on its own"
+      "text": "Have the reviewer read only the configuration diff in the pull request, without looking at the plan's proposed actions"
     },
     {
       "id": "d",
@@ -33,7 +33,7 @@
     "b",
     "d"
   ],
-  "rationale": "Reviewing plan output in the pull request, and reviewing a fresh plan again right before the merged apply, are both part of the recommended team workflow. Treating an old plan as still accurate ignores that the branch or state can move after review. Skipping review and trusting the tool to catch mistakes abandons the review step entirely. Applying independently from individual laptops bypasses the shared, reviewed process.",
+  "rationale": "Reviewing plan output in the pull request, and reviewing a fresh plan again right before the merged apply, are both part of the recommended team workflow. Treating an old plan as still accurate ignores that the branch or state can move after review. Reading only the configuration diff misses the concrete add, change and destroy actions the plan proposes, which is the thing the review is meant to catch. Applying independently from individual laptops bypasses the shared, reviewed process.",
   "citationIds": [
     "cite-tf-g3-core-workflow"
   ],
