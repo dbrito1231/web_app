@@ -80,3 +80,30 @@ Nine new Teacher findings, two of them (TEACHER-Qg4-002, TEACHER-Qg4-003) confir
 
 Task tf-g4: not yet
 Overall: concerns
+
+---
+
+# Teacher round 2b — tf-g4 confirmation (5a470ae)
+
+Saved by Lead Dev from the Teacher's reply; condensed to the verdicts (full reasoning in the session transcript).
+
+Chain re-run fresh at 5a470ae: all five PASS (longest-is-key 6%, shortest-is-key 12%, max distractor type 12%, 0 echoes). Re-fetched `language/data-sources`, `cli/config/environment-variables`, `language/meta-arguments/lifecycle`.
+
+## (a) Own findings
+TEACHER-Qg4-001 … 009: **all Gone.** 003 was fixed with the AWS type-conversion distractor rather than the Teacher's "raises an error" flip. The Teacher calls it a better fix, since it has no version dependency. On 008, the replacement introduced TEACHER-Qg4-010.
+
+## (b) Second-role checks
+AWS-Qg4-001 … 008: **all Gone** (verified independently against files). LD-Qg4-001 … 008: **all Gone**. LD-Lg4-009 … 012: **all Gone.**
+
+## (c) Lead Dev concerns
+1. `4a-mr` choice e (terraform_data needs a companion resource): real misconception (tutorials pair it with a resource). Its refutation is taught by row 82's sentence ("when there is no other logical managed resource…"). No fix needed.
+2. **TEACHER-Qg4-010 (Medium-High, new):** `4d-mr` choice d (`for_each` accepts a plain list) answers neither stated need, which violates the RULES MR join rule and can be eliminated on relevance alone. It must be replaced by a choice that plausibly answers one of the two needs.
+3. **TEACHER-Qg4-011 (Low-Medium, new):** in 4f, "`replace_triggered_by` does the opposite of sequencing a replacement" is overstated. Reword it to "answers a different question than sequencing a replacement". The `4f-mc2` rationale is already precise.
+4. "By default, Terraform refreshes prior to creating a plan": verbatim on `language/data-sources` in the data-source refresh context, so the claim is supported and not overstated.
+5. 4h: no residual dangerous misconception.
+
+## (d) Versions: unchanged, all correct.
+## (e) Key-length: still partly a real cross-task tell in the Teacher's view; not blocking; the user decides.
+
+Task tf-g4: not yet
+Overall: concerns
