@@ -1,169 +1,142 @@
-# HANDOFF: Q1 lesson-first content rewrite (as of 2026-09-27, sitting 4 finished)
+# HANDOFF: Q1 lesson-first content rewrite (as of 2026-09-27, mid sitting 5)
 
 Read this first, then `AGENTS.md`, then `reports/fix-loop-r2/q1/RULES.md`.
 
 ## What this work is
 
-The SAA-C03 and Terraform 004 workbook has 22 lessons, and each one comes with a set of drill questions. The old lessons were boilerplate and the old questions were template placeholders ("Which action is the right fit for this requirement: …"). We are rewriting **one task at a time, lesson first**:
-1. Write the lesson.
-2. Review it.
-3. Fix it.
-4. Write the questions.
-5. Review the questions.
-6. Fix them.
-7. Close the task.
+The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill questions. The old lessons were boilerplate and the old questions were template placeholders ("Which action is the right fit for this requirement: …"). We are rewriting **one task at a time, lesson first**:
+1. Write the lesson. 2. Review it. 3. Fix it. 4. Write the questions. 5. Review the questions. 6. Fix them. 7. Close the task.
 
-The user must approve each change under the `AGENTS.md` roles:
-- **Lead Dev** is the only role that writes files.
-- **The Teacher** reviews but writes no files; Lead Dev saves the Teacher's reports.
-- **An AWS reviewer and a Student reviewer** also check the work.
+Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 14 of 22 tasks closed. Tasks 4.3 and 4.4 both closed in sitting 4.** Nothing is paused mid-task. HEAD is `3a495f8`, the working tree is clean apart from this handoff, the DB is at baseline, and no agents are running.
+**Status: 17 of 22 tasks closed. Task 18 (tf-g4) is in flight — see below.** HEAD is `db11570`, the working tree is clean, the DB is at baseline, no agents are running.
 
-**Two decisions are waiting on the user** before the Terraform tasks start — see "Open decisions" below. Neither blocks starting g1, but both get cheaper if taken first.
+## Where tf-g4 stands (resume here)
 
-## Plans and records (source of truth)
-
-| File | Purpose |
+| Step | State |
 |---|---|
-| `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` | **Current plan (approved).** Budget-aware workflow, user decisions (§9), model substitution (§10) |
-| `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` | Earlier amendments 1–3; question rules originate here |
-| `reports/fix-loop-r2/q1/RULES.md` | **Shared rules.** Point every agent prompt here. Now includes the **stem-paraphrase rule** (from task 4.4) |
-| `reports/fix-loop-r2/q1/progress.md` | Per-task tracker. Rows 0–13 closed |
-| `reports/fix-loop/issue-register.md` | Closed-items table and "Still open" (L1/Q1, ISS-010) |
-| `reports/fix-loop-r2/q1/*` | Per-task reports |
+| Lesson written | Done. 8 objectives, 4,072 words, 75 claim rows, 20 citations |
+| Lesson reviewed | Done. Both reviewers approve for question writing |
+| Lesson fixed | Done. All 5 round-1 findings applied |
+| Questions written | Done. 24, three per objective |
+| Lead Dev pre-check | Done. Two findings, both fixed |
+| **Round 2** | **Not started. Resume here.** |
+| Student packet | Not started. Use `make_student_packet.py tf-g4 24` |
+| Close | Not started |
 
-## User decisions still in force
+Everything is committed at `db11570` and all five scripts PASS. Round-1 reports are `reports/fix-loop-r2/q1/lesson-tf-g4-AWS.md` and `lesson-tf-g4-TEACHER.md`; the impl reports are `lesson-tf-g4-impl.md` and `questions-tf-g4-impl.md`.
 
-- **Models:** the plan's `gpt-5.3-codex` and `composer-2.5-fast` **do not exist in this harness** — the subagent model list is sonnet / opus / haiku / fable. Per the user's standing memory rule, **all subagents run Sonnet**; the main session is Opus. Do not pass `inherit`.
-  - Consequence to keep stating: the Student check now runs on a *stronger* model than the one that closed tasks 3.1–4.2, so a high score is weaker evidence than it was there. The guessable-stem count does not depend on the model being weak, which is why it matters more.
-- **Agent resume:** agent ids from earlier harnesses are not resumable. Start fresh reviewers and hand them the round-1 reports; never rewrite a lesson or questions from scratch to recover.
-- **Concurrency:** at most **2 subagents at a time**.
-- **Pacing:** about **3 tasks per sitting**, then stop, report, and wait for GO.
-- **Student check:** text packet per task, not the browser. One browser smoke test at the very end.
+**Carry into round 2:**
+- Round-1 findings to confirm Gone: `AWS-Lg4-001` (row 27 cited to the wrong page), `AWS-Lg4-002` (version floors — precondition/postcondition 1.2+, check 1.5+, ephemeral 1.10+, write-only 1.11+), `TEACHER-Lg4-001` (terraform_data claim had no row), `TEACHER-Lg4-002` ("meta-argument" undefined), plus `nonsensitive()` added at both reviewers' request.
+- **One observation to put to the reviewers, not yet raised:** after the key-length rebalance, 94% of MC keys sit at length rank 2 or 3 of 4, against 50% by chance. Both caps pass (6% longest, 0% shortest) and the fix was made honestly by tightening verbose distractors, but "eliminate the longest and the shortest" would beat chance. Ask whether that is a real tell or over-fitting a metric.
+- The 4h questions carry real-world stakes (what `sensitive` does and does not protect). Weight those.
+
+## Decisions waiting on the user
+
+1. **shortest-is-key in five closed tasks.** `q1_batch_check` now checks both length tells. Six tasks exceed the 35% cap on *shortest*: `4-3` 57% (8/14), `3-1` 60% (only 5 MC, noisy), `4-1` 48%, `1-3` 45%, `3-5` 36%, and `tf-g4` which was fixed in flight. On task 4.3 a reader who always picks the shortest option scores 57% against 25% by chance. This is **not** a metric artifact — it is a real tell in shipped content, caused by a rule that capped only one direction. Options: fix forward from g5 and record the closed figures, or reopen `4-3`, `4-1` and `1-3` (~50 MC questions). Lead Dev leans to fixing forward; every one of those tasks passed a blind Student run.
+2. **`D6 / ISS-080`** — dated pricing snapshot and templated design exercises. The user chose "fix" on 2026-09-25 and it was never started. This is accepted work sitting idle, not a stale finding.
+3. **Date drift.** Every citation and `reviewedOn` says `2026-09-26` because `q1_batch_check` enforces that literal, including tasks written on the 27th. Better as one deliberate sweep at the end than a corpus split across two dates.
+
+## User decisions in force
+
+- **Models:** the plan's `gpt-5.3-codex` and `composer-2.5-fast` do not exist in this harness (the list is sonnet / opus / haiku / fable). Per the standing memory rule **all subagents run Sonnet**; the main session is Opus. Never pass `inherit`.
+  - Consequence to keep restating: the Student check runs on a *stronger* model than the one that closed tasks 3.1–4.2, so a high score is weaker evidence than it was there. The guessable-stem counts do not depend on the model being weak, which is why they matter more.
+- **Agent resume:** ids from earlier harnesses are not resumable, and ids below are scoped to the session that created them. Start fresh reviewers and hand them the round-1 reports; never rewrite content to recover.
+- **Concurrency:** at most **2 subagents at a time**. **Pacing:** about **3 tasks per sitting**, then stop and wait for GO.
+- **Student check:** text packet per task. One browser smoke test at the very end.
 - **Closure rule:** an item closes only when its **reporter and a second role** both mark it Gone.
-- **Deferred:** D6 and the small screen items. PY-R5-001 to 003 are won't-fix.
+- **Stem-paraphrase rule (2026-09-27):** applies from task 4.4 onward; closed tasks are not reopened.
+- **Register reconciliation (2026-09-27):** fold into the final sitting — detail in the final-sitting list below.
 
-## Open decisions for the user
+## Hard rules
 
-1. **Split the Student's guessable-stem question into two numbers.** On 4.4 the Student reported 9 of 23, statistically the same as the 9 of 22 that prompted the rule — but reading them showed two classes: *avoidable leakage* (stem uses the key's own distinctive word; a real defect, 2 found and fixed) and *structural scenario reference* (the key names something the scenario introduced; not a defect and not removable without making keys vaguer). One number mixes them, so it will sit near 9 regardless of quality. The Teacher's exact proposed replacement wording is in this sitting's notes below and in `questions-4-4-TEACHER-recheck.md`; its operative test is **"does the shared term also appear in at least one distractor?"** If yes, not diagnostic.
-2. **Tighten `stem_echo_check.py` and make it a gate.** It already implements exactly the Teacher's test. It is currently ADVISORY because it over-flags on generic vocabulary ("availability", "billing", "daily"). Filtering those (for example, dropping tokens that appear in more than a quarter of the task's stems) would let it fail a task instead of only producing a reading list. Pairs with decision 1.
-
-## Hard rules (from AGENTS.md and the user)
-
-- Agents never call AWS, never provision anything, and never run credentialed terraform.
-- The `aws-terraform` MCP exposes `ExecuteTerraformCommand` / `ExecuteTerragruntCommand`. **Never call them.**
+- Agents never call AWS, never provision anything, never run credentialed terraform.
+- The MCP exposes `ExecuteTerraformCommand` / `ExecuteTerragruntCommand`. **Never call them.** No `terraform` run of any kind, including `fmt` and `validate` — lessons are written *about* these commands, verified from docs.
 - No servers, no Playwright, no scripted POSTs. Never click Reset or Import.
-- Subagents run no git and no `git stash`. Lead Dev commits after every step.
-- If anything submits drills in the app, restore the DB to baseline and check `scripts/db_fingerprint.py backend/db.sqlite3` prints sha `930f0e72…`. The text-packet Student check does not touch the DB.
-- Commit messages end with a `Co-Authored-By:` line naming the model you are running as.
+- Subagents run no git. Lead Dev commits after every step.
+- If anything submits drills, restore the DB and check `scripts/db_fingerprint.py backend/db.sqlite3` prints sha `930f0e72…`. The text-packet Student check does not touch the DB.
+- Commit messages end with a `Co-Authored-By:` line naming the model. **Do not add it to a commit of the user's own work** — their README rewrite is committed under their authorship at `0161bb9` with no trailer.
 
 ## Tools
 
-- **AWS docs:** `mcp__MCP_DOCKER__search_documentation`, `read_documentation`, `read_sections` — load all three in **one** ToolSearch `select:` call. Fall back to WebFetch. Prefer **user-guide** pages; a CLI command reference cannot support a selection-criteria claim.
-- **Terraform docs:** WebFetch on developer.hashicorp.com, plus `mcp__MCP_DOCKER__SearchAwsProviderDocs`.
-- **Python:** `backend\.venv\Scripts\python.exe`. Lint: `scripts\content_lint.py` must PASS.
-- **JSON writes:** `json.dumps(data, indent=2, ensure_ascii=True) + "\n"`, utf-8.
-- **`scripts/q1_batch_check.py <task>`** — lesson format, `drillIds`, tell words, retired names, 6-word openings, longest-is-key, MC/MR key positions, MR key **sets**, citations. Lesson Snowball WARNs are expected. Task `1-1` FAILs because the glob also matches two demo `q-a0-*` files; pre-existing.
-- **`scripts/distractor_type_audit.py <task>`** — non-key choices against a curated service list, 15% cap. **Now matches plural suffixes**; the singular-only guard had hidden "read replicas" at 6/22 and "snapshots" at 4/22 in task 4.3. The leading guard still prevents the old "RDS inside shards/records" bug. Add terms as new tasks introduce them.
-  - **Caution:** `TERMS` grows per task, so re-running this on a *closed* task measures it against a list that did not exist then. Nine of the twelve closed tasks now report over cap; this was verified to be pre-existing under the old matcher too, and it counts topic-central services (Glue at 50% in an analytics lesson). **Not a reason to reopen closed tasks.**
-- **`scripts/claim_prose_check.py <task>`** — numbers in the claim table vs prose. WARN. Known false positive: the `20` in a date like `2025-06-20`. Blind spot: **non-numeric** claim rows, which only the Teacher catches.
-- **`scripts/key_text_diff.py <task> <git-rev>`** — after any choice reorder, confirms the set of correct option texts is unchanged. A deliberate key rewrite will show as a MISMATCH; say so rather than treating it as a regression.
-- **`scripts/stem_echo_check.py <task>`** — **new, ADVISORY.** Reports tokens shared by the stem and the key but by no distractor. Over-flags (15 of 22 on 4.3 where the Student found 9), so it is a reading list, not a verdict. See open decision 2.
-- **`scripts/make_student_packet.py <task> <n>`** — writes the packet and answers to `%TEMP%\q1-packets`. **Always pass n = the task's total question count.**
-- **`scripts/db_fingerprint.py backend/db.sqlite3`** — read-only.
-- **DB restore** (only if needed; run from `web_app`):
+- **AWS docs:** `mcp__MCP_DOCKER__search_documentation`, `read_documentation`, `read_sections` — load all three in one ToolSearch `select:` call. Prefer user-guide pages.
+- **Terraform docs:** `developer.hashicorp.com`. **Read the rendered page text, not WebFetch.** WebFetch answers through a summarising model that can paraphrase a quote into something plausible, which is the most likely cause of g3's fabricated quote. The g4 writer switched method and 56 of its 75 quotes were then verified verbatim by a reviewer with no fabrication.
+- **Python:** `backend\.venv\Scripts\python.exe`. **JSON:** `json.dumps(data, indent=2, ensure_ascii=True) + "\n"`, utf-8.
 
-  ```
-  backend/.venv/Scripts/python.exe -c "import sqlite3; s=sqlite3.connect('file:../eval-baseline/db.sqlite3.bak?mode=ro',uri=True); d=sqlite3.connect('backend/db.sqlite3'); s.backup(d); d.close(); s.close()"
-  ```
+### The check suite — run the whole chain against the whole file after any fix
 
-## Per-task pipeline (what works, cheapest first)
+| Script | What it does, and what it cannot see |
+|---|---|
+| `content_lint.py` | Must PASS. |
+| `q1_batch_check.py <task>` | Lesson format, drillIds, tell words, retired names, 6-word openings, MC/MR key positions, MR key sets, **and both key-length tells** (longest and shortest, 35% each). Task `1-1` FAILs because its glob also matches two demo `q-a0-*` files; pre-existing. |
+| `distractor_type_audit.py <task>` | Non-key choices against a curated `TERMS` list, 15% cap. Matches plural suffixes. **Bare subject vocabulary is deliberately excluded** — not "provider" in a providers lesson, not bare command names, not "resource"/"data"/"variable" — because a term the lesson is *about* is not a reused distractor type. Add new named constructs per task. |
+| `stem_echo_check.py <task>` | **A gate from tf-g1 onward.** Flags tokens in the stem and the key but in no distractor. Cannot tell leakage from a structural scenario reference, so a reviewer classifies each and the Lead Dev records structural ones in `stem-echo-waivers.json` with a citation. **The waiver file is still empty; keep it that way where a reword will do.** |
+| `claim_prose_check.py <task>` | Claim-table numbers absent from prose, and **quotes over 20 words**. Blind to non-numeric claim rows — the single biggest gap in the suite. |
+| `key_text_diff.py <task> <rev>` | Confirms which option *texts* are correct across a revision. **Give it a meaningful baseline:** diffing against a commit that predates the questions reports every question as changed. |
+| `make_student_packet.py <task> <n>` | Pass n = the task's full question count. |
+| `db_fingerprint.py backend/db.sqlite3` | Read-only. |
 
-1. **Lesson writer** (new Sonnet agent). Prompt: read RULES.md; rewrite `content/lessons/lesson-X.json`; add citations; delete the placeholder citation only if grep shows nothing else uses it (**`cite-tf-004` is shared, keep it**); write `lesson-X-impl.md` with a **claim table** (every fact and number, doc URL, quote of 20 words or fewer that **actually asserts that claim**); set `drillIds`; return 4 lines or fewer; stay available. Model the prompt on **4.4** (closed, cleanest run so far).
-2. **Lead Dev:** `content_lint.py`, `q1_batch_check.py` (lesson lines), `claim_prose_check.py`. Also check directly for **duplicated sentences** and confirm exactly one `##` title.
-3. **Commit.** Then **AWS round 1** and **Teacher round 1** in parallel (2-agent cap).
-4. **Resume the same writer** to apply both reviewers' fixes, then write the questions. Split writers only above 25 questions.
-5. **Lead Dev pre-check before round 2:** `q1_batch_check.py`, `distractor_type_audit.py`, `stem_echo_check.py`, and **read every distractor** — no script sees a category-error strawman.
-6. **Round 2:** resume both reviewers. Each marks its own findings Gone, second-role-checks the other's, and reviews every question.
-7. **Student:** `make_student_packet.py X <total>`, then a Sonnet agent that may open **only** those two files and must commit all answers in writing before opening the answers file.
+**DB restore** (only if needed, from `web_app`):
+
+```
+backend/.venv/Scripts/python.exe -c "import sqlite3; s=sqlite3.connect('file:../eval-baseline/db.sqlite3.bak?mode=ro',uri=True); d=sqlite3.connect('backend/db.sqlite3'); s.backup(d); d.close(); s.close()"
+```
+
+**Two cautions about the suite itself.** Three scripts had a filename glob that silently matched zero files on Terraform tasks and printed a confident PASS; all are fixed, but check a new script prints how many files it compared. And a substring grep is not proof a term is untaught — `can(` missed a lesson that teaches `` `can` `` in backticks, and the Lead Dev reported a false gap to two reviewers on the strength of it.
+
+## Per-task pipeline
+
+1. **Lesson writer** (new Sonnet agent). Model the prompt on **tf-g4**, the most thoroughly reviewed so far. Require: one `###` per objective ending in `**Exam tip:**`, the standard `### Warnings` section, one `##` title, citations with `accessed: "2026-09-26"`, full `drillIds` (every placeholder lesson has a stale short list), and a claim table with quotes **copy-pasted from a page fetched that turn**.
+2. **Lead Dev pre-check:** run the whole chain yourself. Do not trust the writer's summary — one reported "lesson-only lines PASS" while a lesson line was failing.
+3. **Commit.** Then round 1: technical reviewer and Teacher in parallel (2-agent cap).
+4. **Resume the writer** for fixes, then the questions.
+5. **Lead Dev pre-check before round 2:** scripts, then **read every distractor**. No script sees a strawman, a false claim, or a contradiction.
+6. **Round 2:** resume both reviewers; each marks its own findings Gone and second-role-checks the other's.
+7. **Student:** text packet, Sonnet agent, only the two packet files, all answers committed in writing before opening the key.
 8. **Close:** `progress.md`, issue register, DB fingerprint, commit.
 
-## Recurring problems to prevent (tell writers up front)
+## The defect classes that have actually cost time
 
-- **Category-error strawmen:** a real service in a job it was never built for. Fails *none* of the stated requirements, so a student eliminates it on sight. Task 4.3 had ~24 in its first draft and two more survived into round 2.
-- **Turning off the safety control** ("Remove all throttling settings"). Same family as "do it by hand". One of these survived all three reviewers plus a Lead Dev pre-check on 4.4 (`s06-mr`) and was only caught on a re-read.
-- **Absolutism tells:** `as the only`, `alone as the`. Four instances on 4.3, one more on 4.4.
-- **Self-explaining choices:** `since`, `even though`, `because`, `by default`.
-- **One distractor type reused too often.** Count with `distractor_type_audit.py` *before* writing, not after — a networking task ties five types at the cap naturally.
-- **Claim-table facts never written into prose.** Numbers are scripted; **non-numeric rows are the Teacher's catch** (the DMS endpoint rule on 4.3, Origin Shield on 4.4). Ask the writer to re-sweep all rows, not just the reported one.
-- **Quotes that are verbatim but support a different statement** than the claim beside them (3 of these on 4.4, all citation-sourcing).
-- **Fix passes that append a sentence already present.** Task 4.3 ended with the same sentence duplicated in three sections, one of them stated three times.
-- **Stem/key keyword echo** (the new rule). Fixing only the key is not enough — on 4.4's `k03-mc` the key was reworded and the stem still carried the lesson's language, and the whole stem restated GWLB's doc definition. **Check the stem against all choices.**
-- **Reviewer-suggested replacements that duplicate an existing choice.** Accept the concern, pick a distinct option.
-- **Made-up features**, e.g. "Kinesis broker nodes".
-- **Retired / closed / renamed** — see RULES.md.
-- **Do not "fix" the `##` lesson title** to `###`, and do not report the `### Warnings` section. Both are standard in all 22 lessons.
+Ordered by how much trouble each has caused.
 
-## Sitting 4 — what landed
-
-### Task 4.3 — **closed** (`aba7f5e`)
-
-Cost-optimized databases, 22 questions. AWS close, Teacher close, Student **22/22**.
-
-Teacher's `TEACHER-Q43-001` (high) was the one that mattered: `k07-mc` was a near-clone of `s02-mc`, testing S02's MySQL/PostgreSQL fact with near-identical key text, so one fact was tested three times while K07's own objective (homogeneous vs heterogeneous migration) went untested. Rewritten onto K07 with the key kept in slot c to preserve the MC spread. AWS reviewed the same 22 questions and found nothing.
-
-Also fixed: duplicated prose in S02, S05 and K05 (K05 stated one limit three times; neither reviewer caught that one), an `s03-mc` strawman, and four "as the only" tells. Then the plural-matching bug in `distractor_type_audit.py` surfaced read replica at 6/22 and snapshot at 4/22 — both fixed, and the two k08 snapshot distractors turned out to be strawmen themselves.
-
-Student flagged 9 of 22 stems keyword-guessable. That prompted the rule below.
-
-### RULES change — stem-paraphrase rule (`41945c1`)
-
-User-approved, applying **from 4.4 onward**; closed tasks are not reopened. Stems state the requirement in the scenario's own operational language, not the lesson's distinctive keywords, and the key must not echo the stem; a stem-echoing distractor is equally bad.
-
-### Task 4.4 — **closed** (`3a495f8`)
-
-Cost-optimized networks, 23 questions. AWS close, Teacher close, Student **23/23**. The cleanest run so far: MR key sets came out 9 of 9 distinct with no reorder pass, and the distractor audit passed first time with five types tied at the cap.
-
-Findings: 3 AWS citation-sourcing on the lesson, 3 Teacher (Origin Shield table-but-not-prose, NLB/GWLB undefined, "egress" undefined) plus 2 lesson additions, `AWS-Q44-001` on the CloudFront "only" claim, and `TEACHER-Q44-001`–`003` stem echoes. Lead Dev found the `s06-mr` strawman and two avoidable stem leaks after the Student.
-
-**On the new rule:** the Student's count did not move (9 of 23 vs 9 of 22). Reading them showed the two classes described in "Open decisions" above. The Teacher independently read 20 of 23 stems as genuine paraphrases, so the rule worked on what it targets — the single metric just cannot show it.
+- **Real but untaught.** A distractor or rationale resting on a fact that is true and never taught, so a lesson-only reader cannot eliminate it. Four occurrences across g1–g3. Ask "is this real?" and "is the reason it is wrong taught here?" as **two separate questions**.
+- **A repair introducing a new defect.** Four in g1/g2 alone, which is why RULES gained the **"After applying a fix"** section: re-run the whole chain against the whole file, re-read the new fragment in isolation, and re-check both distractor properties. Every one of those regressions was something an existing script already caught globally — they were missed by verifying only the changed field.
+- **Quote defects**, in three flavours: attached to the wrong claim; scoped wrongly (both too broad and too narrow have occurred); and **fabricated** — text in quotation marks that is not on the page. One fabrication in 45 rows on g3.
+- **Caricature distractors.** Nine rejected in g1, two more found by the Student in g2 that the Lead Dev had noticed and not acted on, three in g3. A distractor must be a practice a real team uses **and** wrong for a taught reason.
+- **Contradiction inside a lesson**, carried into a key. g3's 3f asserted both directions of the same dependency rule.
+- **Duplicate-fact questions.** Task 4.3's worst finding: three questions testing one fact while an objective went untested. Ask the Teacher up front whether every objective supports three distinct questions.
+- **Stem/key keyword echo.** Fixing only the key is not enough — check the stem against all choices.
+- **Directionality.** `-target` extends to what a resource **depends on**, not to what depends on it. The Lead Dev asserted the opposite and a writer corrected it from the docs.
+- **Do not "fix"** the `##` lesson title, the `### Warnings` section, or objective-id headings. All are standard.
 
 ## Exactly where things stand
 
 | # | Task | Qs | State |
 |---|---|---:|---|
-| 0–13 | 1.1–4.4 | 352 | **Closed** |
-| 14 | lesson-tf-g1 | 9 | **Start here.** Not started |
-| 15–21 | TF g2 (12), g3 (21), g4 (24), g5 (12), g6 (12), g7 (9), g8 (20) | 110 | Not started |
+| 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** |
+| 17 | lesson-tf-g4 | 24 | **In flight — resume at round 2** |
+| 18 | lesson-tf-g5 | 12 | Not started |
+| 19 | lesson-tf-g6 | 12 | Not started |
+| 20 | lesson-tf-g7 | 9 | Not started |
+| 21 | lesson-tf-g8 | 20 | Not started |
 
-Terraform question files are named `q-tf-004-*`. The checker matches questions to a lesson by `objectiveIds`, so `q1_batch_check.py tf-g1` works. For TF lessons the Teacher checks against HashiCorp docs and AWS checks only the AWS-provider parts.
+Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
-**Suggested sittings:**
-- Next: TF g1+g2 (one writer), then g3.
-- Then g4, g5+g6 (one writer).
-- Then g7, g8.
+**Suggested sittings:** finish g4, then g5+g6 (one writer). Then g7, g8.
 
 **Final sitting:**
-- a browser Student smoke test of about 10 questions across tasks 3.1 to TF g8, then restore the DB;
-- close L1/Q1 and ISS-010 in the register;
-- **reconcile the whole register (user decision, 2026-09-27).** `reports/fix-loop/issue-register.md`
-  lists **53 rows under "Still open"** and that number is not real. Several are superseded by the Q1
-  rewrite and should be closed with a reason, not carried forward:
-  - `L1` ("lessons don't teach, ~50% boilerplate") is precisely what the rewrite fixed;
-  - `N8` ("133 rationales name wrong letters") -- every one of those questions was rewritten;
-  - `R6 / ISS-070` -- its own Source column already says "folded into the lesson and question rewrites";
-  - `Q1-T2`, `Q1-T3`, `Q1-T4` -- pilot-era findings against content that no longer exists.
-  Genuinely still live and independent of the rewrite: `FS-R3-001` (header hidden behind an 80px
-  scroll margin), `AWS-R3-002` (GL-14/19/21 subnet lookup returns a tab-joined string, breaking
-  cluster creation), `TEACHER-R3-001/002/003` (lab criteria), the `PY-R3-002/003` scanner items, and
-  `D6 / ISS-080`, which the user chose "fix" on 2026-09-25 and which was never started.
-  Leave a true open list, so the count stops obscuring the dozen or so that need work.
+- browser Student smoke test, ~10 questions across 3.1 to tf-g8, then restore the DB;
+- **reconcile the register (user-approved).** `reports/fix-loop/issue-register.md` lists **53 rows under "Still open"** and the number is not real. Close with a reason: `L1` ("lessons don't teach") is what the rewrite fixed; `N8` (133 rationales naming wrong letters) — those questions were all rewritten; `R6 / ISS-070` already says "folded into the lesson and question rewrites"; `Q1-T2/T3/T4` are pilot-era findings against content that no longer exists. Genuinely live and independent of the rewrite: `FS-R3-001` (header hidden behind an 80px scroll margin), `AWS-R3-002` (GL-14/19/21 subnet lookup returns a tab-joined string, breaking cluster creation), `TEACHER-R3-001/002/003` (lab criteria), `PY-R3-002/003` (scanner), and `D6 / ISS-080`. Leave a true open list;
+- close `L1` and `ISS-010`;
 - update `docs/status.md`;
 - run `python manage.py test workbook`, `scripts\content_lint.py` and `npm run build`.
 
-## Optional later (not blocking)
+## Session-scoped agent ids (this session only)
 
-- `q1_batch_check.py 1-1` FAIL from demo `q-a0-*` files: fix the glob or exclude those ids.
-- `claim_prose_check.py` does not cover non-numeric claim-table rows.
-- Citations and `reviewedOn` are all `2026-09-26`, including task 4.4 written on the 27th, because the batch checker enforces that date. If it should track the real date, change it as one sweep rather than letting the corpus split across two dates.
+tf-g4 writer `a1cf8112155f521c2`, technical reviewer `a47139ae689c3845a`, Teacher `a7c6198e7e76fa9da`. Useless in a new session — start fresh agents and hand them the reports.
+
+## Optional later
+
+- `q1_batch_check.py 1-1` FAILs because its glob matches two demo `q-a0-*` files.
+- `claim_prose_check.py` cannot see non-numeric claim rows, which is why that defect has recurred on four tasks and depends entirely on the Teacher.
+- The README at `0161bb9` is the user's own work, committed under their authorship.
