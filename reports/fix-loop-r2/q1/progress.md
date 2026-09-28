@@ -29,7 +29,7 @@ Pipeline per task:
 | 13 | lesson-4-4 | 23 | ✔ | ✔ | ✔ | ✔ | ✔ AWS close, Teacher close, Student packet 23/23 | ✔ (AWS-L44-001–003, TEACHER-L44-001–003 + 2 lesson additions; AWS-Q44-001; TEACHER-Q44-001–003 stem echoes; Lead Dev: s06-mr strawman + absolutism tell, 2 avoidable stem leaks after Student) | ✔ 2026-09-27 |
 | 14 | lesson-tf-g1 | 9 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 9/9 | ✔ (AWS-Qg1-001/TEACHER-Qg1-001 false CloudFormation serial claim; Lead Dev pre-check rejected 9 caricature distractors) | ✔ 2026-09-27 |
 | 15 | lesson-tf-g2 | 12 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 12/12 | ✔ (TEACHER-Lg2-001–003, AWS-Lg2-001/002, TEACHER-Qg2-001 over-trimmed quote, AWS-Qg2-001 -upgrade untaught, exam tip + claim row 8b/8c) | ✔ 2026-09-27 |
-| 16 | lesson-tf-g3 | 21 | | | | | | | |
+| 16 | lesson-tf-g3 | 21 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 21/21 | ✔ (AWS-Lg3-001 fabricated quote, AWS-Lg3-002 version boundary, TEACHER-Lg3-001–004, TEACHER-Qg3-001; Lead Dev pre-check: 3f dependents contradiction, 2 self-explaining choices, 2 match-the-flag reworks; 3 freebie distractors after Student) | ✔ 2026-09-27 |
 | 17 | lesson-tf-g4 | 24 | | | | | | | |
 | 18 | lesson-tf-g5 | 12 | | | | | | | |
 | 19 | lesson-tf-g6 | 12 | | | | | | | |

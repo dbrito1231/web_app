@@ -127,6 +127,43 @@ consequence questions (`3d-mc2`, `3g-mc2`) and the two `-target`-direction rewri
 
 No new findings. No `AWS-Qg3-###` issues.
 
+### Round 2 addendum — three post-signoff distractor replacements (commit 24739f2)
+
+Read the current `q-tf-004-3a-mc2`, `q-tf-004-3a-mr`, `q-tf-004-3f-mr` in full (not diffs).
+
+1. **Factual accuracy of each replacement, confirmed false for the intended reason, not some
+   other:**
+   - `3a-mc2` choice c ("branch per change, but never merge back for review") — false as a
+     collaboration recommendation: HashiCorp's team workflow ties branching to a subsequent
+     merge/PR review step; never merging back defeats that purpose while still using a real
+     mechanism (branching). Not false for a wrong reason.
+   - `3a-mr` choice c ("reviewer reads only the config diff, never the plan's proposed actions")
+     — false against the taught fact that "Terraform's plan output creates an opportunity for
+     team members to review each other's work"; reading only the diff is a real, plausible but
+     insufficient practice, not a strawman.
+   - `3f-mr` choice e ("deleting the instance's block and applying also destroys the security
+     group it depended on") — confirmed false. Deleting one resource's block only removes that
+     resource from the desired configuration; `plan` compares the edited configuration to state
+     and proposes destroying only the object no longer described. The security group's block is
+     untouched in configuration, so it is never proposed for destruction — dependency edges
+     affect destroy *ordering*, not which objects are in scope. This matches the lesson's
+     already-taught 3f discriminator ("every other managed resource is left alone either day")
+     and is not contradicted by any `-target`-specific behavior, since no `-target` is used on
+     this route. The cascade asserted does not happen; the choice is false for the intended
+     reason.
+
+2. **Rationale checked against every choice, not just the replaced one**, for all three
+   questions: each of the 4–5 choices per question is individually addressed and each
+   characterization (right or wrong) matches the doc-backed teaching — no stray inaccuracy
+   introduced in the untouched rationale clauses for a, b, d (3a-mc2), a, b, d, e (3a-mr), or a,
+   b, c, d (3f-mr).
+
+3. **Nothing else broken:** stems, `correctAnswerIds` (`b`; `b,d`; `a,b`), `citationIds`,
+   `reviewedOn`, `mcpStatus` are all unchanged from the version I already reviewed. No banned
+   giveaway words introduced in any of the three new choice texts.
+
+No `AWS-Qg3-###` issues from this pass either.
+
 Task tf-g3: close
 
 Overall: approve
