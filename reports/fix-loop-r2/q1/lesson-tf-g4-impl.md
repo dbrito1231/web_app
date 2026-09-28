@@ -226,3 +226,15 @@ listing three) asked for.
   number appears in the lesson prose" (unchanged from round 1; no new bare numbers were introduced
   by the round-2 lesson prose, since `ignore_changes`/`TF_VAR_`/refresh text carry no new numeric
   literals beyond the version floors already checked).
+
+## Round 2c (Lead Dev, after round-2b confirmations)
+
+Three small fixes from AWS-Qg4-009/TEACHER-Qg4-010, AWS-Qg4-010, and AWS-Lg4-013/TEACHER-Qg4-011. The quote below was fetched this turn with curl + HTML strip; it is verbatim.
+
+| # | Section | Claim | Doc URL | Quote |
+|---|---|---|---|---|
+| 89 | 4a | terraform_data needs no companion managed resource | https://developer.hashicorp.com/terraform/language/resources/terraform-data | "for triggering provisioners when there is no other logical managed resource in which to place them" |
+
+- 4a: added "It needs no companion resource: the docs describe it as useful \"for triggering provisioners when there is no other logical managed resource in which to place them.\"" This teaches the refutation of `4a-mr` choice e. The Teacher had said it was already taught; a regex over `bodyMarkdown` shows it was not, so the AWS reviewer was right.
+- 4f: "`replace_triggered_by` does the opposite of sequencing a replacement:" became "... answers a different question from sequencing a replacement, because it decides whether a replacement happens at all:".
+- `4d-mr` choice d: the `for_each` list claim (it answered neither stem need) became `` `null == ""` evaluates to `true`, treating a null and an empty string as the same absent value ``. It targets the `==` need. It is wrong because 4d teaches "`null` is not the same as an empty string or a zero". The AWS wording used "since", a banned giveaway word, so it was reworded. The rationale now also states why the two keys are correct, and `cite-tf-g4-for-each` was dropped from this question.

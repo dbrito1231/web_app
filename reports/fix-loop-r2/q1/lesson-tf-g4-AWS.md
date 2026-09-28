@@ -355,3 +355,170 @@ down — the existing longest-is-key and shortest-is-key caps already bound the 
 
 Task tf-g4: not yet
 Overall: concerns
+
+## Round 2b (confirmation, 5a470ae)
+
+Method: re-fetched `data-sources`, `cli/config/environment-variables`, `meta-arguments/lifecycle`,
+`functions/nonsensitive`, and `tutorials/secrets/secrets-vault` this turn with `curl -sL` piped
+through `r2aws_strip.py`, never WebFetch. Ran the full script chain against the whole task, not the
+diff: `content_lint.py` PASS; `q1_batch_check.py tf-g4` PASS (longest-is-key 6%, shortest-is-key
+12% — up from 0%, expected per Q3 below, both under the 35% cap; MC keys a:4/b:4/c:4/d:4; all 8 MR
+key-letter-sets distinct); `distractor_type_audit.py tf-g4` PASS (max 12%, cap 15%);
+`stem_echo_check.py tf-g4` PASS (0 unwaived, 0 waived, 0 bulk echo); `claim_prose_check.py tf-g4`
+PASS.
+
+### (a) My own round-2 findings (AWS-Qg4-001..008)
+
+All eight — **Gone.**
+
+- **AWS-Qg4-001 — Gone.** Read all 10 rationales (`4a-mr 4b-mr 4c-mr 4d-mr 4e-mr 4f-mc 4f-mr 4g-mr
+  4h-mc2 4h-mr`) against their current choices. Every one now names each wrong choice by content,
+  zero letter references, and the two cases where a correct key had been called "wrong"
+  (`4g-mr`, `4h-mc2`) now correctly describe the actual wrong choices.
+- **AWS-Qg4-002 — Gone.** `4d-mc` choice d is now `` Reference the set element by a string key, such
+  as `var.names["second"]` `` — real (a plausible thing to try), wrong for a reason 4d teaches
+  verbatim (a set has "no secondary identifiers," named labels belong to map/object). `sort()` no
+  longer appears anywhere in the question. (My `values()` alternative wasn't used — the Lead Dev
+  correctly rejected it as itself untaught; the Teacher's string-key version is the better fix.)
+- **AWS-Qg4-003 — Gone.** `4f-mc2` is now four genuine `lifecycle` arguments: `prevent_destroy =
+  true`, `replace_triggered_by = [aws_lb_target_group.old]`, `ignore_changes = all` (correct bare-
+  keyword syntax), `create_before_destroy = true` (key). No self-answering parenthetical remains.
+  Both new distractors are wrong for reasons L4 now teaches in 4f (verified — see (c) below).
+- **AWS-Qg4-004 — Gone.** `4e-mc2` key is bare `` `can` ``; all four choices are bare function names.
+  The Lead Dev deliberately did not pad `try` (my suggestion) — correctly reasoned that an
+  annotation on one choice, even to fix a length problem, is its own tell. Shortest-is-key moved to
+  12%, still under the 35% cap; reported, not padded, exactly per RULES.md's "after a fix" guidance.
+- **AWS-Qg4-005 — Gone.** `4h-mr` choice c is now "`nonsensitive()` converts the value to a different
+  type, the same way `tostring()` or `tonumber()` would" — the exact replacement I proposed last
+  round, confirmed real (type-conversion functions exist) and wrong for a reason the lesson states
+  ("it does not touch state, does not make a value ephemeral" — a marking change, not a type
+  change). No error-on-unmarked-value claim was added to the lesson, per instruction. Re-verified
+  `functions/nonsensitive` fresh this turn: no change from last round's finding.
+- **AWS-Qg4-006 — Gone.** 4c now states, doc-quoted: "The environment variables must be in the
+  format TF_VAR_name and this will be checked last for a value." Re-fetched
+  `cli/config/environment-variables` this turn — exact match. New citation
+  `cite-tf-g4-env-vars.json` correctly schema'd and added to the lesson's `citationIds`.
+- **AWS-Qg4-007 — Gone.** `4b-mc2` choices a/b are now "no ordering... a `name` value is plain data"
+  and "the resource holding the reference is processed first" — both real, plausible beliefs, both
+  wrong for reasons 4b/4f teach (any attribute reference creates the implicit dependency; the
+  referenced resource completes first, not the one holding the reference).
+- **AWS-Qg4-008 — Gone.** The untaught fact (data sources re-read each ordinary run) is now not just
+  taught but promoted to a key (`4a-mr` choice c), backed by new lesson row 84 and the L2 sentence.
+  The old "locked and can never be refreshed" distractor no longer exists (superseded by `4a-mr`'s
+  full rebuild, see (c)).
+
+### (b) Second-role check: TEACHER-Qg4-001..009, LD-Qg4-001..008, LD-Lg4-009..012
+
+All of these map onto the same fix-pass items verified in (a)/(c) and are **Gone**, with two notes:
+
+- **TEACHER-Qg4-001..007, LD-Qg4-001..007 — Gone.** Same verification as AWS-Qg4-001/002/003/004/
+  005/006/007 above; no daylight between the three reports' underlying complaints and what the fix
+  pass actually did.
+- **TEACHER-Qg4-008 / LD-Qg4-008 (the `4d-mr` doc-wording half) — Gone as filed, but the
+  replacement choice has a new, different problem.** The original complaint (a choice testing
+  "what Terraform's documentation calls things" rather than behavior) is resolved — that choice no
+  longer exists. But its replacement, `` `for_each` accepts a plain `list` value directly... ``,
+  introduces a fresh RULES.md violation — see AWS-Qg4-009 (new) below. I'm marking the *filed*
+  finding Gone since the specific thing it complained about is gone, and opening a new one for what
+  replaced it, per RULES.md's own "After applying a fix" instruction not to certify a rewrite
+  without checking whether it introduced a new defect.
+- **TEACHER-Qg4-009 (4a-mr duplicate facts) — Gone, with the same caveat.** Both keys now test
+  distinct facts (the `terraform_data` exception; refresh-on-every-run), confirmed non-duplicative
+  of `4a-mc`/`4a-mc2`. The rebuild that fixed this also introduced a new distractor with its own
+  problem — see AWS-Qg4-010 (new) below.
+- **LD-Lg4-009, -010, -011, -012 — all Gone.** Re-read 4g ("Four condition mechanisms... the
+  fourth mechanism, the newest of the four" — now consistent), 4h ("There are two ways to
+  originate one: the `ephemeral` argument... or a dedicated `ephemeral` resource block. A write-only
+  argument is not a third source — it is the channel..." — now consistent with the next paragraph),
+  4h again ("in the documentation's own words" — fixed), and 4a (the doubled "but" is gone, single
+  "but" remains where the source's own contrast needs it).
+
+### (c) Coordinator's five specific concerns
+
+**1. 4a's refresh sentence — correctly scoped, not overstated.** Re-fetched `data-sources` this
+turn. The quoted sentence sits directly after, in the same "References to non-computed values"
+paragraph: *"Terraform reads the data source and updates its state during Terraform's refresh
+phase. By default, Terraform refreshes prior to creating a plan."* Read in isolation, "Terraform
+refreshes" could be misread as a general state-refresh statement covering managed resources too; read
+in context, the immediately preceding sentence pins "refresh phase" specifically to data source
+reads, and the lesson's own framing — "Outside of that special case [the apply-deferred case],
+Terraform re-reads a data source on every ordinary run" — matches the page's own two-case structure
+(References to computed values = deferred; References to non-computed values = refreshed each
+plan) exactly. **No overstatement; the claim is at the same strength as the source, once read with
+its surrounding paragraph.** No fix needed.
+
+**2. 4f's "`replace_triggered_by` does the opposite of sequencing a replacement" — confirmed
+overstatement, needs a wording fix.** `replace_triggered_by` and `create_before_destroy` sit on
+different axes: one decides *whether* a replacement happens (triggered by an external change), the
+other decides the *order* of steps once a replacement is already happening. Calling one "the
+opposite" of the other implies they invert the same behavior (e.g., that `replace_triggered_by`
+somehow destroys-before-creating), which the docs don't support — `meta-arguments/lifecycle`
+(re-fetched this turn) says only "Terraform replaces the resource when any of the referenced
+resources or specified attributes change," nothing about ordering at all. Exact fix: change
+*"`replace_triggered_by` does the opposite of sequencing a replacement:"* to **"`replace_triggered_by`
+answers a different question from sequencing a replacement — it decides whether a replacement
+happens at all:"** (keep the existing quote and the rest of the sentence unchanged).
+
+**3. `4a-mr` new distractor e — real misconception, but its refutation is not actually taught in
+lesson prose (confirmed defect, new finding: AWS-Qg4-010).** Choice e: "A `terraform_data`
+resource can only be declared alongside another managed resource of the same type; it cannot stand
+on its own in a configuration." The rationale refutes it with "it exists precisely for cases with
+no other logical resource to hold the value" — but I grepped the current `bodyMarkdown` for
+"logical," "no other," "stand alone," "standalone," and "alongside," and the only hit is an
+unrelated `create_before_destroy` exam-tip sentence in 4f. **The "no other logical managed resource"
+reasoning exists only in the impl report's internal claim table (row 82's backing quote), never in
+the actual lesson text students read** — 4a's own prose says only "it also covers the built-in
+`terraform_data` resource type, which stores values and triggers Terraform operations without
+creating actual infrastructure," with no statement of *when* or *why* someone would reach for it
+instead of a real resource. This is a teach-before-test violation on a question that is otherwise
+well-built (choice e's misconception is plausible and its target reasoning, once taught, would be a
+legitimate distractor). Fix: add one clause to 4a's `terraform_data` sentence, doc-verified from the
+same page already cited (`resources/terraform-data`, already quoted in claim row 82): *"...without
+creating actual infrastructure, useful 'for triggering provisioners when there is no other logical
+managed resource in which to place them' — it does not need another resource of the same or any
+type to exist alongside it."*
+
+**4. `4d-mr` new distractor d — confirmed RULES.md violation (new finding: AWS-Qg4-009).** The stem
+joins two needs: whether `tags = { 3 = "prod" }` will work (a map-key-type question) and whether
+`==` ever treats a number and its string form as equal (an equality-operator question).
+RULES.md: "MR stems: don't join two unrelated needs unless every distractor plausibly answers one of
+them." Distractor d — "`for_each` accepts a plain `list` value directly... without needing any
+conversion" — is about neither map keys nor the `==` operator; it doesn't plausibly answer either of
+the stem's two stated needs, it answers a third, unrelated question. (Distractor b, "a map can use a
+number or boolean key," and choice a, "`==` does auto-conversion," both correctly target one of the
+two needs; d does not target either.) Fix: replace choice d with a distractor that targets the `==`
+half and is already taught — 4d states verbatim "`null` is not the same as an empty string or a
+zero" — so: **"Comparing `null` to an empty string with `==` returns `true`, since both represent the
+absence of a value."** Real, plausible confusion; wrong for a reason 4d already teaches; targets one
+of the stem's two stated needs; does not duplicate `4d-mc`'s key (indexing a set) or choice e
+(list/tuple interchangeability).
+
+**5. `4h-mr` new distractor d — verified false and taught; no issue.** Re-fetched
+`tutorials/secrets/secrets-vault` this turn: the tutorial's second workspace retrieves credentials
+via "the `vault_aws_access_credentials.creds` data block retrieves the dynamic, short-lived AWS
+credentials from your Vault instance" — an ordinary `data` block, not an `ephemeral`- or
+write-only-flagged construct, confirming that using the Vault provider's data source "by itself"
+does not, on its own, keep the credential out of state (an ordinary data source's read result is
+recorded in state, per this lesson's own 4a material). The reason is taught in 4h itself: "Vault-
+issued credentials are typically consumed as ephemeral or write-only values in the configuration
+that uses them, but Vault itself is a secrets engine the provider talks to" — i.e., exclusion from
+state requires the `ephemeral`/write-only mechanism on top of Vault, not Vault alone. Real,
+plausible practitioner error (conflating "short-lived" with "excluded from state"); correctly
+distinct from the banned negation of key e. No fix needed.
+
+### New findings this round
+
+- **AWS-Qg4-009 (Medium-High, new).** `q-tf-004-4d-mr` choice d violates the MR-stem-joining rule —
+  see (c)4 above for the exact replacement text.
+- **AWS-Qg4-010 (High, new, teach-before-test).** `q-tf-004-4a-mr` choice e's stated reason is only
+  in the claim table, not the lesson prose — see (c)3 above for the exact lesson clause to add.
+- **AWS-Lg4-013 (Medium, new).** 4f's "`replace_triggered_by` does the opposite of sequencing a
+  replacement" overstates the relationship between the two `lifecycle` arguments — see (c)2 above
+  for the exact replacement wording.
+
+Given two new question-level defects and one new lesson-wording overstatement, this task is not yet
+ready to close — all are small, localized fixes (one distractor swap, one added clause, one
+sentence reworded), not a broader rework.
+
+Task tf-g4: not yet
+Overall: concerns

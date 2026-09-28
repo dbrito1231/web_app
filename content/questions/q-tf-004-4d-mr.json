@@ -22,7 +22,7 @@
     },
     {
       "id": "d",
-      "text": "`for_each` accepts a plain `list` value directly, the same way it accepts a `map` or a `set`, without needing any conversion"
+      "text": "`null == \"\"` evaluates to `true`, treating a null and an empty string as the same absent value"
     },
     {
       "id": "e",
@@ -33,10 +33,9 @@
     "c",
     "e"
   ],
-  "rationale": "Automatic type conversion happens for most arguments but never for the equality operator, where a number and the string of that number are not treated as equal. Map keys must be strings regardless of how consistent the key types otherwise look -- a number or boolean key isn't valid. And `for_each` needs a map or a set specifically; passing a plain list directly doesn't work without first converting it, unlike `count`, which takes a plain number.",
+  "rationale": "Map keys are always strings, and Terraform converts number and bool values to strings wherever a string is expected. Automatic type conversion happens for most arguments but never for the equality operator, where a number and the string of that number are not treated as equal. Map keys must be strings regardless of how consistent the key types otherwise look -- a number or boolean key isn't valid. And `null` is not the same value as an empty string: `null` represents absence, while an empty string is a real, present value, so `null == \"\"` is false.",
   "citationIds": [
-    "cite-tf-g4-types",
-    "cite-tf-g4-for-each"
+    "cite-tf-g4-types"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"
