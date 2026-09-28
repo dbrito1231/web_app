@@ -14,11 +14,11 @@
     },
     {
       "id": "b",
-      "text": "`count = 2` (creates two independent instances instead of sequencing one resource's own replacement)"
+      "text": "`replace_triggered_by = [aws_lb_target_group.old]`"
     },
     {
       "id": "c",
-      "text": "`ignore_changes = [all]`"
+      "text": "`ignore_changes = all`"
     },
     {
       "id": "d",
@@ -28,9 +28,10 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "create_before_destroy is exactly the argument that creates a replacement resource before destroying the one it replaces, avoiding a gap. prevent_destroy instead rejects a destroy plan outright; it blocks removal rather than sequencing a replacement. ignore_changes tells Terraform to stop tracking changes to specific attributes; it has nothing to do with replacement ordering. count only controls how many separate instances of a resource exist -- setting it to 2 creates a second, independent instance rather than sequencing the replacement of the one target group already in use.",
+  "rationale": "`create_before_destroy` is exactly the argument that creates a replacement resource before destroying the one it replaces, avoiding a gap. `prevent_destroy` instead rejects a destroy plan outright; it blocks removal rather than sequencing a replacement. `replace_triggered_by` forces a replacement whenever the referenced resource changes; it doesn't control which order create and destroy happen in for this resource's own replacement. `ignore_changes = all` stops Terraform from planning updates to any attribute; it has nothing to do with replacement ordering either.",
   "citationIds": [
-    "cite-tf-g4-resource"
+    "cite-tf-g4-resource",
+    "cite-tf-g4-lifecycle"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

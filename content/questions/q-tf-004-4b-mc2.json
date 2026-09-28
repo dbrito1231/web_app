@@ -10,11 +10,11 @@
   "choices": [
     {
       "id": "a",
-      "text": "Terraform infers that the instance profile is created before the instance, based on the instance profile depending on the instance's IP address"
+      "text": "Terraform infers no ordering between the two resources, because a `name` value is plain data with no dependency implication"
     },
     {
       "id": "b",
-      "text": "Terraform infers that the instance is created before the instance profile, treating the reference as pointing to whichever object is destroyed first"
+      "text": "Terraform infers that the instance is created before the instance profile, because the resource holding the reference is processed first"
     },
     {
       "id": "c",
@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "An attribute reference lets Terraform infer that the resource being read -- here the instance profile -- is created first, purely from the instance's argument reading its exported attribute; no separate reasoning about the profile's own dependencies is needed. Inventing a dependency running the wrong way, from the profile onto the instance's IP address, assumes something nothing in this configuration expresses. Claiming the instance is created first reverses the actual direction: the resource containing the reference (the instance) waits on the resource being referenced (the profile), not the other way around. And the attribute reference alone already establishes the order, so nothing here needs an explicit depends_on added on top of it.",
+  "rationale": "An attribute reference lets Terraform infer that the resource being read -- here the instance profile -- is created first, purely from the instance's argument reading its exported attribute; no separate reasoning about the profile's own dependencies is needed. Claiming there is no ordering at all treats a `name` value as inert data, but Terraform infers a dependency from any attribute reference, name values included. Claiming the resource holding the reference is processed first gets the direction backwards -- the resource being referenced is what completes first, not the resource that contains the reference to it. And the attribute reference alone already establishes the order, so nothing here needs an explicit `depends_on` added on top of it.",
   "citationIds": [
     "cite-tf-g4-depends-on",
     "cite-tf-g4-resource"

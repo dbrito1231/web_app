@@ -33,7 +33,7 @@
     "a",
     "e"
   ],
-  "rationale": "c is wrong; a parent module can only reach a child's output blocks, never its locals directly. d is wrong; a locals block computes its value from an expression inside the module, it does not accept an externally supplied value the way a variable does. e is wrong; there is no automatic mirroring between a local and an output of the same name -- an output only exposes what its own value argument computes.",
+  "rationale": "A parent module can only reach a child's output blocks, never its locals directly. A locals block computes its value from an expression inside the module; it does not accept an externally supplied value the way a variable does. And there is no automatic mirroring between a local and an output of the same name -- an output only exposes what its own value argument computes.",
   "citationIds": [
     "cite-tf-g4-locals",
     "cite-tf-g4-outputs"

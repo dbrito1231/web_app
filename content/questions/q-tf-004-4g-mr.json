@@ -33,7 +33,7 @@
     "c",
     "d"
   ],
-  "rationale": "c reverses the real order; Terraform evaluates preconditions after generating a plan but before creating the object, and postconditions only afterward. d is wrong; self inside a precondition would refer to an object that doesn't exist yet, since preconditions run before creation -- self is a postcondition tool. e is wrong; check blocks run at the end of a plan or apply operation, not before a plan exists.",
+  "rationale": "Reversing the order -- claiming postconditions run before preconditions -- misstates the actual sequence: Terraform evaluates preconditions after generating a plan but before creating the object, and postconditions only afterward. Claiming a precondition can reference `self` is wrong, since `self` refers to an object that doesn't exist yet at precondition time -- `self` is a postcondition tool. And `check` blocks run at the end of a plan or apply operation, not before a plan exists.",
   "citationIds": [
     "cite-tf-g4-validate",
     "cite-tf-g4-conditionals"

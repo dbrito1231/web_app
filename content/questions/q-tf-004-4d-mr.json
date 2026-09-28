@@ -22,7 +22,7 @@
     },
     {
       "id": "d",
-      "text": "A list and a tuple behave differently in every situation, so the two terms can never be used interchangeably in Terraform's own documentation"
+      "text": "`for_each` accepts a plain `list` value directly, the same way it accepts a `map` or a `set`, without needing any conversion"
     },
     {
       "id": "e",
@@ -33,9 +33,10 @@
     "c",
     "e"
   ],
-  "rationale": "c is wrong; automatic conversion happens for most arguments but never for the equality operator, where a number and the string of that number are not treated as equal. d is wrong; map keys must be strings regardless of how consistent the key types otherwise look -- a number or boolean key isn't valid. e is wrong; Terraform's own documentation treats list and tuple as interchangeable terms whenever the distinction between them doesn't matter for the point being made.",
+  "rationale": "Automatic type conversion happens for most arguments but never for the equality operator, where a number and the string of that number are not treated as equal. Map keys must be strings regardless of how consistent the key types otherwise look -- a number or boolean key isn't valid. And `for_each` needs a map or a set specifically; passing a plain list directly doesn't work without first converting it, unlike `count`, which takes a plain number.",
   "citationIds": [
-    "cite-tf-g4-types"
+    "cite-tf-g4-types",
+    "cite-tf-g4-for-each"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

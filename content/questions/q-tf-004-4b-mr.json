@@ -33,7 +33,7 @@
     "b",
     "d"
   ],
-  "rationale": "c is wrong because layering a redundant depends_on onto a pair that already has an attribute reference is discouraged, not harmless -- it makes Terraform treat more of the dependency's future values as unknown than the attribute reference alone would. d is wrong because depends_on takes a literal list of resource or module addresses, never an arbitrary computed expression. e is wrong because module blocks can declare depends_on just as resource blocks can.",
+  "rationale": "Adding a redundant `depends_on` to a pair that already has an attribute reference is discouraged, not harmless -- it makes Terraform treat more of the dependency's future values as unknown than the attribute reference alone would. `depends_on` takes a literal list of resource or module addresses, never an arbitrary computed expression. And module blocks can declare `depends_on` just as resource blocks can.",
   "citationIds": [
     "cite-tf-g4-depends-on"
   ],

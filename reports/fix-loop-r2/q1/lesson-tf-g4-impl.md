@@ -136,3 +136,93 @@ None (this lesson has no AWS-service content; the AWS references are incidental 
 - `content_lint.py`: PASS.
 - `q1_batch_check.py tf-g4`: lesson-only lines PASS — `drillIds match questions (missing [], extra [])`, `exam tips 8 for 8 objectives`. Question-line FAILs (stem pastes objective text, no citationIds, placeholder stems, MR "(Select N.)" missing, longest-is-key, duplicate 6-word openings) are all against the pre-existing 24 placeholder question files and are expected until the questions step, per this task's scope.
 - `claim_prose_check.py tf-g4`: run below.
+
+## Round 2 fix pass
+
+Applied all seven `## Lesson edits` items from `questions-tf-g4-fixspec.md` (L1-L7). All doc pages
+re-fetched this turn with `curl -sL` piped through `fixg4_strip.py` (a small HTML-to-text stripper
+written this turn in the scratchpad), never WebFetch, per RULES.md.
+
+- **L1 - 4a doubled "but".** Changed "Terraform normally reads a data source during planning, but
+  \"Terraform attempts...,\" but \"it may defer...\"" to "...during planning: \"Terraform
+  attempts...,\" but \"it may defer...\"" -- drops the first "but", keeps both quotes intact.
+- **L2 - 4a refresh-on-each-run sentence.** Added, in the same timing paragraph: "Outside of that
+  special case, Terraform re-reads a data source on every ordinary run: 'By default, Terraform
+  refreshes prior to creating a plan.'" Re-fetched `language/data-sources` this turn; the sentence
+  sits in a paragraph headed "References to non-computed values," confirming it is about data
+  source refresh specifically, not state/resources generally: "...Terraform reads the data source
+  and updates its state during Terraform's refresh phase. By default, Terraform refreshes prior to
+  creating a plan." New claim row (84) below. This also makes the fact `q-tf-004-4a-mr`'s new key
+  and `q-tf-004-4a-mc2`'s existing rationale rely on actually taught.
+- **L3 - 4c `TF_VAR_` prefix.** Added one sentence after the no-default/prompt sentence: "Terraform
+  also reads a variable's value from an environment variable, but only when the name carries the
+  `TF_VAR_` prefix, for example `TF_VAR_subnet_id`: 'The environment variables must be in the
+  format TF_VAR_name and this will be checked last for a value.'" Re-fetched
+  `cli/config/environment-variables` this turn; quote is 19 words, copy-pasted verbatim (case
+  preserved: "TF_VAR_name" is the doc's own placeholder spelling). New citation file
+  `cite-tf-g4-env-vars.json` created (same schema as other `cite-tf-g4-*` files) and added to the
+  lesson's `citationIds`. New claim row (85).
+- **L4 - 4f `ignore_changes`/`replace_triggered_by`.** Added one paragraph after the existing
+  lifecycle-literal-only sentence, stating that `ignore_changes` stops Terraform from planning
+  updates to the attributes listed and accepts the bare `all` keyword to ignore every attribute,
+  and that `replace_triggered_by` forces a full replacement when a referenced resource or attribute
+  changes rather than controlling create/destroy order. Both quotes re-fetched this turn from
+  `language/meta-arguments/lifecycle` -- the `all`-keyword wording only exists on that page, not on
+  `language/block/resource` (which states `ignore_changes` more tersely, without the `all` keyword
+  detail), so a new citation file `cite-tf-g4-lifecycle.json` was created and added to the lesson's
+  `citationIds`, rather than folding this into `cite-tf-g4-resource`. New claim rows (86, 87).
+- **L5 - 4g count fix.** "Three condition mechanisms check different things..." changed to "Four
+  condition mechanisms check different things..." Now consistent with the later "the fourth
+  mechanism, the newest of the four."
+- **L6 - 4h ephemeral-sources miscount.** Replaced "There are three ways to get one" (which listed
+  the `ephemeral` argument, the `ephemeral` block, and a write-only argument as three sources) with
+  "There are two ways to originate one" (the `ephemeral` argument or the `ephemeral` block), plus a
+  separate sentence naming a write-only argument as the channel that delivers an already-ephemeral
+  value into an ordinary managed resource, not a third source. Re-read the very next sentence
+  ("Ephemeral values come with a real restriction on where they can be used...") and the following
+  paragraph's "A write-only argument is how an ephemeral value reaches an ordinary managed
+  resource's own configuration" -- both now agree with the corrected count instead of contradicting
+  it.
+- **L7 - 4h wording fix.** "in the writer's own words" changed to "in the documentation's own
+  words" (the text that follows is a verbatim HashiCorp quote, not the lesson author's own prose).
+
+New claim-table rows for the round-2 lesson fixes:
+
+| # | Section | Claim | Doc URL | Quote (<=20 words) |
+|---|---|---|---|---|
+| 84 | 4a | By default, Terraform refreshes a data source prior to creating a plan | https://developer.hashicorp.com/terraform/language/data-sources | "By default, Terraform refreshes prior to creating a plan." |
+| 85 | 4c | Terraform only reads an environment variable for a variable's value when it carries the TF_VAR_ prefix | https://developer.hashicorp.com/terraform/cli/config/environment-variables | "The environment variables must be in the format TF_VAR_name and this will be checked last for a value." |
+| 86 | 4f | ignore_changes accepts the bare `all` keyword to ignore every resource attribute | https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle | "Instead of a list of items, you can use the `all` keyword to instruct Terraform to ignore all attributes." |
+| 87 | 4f | replace_triggered_by forces a replacement when a referenced resource or attribute changes | https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle | "Terraform replaces the resource when any of the referenced resources or specified attributes change." |
+| 88 | 4h | (re-verified for the question fix, not added to lesson prose) nonsensitive makes no changes to a value that isn't marked sensitive | https://developer.hashicorp.com/terraform/language/functions/nonsensitive | "nonsensitive will make no changes to values that aren't marked as sensitive, even though such a call may be redundant" |
+
+Row 88 backs a *rejected* lesson addition: AWS-Qg4-005/TEACHER-Qg4-003 found the current
+`nonsensitive` docs describe a silent no-op on an already-non-sensitive value, not an error (the
+page's own worked example below that sentence is stale and still shows an error, which is an
+inconsistency in HashiCorp's current page, not a version-gated behavior to teach). Per the fix
+spec's explicit instruction, this claim was **not** added to the lesson -- it only justifies why
+`q-tf-004-4h-mr` choice c (Q6) was replaced rather than kept.
+
+Self-consistency re-read (RULES.md "After applying a fix" #2): re-read 4a, 4f, 4g, and 4h in full
+after editing, each in isolation against its own claim rows. 4a's "re-reads on every ordinary run"
+sentence sits in a "specifically when... otherwise" contrast with the existing defer-to-apply
+sentence and does not overstate the source (the source says "by default," and the lesson keeps
+that qualifier via "Outside of that special case"). 4f's new paragraph states `ignore_changes` and
+`replace_triggered_by` as parallel, separate mechanisms and does not claim either one controls
+create/destroy ordering -- matching the doc text exactly. 4g's "Four condition mechanisms" reads
+correctly against the immediately following per-mechanism list (variable `validation`,
+`precondition`/`postcondition`, `check`) and the later "fourth mechanism" callback. 4h's two-source
+rewrite does not claim a write-only argument never appears in a `variable`/`output` context -- it
+only demotes it from "source" to "channel," which is exactly the distinction LD-Lg4-010 and
+AWS-Lg4-010's own reading of the HashiCorp page (itself internally inconsistent, saying "four" and
+listing three) asked for.
+
+## Round 2 checks (whole file, not diff)
+
+- `content_lint.py`: PASS.
+- `q1_batch_check.py tf-g4`: PASS -- lesson lines unaffected by round 2 (single-asterisk spans 0,
+  tables/numbered lines 0, citations unresolved [], exam tips 8/8).
+- `claim_prose_check.py tf-g4`: PASS -- "9 distinct numbers in lesson prose... every claim-table
+  number appears in the lesson prose" (unchanged from round 1; no new bare numbers were introduced
+  by the round-2 lesson prose, since `ignore_changes`/`TF_VAR_`/refresh text carry no new numeric
+  literals beyond the version floors already checked).

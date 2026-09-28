@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Write-only arguments need Terraform 1.11 or later, and 1.9 doesn't meet that floor, so this configuration would not work as described on that version. b names a real version floor, but it's the one for check blocks, not write-only arguments. c is wrong because a minimum version does exist. d is wrong; sensitive and write-only are unrelated mechanisms, and marking a value sensitive doesn't unlock or enable write-only argument support.",
+  "rationale": "Claiming write-only arguments need 1.5, the same floor as `check` blocks, names a real version floor but attaches it to the wrong feature -- 1.5 is `check` blocks' floor, not write-only arguments'. Claiming there is no minimum version at all is wrong, since a minimum version (1.11) does exist. And `sensitive` and write-only are unrelated mechanisms; marking a value `sensitive` doesn't unlock or enable write-only argument support.",
   "citationIds": [
     "cite-tf-g4-write-only",
     "cite-tf-g4-validate"

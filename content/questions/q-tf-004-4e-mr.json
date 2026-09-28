@@ -33,7 +33,7 @@
     "b",
     "c"
   ],
-  "rationale": "c is wrong; lookup accepts an optional default value and returns that instead of erroring when the key is missing. d is wrong; a for expression only ever produces a value, not a configuration block, and generating repeated nested blocks is what dynamic blocks are for. e is wrong; merge accepts maps with completely different keys and combines them all, it doesn't require the inputs to already match.",
+  "rationale": "`lookup` accepts an optional default value and returns that instead of erroring when the key is missing. A `for` expression only ever produces a value, not a configuration block; generating repeated nested blocks is what `dynamic` blocks are for. And `merge` accepts maps with completely different keys and combines them all -- it doesn't require the inputs to already match.",
   "citationIds": [
     "cite-tf-g4-for-expr",
     "cite-tf-g4-merge",

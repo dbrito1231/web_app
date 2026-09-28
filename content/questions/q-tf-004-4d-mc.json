@@ -22,13 +22,13 @@
     },
     {
       "id": "d",
-      "text": "Sort the set alphabetically first; it becomes indexable"
+      "text": "Reference the set element by a string key, such as `var.names[\"second\"]`"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "Sets are unordered collections with no index of their own; converting to a list with tolist() is exactly how Terraform's own documentation says to access an element by position. Indexing a set directly isn't supported, because Terraform doesn't assign set members a stable position the way it does list elements. Converting to a map doesn't help either, since maps are addressed by a string key, not a numeric position. Sorting doesn't change the type's own capabilities -- a set is still not indexable, sorted or not.",
+  "rationale": "Sets are unordered collections with no index of their own; converting to a list with `tolist()` is exactly how Terraform's own documentation says to access an element by position. Indexing a set directly isn't supported, because Terraform doesn't assign set members a stable position the way it does list elements. Converting to a map doesn't help either, since maps are addressed by a string key, not a numeric position. A set has no named keys the way a map does, so there is nothing to reference by string key -- 'named labels' is what distinguishes a map/object, not a set.",
   "citationIds": [
     "cite-tf-g4-types"
   ],

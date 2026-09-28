@@ -33,7 +33,7 @@
     "a",
     "d"
   ],
-  "rationale": "c is wrong and directly contradicts a; prevent_destroy has a documented gap where removing the resource's own configuration block bypasses it. d is wrong; lifecycle arguments only accept literal values, not a variable-derived expression, unlike count. e is wrong; a resource has a single lifecycle block, not several merged together.",
+  "rationale": "Claiming `prevent_destroy` blocks a destroy under every circumstance, including when the resource's own block is deleted, directly contradicts its documented gap: removing the resource's own configuration block bypasses it. `lifecycle` arguments only accept literal values, not a variable-derived expression, unlike `count` -- so `create_before_destroy` cannot be set to a computed expression. And a resource has a single `lifecycle` block, not several merged together.",
   "citationIds": [
     "cite-tf-g4-resource"
   ],

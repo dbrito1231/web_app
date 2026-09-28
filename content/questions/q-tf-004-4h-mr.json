@@ -18,11 +18,11 @@
     },
     {
       "id": "c",
-      "text": "Calling `nonsensitive()` on a value that was never marked sensitive quietly returns that same value with no warning"
+      "text": "`nonsensitive()` converts the value to a different type, the same way `tostring()` or `tonumber()` would"
     },
     {
       "id": "d",
-      "text": "Vault-issued credentials are stored directly as Terraform language keywords, separate from the `sensitive`, `ephemeral`, and write-only mechanisms"
+      "text": "Using the Vault provider's data source by itself keeps the issued credentials out of state, with no further configuration needed"
     },
     {
       "id": "e",
@@ -33,7 +33,7 @@
     "b",
     "e"
   ],
-  "rationale": "c is the dangerous misconception this objective exists to prevent -- nonsensitive only lifts the CLI/UI redaction; it does nothing to keep a value out of state, unlike ephemeral. d is wrong; calling nonsensitive on an already non-sensitive value is documented as an error, not a quiet no-op. e is wrong; Vault is an external secrets engine the provider talks to, not a Terraform-language keyword alongside sensitive, ephemeral, or write-only arguments.",
+  "rationale": "Claiming `nonsensitive()` also removes a value from the state file is the dangerous misconception this objective exists to prevent -- it only lifts the CLI/UI redaction and does nothing to keep a value out of state, unlike `ephemeral`. Claiming it converts the value to a different type confuses a marking change with a type conversion like `tostring()` or `tonumber()` -- `nonsensitive()` returns the same value, same type, with only the sensitive marking removed. Claiming the Vault provider keeps issued credentials out of state by itself is wrong: Vault is a secrets engine the provider talks to, not a `sensitive`/`ephemeral`/write-only keyword in the Terraform language, so reaching actual exclusion from state still requires wiring the credential through an ephemeral or write-only mechanism, not simply using the Vault provider.",
   "citationIds": [
     "cite-tf-g4-nonsensitive",
     "cite-tf-g4-vault-tutorial"

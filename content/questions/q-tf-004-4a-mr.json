@@ -5,12 +5,12 @@
   "objectiveIds": [
     "tf.004.4a"
   ],
-  "stem": "(Select TWO.) Dunmore Analytics' newest engineer is explaining a teammate's theories about what a `data` block can and cannot do, after one block's value showed as unresolved until the apply step. Which two of the following statements are correct?",
+  "stem": "(Select TWO.) Dunmore Analytics' newest engineer is walking through two claims a teammate made about how a `data` block and a `terraform_data` resource actually behave day to day. Which two of the following statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "A data block can only perform read operations; it never creates or modifies a resource"
+      "text": "A `terraform_data` resource is a `resource` block that stores a value under the managed-resource lifecycle without creating any real infrastructure"
     },
     {
       "id": "b",
@@ -18,7 +18,7 @@
     },
     {
       "id": "c",
-      "text": "Terraform may defer a data block's read until the apply phase when its arguments depend on a resource being changed in the same plan"
+      "text": "Terraform re-reads a data source's value on every ordinary run, rather than caching it permanently after the first read"
     },
     {
       "id": "d",
@@ -26,16 +26,17 @@
     },
     {
       "id": "e",
-      "text": "Once a data block is first read, its value is locked and can never be refreshed on a later run"
+      "text": "A `terraform_data` resource can only be declared alongside another managed resource of the same type; it cannot stand on its own in a configuration"
     }
   ],
   "correctAnswerIds": [
     "a",
     "c"
   ],
-  "rationale": "c misstates data blocks as managing a stateful placeholder object the way a resource does; a data block's presence in state records only what it read. d is wrong because data blocks never appear as add, change, or destroy -- at most as read. e is wrong because Terraform re-reads a data source on each run in the ordinary case; there is no permanent lock after the first read.",
+  "rationale": "A `terraform_data` resource is a `resource` block that stores a value under the managed-resource lifecycle without creating real infrastructure -- exactly the exception this objective tests. Terraform re-reads an ordinary data source's value on every run rather than caching it once, so nothing about a data block's value is permanently locked after its first read. A data block's presence in state only records what it read; it is never a lasting placeholder object the way a resource's state entry is. A data block also never appears in plan output as an add, change, or destroy action, only as a read. And a `terraform_data` resource needs no other managed resource to attach to -- it exists precisely for cases with no other logical resource to hold the value.",
   "citationIds": [
-    "cite-tf-g4-data-sources"
+    "cite-tf-g4-data-sources",
+    "cite-tf-g4-terraform-data"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

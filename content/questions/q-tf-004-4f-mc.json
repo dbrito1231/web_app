@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "depends_on = [B] inside A means A depends on B -- B is created first -- and it says nothing about anything that might depend on A elsewhere in the configuration. b reverses the direction entirely. c overreaches: nothing about A's own depends_on argument reaches out to control the timing of a third resource that depends on A. d misstates the mechanism: depends_on completes all operations, including reads, on the named dependency before touching the dependent resource -- it isn't split into separate read and write timing.",
+  "rationale": "Claiming B depends on A reverses the direction entirely: `depends_on = [B]` inside A means A depends on B, not the other way around. Claiming this also delays anything that depends on A overreaches -- nothing about A's own `depends_on` argument reaches out to control the timing of a third resource that depends on A. And `depends_on` completes all operations, including reads, on the named dependency before touching the dependent resource; it isn't split into separate read and write timing.",
   "citationIds": [
     "cite-tf-g4-depends-on"
   ],
