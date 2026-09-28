@@ -31,7 +31,13 @@ Everything is committed at `db11570` and all five scripts PASS. Round-1 reports 
 - **One observation to put to the reviewers, not yet raised:** after the key-length rebalance, 94% of MC keys sit at length rank 2 or 3 of 4, against 50% by chance. Both caps pass (6% longest, 0% shortest) and the fix was made honestly by tightening verbose distractors, but "eliminate the longest and the shortest" would beat chance. Ask whether that is a real tell or over-fitting a metric.
 - The 4h questions carry real-world stakes (what `sensitive` does and does not protect). Weight those.
 
-## Decisions waiting on the user
+## Decisions taken by the user on 2026-09-28
+
+1. **Shortest-is-key: reopen `4-3`, `4-1` and `1-3`** (~50 MC questions) and rebalance them through the full review pipeline. `3-1` and `3-5` stay closed with their figures recorded. Apply the 35% shortest cap to all new work.
+2. **D6 / ISS-080: do it next sitting**, before g5/g6.
+3. **Date literal: one sweep at the end.** Keep `2026-09-26` until tf-g8 closes, then set one final date across the corpus in a single commit and update `q1_batch_check` to match.
+
+Background to those decisions follows.
 
 1. **shortest-is-key in five closed tasks.** `q1_batch_check` now checks both length tells. Six tasks exceed the 35% cap on *shortest*: `4-3` 57% (8/14), `3-1` 60% (only 5 MC, noisy), `4-1` 48%, `1-3` 45%, `3-5` 36%, and `tf-g4` which was fixed in flight. On task 4.3 a reader who always picks the shortest option scores 57% against 25% by chance. This is **not** a metric artifact — it is a real tell in shipped content, caused by a rule that capped only one direction. Options: fix forward from g5 and record the closed figures, or reopen `4-3`, `4-1` and `1-3` (~50 MC questions). Lead Dev leans to fixing forward; every one of those tasks passed a blind Student run.
 2. **`D6 / ISS-080`** — dated pricing snapshot and templated design exercises. The user chose "fix" on 2026-09-25 and it was never started. This is accepted work sitting idle, not a stale finding.
