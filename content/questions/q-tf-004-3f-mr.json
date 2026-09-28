@@ -5,35 +5,35 @@
   "objectiveIds": [
     "tf.004.3f"
   ],
-  "stem": "(Select TWO.) Two engineers at Corvid Analytics each remove the same unwanted database resource: one runs `terraform destroy -target aws_db_instance.old`, the other deletes the resource's block from the configuration and runs `terraform apply`. Which two statements accurately compare their approaches?",
+  "stem": "(Select TWO.) At Corvid Analytics, an `aws_instance` resource's own configuration references a separate security group resource, so the instance depends on that security group. One engineer runs `terraform destroy -target aws_instance.example`; another instead deletes the instance's resource block from the configuration and runs `terraform apply`, leaving the security group's block untouched. Which two statements accurately compare what happens?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Both routes end with that one resource destroyed and every other managed resource left untouched"
+      "text": "destroy -target on the instance also destroys the security group it depends on, in the same run"
     },
     {
       "id": "b",
-      "text": "The first engineer's approach also removes the resource's block from the configuration file"
+      "text": "Deleting only the instance's block and applying leaves the security group resource exactly as it was"
     },
     {
       "id": "c",
-      "text": "The second engineer's approach destroys every resource the configuration manages, not only the one removed"
+      "text": "Both routes end with only the instance destroyed and the security group left untouched, no matter which target was named"
     },
     {
       "id": "d",
-      "text": "Terraform refuses to destroy a single named resource unless its block has already been removed from configuration"
+      "text": "This targeted destroy only ever removes the exact resource named on the command line, never anything it depends on"
     },
     {
       "id": "e",
-      "text": "Only the second engineer's configuration file stops describing the destroyed resource; the first engineer's file still contains its block"
+      "text": "Deleting the instance's block also removes the security group's block from the configuration file"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "e"
+    "b"
   ],
-  "rationale": "Both routes remove only the one named resource and leave everything else the configuration manages untouched, and only editing the configuration actually changes what the file describes; the -target route destroys the object without touching the file at all. -target does not rewrite the configuration file, so the first engineer's file is unchanged. The second engineer's edited configuration still describes every other resource, so apply does not touch them. destroy -target does not require the block to be removed first; naming the resource on the command line is sufficient.",
+  "rationale": "destroy -target extends to whatever the targeted resource depends on, so the security group is destroyed along with the instance in one run; deleting only the instance's block and applying does not touch the security group at all, since plan only proposes destroying what the edited configuration no longer describes. The two routes therefore do not end with the same result here, because the instance has a dependency. destroy -target is not limited to the exact named resource alone. Deleting a resource's block does not remove any other block from the configuration file.",
   "citationIds": [
     "cite-tf-g3-destroy"
   ],

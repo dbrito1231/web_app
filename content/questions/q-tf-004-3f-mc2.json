@@ -5,7 +5,7 @@
   "objectiveIds": [
     "tf.004.3f"
   ],
-  "stem": "An engineer at Ledger Analytics needs one specific database resource, and whatever depends on it, removed right now, with no edit to any configuration file. Which approach fits that constraint?",
+  "stem": "An engineer at Ledger Analytics needs one specific database resource removed right now, with no edit to any configuration file, and is fine with anything that database resource itself depends on being removed too. Which approach fits that constraint?",
   "selectCount": 1,
   "choices": [
     {
@@ -28,7 +28,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "destroy -target removes a named resource and its dependents without touching the configuration file, which is exactly what the no-edit constraint calls for. Deleting the resource's block requires editing the configuration first, which the requirement rules out. plan -target only previews the effect on that resource; it does not remove anything. init -upgrade only affects provider and module installation and does not remove any resource.",
+  "rationale": "destroy -target removes the named resource, and anything it depends on, without touching the configuration file, which is exactly what the no-edit constraint calls for. Deleting the resource's block requires editing the configuration first, which the requirement rules out. plan -target only previews the effect on that resource; it does not remove anything. init -upgrade only affects provider and module installation and does not remove any resource.",
   "citationIds": [
     "cite-tf-g3-destroy"
   ],

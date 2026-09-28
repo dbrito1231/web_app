@@ -5,30 +5,30 @@
   "objectiveIds": [
     "tf.004.3g"
   ],
-  "stem": "A CI job at Wrenfield Software should fail the build whenever a file is not canonically formatted, but it must never rewrite a contributor's files. Which command fits?",
+  "stem": "A CI job at Wrenfield Software runs `terraform fmt -check` against a file that is not canonically formatted. What happens?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "run with no extra flag, letting it rewrite the file directly"
+      "text": "The file is rewritten to canonical style, and the command also reports success"
     },
     {
       "id": "b",
-      "text": "-check"
+      "text": "The file is left exactly as it is, and the command's exit status is non-zero with the file's name listed"
     },
     {
       "id": "c",
-      "text": "run terraform validate instead"
+      "text": "The command reports exit status 0, the same as if the file had been properly formatted"
     },
     {
       "id": "d",
-      "text": "-recursive"
+      "text": "The file is rewritten to canonical style, but only when it sits directly in the current directory rather than a subdirectory"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "-check reports formatting status through its exit code without rewriting any file, which is exactly what a build gate that must not modify files needs. Running with no flag rewrites files directly, the opposite of the requirement. validate checks correctness rather than style and would not catch a formatting mismatch at all. -recursive changes the scope of directories covered, not whether files get rewritten.",
+  "rationale": "-check leaves the file untouched and reports a non-zero exit status along with the improperly formatted file's name, which is exactly what a build gate needs. It does not rewrite the file at all, so reporting success after a rewrite misstates what happened. The exit status for an improperly formatted file is non-zero, not the success code. -check does not rewrite files regardless of which directory they sit in; only a plain run without -check does that.",
   "citationIds": [
     "cite-tf-g3-fmt"
   ],

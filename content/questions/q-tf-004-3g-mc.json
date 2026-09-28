@@ -18,7 +18,7 @@
     },
     {
       "id": "c",
-      "text": "leave off any flag, which only reaches the current directory"
+      "text": "run the command with no additional flag"
     },
     {
       "id": "d",

@@ -5,30 +5,30 @@
   "objectiveIds": [
     "tf.004.3d"
   ],
-  "stem": "A reviewer at Ashgrove Media wants a plan limited to one resource address and whatever depends on it, leaving the rest of a large configuration out of the preview. Which flag produces that?",
+  "stem": "A reviewer at Ashgrove Media runs `terraform plan -target aws_instance.example` against a configuration where that instance's own arguments reference a separate security group resource. What does the resulting plan actually cover?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "-refresh-only"
+      "text": "Only aws_instance.example itself, with the security group left out of the plan entirely"
     },
     {
       "id": "b",
-      "text": "-out"
+      "text": "Every resource in the configuration, the same as an untargeted plan would cover"
     },
     {
       "id": "c",
-      "text": "-destroy"
+      "text": "Nothing at all \u2014 this kind of single-resource target selection is only accepted by destroy, never by plan"
     },
     {
       "id": "d",
-      "text": "-target"
+      "text": "aws_instance.example and the security group it references"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "-target focuses planning on resource instances matching a given address and whatever depends on them, which is exactly a narrowed preview. -refresh-only reconciles state rather than narrowing scope. -out only saves a plan to a file; it does not change which resources are considered. -destroy previews a full teardown of everything, the opposite of narrowing scope.",
+  "rationale": "-target extends the selection to include whatever the targeted resource itself depends on, so the security group the instance references is pulled into the same plan. Leaving the security group out entirely ignores that extension. -target narrows the plan; it does not fall back to covering everything. -target is accepted by plan as well as by apply and destroy, so refusing to run is not what happens.",
   "citationIds": [
     "cite-tf-g3-plan"
   ],
