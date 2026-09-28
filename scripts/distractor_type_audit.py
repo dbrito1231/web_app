@@ -46,6 +46,10 @@ TERMS = [
     "CloudFormation", "HCP Terraform", "required_providers", "provider block",
     "dependency lock file", "resource graph", "terraform.tfstate", "random_pet",
     "random provider",
+    # Terraform core workflow commands/flags (tf-g3)
+    "-upgrade", "-auto-approve", "-out", "-target", "-refresh-only", "-destroy",
+    "-check", "-recursive", "-backend=false", "terraform init", "terraform validate",
+    "terraform plan", "terraform apply", "terraform destroy", "terraform fmt",
 ]
 
 
