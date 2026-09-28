@@ -2,35 +2,36 @@
   "id": "q-tf-004-3e-mc",
   "type": "mc",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3e"
   ],
-  "stem": "The workload needs this outcome: Apply changes to infrastructure with Terraform. Which action should you take?",
+  "stem": "A pipeline at Palisade Studios must apply a configuration with no person present to type a confirmation. Which flag removes the interactive prompt?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Apply changes to infrastructure with Terraform"
+      "text": "-refresh-only"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "-target <address>"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "-auto-approve"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "-check"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "-auto-approve instructs the tool to carry out the plan without asking for confirmation, which is exactly what an unattended pipeline needs. -refresh-only only reconciles state and is a plan mode, not a way to skip a prompt. -target narrows scope to one address but does not remove the confirmation step. -check belongs to formatting and reports formatting status; it has no effect on the confirmation prompt.",
+  "citationIds": [
+    "cite-tf-g3-apply"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

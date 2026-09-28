@@ -2,35 +2,36 @@
   "id": "q-tf-004-3g-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3g"
   ],
-  "stem": "Quick check \u2014 Apply formatting and style adjustments to a configuration. Which practice is correct?",
+  "stem": "A CI job at Wrenfield Software should fail the build whenever a file is not canonically formatted, but it must never rewrite a contributor's files. Which command fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Apply formatting and style adjustments to a configuration"
+      "text": "run with no extra flag, letting it rewrite the file directly"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "-check"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "run terraform validate instead"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "-recursive"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Apply formatting and style adjustments to a configuration'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "-check reports formatting status through its exit code without rewriting any file, which is exactly what a build gate that must not modify files needs. Running with no flag rewrites files directly, the opposite of the requirement. validate checks correctness rather than style and would not catch a formatting mismatch at all. -recursive changes the scope of directories covered, not whether files get rewritten.",
+  "citationIds": [
+    "cite-tf-g3-fmt"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

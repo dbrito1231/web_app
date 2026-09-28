@@ -2,35 +2,36 @@
   "id": "q-tf-004-3a-mc",
   "type": "mc",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3a"
   ],
-  "stem": "An exam scenario centers on: Describe the Terraform workflow. Which action matches it?",
+  "stem": "Corrigan Robotics' lead engineer opens an editor and writes new `.tf` files describing a set of resources; nothing on the AWS account has changed yet. Which stage of the core workflow are they in?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Write"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Describe the Terraform workflow"
+      "text": "Apply"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Plan"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Initialize the working directory"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Authoring configuration in an editor, before anything is previewed or provisioned, is the write stage. Apply is the stage that actually changes real infrastructure. Plan only previews changes; nothing has been previewed yet here. Initializing the working directory prepares providers and a backend, which is a separate concern from authoring configuration.",
+  "citationIds": [
+    "cite-tf-g3-core-workflow"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

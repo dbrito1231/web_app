@@ -2,35 +2,36 @@
   "id": "q-tf-004-3e-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3e"
   ],
-  "stem": "Quick check \u2014 Apply changes to infrastructure with Terraform. Which practice is correct?",
+  "stem": "A teammate at Kestrel Freight already generated and reviewed a plan file with `terraform plan -out=infra.tfplan`. Someone else now runs `terraform apply infra.tfplan`. What happens?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform regenerates a fresh plan and still prompts for approval before doing anything"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform performs exactly the operations recorded in that saved plan, without regenerating it or prompting for confirmation"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Apply changes to infrastructure with Terraform"
+      "text": "Terraform refuses to run unless `-auto-approve` is also supplied alongside the plan file"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform treats the saved file as a suggestion and may skip actions that no longer seem necessary"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Apply changes to infrastructure with Terraform'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Applying a saved plan file performs the operations it already contains without recomputing anything or prompting for confirmation, because approval already happened when the file was reviewed. It does not regenerate a fresh plan or prompt again; that only happens without a saved file. `-auto-approve` is unrelated to applying a saved plan file, since no prompt occurs either way. Terraform does not selectively skip actions in a saved plan; it carries out exactly what the file recorded.",
+  "citationIds": [
+    "cite-tf-g3-apply"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

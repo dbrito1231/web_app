@@ -2,40 +2,41 @@
   "id": "q-tf-004-3b-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3b"
   ],
-  "stem": "Select TWO actions that support this requirement: Initialize a Terraform working directory",
+  "stem": "(Select TWO.) A platform engineer at Solace Freight runs `terraform init -upgrade` on a configuration with a committed dependency lock file, then notices a teammate's plain `terraform init` on the same commit produced a different provider version. Which two facts explain this?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`-upgrade` disregards the versions recorded in the dependency lock file"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "The dependency lock file constrains only how a later deployment step behaves, and has no effect on installing providers during init"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "`-upgrade` installs the newest available provider version that still satisfies the configured version constraints"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A plain re-run without `-upgrade` also disregards the dependency lock file every time"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "The dependency lock file is regenerated with a randomly chosen provider version on every re-run"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`-upgrade` disregards the lock file's recorded selections and installs the newest version that still satisfies the constraints, which is why the two teammates ended up with different versions. The lock file governs `init`'s own provider installation directly, not some later step. A plain re-run without `-upgrade` respects the lock file rather than disregarding it, which is the entire point of committing one. The lock file records a specific selection; it is not randomized on each run.",
+  "citationIds": [
+    "cite-tf-g3-init"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

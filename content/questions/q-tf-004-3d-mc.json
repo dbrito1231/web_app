@@ -2,35 +2,36 @@
   "id": "q-tf-004-3d-mc",
   "type": "mc",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3d"
   ],
-  "stem": "Pick the action that satisfies: Generate and review an execution plan for Terraform.",
+  "stem": "An engineer at Whitmore Energy manually adjusted an already-managed resource through the AWS console and now wants Terraform's own state updated to match, without changing any real infrastructure. Which plan mode accomplishes that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "-destroy"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "-out"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "-refresh-only"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Generate and review an execution plan for Terraform"
+      "text": "-target"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "-refresh-only mode updates Terraform's own state and output values to match changes made outside Terraform, without proposing any change to real infrastructure. -destroy previews tearing everything down, the opposite of the goal here. -out only saves a computed plan to a file; it does not change what the plan reconciles. -target only narrows which resources a plan covers; it does not change what kind of plan is produced.",
+  "citationIds": [
+    "cite-tf-g3-plan"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

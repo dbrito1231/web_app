@@ -2,40 +2,41 @@
   "id": "q-tf-004-3a-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3a"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe the Terraform workflow",
+  "stem": "(Select TWO.) Meridian Robotics looks at every infrastructure update in a pull request before merging it into the shared branch. Which two practices does Terraform's team workflow recommend around plan review?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Treat an approved pull request's plan as accurate no matter how long ago it was generated"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Review the plan's proposed actions during the pull request so teammates can catch mistakes before anything is merged"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Merge changes without any plan review, trusting the tool to catch mistakes automatically on its own"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Immediately before applying the merged branch, generate and review the plan again to account for any change to the branch or state file after the pull request was reviewed"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Have each engineer apply their own changes from their own laptop instead of through the shared, reviewed branch workflow"
     }
   ],
   "correctAnswerIds": [
-    "c",
+    "b",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Reviewing plan output in the pull request, and reviewing a fresh plan again right before the merged apply, are both part of the recommended team workflow. Treating an old plan as still accurate ignores that the branch or state can move after review. Skipping review and trusting the tool to catch mistakes abandons the review step entirely. Applying independently from individual laptops bypasses the shared, reviewed process.",
+  "citationIds": [
+    "cite-tf-g3-core-workflow"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

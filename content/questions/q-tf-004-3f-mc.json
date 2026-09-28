@@ -2,35 +2,36 @@
   "id": "q-tf-004-3f-mc",
   "type": "mc",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3f"
   ],
-  "stem": "You must choose one approach for: Destroy Terraform-managed infrastructure. Which action fits?",
+  "stem": "A team at Driftwood Retail is decommissioning an entire test environment and wants every resource the configuration manages removed, ending in an empty state. Which command fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "terraform apply -auto-approve"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "terraform init -backend=false"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Destroy Terraform-managed infrastructure"
+      "text": "terraform destroy"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "terraform fmt -recursive"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "destroy deprovisions every object the configuration manages and ends in an empty state, matching the requirement directly. apply -auto-approve only carries out whatever a normal plan currently proposes, which for an unchanged configuration proposes nothing to remove. init -backend=false only installs providers and initializes without a backend; it removes nothing. fmt -recursive only rewrites file style across directories and has no effect on infrastructure.",
+  "citationIds": [
+    "cite-tf-g3-destroy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

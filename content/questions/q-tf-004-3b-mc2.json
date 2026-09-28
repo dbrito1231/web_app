@@ -2,35 +2,36 @@
   "id": "q-tf-004-3b-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3b"
   ],
-  "stem": "Quick check \u2014 Initialize a Terraform working directory. Which practice is correct?",
+  "stem": "At Thistledown Freight, a teammate adds one brand-new `module` block to an already-initialized configuration and reruns `terraform init` with no extra flags; nothing else in the configuration changed. What happens to the modules that were already installed?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Initialize a Terraform working directory"
+      "text": "Terraform re-downloads every module's source code from the beginning"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform ignores the new module block entirely until `-upgrade` is passed"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform deletes and recreates the dependency lock file from nothing"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform leaves them exactly as they were and only retrieves the new module's source"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Initialize a Terraform working directory'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A plain re-run installs the sources for modules newly added to configuration but does not change modules already installed. Re-downloading everything contradicts that partial behavior. A plain re-run still picks up the new module without needing `-upgrade`; that flag governs providers moving to newer versions, not whether a new module is installed at all. The lock file is not wiped by a plain re-run.",
+  "citationIds": [
+    "cite-tf-g3-init"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -2,35 +2,36 @@
   "id": "q-tf-004-3c-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3c"
   ],
-  "stem": "Quick check \u2014 Validate a Terraform configuration. Which practice is correct?",
+  "stem": "At Vantage Biotech, `terraform validate` reports no problems, but `terraform plan` later fails because a referenced security group ID no longer exists in the AWS account. Why did validate not catch this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Validate a Terraform configuration"
+      "text": "validate checks only syntax, never the attribute names or value types inside a resource block"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "validate does not validate remote services, such as remote state or provider APIs, so it cannot know what only the real platform knows"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "validate needs to run again after every deployment to catch drift in the account"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "validate requires the same live AWS credentials as plan, so it should have flagged this"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Validate a Terraform configuration'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "validate is explicit that it does not check remote services such as provider APIs, so a security group that only the live account knows is missing cannot be caught by it. validate does check attribute names and value types, so that option misstates what it covers. Re-running validate after every deployment would not help, because validate still never contacts the remote account. validate needs plugins installed, not live credentials, which is exactly why it missed a fact only the live account holds.",
+  "citationIds": [
+    "cite-tf-g3-validate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -2,35 +2,36 @@
   "id": "q-tf-004-3c-mc",
   "type": "mc",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3c"
   ],
-  "stem": "Which action is the right fit for this requirement: Validate a Terraform configuration?",
+  "stem": "An engineer at Harrow Dynamics wants a fast, no-credentials check that a shared module has no misspelled attribute name before opening a pull request. Which command should they run?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "terraform validate"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "terraform fmt -recursive"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Validate a Terraform configuration"
+      "text": "terraform init -backend=false"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "terraform destroy"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "validate checks attribute names and value types against a provider's schema without needing live credentials. fmt only rewrites style across a directory tree and never inspects attribute names. init only installs providers and modules and initializes a backend; skipping the backend does not add any attribute checking. destroy deprovisions real infrastructure and has nothing to do with checking attribute names.",
+  "citationIds": [
+    "cite-tf-g3-validate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

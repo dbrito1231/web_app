@@ -2,40 +2,41 @@
   "id": "q-tf-004-3e-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3e"
   ],
-  "stem": "Select TWO actions that support this requirement: Apply changes to infrastructure with Terraform",
+  "stem": "(Select TWO.) An engineer at Foundry Metals runs `terraform apply -destroy` from a directory with no other flags supplied, to tear down a small test environment. Which two statements are accurate?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "On the version of Terraform in use here, `-destroy` can only be used to preview a plan, never to actually carry one out"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "This creates a plan to destroy every remote object the configuration manages, then carries it out like an ordinary apply"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`-destroy` skips the interactive confirmation prompt on its own, with no other flag involved"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "apply -destroy does nothing at all unless a specific resource address is separately supplied on the command line"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "With no `-auto-approve` supplied, Terraform still prompts for confirmation before performing the destroy"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "apply -destroy builds a plan to destroy every object the configuration manages and then executes it the way any apply does, and without -auto-approve the interactive prompt still applies before anything is destroyed. Current Terraform accepts -destroy on apply as well as plan, so it is not preview-only on this version. Skipping the prompt requires -auto-approve; -destroy by itself does not remove that step. -destroy with no other flag still targets every managed object, not nothing.",
+  "citationIds": [
+    "cite-tf-g3-apply"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

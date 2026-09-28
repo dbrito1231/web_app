@@ -2,40 +2,41 @@
   "id": "q-tf-004-3c-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3c"
   ],
-  "stem": "Select TWO actions that support this requirement: Validate a Terraform configuration",
+  "stem": "(Select TWO.) Cobalt Logistics wants to run `terraform validate` inside a CI job with no backend configured and no cloud credentials supplied. Which two statements describe what the command actually needs and does?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "validate needs a fully configured backend so it can check remote state consistency"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "validate requires the same provider credentials as a live deployment, to check attribute values"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "validate needs an initialized working directory with the referenced plugins and modules installed"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "validate cannot run at all until after the configuration has already been deployed once"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "validate runs without a working backend or live credentials"
     }
   ],
   "correctAnswerIds": [
-    "d",
+    "c",
     "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "validate needs plugins and modules installed so it can check attribute names and types, which is what an initialized directory provides; it does not need a working backend or live credentials to do that. Claiming it needs a full backend for remote state consistency contradicts its own stated scope. It does not require the same credentials as a live deployment, since it never contacts the remote account. It also does not require a prior deployment; it can run on a configuration that has never been applied.",
+  "citationIds": [
+    "cite-tf-g3-validate"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

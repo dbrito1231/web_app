@@ -2,35 +2,36 @@
   "id": "q-tf-004-3d-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3d"
   ],
-  "stem": "Quick check \u2014 Generate and review an execution plan for Terraform. Which practice is correct?",
+  "stem": "A reviewer at Ashgrove Media wants a plan limited to one resource address and whatever depends on it, leaving the rest of a large configuration out of the preview. Which flag produces that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "-refresh-only"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "-out"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "-destroy"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Generate and review an execution plan for Terraform"
+      "text": "-target"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Generate and review an execution plan for Terraform'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "-target focuses planning on resource instances matching a given address and whatever depends on them, which is exactly a narrowed preview. -refresh-only reconciles state rather than narrowing scope. -out only saves a plan to a file; it does not change which resources are considered. -destroy previews a full teardown of everything, the opposite of narrowing scope.",
+  "citationIds": [
+    "cite-tf-g3-plan"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

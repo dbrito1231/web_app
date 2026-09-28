@@ -2,35 +2,36 @@
   "id": "q-tf-004-3f-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3f"
   ],
-  "stem": "Quick check \u2014 Destroy Terraform-managed infrastructure. Which practice is correct?",
+  "stem": "An engineer at Ledger Analytics needs one specific database resource, and whatever depends on it, removed right now, with no edit to any configuration file. Which approach fits that constraint?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Delete the resource's block from the configuration and run terraform apply"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "terraform plan -target aws_db_instance.old"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Destroy Terraform-managed infrastructure"
+      "text": "terraform init -upgrade"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "terraform destroy -target aws_db_instance.old"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Destroy Terraform-managed infrastructure'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "destroy -target removes a named resource and its dependents without touching the configuration file, which is exactly what the no-edit constraint calls for. Deleting the resource's block requires editing the configuration first, which the requirement rules out. plan -target only previews the effect on that resource; it does not remove anything. init -upgrade only affects provider and module installation and does not remove any resource.",
+  "citationIds": [
+    "cite-tf-g3-destroy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

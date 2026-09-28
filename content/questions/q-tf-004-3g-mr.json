@@ -2,40 +2,41 @@
   "id": "q-tf-004-3g-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3g"
   ],
-  "stem": "Select TWO actions that support this requirement: Apply formatting and style adjustments to a configuration",
+  "stem": "(Select TWO.) A developer at Talbridge Systems argues that a file which passes terraform validate must already be canonically formatted, and that a canonically formatted file must be a valid configuration. Which two statements explain the flaw in that reasoning?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "validate rewrites a file's spacing and alignment as part of its checks"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "fmt reports a syntax error whenever it finds one while formatting a file"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "fmt and validate check unrelated properties, so passing one says nothing about the other"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "A file can be perfectly formatted and still fail validate, for example on a misspelled attribute name"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Passing validate guarantees the file is also canonically formatted, on the theory that both commands parse the same syntax tree"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "fmt and validate check unrelated properties, and a file can be perfectly formatted while still failing validate on something like a misspelled attribute name, which is exactly the flaw in the developer's reasoning. validate does not rewrite spacing or alignment; that is fmt's job, not validate's. fmt never reports a syntax or schema error; it only reformats. Passing validate says nothing about formatting, so the guarantee claimed here does not hold.",
+  "citationIds": [
+    "cite-tf-g3-fmt"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

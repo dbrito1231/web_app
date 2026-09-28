@@ -2,40 +2,41 @@
   "id": "q-tf-004-3d-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3d"
   ],
-  "stem": "Select TWO actions that support this requirement: Generate and review an execution plan for Terraform",
+  "stem": "(Select TWO.) A reviewer at Ironclad Insurance runs `terraform plan -out=tfplan` against a configuration where an instance's AMI attribute changed in a way that forces the instance to be recreated. Which two statements are accurate?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "The plan reports the instance as a single \"replace\" action rather than as two separate destroy and add lines"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Saving the plan with -out changes which actions are proposed for the instance"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "A forced-recreate change is always reported as two unrelated lines, one destroy and one add"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The saved tfplan file can later be used to carry out exactly the actions shown, without recomputing them"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "The tfplan file can be edited by hand before it is used, to change which resources it affects"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A change that forces recreation is shown as a single replace action, and a plan saved with -out is a file that can later be carried out exactly as reviewed, without being recomputed. Saving a plan to a file does not change what actions were computed; -out only writes the already-computed plan somewhere. A forced-recreate change is not reported as two unrelated lines; replace ties them together as one action. The saved plan file is an opaque format, not something meant to be hand-edited beforehand.",
+  "citationIds": [
+    "cite-tf-g3-plan"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -2,35 +2,36 @@
   "id": "q-tf-004-3a-mc2",
   "type": "mc",
   "module": "T1",
-  "difficulty": "foundation",
   "objectiveIds": [
     "tf.004.3a"
   ],
-  "stem": "Quick check \u2014 Describe the Terraform workflow. Which practice is correct?",
+  "stem": "Two engineers on the Fenwick Analytics team plan to start unrelated Terraform changes on the same day using the same shared repository. What does Terraform's team workflow recommend so their changes do not collide?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Have both engineers edit the same branch and reconcile conflicts by hand at the end of the day"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Each engineer works on a separate version-control branch for their own change"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Have one engineer lock the entire repository until their change is finished"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe the Terraform workflow"
+      "text": "Apply each engineer's change directly from their own laptop against the shared account"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe the Terraform workflow'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Saving changes to separate version-control branches is the practice the team workflow describes for avoiding collisions. Editing the same branch and reconciling by hand invites the exact conflicts branching avoids. Locking the whole repository blocks unrelated work rather than allowing parallel branches. Applying independently from separate laptops bypasses the shared review and state process entirely.",
+  "citationIds": [
+    "cite-tf-g3-core-workflow"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

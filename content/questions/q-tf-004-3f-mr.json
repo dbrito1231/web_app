@@ -2,40 +2,41 @@
   "id": "q-tf-004-3f-mr",
   "type": "mr",
   "module": "T1",
-  "difficulty": "applied",
   "objectiveIds": [
     "tf.004.3f"
   ],
-  "stem": "Select TWO actions that support this requirement: Destroy Terraform-managed infrastructure",
+  "stem": "(Select TWO.) Two engineers at Corvid Analytics each remove the same unwanted database resource: one runs `terraform destroy -target aws_db_instance.old`, the other deletes the resource's block from the configuration and runs `terraform apply`. Which two statements accurately compare their approaches?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Both routes end with that one resource destroyed and every other managed resource left untouched"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "The first engineer's approach also removes the resource's block from the configuration file"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The second engineer's approach destroys every resource the configuration manages, not only the one removed"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Terraform refuses to destroy a single named resource unless its block has already been removed from configuration"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Only the second engineer's configuration file stops describing the destroyed resource; the first engineer's file still contains its block"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Both routes remove only the one named resource and leave everything else the configuration manages untouched, and only editing the configuration actually changes what the file describes; the -target route destroys the object without touching the file at all. -target does not rewrite the configuration file, so the first engineer's file is unchanged. The second engineer's edited configuration still describes every other resource, so apply does not touch them. destroy -target does not require the block to be removed first; naming the resource on the command line is sufficient.",
+  "citationIds": [
+    "cite-tf-g3-destroy"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
