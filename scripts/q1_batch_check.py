@@ -84,7 +84,7 @@ def main():
 
     # Question checks
     openings = collections.Counter()
-    mc = long_key = 0
+    mc = long_key = short_key = 0
     mc_pos, mr_pos = collections.Counter(), collections.Counter()
     mr_sets = collections.Counter()
     for q in questions:
@@ -97,6 +97,12 @@ def main():
             mc_pos[keys[0]] += 1
             if len(ch[keys[0]]) == max(len(t) for t in ch.values()):
                 long_key += 1
+            # The mirror tell. Capping only "longest is key" pushes a writer
+            # to make keys conspicuously short instead: tf-g4's first draft
+            # was flagged at 38% longest, and the fix landed at 0% longest
+            # and 38% shortest, which is the same giveaway inverted.
+            if len(ch[keys[0]]) == min(len(t) for t in ch.values()):
+                short_key += 1
             if len(ch) != 4:
                 report("FAIL", f"{qid}: MC has {len(ch)} choices")
         else:
@@ -141,6 +147,9 @@ def main():
     if mc:
         rate = long_key / mc
         report("PASS" if rate <= 0.35 else "FAIL", f"longest-is-key {long_key}/{mc} = {rate:.0%}")
+        srate = short_key / mc
+        report("PASS" if srate <= 0.35 else "FAIL",
+               f"shortest-is-key {short_key}/{mc} = {srate:.0%}")
         spread = max(mc_pos.values()) - min(mc_pos.get(k, 0) for k in "abcd")
         report("PASS" if spread <= max(2, mc // 4) else "WARN", f"MC key positions {dict(sorted(mc_pos.items()))}")
     if mr_pos:
