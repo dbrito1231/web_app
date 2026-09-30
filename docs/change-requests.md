@@ -224,6 +224,18 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` (Amendment 1)
 - Teacher validation: pending
 
+## CR-0018 — Lesson 2.2 downtime figures under-rounded
+- Raised by: AWS reviewer (D6 batch 1), confirmed by Teacher
+- Date: 2026-09-29
+- Type: content-error
+- Where: `content/lessons/lesson-2-2.json` (availability paragraph)
+- Problem: The lesson says 99.9% allows "roughly 8.7 hours" of downtime a year and 99.99% "roughly 52 minutes". The exact figures are 8.76 h (525.6 min) and 52.56 min, so they round to about 8.8 hours and about 53 minutes. Found while reviewing `de-saa-2.2-s04`, whose scenario now uses "roughly 525 minutes (about 8.8 hours)".
+- Suggested fix: change the two figures to "about 8.8 hours" and "about 53 minutes", and apply the same change to `q-saa-2-2-s03-mc`: its stem says "about 52 minutes" and its rationale says "roughly 8.7 hours". Its key (99.99%) does not change.
+- Affects learning content: yes
+- Status: open
+- Plan: none yet (needs an inline plan and Teacher validation)
+- Teacher validation: pending
+
 ## Template
 
 ```markdown
