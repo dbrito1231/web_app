@@ -70,3 +70,41 @@ Checked and no finding: de-cloudhsm (CloudHSM vs KMS decided by the PKCS #11 lib
 Batch 1: not yet
 
 Overall: concerns
+
+---
+
+## Teacher review (b422d65)
+
+Saved by Lead Dev from the Teacher's reply (condensed; replacement texts verbatim).
+
+**Method:** a case-insensitive, backtick-stripped regex over the lessons for each exercise's objectives.
+- **MACsec is not taught** (only in 3.4/4.4 reviewer text) and must never be required.
+- **Every solution service is taught**, and every scenario is in operational language.
+
+**Verdicts**
+- **Changes required:** de-direct-connect, de-saa-1.2-s03, de-saa-2.1-s02, de-saa-2.1-s03, de-saa-2.1-s04, de-multi-region-dr, de-saa-2.2-s04.
+- **Approve:** de-federation, de-cloudhsm, de-saa-2.2-s01, de-saa-2.2-s08. De-saa-2.2-s08 overlaps 2.2-s02 in using global tables, but the intent differs.
+- **Approve with minor fixes:** de-multi-account (AWS-008), de-saa-1.3-s01 (AWS-010), de-saa-1.3-s03 (AWS-011), de-saa-1.3-s05 (T-004), de-saa-1.3-s07 (AWS-012 r6, T-003), de-saa-2.1-s06 (AWS-013, T-007), de-saa-2.1-s07 (AWS-014), de-saa-2.2-s02 (AWS-015), de-saa-2.2-s07 (AWS-016).
+
+**Findings**
+- **TEACHER-DE1-001 (major) de-saa-2.1-s02.** A peak that "shifts by up to an hour from week to week" leaves predictive scaling nothing to learn. Lesson 2.1 teaches it for a "recurring pattern" from "historical load".
+  - Replace sentence 2 with: "The peak start differs by up to an hour between school terms but stays the same within a term, and the term dates are not tracked by anyone at Pinecrest."
+  - Word r6 as "ahead of a forecasted recurring pattern", not "per hour".
+- **TEACHER-DE1-002 (minor) de-direct-connect, amending AWS-DE1-001.** Change "within 24 hours" to "within 36 hours (a one-night backlog is acceptable)" in the scenario, constraint 7 and r7. That is about 0.62 Gbps, against a standard tunnel's 1.25 Gbps.
+  - Do not add MACsec anywhere.
+  - Accept application-layer TLS, VPN over DX, or several tunnels.
+- **TEACHER-DE1-003 (minor) de-saa-1.3-s07.** Replace "it also runs 30 public TLS certificates, 4 of which were imported from a banking partner's authority" with "it also runs 30 public TLS certificates on its load balancers, 26 issued through AWS Certificate Manager with DNS validation and 4 imported from a banking partner's authority".
+  - Ignore the optional tail of AWS-DE1-012.
+- **TEACHER-DE1-004 (minor) de-saa-1.3-s05.** In the scenario use "at least 99.99 percent of new uploads available in a second Region within 15 minutes". Set r6 to "The 15-minute ceiling for 99.99 percent of new uploads is met and the existing 14 TB is also covered".
+- **TEACHER-DE1-005 (minor) de-saa-2.2-s04.** In the scenario use "which is more than half of the roughly 525 minutes (about 8.8 hours) a year that a 99.9 percent target allows". Also apply AWS-DE1-007's constraint 2 and r7.
+- **TEACHER-DE1-007 (minor) de-saa-2.1-s06.** Set r7 to "Repeat reads of the same 500 price-list rows do not each reach the database, and the record states how stale the data may be".
+
+**Second-role check on AWS-DE1-001 … 016:** agree with every finding.
+- **001:** apply with the TEACHER-DE1-002 amendment.
+- **004:** accept either fan-out mechanism. Drop the "hmm" paragraph, and do not force SNS.
+- **012:** apply the r6 rewrite only.
+- **The rest:** accurate replacements that keep the exercises fair.
+
+**Lesson 2.2** "8.7 hours" (and "52 minutes" for 99.99%): agree it should be logged as a separate low-severity CR, needing its own plan.
+
+Batch 1: not yet · Overall: concerns
