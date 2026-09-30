@@ -12,8 +12,7 @@
     "Cite official documentation",
     "State cost and residual risk",
     "There must be exactly one writable copy of the data; Sydney may not hold a second writer",
-    "The vendor will not certify a change of database engine this year",
-    "Operations must be alerted if either group of readers falls behind its staleness allowance"
+    "The vendor certifies only RDS for PostgreSQL; a move to Amazon Aurora or any other database product is not certified this year"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [

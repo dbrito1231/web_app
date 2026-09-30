@@ -70,3 +70,65 @@ None required. Optional, doc-verified: lesson 3.1 K01 or 3.5 K03 could add "AWS 
 - content_lint.py: questions 429 aws 310 tf 119; labs 21 + 21; lessons 23; PASS.
 - Scan of all 60 exercises (scenarios not in the two old templates): duplicate 6-word openings: none; duplicate organisation names: none.
 - Teach-before-test regex (case-insensitive, backticks stripped) over lessons 2.1, 3.1-3.5, 4.1, 4.4 for every service or feature each solution needs: no misses.
+
+## Fix pass
+
+Applied from exercises-batch2-review.md. AWS-DE2-004: no change (accept-either recorded; optional clause not applied). Only the 16 batch-2 files were touched; fixed fields untouched. Constraints in de-saa-3.3-s01 are now 6 (the alerting constraint removed); no lesson change.
+
+Merges: no Teacher rewrite and AWS fix landed on the same field. de-snow has separate fields (AWS-001 constraint 2, AWS-002 scenario last sentence, TEACHER-001 r6), so r6 takes only the Teacher wording, keeping the original intent (deadline met, sustained rate shown not reachable on the existing link, appliance plan explained). de-saa-3.4-s02 r7 and constraint 3 come solely from the Teacher; 3.5-s06 r6 and constraint 1 solely from AWS-005.
+
+### AWS-DE2-001 (de-snow)
+- Old: Finance will not fund a faster internet circuit
+- New: Finance will not fund a faster internet circuit or any other new network circuit, and none can be installed within the 30 days
+
+### AWS-DE2-002 (de-snow)
+- Old: and its staff can transport storage devices up to a five-hour drive.
+- New: and its staff can transport storage devices up to a five-hour drive, which is enough to reach an AWS facility that accepts physical uploads.
+
+### AWS-DE2-003 (de-saa-3.3-s01)
+- Old: The vendor will not certify a change of database engine this year
+- New: The vendor certifies only RDS for PostgreSQL; a move to Amazon Aurora or any other database product is not certified this year
+
+### AWS-DE2-005a (de-saa-3.5-s06)
+- Old: Finance will pay for no more than 20 percent headroom over the computed minimum write capacity
+- New: Finance wants a fixed, pre-agreed write capacity that is at most 20 percent above the computed minimum, not capacity that scales by itself
+
+### AWS-DE2-005b (de-saa-3.5-s06)
+- Old: Write capacity covers the 18,000 records per second peak (arithmetic shown from both the record rate and the byte rate), stays within 20 percent above the computed minimum, and no single partition of the stream is asked to take more than its documented write limit even with 60 percent of bikes in one metro area
+- New: Write capacity covers the 18,000 records per second peak (arithmetic shown from both the record rate and the byte rate), stays within 20 percent above the computed minimum, and the record shows that the 60 percent concentration in one metro area cannot push any single unit of that capacity past its documented write limit
+
+### AWS-DE2-006a (de-visualization)
+- Old: and notes that the query service bills for the data each query scans.
+- New: and each full read of the sales files has a cost.
+
+### AWS-DE2-006b (de-visualization)
+- Old: The first dashboard answers 250 concurrent viewers within 3 seconds per interaction while the S3 data is scanned no more than once per nightly load
+- New: The first dashboard answers 250 concurrent viewers within 3 seconds per interaction, and its cost on a busy Monday is the same as on a quiet Tuesday
+
+### AWS-DE2-007 (de-saa-3.4-s03)
+- Old: Editing workstations and the compute and storage they use must be in the same metropolitan area
+- New: Editing workstations and the compute and storage they use must be in the same metropolitan area, and no AWS-owned hardware may be installed at the studio
+
+### TEACHER-DE2-001a (de-saa-3.4-s01)
+- Old: Member data uses a private, non-internet path in normal operation, and the 350 GB batch completes within 6 hours both normally and with the dedicated link down, with the rate each path must sustain stated (about 0.13 Gbps)
+- New: Member data uses a private, non-internet path in normal operation, and the 350 GB batch completes within 6 hours both normally and with the dedicated link down, with the rate each path must sustain worked out and stated
+
+### TEACHER-DE2-001b (de-saa-3.4-s02)
+- Old: The oldest VPC gains room for at least 60 more instances while its 230 instances keep their addresses, and the record shows why a /24 range alone cannot hold them (251 usable addresses)
+- New: The oldest VPC gains room for at least 60 more instances while its 230 instances keep their addresses, and the record shows, with the usable-address count worked out, why the existing /24 range alone cannot hold them
+
+### TEACHER-DE2-001c (de-saa-3.5-s03)
+- Old: The weekly 8 TB refresh completes inside the 48-hour window on the 1 Gbps link (about 0.37 Gbps needed), arrives with its file permissions, and is verified as intact
+- New: The weekly 8 TB refresh completes inside the 48-hour window on the 1 Gbps link (the required rate worked out and stated), arrives with its file permissions, and is verified as intact
+
+### TEACHER-DE2-001d (de-snow)
+- Old: The one-time 600 TB load finishes inside 30 days, the record shows the sustained rate required (about 1.85 Gbps) cannot be met over the existing 500 Mbps link, and it explains why the original appliance plan cannot be used
+- New: The one-time 600 TB load finishes inside 30 days, the record shows, with the sustained rate required worked out, that it cannot be met over the existing 500 Mbps link, and it explains why the original appliance plan cannot be used
+
+### TEACHER-DE2-002 (de-saa-3.4-s02)
+- Old: Acquired companies' address ranges are all distinct, so no address translation is to be introduced
+- New: Acquired companies' address ranges are all distinct, so no address translation is to be introduced, and every acquired VPC will be created in this same Region
+
+### TEACHER-DE2-003 (de-saa-3.3-s01)
+- Old: Operations must be alerted if either group of readers falls behind its staleness allowance
+- New: (deleted)

@@ -6,14 +6,14 @@
     "SAA-3.5-K03",
     "SAA-4.1-S07"
   ],
-  "scenario": "Alderwick Museums Consortium must move 600 TB of digitised archive from storage arrays in one building into AWS within 30 days to meet a grant condition, and the IT head's draft plan is to order Snowball Edge appliances. AWS Snow Family (Snowball Edge, Snowcone and Snowmobile) is closed to new customers, so no device can be ordered and the plan must be replaced. The building's internet link is 500 Mbps and the carrier cannot raise it for at least 12 weeks. After the bulk load, the consortium expects about 400 GB of new scans each month. It holds an AWS Enterprise Support plan, and its staff can transport storage devices up to a five-hour drive.",
+  "scenario": "Alderwick Museums Consortium must move 600 TB of digitised archive from storage arrays in one building into AWS within 30 days to meet a grant condition, and the IT head's draft plan is to order Snowball Edge appliances. AWS Snow Family (Snowball Edge, Snowcone and Snowmobile) is closed to new customers, so no device can be ordered and the plan must be replaced. The building's internet link is 500 Mbps and the carrier cannot raise it for at least 12 weeks. After the bulk load, the consortium expects about 400 GB of new scans each month. It holds an AWS Enterprise Support plan, and its staff can transport storage devices up to a five-hour drive, which is enough to reach an AWS facility that accepts physical uploads.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
     "State cost assumptions",
     "No AWS Snow Family device can be ordered, and the design record must state this status rather than present the option as current",
-    "Finance will not fund a faster internet circuit",
+    "Finance will not fund a faster internet circuit or any other new network circuit, and none can be installed within the 30 days",
     "Data must be verified as intact after it lands, and the monthly scans must not need another physical transfer"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
@@ -45,7 +45,7 @@
     },
     {
       "id": "r6",
-      "label": "The one-time 600 TB load finishes inside 30 days, the record shows the sustained rate required (about 1.85 Gbps) cannot be met over the existing 500 Mbps link, and it explains why the original appliance plan cannot be used",
+      "label": "The one-time 600 TB load finishes inside 30 days, the record shows, with the sustained rate required worked out, that it cannot be met over the existing 500 Mbps link, and it explains why the original appliance plan cannot be used",
       "points": 2
     },
     {

@@ -13,7 +13,7 @@
     "State cost and residual risk",
     "When a VPC is added, network engineers may change only that VPC and one shared place, not the other existing VPCs",
     "The oldest VPC's 230 instances must keep their current addresses and stay running",
-    "Acquired companies' address ranges are all distinct, so no address translation is to be introduced"
+    "Acquired companies' address ranges are all distinct, so no address translation is to be introduced, and every acquired VPC will be created in this same Region"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "The oldest VPC gains room for at least 60 more instances while its 230 instances keep their addresses, and the record shows why a /24 range alone cannot hold them (251 usable addresses)",
+      "label": "The oldest VPC gains room for at least 60 more instances while its 230 instances keep their addresses, and the record shows, with the usable-address count worked out, why the existing /24 range alone cannot hold them",
       "points": 2
     }
   ],

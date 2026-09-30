@@ -13,7 +13,7 @@
     "State cost and residual risk",
     "Workloads without a stated latency target must use ordinary Region capacity; finance will not pay for edge placement that no figure justifies",
     "The asset database must survive the loss of one Availability Zone",
-    "Editing workstations and the compute and storage they use must be in the same metropolitan area"
+    "Editing workstations and the compute and storage they use must be in the same metropolitan area, and no AWS-owned hardware may be installed at the studio"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [

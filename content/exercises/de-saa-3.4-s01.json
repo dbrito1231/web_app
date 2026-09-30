@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "Member data uses a private, non-internet path in normal operation, and the 350 GB batch completes within 6 hours both normally and with the dedicated link down, with the rate each path must sustain stated (about 0.13 Gbps)",
+      "label": "Member data uses a private, non-internet path in normal operation, and the 350 GB batch completes within 6 hours both normally and with the dedicated link down, with the rate each path must sustain worked out and stated",
       "points": 2
     }
   ],

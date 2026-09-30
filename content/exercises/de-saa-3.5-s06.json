@@ -11,7 +11,7 @@
     "Do not claim live AWS experience",
     "Cite official documentation",
     "State cost and residual risk",
-    "Finance will pay for no more than 20 percent headroom over the computed minimum write capacity",
+    "Finance wants a fixed, pre-agreed write capacity that is at most 20 percent above the computed minimum, not capacity that scales by itself",
     "No additional staff may be hired to operate brokers or patch servers",
     "Lake files should be large (tens of megabytes), not one object per reading"
   ],
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "Write capacity covers the 18,000 records per second peak (arithmetic shown from both the record rate and the byte rate), stays within 20 percent above the computed minimum, and no single partition of the stream is asked to take more than its documented write limit even with 60 percent of bikes in one metro area",
+      "label": "Write capacity covers the 18,000 records per second peak (arithmetic shown from both the record rate and the byte rate), stays within 20 percent above the computed minimum, and the record shows that the 60 percent concentration in one metro area cannot push any single unit of that capacity past its documented write limit",
       "points": 2
     },
     {

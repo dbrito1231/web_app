@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The weekly 8 TB refresh completes inside the 48-hour window on the 1 Gbps link (about 0.37 Gbps needed), arrives with its file permissions, and is verified as intact",
+      "label": "The weekly 8 TB refresh completes inside the 48-hour window on the 1 Gbps link (the required rate worked out and stated), arrives with its file permissions, and is verified as intact",
       "points": 2
     },
     {

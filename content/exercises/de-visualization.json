@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-3.5-S04"
   ],
-  "scenario": "Thistledown Grocers keeps its sales files in Amazon S3, refreshed in a single load each night, and wants two dashboards without running a new database; the files are not yet described in any table catalog. Store managers use the first dashboard, and on Monday mornings up to 250 of them interact with it at once; each click must respond within 3 seconds, and data a day old is acceptable. Six analysts use the second dashboard to watch the order queue, where each new order must be visible within 60 seconds of it being written to S3. Finance wants the first dashboard to cost the same on a quiet Tuesday as on a busy Monday, and notes that the query service bills for the data each query scans.",
+  "scenario": "Thistledown Grocers keeps its sales files in Amazon S3, refreshed in a single load each night, and wants two dashboards without running a new database; the files are not yet described in any table catalog. Store managers use the first dashboard, and on Monday mornings up to 250 of them interact with it at once; each click must respond within 3 seconds, and data a day old is acceptable. Six analysts use the second dashboard to watch the order queue, where each new order must be visible within 60 seconds of it being written to S3. Finance wants the first dashboard to cost the same on a quiet Tuesday as on a busy Monday, and each full read of the sales files has a cost.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The first dashboard answers 250 concurrent viewers within 3 seconds per interaction while the S3 data is scanned no more than once per nightly load",
+      "label": "The first dashboard answers 250 concurrent viewers within 3 seconds per interaction, and its cost on a busy Monday is the same as on a quiet Tuesday",
       "points": 2
     },
     {
