@@ -78,3 +78,30 @@ Reopen: not yet · Overall: concerns (approve once RSK-001, 002 and 006 are appl
 | TEACHER-RSK-003 (4-1 k03) | Not applied, optional. AWS confirms "cost and usage budgets" is accurate AWS terminology. | — | — |
 
 **Checks after the fix pass:** `content_lint` PASS. `q1_batch_check` 4-3 PASS (shortest-is-key 29%, longest-is-key 21%) and 1-3 WARN (pre-existing; shortest-is-key 18%, longest-is-key 27%). Stem echo totals are unchanged at 14 and 12, with no flag on an edited question. `correctAnswerIds` are unchanged.
+
+## Technical confirmation (22f9ca8)
+
+1. **AWS-RSK-001: Gone.** 4-3 s02 key is now "Use PostgreSQL on Amazon RDS or Amazon Aurora PostgreSQL." (57 chars vs 84/53/51, rank 3). It names the engine, is accurate, and is unambiguous. Not flagged by stem echo.
+   **AWS-RSK-004: Gone.** 1-3 s01 key is now "Download the report from the AWS Artifact console" (49 vs 51/45/64, rank 2). "On demand" is removed. Accurate (Artifact is a console feature). No new tell.
+2. Second-role check:
+   - **TEACHER-RSK-001: Gone**, same fix as AWS-RSK-001.
+   - **TEACHER-RSK-002: Gone.** 4-3 k09 key "Use Amazon DynamoDB as the primary key-value datastore." (55 vs 48/68/84, rank 2) is accurate. "Key-value" also appears in distractor b ("key lookups") and only names the data model, so it is not a defect. No stem-echo flag.
+   - **TEACHER-RSK-006: Gone**, same fix as AWS-RSK-004.
+3. AWS-RSK-002 and AWS-RSK-003 unapplied: **accepted.** RSK-002 is optional (the rationale already covers why the distractor fails). RSK-003 is a pre-existing note, and it is a plausible but wrong idea with a reason taught in the lesson. Teacher's optional RSK-003 (4-1 k03) also accepted as unapplied.
+4. Scripts: `q1_batch_check` 4-3 PASS (shortest 29%, longest 21%), 1-3 WARN (pre-existing since/must in other questions; shortest 18%, longest 27%). `stem_echo_check` 4-3 and 1-3 RESULT FAIL from baseline flags in other questions only. The three edited questions (4-3 k09, 4-3 s02, 1-3 s01) have no flag. Remaining flags on the 11 are the known structural ones (4-3 k03 dynamodb, 1-3 s05 backup).
+
+Reopen: close
+Overall: approve
+
+---
+
+## Teacher confirmation (22f9ca8)
+
+Saved by the Lead Dev from the Teacher's reply (condensed).
+
+- **The Teacher's own findings:** TEACHER-RSK-001, TEACHER-RSK-002 and TEACHER-RSK-006 are Gone.
+- **Second-role check:** AWS-RSK-001 and AWS-RSK-004 are Gone.
+- **"Amazon Aurora PostgreSQL":** readable from what the lesson already teaches ("both MySQL and PostgreSQL can run on RDS and Aurora-compatible offerings"). k09 also shows Aurora PostgreSQL as an option. No lesson addition is required. The optional editions sentence would need a note to the user first, and it is not applied.
+- **TEACHER-RSK-003:** accepted as it stands. The technical reviewer confirmed the AWS terminology.
+
+Reopen: close · Overall: approve
