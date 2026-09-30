@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Download the report on demand from AWS Artifact"
+      "text": "Download the report from the AWS Artifact console"
     },
     {
       "id": "b",

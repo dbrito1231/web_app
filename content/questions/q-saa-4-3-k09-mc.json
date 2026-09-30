@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Use DynamoDB as the primary non-relational key-value datastore."
+      "text": "Use Amazon DynamoDB as the primary key-value datastore."
     }
   ],
   "correctAnswerIds": [

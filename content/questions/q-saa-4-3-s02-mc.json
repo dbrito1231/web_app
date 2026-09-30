@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Use PostgreSQL on Amazon RDS or an Aurora-compatible offering."
+      "text": "Use PostgreSQL on Amazon RDS or Amazon Aurora PostgreSQL."
     },
     {
       "id": "c",
