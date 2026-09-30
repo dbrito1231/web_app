@@ -6,14 +6,17 @@
     "SAA-4.4-S06",
     "SAA-2.2-K10"
   ],
-  "scenario": "You must design a solution addressing: Throttling and quotas. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Saltmarsh Weather API sells forecast data through a public API whose EC2 backend serves at most 1,500 requests per second, about 15 per vCPU. Ten paid customers are entitled to 100 requests per second each and 100 free-tier developers to 4 each, so contracted traffic can reach 1,400. The company's own web front end calls the same API without a key and once produced a 40-minute retry storm. The recovery Region has 64 vCPUs of compute allowance from the account's initial setting, and its copy of the API has no per-customer limits configured. Partner mobile apps currently retry rejected calls immediately in a tight loop.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Each paid customer is held to 100 requests per second and each free-tier developer to 4",
+    "The backend must never receive more than 1,500 requests per second from any combination of callers, including the company's own front end",
+    "After a disaster is declared, no limit may need to be raised before the recovery Region carries the full 1,500 requests per second"
   ],
-  "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
+  "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions + guidance for API callers on rejected requests",
   "rubric": [
     {
       "id": "r1",
@@ -38,6 +41,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Every caller class is held to its stated rate, and total traffic reaching the backend cannot exceed 1,500 requests per second even from the company's own keyless front end",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Before any failover, the recovery Region's compute allowance and API rate settings both admit and serve the full 1,500 requests per second",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.4-S07"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the appropriate bandwidth allocation for a network device (for example, a single VPN compared with multiple VPNs, Direct Connect speed)",
+  "scenario": "Penhallow Survey Group is opening a drone-imagery processing branch in 3 weeks. The branch must sync imagery to AWS at a sustained 3 Gbps during working hours, traffic must be encrypted, and the branch router's vendor supports tunnels of at most 1.25 Gbps. The carrier quotes at least 6 weeks to deliver any dedicated physical circuit. The AWS side already has a Transit Gateway that the company's four VPCs attach to.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The branch opens in 3 weeks, so nothing that needs a new physical circuit can be relied on",
+    "If any one tunnel fails, at least 2 Gbps must still flow",
+    "Finance will not pay for more tunnel capacity than the stated figures require"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The allocation provides at least 3 Gbps at the documented per-tunnel ceiling, still provides at least 2 Gbps with any one tunnel down, and carries no more than one tunnel beyond the minimum that achieves both",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The record explains why a single tunnel, a dedicated physical circuit and a larger tunnel type are each unsuitable given the stated dates and device limit",
       "points": 2
     }
   ],

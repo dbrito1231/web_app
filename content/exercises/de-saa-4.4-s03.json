@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.4-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Configuring appropriate network routes to minimize network transfer costs (for example, Region to Region, Availability Zone to Availability Zone, private to public, AWS Global Accelerator, VPC endpoints)",
+  "scenario": "Halloran Transcription Services runs audio-processing workers in private subnets across three Availability Zones, and all outbound traffic leaves through one NAT gateway in the first zone. About 60 TB a month passes through it: 55 TB to Amazon S3 buckets in the same Region, 3 TB to Amazon DynamoDB and 2 TB to a partner's dictionary API that exists only on the public internet. A further 9 TB a month is copied to a second Region for a reporting cluster an analyst team built years ago; no residency rule or latency need requires it to live there. Workers in the other two zones account for two thirds of the traffic reaching the NAT gateway.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance targets cutting the bytes processed by NAT gateways by at least 90 percent",
+    "An outage in one Availability Zone must not cut partner-API access for workers in the other two zones",
+    "The reporting team accepts running its cluster in the primary Region"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Bytes processed by NAT gateways fall by at least 90 percent of today's 60 TB a month, and the record identifies what remains and why it must still use that path",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "No worker traffic crosses an Availability Zone boundary to reach a NAT gateway, an outage in one zone leaves the other two with partner-API access, and the 9 TB a month no longer crosses Regions",
       "points": 2
     }
   ],

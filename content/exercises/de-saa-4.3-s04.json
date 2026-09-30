@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.3-S04"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining cost-effective AWS database types (for example, time series format, columnar format)",
+  "scenario": "Brightwater Hydrology Board keeps everything in one oversized relational database whose cost keeps rising. It holds three workloads: readings from 6,000 river gauges, each reporting every 15 seconds and never edited afterwards, read almost only as rolling averages over recent hours or days for groups of gauges; nine years of survey records, about 3 billion rows of 60 columns, scanned by five analysts who use 4 columns per query a few times a week; and a permit registry of 900,000 rows where clerks update individual rows inside transactions spanning three tables. Dashboards read the gauge data constantly, while the analysts' scans currently slow the registry down.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The platform team will not operate self-managed database servers",
+    "The total monthly database run-rate must not exceed today's single relational database",
+    "Procurement rejects any service that is closed to new customers"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the three workloads is placed on a database type chosen from its own read and write pattern in the scenario, and none is left on a type built for another pattern just because it already exists",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The record names the largest expected saving and the workload it comes from, and says what would be measured to confirm it",
       "points": 2
     }
   ],

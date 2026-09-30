@@ -6,12 +6,16 @@
     "SAA-4.3-S05",
     "SAA-3.3-K06"
   ],
-  "scenario": "You must design a solution addressing: Cross-engine database migration. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Lindqvist Parts Distribution runs its order system on a commercial Oracle database (1.8 TB, about 350 stored procedures written in the database's own procedural language) and a separate 40 GB MySQL 8 database behind its web store, both in its own datacentre. The datacentre lease ends in 7 months and the Oracle licence will not be renewed, so both databases must run in AWS, with the order system on a PostgreSQL-compatible engine and the web store staying on MySQL. Orders arrive around the clock, and copying the 1.8 TB takes about 3 days. Production must never be taken offline for the copy itself.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Order entry may be offline for at most 30 minutes at cutover",
+    "Developers will not hand-rewrite the 350 stored procedures from scratch; only what conversion tooling cannot translate may be fixed by hand",
+    "Finance caps the period in which the old and new order databases run in parallel at 2 weeks",
+    "Operations wants one data-movement service for both databases"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -38,6 +42,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The 1.8 TB order database reaches the PostgreSQL-compatible engine with its schema and all 350 stored procedures working there, and order entry is offline for no more than 30 minutes even though the copy takes 3 days",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The 40 GB web-store database is prepared with no more work than its situation requires, and the record justifies why the two databases are prepared differently",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.4-S05"
   ],
-  "scenario": "Design a solution that demonstrates skill: Reviewing existing workloads for network optimizations",
+  "scenario": "Ravenscar Map Publishing's data-transfer charges rose 70 percent in a quarter with no growth in users, and the only reporting the team has is service-level totals in its cost tool. After a week of VPC flow logs, the extra bytes split three ways: 58 percent leave to internet viewers as repeat downloads of about 2,500 unchanging map-style and font files served from the application servers; 27 percent cross between the three Availability Zones because servers in two of them reach the internet through a single NAT gateway in the third; and 15 percent is a nightly 3 TB copy to a second Region that its owner cannot justify, with no reader found. The static files change at most once a week.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Product accepts viewers seeing a changed static file up to 24 hours late",
+    "The application servers must stay in their current Region and three Availability Zones",
+    "Two engineers maintain the platform and may use AWS-native services only, with no new third-party tooling"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the three byte drivers in the flow-log findings is matched to a fix that removes that driver's transfer charge, and no fix is proposed for traffic the findings do not show",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The record names the measurement to repeat after the changes and the cost line that should show the 70 percent rise reversing",
       "points": 2
     }
   ],

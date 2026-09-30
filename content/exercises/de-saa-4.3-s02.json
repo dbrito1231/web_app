@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.3-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+  "scenario": "Tamarind Bay Bookkeeping is replacing its 15-year-old client-ledger system with a new build, and nothing from the old database will be migrated. Each ledger entry carries between 20 and 200 nested attributes that accountants filter on directly inside the stored document, month-end reports chain many joins and subqueries, and the firm's compliance vendor ships its fuzzy name-matching add-on, which must be loaded inside the database itself, only for one of the two popular open-source engines. The two developers have only ever run MySQL, and go-live is 6 months away. Finance wants a fixed-size managed instance with a predictable monthly cost.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The vendor's name-matching add-on must run inside the database, and the vendor supports it on one engine only",
+    "Finance wants a fixed-size managed instance rather than usage-metered capacity",
+    "Go-live is 6 months away and the team has no spare training budget beyond vendor documentation"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The chosen engine supports every stated behaviour (filtering on nested attributes, join-heavy month-end reporting, the vendor add-on), and the record explains why the developers' MySQL familiarity does not override them",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The record states the extra ramp-up risk from the team's MySQL-only experience and a mitigation that fits the 6-month go-live",
       "points": 2
     }
   ],
