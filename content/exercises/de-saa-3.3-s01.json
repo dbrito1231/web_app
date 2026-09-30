@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.3-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Configuring read replicas to meet business requirements",
+  "scenario": "Pelham Ridge Insurance runs its policy-administration system on an RDS for PostgreSQL database in the Ireland Region, the only engine its vendor certifies, and about 92 percent of queries are reads. Every weekday afternoon analysts run ad hoc reporting queries that scan months of policies and are never repeated, and order entry slows while they run; the reports may be up to five minutes behind the live data. The claims team in Sydney, about 280 ms round trip from Ireland, looks up any of 4 million policies, rarely the same one twice, and needs each lookup to return in under 100 ms from data no more than 30 seconds old. Writes from Sydney are under 2 percent of its requests and may take the long trip.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "There must be exactly one writable copy of the data; Sydney may not hold a second writer",
+    "The vendor will not certify a change of database engine this year",
+    "Operations must be alerted if either group of readers falls behind its staleness allowance"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Ad hoc reporting no longer adds load to the primary database and stays inside its five-minute staleness allowance",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Sydney lookups complete in under 100 ms from data within the 30-second allowance, and Sydney's rare writes still land on the single writable copy",
       "points": 2
     }
   ],

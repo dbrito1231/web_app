@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.5-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Designing data transfer solutions",
+  "scenario": "Fairlight Packaging is consolidating its data onto AWS and has three separate flows to design. A plant NAS holds 8 TB of production records that change each week, and the full set must be refreshed in AWS over the plant's 1 Gbps internet link inside a 48-hour weekend window, arriving with file permissions and proven intact. Three branch offices of 40 staff each use Windows and Linux applications that open files from a shared network folder; the files must also exist as objects for the analytics team, and staff expect recently used files to open at local-network speed from a small on-site disk. Finally, 25,000 packing-line sensors emit readings that must appear in the analytics bucket within 2 minutes of being taken, with no processing logic and no need to re-read old readings.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "No appliance may be shipped or collected for any flow; all movement is over networks",
+    "All three flows end in the analytics team's single bucket",
+    "Each branch office can spare only one small virtual machine host"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The weekly 8 TB refresh completes inside the 48-hour window on the 1 Gbps link (about 0.37 Gbps needed), arrives with its file permissions, and is verified as intact",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Branch staff keep opening recently used files at local speed while every file also exists in the analytics bucket, and sensor readings land there within 2 minutes using no custom processing code",
       "points": 2
     }
   ],

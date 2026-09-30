@@ -6,12 +6,15 @@
     "SAA-3.5-K04",
     "SAA-3.5-S05"
   ],
-  "scenario": "You must design a solution addressing: EMR and Glue processing choices. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Brackenridge Fisheries Co-op processes boat and cannery data on three fronts. Every night a 14 TB Spark job written in Scala runs for about 10 hours; it needs a vendor's native compression library installed on every worker and memory-heavy instance types that its engineers pick themselves. Two bookkeepers, who do not write code, must fix blank values, odd date formats and outliers in about 30 supplier spreadsheets a week before the data is loaded. Eight analysts run SQL over the cleaned files in Amazon S3 a few times a week and expect results in minutes.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Only the nightly job may justify capacity that runs for hours; nothing else may need a cluster that staff size, start or patch",
+    "The bookkeepers will not learn a scripting language",
+    "Finance pays for analyst queries only when they run"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -38,6 +41,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the three workloads is given a compute option whose management burden matches its stated need, with the custom library and instance-type control provided only where the scenario asks for them",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The bookkeepers' cleaning and the analysts' SQL both run with no code from the bookkeepers and no cluster to manage, and the cleaned output is queryable without anyone hand-writing table definitions",
       "points": 2
     }
   ],

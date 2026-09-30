@@ -6,12 +6,15 @@
     "SAA-3.5-K07",
     "SAA-3.5-S02"
   ],
-  "scenario": "You must design a solution addressing: Kinesis vs MSK streaming design. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Marigold Cabs emits about 3,500 trip events per second at peak, each around 1 KiB, from apps that use the AWS SDKs; nobody on the platform team has run Apache Kafka and nobody will be hired to. Three independent teams each need the complete stream at the same time: one lands every event in the company's data lake with no custom code, one computes rolling five-minute trip counts per city for surge pricing within 10 seconds of each event, and a fraud team runs its own service. A late-night batch job once starved the real-time service of read throughput, and the fraud team must be able to re-read the last 12 hours of events after fixing a bug.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "No team's read speed may depend on what any other team is doing",
+    "Nothing may run on servers or clusters that the platform team sizes or patches",
+    "Finance will not pay for a separate copy of the stream for each team"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -38,6 +41,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "All three teams can read the complete stream at once at full speed with no team's reads affected by another's, and the fraud team can re-read the last 12 hours of events",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Every event lands in the lake with no custom code, and per-city five-minute rolling counts are available within 10 seconds of the event",
       "points": 2
     }
   ],

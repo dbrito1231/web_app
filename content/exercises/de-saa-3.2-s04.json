@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.2-S04"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the appropriate resource type and size (for example, the amount of Lambda memory) to meet business requirements",
+  "scenario": "Ashgrove Survey Maps renders a thumbnail for every map tile a surveyor uploads, using a single-threaded, CPU-bound Python function on AWS Lambda that needs well under 512 MB of working memory. Product requires every invocation to finish in under 4 seconds so the surveyor sees the thumbnail before leaving the screen. The team measured average duration at five memory settings and will not test others: 512 MB took 13.2 s, 1,024 MB took 6.4 s, 1,769 MB took 3.4 s, 3,008 MB took 3.3 s and 10,240 MB took 3.3 s. Lambda bills each invocation in proportion to its memory in GB multiplied by its billed duration in seconds (GB-seconds).",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance wants the lowest billed GB-seconds per invocation among the settings that meet the latency target",
+    "The team will not change the code or add a second runtime to make it faster",
+    "Only the five measured memory settings may be proposed"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The chosen memory setting meets the 4-second target according to the measured durations",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Billed GB-seconds per invocation are worked out for every measured setting, and the chosen setting is the lowest among those that meet the target",
       "points": 2
     }
   ],

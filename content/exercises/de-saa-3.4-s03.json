@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.4-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining the appropriate placement of resources to meet business requirements",
+  "scenario": "Tenmouth Post-Production edits broadcast footage in a city-centre studio whose editing workstations need a round trip of 8 ms or less to the GPU render hosts and shared storage they use, while the nearest standard Region is about 40 ms away; AWS confirms a metro-area extension of that Region exists in the studio's city. The firm also runs camera vehicles whose on-board devices connect only over a mobile carrier's 5G network, and their live-scoring app must respond within 12 ms end to end without its traffic leaving the carrier's network; the carrier hosts AWS infrastructure inside that network. Finally, the asset-management database holds contracts, has no latency target tighter than 50 ms and must never be reachable from the internet.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Workloads without a stated latency target must use ordinary Region capacity; finance will not pay for edge placement that no figure justifies",
+    "The asset database must survive the loss of one Availability Zone",
+    "Editing workstations and the compute and storage they use must be in the same metropolitan area"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The editing compute and storage sit where the round trip is 8 ms or less, and the vehicle app's traffic stays inside the carrier's network within 12 ms",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The asset database has no internet route and is spread over two Availability Zones in a standard Region, and nothing else is placed at the edge",
       "points": 2
     }
   ],

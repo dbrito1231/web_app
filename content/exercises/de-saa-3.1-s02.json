@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.1-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining storage services that can scale to accommodate future needs",
+  "scenario": "Kellerman Render House stores project files for 40 Linux render servers spread across three Availability Zones, and the servers' third-party software opens, appends to and renames files through ordinary folder paths that cannot be changed. The share holds 18 TB today and the studio expects about 300 TB within three years as it moves to higher-resolution footage. Combined read and write demand is about 200 MiB/s now and is forecast to exceed 1,000 MiB/s, and the studio's two-person IT team will not schedule capacity or performance resize projects as that growth arrives.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Every server in all three Availability Zones must see the same files at the same time",
+    "No resize window, migration or downtime may be scheduled during the three-year growth",
+    "Finance pays only for data actually stored, not for capacity reserved ahead of need"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Capacity is shown to reach 300 TB within three years with no per-volume ceiling to plan around and no capacity reserved in advance",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Throughput rising from 200 MiB/s to over 1,000 MiB/s is met with no manual tuning, and all 40 servers in three Availability Zones use the same files without application change",
       "points": 2
     }
   ],

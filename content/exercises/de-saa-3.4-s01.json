@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.4-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Creating a network topology for various architectures (for example, global, hybrid, multi-tier)",
+  "scenario": "Copperleaf Credit Union's core ledger runs on a mainframe in its own data centre, and it is building a member web portal in one AWS Region that must read from and post to that ledger. Only the web tier of the portal may be reached from the internet; the application and account-data tiers must have no path from the internet, although the application servers need to fetch operating-system updates from public mirrors. Losing one Availability Zone must not remove any tier. Regulators forbid member data from crossing the public internet in normal operation, yet a 350 GB nightly reconciliation batch between the data centre and AWS must finish within 6 hours even while the dedicated link is down, when an encrypted internet path is acceptable.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance funds one dedicated 1 Gbps circuit only, so resilience for the nightly batch cannot come from a second dedicated circuit",
+    "The first release uses one VPC, and the portal goes live in 12 weeks, so the circuit's installation lead time is already accepted",
+    "Every tier must have resources in at least two Availability Zones"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "No tier is lost when one Availability Zone fails, only the web tier can be reached from the internet, and the other tiers can still fetch operating-system updates",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Member data uses a private, non-internet path in normal operation, and the 350 GB batch completes within 6 hours both normally and with the dedicated link down, with the rate each path must sustain stated (about 0.13 Gbps)",
       "points": 2
     }
   ],

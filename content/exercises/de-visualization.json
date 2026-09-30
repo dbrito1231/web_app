@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.5-S04"
   ],
-  "scenario": "You must design a solution addressing: Visualization strategy. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Thistledown Grocers keeps its sales files in Amazon S3, refreshed in a single load each night, and wants two dashboards without running a new database; the files are not yet described in any table catalog. Store managers use the first dashboard, and on Monday mornings up to 250 of them interact with it at once; each click must respond within 3 seconds, and data a day old is acceptable. Six analysts use the second dashboard to watch the order queue, where each new order must be visible within 60 seconds of it being written to S3. Finance wants the first dashboard to cost the same on a quiet Tuesday as on a busy Monday, and notes that the query service bills for the data each query scans.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "No new database may be run; the data stays in S3",
+    "Managers may view and filter the first dashboard but must not see the underlying queries or data tables",
+    "The two dashboards are built by analysts, not engineers"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The first dashboard answers 250 concurrent viewers within 3 seconds per interaction while the S3 data is scanned no more than once per nightly load",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The second dashboard shows each new order within 60 seconds, the record states how its freshness differs from the first dashboard's, and the S3 files become queryable without being loaded into another database",
       "points": 2
     }
   ],

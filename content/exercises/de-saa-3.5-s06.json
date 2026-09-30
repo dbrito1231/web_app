@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.5-S06"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting appropriate configurations for ingestion",
+  "scenario": "Gorse Valley Bike Share collects position and battery readings from 45,000 bikes. Each bike reports about every 2.5 seconds at peak, so 18,000 records per second arrive, each about 400 bytes, and they must be captured continuously so a live map can show them within seconds. Nobody on the three-person platform team has run Apache Kafka, and the bikes' gateway software is written against the AWS SDKs. About 60 percent of the bikes are in one metro area. The same readings must also land in the data lake as large files within 5 minutes of capture, and analysts' dashboards filter by day and by city and must not scan the whole lake to answer one city for one day.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance will pay for no more than 20 percent headroom over the computed minimum write capacity",
+    "No additional staff may be hired to operate brokers or patch servers",
+    "Lake files should be large (tens of megabytes), not one object per reading"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Write capacity covers the 18,000 records per second peak (arithmetic shown from both the record rate and the byte rate), stays within 20 percent above the computed minimum, and no single partition of the stream is asked to take more than its documented write limit even with 60 percent of bikes in one metro area",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Lake files are large yet arrive within 5 minutes of capture, and a query for one city on one day reads only that slice of the lake",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.5-S01"
   ],
-  "scenario": "You must design a solution addressing: Data lake and Lake Formation. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Saltmarsh Retail Group receives daily CSV sales extracts from 400 stores and wants one governed data lake, where today there is an unmanaged bucket. Nine teams need different views: each of 35 tables is visible to some teams and not to others, the auditors require that one team's access to one table can be withdrawn in a single action on the same day, and stores add new columns without warning, so table definitions must stay current without hand edits. Two legacy reporting pipelines read the bucket through existing IAM and bucket permissions and cannot be changed for six months, and a faulty transform last year overwrote source files that then could not be recovered.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Bucket policies may not be rewritten team by team; grants must be managed centrally",
+    "The two legacy pipelines keep running unchanged until they are migrated, and the plan allows that migration to be gradual",
+    "New store columns arriving without warning must not break anyone's queries"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Access by each of the nine teams to each of the 35 tables can be granted or withdrawn centrally in a single action, without editing bucket policies",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Table definitions follow new store columns without hand edits, the two legacy pipelines keep working during the six-month migration, and a faulty transform cannot destroy the source data",
       "points": 2
     }
   ],

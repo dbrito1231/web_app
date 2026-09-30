@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.3-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining an appropriate database engine (for example, MySQL compared with PostgreSQL)",
+  "scenario": "Teasel Hollow Conservation Trust is replacing a spreadsheet-based field-survey system with a new database-backed application. Its mapping code finds every sighting within a radius of a point using a spatial-query extension, and its species search tolerates misspellings using a fuzzy text-matching extension; the developers will not rewrite either feature. Volunteers upload surveys in weekend bursts, so the database is almost idle for about 20 hours of a typical day and load can jump fifty-fold within minutes at unpredictable times. The three-person team does not want to choose, forecast or resize an instance class.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "No application rewrite is planned for the two extension-based features",
+    "Finance will not pay for a large database instance that idles 20 hours a day",
+    "Nobody on the team is to forecast capacity or resize the database as load changes"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The engine chosen supports both extension-based features with no rewrite, and the record states why the other common open-source SQL engine does not fit",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Cost stays low across the roughly 20 idle hours and the fifty-fold bursts are absorbed without anyone choosing or resizing an instance class",
       "points": 2
     }
   ],

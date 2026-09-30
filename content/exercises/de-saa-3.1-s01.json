@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.1-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining storage services and configurations that meet performance demands",
+  "scenario": "Harlow Bay Commodities runs a self-managed trade-ledger database on a single EC2 instance because its vendor supports only a block device, and the auditors want sustained performance evidenced before the year-end close. At the month-end peak the ledger issues about 45,000 I/O operations per second against a 2 TiB data set, each operation must average under 1 millisecond, and the auditors ask for the highest durability AWS publishes for a block volume. Separately, a nightly job reads one 12 TiB archive of transaction logs front to back in large sequential passes, every night, and must sustain 400 MiB/s. Neither volume is a boot volume, and both sit in one Availability Zone.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance requires the lowest-cost block storage type that still meets each workload's stated figures, so the two workloads need not share a type",
+    "The vendor will not support striping several volumes together into one device for the ledger",
+    "The auditors accept only figures published by AWS as evidence of the latency and durability claims"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The ledger volume is shown to meet 45,000 IOPS, an average latency under 1 millisecond and the highest published volume durability, using published AWS figures",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The log archive volume sustains 400 MiB/s at its 12 TiB size, the record cites the published throughput for that size, and the type chosen is the lowest-cost one that does",
       "points": 2
     }
   ],

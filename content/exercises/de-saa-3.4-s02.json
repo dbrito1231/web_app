@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-3.4-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining network configurations that can scale to accommodate future needs",
+  "scenario": "Ferrous Lane Logistics has six VPCs in one Region, each connected to every other by its own peering link, and has agreed to acquire up to fourteen more companies over 18 months, each arriving with its own VPC and non-overlapping address ranges. Every workload VPC must be able to reach the shared logging VPC and any other workload VPC on request, and in a recent test a VPC could not reach a third one through a VPC that both were peered with. Separately, the oldest VPC was created with a /24 range, holds 230 running instances and needs room for 60 more this year without rebuilding any existing instance.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "When a VPC is added, network engineers may change only that VPC and one shared place, not the other existing VPCs",
+    "The oldest VPC's 230 instances must keep their current addresses and stay running",
+    "Acquired companies' address ranges are all distinct, so no address translation is to be introduced"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Adding the 20th VPC changes only that VPC and one shared place, and any VPC can reach any other through the same design",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The oldest VPC gains room for at least 60 more instances while its 230 instances keep their addresses, and the record shows why a /24 range alone cannot hold them (251 usable addresses)",
       "points": 2
     }
   ],
