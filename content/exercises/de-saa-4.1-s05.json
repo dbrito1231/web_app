@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-4.1-S05"
   ],
-  "scenario": "Copperfield Survey Maps keeps 6 TB of scanned plot maps, averaging 5 MB each, in a versioned bucket. A scan is read several times a week for its first 30 days and then only a few times a year, yet a clerk at the counter must see it open in under a second; scans are kept for 7 years and then deleted. The bucket also holds about 400 million 30 KB thumbnails that clerks browse daily at any age. Each scan is re-saved about three times in its first month, the superseded copies are never read more than 60 days after being replaced, and large scan uploads over a poor link leave broken attempts behind. Finance wants none of that waste kept longer than 7 days.",
+  "scenario": "Copperfield Survey Maps keeps 6 TB of scanned plot maps, averaging 5 MB each, in a versioned bucket. A scan is read several times a week for its first 30 days and then only a few times a year, yet a clerk at the counter must see it open in under a second; scans are kept for 7 years and then deleted. The bucket also holds about 400 million 30 KB thumbnails that clerks browse daily at any age. Each scan is re-saved about three times in its first month, the superseded copies are never read more than 60 days after being replaced, and large scan uploads over a poor link leave broken attempts behind. Finance wants those broken upload leftovers gone within 7 days.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
