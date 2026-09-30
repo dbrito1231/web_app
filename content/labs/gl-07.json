@@ -18,9 +18,9 @@
   "beforeYouStart": [
     "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
     "Run aws sts get-caller-identity",
-    "Cost basis (us-east-1, priced 2026-09-29): t3.micro $0.0104/h, 1 public IPv4 $0.005/h (default subnet), 2 x 8 GB gp3* $0.08/GB-month (root + data), 1 snapshot* up to 8 GB $0.05/GB-month; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; root size 8 GB is the AMI default, not stated in the steps; same-hour \u2248 $0.04, forgotten 24 h \u2248 $0.43. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
+    "Cost basis (us-east-1, priced 2026-09-29): 1 t3.micro $0.0104/h, 1 public IPv4 $0.005/h, 2 x 8 GB gp3 volumes (root and data) $0.08/GB-month, 1 snapshot up to 8 GB $0.05/GB-month. This run \u2248 $0.04; forgotten 24 h \u2248 $0.43 (at least; data transfer not included). Re-check current pricing before you run."
   ],
-  "stopChargesPanel": "Terminate the instance and wait, detach and delete the gp3 volume, then delete the snapshot tagged gl-07. Forgotten 24 h \u2248 $0.43 (a floor; see the cost basis).",
+  "stopChargesPanel": "Terminate the instance and wait, detach and delete the gp3 volume, then delete the snapshot tagged gl-07. Forgotten 24 h: at least $0.43 (see the cost basis).",
   "steps": [
     {
       "id": "s01",

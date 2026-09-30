@@ -18,9 +18,9 @@
   "beforeYouStart": [
     "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
     "Run aws sts get-caller-identity",
-    "Cost basis (us-east-1, priced 2026-09-29): 1 ElastiCache cache.t3.micro (Redis) node $0.017/h billed in full hours; no public IPv4; same-hour \u2248 $0.04, forgotten 24 h \u2248 $0.41. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
+    "Cost basis (us-east-1, priced 2026-09-29): 1 ElastiCache cache.t3.micro (Redis) node $0.017/h, billed in full hours (no public IPv4). This run \u2248 $0.04; forgotten 24 h \u2248 $0.41 (at least; data transfer not included). Re-check current pricing before you run."
   ],
-  "stopChargesPanel": "Delete the cache cluster, wait until it is deleted, then delete the cache subnet group; ElastiCache is hourly. Forgotten 24 h \u2248 $0.41 (a floor; see the cost basis).",
+  "stopChargesPanel": "Delete the cache cluster, wait until it is deleted, then delete the cache subnet group; ElastiCache is hourly. Forgotten 24 h: at least $0.41 (see the cost basis).",
   "steps": [
     {
       "id": "s01",

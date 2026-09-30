@@ -5,7 +5,7 @@
   "pairId": "gl-19",
   "region": "us-east-1",
   "estimatedMinutes": 120,
-  "sameHourEstimateUsd": 0.24,
+  "sameHourEstimateUsd": 0.4,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -60,7 +60,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "EKS with compute add-on lab."
   },
-  "stopChargesPanel": "Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles. Forgotten 24 h \u2248 $2.83 (a floor; see the cost basis).",
+  "stopChargesPanel": "Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles. Forgotten 24 h: at least $4.75 (see the cost basis).",
   "teardown": {
     "labId": "ul-19",
     "regionScope": "us-east-1",
@@ -101,10 +101,10 @@
   "executionStatus": "unexecuted",
   "module": "A3",
   "difficulty": "tradeoff",
-  "forgotten24hEstimateUsd": 2.83,
+  "forgotten24hEstimateUsd": 4.75,
   "beforeYouStart": [
     "Read the paired guided lab (gl-19) stop-charges panel before you create anything.",
     "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
-    "Cost basis (us-east-1, priced 2026-09-29): EKS control plane, standard support, $0.10/cluster-hour, plus one managed node assumed as t3.micro $0.0104/h (t3.medium would be $0.0416/h), 1 public IPv4 on the node $0.005/h, 20 GB gp3* node root at $0.08/GB-month; the Fargate-profile path adds nothing until pods run; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.24, forgotten 24 h \u2248 $2.83. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
+    "Cost basis (us-east-1, priced 2026-09-29): EKS control plane $0.10/cluster-hour, plus 2 t3.medium nodes (the create-nodegroup default) $0.0416/h each, 2 public IPv4 $0.005/h each, 2 x 20 GB gp3 node disks $0.08/GB-month. This run \u2248 $0.40; forgotten 24 h \u2248 $4.75 (at least; data transfer not included). Choosing 1 x t3.micro lowers this to about $0.24 / $2.83. Re-check current pricing before you run."
   ]
 }

@@ -56,7 +56,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Fargate sizing comparison lab."
   },
-  "stopChargesPanel": "Scale services to 0 and delete them, stop running tasks, deregister task definitions, delete the cluster, log group, security group and IAM role for ul-18. Forgotten 24 h \u2248 $1.13 (a floor; see the cost basis).",
+  "stopChargesPanel": "Scale services to 0 and delete them, stop running tasks, deregister task definitions, delete the cluster, log group, security group and IAM role for ul-18. Forgotten 24 h: at least $1.13 (see the cost basis).",
   "teardown": {
     "labId": "ul-18",
     "regionScope": "us-east-1",
@@ -92,6 +92,6 @@
   "beforeYouStart": [
     "Read the paired guided lab (gl-18) stop-charges panel before you create anything.",
     "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
-    "Cost basis (us-east-1, priced 2026-09-29): Fargate Linux/x86: $0.000011244/vCPU-second ($0.0405/h) and $0.000001235/GB-second ($0.00445/h); tier 1 = 0.25 vCPU + 0.5 GB, tier 2 = 0.5 vCPU + 1 GB, 1 public IPv4 per task $0.005/h; both tasks assumed running together; log group and any service not included; same-hour \u2248 $0.08, forgotten 24 h \u2248 $1.13. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
+    "Cost basis (us-east-1, priced 2026-09-29): 2 Fargate tasks at $0.0405 per vCPU-hour and $0.00445 per GB-hour: 0.25 vCPU + 0.5 GB \u2248 $0.0124/h and 0.5 vCPU + 1 GB \u2248 $0.0247/h, each plus 1 public IPv4 $0.005/h, assumed running together. This run \u2248 $0.08; forgotten 24 h \u2248 $1.13 (at least; data transfer and logs not included). Re-check current pricing before you run."
   ]
 }

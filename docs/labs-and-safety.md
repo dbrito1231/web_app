@@ -34,29 +34,42 @@ REQ-L12. Free Tier never assumed. No root access keys. No secrets in git. Terraf
 
 ## Example rates (illustration only)
 
-Re-read official pricing for the learner’s region before a lab is marked verified. Same-hour `us-east-1` examples read 2026-09-29 from the public AWS pricing pages (claim table with verbatim quotes and the method used per row: `reports/fix-loop-r2/d6/pricing-claims.md`). Instance-type tables (EC2, RDS, ElastiCache) were read in the pages' rendered rate widgets with the region set to US East (N. Virginia). The other pages' region tables did not render, so those rows come from static page text; a row marked "not verified for us-east-1" must be re-checked on the page before a lab run.
+Re-read official pricing for the learner’s region before a lab is marked verified. Same-hour `us-east-1` examples read 2026-09-29 from the public AWS pricing pages (claim table with verbatim quotes and the method per row: `reports/fix-loop-r2/d6/pricing-claims.md`). EC2, RDS and ElastiCache instance rates were read in the pages' rate widgets with the region set to US East (N. Virginia). A row marked "not verified for us-east-1" must be re-checked on the page before a lab run.
 
 | Resource | Example | Status |
 | --- | --- | --- |
 | NAT Gateway | $0.045/hour + $0.045/GB; partial hour bills as full hour | Page example is US East (Ohio); not verified for us-east-1 |
-| Public IPv4 | $0.005/hour in use or idle | Static page text, not region-specific; per-second billing, 60-second minimum |
+| Public IPv4 | $0.005/hour in use or idle | Flat rate; per-second billing, 60-second minimum |
 | Gateway VPC endpoints | no hourly/data charge in that example | Static page text |
 | Customer-managed KMS | $1/month prorated; scheduled-for-deletion not charged | Read 2026-09-23, not re-read |
-| ALB | $0.0225/hour plus LCU; partial hour bills as full hour | Worked-example rate, region not named; not verified for us-east-1 |
-| t3.micro Linux | $0.0104/hour | Verified us-east-1 (EC2 on-demand widget) |
-| t3.medium Linux | $0.0416/hour | Verified us-east-1 (EC2 on-demand widget) |
-| RDS PostgreSQL db.t3.micro Single-AZ | $0.018/hour | Verified us-east-1 (RDS PostgreSQL rate widget); partial hours bill as full hours |
-| RDS storage | gp2/gp3 not read; io1 $0.125/GB-month used only as an upper bound | gp2/gp3 not verified; io1 from a US East (N. Virginia) page example |
-| ElastiCache cache.t3.micro | Redis $0.017/hour (Valkey $0.0136/hour); partial hour bills as full hour | Verified us-east-1 (ElastiCache rate widget) |
-| EBS gp3 | $0.08/GB-month | Worked-example rate, region not named; not verified for us-east-1 |
-| EBS snapshot (standard) | $0.05/GB-month | Worked-example rate, region not named; not verified for us-east-1 |
-| Fargate Linux/x86 | $0.000011244/vCPU-second ($0.0405/h), $0.000001235/GB-second ($0.00445/h); 1-minute minimum | Verified: page example names US East (N. Virginia) |
-| EKS standard support | $0.10/cluster-hour (extended $0.60 out of lab) | Static page text, flat per-cluster rate |
-| WAF | $5.00/web ACL/month, $1.00/rule or managed rule group/month, $0.60 per million requests | Worked-example rates, region not named; not verified for us-east-1 |
-| CloudWatch standard alarm | $0.10 per alarm metric per month | Worked example ("US East"); not verified for us-east-1 |
+| ALB | $0.0225/hour plus LCU; partial hour bills as full hour | Verified us-east-1 (page example names US-East-1) |
+| t3.micro / t3.medium Linux | $0.0104/hour / $0.0416/hour | Verified us-east-1 (EC2 rate widget) |
+| RDS PostgreSQL db.t3.micro Single-AZ | $0.018/hour | Verified us-east-1 (RDS rate widget) |
+| RDS storage | gp2/gp3 not read; io1 $0.125/GB-month used only as an upper bound | gp2/gp3 not verified |
+| ElastiCache cache.t3.micro | Redis $0.017/hour (Valkey $0.0136); partial hour bills as full hour | Verified us-east-1 (rate widget) |
+| EBS gp3 / gp2 | $0.08 / $0.10 per GB-month | Verified N. Virginia (EBS page) |
+| EBS snapshot (standard) | $0.05/GB-month | Verified N. Virginia (EBS page) |
+| Fargate Linux/x86 | $0.0405 per vCPU-hour, $0.00445 per GB-hour; 1-minute minimum | Verified: page example names US East (N. Virginia) |
+| EKS standard support | $0.10/cluster-hour (extended $0.60 out of lab) | Flat per-cluster rate |
+| WAF | $5.00/web ACL/month, $1.00/rule or managed rule group/month, $0.60 per million requests | Page examples, region not named; not verified for us-east-1 |
+| CloudWatch standard alarm | $0.10 per alarm metric per month | Page example ("US East"); not verified for us-east-1 |
 | Alert-only Budgets | no charge | Read 2026-09-23, not re-read |
 
-Still to fill from official pages: EFS Standard storage and RDS gp2/gp3 storage (page price tables did not render), plus Step Functions, Athena, Route 53 private zone, Secrets Manager, GuardDuty, Macie (the last six are not used by the 16 hourly labs). GL/UL-07's EFS part keeps its earlier conservative 24 h figure until EFS is read.
+Notes per service (assumptions behind the lab cost lines):
+
+- **All labs.** Same-hour assumes every resource runs for the whole estimated time, which is deliberately cautious. EC2, EBS, public IPv4 and Fargate bill per second; NAT, ALB, RDS and ElastiCache bill partial hours as full hours. A month is 720 hours.
+- **NAT (GL/UL-06).** Read from the page's US East (Ohio) example. The NAT's Elastic IP is billed as a public IPv4 address.
+- **EC2 and EBS (GL-07, GL/UL-08, GL/UL-09).** The 8 GB root volume is the Amazon Linux 2023 AMI default; it is not stated in the steps. Instances in default-VPC subnets get a public IPv4; the GL-08 target does not, because its subnets do not auto-assign one. UL-07 assumes t3.micro because its steps do not name a type.
+- **ALB (GL/UL-08).** One public IPv4 per subnet, so two. LCU (traffic) charges are not included.
+- **WAF (UL-08).** The page says only "prorated hourly", so the same-hour figure bills one full hour. Request charges are not included.
+- **CloudWatch (UL-09).** Target tracking creates two alarms.
+- **RDS (GL/UL-14).** Storage is priced at the higher io1 rate because the gp2/gp3 rate was not read, so those figures are likely slightly high. UL-14 runs a second (restored) instance and a manual snapshot: 2 instances and 60 GB.
+- **Fargate (GL/UL-18).** 0.25 vCPU + 0.5 GB is about $0.0124/hour, 0.5 vCPU + 1 GB about $0.0247/hour, each plus a public IPv4. The GL-18 task exits on its own, so the 24-hour figure applies only if something keeps it running.
+- **EKS (GL/UL-19).** GL-19 has no nodes. For UL-19 the `aws eks create-nodegroup` docs give t3.medium and a 20 GiB disk as defaults; the default desired size is not documented, so 2 nodes is assumed. One t3.micro node would cost about $0.24 this run and $2.83 forgotten for 24 hours.
+- **ElastiCache (GL/UL-21).** Redis assumed; Valkey is cheaper. Nodes run in a VPC subnet group, so no public IPv4.
+- **EFS (UL-07).** The EFS Standard rate was not read. UL-07 keeps a cautious 24-hour figure of $0.72; the priced parts come to about $0.39.
+
+Still to fill from official pages: EFS Standard storage and RDS gp2/gp3 storage, plus Step Functions, Athena, Route 53 private zone, Secrets Manager, GuardDuty and Macie (the last six are not used by the 16 hourly labs).
 
 ## Lab catalog (21 + 21)
 

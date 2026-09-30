@@ -22,9 +22,12 @@ Rules used everywhere: (1) same-hour keeps every resource running for the whole 
 | ElastiCache | cache.t3.micro Valkey On-Demand (comparison) | $0.0136/h | same widget | row "cache.t3.micro ... $0.0136 Valkey" | widget (browser) | verified us-east-1; not used (labs create Redis) |
 | ElastiCache | partial node-hour | full hour | https://aws.amazon.com/elasticache/pricing/ | "Each partial node-hour consumed will be billed as a full hour." | curl | verified |
 | EFS | Standard storage GB-month | n/a | https://aws.amazon.com/efs/pricing/ | price token only; no widget iframe on the page | curl; browser | NOT VERIFIED on 2026-09-29 |
-| EBS | gp3 storage | $0.08/GB-month | https://aws.amazon.com/ebs/pricing/ | "In a region that charges $0.08 per GB-month" | curl | worked example; NOT verified for us-east-1 |
-| EBS | Snapshot Standard storage | $0.05/GB-month | https://aws.amazon.com/ebs/pricing/ | "with a $0.05 per GB-month for EBS Snapshots Standard storage" | curl | worked example; NOT verified for us-east-1 |
-| ELB | ALB hourly | $0.0225/h | https://aws.amazon.com/elasticloadbalancing/pricing/ | "Adding the hourly charge of $0.0225, the total Application Load Balancer costs are:" | curl | worked example; NOT verified for us-east-1 |
+| EBS | gp3 storage | $0.08/GB-month | https://aws.amazon.com/ebs/pricing/ | "General Purpose SSD (gp3) - Storage $0.08/GB-month" | curl; reviewer read the rendered page with Region read back as US East (N. Virginia) | verified N. Virginia (AWS-PA-003) |
+| EBS | Snapshot Standard storage | $0.05/GB-month | https://aws.amazon.com/ebs/pricing/ | "Standard $0.05/GB-month" | curl; reviewer rendered page (N. Virginia) | verified N. Virginia (AWS-PA-003) |
+| EBS | gp2 storage (note only) | $0.10/GB-month | https://aws.amazon.com/ebs/pricing/ | "General Purpose SSD (gp2) Volumes $0.10 per GB-month of provisioned storage" | reviewer rendered page (N. Virginia) | verified; not used by these labs |
+| EBS | billing granularity | per second, 60 s minimum | https://aws.amazon.com/ebs/pricing/ | "billed in per-second increments, with a 60-second minimum" | reviewer rendered page | verified |
+| EKS | create-nodegroup defaults | instance type t3.medium; root disk 20 GiB | https://docs.aws.amazon.com/eks/latest/APIReference/API_CreateNodegroup.html | "then `t3.medium` is used, by default"; "default disk size is 20 GiB for Linux" | AWS docs MCP | verified; default desired size not documented on that page or NodegroupScalingConfig |
+| ELB | ALB hourly | $0.0225/h | https://aws.amazon.com/elasticloadbalancing/pricing/ | "using pricing in the US-East-1 Region as follows" then "Adding the hourly charge of $0.0225, the total Application Load Balancer costs are" | curl (text); reviewer re-read | verified us-east-1 (example names US-East-1; AWS-PA-003) |
 | ELB | ALB partial hour | full hour | https://aws.amazon.com/elasticloadbalancing/pricing/ | "Each partial Application Load Balancer hour used is billed as a full hour." | curl | verified |
 | WAF | Web ACL | $5.00/month prorated hourly | https://aws.amazon.com/waf/pricing/ | "Web ACL charges = $5.00 * 1 = $5.00"; "Monthly fees are prorated hourly." | curl | worked example; NOT verified for us-east-1 ("Pricing may vary across AWS Regions") |
 | WAF | Managed rule group / rule | $1.00/month prorated hourly | https://aws.amazon.com/waf/pricing/ | "$1.00 per month (prorated hourly) for each rule group or each managed rule group" | curl | text verified; NOT verified for us-east-1 |
@@ -37,7 +40,7 @@ Rules used everywhere: (1) same-hour keeps every resource running for the whole 
 | EFS | Standard storage GB-month | n/a | https://aws.amazon.com/efs/pricing/ | "{priceOf!efs/...}" token only | curl | NOT VERIFIED on 2026-09-29 |
 | ElastiCache | cache.t3.micro node-hour | n/a | https://aws.amazon.com/elasticache/pricing/ | no small-node rate in static text | curl | NOT VERIFIED on 2026-09-29 |
 
-Counts (second pass): verified in us-east-1 = t3.micro, t3.small, t3.medium, RDS db.t3.micro, ElastiCache cache.t3.micro (Redis and Valkey), Fargate vCPU/memory; page-stated flat rates = public IPv4, EKS; not verified for us-east-1 (worked example, Ohio, or table unreadable) = NAT, ALB, WAF web ACL/rule, EBS gp3, EBS snapshot, CloudWatch alarm, RDS gp2/gp3, EFS.
+Counts (after fix pass): verified in us-east-1 = t3.micro, t3.small, t3.medium, RDS db.t3.micro, ElastiCache cache.t3.micro (Redis and Valkey), Fargate vCPU/memory, ALB, EBS gp3 and snapshot; page-stated flat rates = public IPv4, EKS; not verified for us-east-1 (worked example, Ohio, or table unreadable) = NAT, WAF web ACL/rule, CloudWatch alarm, RDS gp2/gp3, EFS.
 
 ## Per lab
 
@@ -58,11 +61,11 @@ Old -> new: same-hour 0.05 -> 0.10; forgotten 24 h 1.2 -> 1.20
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 NAT gateway* $0.045/h billed in full hours (from the page's US East (Ohio) example), 1 public IPv4 (the NAT's Elastic IP) $0.005/h; * N. Virginia rate rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.10, forgotten 24 h ≈ $1.20. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 NAT gateway $0.045/h (billed in full hours), 1 public IPv4 for its Elastic IP $0.005/h. This run ≈ $0.10; forgotten 24 h ≈ $1.20 (at least; data transfer and NAT per-GB processing not included). The NAT gateway rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete NAT gateway, wait deleted, release EIP, then tear down VPC components. Forgotten 24 h ≈ $1.20 (a floor; see the cost basis).
+> Delete NAT gateway, wait deleted, release EIP, then tear down VPC components. Forgotten 24 h: at least $1.20 (see the cost basis).
 
 ### gl-07 (120 min)
 
@@ -87,11 +90,11 @@ Old -> new: same-hour 0.03 -> 0.04; forgotten 24 h 0.72 -> 0.43
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): t3.micro $0.0104/h, 1 public IPv4 $0.005/h (default subnet), 2 x 8 GB gp3* $0.08/GB-month (root + data), 1 snapshot* up to 8 GB $0.05/GB-month; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; root size 8 GB is the AMI default, not stated in the steps; same-hour ≈ $0.04, forgotten 24 h ≈ $0.43. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 t3.micro $0.0104/h, 1 public IPv4 $0.005/h, 2 x 8 GB gp3 volumes (root and data) $0.08/GB-month, 1 snapshot up to 8 GB $0.05/GB-month. This run ≈ $0.04; forgotten 24 h ≈ $0.43 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Terminate the instance and wait, detach and delete the gp3 volume, then delete the snapshot tagged gl-07. Forgotten 24 h ≈ $0.43 (a floor; see the cost basis).
+> Terminate the instance and wait, detach and delete the gp3 volume, then delete the snapshot tagged gl-07. Forgotten 24 h: at least $0.43 (see the cost basis).
 
 ### gl-08 (90 min)
 
@@ -114,11 +117,11 @@ Old -> new: same-hour 0.04 -> 0.08; forgotten 24 h 0.96 -> 1.06
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 ALB* $0.0225/h billed in full hours, 2 public IPv4 on the ALB (one per subnet/AZ) $0.005/h each, t3.micro $0.0104/h target with no public IPv4 (the lab's subnets do not auto-assign one), 8 GB gp3* root at $0.08/GB-month; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.08, forgotten 24 h ≈ $1.06. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 Application Load Balancer $0.0225/h (billed in full hours) with 2 public IPv4 (one per subnet) $0.005/h each, 1 t3.micro $0.0104/h, 8 GB gp3 root volume $0.08/GB-month. This run ≈ $0.08; forgotten 24 h ≈ $1.06 (at least; LCU (traffic) charges and data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete the load balancer (this removes its listener) and wait, delete the target group, terminate the EC2 instance and wait, then disassociate and delete the route table, delete both subnets, detach and delete the internet gateway, and delete the security group and VPC. Forgotten 24 h ≈ $1.06 (a floor; see the cost basis).
+> Delete the load balancer (this removes its listener) and wait, delete the target group, terminate the EC2 instance and wait, then disassociate and delete the route table, delete both subnets, detach and delete the internet gateway, and delete the security group and VPC. Forgotten 24 h: at least $1.06 (see the cost basis).
 
 ### gl-09 (75 min)
 
@@ -139,11 +142,11 @@ Old -> new: same-hour 0.03 -> 0.03; forgotten 24 h 0.72 -> 0.40
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): t3.micro $0.0104/h, 1 public IPv4 $0.005/h (default subnet), 8 GB gp3* $0.08/GB-month root; the ASG and launch template are free; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.03, forgotten 24 h ≈ $0.40. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 t3.micro $0.0104/h, 1 public IPv4 $0.005/h, 8 GB gp3 root volume $0.08/GB-month (the Auto Scaling group itself is free). This run ≈ $0.03; forgotten 24 h ≈ $0.40 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Scale the ASG to 0 and force-delete it, wait until it is gone (its instances terminate with it), then delete the launch template. This lab uses the default VPC and creates no security group or subnet. Forgotten 24 h ≈ $0.40 (a floor; see the cost basis).
+> Scale the ASG to 0 and force-delete it, wait until it is gone (its instances terminate with it), then delete the launch template. This lab uses the default VPC and creates no security group or subnet. Forgotten 24 h: at least $0.40 (see the cost basis).
 
 ### gl-14 (120 min)
 
@@ -162,11 +165,11 @@ Old -> new: same-hour 0.5 -> 0.05; forgotten 24 h 12.0 -> 0.52
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 RDS db.t3.micro Single-AZ $0.018/h billed in full hours, 20 GB storage* at $0.125/GB-month (not publicly accessible, so no public IPv4); * io1 storage rate $0.125/GB-month from the RDS PostgreSQL page (US East (N. Virginia) example), used as a conservative upper bound because the gp2/gp3 storage rate could not be read: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.05, forgotten 24 h ≈ $0.52. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 RDS db.t3.micro Single-AZ $0.018/h, 20 GB storage (no public IPv4). This run ≈ $0.05; forgotten 24 h ≈ $0.52. Storage is priced at the higher io1 rate because the gp2/gp3 rate was not read, so real cost is likely slightly lower. Not included: data transfer. Re-check pricing before you run.
 
 stopChargesPanel:
 
-> Delete the DB instance without a final snapshot, wait until it is deleted, then delete the DB subnet group. This lab uses the default VPC security group. RDS forgotten overnight is costly. Forgotten 24 h ≈ $0.52 (a floor; see the cost basis).
+> Delete the DB instance without a final snapshot, wait until it is deleted, then delete the DB subnet group. This lab uses the default VPC security group. RDS bills every hour until deleted. Forgotten 24 h ≈ $0.52 (see the cost basis; check current pricing).
 
 ### gl-18 (90 min)
 
@@ -187,11 +190,11 @@ Old -> new: same-hour 0.2 -> 0.03; forgotten 24 h 4.8 -> 0.42
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): Fargate Linux/x86: 0.25 vCPU at $0.000011244/vCPU-second ($0.0405/h) + 0.5 GB at $0.000001235/GB-second ($0.00445/h), 1 public IPv4 on the task $0.005/h; 1-minute minimum; the task exits on its own, so the 24 h figure applies only if it were kept running; same-hour ≈ $0.03, forgotten 24 h ≈ $0.42. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 Fargate task: 0.25 vCPU at $0.0405 per vCPU-hour + 0.5 GB at $0.00445 per GB-hour ≈ $0.0124/h, plus 1 public IPv4 $0.005/h. This run ≈ $0.03; forgotten 24 h ≈ $0.42 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Stop tasks, delete service if any, deregister task defs, delete cluster. Forgotten 24 h ≈ $0.42 (a floor; see the cost basis).
+> Stop tasks, delete service if any, deregister task defs, delete cluster. Forgotten 24 h: at least $0.42 (see the cost basis).
 
 ### gl-19 (120 min)
 
@@ -208,11 +211,11 @@ Old -> new: same-hour 0.2 -> 0.20; forgotten 24 h 4.8 -> 2.40
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): EKS control plane, standard support, $0.10/cluster-hour (no node group in this lab); same-hour ≈ $0.20, forgotten 24 h ≈ $2.40. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): EKS control plane $0.10/cluster-hour (no nodes). This run ≈ $0.20; forgotten 24 h ≈ $2.40 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete the cluster and wait (EKS removes the cluster security group and network interfaces it created), then the IAM role; control plane bills hourly. Forgotten 24 h ≈ $2.40 (a floor; see the cost basis).
+> Delete the cluster and wait (EKS removes the cluster security group and network interfaces it created), then the IAM role; control plane bills hourly. Forgotten 24 h: at least $2.40 (see the cost basis).
 
 ### gl-21 (120 min)
 
@@ -229,11 +232,11 @@ Old -> new: same-hour 0.2 -> 0.04; forgotten 24 h 4.8 -> 0.41
 
 beforeYouStart (replaced generic item):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 ElastiCache cache.t3.micro (Redis) node $0.017/h billed in full hours; no public IPv4; same-hour ≈ $0.04, forgotten 24 h ≈ $0.41. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 ElastiCache cache.t3.micro (Redis) node $0.017/h, billed in full hours (no public IPv4). This run ≈ $0.04; forgotten 24 h ≈ $0.41 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete the cache cluster, wait until it is deleted, then delete the cache subnet group; ElastiCache is hourly. Forgotten 24 h ≈ $0.41 (a floor; see the cost basis).
+> Delete the cache cluster, wait until it is deleted, then delete the cache subnet group; ElastiCache is hourly. Forgotten 24 h: at least $0.41 (see the cost basis).
 
 ### ul-06 (75 min)
 
@@ -252,11 +255,11 @@ Old -> new: same-hour 0.05 -> 0.10; forgotten 24 h 1.2 -> 1.20
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 NAT gateway* $0.045/h billed in full hours (from the page's US East (Ohio) example), 1 public IPv4 (the NAT's Elastic IP) $0.005/h; * N. Virginia rate rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.10, forgotten 24 h ≈ $1.20. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 NAT gateway $0.045/h (billed in full hours), 1 public IPv4 for its Elastic IP $0.005/h. This run ≈ $0.10; forgotten 24 h ≈ $1.20 (at least; data transfer and NAT per-GB processing not included). The NAT gateway rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete the NAT gateway and wait until it is deleted, release the Elastic IP, then remove both route tables, both subnets, the IGW and the VPC for ul-06. Forgotten 24 h ≈ $1.20 (a floor; see the cost basis).
+> Delete the NAT gateway and wait until it is deleted, release the Elastic IP, then remove both route tables, both subnets, the IGW and the VPC for ul-06. Forgotten 24 h: at least $1.20 (see the cost basis).
 
 ### ul-07 (120 min)
 
@@ -277,11 +280,11 @@ Old -> new: same-hour 0.03 -> 0.04; forgotten 24 h 0.72 -> 0.72
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): t3.micro $0.0104/h (instance type not stated; smallest assumed), 1 public IPv4 $0.005/h, 8 GB gp3* $0.08/GB-month root; EFS storage: rate not verified on 2026-09-29; re-check the pricing page before running, so the earlier 24 h figure of $0.72 is kept as the conservative figure; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.04, forgotten 24 h ≈ $0.72. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): t3.micro $0.0104/h (smallest assumed), 1 public IPv4 $0.005/h, 8 GB gp3 root, plus EFS storage. The EFS rate was not read on 2026-09-29, so check the EFS pricing page before you run. This run ≈ $0.04 (EFS not included); forgotten 24 h ≈ $0.72, a cautious figure, not a calculated one (the parts we could price come to about $0.39). Not included: data transfer.
 
 stopChargesPanel:
 
-> Unmount EFS on the instance, delete the mount targets and wait until none remain, delete the EFS file system, terminate the EC2 instance, then delete the mount-target SG and the instance SG for ul-07. Forgotten 24 h ≈ $0.72 (a floor; see the cost basis).
+> Unmount EFS on the instance, delete the mount targets and wait until none remain, delete the EFS file system, terminate the EC2 instance, then delete the mount-target SG and the instance SG for ul-07. Forgotten 24 h ≈ $0.72 (cautious, not calculated; see the cost basis).
 
 ### ul-08 (90 min)
 
@@ -292,27 +295,27 @@ Same-hour arithmetic (qty x rate/h x hours):
 - public IPv4 on ALB (one per AZ subnet): 2 x 0.005 x 1.5 h = 0.01500
 - t3.micro target: 1 x 0.0104 x 1.5 h = 0.01560
 - 8 GB gp3 root volume: 1 x 0.000888889 x 1.5 h = 0.00133
-- WAF web ACL ($5/month prorated): 1 x 0.00694444 x 1.5 h = 0.01042
-- 1 managed rule group ($1/month prorated): 1 x 0.00138889 x 1.5 h = 0.00208
-- Sum 0.08943 -> rounded up 0.09
+- WAF web ACL ($5/month, partial hour billed as full hour): 1 x 0.00694444 x 2 h = 0.01389
+- 1 managed rule group ($1/month, partial hour as full hour): 1 x 0.00138889 x 2 h = 0.00278
+- Sum 0.09360 -> rounded up 0.10
 24 h arithmetic:
 - ALB (billed in full hours): 1 x 0.0225 x 24 h = 0.54000
 - public IPv4 on ALB (one per AZ subnet): 2 x 0.005 x 24 h = 0.24000
 - t3.micro target: 1 x 0.0104 x 24 h = 0.24960
 - 8 GB gp3 root volume: 1 x 0.000888889 x 24 h = 0.02133
-- WAF web ACL ($5/month prorated): 1 x 0.00694444 x 24 h = 0.16667
-- 1 managed rule group ($1/month prorated): 1 x 0.00138889 x 24 h = 0.03333
+- WAF web ACL ($5/month, partial hour billed as full hour): 1 x 0.00694444 x 24 h = 0.16667
+- 1 managed rule group ($1/month, partial hour as full hour): 1 x 0.00138889 x 24 h = 0.03333
 - Sum 1.25093 -> rounded up 1.26
 
-Old -> new: same-hour 0.04 -> 0.09; forgotten 24 h 0.96 -> 1.26
+Old -> new: same-hour 0.04 -> 0.10; forgotten 24 h 0.96 -> 1.26
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): 1 ALB* $0.0225/h billed in full hours, 2 public IPv4 on the ALB (one per subnet/AZ) $0.005/h each, t3.micro $0.0104/h target with no public IPv4 (the lab's subnets do not auto-assign one), 8 GB gp3* root at $0.08/GB-month, AWS WAF web ACL* $5.00/month and one managed rule group* $1.00/month, both prorated hourly (requests at $0.60 per million excluded); an optional standalone Elastic IP is not included; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.09, forgotten 24 h ≈ $1.26. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 1 ALB $0.0225/h (full hours), 2 public IPv4 $0.005/h each, 1 t3.micro $0.0104/h, 8 GB gp3 root $0.08/GB-month, 1 WAF web ACL $5.00/month, 1 managed rule group $1.00/month. This run ≈ $0.10; forgotten 24 h ≈ $1.26 (at least; LCU (traffic) charges, data transfer and WAF request charges ($0.60 per million) not included). The WAF rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Disassociate the WAF web ACL from the ALB and delete the web ACL, then delete the listener, ALB, target group, EC2 instance, Elastic IP (if allocated), both public subnets and their route table, the IGW, the SG and the VPC for ul-08. Forgotten 24 h ≈ $1.26 (a floor; see the cost basis).
+> Disassociate the WAF web ACL from the ALB and delete the web ACL, then delete the listener, ALB, target group, EC2 instance, Elastic IP (if allocated), both public subnets and their route table, the IGW, the SG and the VPC for ul-08. Forgotten 24 h: at least $1.26 (see the cost basis).
 
 ### ul-09 (75 min)
 
@@ -335,11 +338,11 @@ Old -> new: same-hour 0.03 -> 0.05; forgotten 24 h 0.72 -> 0.79
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): 2 x t3.micro $0.0104/h at peak, 2 public IPv4 $0.005/h each, 2 x 8 GB gp3* $0.08/GB-month root, 2 CloudWatch standard alarms* from target tracking at $0.10 per alarm metric per month; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.05, forgotten 24 h ≈ $0.79. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 2 t3.micro at peak $0.0104/h each, 2 public IPv4 $0.005/h each, 2 x 8 GB gp3 root volumes $0.08/GB-month, 2 CloudWatch alarms $0.10/month each. This run ≈ $0.05; forgotten 24 h ≈ $0.79 (at least; data transfer not included). The CloudWatch alarm rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Scale the ASG to 0, force-delete it and wait for its instances to terminate, then delete the CloudWatch alarm (if you created one), the launch template and the lab SG for ul-09. Forgotten 24 h ≈ $0.79 (a floor; see the cost basis).
+> Scale the ASG to 0, force-delete it and wait for its instances to terminate, then delete the CloudWatch alarm (if you created one), the launch template and the lab SG for ul-09. Forgotten 24 h: at least $0.79 (see the cost basis).
 
 ### ul-14 (120 min)
 
@@ -358,11 +361,11 @@ Old -> new: same-hour 0.5 -> 0.10; forgotten 24 h 12.0 -> 1.12
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): 2 RDS db.t3.micro Single-AZ (source + restored copy) $0.018/h each, billed in full hours, and 60 GB of storage* (two 20 GB instances + one 20 GB manual snapshot) at $0.125/GB-month; no public IPv4; * io1 storage rate $0.125/GB-month from the RDS PostgreSQL page (US East (N. Virginia) example), used as a conservative upper bound because the gp2/gp3 storage rate could not be read: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.10, forgotten 24 h ≈ $1.12. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 2 RDS db.t3.micro Single-AZ (source and restored copy) $0.018/h each, 60 GB storage (two 20 GB instances and one 20 GB snapshot; no public IPv4). This run ≈ $0.10; forgotten 24 h ≈ $1.12. Storage is priced at the higher io1 rate because the gp2/gp3 rate was not read, so real cost is likely slightly lower. Not included: data transfer. Re-check pricing before you run.
 
 stopChargesPanel:
 
-> Delete the restored copy, then the source RDS instance (wait for each), then the manual snapshot, the DB subnet group and the lab SG for ul-14. Forgotten 24 h ≈ $1.12 (a floor; see the cost basis).
+> Delete the restored copy, then the source RDS instance (wait for each), then the manual snapshot, the DB subnet group and the lab SG for ul-14. RDS bills every hour until deleted. Forgotten 24 h ≈ $1.12 (see the cost basis; check current pricing).
 
 ### ul-18 (90 min)
 
@@ -389,38 +392,38 @@ Old -> new: same-hour 0.2 -> 0.08; forgotten 24 h 4.8 -> 1.13
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): Fargate Linux/x86: $0.000011244/vCPU-second ($0.0405/h) and $0.000001235/GB-second ($0.00445/h); tier 1 = 0.25 vCPU + 0.5 GB, tier 2 = 0.5 vCPU + 1 GB, 1 public IPv4 per task $0.005/h; both tasks assumed running together; log group and any service not included; same-hour ≈ $0.08, forgotten 24 h ≈ $1.13. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): 2 Fargate tasks at $0.0405 per vCPU-hour and $0.00445 per GB-hour: 0.25 vCPU + 0.5 GB ≈ $0.0124/h and 0.5 vCPU + 1 GB ≈ $0.0247/h, each plus 1 public IPv4 $0.005/h, assumed running together. This run ≈ $0.08; forgotten 24 h ≈ $1.13 (at least; data transfer and logs not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Scale services to 0 and delete them, stop running tasks, deregister task definitions, delete the cluster, log group, security group and IAM role for ul-18. Forgotten 24 h ≈ $1.13 (a floor; see the cost basis).
+> Scale services to 0 and delete them, stop running tasks, deregister task definitions, delete the cluster, log group, security group and IAM role for ul-18. Forgotten 24 h: at least $1.13 (see the cost basis).
 
 ### ul-19 (120 min)
 
-Resources: EKS cluster + 1 managed node (t3.micro assumed, EKS console default is larger), public IPv4 on the node (default VPC public subnet), 20 GB gp3 node root (assumed); Fargate-profile path adds nothing until pods run.
+Resources: EKS cluster + 2 managed nodes at the create-nodegroup defaults (t3.medium, 20 GiB disk, 2 nodes assumed because the docs do not state a default size), public IPv4 on each node, 2 x 20 GB gp3.
 
 Same-hour arithmetic (qty x rate/h x hours):
 - EKS control plane (standard support): 1 x 0.1 x 2 h = 0.20000
-- t3.micro managed node: 1 x 0.0104 x 2 h = 0.02080
-- public IPv4 on node: 1 x 0.005 x 2 h = 0.01000
-- 20 GB gp3 node root volume: 1 x 0.00222222 x 2 h = 0.00444
-- Sum 0.23524 -> rounded up 0.24
+- t3.medium managed nodes (create-nodegroup default type, 2 nodes): 2 x 0.0416 x 2 h = 0.16640
+- public IPv4 on nodes: 2 x 0.005 x 2 h = 0.02000
+- 20 GB gp3 node root volumes: 2 x 0.00222222 x 2 h = 0.00889
+- Sum 0.39529 -> rounded up 0.40
 24 h arithmetic:
 - EKS control plane (standard support): 1 x 0.1 x 24 h = 2.40000
-- t3.micro managed node: 1 x 0.0104 x 24 h = 0.24960
-- public IPv4 on node: 1 x 0.005 x 24 h = 0.12000
-- 20 GB gp3 node root volume: 1 x 0.00222222 x 24 h = 0.05333
-- Sum 2.82293 -> rounded up 2.83
+- t3.medium managed nodes (create-nodegroup default type, 2 nodes): 2 x 0.0416 x 24 h = 1.99680
+- public IPv4 on nodes: 2 x 0.005 x 24 h = 0.24000
+- 20 GB gp3 node root volumes: 2 x 0.00222222 x 24 h = 0.10667
+- Sum 4.74347 -> rounded up 4.75
 
-Old -> new: same-hour 0.2 -> 0.24; forgotten 24 h 4.8 -> 2.83
+Old -> new: same-hour 0.2 -> 0.40; forgotten 24 h 4.8 -> 4.75
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): EKS control plane, standard support, $0.10/cluster-hour, plus one managed node assumed as t3.micro $0.0104/h (t3.medium would be $0.0416/h), 1 public IPv4 on the node $0.005/h, 20 GB gp3* node root at $0.08/GB-month; the Fargate-profile path adds nothing until pods run; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour ≈ $0.24, forgotten 24 h ≈ $2.83. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): EKS control plane $0.10/cluster-hour, plus 2 t3.medium nodes (the create-nodegroup default) $0.0416/h each, 2 public IPv4 $0.005/h each, 2 x 20 GB gp3 node disks $0.08/GB-month. This run ≈ $0.40; forgotten 24 h ≈ $4.75 (at least; data transfer not included). Choosing 1 x t3.micro lowers this to about $0.24 / $2.83. Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles. Forgotten 24 h ≈ $2.83 (a floor; see the cost basis).
+> Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles. Forgotten 24 h: at least $4.75 (see the cost basis).
 
 ### ul-21 (120 min)
 
@@ -437,11 +440,11 @@ Old -> new: same-hour 0.2 -> 0.04; forgotten 24 h 4.8 -> 0.41
 
 beforeYouStart (line added):
 
-> Cost basis (us-east-1, priced 2026-09-29): AWS path: 1 ElastiCache cache.t3.micro (Redis assumed) node $0.017/h billed in full hours; no public IPv4; the HCP path is no-charge; same-hour ≈ $0.04, forgotten 24 h ≈ $0.41. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab.
+> Cost basis (us-east-1, priced 2026-09-29): AWS path only: 1 ElastiCache cache.t3.micro (Redis assumed) node $0.017/h, billed in full hours (no public IPv4); the HCP path costs nothing. This run ≈ $0.04; forgotten 24 h ≈ $0.41 (at least; data transfer not included). Re-check current pricing before you run.
 
 stopChargesPanel:
 
-> Delete ElastiCache and AWS tags for ul-21; remove local terraform tokens from shell. Forgotten 24 h ≈ $0.41 (a floor; see the cost basis).
+> Delete ElastiCache and AWS tags for ul-21; remove local terraform tokens from shell. Forgotten 24 h: at least $0.41 (see the cost basis).
 
 ## Mismatches found
 
@@ -460,3 +463,22 @@ Changes: (1) rate widgets (c0.b0.p.awsstatic.com iframes) used for EC2, RDS Post
 
 Figures now: gl-14 0.50/12.00 -> 0.05/0.52; ul-14 0.50/12.00 -> 0.10/1.12; gl-21 and ul-21 0.20/4.80 -> 0.04/0.41. Marked with an asterisk in the lab lines as not verified for us-east-1: NAT, ALB, WAF, EBS gp3 and snapshot, CloudWatch alarm, RDS storage (io1 upper bound used), EFS (UL-07 keeps its earlier conservative 24 h figure).
 
+## Fix pass (review)
+
+Inputs: `pricing-review.md` (AWS-PA-*) and `pricing-review-TEACHER.md` (TEACHER-PA-*). The coordinator's instructions won where they differed. All 16 basis lines were rewritten to the Teacher's template (32 to 79 words; longest ul-08 at 79 words). Every figure was recomputed a second time by an independent script from the rates written in the basis text (all 16 match; ul-07 keeps 0.72 by design, computed part 0.40).
+
+| Finding | What changed |
+| --- | --- |
+| LD-PA-001 (withdrawn) | No change. gl-08 stays 0.08, gl-09 0.03, ul-09 0.05 (EC2, EBS, public IPv4 and Fargate bill per second). |
+| AWS-PA-001 | ul-19 now prices the `create-nodegroup` defaults: t3.medium and 20 GiB disk confirmed in the AWS docs; the default desired size is NOT stated in CreateNodegroup or NodegroupScalingConfig, so 2 nodes is assumed as the conservative case. 2 x t3.medium + 2 IPv4 + 2 x 20 GB gp3 + EKS = 0.40 / 4.75 (was 0.24 / 2.83). The basis adds "Choosing 1 x t3.micro lowers this to about $0.24 / $2.83." |
+| AWS-PA-002 | ul-08 same-hour 0.09 -> 0.10 (WAF partial hour billed as a full hour, since the page says only "prorated hourly"). 24 h stays 1.26. |
+| AWS-PA-003 | Unverified markers removed for ALB and EBS (gp3, snapshot). ALB and EBS rows added or updated in the claim table with URL and verbatim text; docs table updated. |
+| AWS-PA-004, TEACHER-PA-001 | "floor" wording and the generic "LCU/usage" exclusion removed. Exclusions per lab: default "data transfer not included"; gl-08 and ul-08 "LCU (traffic) charges and data transfer not included"; ul-08 adds "WAF request charges ($0.60 per million)"; gl/ul-06 add NAT per-GB processing; ul-18 adds logs. "LCU" now appears only in gl-08 and ul-08. |
+| AWS-PA-005, TEACHER-PA-003 | ul-07 uses the Teacher's exact basis and panel text: 0.72 is "cautious, not calculated"; the priced parts come to about $0.39. |
+| TEACHER-PA-002 | gl-14 and ul-14 use the Teacher's basis and panel texts (ul-14: 2 instances, 60 GB, $0.10 / $1.12). No "at least" on these figures because io1 storage overstates them; "costly" removed from the gl-14 panel. |
+| TEACHER-PA-004 | All other panels read "Forgotten 24 h: at least $Y (see the cost basis)." |
+| TEACHER-PA-005, LD-PA-003 | The "rate rate" wording is gone with the rewrite. |
+| LD-PA-002 | gl/ul-18 use "per vCPU-hour" and "per GB-hour" and state the task cost: 0.25 vCPU + 0.5 GB ≈ $0.0124/h (ul-18 also 0.5 vCPU + 1 GB ≈ $0.0247/h). |
+| Footnotes and assumptions | Asterisks, "worked-example rate" wording, the AMI default and other assumption detail moved to `docs/labs-and-safety.md` (Example rates, notes per service). |
+
+Caveat sentences remain only where a rate is unverified: NAT (gl/ul-06), WAF (ul-08), CloudWatch alarm (ul-09), EFS (ul-07, Teacher's wording) and the RDS storage note (gl/ul-14).

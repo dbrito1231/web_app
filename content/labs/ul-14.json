@@ -57,7 +57,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "RDS restore lab complete."
   },
-  "stopChargesPanel": "Delete the restored copy, then the source RDS instance (wait for each), then the manual snapshot, the DB subnet group and the lab SG for ul-14. Forgotten 24 h \u2248 $1.12 (a floor; see the cost basis).",
+  "stopChargesPanel": "Delete the restored copy, then the source RDS instance (wait for each), then the manual snapshot, the DB subnet group and the lab SG for ul-14. RDS bills every hour until deleted. Forgotten 24 h \u2248 $1.12 (see the cost basis; check current pricing).",
   "teardown": {
     "labId": "ul-14",
     "regionScope": "us-east-1",
@@ -85,6 +85,6 @@
   "beforeYouStart": [
     "Read the paired guided lab (gl-14) stop-charges panel before you create anything.",
     "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
-    "Cost basis (us-east-1, priced 2026-09-29): 2 RDS db.t3.micro Single-AZ (source + restored copy) $0.018/h each, billed in full hours, and 60 GB of storage* (two 20 GB instances + one 20 GB manual snapshot) at $0.125/GB-month; no public IPv4; * io1 storage rate $0.125/GB-month from the RDS PostgreSQL page (US East (N. Virginia) example), used as a conservative upper bound because the gp2/gp3 storage rate could not be read: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.10, forgotten 24 h \u2248 $1.12. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
+    "Cost basis (us-east-1, priced 2026-09-29): 2 RDS db.t3.micro Single-AZ (source and restored copy) $0.018/h each, 60 GB storage (two 20 GB instances and one 20 GB snapshot; no public IPv4). This run \u2248 $0.10; forgotten 24 h \u2248 $1.12. Storage is priced at the higher io1 rate because the gp2/gp3 rate was not read, so real cost is likely slightly lower. Not included: data transfer. Re-check pricing before you run."
   ]
 }
