@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 18 of 22 tasks closed (tf-g4 closed 2026-09-28).** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Next: the user must approve a plan for reopening `4-3`, `4-1` and `1-3` (not yet written), then D6/ISS-080, then g5.**
+**Status: 18 of 22 tasks closed (tf-g4 closed 2026-09-28). Shortest-is-key reopen of `4-3`/`4-1`/`1-3` closed 2026-09-29.** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Sitting 5 is over. Next sitting starts with D6/ISS-080, which needs its own plan and the user's approval, then g5 and g6.**
 
 ## tf-g4 closed (2026-09-28)
 
@@ -22,7 +22,14 @@ Both reviewers close/approve, Student 24/24 (0 keyword-guessable, 10 structural)
 - **Reviewer replacement proposals repeat the defect classes.** Of about 12 proposed replacements, 6 were rejected: they were untaught, version-sensitive, possibly true, or a true/false pair that points at the key. Put the proposals through the same two-question test.
 - **A fix can break an MR join.** A replacement distractor must answer one of the stem's stated needs.
 
-**Key-length rank: open, for the user.** 13 of 16 MC keys are neither the longest nor the shortest option. The Teacher reads this as partly a real cross-task tell; the technical reviewer reads it as the arithmetic of the two caps. Neither blocks.
+## Shortest-is-key reopen (closed 2026-09-29)
+
+Plan: `.cursor/plans/q1_shortest_key_reopen_20260929.plan.md`. Reports: `reopen-shortest-key-{impl,review,STUDENT}.md`.
+- 11 keys were rebalanced by wording only; shortest-is-key went from 57/48/45% to 29/29/18%.
+- `q1_batch_check`'s letter check was rewritten, with a self-test in `scripts/test_q1_letter.py`.
+- **`key_text_diff` is the wrong proof when keys are reworded on purpose.** Compare `correctAnswerIds`, the stem and the choice order field by field instead.
+
+**Key-length rank: open, for the user.** **New evidence (Student, reopen run):** "never pick the longest" was right 15 of 15 times, against about 75% by chance. 13 of 16 MC keys are neither the longest nor the shortest option. The Teacher reads this as partly a real cross-task tell; the technical reviewer reads it as the arithmetic of the two caps. Neither blocks.
 
 ## Decisions taken by the user on 2026-09-28
 
@@ -112,7 +119,7 @@ Ordered by how much trouble each has caused.
 
 | # | Task | Qs | State |
 |---|---|---:|---|
-| 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 to be reopened for shortest-is-key) |
+| 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | Not started |
 | 19 | lesson-tf-g6 | 12 | Not started |

@@ -36,5 +36,7 @@ Pipeline per task:
 | 20 | lesson-tf-g7 | 9 | | | | | | | |
 | 21 | lesson-tf-g8 | 20 | | | | | | | |
 
+**Reopen for shortest-is-key (2026-09-29, closed):** tasks 4-3, 4-1 and 1-3 had 11 keys rebalanced by wording only. Shortest-is-key went from 57/48/45% to 29/29/18%; no correct answer changed. Tech close, Teacher close, Student 15/15. Tasks 3-1 (60%, only 5 MC) and 3-5 (36%) were left closed at the user's decision. See `reopen-shortest-key-{impl,review,STUDENT}.md`.
+
 Other approved work running alongside:
 - **O9** (lab sidecar templates and lab-specific s12–s15 steps). Status: **closed 2026-09-26** (AWS: AWS-O9.md, AWS-O9-recheck.md; Student: STUDENT-O9.md, STUDENT-O9-recheck.md).

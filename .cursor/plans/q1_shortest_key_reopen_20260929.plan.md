@@ -1,6 +1,6 @@
 # Plan: reopen tasks 4-3, 4-1, 1-3 for the shortest-is-key tell, and fix the letter-reference check
 
-Status: **Teacher-validated (approve, with changes applied); awaiting user approval.** No implementation starts before the user approves.
+Status: **approved by the user 2026-09-29; implemented and closed 2026-09-29.** No implementation starts before the user approves.
 Author: Lead Dev, 2026-09-29. Follows the user's decision of 2026-09-28 (HANDOFF "Decisions taken by the user", item 1).
 
 ## Goal
@@ -110,3 +110,11 @@ Fresh Sonnet Teacher, 2026-09-29. Verdict: **Plan: approve**, with two required 
 - **Lesson additions.** None expected. The tight cases are 4-3 s02, 4-1 s06 and 1-3 k04, handled as in the method.
 - **Part B.** No learner impact.
 - **One Teacher claim was wrong.** It asked to "re-verify the four stem-echo waivers already recorded for these tasks". `stem-echo-waivers.json` has no entries, and its README says tasks 1.1–4.4 have none. There is nothing to re-verify; `stem_echo_check` stays advisory for these tasks against a pre-edit baseline.
+
+## Close-out (2026-09-29)
+
+- **Correction to the Tests section.** `key_text_diff.py` compares the *text* of the correct option, so it flags every key that was reworded on purpose (4-3: 4, 4-1: 3, 1-3: 3). The right proof was a field-by-field comparison against `289014c`. `id`, `type`, `objectiveIds`, `selectCount`, `stem`, `correctAnswerIds` and choice-id order were all identical in the 11 files.
+- **Final figures.** Shortest-is-key is 29/29/18%; longest-is-key is 21/29/27%. Stem echo: one flag removed (4-3 k05), none added. The 4-1 distractor-audit FAIL is byte-identical to `289014c`.
+- **Reviews.** Technical and Teacher both close/approve after one fix pass (4-3 s02, 4-3 k09, 1-3 s01). Optional items AWS-RSK-002/003 and TEACHER-RSK-003 were left unapplied, with the agreement of both reviewers.
+- **Student.** 15/15, fair. See `reopen-shortest-key-STUDENT.md` for the two minor observations recorded in the register.
+- **DB.** Fingerprint `930f0e72…`, unchanged.
