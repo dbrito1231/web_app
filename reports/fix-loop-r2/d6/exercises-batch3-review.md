@@ -111,3 +111,55 @@ constraint_reason holds for all 24. No dollar prices appear (grep clean). No clo
 Batch 3: not yet
 
 Overall: concerns
+
+---
+
+## Technical confirmation (fix passes)
+
+Checked at 989f0bf (4.3/4.4) and e994421 "D6 batch 3a fix pass" (4.1/4.2). I read the Teacher's review, both "Fix pass" sections, and the 24 files as they now stand, read-only. Each changed text was checked against the lessons and the AWS facts in the first review.
+
+### AWS-DE3 status
+
+| Id | Status | Note |
+| --- | --- | --- |
+| 001 (4.1-s06) | Gone | One point a month, four-day wait and constraint 7 agree. 72 h is within 96 h. The first-35-days wording is consistent. |
+| 002 (4.1-s04) | Gone | 1,000 GiB volume holding 900 GiB plus a 200 GiB import is 1,100 GiB, so it overflows. r7 matches. |
+| 003 (4.1-s04) | Gone | The "self-managed software on that one server" sentence closes the managed-database design without naming a solution. |
+| 004 (4.1-s02) | Gone | The 1.22 to 1.5 TB window is checkable against constraint 5. |
+| 005 (4.1-s05) | Gone | "Lowest" moved to constraint 5 and r6 is an outcome. No class is named. Glacier Instant Retrieval is still the only option that clears it, because Intelligent-Tiering reaches the same price only from day 90. The merge with TEACHER-DE3-002 is sound. |
+| 006 (4.1-s05) | Gone | The day-60 count is now from replacement, in both the scenario and r7. |
+| 007 (4.1-s09) | Gone | About 3 MB per document and 3,650 days. The stage design is unchanged and determinate. |
+| 008 (4.1-s10) | Gone | r7 no longer asks for the smallest service count. Residual minor: constraint 4 ("as few services as possible") still invites the S3 Files count contest. The Teacher approved it and it is untaught, so no change is needed. |
+| 009 (de-purchasing) | Gone | Constraint 5 states the outcome (no re-buy when the mix changes) and does not name a plan. It is true of Compute Savings Plans and false of the deeper family-locked options, so the answer is determinate. |
+| 010 (4.2-s02) | Gone, except r6 (see AWS-DE3-020) | Unpredictable use removes the scheduled-start design, and the rebuild-from-feeds constraint removes stop and start. Hibernation is the only design that meets it. |
+| 011 (4.2-s04) | Gone | Schedule alone gives 70.2 percent, which is under 75. Single-AZ alone gives 50 percent. Schedule plus single AZ gives about 85 percent. "Proportional to server-hours" means downsizing does not count, so only the lesson's pairing passes. |
+| 012 (4.2-s05) | Gone (replaced by the Teacher's r7) | The Teacher's r7 is accurate and prints no answers. Residual minor, see AWS-DE3-021. |
+| 013 (4.3-s02) | Gone | r6 is checkable and leaves the engine to the learner. |
+| 014 (4.3-s04) | Gone | The merged r7 is outcome-based, checkable from the scenario, and gives nothing away. |
+| 015 (4.4-s03) | Gone (no change, by decision) | Either NAT design is accepted and recorded. |
+| 016 (4.4-s05) | Gone | "Removes or reduces" is accurate for a CDN. |
+| 017 (4.4-s07) | Gone | The answer is 2 connections (4 tunnels): 5 Gbps, 3.75 Gbps with one tunnel down; 1 connection gives 2.5 Gbps, under 3. The router sentence states facts about the device and does not choose the allocation. r6's "each connection carries two tunnels" is a taught fact, not the count. |
+| 018 (de-tgw) | Gone (superseded by the user's trim) | Constraint 2 and r7 are removed, the orphan 80 TB sentence is removed, and "All of the VPCs are in one Region." is added. The design is still determinate: one hub, with a mesh excluded by constraints 1 and 2. r6's "no existing VPC edited" still holds with a summary route. Only the per-GB cost angle of K06 is no longer graded. |
+| 019 (de-throttling) | Gone | Constraint 2 is now factually accurate. The best-effort caveat is left out on purpose because it is untaught. "The gateway" is generic and does not name API Gateway. |
+
+### Second-role check on TEACHER-DE3-001 to 009
+
+- **001:** Accurate and determinate; it gives no answer. Residual in AWS-DE3-021.
+- **002:** Replaced by the AWS r6 plus the new constraint 5, and the merge is sound. The Teacher's "costs less than today" alone still admits Standard-IA.
+- **003:** Covered by AWS-002. Arithmetic confirmed.
+- **004:** Applied. It is accurate and does not reveal which stores need no work.
+- **005:** Applied merged. Correct.
+- **006:** Applied merged. Backoff is taught in 2.2 K10 and 4.4 S06.
+- **007:** Superseded by the user's trim. Outcome checked above.
+- **008:** Applied. "Hostname in Dovecote's own domain" fits Transfer Family with a custom hostname. Constraint 7's "the address it sends to" is generic and consistent.
+- **009:** Merged into r6. The merge is sound except for the leak ruled on below.
+
+### New findings
+
+**AWS-DE3-020 (minor, blocks close: one phrase) de-saa-4.2-s02 r6 (Lead Dev concern).** Yes, "including the root-volume throughput it assumes" points at the mechanism. Hibernation writes RAM to the root volume and reads it back on resume, so naming root-volume throughput tells the learner that state is saved to and restored from the root volume. The Teacher's confirm-the-3-minutes intent is sound; the volume reference is the leak. Replace r6 with: "The engine is not billed for server time while idle and is usable at any start without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed and what that confirmation assumes".
+
+**AWS-DE3-021 (minor, optional) de-saa-4.2-s05 r7.** The Teacher's r7 is a floor only. A learner who moves speaker-index to 4 servers of 16 vCPUs on a memory family (more expensive than today) would still pass r7. This contradicts the scenario's "run-rate reduced". Optional append to r7: ", and neither fleet keeps more vCPUs or memory than its utilisation plus the headroom the record states". It does not block close.
+
+Batch 3: not yet
+
+Overall: concerns

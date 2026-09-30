@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The engine is not billed for server time while idle and is usable at any start without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed, including the root-volume throughput it assumes",
+      "label": "The engine is not billed for server time while idle and is usable at any start without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed and what that confirmation assumes",
       "points": 2
     },
     {
