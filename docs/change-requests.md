@@ -232,9 +232,9 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: The lesson says 99.9% allows "roughly 8.7 hours" of downtime a year and 99.99% "roughly 52 minutes". The exact figures are 8.76 h (525.6 min) and 52.56 min, so they round to about 8.8 hours and about 53 minutes. Found while reviewing `de-saa-2.2-s04`, whose scenario now uses "roughly 525 minutes (about 8.8 hours)".
 - Suggested fix: change the two figures to "about 8.8 hours" and "about 53 minutes", and apply the same change to `q-saa-2-2-s03-mc`: its stem says "about 52 minutes" and its rationale says "roughly 8.7 hours". Its key (99.99%) does not change.
 - Affects learning content: yes
-- Status: open
-- Plan: none yet (needs an inline plan and Teacher validation)
-- Teacher validation: pending
+- Status: done 2026-09-30 (user approved; digits only; `q1_batch_check 2-2` and `stem_echo_check 2-2` outputs are byte-identical before and after; key unchanged)
+- Plan: `.cursor/plans/cr0018_downtime_rounding_20260930.plan.md`
+- Teacher validation: approved before the edit; re-validation after the edit is pending
 
 ## CR-0019 — Lesson 3.5 and four 3.5 questions present AWS Glue for Ray as current
 - Raised by: AWS reviewer (D6 batch 2), recorded by the Lead Dev
@@ -244,7 +244,7 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: The reviewer reports that AWS Glue for Ray is closed to new customers. The lesson lists it as a current Glue job engine. In all four questions it is a distractor, never the key. That still breaks RULES "Retired, end-of-support or closed services" (no current advice without a status label) and the question rule that every choice is "real and current". **The closure has not yet been verified against AWS docs; verifying it is step 1.**
 - Suggested fix: if the closure is confirmed, label its status in the lesson (or drop it from the engine list) and add it to the RULES closed list. Replace the four distractors with current options that are wrong for a taught reason, and re-run the task 3.5 checks.
 - Affects learning content: yes
-- Status: open
+- Status: open. The user deferred it to the final sitting (2026-09-30), to be handled with the register reconciliation
 - Plan: none yet
 - Teacher validation: pending
 
@@ -256,7 +256,7 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: `de-tgw` asks for a heavy-traffic VPC pair to avoid Transit Gateway per-GB processing. Lessons 4.4 K06 and 3.4 S01 present peering and TGW as alternatives, never as coexisting, so the answer rests on an untaught inference.
 - Suggested fix, and the Teacher's preference: add the sentence "Peering and Transit Gateway can coexist: a pair of VPCs that exchanges very heavy traffic can also be peered directly, so that pair's traffic skips the gateway's per-GB processing charge while every other VPC keeps using the gateway.", confirmed against the docs first. Alternative, with no lesson change: remove de-tgw's constraint 2 and r7.
 - Affects learning content: yes
-- Status: open, and a user decision is needed
+- Status: decided 2026-09-30. The user chose to **trim the exercise**: remove de-tgw constraint 2 and r7. No lesson change. Applied in the batch 3 fix pass
 - Plan: none yet
 - Teacher validation: proposed by the Teacher
 
