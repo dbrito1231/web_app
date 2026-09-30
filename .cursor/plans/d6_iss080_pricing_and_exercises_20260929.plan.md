@@ -151,3 +151,14 @@ Lead Dev follow-up to the Teacher's point 5 ("confirm no code reads `scenario`/`
 - **Part B batch 1: closed** (`10fe035`). Reports: `exercises-batch1-{impl,review}.md`.
 - **Remaining:** Part B batch 2 (16 exercises, domain 3, including de-snow with its closed-service label) and batch 3 (24, domain 4); the Student run across the batches; close-out.
 - **Spun off:** CR-0018 (lesson 2.2 "8.7 hours" / "52 minutes" and q-saa-2-2-s03-mc), which needs its own inline plan.
+
+## Close-out (2026-09-30)
+- **Exercise batches:** batch 2 (16) and batch 3 (24; split 3a/3b across two writers at the user's request) are closed. Tech and Teacher closed both after one fix pass, and every finding was confirmed Gone by its reporter and a second role.
+  - de-tgw was trimmed per the user's decision on CR-0020.
+- **Student:** two runs (run 1 stopped on an API false positive after committing all designs). 12/12 designs match, verdict fair. One ambiguity (de-saa-4.1-s05) was fixed at c47c3de and confirmed Gone by the Teacher.
+- **Spun off:**
+  - CR-0018: done.
+  - CR-0019 (Glue for Ray): deferred to the final sitting.
+  - CR-0020: decided (trim).
+  - Lesson follow-ups: register row D6-FU.
+- **Definition of done:** 91 Django tests OK, `npm run build` OK, `content_lint` PASS, `scan_lab_placeholders` PASS 42, letter self-test PASS, DB fingerprint unchanged, 0 of 60 template scenarios left.
