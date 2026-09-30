@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "The number of distinct storage services used is the smallest that meets every stated access requirement",
+      "label": "No data set is placed on a service priced for a feature it does not need (for example, a managed file-system product with no Windows, HPC or NetApp requirement), and the record states the number of services used and why",
       "points": 2
     }
   ],

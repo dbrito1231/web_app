@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-4.1-S06"
   ],
-  "scenario": "Merrow Veterinary Group runs 60 clinics whose practice-management servers keep records on 14 block volumes and 2 shared file systems. The insurer requires every recovery point to be held for 7 years: daily points for the first 35 days, after which restores are needed only a few times a year and may wait up to a full working day. Today the team runs one scheduled script per resource type and cannot show the insurer one retention rule covering all of them. Merrow wants points older than 35 days to cost well below the price of the first 35 days' points.",
+  "scenario": "Merrow Veterinary Group runs 60 clinics whose practice-management servers keep records on 14 block volumes and 2 shared file systems. The insurer requires every recovery point to be held for 7 years: one point a month, restored often in its first 35 days and after that only a few times a year, when a wait of up to four days is acceptable. Today the team runs one scheduled script per resource type and cannot show the insurer one retention rule covering all of them. Merrow wants points older than 35 days to cost well below the price of points in their first 35 days.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -13,7 +13,7 @@
     "State cost and residual risk",
     "The insurer asks for one retention rule that covers every resource type",
     "The operations team will not maintain per-resource scripts",
-    "Restores of points older than 35 days may take up to a full working day"
+    "Restores of points older than 35 days may take up to four days"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [

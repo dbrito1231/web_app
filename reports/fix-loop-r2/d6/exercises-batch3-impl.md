@@ -206,3 +206,121 @@ Notes for reviewers: (a) de-saa-4.1-s05 and -s09 depend on the class minimum dur
 
 - content_lint.py: PASS (questions 429, labs 21 + 21, lessons 23).
 - Scan of all 60 exercises (final run, see chat): duplicate 6-word openings none; duplicate organisation names (first two words) none at time of writing. Other writers were still editing.
+
+## Fix pass
+
+Applied AWS-DE3-001 to 012 and TEACHER-DE3-001 to 004, 008, 009 as they touch the 16 files of 4.1 and 4.2. Merged fields are marked in the finding id with the reason in the Note.
+
+### AWS-DE3-001, de-saa-4.1-s06, scenario
+- Old: The insurer requires every recovery point to be held for 7 years: daily points for the first 35 days, after which restores are needed only a few times a year and may wait up to a full working day.
+- New: The insurer requires every recovery point to be held for 7 years: one point a month, restored often in its first 35 days and after that only a few times a year, when a wait of up to four days is acceptable.
+
+### AWS-DE3-001, de-saa-4.1-s06, scenario
+- Old: cost well below the price of the first 35 days' points
+- New: cost well below the price of points in their first 35 days
+
+### AWS-DE3-001, de-saa-4.1-s06, constraint 7
+- Old: Restores of points older than 35 days may take up to a full working day
+- New: Restores of points older than 35 days may take up to four days
+
+### AWS-DE3-002 (used instead of TEACHER-DE3-003), de-saa-4.1-s04, scenario
+- Old: one 1 TB block volume holding 800 GB today; a bulk catalogue import of up to 150 GB, arriving about weekly,
+- New: one 1,000 GiB block volume holding 900 GiB today; a bulk catalogue import of up to 200 GiB, arriving about weekly,
+- Note: Both fix the 800+150 < 1 TB arithmetic. AWS text also fixes units and makes the volume really overflow (900+200=1,100 GiB > 1,000 GiB); Teacher text (900 GB) leaves the import size unchanged and is covered by it.
+
+### AWS-DE3-003, de-saa-4.1-s04, scenario
+- Old: Nobody is on call overnight.
+- New: The publishing database is self-managed software on that one server and stays there. Nobody is on call overnight.
+- Note: Placed before the on-call sentence, not after "block volume", so it reads naturally after the volume sentence.
+
+### AWS-DE3-002, de-saa-4.1-s04, r7
+- Old: A 150 GB import at 3 a.m. completes without publishing stopping and without a person acting
+- New: A 200 GiB import at 3 a.m. completes without publishing stopping and without a person acting
+
+### TEACHER-DE3-004, de-saa-4.1-s04, r6
+- Old: For each of the three stores the record states whether growth needs any design work and gives the reason from the scenario
+- New: For each of the three stores the record says how its capacity grows and why, using the scenario's figures
+
+### AWS-DE3-004, de-saa-4.1-s02, r6
+- Old: The initial volume is no larger than 1.5 TB, derived from today's 1.1 TB and 90 days of growth at 40 GB a month, with the margin stated
+- New: The initial volume is between 1.22 TB (today's 1.1 TB plus 90 days at 40 GB a month) and 1.5 TB, with any rounding or margin stated
+
+### AWS-DE3-005, de-saa-4.1-s05, constraint 5
+- Old: Scans older than 30 days must cost less to store than they do today
+- New: Scans older than 30 days must be held at the lowest storage cost that still lets a clerk open one in under a second
+
+### AWS-DE3-005 (used instead of TEACHER-DE3-002), de-saa-4.1-s05, r6
+- Old: Scans older than 30 days sit on the option with the lowest storage cost that still opens in under a second and whose minimum storage period the 7-year retention clears, while thumbnail storage and request cost does not rise
+- New: Scans older than 30 days are held at the lowest storage cost that still opens in under a second, the record shows no scan is charged an early-removal fee under the 7-year retention, and thumbnail storage and request cost does not rise
+- Note: Both moved the selection rule out of r6. The Teacher's text says only 'costs less than today', which still admits two classes; with 'lowest' moved to constraint 5 (AWS) the technical text is determinate and keeps the Teacher's no-giveaway and no-early-fee intent.
+
+### AWS-DE3-006, de-saa-4.1-s05, scenario
+- Old: the superseded copies are never read after 60 days
+- New: the superseded copies are never read more than 60 days after being replaced
+
+### AWS-DE3-006, de-saa-4.1-s05, r7
+- Old: Superseded scan copies are gone by day 60, broken upload leftovers within 7 days and scans at the 7-year mark, each with the day number stated
+- New: Superseded scan copies are gone 60 days after they are replaced, broken upload leftovers within 7 days and scans at the 7-year mark, each with the day number stated
+
+### AWS-DE3-007, de-saa-4.1-s09, scenario
+- Old: trial documents for 10 years and then delete them.
+- New: trial documents of about 3 MB each for 10 years (count 3,650 days) and then delete them.
+
+### AWS-DE3-008, de-saa-4.1-s10, r7
+- Old: The number of distinct storage services used is the smallest that meets every stated access requirement
+- New: No data set is placed on a service priced for a feature it does not need (for example, a managed file-system product with no Windows, HPC or NetApp requirement), and the record states the number of services used and why
+
+### TEACHER-DE3-008, de-storage-migration, scenario
+- Old: to an address Dovecote controls
+- New: to a hostname in Dovecote's own domain
+
+### TEACHER-DE3-008, de-storage-migration, r6
+- Old: The 180 TB copy completes inside the 60 days at the 700 Mbps the scenario leaves free, and the record shows the days needed (about 24)
+- New: The 180 TB copy completes inside the 60 days at the 700 Mbps the scenario leaves free, and the record shows the days needed
+
+### AWS-DE3-009, de-purchasing, constraint 5
+- Old: Finance wants the deepest discount on usage that has run steadily for 24 months and will last 3 more years
+- New: Finance wants the steady 40 vCPUs discounted for the next 3 years and will not re-buy the commitment when its mix of containers and instance families changes
+
+### AWS-DE3-009, de-purchasing, r6
+- Old: The long-term commitment is sized to the 40 vCPU steady floor, still applies after half of it moves to containers, and is not applied to the peak, the render job or the pilot
+- New: The long-term commitment is sized to the steady floor's hourly spend (40 vCPUs), still applies after half of it moves to containers, and is not applied to the peak, the render job or the pilot
+
+### AWS-DE3-010, de-saa-4.2-s02, scenario
+- Old: it is used only from 07:30 to 18:00 on weekdays, and brokers will wait at most 3 minutes from starting it in the morning to a usable engine.
+- New: brokers open it at unpredictable times on weekdays between 07:30 and 18:00, sometimes with hours between uses, and never overnight or at weekends; each time they will wait at most 3 minutes from asking for it to a usable engine.
+
+### AWS-DE3-010, de-saa-4.2-s02, constraint 5
+- Old: Finance does not want the engine billed for server time overnight or at weekends
+- New: Finance does not want the engine billed for server time while no broker is using it, including overnight and weekends
+
+### AWS-DE3-010, de-saa-4.2-s02, constraint 7
+- Old: The engine's table is not stored anywhere else and is expensive to rebuild
+- New: The engine's table can be rebuilt only by re-reading every source feed, which takes 25 minutes
+
+### AWS-DE3-010 + TEACHER-DE3-009 merged, de-saa-4.2-s02, r6
+- Old: The engine is not billed for server time during its idle hours and is usable within 3 minutes of the 07:30 restart, without the 25-minute rebuild
+- New: The engine is not billed for server time while idle and is usable at any start without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed, including the root-volume throughput it assumes
+- Note: AWS text fixes the determinacy (any start, not just 07:30, which removes the scheduled-start design); Teacher text removes the over-claim that 3 minutes is guaranteed. Merged: AWS scope plus the Teacher's 'says how the limit will be confirmed'. The scenario sentence before this one ('after any start it needs 25 minutes') is unchanged.
+
+### AWS-DE3-011, de-saa-4.2-s04, scenario
+- Old: The finance chief wants the non-production run-rate at least 60 percent below today's.
+- New: The finance chief wants the non-production run-rate at least 75 percent below today's; count run-rate as proportional to server-hours.
+
+### AWS-DE3-011, de-saa-4.2-s04, constraint 7
+- Old: The non-production run-rate target is at least 60 percent below today's
+- New: The non-production run-rate target is at least 75 percent below today's
+
+### AWS-DE3-011, de-saa-4.2-s04, r7
+- Old: Non-production run-rate falls at least 60 percent below today's, with the change for each of the four copies stated and the saving worked out from the scenario's hours
+- New: Non-production run-rate falls at least 75 percent below today's, with the change for each of the four copies stated and the saving worked out from the scenario's hours
+
+### TEACHER-DE3-001 (used instead of AWS-DE3-012), de-saa-4.2-s05, r7
+- Old: New fleet sizes are derived from the measured peaks, with their resulting counts stated, rather than copied from today's 16 and 4 servers
+- New: Each new fleet keeps at least the vCPUs and the memory that its stated utilisation requires, with the vCPU and GiB totals before and after stated for both services
+- Note: AWS text fixed the same misleading '16 and 4' wording but printed the answers to the learner's arithmetic (about 113 of 128 vCPUs, about 230 of 256 GiB), which the fix-pass rule forbids; the Teacher's text asks for the same derivation without the numbers and is determinate.
+
+### Re-checks
+
+- content_lint.py: PASS.
+- Teach-before-test on changed text: see chat/regex run; the only service-like terms in changed text (Elastic Volumes not named; root volume and hibernation-related wording; 'managed file-system product'; 'hourly spend' of a commitment; 'backoff' not used in my files) are taught in lessons 4.1/4.2.

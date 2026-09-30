@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The initial volume is no larger than 1.5 TB, derived from today's 1.1 TB and 90 days of growth at 40 GB a month, with the margin stated",
+      "label": "The initial volume is between 1.22 TB (today's 1.1 TB plus 90 days at 40 GB a month) and 1.5 TB, with any rounding or margin stated",
       "points": 2
     },
     {

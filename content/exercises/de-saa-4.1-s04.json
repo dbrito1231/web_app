@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-4.1-S04"
   ],
-  "scenario": "Tallowmere Podcasts keeps 9 TB of finished episode audio in object storage, growing by 1 TB a month. Its 12 editing servers share a file system that grew from 2 TB to 5 TB with no administrator action. Its publishing database sits on one 1 TB block volume holding 800 GB today; a bulk catalogue import of up to 150 GB, arriving about weekly, has twice filled that volume at 3 a.m. and stopped publishing until staff enlarged it by hand. Nobody is on call overnight.",
+  "scenario": "Tallowmere Podcasts keeps 9 TB of finished episode audio in object storage, growing by 1 TB a month. Its 12 editing servers share a file system that grew from 2 TB to 5 TB with no administrator action. Its publishing database sits on one 1,000 GiB block volume holding 900 GiB today; a bulk catalogue import of up to 200 GiB, arriving about weekly, has twice filled that volume at 3 a.m. and stopped publishing until staff enlarged it by hand. The publishing database is self-managed software on that one server and stays there. Nobody is on call overnight.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -44,12 +44,12 @@
     },
     {
       "id": "r6",
-      "label": "For each of the three stores the record states whether growth needs any design work and gives the reason from the scenario",
+      "label": "For each of the three stores the record says how its capacity grows and why, using the scenario's figures",
       "points": 2
     },
     {
       "id": "r7",
-      "label": "A 150 GB import at 3 a.m. completes without publishing stopping and without a person acting",
+      "label": "A 200 GiB import at 3 a.m. completes without publishing stopping and without a person acting",
       "points": 2
     }
   ],

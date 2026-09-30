@@ -5,15 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-S02"
   ],
-  "scenario": "Ebbfleet Shipping Brokers runs two workloads. Its quote API takes independent requests, varies between 20 and 900 requests per second during a day, and must stay available through spikes. Its rate-matching engine is one process holding a 96 GiB in-memory table on a Linux server; after any start it needs 25 minutes to rebuild the table, it is used only from 07:30 to 18:00 on weekdays, and brokers will wait at most 3 minutes from starting it in the morning to a usable engine. The engine cannot be split across servers.",
+  "scenario": "Ebbfleet Shipping Brokers runs two workloads. Its quote API takes independent requests, varies between 20 and 900 requests per second during a day, and must stay available through spikes. Its rate-matching engine is one process holding a 96 GiB in-memory table on a Linux server; after any start it needs 25 minutes to rebuild the table, brokers open it at unpredictable times on weekdays between 07:30 and 18:00, sometimes with hours between uses, and never overnight or at weekends; each time they will wait at most 3 minutes from asking for it to a usable engine. The engine cannot be split across servers.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
     "State cost and residual risk",
-    "Finance does not want the engine billed for server time overnight or at weekends",
+    "Finance does not want the engine billed for server time while no broker is using it, including overnight and weekends",
     "The quote API must never need manual action to cope with a spike",
-    "The engine's table is not stored anywhere else and is expensive to rebuild"
+    "The engine's table can be rebuilt only by re-reading every source feed, which takes 25 minutes"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The engine is not billed for server time during its idle hours and is usable within 3 minutes of the 07:30 restart, without the 25-minute rebuild",
+      "label": "The engine is not billed for server time while idle and is usable at any start without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed, including the root-volume throughput it assumes",
       "points": 2
     },
     {

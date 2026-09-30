@@ -11,7 +11,7 @@
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
     "State cost assumptions",
-    "Finance wants the deepest discount on usage that has run steadily for 24 months and will last 3 more years",
+    "Finance wants the steady 40 vCPUs discounted for the next 3 years and will not re-buy the commitment when its mix of containers and instance families changes",
     "Nothing variable or of unknown future may be committed",
     "The web tier and the pilot must never be interrupted"
   ],
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The long-term commitment is sized to the 40 vCPU steady floor, still applies after half of it moves to containers, and is not applied to the peak, the render job or the pilot",
+      "label": "The long-term commitment is sized to the steady floor's hourly spend (40 vCPUs), still applies after half of it moves to containers, and is not applied to the peak, the render job or the pilot",
       "points": 2
     },
     {

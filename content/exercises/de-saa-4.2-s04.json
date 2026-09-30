@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-4.2-S04"
   ],
-  "scenario": "Gantry Insurance runs its claims portal in production and in four further copies for development, testing, staging and training. Every copy uses the same two-Availability-Zone layout at the same size, running 24 hours a day. Production must keep serving if one Availability Zone fails, with no manual action. The four non-production copies are used 10 hours on weekdays only, hold synthetic data, and the business accepts an outage of up to a full day in any of them. The finance chief wants the non-production run-rate at least 60 percent below today's.",
+  "scenario": "Gantry Insurance runs its claims portal in production and in four further copies for development, testing, staging and training. Every copy uses the same two-Availability-Zone layout at the same size, running 24 hours a day. Production must keep serving if one Availability Zone fails, with no manual action. The four non-production copies are used 10 hours on weekdays only, hold synthetic data, and the business accepts an outage of up to a full day in any of them. The finance chief wants the non-production run-rate at least 75 percent below today's; count run-rate as proportional to server-hours.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -13,7 +13,7 @@
     "State cost and residual risk",
     "The production layout and its security controls are not to be weakened",
     "Non-production copies may be unavailable for up to a full day",
-    "The non-production run-rate target is at least 60 percent below today's"
+    "The non-production run-rate target is at least 75 percent below today's"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "Non-production run-rate falls at least 60 percent below today's, with the change for each of the four copies stated and the saving worked out from the scenario's hours",
+      "label": "Non-production run-rate falls at least 75 percent below today's, with the change for each of the four copies stated and the saving worked out from the scenario's hours",
       "points": 2
     }
   ],

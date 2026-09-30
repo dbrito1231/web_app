@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "New fleet sizes are derived from the measured peaks, with their resulting counts stated, rather than copied from today's 16 and 4 servers",
+      "label": "Each new fleet keeps at least the vCPUs and the memory that its stated utilisation requires, with the vCPU and GiB totals before and after stated for both services",
       "points": 2
     }
   ],

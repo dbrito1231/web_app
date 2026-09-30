@@ -6,7 +6,7 @@
     "SAA-4.1-S03",
     "SAA-4.1-S07"
   ],
-  "scenario": "Dovecote Film Archive will retire its NAS array 60 days from now, after a one-off copy of 180 TB of masters from its NFS shares into cloud object storage; once the copy finishes the array is powered off. The studio's internet link is 1 Gbps and at least 700 Mbps of it is free at every hour of the day. Separately, a rights partner drops about 500 GB of files every week and will send them only over SFTP to an address Dovecote controls; today a server in the machine room, patched by the studio's one administrator, receives them.",
+  "scenario": "Dovecote Film Archive will retire its NAS array 60 days from now, after a one-off copy of 180 TB of masters from its NFS shares into cloud object storage; once the copy finishes the array is powered off. The studio's internet link is 1 Gbps and at least 700 Mbps of it is free at every hour of the day. Separately, a rights partner drops about 500 GB of files every week and will send them only over SFTP to a hostname in Dovecote's own domain; today a server in the machine room, patched by the studio's one administrator, receives them.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
@@ -45,7 +45,7 @@
     },
     {
       "id": "r6",
-      "label": "The 180 TB copy completes inside the 60 days at the 700 Mbps the scenario leaves free, and the record shows the days needed (about 24)",
+      "label": "The 180 TB copy completes inside the 60 days at the 700 Mbps the scenario leaves free, and the record shows the days needed",
       "points": 2
     },
     {
