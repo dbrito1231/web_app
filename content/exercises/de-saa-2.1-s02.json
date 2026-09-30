@@ -43,7 +43,7 @@
     },
     {
       "id": "r6",
-      "label": "Capacity is ready ahead of a forecasted recurring pattern for each peak start (10-minute warm-up), without a hand-maintained calendar and without holding peak-sized capacity for more than 90 minutes per weekday",
+      "label": "Capacity is ready before each peak starts (allowing the 10-minute warm-up), with no hand-maintained calendar, and peak-sized capacity is held for no more than 90 minutes per weekday.",
       "points": 2
     },
     {

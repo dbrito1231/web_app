@@ -108,3 +108,51 @@ Saved by Lead Dev from the Teacher's reply (condensed; replacement texts verbati
 **Lesson 2.2** "8.7 hours" (and "52 minutes" for 99.99%): agree it should be logged as a separate low-severity CR, needing its own plan.
 
 Batch 1: not yet · Overall: concerns
+
+---
+
+## Technical confirmation (fix pass)
+
+Checked at 353fe54 (`git diff b422d65 HEAD -- content`: 16 files, 31 lines changed, exercises only) against the writer's "## Fix pass" table and the live JSON of de-saa-2.1-s02, de-direct-connect and de-saa-1.3-s07.
+
+### 1. AWS-DE1-001 to 016
+
+| Id | Status |
+| --- | --- |
+| 001 | Gone. Backup rate is now determinate: 10 TB in 36 h is about 0.62 Gbps, within one 1.25 Gbps tunnel. The 3 Gbps abort rule is scoped to normal nights, the pilot moves a 1 TB subset, and encryption is required "on every path" without naming a mechanism (MACsec not mentioned). |
+| 002 | Gone (see item 3 on the untaught words). |
+| 003 | Gone, but r6 wording needs the change in item 4. |
+| 004 | Gone. Either fan-out design is accepted; r7 is outcome-based. |
+| 005 | Gone. |
+| 006 | Gone. A replicated database is allowed, so pilot light is determinate and warm standby is excluded by the no-app-servers rule. |
+| 007 | Gone. 525 minutes is 8.76 h and 300 min is more than half. |
+| 008 | Gone. |
+| 009 | Not applicable (no change, by decision). |
+| 010, 011, 012, 013, 014, 015 | Gone. |
+| 016 | Gone (see item 3). |
+
+### 2. Second-role check on the Teacher's findings
+
+- TEACHER-DE1-001: agree. Peak start fixed within a term, changing between terms, plus the constraint against hand-editing timetables when calendars change, excludes a fixed schedule and leaves a learned pattern. Text is accurate.
+- TEACHER-DE1-002: agree (36 h, no MACsec).
+- TEACHER-DE1-003: agree. Naming ACM/DNS validation for the 26 describes existing state and does not reveal how to handle the 4 imported certificates or the 6 signing keys.
+- TEACHER-DE1-004: agree. RTC is a 99.99 percent commitment, so the wording is now accurate.
+- TEACHER-DE1-005: agree.
+- TEACHER-DE1-007: agree. It is checkable against the scenario's "up to one hour out of date".
+
+### 3. Changed-text checks
+
+All 33 changes are accurate and determinate, and none names its solution service. Two context-word notes, both non-blocking:
+- "MySQL" (016): an engine name used only as scenario context. RDS Proxy supports MySQL, so the design is valid. Keep.
+- "SYN and UDP reflection" (002): context that fixes the layer (network, not HTTP) without naming Shield or WAF. Acceptable; a simpler equivalent that avoids both untaught terms, if preferred: "a volumetric network-layer flood of packets (not HTTP requests)".
+- Minor residual: the 2.1-s04 r6 and 1.3-s03 r6 still hint at a trap ("reason drawn from the figures", "the Region each certificate must be requested in") but describe outcomes only. Keep.
+
+### 4. de-saa-2.1-s02 r6: "forecasted recurring pattern"
+
+Answer: **yes**, an outcome wording keeps the exercise determinate. "Forecasted recurring pattern" all but names predictive scaling and should go. The deciding facts stay in the scenario: the peak start is fixed within a term but shifts between terms, engineers may not hand-edit timetables (this rules out a fixed schedule), the 60-minute peak plus 10-minute warm-up fits the 90-minute budget only if capacity is added shortly before each peak (this rules out padded schedules and always-on), and 30 percent surges need target tracking (r7). Replace r6 with exactly:
+
+"Capacity is ready before each peak starts (allowing the 10-minute warm-up), with no hand-maintained calendar, and peak-sized capacity is held for no more than 90 minutes per weekday."
+
+Batch 1: not yet (one text change outstanding: 2.1-s02 r6; then close)
+
+Overall: concerns
