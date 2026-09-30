@@ -13,7 +13,7 @@
     "Include teardown or 'not provisioned' rationale",
     "State cost assumptions",
     "Each paid customer is held to 100 requests per second and each free-tier developer to 4",
-    "The backend must never receive more than 1,500 requests per second from any combination of callers, including the company's own front end",
+    "The gateway's total ceiling for any combination of callers, including the company's own front end, must be set so that the backend is never offered more than 1,500 requests per second",
     "After a disaster is declared, no limit may need to be raised before the recovery Region carries the full 1,500 requests per second"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions + guidance for API callers on rejected requests",
@@ -45,7 +45,7 @@
     },
     {
       "id": "r6",
-      "label": "Every caller class is held to its stated rate, and total traffic reaching the backend cannot exceed 1,500 requests per second even from the company's own keyless front end",
+      "label": "Every caller class is held to its stated rate, the gateway's total ceiling and burst setting keep the load offered to the backend at or below 1,500 requests per second even from the company's own keyless front end, and the caller guidance tells rejected callers to wait and retry with increasing delay, not immediately",
       "points": 2
     },
     {

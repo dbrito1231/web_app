@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "Each of the three byte drivers in the flow-log findings is matched to a fix that removes that driver's transfer charge, and no fix is proposed for traffic the findings do not show",
+      "label": "Each of the three byte drivers in the flow-log findings is matched to a fix that removes or reduces that driver's transfer charge, and no fix is proposed for traffic the findings do not show",
       "points": 2
     },
     {

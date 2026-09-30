@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The chosen engine supports every stated behaviour (filtering on nested attributes, join-heavy month-end reporting, the vendor add-on), and the record explains why the developers' MySQL familiarity does not override them",
+      "label": "The chosen engine supports the filtering on nested attributes and the join-heavy month-end reports, the record says how the vendor's in-database add-on would be loaded, and explains why the developers' MySQL familiarity does not override them",
       "points": 2
     },
     {

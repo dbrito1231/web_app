@@ -94,3 +94,37 @@ Batch 2: not yet · Overall: concerns
 
 ## Lead Dev decision on TEACHER-DE2-003
 Drop constraint 3 of de-saa-3.3-s01 in this pass: it is ungraded, and dropping it avoids a lesson change that would need user approval. The lesson idea ("raise an alarm on the replica-lag metric" in 3.3 S01) is recorded as an optional follow-up.
+
+---
+
+## Technical confirmation (fix pass)
+
+Checked at 640fec8 ("D6 batch 2 fix pass"): `git diff b342969 640fec8 -- content` touches 8 exercise files (the lesson 2.2 and q-saa-2-2-s03-mc changes in that range are the separate CR-0018 work), read against the writer's "## Fix pass" table and the live JSON of de-saa-3.3-s01, 3.4-s02, 3.5-s06, de-snow and de-visualization.
+
+### 1. AWS-DE2-001 to 007
+
+| Id | Status |
+| --- | --- |
+| 001 | Gone. "Any other new network circuit, and none can be installed within the 30 days" excludes the Direct Connect hosted connection, so physical upload for the bulk load and DataSync for the monthly scans is the only design left. |
+| 002 | Gone. "An AWS facility that accepts physical uploads" makes the physical design feasible without naming the service. |
+| 003 | Gone. Aurora is excluded by name as an exclusion, not a solution. Same-Region replica plus cross-Region replica is now the only design. |
+| 004 | Accept-either recorded. The optional clause was not applied, which is correct. r6 and r7 do not grade the attachment type. |
+| 005 | Gone (a and b). "Fixed, pre-agreed capacity" rules out on-demand mode. r6 no longer names a partition concept and is checkable against the 60 percent and record-rate figures. |
+| 006 | Gone (a and b). The scenario no longer states Athena's billing model. "Same cost Tuesday and Monday" plus 250 viewers and 3 s still decides the imported-dataset design. r6 is checkable against the scenario. |
+| 007 | Gone. Outposts is excluded. Wavelength and Local Zone are unaffected, since the carrier's hardware is not installed by the firm or at the studio. |
+
+### 2. Second-role check on the Teacher's findings
+
+- **TEACHER-DE2-001 (four "worked out and stated" rewrites):** agree. All four rubric items (3.4-s01 r7, 3.4-s02 r7, 3.5-s03 r6, de-snow r6) are still checkable against the scenario's figures. The figures (0.13 Gbps, 251 usable addresses, 0.37 Gbps, 1.85 Gbps) are unchanged and correct, and the learner must now derive them. No answer is revealed.
+- **TEACHER-DE2-002 (3.4-s02, same-Region constraint):** agree. It fits the scenario ("one Region"), excludes the multi-Region Cloud WAN design, and leaves Transit Gateway as the one best design. Accurate.
+- **TEACHER-DE2-003 (3.3-s01 alerting constraint deleted):** agree. The constraint is gone and 6 constraints remain (4 generic, 2 stakeholder). The 30-second and 5-minute staleness figures are still in the scenario and r6 and r7, so the design is unchanged. A replica-lag alarm was never graded.
+
+### 3. Changed-text checks
+
+All 14 changed texts are accurate and determinate, and none names its solution service. Aurora (3.3-s01) and the physical facility (de-snow) appear only as exclusion or feasibility context. The scenario text, every r1 to r5 item and all fixed fields are unchanged. Two non-blocking notes:
+- de-visualization: "each full read of the sales files has a cost" is a mild hint at per-scan billing but states no mechanism. Keep.
+- de-snow: the five-hour-drive sentence is a stated premise. The doc says facility locations are shown only at reservation, which fits.
+
+Batch 2: close
+
+Overall: approve

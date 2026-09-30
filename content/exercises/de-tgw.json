@@ -5,14 +5,13 @@
   "objectiveIds": [
     "SAA-4.4-K06"
   ],
-  "scenario": "Mossgiel Outfitters runs 14 VPCs today, one per team, and expects 30 within 12 months. Every VPC must be able to reach every other VPC and the head-office network, which connects through a single VPN now and will gain a Direct Connect link next year. Two of the 14, the catalogue-data VPC and the analytics VPC, exchange about 80 TB a month with each other and with nothing else in volume. Network changes are made by a two-person team.",
+  "scenario": "Mossgiel Outfitters runs 14 VPCs today, one per team, and expects 30 within 12 months. Every VPC must be able to reach every other VPC and the head-office network, which connects through a single VPN now and will gain a Direct Connect link next year. All of the VPCs are in one Region. Network changes are made by a two-person team.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
     "State cost assumptions",
     "Adding a new VPC must not require editing or linking to each existing VPC",
-    "Finance wants the 80 TB a month between the catalogue-data and analytics VPCs kept off any per-gigabyte processing charge that the other VPCs' shared path incurs",
     "The head-office VPN and the future Direct Connect link must reach all VPCs without per-VPC connections"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
@@ -45,11 +44,6 @@
     {
       "id": "r6",
       "label": "All 14 VPCs, the head-office VPN and the later Direct Connect link are connected so that onboarding a 31st VPC needs connections from that VPC only, and no existing VPC's configuration is edited",
-      "points": 2
-    },
-    {
-      "id": "r7",
-      "label": "The 80 TB a month between the catalogue-data and analytics VPCs avoids the per-gigabyte processing charge that the other VPCs' traffic incurs, and the record shows the basis",
       "points": 2
     }
   ],
