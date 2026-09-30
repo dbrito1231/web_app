@@ -156,3 +156,22 @@ Answer: **yes**, an outcome wording keeps the exercise determinate. "Forecasted 
 Batch 1: not yet (one text change outstanding: 2.1-s02 r6; then close)
 
 Overall: concerns
+
+---
+
+## Teacher confirmation (310a291)
+
+Saved by the Lead Dev from the Teacher's reply (condensed).
+
+1. **The Teacher's findings:** TEACHER-DE1-001, 002, 003, 004, 005 and 007 are Gone.
+2. **Second-role check:** AWS-DE1-001–008 and 010–016 are Gone. 009 has no change, by decision.
+   - 002: "SYN and UDP reflection" is accepted as context wording.
+   - 016: "MySQL" is kept as engine context.
+   - 004: either fan-out design is accepted.
+3. **Teach-before-test and fairness:** every changed text is accurate, and no solution service is named in any scenario, constraint or rubric item. Each exercise is determinate, and the rubrics grade outcomes.
+4. **de-saa-2.1-s02 r6:** the outcome wording is accepted and the Teacher's "forecasted" wording is withdrawn. The exercise stays determinate:
+   - a fixed schedule either needs hand-edited timetables or breaks the 90-minute cap;
+   - target tracking alone reacts after the 10-minute warm-up;
+   - what remains is capacity added ahead of a learned start, plus target tracking for the surges (both taught in 2.1 S02).
+
+Batch 1: close · Overall: approve
