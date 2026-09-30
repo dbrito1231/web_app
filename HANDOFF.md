@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 18 of 22 tasks closed (tf-g4 closed 2026-09-28). Shortest-is-key reopen of `4-3`/`4-1`/`1-3` closed 2026-09-29.** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Sitting 5 is over. Next sitting starts with D6/ISS-080, which needs its own plan and the user's approval, then g5 and g6.**
+**Status: 18 of 22 tasks closed. Sitting 6 (2026-09-29): D6/ISS-080 in progress: Part A (lab prices) closed, exercise batch 1 of 3 closed, B-2 exercise-card change done.** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Next: D6 exercise batches 2 and 3 (see `reports/fix-loop-r2/d6/exercises-batches.md`), then tf-g5 and tf-g6. CR-0018 is open (lesson 2.2 downtime figures; needs an inline plan).**
 
 ## tf-g4 closed (2026-09-28)
 

@@ -140,3 +140,14 @@ Also from the Teacher:
 - On price source, either option is acceptable from a teaching point of view, provided every row keeps its verbatim rate, URL and date.
 
 Lead Dev follow-up to the Teacher's point 5 ("confirm no code reads `scenario`/`constraints`"): code does read `scenario`, for display only, with no scoring. **Nothing reads `constraints` or `rubric` at all.** That is Decision 2 above.
+
+## Progress (2026-09-29)
+
+- **B-2 app change: done** (`fc06fdb`). 91 Django tests OK; build OK.
+- **Part A: closed** (`44ea124`). Reports: `reports/fix-loop-r2/d6/pricing-{claims,review,review-TEACHER,leaddev-precheck}.md`.
+  - **Method finding:** the JavaScript pricing tables can be read from the `c0.b0.p.awsstatic.com` widget iframe, set to US East (N. Virginia).
+  - **Still unverified** (marked in the labs): NAT, WAF, RDS storage (priced at io1 as an upper bound), EFS and the CloudWatch alarm.
+  - **LD-PA-001 was withdrawn:** EC2, EBS, public IPv4 and Fargate bill per second.
+- **Part B batch 1: closed** (`10fe035`). Reports: `exercises-batch1-{impl,review}.md`.
+- **Remaining:** Part B batch 2 (16 exercises, domain 3, including de-snow with its closed-service label) and batch 3 (24, domain 4); the Student run across the batches; close-out.
+- **Spun off:** CR-0018 (lesson 2.2 "8.7 hours" / "52 minutes" and q-saa-2-2-s03-mc), which needs its own inline plan.

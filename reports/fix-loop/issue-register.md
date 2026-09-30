@@ -26,7 +26,7 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 | ISS-060 | PYTHON-204, PYTHON-205 | WP9 | Valid, partial | Open. Unknown choice → 400 is Gone (Python). Corrupt JSON → bare 500 is O10 | CR-0014 |
 | ISS-061 | PYTHON-202, PYTHON-206 | WP9 | By-design | Closed 2026-09-25. You accepted debug mode and the local secret key for this local-only app (D3) | CR-0014 |
 | ISS-070 | F-207, ITMGR-204, pending_recheck | WP10 | Valid, partial | Open. The domain-4 citation sentence was replaced after review (R6, not accepted as Gone). Unique official URLs and `implemented_unverified` remain. Fact recheck is part of Q1 | CR-0015 |
-| ISS-080 | ITMGR-205, AWS-210, TEACHER-211 | WP11 | Partial | Sandbox note Closed (IT Manager Gone). You chose to fix the dated price snapshot and templated design exercises (D6, 2026-09-25). That fix is not started | CR-0016 |
+| ISS-080 | ITMGR-205, AWS-210, TEACHER-211 | WP11 | Partial | Sandbox note Closed (IT Manager Gone). D6 fix under way (plan `d6_iss080_pricing_and_exercises_20260929`): **AWS-210 closed 2026-09-29.** All 16 hourly labs are repriced with a dated us-east-1 cost basis and the 24 h figure in the stop panel. Tech and Teacher close. NAT, WAF, RDS storage, EFS and CloudWatch alarm rates are still unverified and marked in the labs. **TEACHER-211: batch 1 of 3 closed** (20 of 60 exercises). The exercise card now shows constraints, deliverable and rubric (B-2) | CR-0016 |
 | ISS-081 | ITMGR-201 audit-grade metrics | WP11 | By-design | Closed 2026-09-25. You left audit-grade manager metrics out (D4) | CR-0016 |
 | ISS-090 | TEACHER-213 live labs | WP12 | By-design | Closed 2026-09-25. Paper checks only. Agents do not call AWS (D5) | — |
 
@@ -130,7 +130,7 @@ New items from Full-Stack:
 | D3 | ISS-061 debug mode and local secret key | Decided 2026-09-25: accept for this local-only app |
 | D4 | ISS-081 audit-grade manager metrics | Decided 2026-09-25: leave it out |
 | D5 | ISS-090 live AWS lab runs | Decided 2026-09-25: paper checks only |
-| D6 | Dated prices and templated design exercises | Decided 2026-09-25: fix them. Work not started |
+| D6 | Dated prices and templated design exercises | Decided 2026-09-25: fix them. **In progress:** Part A (prices) closed 2026-09-29; Part B batch 1 of 3 closed; batches 2 (16) and 3 (24) remain |
 | D7 | Lab scanner skips `gl-01` | Done. Scanner includes GL-01. `PASS 42 labs scanned` |
 
 ## Round 3 results (2026-09-26)
@@ -213,7 +213,7 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | L1 / Q1 | Lessons 4.3–4.4 and TF g1–g8 (10 lessons) not yet closed; ~142 questions still template-style | **High** | Lesson-first method (Amendment 2/3). Tasks 1.1–4.4 and Terraform g1–g3 closed (2026-09-27; budget plan in effect); next: Terraform g4. Open method-wide observation: Students scored 100% on 3.5, 4.1, 4.2 and 4.3, and on 4.3 reported 9 of 22 stems answerable by matching wording between stem and key. Making stems paraphrase rather than reuse lesson keywords would be a RULES change applying from 4.4 onward, not a reopen of closed tasks -- user decision pending |
 | ISS-010 | Template question wording | High | Closes as Q1 batches complete |
 | O9 | Lab sidecar-file templates missing; repeated s12–s15 boilerplate steps | Medium | **Closed 2026-09-26.** AWS and Student approved, including the follow-up fixes (GL-10 handler, GL-12 logging, step titles) |
-| D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | You chose "fix" on 2026-09-25; not started |
+| D6 / ISS-080 | Dated pricing snapshot (AWS-210); templated design exercises (TEACHER-211) | Medium | **Part A closed 2026-09-29. Part B: batch 1 of 3 closed; batches 2–3 remain.** Also noted: the Part A writer ran one read-only `git diff --stat` against the subagent no-git rule and was corrected; no harm done |
 | R6 / ISS-070 | Per-bullet official citations in lessons 4.2–4.4; coverage registry `implemented_unverified`; `mcpStatus: pending_recheck` on non-pilot questions | Medium | Folded into the lesson and question rewrites |
 | N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
 | N4 | Start here lists drills by raw ID | Low | Deferred to Q1 |

@@ -170,3 +170,12 @@ The rest of the line stays, including "Choosing 1 x t3.micro lowers this to abou
 Part A: not yet
 
 Overall: concerns
+
+## Technical confirmation (final wording, 44ea124)
+
+AWS-PA-006 (ul-19 node count) Gone: the basis now says t3.medium is the default and "the default node count is not documented, so 2 is assumed"; figures 0.40 / 4.75 unchanged. AWS-PA-007 (ul-08 WAF full hours) Gone: "WAF partial hours counted as full hours here" added, so the basis as written gives 0.0936 -> 0.10 (24 h 1.26); the catalog row reads "managed nodes (priced as 2)".
+Second-role check on ul-07: the basis and panel are the Teacher's text plus "Re-check current pricing before you run" and "check current pricing"; figures unchanged (0.04 / 0.72, priced parts 0.39093), so nothing to recompute. Confirmed.
+
+Part A: close
+
+Overall: approve

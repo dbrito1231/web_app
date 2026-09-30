@@ -43,3 +43,17 @@ The Teacher recomputed every figure. All 24 h figures reconcile, except ul-07's 
 - **LD-PA-005:** agree that the unverified rates need a reviewer check. The Teacher could not read the pricing pages.
 
 Part A: not yet · Overall: concerns
+
+---
+
+## Teacher confirmation (fix pass, 0f3dc9c) and final (44ea124)
+
+Saved by the Lead Dev (condensed).
+
+- **LD-PA-001:** the Teacher accepts its withdrawal and withdraws its own agreement. EC2, EBS, public IPv4 and Fargate bill per second.
+- **Own findings:** TEACHER-PA-001, 002, 004 and 005 are Gone at the fix pass. PA-003 was mostly gone there, with one gap: ul-07 had no general re-check line. That was added at 44ea124, and PA-003 is Gone.
+- **Second-role check:** AWS-PA-001 (ul-19 at 0.40/4.75, arithmetic reproduced), 002, 003, 004 and 005 are accepted.
+- **Final round:** the ul-19 "2 nodes assumed" wording and AWS-PA-007 (WAF full hours on ul-08) are both accepted.
+- **Readability:** all 16 lines are clear at the moment of decision (32–79 words). An optional, non-blocking note: six labs carry two back-to-back re-check sentences.
+
+Part A: close · Overall: approve
