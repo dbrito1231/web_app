@@ -234,7 +234,7 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Affects learning content: yes
 - Status: done 2026-09-30 (user approved; digits only; `q1_batch_check 2-2` and `stem_echo_check 2-2` outputs are byte-identical before and after; key unchanged)
 - Plan: `.cursor/plans/cr0018_downtime_rounding_20260930.plan.md`
-- Teacher validation: approved before the edit; re-validation after the edit is pending
+- Teacher validation: approved before the edit and **re-validated after it (2026-09-30)**: only the digits changed, the key and ids are unchanged, and no old figure remains in `content/`
 
 ## CR-0019 — Lesson 3.5 and four 3.5 questions present AWS Glue for Ray as current
 - Raised by: AWS reviewer (D6 batch 2), recorded by the Lead Dev

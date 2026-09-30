@@ -128,3 +128,21 @@ All 14 changed texts are accurate and determinate, and none names its solution s
 Batch 2: close
 
 Overall: approve
+
+---
+
+## Teacher confirmation (batch 2 fix pass)
+
+Saved by the Lead Dev (condensed).
+
+- **The Teacher's own findings:** TEACHER-DE2-001, 002 and 003 are Gone.
+  - No computed results remain in the rubrics.
+  - 3.4-s02 now pins the Region.
+  - 3.3-s01's alerting constraint is deleted. It was never graded, and the lesson idea stays an optional follow-up.
+- **AWS-DE2-001 to 007, as applied: agree.**
+  - de-snow now leaves one design, physical upload plus DataSync, both taught in lessons 3.1 and 3.5.
+  - 004 is accept-either, with no clause added.
+  - 005 rules out on-demand mode, which is untaught.
+- **Changed text:** all 14 changes are accurate and determinate, and none names the answer service. There is an optional polish note on the de-visualization scenario's last sentence.
+
+Batch 2: close · Overall: approve
