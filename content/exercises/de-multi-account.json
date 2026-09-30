@@ -6,12 +6,15 @@
     "SAA-1.1-K01",
     "SAA-1.1-S04"
   ],
-  "scenario": "You must design a solution addressing: Control Tower and SCP strategy. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Kestrel Mutual, an insurer, runs 45 AWS accounts across claims, underwriting and sandbox teams, and each account's local administrators hold full rights. In the last audit an administrator switched off audit logging in one account, and a sandbox team launched workloads in a Region that the regulator does not permit. The regulator allows only two named Regions, and the compliance officer wants that rule and a single audit record to hold even against an account's root user, including for accounts opened next year. New business units expect an account with the baseline already in place within one working day, and the platform team has three people.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "The compliance officer requires one tamper-resistant audit record that no account administrator can stop, delete or change",
+    "The platform team of three cannot hand-build or hand-configure each new account",
+    "Restrictions must not depend on editing policies account by account"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -38,6 +41,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Region restriction and audit record cover all 45 accounts, root users and accounts added later without per-account work",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "A new account with the baseline in place within one working day is achievable by a three-person team",
       "points": 2
     }
   ],

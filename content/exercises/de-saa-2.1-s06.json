@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.1-S06"
   ],
-  "scenario": "Design a solution that demonstrates skill: Recommending appropriate compute, storage, networking, and database technologies based on requirements",
+  "scenario": "Ostrander Field Services gives 3,000 technicians a mobile app that uploads 6 photos per visit; about 40 TB is stored and it grows by 2 TB a month. Eight report-rendering servers must read and write the same template directory at the same time as an ordinary mounted folder. Database traffic is 85 percent reads, mostly requests for the same 500 price-list rows that change once a day. The web front end must send /api and /reports to different back-end groups, and photo thumbnailing runs a few thousand short jobs a day at unpredictable times.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance will not pay for idle capacity to process photos",
+    "A price list up to one hour out of date is acceptable to the business",
+    "Nothing sporadic may run on servers the team must manage"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the four layers (compute, storage, database, networking) is matched to the figure that decides it",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Database reads dominated by the same 500 rows are served without reaching the database on every request",
       "points": 2
     }
   ],

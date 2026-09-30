@@ -5,12 +5,14 @@
   "objectiveIds": [
     "SAA-2.2-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining the AWS services required to provide a highly available and/or fault-tolerant architecture across AWS Regions or Availability Zones",
+  "scenario": "Cinderford Health Rota schedules nurses for two hospital sites, each served mainly from a different AWS Region, and staff at both sites edit shift records all day. Each record is looked up by staff ID and date, with no joins. Clinical governance requires that losing any one data center in a Region causes no visible outage, and that losing an entire Region still leaves both sites able to read and edit rosters within minutes. A 2 TB archive of signed rota PDFs must also exist in both Regions, and the application tier is already stateless.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Both sites must be able to write during normal operation, not only after a failover",
+    "The small platform team cannot operate custom replication code"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +39,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The data tier accepts writes in both Regions",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Each layer (compute, data, archive, DNS) survives the loss of one data center and of one whole Region",
       "points": 2
     }
   ],

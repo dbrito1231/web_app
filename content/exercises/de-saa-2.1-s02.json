@@ -5,12 +5,14 @@
   "objectiveIds": [
     "SAA-2.1-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining scaling strategies for components used in an architecture design",
+  "scenario": "Pinecrest Tutoring runs a live-lesson web tier that normally serves about 1,500 requests per second but reaches 4,000 every weekday when schools finish. The peak start shifts by up to an hour from week to week with term calendars that nobody at Pinecrest tracks. A new server needs roughly 10 minutes before it can take traffic, and in September students saw errors during the first 8 minutes of each peak. On top of the peak, unannounced surges of up to 30 percent occur whenever a teacher assigns a live quiz, and holding peak capacity around the clock would break the monthly compute cap.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "There is no on-call rota, and engineers must not hand-edit timetables when school calendars change",
+    "Monthly compute spend is capped at 2,500 USD"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +39,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Capacity is in place before each peak given the 10-minute warm-up, without a hand-maintained calendar",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Unannounced 30 percent surges are absorbed with no manual action and without running peak capacity around the clock",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-1.2-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Integrating AWS services to secure applications (for example, AWS Shield, AWS WAF, IAM Identity Center, AWS Secrets Manager)",
+  "scenario": "Bramblecote Ticketing sells stadium tickets and sees traffic jump from 300 to 60,000 requests per second within minutes of an on-sale. A penetration test found SQL fragments accepted in query strings, and last month a flood of traffic exhausted the site during an on-sale. Its 25 support engineers share IAM user access keys to reach the production account, and the order database password is committed in the application's configuration repository. The auditor wants each of these four weaknesses closed by a control aimed at that weakness, and the CFO wants no appliances and no self-run proxy fleets.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The CFO rules out appliances and self-managed proxy fleets",
+    "The auditor requires each of the four findings to be closed by a distinct control",
+    "The database password must be changeable without redeploying the application"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the four findings has its own control and no control is claimed to cover two of them",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "All 25 support engineers reach the account with per-person, temporary access and no shared keys remain",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.1-S07"
   ],
-  "scenario": "Design a solution that demonstrates skill: Using purpose-built AWS services for workloads",
+  "scenario": "Halden Rowe Legal Archive relies on four homegrown pieces that one senior engineer, retiring in three months, keeps alive. They are an SFTP server on a single EC2 instance used by 40 partner law firms with their existing clients, a cron script that rewrites the case database password every 30 days and restarts services, a Python script that walks each document through review steps that can span 10 days and records state in a table, and a self-hosted message broker between the intake and indexing programs. The firms will not change their SFTP clients. Patching and on-call are the risk, not missing features.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The 40 firms keep their existing SFTP clients with no change on their side",
+    "Password changes must not require restarts or redeployments",
+    "Each document's review history must be auditable per run"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "All four homegrown pieces are replaced by a managed service and none is re-implemented on servers",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The review process that runs up to 10 days keeps per-run history",
       "points": 2
     }
   ],

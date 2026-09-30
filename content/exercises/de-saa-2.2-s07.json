@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.2-S07"
   ],
-  "scenario": "Design a solution that demonstrates skill: Using AWS services that improve the reliability of legacy applications and applications not built for the cloud (for example, when application changes are not possible)",
+  "scenario": "Dunmore Textile Mills schedules its looms with a vendor application that has no source available and runs on two physical servers in the mill's server room; rebuilding after losing both would take about two days. The business now wants the scheduler running again within 1 hour of such a loss with no more than a few seconds of data loss, and the vendor will not change anything. The application's data lives in an RDS database reached over the mill's existing private network link. At month-end its 250 concurrent users each open new database connections and it fails with connection-limit errors, and a database failover currently forces a full application restart. The only setting operators can change is the database hostname.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "No change to the application code or binaries is possible",
+    "Operators can change only the database hostname setting",
+    "The mill will not buy new server hardware"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The 1-hour recovery target and the few-seconds data-loss target are met with no application change",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Connection-limit errors at 250 users and the restart after a database failover are addressed by changing only the hostname",
       "points": 2
     }
   ],

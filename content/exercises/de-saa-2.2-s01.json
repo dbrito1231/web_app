@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.2-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining automation strategies to ensure infrastructure integrity",
+  "scenario": "Ironbark Mining Telemetry collects sensor data from 11 mine sites through an ingestion fleet of 24 servers. Engineers regularly log in to production servers to hot-patch problems, and an audit found the servers had drifted so far apart that a staging test no longer predicted production behaviour. Snapshots are taken by hand every Friday and were skipped twice this year, and servers that fail overnight stay dead until someone wakes up. The CTO wants integrity to come from process rather than heroics, with no engineer ever needing to log in to fix production.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "No interactive login to production servers is permitted for routine fixes",
+    "Every change must be reproducible from version control",
+    "A single failed server must not page a human overnight"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Every change reaches all 24 servers from version control with no in-place edit",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Backups run on a schedule with no manual step, and the loss of one of the 24 servers heals itself",
       "points": 2
     }
   ],

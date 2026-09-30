@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-1.1-S06"
   ],
-  "scenario": "A single company has one AWS account and one on-premises Active Directory forest. You must produce a design decision record, not a live build, for two related federation problems: (1) staff must reach the AWS Management Console with their AD credentials, with no IAM users created for them, using either SAML 2.0 federation through AD FS or IAM Identity Center; and (2) a second scenario, evaluated separately in the same record, has the company grow to several AWS accounts in one AWS Organization and asks whether to keep per-account SAML trusts, connect an AD Connector or AWS Managed Microsoft AD to IAM Identity Center, or move users into AWS Managed Microsoft AD with no on-premises trust. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Tidewater Logistics Co-op has 140 dispatch and finance staff who sign in to Windows with credentials held in an on-premises Active Directory forest, and an AD FS farm already serves two internal web applications. Today it runs one AWS account and wants staff to reach the console with those same credentials, with no separate IAM users and no second password to remember. Within 18 months it plans about 12 accounts, one per business unit plus shared services, under one AWS Organization. The security lead has ruled that passwords must never be stored in or synchronized to AWS and that no domain controller may run in AWS. Two identity engineers will own whatever is built.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
@@ -14,7 +14,9 @@
     "Decide between SAML 2.0 federation through AD FS (or another SAML IdP) and IAM Identity Center for the single-account case, and justify the choice",
     "If IAM Identity Center is chosen for the single-account case, state that assigning AWS account access requires an organization instance (AWS Organizations enabled, with this account as the management account)",
     "Compare AD Connector, AWS Managed Microsoft AD, and a per-account SAML identity provider as the identity source or federation mechanism for the multi-account case, and state, for each option, whether passwords stay on premises and whether it runs domain controllers in AWS",
-    "State whether IAM Identity Center is used in the multi-account case, and if so, what its identity source is"
+    "State whether IAM Identity Center is used in the multi-account case, and if so, what its identity source is",
+    "The security lead forbids synchronizing passwords to AWS and forbids running domain controllers in AWS",
+    "Two identity engineers must be able to operate the result; adding the twelfth account must not mean building a new trust from scratch"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [

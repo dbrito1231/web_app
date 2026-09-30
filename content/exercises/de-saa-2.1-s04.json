@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.1-S04"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining when to use containers",
+  "scenario": "Redwater Tax Software maintains nine server applications, each pinned to a different Java runtime, so a fix that works on a developer laptop keeps failing on the production servers. Two of the nine are vendor builds whose source the company does not hold, and they must move to AWS unchanged. A tenth item is a 40-line nightly script that resizes 200 images from a bucket and sits idle for 23 hours a day. Nobody on the four-person team knows Kubernetes, and nobody wants to patch host operating systems.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Nobody on the team has Kubernetes experience",
+    "The team will not patch or manage host operating systems",
+    "The two vendor builds cannot be modified"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The container decision is made per workload: the nine applications and the nightly script are each justified, including where containers are not the fit",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The design uses no Kubernetes and leaves no host-patching duty",
       "points": 2
     }
   ],

@@ -6,12 +6,15 @@
     "SAA-2.2-K04",
     "SAA-2.2-S06"
   ],
-  "scenario": "You must design a solution addressing: Multi-Region DR vs RPO/RTO. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Solstice Ferries takes bookings for 22 routes from a single Region, and a rehearsal after a near-miss set the targets: no more than 5 minutes of bookings may be lost, and service must be back within 30 minutes of losing the Region. The finance director will not fund any continuously running application servers in the recovery Region, only stored data. Production peaks at 96 vCPUs of application servers. In last year's rehearsal the recovery attempt stalled because the recovery Region would not launch more than a small number of servers.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Finance funds no continuously running application servers in the recovery Region",
+    "The recovery procedure is rehearsed every quarter",
+    "The operations lead requires the recovery Region to reach full production capacity of 96 vCPUs"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -38,6 +41,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The chosen strategy meets the 5-minute data-loss and 30-minute recovery targets and is the cheapest that does",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Capacity of 96 vCPUs in the recovery Region is arranged ahead of a disaster",
       "points": 2
     }
   ],

@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.1-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining the AWS services required to achieve loose coupling based on requirements",
+  "scenario": "Vantage Point Photo Labs takes print orders through a checkout API that calls, in sequence, the invoicing, label-printing and customer-notification systems. The label-printing system sometimes takes up to six minutes, so checkout requests time out at about 30 seconds and customers reorder, creating duplicates. A partner promotion can multiply orders 30-fold for an hour. Each of the three downstream teams must receive every order from the single checkout source, work through it at its own pace, and lose nothing if it is down for up to a day, while checkout must confirm within 2 seconds.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The three downstream teams deploy independently; onboarding a fourth must not require a checkout change",
+    "No order may be lost if a downstream team is down for up to a day",
+    "No content-based routing is needed; every consumer takes every order"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Checkout confirms within 2 seconds even when label printing takes six minutes",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Each of the 3 consumers reads from its own durable buffer that retains orders for at least one day",
       "points": 2
     }
   ],

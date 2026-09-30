@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-2.2-S08"
   ],
-  "scenario": "Design a solution that demonstrates skill: Using purpose-built AWS services for workloads",
+  "scenario": "Marlowe Freight Tracking depends on three tools written by an engineer who has left: a cron job that snapshots volumes, database instances and tables nightly and prunes them by name, a heartbeat script that repoints DNS records at the second Region when the first stops answering, and a Python replicator that copies tracking events between tables in two Regions with home-made conflict handling. Each has failed silently at least once this year. The team of five has no capacity to rewrite them, and management wants no custom resilience code at all. Both Regions accept tracking writes, and last-writer-wins is acceptable.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Management requires zero custom code for backup, failover or replication",
+    "Both Regions must keep accepting tracking writes",
+    "Backups must be kept for 30 days"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each of the three homegrown tools is replaced by a managed service and none is rebuilt on servers",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Both Regions stay writable, with conflicts resolved last-writer-wins, and 30-day backup retention is met",
       "points": 2
     }
   ],
