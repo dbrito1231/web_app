@@ -16,7 +16,22 @@ CONTENT = ROOT / "content"
 TELLS = re.compile(
     r"\b(since|even though|which does not|despite|requiring|must|without changing|so that)\b", re.I
 )
-LETTER = re.compile(r"\b(choice|option|answer)\s+\(?[a-e]\)?(?=[\s,.;:)]|$)|\([a-e]\)", re.I)
+# A rationale must name options by content, never by letter. The old pattern
+# only caught "choice c" / "option b" / "(c)": it passed all 10 tf-g4
+# rationales written as "c is wrong because ...", and it flagged the English
+# "so they answer a different question". A bare letter only counts when a
+# predicate verb follows it, and "a" only before verbs the article never takes.
+_VERBS = (r"(?:is|isn't|was|misstates|reverses|overreaches|names|claims|confuses|describes|"
+          r"fails|gets|swaps|invents|would|directly|also|only|and|or|correctly|wrongly|"
+          r"contradicts|assumes|mixes|picks|offers|uses|adds|ignores|repeats)")
+LETTER = re.compile(
+    r"\b(?:choice|option)\s+\(?[a-eA-E]\)?(?=[\s,.;:)]|$)"
+    r"|\([a-eA-E]\)"
+    r"|(?<![\w`'\".\-/])[b-e]\s+" + _VERBS + r"\b"
+    r"|(?<![\w`'\".\-/])a\s+(?:is|isn't|was|misstates|reverses|overreaches|claims|confuses|"
+    r"fails|swaps|invents|contradicts)\b"
+    r"|(?:^|[.;:]\s+|--\s+|,\s+)[A-E]\s+" + _VERBS + r"\b"
+)
 RETIRED = re.compile(r"\b(Copilot|Snowball|Snowcone|Snowmobile|FSx File Gateway|CodeCommit|Cloud9|CodeStar|QLDB)\b")
 SINGLE_AST = re.compile(r"(?<!\*)\*(?!\*)")
 
