@@ -5,7 +5,7 @@
   "pairId": "gl-06",
   "region": "us-east-1",
   "estimatedMinutes": 75,
-  "sameHourEstimateUsd": 0.05,
+  "sameHourEstimateUsd": 0.1,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -57,7 +57,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "NAT lab with cost gate and cleanup."
   },
-  "stopChargesPanel": "Delete the NAT gateway and wait until it is deleted, release the Elastic IP, then remove both route tables, both subnets, the IGW and the VPC for ul-06.",
+  "stopChargesPanel": "Delete the NAT gateway and wait until it is deleted, release the Elastic IP, then remove both route tables, both subnets, the IGW and the VPC for ul-06. Forgotten 24 h \u2248 $1.20 (a floor; see the cost basis).",
   "teardown": {
     "labId": "ul-06",
     "regionScope": "us-east-1",
@@ -90,6 +90,7 @@
   "forgotten24hEstimateUsd": 1.2,
   "beforeYouStart": [
     "Read the paired guided lab (gl-06) stop-charges panel before you create anything.",
-    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
+    "Cost basis (us-east-1, priced 2026-09-29): 1 NAT gateway* $0.045/h billed in full hours (from the page's US East (Ohio) example), 1 public IPv4 (the NAT's Elastic IP) $0.005/h; * N. Virginia rate rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.10, forgotten 24 h \u2248 $1.20. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ]
 }

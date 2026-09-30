@@ -5,7 +5,7 @@
   "pairId": "gl-19",
   "region": "us-east-1",
   "estimatedMinutes": 120,
-  "sameHourEstimateUsd": 0.2,
+  "sameHourEstimateUsd": 0.24,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -60,7 +60,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "EKS with compute add-on lab."
   },
-  "stopChargesPanel": "Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles.",
+  "stopChargesPanel": "Delete the node group or Fargate profile and wait, delete the EKS cluster and wait, then the cluster log group and the ul-19 IAM roles. Forgotten 24 h \u2248 $2.83 (a floor; see the cost basis).",
   "teardown": {
     "labId": "ul-19",
     "regionScope": "us-east-1",
@@ -101,9 +101,10 @@
   "executionStatus": "unexecuted",
   "module": "A3",
   "difficulty": "tradeoff",
-  "forgotten24hEstimateUsd": 4.8,
+  "forgotten24hEstimateUsd": 2.83,
   "beforeYouStart": [
     "Read the paired guided lab (gl-19) stop-charges panel before you create anything.",
-    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
+    "Cost basis (us-east-1, priced 2026-09-29): EKS control plane, standard support, $0.10/cluster-hour, plus one managed node assumed as t3.micro $0.0104/h (t3.medium would be $0.0416/h), 1 public IPv4 on the node $0.005/h, 20 GB gp3* node root at $0.08/GB-month; the Fargate-profile path adds nothing until pods run; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.24, forgotten 24 h \u2248 $2.83. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ]
 }

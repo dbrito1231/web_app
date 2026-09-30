@@ -1,6 +1,6 @@
 # Labs and safety
 
-Lab catalog, teardown, budget, and credential rules. Spec version 1. Implements REQ-P20–P27, REQ-P04, REQ-P99. Access date for example rates: 2026-09-23.
+Lab catalog, teardown, budget, and credential rules. Spec version 1. Implements REQ-P20–P27, REQ-P04, REQ-P99. Access date for example rates: 2026-09-29.
 
 ## Company sandbox (if you run labs at work)
 
@@ -34,20 +34,29 @@ REQ-L12. Free Tier never assumed. No root access keys. No secrets in git. Terraf
 
 ## Example rates (illustration only)
 
-Re-read official pricing for the learner’s region before a lab is marked verified. Same-hour `us-east-1` examples read 2026-09-23:
+Re-read official pricing for the learner’s region before a lab is marked verified. Same-hour `us-east-1` examples read 2026-09-29 from the public AWS pricing pages (claim table with verbatim quotes and the method used per row: `reports/fix-loop-r2/d6/pricing-claims.md`). Instance-type tables (EC2, RDS, ElastiCache) were read in the pages' rendered rate widgets with the region set to US East (N. Virginia). The other pages' region tables did not render, so those rows come from static page text; a row marked "not verified for us-east-1" must be re-checked on the page before a lab run.
 
-| Resource | Example |
-| --- | --- |
-| NAT Gateway | $0.045/hour + $0.045/GB |
-| Public IPv4 | $0.005/hour |
-| Gateway VPC endpoints | no hourly/data charge in that example |
-| Customer-managed KMS | $1/month prorated; scheduled-for-deletion not charged |
-| ALB | $0.0225/hour plus LCU; partial hour bills as full hour |
-| t3.micro Linux | $0.0104/hour |
-| EKS standard support | $0.10/cluster-hour (extended $0.60 out of lab) |
-| Alert-only Budgets | no charge |
+| Resource | Example | Status |
+| --- | --- | --- |
+| NAT Gateway | $0.045/hour + $0.045/GB; partial hour bills as full hour | Page example is US East (Ohio); not verified for us-east-1 |
+| Public IPv4 | $0.005/hour in use or idle | Static page text, not region-specific; per-second billing, 60-second minimum |
+| Gateway VPC endpoints | no hourly/data charge in that example | Static page text |
+| Customer-managed KMS | $1/month prorated; scheduled-for-deletion not charged | Read 2026-09-23, not re-read |
+| ALB | $0.0225/hour plus LCU; partial hour bills as full hour | Worked-example rate, region not named; not verified for us-east-1 |
+| t3.micro Linux | $0.0104/hour | Verified us-east-1 (EC2 on-demand widget) |
+| t3.medium Linux | $0.0416/hour | Verified us-east-1 (EC2 on-demand widget) |
+| RDS PostgreSQL db.t3.micro Single-AZ | $0.018/hour | Verified us-east-1 (RDS PostgreSQL rate widget); partial hours bill as full hours |
+| RDS storage | gp2/gp3 not read; io1 $0.125/GB-month used only as an upper bound | gp2/gp3 not verified; io1 from a US East (N. Virginia) page example |
+| ElastiCache cache.t3.micro | Redis $0.017/hour (Valkey $0.0136/hour); partial hour bills as full hour | Verified us-east-1 (ElastiCache rate widget) |
+| EBS gp3 | $0.08/GB-month | Worked-example rate, region not named; not verified for us-east-1 |
+| EBS snapshot (standard) | $0.05/GB-month | Worked-example rate, region not named; not verified for us-east-1 |
+| Fargate Linux/x86 | $0.000011244/vCPU-second ($0.0405/h), $0.000001235/GB-second ($0.00445/h); 1-minute minimum | Verified: page example names US East (N. Virginia) |
+| EKS standard support | $0.10/cluster-hour (extended $0.60 out of lab) | Static page text, flat per-cluster rate |
+| WAF | $5.00/web ACL/month, $1.00/rule or managed rule group/month, $0.60 per million requests | Worked-example rates, region not named; not verified for us-east-1 |
+| CloudWatch standard alarm | $0.10 per alarm metric per month | Worked example ("US East"); not verified for us-east-1 |
+| Alert-only Budgets | no charge | Read 2026-09-23, not re-read |
 
-Fill before publish from official pages: RDS, EBS, EFS, ElastiCache, Fargate, Step Functions, Athena, Route 53 private zone, WAF, Secrets Manager, GuardDuty, Macie.
+Still to fill from official pages: EFS Standard storage and RDS gp2/gp3 storage (page price tables did not render), plus Step Functions, Athena, Route 53 private zone, Secrets Manager, GuardDuty, Macie (the last six are not used by the 16 hourly labs). GL/UL-07's EFS part keeps its earlier conservative 24 h figure until EFS is read.
 
 ## Lab catalog (21 + 21)
 

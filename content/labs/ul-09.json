@@ -5,7 +5,7 @@
   "pairId": "gl-09",
   "region": "us-east-1",
   "estimatedMinutes": 75,
-  "sameHourEstimateUsd": 0.03,
+  "sameHourEstimateUsd": 0.05,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -57,7 +57,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "Target tracking ASG lab complete."
   },
-  "stopChargesPanel": "Scale the ASG to 0, force-delete it and wait for its instances to terminate, then delete the CloudWatch alarm (if you created one), the launch template and the lab SG for ul-09.",
+  "stopChargesPanel": "Scale the ASG to 0, force-delete it and wait for its instances to terminate, then delete the CloudWatch alarm (if you created one), the launch template and the lab SG for ul-09. Forgotten 24 h \u2248 $0.79 (a floor; see the cost basis).",
   "teardown": {
     "labId": "ul-09",
     "regionScope": "us-east-1",
@@ -83,9 +83,10 @@
   "executionStatus": "unexecuted",
   "module": "A2",
   "difficulty": "tradeoff",
-  "forgotten24hEstimateUsd": 0.72,
+  "forgotten24hEstimateUsd": 0.79,
   "beforeYouStart": [
     "Read the paired guided lab (gl-09) stop-charges panel before you create anything.",
-    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
+    "Cost basis (us-east-1, priced 2026-09-29): 2 x t3.micro $0.0104/h at peak, 2 public IPv4 $0.005/h each, 2 x 8 GB gp3* $0.08/GB-month root, 2 CloudWatch standard alarms* from target tracking at $0.10 per alarm metric per month; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.05, forgotten 24 h \u2248 $0.79. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ]
 }

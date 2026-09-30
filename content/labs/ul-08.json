@@ -5,7 +5,7 @@
   "pairId": "gl-08",
   "region": "us-east-1",
   "estimatedMinutes": 90,
-  "sameHourEstimateUsd": 0.04,
+  "sameHourEstimateUsd": 0.09,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -58,7 +58,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "WAF + ALB challenge with cleanup."
   },
-  "stopChargesPanel": "Disassociate the WAF web ACL from the ALB and delete the web ACL, then delete the listener, ALB, target group, EC2 instance, Elastic IP (if allocated), both public subnets and their route table, the IGW, the SG and the VPC for ul-08.",
+  "stopChargesPanel": "Disassociate the WAF web ACL from the ALB and delete the web ACL, then delete the listener, ALB, target group, EC2 instance, Elastic IP (if allocated), both public subnets and their route table, the IGW, the SG and the VPC for ul-08. Forgotten 24 h \u2248 $1.26 (a floor; see the cost basis).",
   "teardown": {
     "labId": "ul-08",
     "regionScope": "us-east-1",
@@ -93,9 +93,10 @@
   "executionStatus": "unexecuted",
   "module": "A2",
   "difficulty": "tradeoff",
-  "forgotten24hEstimateUsd": 0.96,
+  "forgotten24hEstimateUsd": 1.26,
   "beforeYouStart": [
     "Read the paired guided lab (gl-08) stop-charges panel before you create anything.",
-    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
+    "Cost basis (us-east-1, priced 2026-09-29): 1 ALB* $0.0225/h billed in full hours, 2 public IPv4 on the ALB (one per subnet/AZ) $0.005/h each, t3.micro $0.0104/h target with no public IPv4 (the lab's subnets do not auto-assign one), 8 GB gp3* root at $0.08/GB-month, AWS WAF web ACL* $5.00/month and one managed rule group* $1.00/month, both prorated hourly (requests at $0.60 per million excluded); an optional standalone Elastic IP is not included; * worked-example rate whose region the page does not name: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.09, forgotten 24 h \u2248 $1.26. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ]
 }

@@ -5,8 +5,8 @@
   "pairId": "ul-14",
   "region": "us-east-1",
   "estimatedMinutes": 120,
-  "sameHourEstimateUsd": 0.5,
-  "forgotten24hEstimateUsd": 12.0,
+  "sameHourEstimateUsd": 0.05,
+  "forgotten24hEstimateUsd": 0.52,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -18,9 +18,9 @@
   "beforeYouStart": [
     "Set $env:AWS_PROFILE and $env:AWS_REGION='us-east-1'",
     "Run aws sts get-caller-identity",
-    "Review same-hour and 24-hour estimates"
+    "Cost basis (us-east-1, priced 2026-09-29): 1 RDS db.t3.micro Single-AZ $0.018/h billed in full hours, 20 GB storage* at $0.125/GB-month (not publicly accessible, so no public IPv4); * io1 storage rate $0.125/GB-month from the RDS PostgreSQL page (US East (N. Virginia) example), used as a conservative upper bound because the gp2/gp3 storage rate could not be read: rate not verified on 2026-09-29; re-check the pricing page before running; same-hour \u2248 $0.05, forgotten 24 h \u2248 $0.52. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ],
-  "stopChargesPanel": "Delete the DB instance without a final snapshot, wait until it is deleted, then delete the DB subnet group. This lab uses the default VPC security group. RDS forgotten overnight is costly.",
+  "stopChargesPanel": "Delete the DB instance without a final snapshot, wait until it is deleted, then delete the DB subnet group. This lab uses the default VPC security group. RDS forgotten overnight is costly. Forgotten 24 h \u2248 $0.52 (a floor; see the cost basis).",
   "steps": [
     {
       "id": "s01",

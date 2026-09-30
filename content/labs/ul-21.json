@@ -5,7 +5,7 @@
   "pairId": "gl-21",
   "region": "us-east-1",
   "estimatedMinutes": 120,
-  "sameHourEstimateUsd": 0.2,
+  "sameHourEstimateUsd": 0.04,
   "hourly": true,
   "practiceMode": "live_aws",
   "objectiveIds": [
@@ -57,7 +57,7 @@
     "summary": "Gated. Reveal only after attempt.",
     "outline": "HCP concepts plus optional cache teardown."
   },
-  "stopChargesPanel": "Delete ElastiCache and AWS tags for ul-21; remove local terraform tokens from shell.",
+  "stopChargesPanel": "Delete ElastiCache and AWS tags for ul-21; remove local terraform tokens from shell. Forgotten 24 h \u2248 $0.41 (a floor; see the cost basis).",
   "teardown": {
     "labId": "ul-21",
     "regionScope": "us-east-1",
@@ -84,9 +84,10 @@
   "executionStatus": "unexecuted",
   "module": "T4",
   "difficulty": "tradeoff",
-  "forgotten24hEstimateUsd": 4.8,
+  "forgotten24hEstimateUsd": 0.41,
   "beforeYouStart": [
     "Read the paired guided lab (gl-21) stop-charges panel before you create anything.",
-    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user."
+    "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
+    "Cost basis (us-east-1, priced 2026-09-29): AWS path: 1 ElastiCache cache.t3.micro (Redis assumed) node $0.017/h billed in full hours; no public IPv4; the HCP path is no-charge; same-hour \u2248 $0.04, forgotten 24 h \u2248 $0.41. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab."
   ]
 }
