@@ -1,6 +1,6 @@
 # Plan: reopen tasks 4-3, 4-1, 1-3 for the shortest-is-key tell, and fix the letter-reference check
 
-Status: **draft, awaiting Teacher validation, then user approval.** No implementation starts before the user approves.
+Status: **Teacher-validated (approve, with changes applied); awaiting user approval.** No implementation starts before the user approves.
 Author: Lead Dev, 2026-09-29. Follows the user's decision of 2026-09-28 (HANDOFF "Decisions taken by the user", item 1).
 
 ## Goal
@@ -22,7 +22,7 @@ Measured today with `q1_batch_check.py`. A tie for shortest counts as shortest.
 
 The HANDOFF figure of "~50 MC questions" was the total MC count in the three tasks, not the number that needs changing.
 
-**Not in scope:** `3-1` and `3-5` (the user decided to leave them closed and record their figures); the stem-paraphrase and stem-echo rules (closed tasks are not reopened for them); lessons (no change expected — see Risks).
+**Not in scope:** MR questions (the tell is measured on MC only); `3-1` and `3-5` (the user decided to leave them closed and record their figures); the stem-paraphrase and stem-echo rules (closed tasks are not reopened for them); lessons (no change expected — see Risks).
 
 ### Method for each of the 11
 
@@ -32,6 +32,13 @@ The HANDOFF figure of "~50 MC questions" was the total MC count in the three tas
 - **Fixed:** the tested fact and the correct answer do not change. `id`, `type`, `objectiveIds`, `selectCount`, `correctAnswerIds` and the key's letter position stay as they are, so MC position balance is untouched.
 - **Rationale:** if a key's wording changes, the rationale is updated to match, by content, with no letter references.
 - **Teach-before-test:** any detail added to a key must already be taught in that task's lesson. If it is not, the writer reports it under "Lesson additions requested" instead of adding it.
+- **Parallel form (added at the Teacher's request).** All four options stay in the same form. If every option is a bare service name (e.g. 4-1 k03, k05, s07 and 1-3 s05), do not add a descriptor to the key alone, because the only option with a descriptor becomes the new tell. Either give every option a parallel descriptor, or tighten the long distractors.
+- **Each distractor keeps its failing requirement (added at the Teacher's request).** Tightening a distractor must not remove the one stated requirement it fails on. Take particular care with 4-1 s07's DataSync option.
+- **Quote the lesson for every added detail (added at the Teacher's request).** For each added detail, the impl report quotes the lesson sentence that teaches it. Known tight cases:
+  - For 4-3 s02, tighten distractors rather than add "advanced JSON" to the key, which would echo the stem.
+  - For 4-1 s06, confirm whether the lesson teaches the archive-tier price and minimum before using them.
+  - For 1-3 k04, do not add "PKCS #11" to the key; the stem already carries it.
+- **Record ranks.** The impl report records the length rank of all four options before and after each edit, not just the key's. The final tallies count ties as shortest.
 
 ### Pipeline (per RULES and AGENTS.md; content-affecting, so the Teacher validates before and after)
 
@@ -40,7 +47,7 @@ The HANDOFF figure of "~50 MC questions" was the total MC count in the three tas
 3. **Writer** (1 Sonnet agent, all 11 questions). It edits only those 11 question files, then runs the whole chain on all three tasks and appends a report to `reports/fix-loop-r2/q1/reopen-shortest-key-impl.md`. For each question the report gives old and new text for every changed choice, and the length rank before and after.
 4. **Lead Dev pre-check.** Run the whole chain on all three tasks. Run `key_text_diff.py <task> <HEAD before edits>` to prove no key changed which option is correct (expect 0 mismatches). Read every changed choice in isolation, with the two questions for each: is it still real, and is the reason it is right or wrong taught in the lesson? Confirm no new stem echo on the changed questions: `stem_echo_check` is advisory for 1-3, 4-1 and 4-3, so it is compared against a baseline taken before the edits.
 5. **Review** (2 Sonnet agents in parallel): the technical reviewer and the Teacher review the 11 questions for correctness, new tells, strawmen and teach-before-test. They report as `AWS-RSK-###` and `TEACHER-RSK-###` in `reports/fix-loop-r2/q1/reopen-shortest-key-review.md` (the Teacher's text is saved by the Lead Dev). Every item closes only when its reporter and a second role mark it Gone.
-6. **Student** (1 Sonnet agent). A text packet containing only the three lessons' relevant sections and the 11 changed questions, answered before the key is opened, with the same two stem-wording numbers plus the length-tell count.
+6. **Student** (1 Sonnet agent). A text packet containing only the three lessons' relevant sections, the 11 changed questions, and four near-tie controls (4-3 k07, s03, s04; 1-3 k03), which check that the near-ties left alone are not exploitable. All questions are answered before the key is opened, with the same two stem-wording numbers plus the length-tell count.
 7. **Close.** Add a row to `progress.md`, a row to the issue register, and a note in HANDOFF; record the unchanged `3-1`/`3-5` figures; confirm the DB fingerprint; commit after each step.
 
 ## Part B — letter-reference check in `scripts/q1_batch_check.py`
@@ -97,4 +104,9 @@ About 0.6–0.8M subagent tokens: a Teacher plan check, 1 writer, 2 reviewers an
 
 ## Teacher validation (before user approval)
 
-_Pending._
+Fresh Sonnet Teacher, 2026-09-29. Verdict: **Plan: approve**, with two required changes, both now applied above: parallel option form with each distractor keeping its failing requirement, and a quoted lesson sentence per added detail.
+
+- **Scope confirmed.** All 11 are real gaps and none is a false alarm. The near-ties are correctly left out. 4-3 k07 (83 vs 88) should stay out, but the longest-is-key cap must be re-run after any 4-3 edit, because the projected 29% leaves little margin.
+- **Lesson additions.** None expected. The tight cases are 4-3 s02, 4-1 s06 and 1-3 k04, handled as in the method.
+- **Part B.** No learner impact.
+- **One Teacher claim was wrong.** It asked to "re-verify the four stem-echo waivers already recorded for these tasks". `stem-echo-waivers.json` has no entries, and its README says tasks 1.1–4.4 have none. There is nothing to re-verify; `stem_echo_check` stays advisory for these tasks against a pre-edit baseline.
