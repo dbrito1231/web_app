@@ -59,3 +59,38 @@ Method: read the 16 files at HEAD, the writer report, lessons 3.1 to 3.5 (plus 4
 Batch 2: not yet
 
 Overall: concerns
+
+---
+
+## Teacher review (batch 2)
+
+Saved by the Lead Dev from the Teacher's reply (condensed; replacement texts verbatim).
+
+**Method.** The Teacher used a backtick-stripped, case-insensitive regex over lessons 3.1–3.5, 2.1, 4.1 and 4.4.
+- **Teach-before-test:** passes except for Outposts in 3.4-s03 (AWS-DE2-007) and a replica-lag alarm in 3.3-s01 (TEACHER-DE2-003).
+- **Arithmetic:** all of it was recomputed and holds.
+- **Scenarios:** all are in operational language, and `constraint_reason` is consistent.
+
+**Verdicts**
+- **Approve:** 3.1-s01, 3.1-s02, 3.2-s04, 3.3-s03, de-cdn, de-data-lake, de-emr-glue, de-streaming.
+- **Approve after fixes:** 3.4-s01 (T-001), 3.4-s02 (T-001, T-002), 3.4-s03 (AWS-007), 3.5-s03 (T-001).
+- **Changes:** 3.3-s01 (AWS-003, T-003), 3.5-s06 (AWS-005), de-snow (AWS-001, AWS-002, T-001), de-visualization (AWS-006).
+
+**Findings**
+- **TEACHER-DE2-001 (minor):** four rubric items print the result of arithmetic the learner must do. Make each say "worked out and stated":
+  - 3.4-s01 r7 tail: "with the rate each path must sustain worked out and stated".
+  - 3.4-s02 r7 tail: "and the record shows, with the usable-address count worked out, why the existing /24 range alone cannot hold them".
+  - 3.5-s03 r6: "(the required rate worked out and stated)".
+  - de-snow r6: "the record shows, with the sustained rate required worked out, that it cannot be met over the existing 500 Mbps link".
+- **TEACHER-DE2-002 (minor) 3.4-s02, constraint 3:** "Acquired companies' address ranges are all distinct, so no address translation is to be introduced, and every acquired VPC will be created in this same Region". This excludes Cloud WAN as an over-built multi-Region design.
+- **TEACHER-DE2-003 (minor) 3.3-s01, constraint 3:** "operations must be alerted" needs a replica-lag alarm, which is not taught. No rubric item grades it. The Teacher recommends a lesson follow-up, or dropping the constraint.
+
+**Second-role check on AWS-DE2-***
+- **Agree:** 001, 002, 003, 005, 006, 007.
+- **004:** accept either VPN attachment; the optional appended clause should not be applied.
+- **Glue for Ray (CR-0019):** agree. It does not block batch 2.
+
+Batch 2: not yet · Overall: concerns
+
+## Lead Dev decision on TEACHER-DE2-003
+Drop constraint 3 of de-saa-3.3-s01 in this pass: it is ungraded, and dropping it avoids a lesson change that would need user approval. The lesson idea ("raise an alarm on the replica-lag metric" in 3.3 S01) is recorded as an optional follow-up.
