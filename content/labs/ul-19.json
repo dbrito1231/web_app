@@ -105,6 +105,6 @@
   "beforeYouStart": [
     "Read the paired guided lab (gl-19) stop-charges panel before you create anything.",
     "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
-    "Cost basis (us-east-1, priced 2026-09-29): EKS control plane $0.10/cluster-hour, plus 2 t3.medium nodes (the create-nodegroup default) $0.0416/h each, 2 public IPv4 $0.005/h each, 2 x 20 GB gp3 node disks $0.08/GB-month. This run \u2248 $0.40; forgotten 24 h \u2248 $4.75 (at least; data transfer not included). Choosing 1 x t3.micro lowers this to about $0.24 / $2.83. Re-check current pricing before you run."
+    "Cost basis (us-east-1, priced 2026-09-29): EKS control plane $0.10/cluster-hour, plus 2 t3.medium nodes $0.0416/h each (t3.medium is the create-nodegroup default; the default node count is not documented, so 2 is assumed), 2 public IPv4 $0.005/h each, 2 x 20 GB gp3 node disks $0.08/GB-month. This run \u2248 $0.40; forgotten 24 h \u2248 $4.75 (at least; data transfer not included). Choosing 1 x t3.micro lowers this to about $0.24 / $2.83. Re-check current pricing before you run."
   ]
 }

@@ -100,3 +100,73 @@ All 16 pairs of figures reproduce, the resource lists are complete against the s
 Part A: not yet
 
 Overall: concerns
+
+## Technical confirmation (fix pass)
+
+Commit 0f3dc9c ("D6 Part A fix pass"), read-only. Inputs: the "Fix pass (review)" section of pricing-claims.md, pricing-review-TEACHER.md, the appended outcome in pricing-leaddev-precheck.md, and the 16 labs as they now stand.
+
+### 1. AWS-PA status
+
+| Id | Status | Evidence |
+| --- | --- | --- |
+| AWS-PA-001 (ul-19 node assumption) | Gone as to pricing; new wording finding AWS-PA-006 | ul-19 now prices 2 x t3.medium, 2 IPv4, 2 x 20 GB gp3 plus EKS: 0.40 / 4.75; the t3.micro alternative 0.24 / 2.83 is stated. |
+| AWS-PA-002 (ul-08 same-hour) | Gone as to the figure (0.10); new finding AWS-PA-007 | Field, basis and the WAF-full-hour reading agree at 0.10. |
+| AWS-PA-003 (stale markers) | Gone | No asterisks or "worked-example" wording in the 16 labs; ALB and EBS rows in docs/labs-and-safety.md read "Verified"; gp2 added; NAT, WAF, CloudWatch alarm and RDS storage keep "not verified". |
+| AWS-PA-004 ("floor", "LCU") | Gone | No "floor" in any lab. "LCU" appears only in gl-08 and ul-08. Panels read "at least $X (see the cost basis)". |
+| AWS-PA-005 (ul-07 padded figure) | Gone | Basis says "a cautious figure, not a calculated one (the parts we could price come to about $0.39)"; my computed 0.39093 agrees. |
+| LD-PA-001 | Withdrawn (recorded in the precheck) | Agreed. |
+
+### 2. Second-role check
+
+| Id | Check |
+| --- | --- |
+| TEACHER-PA-001 (exclusions per lab) | Confirmed. Default "data transfer not included"; gl-06/ul-06 add NAT per-GB processing; gl-08/ul-08 add LCU and data transfer; ul-08 adds WAF requests $0.60 per million; ul-18 adds logs. |
+| TEACHER-PA-002 (gl-14, ul-14) | Confirmed. The Teacher's text is used verbatim; no "at least" on the io1-overstated figures; "costly" is gone. Figures 0.05 / 0.52 and 0.10 / 1.12 reproduce. |
+| TEACHER-PA-003 (ul-07) | Confirmed. Text verbatim; 0.72 labelled cautious. |
+| TEACHER-PA-004 ("floor" jargon) | Confirmed. All panels use "at least $X (see the cost basis)". |
+| TEACHER-PA-005 / LD-PA-003 ("rate rate") | Confirmed gone. |
+| LD-PA-002 (Fargate rate wording) | Confirmed. "per vCPU-hour" and "per GB-hour" are used; 0.0405 x 0.25 + 0.00445 x 0.5 = 0.01235 (about $0.0124/h) and 0.0405 x 0.5 + 0.00445 x 1 = 0.02470 ($0.0247/h) both hold. |
+
+### 3. Recomputation from the basis text as written
+
+Rules: full hours only where the text says "billed in full hours" or "(full hours)"; everything else fractional; month 720 h; round up.
+
+| Lab | Same-hour computed (field) | 24 h computed (field) |
+| --- | --- | --- |
+| gl-06, ul-06 | 0.09625 -> 0.10 (0.10) | 1.20000 (1.20) |
+| gl-07 | 0.03547 -> 0.04 (0.04) | 0.42560 -> 0.43 (0.43) |
+| ul-07 | 0.03258 -> 0.04 (0.04) | 0.72 by design; priced parts 0.39093 (about $0.39, as stated) |
+| gl-08 | 0.07693 -> 0.08 (0.08) | 1.05093 -> 1.06 (1.06) |
+| ul-08 | 0.08943 fractional-WAF; 0.09360 with WAF in full hours -> 0.10 (0.10) | 1.25093 -> 1.26 (1.26) |
+| gl-09 | 0.02036 -> 0.03 (0.03) | 0.39093 -> 0.40 (0.40) |
+| ul-09 | 0.04107 -> 0.05 (0.05) | 0.78853 -> 0.79 (0.79) |
+| gl-14 | 0.04294 -> 0.05 (0.05) | 0.51533 -> 0.52 (0.52) |
+| ul-14 | 0.09283 -> 0.10 (0.10) | 1.11400 -> 1.12 (1.12) |
+| gl-18 | 0.02601 -> 0.03 (0.03) | 0.41622 -> 0.42 (0.42) |
+| ul-18 | 0.07054 -> 0.08 (0.08) | 1.12867 -> 1.13 (1.13) |
+| gl-19 | 0.20000 (0.20) | 2.40000 (2.40) |
+| ul-19 | 0.39529 -> 0.40 (0.40) | 4.74347 -> 4.75 (4.75) |
+| gl-21, ul-21 | 0.03400 -> 0.04 (0.04) | 0.40800 -> 0.41 (0.41) |
+
+Every field, basis figure and panel figure matches. One exception in reading: ul-08 reaches 0.10 only if the WAF fees are counted in full hours, and the basis does not say so (AWS-PA-007).
+
+### 4. ul-19 default node count
+
+Correct the wording. The basis says "2 t3.medium nodes (the create-nodegroup default)". Per the writer, the documentation confirms t3.medium and a 20 GiB disk as defaults but states no default desired size, so "the create-nodegroup default" presents an assumed count as documented. (My earlier note in AWS-PA-001 that the default desired size is 2 came from memory of the CLI reference and is not established; do not rely on it.) Replace, exactly, the phrase
+
+"plus 2 t3.medium nodes (the create-nodegroup default) $0.0416/h each"
+
+with
+
+"plus 2 t3.medium nodes $0.0416/h each (t3.medium is the create-nodegroup default; the default node count is not documented, so 2 is assumed)".
+
+The rest of the line stays, including "Choosing 1 x t3.micro lowers this to about $0.24 / $2.83." The docs note at labs-and-safety.md line 68 already states the assumption correctly. The catalog row at line 96 still says "UL: Fargate profile or one managed node", which disagrees with the 2-node basis; change "one managed node" to "managed nodes (priced as 2)". Figures stay 0.40 / 4.75.
+
+### New findings
+
+- **AWS-PA-006 (low):** the ul-19 basis states the node count as documented (fix in section 4).
+- **AWS-PA-007 (low):** ul-08's 0.10 depends on WAF fees being counted in full hours, but the basis says "(full hours)" only for the ALB. As written, the WAF fees bill fractionally and give 0.09. Replace "1 WAF web ACL $5.00/month, 1 managed rule group $1.00/month" with "1 WAF web ACL $5.00/month and 1 managed rule group $1.00/month (WAF partial hours counted as full hours here)". Figures stay 0.10 / 1.26.
+
+Part A: not yet
+
+Overall: concerns

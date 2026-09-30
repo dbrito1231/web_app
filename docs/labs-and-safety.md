@@ -93,7 +93,7 @@ Still to fill from official pages: EFS Standard storage and RDS gp2/gp3 storage,
 | GL-16 / UL-16 | Private DNS | 60 | One Route 53 private hosted zone, one private record, delete. No public zone / domain purchase. |
 | GL-17 / UL-17 | Athena on a tiny file | 60 | Small CSV, one table, one query, drop. No leftover crawler. UL: convert result, delete outputs. |
 | GL-18 / UL-18 | ECS on Fargate | 90 | Cluster, task definition, short task, desired 0, delete. UL: change priced CPU/memory once. Cost-risk gate. |
-| GL-19 / UL-19 | EKS control plane, then delete | 120 | Cluster on standard support, no node group, then delete leftovers. UL: Fargate profile or one managed node, remove before cluster delete. Cost-risk gate. |
+| GL-19 / UL-19 | EKS control plane, then delete | 120 | Cluster on standard support, no node group, then delete leftovers. UL: Fargate profile or managed nodes (priced as 2), remove before cluster delete. Cost-risk gate. |
 | GL-20 / UL-20 | Terraform workflow | 150 | Local backend: init, fmt, validate, plan, apply, state list, out-of-band change, refresh, destroy. State gitignored. **Learner** runs apply/destroy. UL: local module, import, saved plan not applied. |
 | GL-21 / UL-21 | ElastiCache, then HCP as allowed | 120 | Guided: smallest ElastiCache, describe, delete. UL: Terraform 8a–8d; no-charge HCP only, stop before AWS credentials. If paid path required, docs + drills + design_exercise. Cost-risk gate. |
 

@@ -97,6 +97,6 @@
   "beforeYouStart": [
     "Read the paired guided lab (gl-08) stop-charges panel before you create anything.",
     "Set $env:AWS_PROFILE and $env:AWS_REGION. Do not use the root user.",
-    "Cost basis (us-east-1, priced 2026-09-29): 1 ALB $0.0225/h (full hours), 2 public IPv4 $0.005/h each, 1 t3.micro $0.0104/h, 8 GB gp3 root $0.08/GB-month, 1 WAF web ACL $5.00/month, 1 managed rule group $1.00/month. This run \u2248 $0.10; forgotten 24 h \u2248 $1.26 (at least; LCU (traffic) charges, data transfer and WAF request charges ($0.60 per million) not included). The WAF rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run."
+    "Cost basis (us-east-1, priced 2026-09-29): 1 ALB $0.0225/h (full hours), 2 public IPv4 $0.005/h each, 1 t3.micro $0.0104/h, 8 GB gp3 root $0.08/GB-month, 1 WAF web ACL $5.00/month and 1 managed rule group $1.00/month (WAF partial hours counted as full hours here). This run \u2248 $0.10; forgotten 24 h \u2248 $1.26 (at least; LCU (traffic) charges, data transfer and WAF request charges ($0.60 per million) not included). The WAF rate is not verified for us-east-1; check its pricing page before you run. Re-check current pricing before you run."
   ]
 }
