@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "AWS CloudHSM"
+      "text": "AWS CloudHSM with a multi-AZ cluster"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "AWS CloudHSM provisions single-tenant, FIPS-validated HSM hardware that the contractor administers directly, including its own users outside of IAM and application access through interfaces such as PKCS #11, with no visibility into the key material for AWS itself, which matches every part of this requirement. AWS KMS with a customer managed key still runs on multi-tenant HSMs that AWS operates, so the contractor never gets dedicated, single-tenant hardware. AWS KMS with an AWS managed key gives even less control, since AWS also manages the key policy and rotation. AWS Secrets Manager stores and rotates secrets such as passwords and API keys; it is not an HSM and does not provide PKCS #11 access to dedicated hardware.",
+  "rationale": "AWS CloudHSM, deployed as a multi-AZ cluster, provisions single-tenant, FIPS-validated HSM hardware that the contractor administers directly, including its own users outside of IAM and application access through interfaces such as PKCS #11, with no visibility into the key material for AWS itself, which matches every part of this requirement. AWS KMS with a customer managed key still runs on multi-tenant HSMs that AWS operates, so the contractor never gets dedicated, single-tenant hardware. AWS KMS with an AWS managed key gives even less control, since AWS also manages the key policy and rotation. AWS Secrets Manager stores and rotates secrets such as passwords and API keys; it is not an HSM and does not provide PKCS #11 access to dedicated hardware.",
   "citationIds": [
     "cite-saa-1-3-cloudhsm",
     "cite-saa-1-3-kms-concepts"

@@ -15,11 +15,11 @@
     },
     {
       "id": "b",
-      "text": "Use PostgreSQL on Amazon RDS."
+      "text": "Use PostgreSQL on Amazon RDS or an Aurora-compatible offering."
     },
     {
       "id": "c",
-      "text": "Use MySQL on Amazon RDS with a larger instance class for extension compatibility."
+      "text": "Use MySQL on Amazon RDS with a larger instance class."
     },
     {
       "id": "d",

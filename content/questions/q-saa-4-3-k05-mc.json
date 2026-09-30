@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Run provisioned capacity with auto scaling and switch between provisioned and on-demand several times each day."
+      "text": "Run provisioned capacity with auto scaling and switch modes several times each day."
     },
     {
       "id": "c",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "Use on-demand capacity mode for launch traffic."
+      "text": "Use on-demand capacity mode, billed per read/write request unit consumed."
     }
   ],
   "correctAnswerIds": [

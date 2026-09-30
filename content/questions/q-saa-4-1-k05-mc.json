@@ -11,11 +11,11 @@
   "choices": [
     {
       "id": "a",
-      "text": "AWS Backup"
+      "text": "AWS Backup with a backup plan"
     },
     {
       "id": "b",
-      "text": "The EBS Snapshot Archive tier"
+      "text": "EBS Snapshot Archive tier"
     },
     {
       "id": "c",
@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "EFS Lifecycle Management"
+      "text": "EFS Lifecycle Management policy"
     }
   ],
   "correctAnswerIds": [

@@ -19,11 +19,11 @@
     },
     {
       "id": "c",
-      "text": "Use ElastiCache as the durable system of record for session data."
+      "text": "Use ElastiCache as the durable system of record."
     },
     {
       "id": "d",
-      "text": "Use DynamoDB as the primary key-value datastore."
+      "text": "Use DynamoDB as the primary non-relational key-value datastore."
     }
   ],
   "correctAnswerIds": [

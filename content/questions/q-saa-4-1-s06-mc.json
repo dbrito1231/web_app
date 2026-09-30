@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Copy the EBS snapshots into an S3 Glacier Deep Archive bucket manually"
+      "text": "Copy the EBS snapshots into S3 Glacier Deep Archive"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The EBS Snapshot Archive tier is built for exactly this case: EBS-only, long-term retention without needing a cross-service policy engine, offering up to about 75% lower storage cost for snapshots kept 90 days or longer. Building an AWS Backup plan across every resource type adds a cross-service policy engine the requirement does not call for, since only EBS volume history needs the policy. Copying snapshots into an S3 Glacier bucket manually treats snapshot data as if it were object data, which is not how EBS snapshots are stored or archived. Vault Lock makes a backup vault's retention settings immutable for compliance; it does not lower the storage cost of keeping the snapshots.",
+  "rationale": "The EBS Snapshot Archive tier is built for exactly this case: EBS-only, long-term retention without needing a cross-service policy engine, offering up to about 75% lower storage cost for snapshots kept 90 days or longer. Building an AWS Backup plan across every resource type adds a cross-service policy engine the requirement does not call for, since only EBS volume history needs the policy. Copying snapshots into S3 Glacier Deep Archive treats snapshot data as if it were object data, which is not how EBS snapshots are stored or archived. Vault Lock makes a backup vault's retention settings immutable for compliance; it does not lower the storage cost of keeping the snapshots.",
   "citationIds": [
     "cite-saa-4-1-ebs-snapshot-archive"
   ],

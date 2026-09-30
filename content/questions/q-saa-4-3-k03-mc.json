@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Add DynamoDB Accelerator in front of the table."
+      "text": "Add DynamoDB Accelerator (DAX) in front of the table as a read cache."
     },
     {
       "id": "d",

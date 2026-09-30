@@ -11,15 +11,15 @@
   "choices": [
     {
       "id": "a",
-      "text": "Download the report from AWS Artifact"
+      "text": "Download the report on demand from AWS Artifact"
     },
     {
       "id": "b",
-      "text": "Export the current findings from AWS Config for the Regions in scope"
+      "text": "Export AWS Config findings for the in-scope Regions"
     },
     {
       "id": "c",
-      "text": "Open a support case asking AWS to email the report directly to the auditor"
+      "text": "Open a support case asking AWS for the report"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "AWS Artifact gives on-demand, no-cost downloads of AWS's own compliance reports, including SOC reports, which is exactly the evidence of AWS's side of the shared responsibility model that this auditor is asking for. AWS Config findings describe how the startup's own resources are configured, not what AWS itself operates, so they answer a different question. Opening a support case adds a manual, multi-day round trip for a report that is already available on demand in Artifact. IAM Access Analyzer findings describe the account's own resource access, which again documents the customer's responsibility, not AWS's.",
+  "rationale": "AWS Artifact gives on-demand, no-cost downloads of AWS's own compliance reports, including SOC reports, which is exactly the evidence of AWS's side of the shared responsibility model that this auditor is asking for. AWS Config findings describe how the startup's own resources are configured, not what AWS itself operates, so they answer a different question. Opening a support case adds a manual round trip for a report that is already available on demand in Artifact. IAM Access Analyzer findings describe the account's own resource access, which again documents the customer's responsibility, not AWS's.",
   "citationIds": [
     "cite-saa-1-3-artifact"
   ],

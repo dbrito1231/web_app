@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "AWS Backup"
+      "text": "AWS Backup with a backup plan and lifecycle rules"
     },
     {
       "id": "b",

@@ -19,11 +19,11 @@
     },
     {
       "id": "c",
-      "text": "Deploy AWS Storage Gateway"
+      "text": "Deploy AWS Storage Gateway for hybrid storage access"
     },
     {
       "id": "d",
-      "text": "Schedule a recurring AWS DataSync task between the on-premises share and S3"
+      "text": "Schedule a recurring AWS DataSync task to copy the data to S3"
     }
   ],
   "correctAnswerIds": [

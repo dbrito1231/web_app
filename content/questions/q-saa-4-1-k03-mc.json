@@ -11,19 +11,19 @@
   "choices": [
     {
       "id": "a",
-      "text": "AWS Cost Explorer"
+      "text": "AWS Cost Explorer custom reports"
     },
     {
       "id": "b",
-      "text": "S3 Storage Lens"
+      "text": "S3 Storage Lens metrics"
     },
     {
       "id": "c",
-      "text": "AWS Budgets"
+      "text": "AWS Budgets cost and usage budgets"
     },
     {
       "id": "d",
-      "text": "AWS Billing Conductor"
+      "text": "AWS Billing Conductor chargeback rates"
     }
   ],
   "correctAnswerIds": [
