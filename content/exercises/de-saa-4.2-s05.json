@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-S05"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the appropriate instance family for a workload",
+  "scenario": "Corbel Audio Analytics runs two services continuously on general-purpose servers that all provide 4 GiB of memory per vCPU. The transcription service uses 16 servers of 8 vCPUs and 32 GiB, and monitoring shows its CPU averaging 88 percent while memory averages 18 percent. The speaker-index service uses 4 servers of 16 vCPUs and 64 GiB, with CPU averaging 12 percent and memory at 90 percent. The company wants the run-rate of both services reduced without slowing either.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Neither service may become slower",
+    "No application code changes are planned",
+    "Both services stay on the CPU architecture they run on today"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each service's server family follows the resource that monitoring shows is its limit, and the record cites the 88 percent CPU and 90 percent memory figures",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "New fleet sizes are derived from the measured peaks, with their resulting counts stated, rather than copied from today's 16 and 4 servers",
       "points": 2
     }
   ],

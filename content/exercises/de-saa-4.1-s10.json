@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S10"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the most cost-effective storage service for a workload",
+  "scenario": "Fenwick Geospatial has three data sets. The first is 500 TB of satellite tiles that batch jobs read through an object API, growing without a forecast. The second is a 2 TB team working directory that 8 Linux render servers must mount together as an ordinary folder, growing unpredictably. The third is a 200 GB database volume attached to one server that needs steady low-latency block access. Nothing at Fenwick runs on Windows, uses an HPC file system or depends on NetApp features, and Finance wants the lowest run-rate that meets every requirement.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The platform team of two manages capacity for as few services as possible",
+    "Growth of the first two data sets must not need capacity planning",
+    "The database volume is sized to its measured need, not to a guess"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each data set lands on a storage service whose billing model matches its stated growth and access pattern",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The number of distinct storage services used is the smallest that meets every stated access requirement",
       "points": 2
     }
   ],

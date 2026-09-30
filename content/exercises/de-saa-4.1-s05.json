@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S05"
   ],
-  "scenario": "Design a solution that demonstrates skill: Managing S3 object lifecycles",
+  "scenario": "Copperfield Survey Maps keeps 6 TB of scanned plot maps, averaging 5 MB each, in a versioned bucket. A scan is read several times a week for its first 30 days and then only a few times a year, yet a clerk at the counter must see it open in under a second; scans are kept for 7 years and then deleted. The bucket also holds about 400 million 30 KB thumbnails that clerks browse daily at any age. Each scan is re-saved about three times in its first month, the superseded copies are never read after 60 days, and large scan uploads over a poor link leave broken attempts behind. Finance wants none of that waste kept longer than 7 days.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Scans older than 30 days must cost less to store than they do today",
+    "No rule may raise the storage or request cost of the thumbnails",
+    "Everything must run by rule; the records office has no spare staff for clean-up jobs"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Scans older than 30 days sit on the option with the lowest storage cost that still opens in under a second and whose minimum storage period the 7-year retention clears, while thumbnail storage and request cost does not rise",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Superseded scan copies are gone by day 60, broken upload leftovers within 7 days and scans at the 7-year mark, each with the day number stated",
       "points": 2
     }
   ],

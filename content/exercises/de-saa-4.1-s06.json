@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S06"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the appropriate backup and/or archival solution",
+  "scenario": "Merrow Veterinary Group runs 60 clinics whose practice-management servers keep records on 14 block volumes and 2 shared file systems. The insurer requires every recovery point to be held for 7 years: daily points for the first 35 days, after which restores are needed only a few times a year and may wait up to a full working day. Today the team runs one scheduled script per resource type and cannot show the insurer one retention rule covering all of them. Merrow wants points older than 35 days to cost well below the price of the first 35 days' points.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "The insurer asks for one retention rule that covers every resource type",
+    "The operations team will not maintain per-resource scripts",
+    "Restores of points older than 35 days may take up to a full working day"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Volumes and file systems follow one schedule and one retention rule, with no script per resource type",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Points older than 35 days are stored at a lower rate than the first 35 days' points for the rest of the 7 years, and the day numbers for the change and for deletion are stated",
       "points": 2
     }
   ],

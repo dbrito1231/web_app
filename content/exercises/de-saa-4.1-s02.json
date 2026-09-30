@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining the correct storage size for a workload",
+  "scenario": "Bellhaven Dairy Co-op is moving its ERP database to a single new server with one block volume. The database holds 1.1 TB today and has grown by about 40 GB a month for three years. The old server carried a 4 TB volume 'to be safe', and Finance now refuses to pay for capacity that will not hold data within the next 90 days. The database may be stopped only during a quarterly maintenance window, and the volume type and performance settings stay as they are.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance pays only for capacity needed within the next 90 days",
+    "The database cannot be stopped outside the quarterly maintenance window",
+    "The data-platform engineer reviews capacity once a month and has no time to rebuild servers"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The initial volume is no larger than 1.5 TB, derived from today's 1.1 TB and 90 days of growth at 40 GB a month, with the margin stated",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Making the volume larger later needs no database stop and no new server, and the record gives the monthly check that triggers it",
       "points": 2
     }
   ],

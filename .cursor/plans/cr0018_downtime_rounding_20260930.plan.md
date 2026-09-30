@@ -1,6 +1,6 @@
 # Inline plan: CR-0018 — lesson 2.2 downtime figures under-rounded
 
-Status: **draft. It needs Teacher validation and then the user's approval.** No edit is made before approval.
+Status: **Teacher-validated (approve). Awaiting the user's approval.** No edit is made before approval.
 Author: Lead Dev, 2026-09-30. CR: `docs/change-requests.md` CR-0018.
 
 ## Goal
@@ -32,4 +32,10 @@ Make the downtime figures that the lesson teaches, and one question uses, match 
 Yes: one lesson sentence and one question, digits only.
 
 ## Teacher validation
-_Pending._
+Fresh Sonnet Teacher, 2026-09-30: **Plan: approve.**
+- **Arithmetic:** confirmed. The lesson's figures were truncated, not rounded.
+- **Completeness:** a case-insensitive search finds only the two files listed.
+- **Wording:** "about" is harmless and matches the question stem.
+- **Question:** changing choices c and d to 53 is neutral. Stem, choices and rationale must stay consistent.
+- **Closed task:** a factual correction is a good reason to touch it.
+- **Not taken:** the Teacher suggested updating the question's `reviewedOn` date. It stays `2026-09-26`, per the user's decision to sweep the date once at the end.

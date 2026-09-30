@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Designing appropriate storage strategies (for example, batch uploads to Amazon S3 compared with individual uploads)",
+  "scenario": "Teasel Weather Network has 4,000 roadside stations, and each writes a 2 KB reading every 10 seconds as its own object in a storage bucket; the request line of the monthly bill now exceeds the storage line. Forecasters need a reading to be queryable within 2 hours of capture, and a station can hold at most 60 minutes of readings in its memory. Separately, the 40 stations with wave sensors upload one 60 GB raw file each night over a poor mobile link: about one upload in ten breaks off partway and the station starts the whole file again, and the storage line includes data from broken attempts that no object listing shows. Finance will not pay for that leftover data for longer than 7 days.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Field staff cannot be sent to a station to clear failed uploads",
+    "Every reading must still be stored; none may be dropped to save requests",
+    "Finance wants the request-count part of the bill cut by at least 90 percent"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Request volume for sensor readings falls by at least 90 percent while every reading is still queryable within 2 hours of capture and no station holds more than 60 minutes of readings",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "A broken 60 GB upload does not resend the portions already delivered, and storage held by abandoned attempts is gone within 7 days with no staff action",
       "points": 2
     }
   ],

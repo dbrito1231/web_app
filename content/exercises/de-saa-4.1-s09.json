@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S09"
   ],
-  "scenario": "Design a solution that demonstrates skill: Selecting the correct data lifecycle for storage",
+  "scenario": "Quayside Clinical Trials must keep trial documents for 10 years and then delete them. Documents are read weekly for their first 30 days; from day 30 to day 90 they are read about once a month and must open in milliseconds; from day 90 to day 365 they are read a few times a year and a wait of up to 5 hours is fine; after a year they are read at most once a year and a wait of up to 12 hours is fine. The sponsor requires every stage to survive the loss of a whole data centre.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Each stage must use the lowest-storage-cost option that meets its retrieval need",
+    "The trials office will not accept early-removal fees at any step",
+    "Deletion at the end of retention must happen without a person acting"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Every stage has a stated day range and its retrieval time is checked against the scenario, and no object is charged an early-removal fee at any transition",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Documents are deleted automatically at day 3,650 and every stage survives the loss of a whole data centre",
       "points": 2
     }
   ],

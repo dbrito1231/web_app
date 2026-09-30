@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-K06"
   ],
-  "scenario": "You must design a solution addressing: AWS Outposts hybrid compute. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Kinloch Steelworks is rolling out a recipe-management application that commands furnace controllers on its plant network, and each command must be answered within 5 ms. Process recipes are classed as trade secrets and may not leave the building. The nearest AWS Region is over 400 km away with round trips near 40 ms, and no AWS-operated metro location is closer than 150 km. The plant's two platform engineers already manage everything else through AWS interfaces and will not run a second toolset.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Recipes must stay on the plant's premises",
+    "One toolset must serve both the plant and the Regional workloads",
+    "The plant can give space and power to one rack-sized installation"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The 5 ms controller limit is met with recipes never leaving the building, and the record shows why no AWS-operated location away from the plant can meet it",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Plant workloads and Regional workloads are managed through the same interfaces, with no second toolset introduced",
       "points": 2
     }
   ],

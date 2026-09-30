@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-K04"
   ],
-  "scenario": "You must design a solution addressing: Spot vs RI vs Savings Plans. You have one personal account and cannot provision unavailable services.",
+  "scenario": "Marigold Animation Studio's platform has three compute needs. A web tier uses 40 vCPUs around the clock and has done so for 24 months, with every sign it will for at least 3 more years; half of its containers move to a serverless container service next year, and instance families change with each hardware generation. On top of that floor it adds up to 60 vCPUs for 4 hours a day when artists review shots, with no warning of the start. A nightly render job runs 6 hours on a fleet that saves its progress every 15 minutes and simply redoes the frames of any server it loses. The studio also runs a 2-week pilot of a new tool whose future is unknown.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
-    "State cost assumptions"
+    "State cost assumptions",
+    "Finance wants the deepest discount on usage that has run steadily for 24 months and will last 3 more years",
+    "Nothing variable or of unknown future may be committed",
+    "The web tier and the pilot must never be interrupted"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Official citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The long-term commitment is sized to the 40 vCPU steady floor, still applies after half of it moves to containers, and is not applied to the peak, the render job or the pilot",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The render job loses no more than 15 minutes of progress per lost server, and the record shows why the web tier and the pilot are not exposed to the same risk",
       "points": 2
     }
   ],

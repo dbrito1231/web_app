@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-S02"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining appropriate scaling methods and strategies for elastic workloads (for example, horizontal compared with vertical, EC2 hibernation)",
+  "scenario": "Ebbfleet Shipping Brokers runs two workloads. Its quote API takes independent requests, varies between 20 and 900 requests per second during a day, and must stay available through spikes. Its rate-matching engine is one process holding a 96 GiB in-memory table on a Linux server; after any start it needs 25 minutes to rebuild the table, it is used only from 07:30 to 18:00 on weekdays, and brokers will wait at most 3 minutes from starting it in the morning to a usable engine. The engine cannot be split across servers.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance does not want the engine billed for server time overnight or at weekends",
+    "The quote API must never need manual action to cope with a spike",
+    "The engine's table is not stored anywhere else and is expensive to rebuild"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The engine is not billed for server time during its idle hours and is usable within 3 minutes of the 07:30 restart, without the 25-minute rebuild",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The quote API's capacity follows its 20 to 900 requests-per-second swings with no staff action",
       "points": 2
     }
   ],

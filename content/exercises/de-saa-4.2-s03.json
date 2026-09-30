@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-S03"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining cost-effective AWS compute services with appropriate use cases (for example, AWS Lambda, Amazon EC2, AWS Fargate)",
+  "scenario": "Plumstead Photo Co-op operates three workloads. A resize step runs for about 300 ms whenever a member uploads a photo, is idle overnight, and receives bursts of a few thousand uploads after weekend events. A month-end book-layout job is packaged as a container, runs about 40 minutes once a night on five nights a month, and is idle otherwise. A print-routing service needs a vendor's kernel module and runs 24 hours a day at a steady load that has not changed in two years. The co-op's two engineers will not patch servers for the first two workloads.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Nothing idle may be paid for on the first two workloads",
+    "The print-routing vendor requires control of the operating system",
+    "A long-term commitment is allowed only for load that is steady"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "The 40-minute layout job runs on a service whose maximum run time exceeds 40 minutes, with no host for the engineers to patch",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "Only the 24-hour print-routing service carries a long-term commitment; the two intermittent workloads are billed only while they run",
       "points": 2
     }
   ],

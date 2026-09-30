@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.2-S01"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining an appropriate load balancing strategy (for example, Application Load Balancer [Layer 7] compared with Network Load Balancer [Layer 4] compared with Gateway Load Balancer)",
+  "scenario": "Tern Harbour Logistics exposes three traffic flows. Its customer site and API share one domain, and requests for /api and /tracking must reach different server groups. A partner bank connects to a binary protocol on TCP port 8443 and allowlists exactly two fixed IP addresses that Tern Harbour must keep stable. Customs-clearance traffic must pass through a fleet of a vendor's virtual inspection appliances before it reaches the application, and that fleet must grow by adding appliances without reconfiguring the applications behind it. The company wants as few load balancers as will do the job.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Finance will not fund one load balancer per URL path",
+    "The partner bank cannot change its allowlist or protocol",
+    "Inspection appliances are the vendor's virtual images and cannot be replaced"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "Each flow's requirement is met with a stated reason, and no flow uses a load balancer type that cannot meet it",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "The /api and /tracking paths are served through a single front door rather than one load balancer per path",
       "points": 2
     }
   ],

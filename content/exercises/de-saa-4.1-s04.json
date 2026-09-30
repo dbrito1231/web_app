@@ -5,12 +5,15 @@
   "objectiveIds": [
     "SAA-4.1-S04"
   ],
-  "scenario": "Design a solution that demonstrates skill: Determining when storage auto scaling is required",
+  "scenario": "Tallowmere Podcasts keeps 9 TB of finished episode audio in object storage, growing by 1 TB a month. Its 12 editing servers share a file system that grew from 2 TB to 5 TB with no administrator action. Its publishing database sits on one 1 TB block volume holding 800 GB today; a bulk catalogue import of up to 150 GB, arriving about weekly, has twice filled that volume at 3 a.m. and stopped publishing until staff enlarged it by hand. Nobody is on call overnight.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
-    "State cost and residual risk"
+    "State cost and residual risk",
+    "Nothing may depend on a person waking up to add storage",
+    "The platform team will not build automation for a store that already grows on its own",
+    "Capacity must not be bought ahead of need for any of the three stores"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -37,6 +40,16 @@
     {
       "id": "r5",
       "label": "Citation present",
+      "points": 2
+    },
+    {
+      "id": "r6",
+      "label": "For each of the three stores the record states whether growth needs any design work and gives the reason from the scenario",
+      "points": 2
+    },
+    {
+      "id": "r7",
+      "label": "A 150 GB import at 3 a.m. completes without publishing stopping and without a person acting",
       "points": 2
     }
   ],
