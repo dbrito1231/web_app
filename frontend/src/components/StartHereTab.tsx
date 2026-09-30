@@ -48,6 +48,30 @@ function RelatedPractice({
               <li key={item.id}>
                 <strong>{item.title}</strong>
                 {item.scenario ? <p>{item.scenario}</p> : null}
+                {item.constraints && item.constraints.length > 0 && (
+                  <>
+                    <p>Constraints:</p>
+                    <ul>
+                      {item.constraints.map((text) => (
+                        <li key={text}>{text}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+                {item.requiredArtifact ? <p>Deliverable: {item.requiredArtifact}</p> : null}
+                {item.rubric && item.rubric.length > 0 && (
+                  <>
+                    <p>Grade yourself:</p>
+                    <ul>
+                      {item.rubric.map((row) => (
+                        <li key={row.label}>
+                          {row.label}
+                          {row.points !== null ? ` (${row.points} pts)` : ''}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
               </li>
             ))}
           </ul>

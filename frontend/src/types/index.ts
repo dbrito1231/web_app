@@ -95,11 +95,19 @@ export interface LabIndexRow {
   stepIds: string[];
 }
 
+export interface ExerciseRubricItem {
+  label: string;
+  points: number | null;
+}
+
 export interface ExerciseIndexRow {
   id: string;
   title: string;
   objectiveIds: string[];
   scenario: string;
+  constraints?: string[];
+  requiredArtifact?: string;
+  rubric?: ExerciseRubricItem[];
 }
 
 export interface ContentSummary {

@@ -157,6 +157,16 @@ class AttemptApiTests(TestCase):
         revealed = self.client.get("/api/labs/gl-01?reveal=1")
         self.assertIn("solution", revealed.json())
 
+    def test_summary_serves_exercise_constraints_and_rubric(self):
+        rows = self.client.get("/api/content/summary").json()["exerciseIndex"]
+        self.assertTrue(rows)
+        for row in rows:
+            self.assertIsInstance(row["constraints"], list)
+            self.assertIsInstance(row["requiredArtifact"], str)
+            for item in row["rubric"]:
+                self.assertEqual(set(item), {"label", "points"})
+        self.assertTrue(any(row["rubric"] and row["constraints"] for row in rows))
+
 
 class ContentParseTests(TestCase):
     def test_loader_rejects_corrupt_json(self):

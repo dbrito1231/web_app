@@ -188,12 +188,24 @@ def exercise_index() -> list[dict]:
         return rows
     for exercise_id in list_content_ids("exercises"):
         item = _read_json(directory / f"{exercise_id}.json", dict)
+        # Constraints, deliverable and rubric are what let a learner grade
+        # their own design; keep only well-shaped entries.
+        constraints = [c for c in item.get("constraints") or [] if isinstance(c, str) and c]
+        rubric = [
+            {"label": r["label"], "points": r.get("points") if isinstance(r.get("points"), int) else None}
+            for r in item.get("rubric") or []
+            if isinstance(r, dict) and isinstance(r.get("label"), str) and r["label"]
+        ]
+        artifact = item.get("requiredArtifact")
         rows.append(
             {
                 "id": exercise_id,
                 "title": item.get("title") or exercise_id,
                 "objectiveIds": item.get("objectiveIds") or [],
                 "scenario": item.get("scenario") or "",
+                "constraints": constraints,
+                "requiredArtifact": artifact if isinstance(artifact, str) else "",
+                "rubric": rubric,
             }
         )
     return rows
