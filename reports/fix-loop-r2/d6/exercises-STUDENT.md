@@ -45,3 +45,26 @@ All 12 designs were committed first. All 12 match the intended designs; self-gra
 Most of the flagged phrases are the requirement the design has to meet, such as "saves its progress every 15 minutes" or "each team must receive every order". This is the design-exercise equivalent of a structural scenario reference, not leakage. Two are closer to real hints and go to the re-run and the reviewers:
 - E4's "router supports BGP and equal-cost multi-path"; the writer added it as context after AWS-DE3-017.
 - E5's "an AWS facility that accepts physical uploads"; the reviewer added it in AWS-DE2-002, and the Teacher accepted it because the learner still has to name the service.
+
+---
+
+# Student run 2 — E6–E12 (completes the comparison)
+
+This was a fresh Sonnet agent. It wrote its designs before reading the intended ones. Saved by the Lead Dev (condensed).
+
+- **Match:** 7 of 7. E11 has a variant (hosted 5 Gbps against dedicated 10 Gbps DX, LBT against ECMP tunnels) that the rubric already accepts.
+- **Completable from the lessons alone:** 7 of 7. Small untaught edges, none needed to pass:
+  - E11: whether an LBT can be combined with a private-IP VPN over DX.
+  - E9: QuickSight's own pricing model.
+  - E12: the spoke route-table detail.
+- **Solution pointers beyond the stated requirement:** none clear. Two mild ones, both requirement-level: E8's "a continuously running replicated database there is acceptable" and E9's "each full read of the sales files has a cost".
+- **Figure inconsistencies:** none.
+- **Uncheckable rubric items:** none.
+- **One ambiguity, in E6 (de-saa-4.1-s05):** "Finance wants none of that waste kept longer than 7 days" could be read as covering the superseded copies, which r7 requires to go at day 60. **Fixed at c47c3de:** "Finance wants those broken upload leftovers gone within 7 days." The Teacher's second-role check is pending.
+
+Student verdict (run 2): fair
+
+## Combined result across both runs
+- **Designs:** 12 of 12 match the intended designs. No second design goes beyond what the reviewers already accepted (E1 fan-out mechanism, E11 variants).
+- **Two borderline hints, from run 1, recorded rather than changed:** E4's "router supports BGP and equal-cost multi-path" and E5's "an AWS facility that accepts physical uploads". The reviewers accepted both as context.
+- **Untaught details:** one (E4: both tunnels of one VPN connection carry traffic under ECMP). It is recorded for the final-sitting lesson follow-ups.
