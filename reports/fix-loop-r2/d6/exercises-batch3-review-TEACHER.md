@@ -38,3 +38,22 @@ Saved by the Lead Dev from the Teacher's reply. Replacement texts are verbatim.
   - New r6: "The engine is not billed for server time during its idle hours and is usable at 07:30 without the 25-minute rebuild, and the record says how the 3-minute start limit will be confirmed".
 
 Batch 3: not yet · Overall: concerns
+
+---
+
+## Teacher confirmation (batch 3 fix passes: 989f0bf, e994421)
+
+Saved by the Lead Dev (condensed).
+
+- **The Teacher's own findings:** TEACHER-DE3-001 to 008 are Gone.
+  - 003 was fixed through AWS-DE3-002 (900 + 200 GiB now overflows 1,000 GiB).
+  - 007 was fixed by the user's trim; Transit Gateway alone is fully taught.
+- **009 is partly gone.** de-saa-4.2-s02 r6 ends "including the root-volume throughput it assumes", which leans toward hibernation, since lesson 4.2 K09 ties the root volume to saved RAM. This is minor and not a condition; the answer is already forced by the constraints.
+  - Recommended r6 tail: "...and the record says how the 3-minute start limit will be confirmed and what it assumes".
+- **Second-role check:** agree with all 19 AWS-DE3 findings as applied.
+  - 001, 007, 009, 010 and 011 fix real determinacy holes. 4.2-s04 at 75% forces the schedule plus single-AZ answer: a schedule alone gives 70.2%, and the two together give about 85%.
+  - 012 was replaced by the Teacher's text, which was right, because the AWS text printed the answers.
+  - 017's answer, 2 connections (4 tunnels), is taught in lesson 4.4 K05.
+- **Changed texts:** all operational, all using taught services only, and all outcome-based.
+
+Batch 3: close · Overall: approve
