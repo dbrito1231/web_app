@@ -163,3 +163,7 @@ Checked at 989f0bf (4.3/4.4) and e994421 "D6 batch 3a fix pass" (4.1/4.2). I rea
 Batch 3: not yet
 
 Overall: concerns
+
+AWS-DE3-020: Gone. The r6 text in de-saa-4.2-s02 matches the replacement verbatim at 9698d31 and no longer names the root volume. AWS-DE3-021 remains optional and unapplied, which does not block.
+
+Batch 3: close
