@@ -23,3 +23,8 @@ gl-06, ul-06 ($0.05/h × 2 h = $0.10; × 24 = $1.20); gl-07; gl-14 ($0.036 + sto
 **LD-PA-004 (note): same-hour for gl-18.** The basis says the task exits on its own. The same-hour figure of $0.03 uses 1.5 h of Fargate at 0.25 vCPU, so it is still an upper bound. No change needed.
 
 **LD-PA-005 (note for the reviewers): unverified rates.** NAT, ALB, WAF, EBS gp3/snapshot, RDS storage, EFS and CloudWatch are marked as not verified in us-east-1. The page tables did not render and there was no widget iframe. Each is marked in the learner-facing text. Reviewers: if you can read any of these pages, confirm or correct the rate.
+
+## Outcome after review
+- **LD-PA-001 is withdrawn.** The technical reviewer showed that EC2, EBS, public IPv4 and Fargate bill per second (the EBS and VPC pricing pages). Only resources whose basis says "billed in full hours" (ALB, NAT, RDS, ElastiCache) round up to whole hours. So gl-08, gl-09 and ul-09 are correct as stated. The Teacher's confirmation of LD-PA-001 falls with it, because it repeated my wrong method.
+- **ul-08 changes** to $0.10 for a different reason (AWS-PA-002).
+- **LD-PA-002 and LD-PA-003 are confirmed** by both reviewers.
