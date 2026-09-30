@@ -1,6 +1,6 @@
 # Plan: D6 / ISS-080 — dated lab cost estimates and realistic design exercises
 
-Status: **draft. It needs Teacher validation and then the user's approval.** Nothing is implemented before the user approves.
+Status: **Teacher-validated (concerns, all six required changes applied). Awaiting the user's approval and two decisions.** Nothing is implemented before the user approves.
 Author: Lead Dev, 2026-09-29. This implements the user's decision D6 ("fix", 2026-09-25; scheduled for this sitting on 2026-09-28).
 
 ## Goal
@@ -34,18 +34,21 @@ For each of the 8 guided labs, read the lab's own `steps`/`body` for exactly wha
    - `sameHourEstimateUsd`: the lab run at its `estimatedMinutes`, with partial hours billed as full hours where the pricing page says so (ALB, for example).
    - `forgotten24hEstimateUsd`: every resource left running for 24 hours.
    - Round **up** to the cent; never round down.
-3. **Show the assumption to the learner** without a code change. Replace the generic "Review same-hour and 24-hour estimates" item in `beforeYouStart`, which the app already renders, with one line such as: "Cost basis (us-east-1, priced 2026-09-29): 1 ALB $0.0225/h + LCU, 1 t3.micro $0.0104/h, 3 public IPv4 $0.005/h each; forgotten 24 h ≈ $X."
-4. **The ul-* twin** of each lab gets the same treatment. Its extra resources (WAF web ACL, EFS, Fargate profile and so on) are added to its own basis line.
+3. **Show the assumption to the learner** without a code change:
+   - **`beforeYouStart`.** Replace the generic "Review same-hour and 24-hour estimates" item with one basis line, for example: "Cost basis (us-east-1, priced 2026-09-29): 1 ALB $0.0225/h + LCU, 1 t3.micro $0.0104/h, 3 public IPv4 $0.005/h each; forgotten 24 h ≈ $X. This is a floor: it excludes data transfer and LCU/usage charges. Re-read the pricing page before you run the lab." Where a lab has no such item (for example `ul-08`), **add** the line instead.
+   - **`stopChargesPanel`.** Add "Forgotten 24 h ≈ $X (a floor; see the cost basis)" here too, because this is where the learner is when deciding to stop (Teacher (a)).
+   - **Every billable resource the steps create appears in the basis:** instances, public IPv4 addresses (their count differs by lab), Elastic IPs, NAT, load balancers, storage and add-ons such as the WAF web ACL.
+4. **Each ul-* twin is priced from its own steps**, not copied from its gl-* pair. `ul-08` currently shows the same 0.04/0.96 as `gl-08` despite adding a WAF web ACL. Its basis line is added where no estimate item exists (Teacher (b)).
 5. **Fill the "Fill before publish" rates** in `docs/labs-and-safety.md` for the services these labs use, and re-date the section.
 
-### Decision needed from the user: price source
+### Decision 1 needed from the user: price source
 
 The rule is "agents never call AWS". The options for reading prices:
 - **(Recommended) the public AWS pricing web pages** (aws.amazon.com/<service>/pricing), read as rendered page text, the same way documentation is read. No credentials, no API, no account.
 - **The public Price List bulk JSON files** (`pricing.us-east-1.amazonaws.com/offers/...`). No credentials, but it is an AWS service endpoint, so it is arguably "calling AWS". Not used unless the user allows it.
 - **The Pricing API, the Pricing Calculator or any credentialed call: never.**
 
-Some pricing pages load their tables with JavaScript. If a rate cannot be read as page text, the writer says so for that row and does **not** estimate it. The lab then keeps a conservative figure, marked "not reconciled".
+Some pricing pages load their tables with JavaScript. If a rate cannot be read as page text, the writer says so for that row and does **not** estimate it. The lab keeps a conservative figure, and the learner-facing wording says what that means: "rate not verified on <date>; assume it is higher" — never a bare "not reconciled" label (Teacher (f)).
 
 ## Part B — method
 
@@ -56,9 +59,21 @@ For each exercise, keep `id`, `title`, `practiceMode`, `objectiveIds`, `rubric`,
 - **Accuracy:** every AWS fact a scenario relies on is checked with the AWS Knowledge MCP and recorded in a claim table.
 - **Teach-before-test:** the services and trade-offs the exercise is meant to draw out must be taught in the lessons for its objectives. Anything else goes under "Lesson additions requested" rather than into the exercise.
 
-**Batches:** 3 batches of 20, grouped by objective domain so one writer holds one domain's lessons. Each batch runs:
+- **Rubric (Teacher (c)):** add 1–2 scenario-specific rubric items per exercise (for example, "Meets the stated RTO of 15 minutes" or "Stays under the $400 monthly cap"). Each must be checkable against the scenario's own figures. The 5 generic items stay.
+- **Named services are taught (Teacher (e)):** every AWS service a scenario names must appear in a lesson for one of its `objectiveIds`. This is checked with a case-insensitive, backtick-tolerant regex.
+- **Consistency:** the scenario's figures must be internally consistent, and must not leave two defensible designs. The technical reviewer confirms the objectives really are the deciding factors. There are no real customer names, and no dollar prices in scenarios (they date quickly); budgets are stated as caps.
+- **Keep `constraint_reason` and the "why live lab was unsuitable" rubric item consistent with the new scenario.**
+
+**Batches:** 3 batches of 20, grouped by objective domain so one writer holds one domain's lessons. **Assignment rule (Teacher (d)):** an exercise goes to the batch of its first `objectiveIds` entry. The batch lists are fixed and written into batch 1's report before any writing starts. Each batch runs:
 writer → Lead Dev pre-check (lint, an opening-words duplicate scan, and reading every scenario) → technical reviewer + Teacher (2 in parallel) → one fix pass → confirmation → commit.
 A single Student run at the end reads 12 exercises across the batches and judges realism, whether each is answerable from the lessons, and whether any scenario gives its design away.
+
+### Decision 2 needed from the user: learners cannot see most of an exercise today
+
+Found while checking the Teacher's point 5. For a design exercise, the app sends and shows only **`title` and `scenario`**: `backend/workbook/content_loader.py` `exercise_index()` serves id, title, objectiveIds and scenario, and `StartHereTab.tsx` renders the scenario. `constraints`, `rubric` and `requiredArtifact` exist in the JSON but **have never reached a learner**. The options:
+
+- **(Recommended) B-2: a small app change to show them.** `exercise_index()` also serves `constraints`, `requiredArtifact` and `rubric`, and the Start here exercise card renders them as a short list with points. This is roughly 20–30 lines of backend and frontend code plus one Django test. Without it, a learner cannot self-grade, and the Teacher's rubric change is invisible. The change passes the KISS rule: it lets you score your own design against the exam bullet.
+- **B-1: content only.** Put the stakeholder constraints and the deliverable into the `scenario` text, which is visible, and drop the rubric additions, which nobody would see. Cheaper, but the exercise stays ungradable by the learner.
 
 ## Files touched
 
@@ -68,7 +83,7 @@ A single Student run at the end reads 12 exercises across the batches and judges
   - `reports/fix-loop-r2/d6/pricing-claims.md`.
 - **Part B:** `content/exercises/de-*.json` (60 files) and `reports/fix-loop-r2/d6/exercises-batch{1,2,3}-*.md`.
 - **Close:** `reports/fix-loop/issue-register.md` (D6 and ISS-080), `docs/status.md`, `HANDOFF.md`, `docs/change-requests.md` (CR-0016 note).
-- **No app code, no schema change, no migration.**
+- **Part A: no app code.** Part B with option B-2: `backend/workbook/content_loader.py`, `frontend/src/components/StartHereTab.tsx`, `frontend/src/types/index.ts`, one test in `backend/workbook/tests*`. No schema change, no migration.
 
 ## Learning content affected?
 
@@ -111,4 +126,17 @@ Part B batches 2–3 go in the next sitting, alongside tf-g6.
 
 ## Teacher validation (before user approval)
 
-_Pending._
+Fresh Sonnet Teacher, 2026-09-29. Verdict: **Plan: concerns**, with six required changes. **All six are now applied above:**
+- (a) the forgotten-24h figure, the floor and exclusions note, and the "re-read pricing" line go into `stopChargesPanel` and the basis line;
+- (b) ul-* twins are priced from their own steps, and the line is added where there is no item to replace;
+- (c) 1–2 scenario-specific rubric items per exercise;
+- (d) the batch-assignment rule;
+- (e) a check that every named service is taught;
+- (f) "not reconciled" is worded as "assume higher".
+
+Also from the Teacher:
+- Put a real stakeholder layer into the scenarios. 40+ of them are currently the pasted objective text ("Design a solution that demonstrates skill: …").
+- Keep `constraint_reason` consistent with each new scenario.
+- On price source, either option is acceptable from a teaching point of view, provided every row keeps its verbatim rate, URL and date.
+
+Lead Dev follow-up to the Teacher's point 5 ("confirm no code reads `scenario`/`constraints`"): code does read `scenario`, for display only, with no scoring. **Nothing reads `constraints` or `rubric` at all.** That is Decision 2 above.
