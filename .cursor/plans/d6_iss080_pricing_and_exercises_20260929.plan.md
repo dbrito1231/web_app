@@ -1,6 +1,6 @@
 # Plan: D6 / ISS-080 — dated lab cost estimates and realistic design exercises
 
-Status: **Teacher-validated (concerns, all six required changes applied). Awaiting the user's approval and two decisions.** Nothing is implemented before the user approves.
+Status: **approved by the user 2026-09-29.** Decision 1: **public pricing pages only**, read as page text. Decision 2: **B-2**, the small app change that shows constraints, deliverable and rubric on the exercise card. Nothing is implemented before the user approves.
 Author: Lead Dev, 2026-09-29. This implements the user's decision D6 ("fix", 2026-09-25; scheduled for this sitting on 2026-09-28).
 
 ## Goal
