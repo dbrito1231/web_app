@@ -48,7 +48,7 @@ Background to those decisions follows.
 - **Models:** the plan's `gpt-5.3-codex` and `composer-2.5-fast` do not exist in this harness (the list is sonnet / opus / haiku / fable). Per the standing memory rule **all subagents run Sonnet**; the main session is Opus. Never pass `inherit`.
   - Consequence to keep restating: the Student check runs on a *stronger* model than the one that closed tasks 3.1–4.2, so a high score is weaker evidence than it was there. The guessable-stem counts do not depend on the model being weak, which is why they matter more.
 - **Agent resume:** ids from earlier harnesses are not resumable, and ids below are scoped to the session that created them. Start fresh reviewers and hand them the round-1 reports; never rewrite content to recover.
-- **Concurrency:** at most **2 subagents at a time**. **Pacing:** about **3 tasks per sitting**, then stop and wait for GO.
+- **Concurrency:** at most **3 subagents at a time**. The user asked for a third writer on 2026-09-30, which matches the standing memory rule (max 3); it was 2 before. **Pacing:** about **3 tasks per sitting**, then stop and wait for GO.
 - **Student check:** text packet per task. One browser smoke test at the very end.
 - **Closure rule:** an item closes only when its **reporter and a second role** both mark it Gone.
 - **Stem-paraphrase rule (2026-09-27):** applies from task 4.4 onward; closed tasks are not reopened.
