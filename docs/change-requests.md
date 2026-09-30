@@ -236,6 +236,30 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: none yet (needs an inline plan and Teacher validation)
 - Teacher validation: pending
 
+## CR-0019 — Lesson 3.5 and four 3.5 questions present AWS Glue for Ray as current
+- Raised by: AWS reviewer (D6 batch 2), recorded by the Lead Dev
+- Date: 2026-09-30
+- Type: content-error
+- Where: `content/lessons/lesson-3-5.json` (Glue job engines paragraph); `cite-saa-3-5-glue-job-engines.json`; distractors in `q-saa-3-5-k04-mr`, `q-saa-3-5-k07-mr`, `q-saa-3-5-s01-mc` and `q-saa-3-5-s04-mc`
+- Problem: The reviewer reports that AWS Glue for Ray is closed to new customers. The lesson lists it as a current Glue job engine. In all four questions it is a distractor, never the key. That still breaks RULES "Retired, end-of-support or closed services" (no current advice without a status label) and the question rule that every choice is "real and current". **The closure has not yet been verified against AWS docs; verifying it is step 1.**
+- Suggested fix: if the closure is confirmed, label its status in the lesson (or drop it from the engine list) and add it to the RULES closed list. Replace the four distractors with current options that are wrong for a taught reason, and re-run the task 3.5 checks.
+- Affects learning content: yes
+- Status: open
+- Plan: none yet
+- Teacher validation: pending
+
+## CR-0020 — Lesson 4.4 K06: VPC peering alongside Transit Gateway is untaught
+- Raised by: batch 3b writer and the Teacher (D6 batch 3, TEACHER-DE3-007)
+- Date: 2026-09-30
+- Type: content-update
+- Where: `content/lessons/lesson-4-4.json` (K06); exercise `de-tgw`
+- Problem: `de-tgw` asks for a heavy-traffic VPC pair to avoid Transit Gateway per-GB processing. Lessons 4.4 K06 and 3.4 S01 present peering and TGW as alternatives, never as coexisting, so the answer rests on an untaught inference.
+- Suggested fix, and the Teacher's preference: add the sentence "Peering and Transit Gateway can coexist: a pair of VPCs that exchanges very heavy traffic can also be peered directly, so that pair's traffic skips the gateway's per-GB processing charge while every other VPC keeps using the gateway.", confirmed against the docs first. Alternative, with no lesson change: remove de-tgw's constraint 2 and r7.
+- Affects learning content: yes
+- Status: open, and a user decision is needed
+- Plan: none yet
+- Teacher validation: proposed by the Teacher
+
 ## Template
 
 ```markdown
