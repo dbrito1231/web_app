@@ -5,14 +5,14 @@
   "objectiveIds": [
     "SAA-2.2-S04"
   ],
-  "scenario": "Wexcombe Pharmacy Chain's refill portal serves 120 stores, and its current inventory is one web and application server, one NAT gateway that the private subnets in both of its Availability Zones route through, one database instance with no standby, and one job server that renders labels. Last month a hardware fault in the zone hosting these components blocked refills for 5 hours, which is more than half of the roughly 8.7 hours a year that a 99.9 percent target allows. The chain will accept at most a doubling of the monthly run-rate. No application rewrite is planned.",
+  "scenario": "Wexcombe Pharmacy Chain's refill portal serves 120 stores, and its current inventory is one web and application server, one NAT gateway that the private subnets in both of its Availability Zones route through, one database instance with no standby, and one job server that renders labels. Last month a hardware fault in the zone hosting these components blocked refills for 5 hours, which is more than half of the roughly 525 minutes (about 8.8 hours) a year that a 99.9 percent target allows. The chain will accept at most a doubling of the monthly run-rate. No application rewrite is planned.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
     "State cost and residual risk",
     "Finance accepts at most a doubling of the monthly run-rate",
-    "No application rewrite is planned, so the application must run unchanged on duplicated components",
+    "No application rewrite is planned; the design may duplicate or replace infrastructure around the application but not change its code",
     "Pharmacy operations cannot accept another outage of more than a few minutes from one component failing"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "The design states a cost multiple against the current run-rate and stays within the doubling limit",
+      "label": "The design keeps at most two copies of any current component (one per Availability Zone) and names every added component with why the run-rate is still expected to stay within double",
       "points": 2
     }
   ],

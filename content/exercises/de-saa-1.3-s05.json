@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-1.3-S05"
   ],
-  "scenario": "Quillfeather Publishing keeps 14 TB of manuscripts and cover art in S3 in one Region, plus a relational database and a shared file system holding editorial work. A contractor's script deleted a season of drafts last quarter and nobody noticed for three weeks. Leadership now requires every new upload to be available in a second Region within 15 minutes, the 14 TB already stored to be present there too, and editors to be able to roll the database and file system back to any day in the last 35 days. Operations wants one schedule and one place to check, not a script per service.",
+  "scenario": "Quillfeather Publishing keeps 14 TB of manuscripts and cover art in S3 in one Region, plus a relational database and a shared file system holding editorial work. A contractor's script deleted a season of drafts last quarter and nobody noticed for three weeks. Leadership now requires at least 99.99 percent of new uploads available in a second Region within 15 minutes, the 14 TB already stored to be present there too, and editors to be able to roll the database and file system back to any day in the last 35 days. Operations wants one schedule and one place to check, not a script per service.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The 15-minute lag ceiling for new uploads is met and the existing 14 TB is also covered",
+      "label": "The 15-minute ceiling for 99.99 percent of new uploads is met and the existing 14 TB is also covered",
       "points": 2
     },
     {

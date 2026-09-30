@@ -13,7 +13,7 @@
     "State cost and residual risk",
     "The three downstream teams deploy independently; onboarding a fourth must not require a checkout change",
     "No order may be lost if a downstream team is down for up to a day",
-    "No content-based routing is needed; every consumer takes every order"
+    "Each team takes every order whole; nothing is filtered by content."
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "Each of the 3 consumers reads from its own durable buffer that retains orders for at least one day",
+      "label": "Any of the 3 consumers can be down for a day and afterwards still receives every order it missed, with no action by checkout or by the other two consumers.",
       "points": 2
     }
   ],

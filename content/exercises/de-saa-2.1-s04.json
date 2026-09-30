@@ -44,12 +44,12 @@
     },
     {
       "id": "r6",
-      "label": "The container decision is made per workload: the nine applications and the nightly script are each justified, including where containers are not the fit",
+      "label": "Each of the nine applications and the nightly script is given a compute choice with a reason drawn from the scenario's figures (runtime pinning, unchanged vendor builds, 23 idle hours a day)",
       "points": 2
     },
     {
       "id": "r7",
-      "label": "The design uses no Kubernetes and leaves no host-patching duty",
+      "label": "No Kubernetes and no host operating system patching remain in the design",
       "points": 2
     }
   ],

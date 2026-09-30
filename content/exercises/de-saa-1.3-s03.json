@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-1.3-S03"
   ],
-  "scenario": "Fernhill Public Library Network serves 90,000 members through a public catalog site delivered by a content delivery network and a members-only API on a regional load balancer in eu-west-1, both under its own domain. The certificates were bought from a commercial authority and uploaded by hand; one expired unnoticed in March and both endpoints were down for three hours. IT is one person who wants renewal to need no action at all, and the domain's DNS records are managed in the same AWS account. Traffic between browsers and both endpoints must stay encrypted, with no new certificate purchases.",
+  "scenario": "Fernhill Public Library Network serves 90,000 members through a public catalog site delivered by Amazon CloudFront and a members-only API on a regional load balancer in eu-west-1, both under its own domain. The certificates were bought from a commercial authority and uploaded by hand; one expired unnoticed in March and both endpoints were down for three hours. IT is one person who wants renewal to need no action at all, and the domain's DNS records are managed in the same AWS account. Traffic between browsers and both endpoints must stay encrypted, with no new certificate purchases.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -43,7 +43,7 @@
     },
     {
       "id": "r6",
-      "label": "Certificates are requested in the Region each endpoint requires, with the delivery-network certificate and the API certificate placed correctly",
+      "label": "Each endpoint's certificate is one that its own service can use, and the design states the Region each certificate must be requested in",
       "points": 2
     },
     {

@@ -5,14 +5,14 @@
   "objectiveIds": [
     "SAA-2.1-S02"
   ],
-  "scenario": "Pinecrest Tutoring runs a live-lesson web tier that normally serves about 1,500 requests per second but reaches 4,000 every weekday when schools finish. The peak start shifts by up to an hour from week to week with term calendars that nobody at Pinecrest tracks. A new server needs roughly 10 minutes before it can take traffic, and in September students saw errors during the first 8 minutes of each peak. On top of the peak, unannounced surges of up to 30 percent occur whenever a teacher assigns a live quiz, and holding peak capacity around the clock would break the monthly compute cap.",
+  "scenario": "Pinecrest Tutoring runs a live-lesson web tier that normally serves about 1,500 requests per second but reaches 4,000 every weekday when schools finish. The peak lasts about 60 minutes. The peak start differs by up to an hour between school terms but stays the same within a term, and the term dates are not tracked by anyone at Pinecrest. A new server needs roughly 10 minutes before it can take traffic, and in September students saw errors during the first 8 minutes of each peak. On top of the peak, unannounced surges of up to 30 percent occur whenever a teacher assigns a live quiz, and peak-sized capacity can be paid for during only a short window each weekday.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
     "Cite official documentation",
     "State cost and residual risk",
     "There is no on-call rota, and engineers must not hand-edit timetables when school calendars change",
-    "Monthly compute spend is capped at 2,500 USD"
+    "Peak-sized capacity may be paid for at most 90 minutes per weekday in total, including warm-up time"
   ],
   "requiredArtifact": "Decision notes + diagram outline + citation",
   "rubric": [
@@ -43,7 +43,7 @@
     },
     {
       "id": "r6",
-      "label": "Capacity is in place before each peak given the 10-minute warm-up, without a hand-maintained calendar",
+      "label": "Capacity is ready ahead of a forecasted recurring pattern for each peak start (10-minute warm-up), without a hand-maintained calendar and without holding peak-sized capacity for more than 90 minutes per weekday",
       "points": 2
     },
     {

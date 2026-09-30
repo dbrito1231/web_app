@@ -43,7 +43,7 @@
     },
     {
       "id": "r6",
-      "label": "The data tier accepts writes in both Regions",
+      "label": "A change saved at either site during normal operation succeeds without waiting for a failover and becomes readable at the other site",
       "points": 2
     },
     {

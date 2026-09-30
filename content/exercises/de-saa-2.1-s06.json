@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-2.1-S06"
   ],
-  "scenario": "Ostrander Field Services gives 3,000 technicians a mobile app that uploads 6 photos per visit; about 40 TB is stored and it grows by 2 TB a month. Eight report-rendering servers must read and write the same template directory at the same time as an ordinary mounted folder. Database traffic is 85 percent reads, mostly requests for the same 500 price-list rows that change once a day. The web front end must send /api and /reports to different back-end groups, and photo thumbnailing runs a few thousand short jobs a day at unpredictable times.",
+  "scenario": "Ostrander Field Services gives 3,000 technicians a mobile app that uploads 6 photos per visit; about 40 TB is stored and it grows by 2 TB a month. Eight report-rendering servers (all Linux) must read and write the same template directory at the same time as an ordinary mounted folder. Database traffic is 85 percent reads, mostly requests for the same 500 price-list rows that change once a day. The web front end must send /api and /reports to different back-end groups, and photo thumbnailing runs a few thousand short jobs a day at unpredictable times.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "Database reads dominated by the same 500 rows are served without reaching the database on every request",
+      "label": "Repeat reads of the same 500 price-list rows do not each reach the database, and the record states how stale the data may be",
       "points": 2
     }
   ],

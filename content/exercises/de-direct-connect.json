@@ -7,7 +7,7 @@
     "SAA-3.4-K04",
     "SAA-4.4-S02"
   ],
-  "scenario": "Orrin Genomics' sequencing lab pushes about 10 TB of run data to AWS every night inside a 6-hour window, so the transfer must sustain roughly 4 Gbps for analysis to start at 06:00. A two-week trial over the public internet showed throughput falling to 1.5 Gbps at busy times, and the transfer tool aborts if the rate stays below 3 Gbps for 5 minutes. The data-protection policy requires encryption in transit for all lab data, the research director needs a pilot to start within five days, and the network provider quotes several weeks for any new physical circuit. The lab has budget for one physical circuit only, and the link must still work if that circuit fails.",
+  "scenario": "Orrin Genomics' sequencing lab pushes about 10 TB of run data to AWS every night inside a 6-hour window, so the transfer must sustain roughly 4 Gbps for analysis to start at 06:00. A two-week trial over the public internet showed throughput falling to 1.5 Gbps at busy times, and the transfer tool aborts if the rate stays below 3 Gbps for 5 minutes. The data-protection policy requires encryption in transit for all lab data, the research director needs a pilot to start within five days, and the network provider quotes several weeks for any new physical circuit. The lab has budget for one physical circuit only; if it fails, the nightly transfer must still complete within 36 hours (a one-night backlog is acceptable) and that day's analysis may be skipped, because the 3 Gbps abort rule applies only to normal nightly runs. The pilot may move a 1 TB subset at whatever rate it reaches.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
@@ -15,7 +15,7 @@
     "State cost assumptions",
     "The research director needs a pilot flowing within five days, before any new physical circuit can be delivered",
     "The data-protection officer requires encryption in transit for all lab data on every path",
-    "Finance funds one physical circuit only, so resilience cannot come from a second circuit"
+    "Finance funds one physical circuit only, so resilience cannot come from a second circuit; the transfer takes up to 36 hours (a one-night backlog is acceptable) while that circuit is down"
   ],
   "requiredArtifact": "Architecture decision record + diagram notes + cost assumptions",
   "rubric": [
@@ -46,12 +46,12 @@
     },
     {
       "id": "r6",
-      "label": "Steady-state path is sized above the stated 4 Gbps and does not show the 1.5 Gbps dips measured on the internet",
+      "label": "Steady-state nightly path sustains more than 4 Gbps, and the design shows why the 1.5 Gbps internet dips do not occur on it",
       "points": 2
     },
     {
       "id": "r7",
-      "label": "Five-day pilot, encryption in transit and the failure-of-the-circuit requirement are each met by a named path",
+      "label": "Pilot within five days, encryption in transit on every path, and a working path while the circuit is down (transfer within 36 hours) are each met and each states the rate that path can sustain",
       "points": 2
     }
   ],

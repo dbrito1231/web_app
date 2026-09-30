@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-1.3-S07"
   ],
-  "scenario": "Larkspur Payroll Services encrypts customer data with 320 symmetric customer-managed keys and signs payslip files with 6 asymmetric signing keys; it also runs 30 public TLS certificates, 4 of which were imported from a banking partner's authority. Policy requires every key to change its cryptographic material at least annually without application changes, and after a suspected exposure last year, to be able to change a key's material within the same day. Certificates must never expire in production. Two platform engineers maintain everything and want the least ongoing manual work.",
+  "scenario": "Larkspur Payroll Services encrypts customer data with 320 symmetric customer-managed keys and signs payslip files with 6 asymmetric signing keys; it also runs 30 public TLS certificates on its load balancers, 26 issued through AWS Certificate Manager with DNS validation and 4 imported from a banking partner's authority. Policy requires every key to change its cryptographic material at least annually without application changes, and after a suspected exposure last year, to be able to change a key's material within the same day. Certificates must never expire in production. Two platform engineers maintain everything and want the least ongoing manual work.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
@@ -44,7 +44,7 @@
     },
     {
       "id": "r6",
-      "label": "The 6 signing keys use a different method than the 320 symmetric keys, with the reason stated",
+      "label": "Each of the 6 signing keys has a stated annual replacement path that meets the no-application-change rule, and the record says why the symmetric keys' approach does not apply to them",
       "points": 2
     },
     {

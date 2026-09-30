@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-1.2-S03"
   ],
-  "scenario": "Bramblecote Ticketing sells stadium tickets and sees traffic jump from 300 to 60,000 requests per second within minutes of an on-sale. A penetration test found SQL fragments accepted in query strings, and last month a flood of traffic exhausted the site during an on-sale. Its 25 support engineers share IAM user access keys to reach the production account, and the order database password is committed in the application's configuration repository. The auditor wants each of these four weaknesses closed by a control aimed at that weakness, and the CFO wants no appliances and no self-run proxy fleets.",
+  "scenario": "Bramblecote Ticketing sells stadium tickets and sees traffic jump from 300 to 60,000 requests per second within minutes of an on-sale. A penetration test found SQL fragments accepted in query strings, and last month a volumetric network-layer flood (SYN and UDP reflection packets, not HTTP requests) exhausted the site during an on-sale. Its 25 support engineers share IAM user access keys to reach the production account, and the order database password is committed in the application's configuration repository. The auditor wants each of these four weaknesses closed by a control aimed at that weakness, and the CFO wants no appliances and no self-run proxy fleets.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",

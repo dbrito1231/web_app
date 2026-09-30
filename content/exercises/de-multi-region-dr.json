@@ -6,13 +6,13 @@
     "SAA-2.2-K04",
     "SAA-2.2-S06"
   ],
-  "scenario": "Solstice Ferries takes bookings for 22 routes from a single Region, and a rehearsal after a near-miss set the targets: no more than 5 minutes of bookings may be lost, and service must be back within 30 minutes of losing the Region. The finance director will not fund any continuously running application servers in the recovery Region, only stored data. Production peaks at 96 vCPUs of application servers. In last year's rehearsal the recovery attempt stalled because the recovery Region would not launch more than a small number of servers.",
+  "scenario": "Solstice Ferries takes bookings for 22 routes from a single Region, and a rehearsal after a near-miss set the targets: no more than 5 minutes of bookings may be lost, and service must be back within 30 minutes of losing the Region. The finance director will not fund any continuously running application servers in the recovery Region; a continuously running replicated database there is acceptable. Production peaks at 96 vCPUs of application servers. In last year's rehearsal the recovery attempt stalled because the recovery Region would not launch more than a small number of servers.",
   "constraints": [
     "Do not claim live AWS experience",
     "Cite official docs",
     "Include teardown or 'not provisioned' rationale",
     "State cost assumptions",
-    "Finance funds no continuously running application servers in the recovery Region",
+    "Finance funds no continuously running application servers in the recovery Region (a replicated database is allowed)",
     "The recovery procedure is rehearsed every quarter",
     "The operations lead requires the recovery Region to reach full production capacity of 96 vCPUs"
   ],

@@ -5,7 +5,7 @@
   "objectiveIds": [
     "SAA-2.1-S07"
   ],
-  "scenario": "Halden Rowe Legal Archive relies on four homegrown pieces that one senior engineer, retiring in three months, keeps alive. They are an SFTP server on a single EC2 instance used by 40 partner law firms with their existing clients, a cron script that rewrites the case database password every 30 days and restarts services, a Python script that walks each document through review steps that can span 10 days and records state in a table, and a self-hosted message broker between the intake and indexing programs. The firms will not change their SFTP clients. Patching and on-call are the risk, not missing features.",
+  "scenario": "Halden Rowe Legal Archive relies on four homegrown pieces that one senior engineer, retiring in three months, keeps alive. They are an SFTP server on a single EC2 instance used by 40 partner law firms with their existing clients, a cron script that rewrites the case database password every 30 days and restarts services, a Python script that walks each document through review steps that can span 10 days and records state in a table, and a self-hosted message broker used only for plain send-and-receive messages between the intake and indexing programs, both of which the team can re-point. The firms will not change their SFTP clients. Patching and on-call are the risk, not missing features.",
   "constraints": [
     "Personal single account",
     "Do not claim live AWS experience",
