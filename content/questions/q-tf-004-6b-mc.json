@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Locking covers `apply` but not the `terraform state` subcommands that modify state"
+      "text": "Locking covers `apply` but not state-modifying commands such as `terraform state mv`"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Locking is automatic on all operations that could write state when the backend supports it, and Terraform prints nothing about it, so silence says nothing either way; if lock acquisition fails Terraform stops. Not every backend supports locking, which is why checking the backend's documentation matters. Requiring `-lock=true` is wrong because locking is on by default and only switched off with `-lock=false`. Limiting locking to apply is wrong because the state-modifying subcommands take the lock as well, which is why they carry the `-lock=false` and `-lock-timeout` options.",
+  "rationale": "Locking is automatic on all operations that could write state when the backend supports it, and Terraform prints nothing about it, so silence says nothing either way; if lock acquisition fails Terraform stops. Not every backend supports locking, which is why checking the backend's documentation matters. Requiring `-lock=true` is wrong because locking is on by default and only switched off with `-lock=false`. Limiting locking to apply is wrong because locking covers all operations that could write state.",
   "citationIds": [
     "cite-tf-g6-state-locking",
     "cite-tf-g6-state-mv"

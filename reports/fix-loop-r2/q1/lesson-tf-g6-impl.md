@@ -177,6 +177,10 @@ Each objective has far more than three separable facts; the three below are the 
 | 134 | 6d | state mv for refactoring requires careful communication with coworkers | https://developer.hashicorp.com/terraform/cli/commands/state/mv | "communicate carefully with your coworkers" |
 | 135 | 6d | Nobody should make other changes between the configuration change and the state mv command | https://developer.hashicorp.com/terraform/cli/commands/state/mv | "nobody makes any other changes between your configuration change and your terraform state mv command" |
 | 136 | 6d | The refactor page calls state mv (moving resources between state files) a legacy command | https://developer.hashicorp.com/terraform/language/state/refactor | "Use the terraform state mv command to move resources into a different state file. This is a legacy command." |
+| 137 | 6d | The terraform import usage line takes one address and one ID | https://developer.hashicorp.com/terraform/cli/commands/import | "Usage: terraform import [options] ADDRESS ID" |
+| 138 | 6d | Before terraform import you manually write a resource configuration block | https://developer.hashicorp.com/terraform/cli/import | "Before you run terraform import you must manually write a resource configuration block for the resource." |
+| 139 | 6d | Importing via the CLI does not generate configuration | https://developer.hashicorp.com/terraform/cli/import | "Importing via the CLI does not generate configuration." |
+| 140 | 6d | To import multiple resources, use the import block | https://developer.hashicorp.com/terraform/cli/import | "To import multiple resources, use the import block." |
 
 ## Self-consistency check
 
@@ -271,9 +275,17 @@ Fetched this turn with `curl -sL` plus the text stripper (no WebFetch): every pa
 - Each changed sentence was re-read alone against its row: the `removed` sentence asserts "required" only as the model's marking (row 125) and "only supported argument is destroy" (row 126) and nothing about omitting `lifecycle`; the `moved` sentences each carry their own row; the 1.7 floor is attached only to the remove-and-import workflow; the import-command paragraph claims only what rows 97, 128, 129, 130 and 94 say.
 - tf-g3 consistency unchanged: no new text touches g3 except the 3d back-reference, which restates g3's own introduction of `-refresh-only`.
 
-## Script outputs after the fix pass (exact)
+## Round 2 note (lesson changes)
 
-### scripts\content_lint.py
+Fetched this turn with `curl -sL` plus the text stripper: `https://developer.hashicorp.com/terraform/cli/import` (the import overview) and `.../cli/commands/import`; both quotes below were machine-checked as verbatim substrings (140 of 140 table quotes verified). The sentence dropped in round 1, "To import multiple resources, use the import block.", IS on the overview page (I had only searched the command page). The overview also contains two more of the sentences dropped in round 1, so those are now restored with rows:
+
+- Importing section, after "...at the given ADDRESS.": added "Its usage line is `terraform import [options] ADDRESS ID`, so each run names one address and one ID" (row 137, command page, "Usage: terraform import [options] ADDRESS ID"); "Before you run terraform import you must manually write a resource configuration block for the resource" (row 138); "Importing via the CLI does not generate configuration" (row 139); "To import multiple resources, use the import block" (row 140). Still dropped, because no fetched page says it: "no plan preview" and "changes state at once".
+- TEACHER-Qg6-006 (`moved` bullet): old "the same page says "Instead, use the terraform state mv CLI command."" New "(on versions older than 1.1 the page says "Instead, use the terraform state mv CLI command")". Context checked on the page: the Requirements paragraph reads "Terraform v1.1 and later is required to use moved blocks to explicitly refactor module addresses. Instead, use the terraform state mv CLI command." The "Instead" refers to the case where moved blocks are unavailable (before 1.1), so the antecedent is now explicit and row 131 still backs the quote.
+- New citation file `cite-tf-g6-import-cli-overview` (28 citations total).
+
+## Script outputs (exact, after round 2)
+
+### scripts$s.py
 ```
 questions 429 aws 310 tf 119
 labs 21 + 21
@@ -281,7 +293,7 @@ lessons 23
 PASS
 ```
 
-### scripts\q1_batch_check.py tf-g6 (lesson lines PASS; every FAIL is a question line, because the 12 questions are still placeholders)
+### scripts$s.py
 ```
 task tf-g6: 12 questions
 PASS: lesson single-asterisk spans: 0
@@ -289,63 +301,56 @@ PASS: lesson tables/numbered lines: 0
 PASS: lesson citations unresolved: []
 PASS: drillIds match questions (missing [], extra [])
 PASS: exam tips 4 for 4 objectives
-FAIL: q-tf-004-6a-mc choice c: pastes objective text
-FAIL: q-tf-004-6a-mc: stem pastes objective text
-FAIL: q-tf-004-6a-mc: no citationIds
-FAIL: q-tf-004-6a-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6a-mc: still a placeholder stem
-FAIL: q-tf-004-6a-mc2 choice a: pastes objective text
-FAIL: q-tf-004-6a-mc2: stem pastes objective text
-FAIL: q-tf-004-6a-mc2: no citationIds
-FAIL: q-tf-004-6a-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6a-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-6a-mr: stem pastes objective text
-FAIL: q-tf-004-6a-mr: no citationIds
-FAIL: q-tf-004-6a-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6b-mc: no citationIds
-FAIL: q-tf-004-6b-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6b-mc2: no citationIds
-FAIL: q-tf-004-6b-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6b-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-6b-mr: no citationIds
-FAIL: q-tf-004-6b-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6c-mc choice b: pastes objective text
-FAIL: q-tf-004-6c-mc: stem pastes objective text
-FAIL: q-tf-004-6c-mc: no citationIds
-FAIL: q-tf-004-6c-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6c-mc2 choice c: pastes objective text
-FAIL: q-tf-004-6c-mc2: stem pastes objective text
-FAIL: q-tf-004-6c-mc2: no citationIds
-FAIL: q-tf-004-6c-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6c-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-6c-mr: stem pastes objective text
-FAIL: q-tf-004-6c-mr: no citationIds
-FAIL: q-tf-004-6c-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6d-mc choice d: pastes objective text
-FAIL: q-tf-004-6d-mc: stem pastes objective text
-FAIL: q-tf-004-6d-mc: no citationIds
-FAIL: q-tf-004-6d-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6d-mc2 choice a: pastes objective text
-FAIL: q-tf-004-6d-mc2: stem pastes objective text
-FAIL: q-tf-004-6d-mc2: no citationIds
-FAIL: q-tf-004-6d-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-6d-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-6d-mr: stem pastes objective text
-FAIL: q-tf-004-6d-mr: no citationIds
-FAIL: q-tf-004-6d-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: duplicate 6-word openings: ['select two actions that support this', 'a teammate asks how to meet']
-FAIL: longest-is-key 4/8 = 50%
-PASS: shortest-is-key 2/8 = 25%
-PASS: MC key positions {'a': 2, 'b': 1, 'c': 3, 'd': 2}
-PASS: MR key slots {'a': 2, 'b': 2, 'c': 1, 'd': 2, 'e': 1}
-FAIL: MR key sets: most common 'a,b' in 2/4 (50%); all {'a,b': 2, 'c,d': 1, 'd,e': 1}
-RESULT: FAIL
+PASS: duplicate 6-word openings: []
+PASS: longest-is-key 1/8 = 12%
+PASS: shortest-is-key 0/8 = 0%
+PASS: MC key positions {'a': 2, 'b': 2, 'c': 2, 'd': 2}
+PASS: MR key slots {'a': 2, 'b': 1, 'c': 2, 'd': 2, 'e': 1}
+PASS: MR key sets: most common 'a,d' in 1/4 (25%); all {'a,d': 1, 'b,e': 1, 'c,d': 1, 'a,c': 1}
+RESULT: PASS
 ```
 
-### scripts\claim_prose_check.py tf-g6
+### scripts$s.py
+```
+task tf-g6: 12 questions; 15% cap = 1 questions
+
+terraform.tfstate             1    8%  q-tf-004-6a-mc
+HCP Terraform                 1    8%  q-tf-004-6a-mc
+state mv                      1    8%  q-tf-004-6b-mc
+-lock-timeout                 1    8%  q-tf-004-6b-mc2
+-lock=false                   1    8%  q-tf-004-6b-mc2
+DynamoDB                      1    8%  q-tf-004-6b-mr
+force-unlock                  1    8%  q-tf-004-6b-mr
+cloud block                   1    8%  q-tf-004-6c-mc
+-backend-config               1    8%  q-tf-004-6c-mc2
+-reconfigure                  1    8%  q-tf-004-6c-mr
+terraform refresh             1    8%  q-tf-004-6d-mc
+-refresh-only                 1    8%  q-tf-004-6d-mc
+terraform import              1    8%  q-tf-004-6d-mc2
+state rm                      1    8%  q-tf-004-6d-mr
+
+RESULT: PASS
+```
+
+### scripts$s.py
+```
+task tf-g6: 12 questions, 0 waiver(s) on file
+
+no stem/key echo found
+
+0 unwaived giveaway, 0 waived, 0 bulk echo, of 12 questions
+RESULT: PASS
+```
+
+### scripts$s.py
 ```
 task tf-g6: 8 distinct numbers in lesson prose
 PASS: every claim-table number appears in the lesson prose
+```
+
+### scripts$s.py
+```
+PASS: 12 bad, 10 good, 0 failures
 ```
 
 Overall: approve

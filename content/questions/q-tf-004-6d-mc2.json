@@ -23,18 +23,19 @@
     },
     {
       "id": "d",
-      "text": "Run `terraform import` once per bucket with the resource address and the bucket ID, then continue"
+      "text": "Run `terraform import` with the resource address and bucket ID for each bucket, then run `terraform plan` to confirm"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "Importing unmanaged resources takes an `import` block holding the destination address and the provider's ID, plus a matching resource block; running plan previews the import and apply performs it, and configuration-driven import is the form that imports several resources in one reviewed run (Terraform 1.5 or later). Resource blocks alone do not adopt anything, so Terraform would plan to create new buckets. A `moved` block only renames an address that already exists in state and cannot adopt an unmanaged object. The `terraform import ADDRESS ID` command works on one object per run, and the docs steer readers to the block instead.",
+  "rationale": "Importing unmanaged resources takes an `import` block holding the destination address and the provider's ID, plus a matching resource block; running plan previews the import and apply performs it, and configuration-driven import is the form that imports several resources in one reviewed run (Terraform 1.5 or later). Resource blocks alone do not import anything; importing needs an `import` block or the command. A `moved` block only renames an address that already exists in state and cannot adopt an unmanaged object. The `terraform import ADDRESS ID` command names one address and one ID per invocation, and the docs say to use the `import` block to import multiple resources and review the import in the plan-and-apply workflow.",
   "citationIds": [
     "cite-tf-g6-import-overview",
     "cite-tf-g6-import-single",
     "cite-tf-g6-resource-drift",
-    "cite-tf-g6-import-command"
+    "cite-tf-g6-import-command",
+    "cite-tf-g6-import-cli-overview"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

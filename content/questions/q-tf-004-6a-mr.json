@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Those options are legacy features kept for backward compatibility, and the docs no longer recommend them for new systems"
+      "text": "Those options are legacy features kept for backward compatibility, and the docs no longer recommend them"
     },
     {
       "id": "b",

@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "With no backend block Terraform uses the local backend, which writes `terraform.tfstate` relative to the root module and keeps the previous state in `terraform.tfstate.backup` beside it. The `path` argument is optional and only changes that default, so an apply does not stop for lack of it. The `.terraform` directory holds the backend configuration, not the infrastructure state, and it should never be committed because it can contain credentials. HCP Terraform is only used when a `cloud` block connects the configuration to a workspace; the default when nothing is declared is the local file.",
+  "rationale": "With no backend block Terraform uses the local backend, which writes `terraform.tfstate` relative to the root module and keeps the previous state in `terraform.tfstate.backup` beside it. The `path` argument is optional and only changes that default, so an apply does not stop for lack of it. The `.terraform` directory holds the backend configuration, not the infrastructure state, and it should never be committed because it can contain credentials. HCP Terraform is used when the configuration connects to a workspace there (the `cloud` block is the documented way), not by default; with no block declared, the state is the local file.",
   "citationIds": [
     "cite-tf-g6-local-backend",
     "cite-tf-g6-state-overview",

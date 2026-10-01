@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "A backend block cannot refer to named values such as input variables, locals or data source attributes, so a variable-driven bucket name is not possible there (partial configuration is the workaround). A configuration can provide only one backend block, and a configuration with a cloud block cannot include a backend block, because HCP Terraform manages state in its own workspaces. Workspaces do not change the one-block rule, and no setting writes state to two places.",
+  "rationale": "A backend block cannot refer to named values such as input variables, locals or data source attributes, so a variable-driven bucket name is not possible there (partial configuration is the workaround). A configuration can provide only one backend block, and a configuration with a cloud block cannot include a backend block, because HCP Terraform manages state in its own workspaces. Workspaces do not change the one-block rule, so a cloud block cannot sit beside a backend block.",
   "citationIds": [
     "cite-tf-g6-backend-block",
     "cite-tf-g6-terraform-block"

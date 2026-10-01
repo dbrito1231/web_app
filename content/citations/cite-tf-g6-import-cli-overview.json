@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-import-cli-overview",
+  "title": "Import existing resources overview (CLI)",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/import",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claims that terraform import needs a hand-written resource block, does not generate configuration, and that the import block is the way to import multiple resources."
+}

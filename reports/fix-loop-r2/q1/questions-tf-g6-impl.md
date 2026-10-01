@@ -144,7 +144,26 @@ Longest-is-key 1 of 8 MC (12%), shortest-is-key 0 of 8.
 
 The first run of the chain failed: longest-is-key 6 of 8, two `since` tell words in 6c-mr, five stem/key giveaways (`terraform`, `engineer`, `variable`, `environment`, `prompts`), and the `terraform.tfstate` term in four questions. Fixes: lengthened distractors and shortened keys; replaced `since` with `as`; put the shared stem word into a distractor in each case; reworded three distractors to "the state file". The whole chain was then re-run on the whole set.
 
-## Chain outputs (exact)
+## Chain outputs after the first draft (superseded by the round 2 outputs at the end)
+
+
+## Round 2 fix pass
+
+Keys, choice ids and key positions are unchanged. Rationales name choices by content only (`test_q1_letter` passes).
+
+- AWS-Qg6-001 / TEACHER-Qg6-001, 6d-mc2. The overview page contains "To import multiple resources, use the import block." verbatim (fetched this turn), so the lesson now carries it with claim rows 137-140 and a new citation, which the question cites too. Used: Teacher Fix 1 (rationale last sentence: "The `terraform import ADDRESS ID` command names one address and one ID per invocation, and the docs say to use the `import` block to import multiple resources and review the import in the plan-and-apply workflow", no "no preview" claim) and Fix 3 (distractor d: old "Run `terraform import` once per bucket with the resource address and the bucket ID, then continue", new "Run `terraform import` with the resource address and bucket ID for each bucket, then run `terraform plan` to confirm"). Distractor-a rationale: old "...so Terraform would plan to create new buckets", new "Resource blocks alone do not import anything; importing needs an `import` block or the command." AWS stem rewrite NOT used: the keyword tell on "plan" is gone because `terraform plan` now appears in a distractor, and the stem requirement (all twenty in one reviewed run) is refuted for the command by the taught sentences "names one address and one ID" and "To import multiple resources, use the import block." Changed distractor d: real? yes (the tutorial itself uses `terraform import`); refuted by which lesson sentence? the usage-line and overview sentences above.
+- TEACHER-Qg6-002 plus AWS-Qg6-003, 6a-mc2. Choice d old "...gives the pair a versioned copy with locking and access control", new "There is none: committing the state file to the shared repository gives the pair a shared, versioned copy of the latest state". Rationale: old "Other workspaces are supported through the `workspace_dir` setting... Version control does not offer state locking or secure access control, and storing state there can lead to data loss...", new "The local backend has a `workspace_dir` setting for the path of non-default workspaces, so more than the default workspace is possible. Storing state in version control can lead to data loss or exposure of secrets, so committing the file is not a fix." Changed distractor d: real? yes (state committed to Git is a real practice); refuted by the Warnings sentence "can result in data loss or exposure of secrets stored in the state file".
+- TEACHER-Qg6-003, 6b-mc rationale: old ending "...because the state-modifying subcommands take the lock as well, which is why they carry the `-lock=false` and `-lock-timeout` options." new "...wrong because locking covers all operations that could write state." The distractor choice naming `terraform state rm` and `terraform state mv` now names only `terraform state mv` (distractor_type_audit counted `state rm` in two questions otherwise; the types differ by hand count but the script is now clean). Real? yes; refuted by the same lesson sentence.
+- AWS-Qg6-002, 6a-mc rationale: old "HCP Terraform is only used when a `cloud` block connects the configuration to a workspace; the default when nothing is declared is the local file." new "HCP Terraform is used when the configuration connects to a workspace there (the `cloud` block is the documented way), not by default; with no block declared, the state is the local file."
+- AWS-Qg6-004, 6a-mr key: old "...and the docs no longer recommend them for new systems", new "...and the docs no longer recommend them".
+- AWS-Qg6-005, 6c-mc rationale: old "...and no setting writes state to two places." new "...so a cloud block cannot sit beside a backend block."
+- TEACHER-Qg6-004 and 005: no change (the `.terraform` commit fact stays a distractor in two questions; no third use added).
+
+Key-length table changes: 6a-mc2 now 119/92/94/125 (key rank 2); 6d-mc2 now 130/71/107/116 (key rank 3). Longest-is-key still 1 of 8.
+
+Whole chain re-run on tf-g6 after the last edit: content_lint PASS; q1_batch_check PASS; distractor_type_audit PASS (no term over the cap, with the g6 TERMS now present); stem_echo_check PASS; claim_prose_check PASS; test_q1_letter PASS (outputs below replace the earlier set).
+
+## Script outputs (exact, after round 2)
 
 ### scripts$s.py
 ```
@@ -177,8 +196,18 @@ task tf-g6: 12 questions; 15% cap = 1 questions
 
 terraform.tfstate             1    8%  q-tf-004-6a-mc
 HCP Terraform                 1    8%  q-tf-004-6a-mc
+state mv                      1    8%  q-tf-004-6b-mc
+-lock-timeout                 1    8%  q-tf-004-6b-mc2
+-lock=false                   1    8%  q-tf-004-6b-mc2
+force-unlock                  1    8%  q-tf-004-6b-mr
 DynamoDB                      1    8%  q-tf-004-6b-mr
+cloud block                   1    8%  q-tf-004-6c-mc
+-backend-config               1    8%  q-tf-004-6c-mc2
+-reconfigure                  1    8%  q-tf-004-6c-mr
 -refresh-only                 1    8%  q-tf-004-6d-mc
+terraform refresh             1    8%  q-tf-004-6d-mc
+terraform import              1    8%  q-tf-004-6d-mc2
+state rm                      1    8%  q-tf-004-6d-mr
 
 RESULT: PASS
 ```
