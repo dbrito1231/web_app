@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "At Larkspur Group, retail and wholesale each have a project with its own team permissions. The shared `pricing` workspace must be usable by both teams through permissions. What is the correct approach?",
+  "stem": "At Larkspur Group, retail and wholesale each have a project with its own team permissions. The shared `pricing` workspace must be usable by both teams through permissions. Neither team should end up able to open workspaces it does not already use. What is the correct approach?",
   "selectCount": 1,
   "choices": [
     {
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "Every workspace belongs to exactly one project, and permissions can be set at project and workspace scope, so the second team can be granted access directly on the workspace. Placing a workspace in two projects is not possible. A variable set scoped to a project applies variables to the workspaces already in it and does not change which project a workspace belongs to. The Default Project is just the project where workspaces start; each project has a separate permissions set, so it does not give every team access automatically.",
+  "rationale": "Every workspace belongs to exactly one project, and permissions can be set at project and workspace scope, so the second team can be granted access directly on the workspace. Placing a workspace in two projects is not possible. A variable set scoped to a project applies variables to the workspaces already in it and does not change which project a workspace belongs to. Moving the workspace into the Default Project either leaves both teams without access, because each project has a separate permissions set, or, if both teams are granted access there, gives them the other workspaces that start in the Default Project.",
   "citationIds": [
     "cite-tf-g8-projects",
     "cite-tf-g8-permissions",

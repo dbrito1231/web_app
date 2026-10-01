@@ -83,6 +83,10 @@ TERMS = [
     "TF_LOG_PATH", "TF_LOG_CORE", "TF_LOG_PROVIDER",
     "-raw", "-json", "state pull", "state push", "identity", "terraform show",
     "terraform output", "-force",
+    # tf-g8 (HCP Terraform), per the Teacher's round 2 ruling. Sentinel, OPA
+    # and bare "HCP Terraform" stay out as 8b's and the group's own subject
+    # vocabulary; terms that appear in at most one question add nothing.
+    "run trigger", "variable set",
 ]
 
 

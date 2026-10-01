@@ -6,12 +6,12 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "Mapleton Freight has years of Terraform state in the default local backend and now adds a `cloud` block to move to HCP Terraform. What completes the migration of that state?",
+  "stem": "Mapleton Freight has years of Terraform state in the default local backend and now adds a `cloud` block to move to HCP Terraform. What gets that state into the HCP Terraform workspace?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Keep the existing `backend` block beside the `cloud` block until the state has moved"
+      "text": "Keep a `backend \"local\"` block beside the `cloud` block until the state has moved"
     },
     {
       "id": "b",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "After adding or changing a `cloud` block, running `terraform init` completes the setup, and if the directory has existing state Terraform prompts you to migrate it from the existing workspaces. A `backend` block cannot be configured when the configuration also contains a `cloud` configuration, so keeping both is not possible. `terraform login` only obtains an API token and does not move state. Destroying and re-applying would remove real infrastructure and recreate it, which is unnecessary because init migrates the state in place.",
+  "rationale": "After adding or changing a `cloud` block, running `terraform init` completes the setup, and if the directory has existing state Terraform prompts you to migrate it from the existing workspaces. A `backend` block, local or otherwise, cannot be configured when the configuration also contains a `cloud` configuration, so keeping both is not possible. `terraform login` only obtains an API token and does not move state. Destroying and re-applying would remove real infrastructure and recreate it, which is unnecessary because init migrates the state in place.",
   "citationIds": [
     "cite-tf-g8-cloud-connect",
     "cite-tf-g8-terraform-block",

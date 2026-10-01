@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "A failed OPA mandatory policy can be overridden by a user holding the Manage Policy Overrides permission"
+      "text": "A failed OPA mandatory policy can be overridden by a user with Manage Policy Overrides"
     },
     {
       "id": "b",
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "A failed Sentinel hard mandatory policy can be overridden only when its policy set is configured to allow overrides"
+      "text": "A failed Sentinel hard mandatory policy can be overridden only if its policy set allows overrides"
     },
     {
       "id": "d",
@@ -27,7 +27,7 @@
     },
     {
       "id": "e",
-      "text": "OPA offers the same three enforcement levels as Sentinel"
+      "text": "OPA offers the same three enforcement levels as Sentinel: advisory, soft mandatory and hard mandatory"
     }
   ],
   "correctAnswerIds": [

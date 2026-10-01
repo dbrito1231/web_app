@@ -383,3 +383,26 @@ Row 29 (the `terraform import` sentence, no longer in the lesson), row 54 (the p
 | 234 | 8c | A workspace lock prevents applies | https://developer.hashicorp.com/terraform/cloud-docs/run | "A lock prevents HCP Terraform from performing any applies in the workspace" |
 
 Re-check after this pass (fresh page fetches, this turn): every double-quoted span in the lesson body is a verbatim substring of a fetched page (whitespace and spacing before punctuation normalised); the 23 exceptions are exam-tip scenario phrases. No quote is over 20 words (longest new row: 16 words).
+
+
+## Round 2 fix pass
+
+Applied to `content/lessons/lesson-tf-g8.json`. Every new quote was copied from a page fetched this turn with `curl -sSL` (HTML stripped with Python) and checked as a verbatim substring (whitespace before punctuation normalised). `accessed` is unchanged (2026-09-26); no citation file needed editing because all five pages are already cited.
+
+- **AWS-Lg8-012 (ruling 1):** 8c precedence now adds that a variable set can be marked as priority, as the exception, with the quote. Row 235.
+- **TEACHER-Lg8-009 (ruling 3):** 8b Teams and permissions adds `Read means "View information about workspace runs."` beside the Plan and Apply quotes. Page text is "Read View information about workspace runs." Row 236.
+- **TEACHER-Lg8-008 (4):** "are workspace-only:" is now "do not cover Stacks:"; the quote is unchanged.
+- **TEACHER-Lg8-010 (5):** gloss added after the runs-API sentence. Deviation: the requested "(the uploaded configuration a run uses)" is not what the page says, because VCS workspaces tie configuration versions to repository revisions. The gloss reads "(a configuration version is one saved version of a workspace's configuration, which a run uses)". Row 237.
+- **AWS-Lg8-011 (6):** "The one place the docs state Remote" is now "One place the docs state Remote".
+- **AWS-Lg8-013 (7):** 8c locking now says "(plan-only runs are not affected: "Locking does not affect plan-only runs")". Row 238.
+- **AWS-Lg8-014 (8):** 8a stages now add the conditional OPA policy check stage with the quote. Row 239.
+
+| # | Section | Claim | Doc URL | Quote (<=20 words) |
+|---|---|---|---|---|
+| 235 | 8c | A priority global variable set outranks all other variables with the same key | https://developer.hashicorp.com/terraform/cloud-docs/variables | "If prioritized, variables in a global variable set have precedence over all other variables with the same key." |
+| 236 | 8b | The Read workspace permission is viewing information about runs | https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/workspace | "View information about workspace runs." |
+| 237 | 8a | HCP Terraform manages a workspace's configuration as a series of configuration versions | https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/remote-operations | "HCP Terraform manages configurations as a series of configuration versions" |
+| 238 | 8c | Locking a workspace does not affect plan-only runs | https://developer.hashicorp.com/terraform/cloud-docs/run | "Locking does not affect plan-only runs" |
+| 239 | 8a | The OPA policy check stage occurs only when OPA policies are enabled | https://developer.hashicorp.com/terraform/cloud-docs/run/states | "This stage only occurs if you enabled Open Policy Agent (OPA) policies" |
+
+Chain re-run after the edits: content_lint PASS, q1_batch_check RESULT: PASS, distractor_type_audit RESULT: PASS, stem_echo_check RESULT: PASS, claim_prose_check PASS (8 numbers), test_q1_letter PASS (12 bad, 10 good, 0 failures).

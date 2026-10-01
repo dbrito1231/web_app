@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "State sharing is off by default and has to be switched on in the `network` workspace itself"
+      "text": "State sharing is off by default and has to be enabled for `network`"
     },
     {
       "id": "b",
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "The `network` workspace has to be locked before another workspace can read its state"
+      "text": "The two workspaces sit in different projects, and remote state only works within one project"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "New workspaces in HCP Terraform do not allow other workspaces to access their state by default, and sharing can be enabled for the organization, the project or specific workspaces. A run trigger starts a run after a successful apply in a source workspace; it does not grant access to state. Locking a workspace stops new runs, which wait in Pending, and has no bearing on reading outputs. A variable set shares variables across workspaces and does not carry state or outputs.",
+  "rationale": "New workspaces in HCP Terraform do not allow other workspaces to access their state by default, and sharing can be enabled for the organization, the project or specific workspaces. A run trigger starts a run after a successful apply in a source workspace; it does not grant access to state. Remote state is not limited to one project: sharing can be enabled for all workspaces in the organization, for the same project, or for specific workspaces. A variable set shares variables across workspaces and does not carry state or outputs.",
   "citationIds": [
     "cite-tf-g8-workspace-state",
     "cite-tf-g8-run-triggers",

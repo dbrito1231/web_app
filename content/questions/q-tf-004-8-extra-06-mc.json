@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "At Basalt Media, a global variable set defines `region` as us-east-1, and one workspace defines its own `region` as eu-west-1. An engineer runs a CLI-driven plan in that workspace and passes `-var region=ap-south-1`. Which value does the plan use?",
+  "stem": "At Basalt Media, a global variable set that is not marked as priority defines `region` as us-east-1, and one workspace defines its own `region` as eu-west-1. An engineer runs a CLI-driven plan in that workspace and passes `-var region=ap-south-1`. Which value does the plan use?",
   "selectCount": 1,
   "choices": [
     {
@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "None of them; Terraform stops at a key that is defined in several places"
+      "text": "Terraform reports an error for a key defined in several places"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "Values given with -var or -var-file on the command line overwrite both workspace-specific variables and variable set variables that have the same key. Without a command-line value, the workspace-specific value would beat the variable set, so the global set loses in either case. Terraform does not reject a key defined in more than one place; it applies the precedence rules.",
+  "rationale": "Values given with -var or -var-file on the command line overwrite both workspace-specific variables and variable set variables that have the same key. The global set in this scenario is not marked as priority, so without a command-line value the workspace-specific value would beat it, and the global set loses in either case. Terraform does not reject a key defined in more than one place; it applies the precedence rules.",
   "citationIds": [
     "cite-tf-g8-variables",
     "cite-tf-g8-managing-variables"
