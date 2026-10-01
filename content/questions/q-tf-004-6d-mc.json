@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.6d"
   ],
-  "stem": "A teammate asks how to meet this requirement: Manage resource drift and Terraform state. Which action is appropriate?",
+  "stem": "During an incident, an operator at Lumen Pharma resized a database through the cloud console. The team wants Terraform's state updated to the new size, wants to inspect the detected change before it is recorded, and wants nothing changed on the real database. Which command fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`terraform apply`, leaving the configuration unchanged"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`terraform apply -refresh-only`, then confirm the prompt"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`terraform refresh`, run once to pull the new size into state"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Manage resource drift and Terraform state"
+      "text": "`terraform plan -refresh-only`, run on its own"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`terraform apply -refresh-only` shows the drift and, once confirmed, records the updated values in state without modifying remote objects. A normal apply compares configuration to the real resource and would try to revert the manual resize. `terraform refresh` is deprecated and is effectively an alias for apply with refresh-only and auto-approve, so it overwrites state with no chance to review. A refresh-only plan on its own only previews the change; nothing is recorded until it is applied.",
+  "citationIds": [
+    "cite-tf-g6-plan",
+    "cite-tf-g6-refresh",
+    "cite-tf-g6-resource-drift"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

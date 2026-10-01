@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.6c"
   ],
-  "stem": "An exam scenario centers on: Configure remote state using the backend block. Which action matches it?",
+  "stem": "Brightline Logistics wants a different state bucket per environment, taken from an input variable, and is also trialing HCP Terraform workspaces from the same configuration. Which statement about what Terraform allows is accurate?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A backend block cannot reference an input variable, and a cloud block cannot share a configuration with a backend block"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Configure remote state using the backend block"
+      "text": "A backend block can reference an input variable, though not locals or data source attributes in the same configuration"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A configuration can declare one backend block per environment and select among them with named workspaces at init time"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A cloud block can sit beside a backend block, so state is written to both places"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A backend block cannot refer to named values such as input variables, locals or data source attributes, so a variable-driven bucket name is not possible there (partial configuration is the workaround). A configuration can provide only one backend block, and a configuration with a cloud block cannot include a backend block, because HCP Terraform manages state in its own workspaces. Workspaces do not change the one-block rule, and no setting writes state to two places.",
+  "citationIds": [
+    "cite-tf-g6-backend-block",
+    "cite-tf-g6-terraform-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

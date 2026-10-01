@@ -6,31 +6,36 @@
   "objectiveIds": [
     "tf.004.6a"
   ],
-  "stem": "Quick check \u2014 Describe the local backend. Which practice is correct?",
+  "stem": "Two engineers at Tidewater Freight each run `terraform apply` for the same configuration from their own laptops, and no backend is configured. Which statement describes the genuine weakness of this setup?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Describe the local backend"
+      "text": "Each person's state file lives on their own disk, so each needs the latest copy first and a lost laptop loses the state"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The default backend takes no lock, so two applies started on one laptop can corrupt the file"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Only the default workspace is possible, so each environment needs a separate working directory"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "There is none: committing the state file to the shared repository gives the pair a versioned copy with locking and access control"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe the local backend'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The documented limits of local state are that it restricts collaboration and risks losing the state if the file is lost, because each user has to make sure they hold the latest state data and that nobody else runs at the same time. The local backend does lock its file through system APIs, so a lock-free default is wrong. Other workspaces are supported through the `workspace_dir` setting, so a single default workspace is wrong. Version control does not offer state locking or secure access control, and storing state there can lead to data loss or exposure of secrets, so committing the file is not a fix.",
+  "citationIds": [
+    "cite-tf-g6-local-backend",
+    "cite-tf-g6-remote-state",
+    "cite-tf-g6-state-overview",
+    "cite-tf-g6-workspaces"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

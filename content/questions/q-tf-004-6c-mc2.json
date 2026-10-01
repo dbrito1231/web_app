@@ -6,31 +6,33 @@
   "objectiveIds": [
     "tf.004.6c"
   ],
-  "stem": "Quick check \u2014 Configure remote state using the backend block. Which practice is correct?",
+  "stem": "A pipeline at Stonebridge Mutual initializes one configuration for three environments. The bucket name and state key differ per environment, and credentials come from the runner. No secrets may reach the repository. What is the right setup?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Hardcode the credentials in the backend block for each environment; only `-backend-config` values are copied into plan files, so hardcoded ones stay private"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Skip the backend block altogether and supply the bucket name only on the `terraform init` command line"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Configure remote state using the backend block"
+      "text": "Pass the values with `-backend-config` and commit the resulting `.terraform` directory so every environment's runner reuses the same settings"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Keep an empty backend block naming the type, pass differing values with `-backend-config`, and give credentials through environment variables"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Configure remote state using the backend block'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A partial configuration leaves arguments out of the block, which still has to exist at minimum as an empty block that names the backend type; the rest arrive through `-backend-config` (a file or key and value pairs) at init. Environment variables are the recommended way to supply credentials. Hardcoded values and `-backend-config` values both end up in the `.terraform` subdirectory and in plan files, so hardcoding is not private. The `.terraform` directory can hold sensitive credentials and should not be committed. Omitting the block entirely fails because Terraform needs the type declared.",
+  "citationIds": [
+    "cite-tf-g6-backend-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

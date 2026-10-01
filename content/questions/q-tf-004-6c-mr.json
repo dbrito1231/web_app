@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.6c"
   ],
-  "stem": "Select TWO actions that support this requirement: Configure remote state using the backend block",
+  "stem": "(Select TWO.) Marlowe Systems is moving state from one S3 bucket to another by editing the backend block and re-running `terraform init` in an unattended job that cannot answer prompts. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`terraform init -reconfigure` copies the existing state into the new bucket, as it re-reads the whole configuration"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A plain `terraform init` migrates the state without any prompts, as Terraform detects the backend change itself"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`-migrate-state` makes init copy the existing state to the new backend"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "`-force-copy` suppresses the migration prompts and also turns on `-migrate-state`"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Backing up the state file first is unnecessary, because migration always leaves the old copy intact"
     }
   ],
   "correctAnswerIds": [
     "c",
     "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`-migrate-state` is the option that attempts to copy existing state to the new backend, and `-force-copy` answers yes to the migration questions, which suits an unattended job, and enables `-migrate-state` as well. `-reconfigure` does the opposite: it disregards the existing configuration and prevents migration. Re-running init on an already initialized backend needs one of those two options, and Terraform asks before migrating rather than doing it silently. The docs strongly recommend manually copying `terraform.tfstate` elsewhere before migrating, so skipping a backup is not safe.",
+  "citationIds": [
+    "cite-tf-g6-init",
+    "cite-tf-g6-backend-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

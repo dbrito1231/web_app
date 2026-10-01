@@ -70,6 +70,13 @@ TERMS = [
     # guard below, so that distractor type is counted by hand in the pre-check.
     "TF_VAR", "-var", "tfvars", "?ref", "version =", "lock file",
     "plan time", "init -upgrade", "get -update",
+    # tf-g6 (state)
+    "-lock=false", "-lock-timeout", "force-unlock", "use_lockfile",
+    "dynamodb_table", "-migrate-state", "-reconfigure", "-force-copy",
+    "-backend-config", "cloud block", "-refresh-only", "terraform refresh",
+    "terraform import", "import block", "moved block", "removed block",
+    "state rm", "state mv", "state list", "state show", "-generate-config-out",
+    "-state-out", "-backup", "workspace_dir",
 ]
 
 

@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.6a"
   ],
-  "stem": "Which action is the right fit for this requirement: Describe the local backend?",
+  "stem": "A graduate analyst at Fernwood Utilities runs `terraform init` and then `terraform apply` in a directory whose `terraform` block lists only required providers. Where does Terraform record state, and what does it keep next to it?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A `path` argument is mandatory in this situation, so the apply stops until a block names the state file"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The `.terraform` directory, whose `terraform.tfstate` holds the infrastructure state for the working directory and is safe to commit"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Describe the local backend"
+      "text": "A `terraform.tfstate` file relative to the root module, with the prior state kept as `terraform.tfstate.backup`"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "An HCP Terraform workspace, which is the default home for state whenever no `backend` block is declared"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "With no backend block Terraform uses the local backend, which writes `terraform.tfstate` relative to the root module and keeps the previous state in `terraform.tfstate.backup` beside it. The `path` argument is optional and only changes that default, so an apply does not stop for lack of it. The `.terraform` directory holds the backend configuration, not the infrastructure state, and it should never be committed because it can contain credentials. HCP Terraform is only used when a `cloud` block connects the configuration to a workspace; the default when nothing is declared is the local file.",
+  "citationIds": [
+    "cite-tf-g6-local-backend",
+    "cite-tf-g6-state-overview",
+    "cite-tf-g6-backend-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

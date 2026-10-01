@@ -6,31 +6,36 @@
   "objectiveIds": [
     "tf.004.6d"
   ],
-  "stem": "Quick check \u2014 Manage resource drift and Terraform state. Which practice is correct?",
+  "stem": "Cobalt Retail has twenty S3 buckets created by hand in the console. They want all twenty adopted in one reviewed plan-and-apply run, with the adoption visible in the plan output. How should they bring the buckets under management?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Manage resource drift and Terraform state"
+      "text": "Write only the resource blocks and let `terraform apply` find the existing buckets by name and adopt them into state automatically"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add a `moved` block from each bucket's name to its new resource address"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Write a resource block and an `import` block (`to` and `id`) per bucket, then review `terraform plan` first"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Run `terraform import` once per bucket with the resource address and the bucket ID, then continue"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Manage resource drift and Terraform state'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Importing unmanaged resources takes an `import` block holding the destination address and the provider's ID, plus a matching resource block; running plan previews the import and apply performs it, and configuration-driven import is the form that imports several resources in one reviewed run (Terraform 1.5 or later). Resource blocks alone do not adopt anything, so Terraform would plan to create new buckets. A `moved` block only renames an address that already exists in state and cannot adopt an unmanaged object. The `terraform import ADDRESS ID` command works on one object per run, and the docs steer readers to the block instead.",
+  "citationIds": [
+    "cite-tf-g6-import-overview",
+    "cite-tf-g6-import-single",
+    "cite-tf-g6-resource-drift",
+    "cite-tf-g6-import-command"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

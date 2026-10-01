@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.6a"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe the local backend",
+  "stem": "(Select TWO.) Orchard Health's nightly job runs `terraform apply -state=ci.tfstate -backup=ci.bak` on the local backend. After a trial of an S3 backend, the team is considering deleting the backend block again. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Those options are legacy features kept for backward compatibility, and the docs no longer recommend them for new systems"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "The docs recommend those options as the standard way to point automation at a shared remote state location"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Once the configuration names an S3 backend, the same options keep working and override the bucket location"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Deleting the backend block and re-running `terraform init` prompts Terraform to offer migrating the state to the default local backend"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Deleting the backend block makes the next `terraform init` discard the stored state, because local is treated as a fresh start"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`-state`, `-state-out` and `-backup` are legacy local-backend options preserved for backward compatibility; the docs recommend choosing a backend that supports remote state instead, so presenting them as the recommended shared-state method is wrong. They have no effect when a different backend type is selected, so they cannot override a bucket location. Removing the backend block and reinitializing leads Terraform to prompt about migrating the state to the default local backend, so nothing is discarded as a fresh start.",
+  "citationIds": [
+    "cite-tf-g6-local-backend",
+    "cite-tf-g6-backend-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

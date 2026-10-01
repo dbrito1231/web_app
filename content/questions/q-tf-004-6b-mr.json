@@ -6,36 +6,40 @@
   "objectiveIds": [
     "tf.004.6b"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe state locking",
+  "stem": "(Select TWO.) Harlow Freight is retiring the DynamoDB table its S3 backend uses for locks, and a crashed run left behind a lock that the engineer who started it still owns. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The current S3 backend has removed the DynamoDB arguments, so any configuration still naming a table is rejected"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Setting `use_lockfile` to true makes the S3 backend lock through S3 itself, and the setting is off by default"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "S3 locks state by default once `bucket` and `key` are set, so no further argument is needed"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`terraform force-unlock` is safe for any engineer to run on a held lock, because it does not modify infrastructure"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "The owning engineer can clear the leftover lock with `terraform force-unlock` and the lock ID that Terraform printed"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "S3 locking is opt-in through `use_lockfile`, which defaults to false, so an S3 backend with no locking arguments does not lock. DynamoDB locking is deprecated and slated for removal in a future minor version, not already removed, and both sets of arguments can be configured together to ease migration. `force-unlock` takes the lock ID that Terraform prints when unlocking fails, and it is meant for your own lock after automatic unlocking failed; running it on a lock that someone else's live run holds can cause multiple writers, even though the command itself leaves infrastructure alone.",
+  "citationIds": [
+    "cite-tf-g6-s3-backend",
+    "cite-tf-g6-state-locking",
+    "cite-tf-g6-force-unlock"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

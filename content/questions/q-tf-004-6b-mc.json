@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.6b"
   ],
-  "stem": "A teammate asks how to meet this requirement: Describe state locking. Which action is appropriate?",
+  "stem": "A release engineer at Kestrel Bank sees that `terraform apply` printed nothing about locking and wants to know whether the shared state was protected from a colleague's simultaneous apply. Which statement is accurate?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Locking happens only when `-lock=true` is added to the command line, so this particular apply ran with no protection from the colleague's run"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Every backend locks state automatically, so the silence confirms that the state was protected"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Locking covers `apply` but not the `terraform state` subcommands that modify state"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe state locking"
+      "text": "If the backend supports locking, Terraform locks silently for any write operation; a backend without lock support gives no protection"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Locking is automatic on all operations that could write state when the backend supports it, and Terraform prints nothing about it, so silence says nothing either way; if lock acquisition fails Terraform stops. Not every backend supports locking, which is why checking the backend's documentation matters. Requiring `-lock=true` is wrong because locking is on by default and only switched off with `-lock=false`. Limiting locking to apply is wrong because the state-modifying subcommands take the lock as well, which is why they carry the `-lock=false` and `-lock-timeout` options.",
+  "citationIds": [
+    "cite-tf-g6-state-locking",
+    "cite-tf-g6-state-mv"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

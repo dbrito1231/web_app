@@ -6,36 +6,42 @@
   "objectiveIds": [
     "tf.004.6d"
   ],
-  "stem": "Select TWO actions that support this requirement: Manage resource drift and Terraform state",
+  "stem": "(Select TWO.) Quillfeather's team renamed the resource block `aws_instance.web` to `aws_instance.app`, and also wants Terraform to stop managing a database while it keeps running. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A `moved` block naming the old and new addresses lets the next plan rename the existing object in state without destroying it"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Renaming the block alone keeps the instance, because Terraform matches state to resources by remote ID"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "A `removed` block with `lifecycle { destroy = false }` drops the database from state while the real database keeps running"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`terraform state rm` destroys the real database along with its state entry"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "Correcting the address by editing the state file in a text editor is the recommended route for a small rename"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A `moved` block tells Terraform to rename the object at the old address instead of destroying it and creating a new one, and the update appears in the next plan. `removed` with `lifecycle { destroy = false }` removes the resource from state without destroying the real object. Without a `moved` block, a renamed block is read as destroy the old object and create a new one. `terraform state rm` does the opposite of destroying: it removes the binding and leaves the remote object running. The state is a JSON file that should not be edited directly; the `terraform state` subcommands exist for state changes and always write a backup.",
+  "citationIds": [
+    "cite-tf-g6-moved-refactoring",
+    "cite-tf-g6-removed-block",
+    "cite-tf-g6-state-rm",
+    "cite-tf-g6-state-overview",
+    "cite-tf-g6-state-commands"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

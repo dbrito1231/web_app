@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.6b"
   ],
-  "stem": "Quick check \u2014 Describe state locking. Which practice is correct?",
+  "stem": "Cinder Logistics keeps state in a shared S3 bucket. Their scheduled job fails at once whenever an engineer's apply holds the lock. The team wants the job to keep retrying for a few minutes, with locking left on and the state staying shared. What should they do?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Switch the job to the local backend, which locks its file through system APIs"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Run the job with `-lock-timeout` set to a duration, so it keeps trying to acquire the lock"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Describe state locking"
+      "text": "Run the job with `-lock-timeout=0s`, which tells Terraform to wait indefinitely for the lock"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Run the job with `-lock=false` so it stops competing for the lock"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe state locking'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`-lock-timeout` sets how long Terraform waits to acquire a lock before giving up, which is exactly a retry window while locking stays on. Its default of 0s is the cause of the immediate failure, since zero seconds means fail at once rather than wait forever. `-lock=false` removes the protection and is dangerous when others may run commands against the same workspace. The local backend does lock, but its file lives on one machine, so moving the job there gives up the shared state the team wants to keep.",
+  "citationIds": [
+    "cite-tf-g6-init",
+    "cite-tf-g6-state-locking",
+    "cite-tf-g6-state-mv"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
