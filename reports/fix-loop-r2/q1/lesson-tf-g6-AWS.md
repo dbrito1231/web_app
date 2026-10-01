@@ -124,3 +124,51 @@ Checked and not defects: 6b-mc2 stem "keep retrying" versus key "keeps trying" i
 Task tf-g6: not yet (AWS-Qg6-001 needs a lesson sentence, a claim row, and a stem and rationale rewrite; 002-005 are rationale wording and may ride along; I will recheck)
 
 Overall: concerns
+
+---
+
+## Round 2b (confirmation, 7e68d75)
+
+Method: fetched `https://developer.hashicorp.com/terraform/cli/import` and `.../cli/commands/import` with `curl -sL` plus the text stripper and searched the text; read the "Round 2 fix pass" sections, the Teacher round-2 note, the current lesson, and the 6a-mc, 6a-mc2, 6a-mr, 6b-mc, 6c-mc and 6d-mc2 JSON (keys, choices, rationales, citations). No AWS, terraform or git; no edits.
+
+### Correction to my Round 2 (b)
+
+I wrote that the writer was right to drop all five unsupported sentences and that "none" of the dropped sentences was on the page, but I had searched only the `cli/commands/import` page. The overview page `cli/import` does carry three of them; the Teacher was right and I was wrong on those three. Still unsupported by any page I have read, and rightly absent: "no plan preview" and "changes state at once". The other dropped sentences ("changes state immediately", "records the rename for others") are also still unsupported.
+
+### 3. Rows 137-140 re-verified (curl)
+
+| Row | Page | Verbatim | Exact claim? |
+|---|---|---|---|
+| 137 | cli/commands/import | yes ("Usage: terraform import [options] ADDRESS ID") | yes: one address and one ID per run follows from the usage line |
+| 138 | cli/import | yes ("Before you run terraform import you must manually write a resource configuration block for the resource.") | yes |
+| 139 | cli/import | yes ("Importing via the CLI does not generate configuration.") | yes; the page adds "use the import block instead" for generating configuration |
+| 140 | cli/import | yes ("To import multiple resources, use the import block.") | yes |
+
+The lesson's sentence cites them accurately, attributing the three overview quotes to "the import overview page", and the new citation file `cite-tf-g6-import-cli-overview` exists with the right URL and note.
+
+### 1. AWS-Qg6-001..005
+
+- AWS-Qg6-001 (6d-mc2): Gone. The lesson now teaches "each run names one address and one ID" and "To import multiple resources, use the import block." The rationale's last sentence and the "nothing imported by resource blocks alone" clause are now taught. The unsupported "would plan to create new buckets" is gone. The "plan" keyword tell is gone because distractor d now ends "then run `terraform plan` to confirm". I accept not rewriting the stem. Changed distractor d: real (the tutorial itself uses `terraform import`); refuted by the taught sentences that the command names one address and one ID and that multiple resources go through the `import` block, against the stem's "all twenty ... in one reviewed plan-and-apply run"; no giveaway words. It is not a working answer to the stem as written. Residual wording nit (not blocking): the rationale's "and review the import in the plan-and-apply workflow" is the tutorial's statement about configuration-driven import, not the overview's, but both are quoted in the lesson.
+- AWS-Qg6-002 (6a-mc rationale): Gone.
+- AWS-Qg6-003 (6a-mc2 rationale): Gone. The `workspace_dir` sentence now matches the page; the unsupported "does not offer locking" is replaced by the taught data-loss warning. New distractor d ("There is none: ... a shared, versioned copy of the latest state") is real, refuted by "can result in data loss or exposure of secrets" and by the stem's "genuine weakness", and has no giveaway wording.
+- AWS-Qg6-004 (6a-mr key a): Gone.
+- AWS-Qg6-005 (6c-mc rationale): Gone as to the unsupported claim, but the replacement creates a small logic slip (AWS-Qg6-006 below).
+
+### 2. Second-role check of TEACHER-Qg6-001, 002, 003, 006
+
+- 001: Gone (fixes 1, 2, 3 applied; matches my AWS-Qg6-001).
+- 002: Gone (choice d and rationale as proposed; every quoted claim now taught).
+- 003: Gone. The 6b-mc rationale ends at "locking covers all operations that could write state", which is verbatim-taught ("State locking happens automatically on all operations that could write state"). Distractor c now reads "Locking covers `apply` but not state-modifying commands such as `terraform state mv`": real command, refuted by that same taught sentence, no giveaway wording; it also keeps the `state rm` type out of 6b (audit clean). The `cite-tf-g6-state-mv` citation on 6b-mc now backs only the distractor's command, not a locking claim; harmless.
+- 006: Gone as to substance: the page's Requirements paragraph reads "Terraform v1.1 and later is required to use moved blocks ... Instead, use the terraform state mv CLI command", so "(on versions older than 1.1 ...)" is the correct antecedent. Punctuation defect: see AWS-Qg6-007.
+
+### New findings
+
+**AWS-Qg6-006 (Low, 6c-mc rationale).** "Workspaces do not change the one-block rule, so a cloud block cannot sit beside a backend block." The "so" is a non sequitur: the cloud/backend exclusion does not follow from workspaces. Fix: "Workspaces do not change the one-block rule. A cloud block cannot sit beside a backend block either."
+
+**AWS-Qg6-007 (Low, lesson 6d `moved` bullet).** Current text reads "... later ("Terraform v1.1 and later is required to use moved blocks"); (on versions older than 1.1 the page says "Instead, use the terraform state mv CLI command") `terraform state mv` is the CLI version:" with a stray semicolon, a second parenthesis and a missing sentence break. Fix: "... later ("Terraform v1.1 and later is required to use moved blocks"); on versions older than 1.1 the page says "Instead, use the terraform state mv CLI command." `terraform state mv` is the CLI version:". No question depends on it.
+
+Neither new item blocks closure; both are editorial and no claim row or key is affected.
+
+Task tf-g6: close (AWS-Qg6-001..005 Gone; 006 and 007 are Low wording nits the Lead Dev may fix inline)
+
+Overall: approve
