@@ -21,8 +21,9 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 | Lead Dev pre-check | Done; lesson-only checks PASS (question lines fail only on the 12 placeholders) | Done; same. Cross-references to g2, g3 and g4 checked with a regex and true |
 | Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | Done. Tech: approve, 1 medium + 3 low. Teacher: not yet, 4 medium + 4 low (`removed` nesting, import contrast, `moved` vs `state mv`, split 6d with `####`). TEACHER-Lg6-007 logged as CR-0021 against g4 |
 | Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | Done `23ceea2`: all findings applied, 136 rows; 6d split with `####`; 5 unsupported proposed sentences dropped |
-| Questions written | Done `23ceea2`. Lead Dev pre-check: 4 findings (`questions-tf-g5-leaddev-precheck.md`); **fix pass running** | **Running** (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` is binding) |
-| Lead Dev pre-check of questions, then round 2, Student and close | Not started | Not started |
+| Questions written | Done `f97c818`: pre-check findings fixed, audit PASS. `./` kept in 2 questions by Lead Dev decision. LD-Qg5-005 (a pair tell in 5c-mc2) is left to round 2 | **Running** (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` is binding) |
+| Round 2 (lesson findings Gone, plus questions) | **Running**: the round-1 tech and Teacher agents were resumed | Not started |
+| Student, then close | Not started | Not started |
 
 **Carry forward.**
 - **tf-g5 fact ownership (TEACHER-Lg5-006), for the question writer:** 5b owns `module.<name>.<output>` and "child must declare an output"; 5c owns the output shape and `init -upgrade`; 5d owns the lock file, the exact pin and registry-only `version`.
@@ -142,7 +143,7 @@ Ordered by how much trouble each has caused.
 |---|---|---:|---|
 | 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
-| 18 | lesson-tf-g5 | 12 | **In flight**: questions written; pre-check fixes running; round 2 next |
+| 18 | lesson-tf-g5 | 12 | **In flight**: round 2 running |
 | 19 | lesson-tf-g6 | 12 | **In flight**: lesson and fixes done; questions being written |
 | 20 | lesson-tf-g7 | 9 | Not started |
 | 21 | lesson-tf-g8 | 20 | Not started |
