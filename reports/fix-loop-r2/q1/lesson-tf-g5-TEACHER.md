@@ -25,3 +25,44 @@ Saved by the Lead Dev from the Teacher's reply (condensed; fixes verbatim).
 All four objectives are supportable. 5b is the thinnest (it has spares in name uniqueness and reserved names), and 5c and 5d are ample. The writer's plan is sound, given the ownership in TEACHER-Lg5-006.
 
 Lesson tf-g5: not yet (fix 001–003; 004–007 may ride along) · Overall: concerns
+
+---
+
+# Teacher round 2 — tf-g5 (f97c818)
+
+Saved by the Lead Dev from the Teacher's reply (condensed; fixes verbatim).
+
+## (a) Round-1 Teacher findings
+- **Gone:** TEACHER-Lg5-001, 002, 003, 004, 005 and 007.
+- **006 (fact ownership): followed.** The one exception is acceptable: "init after a source edit" sits in 5a-mr, and 5a is its first owner.
+
+## (b) Second-role check
+AWS-Lg5-001 to 008 are all applied and correct, so all are Gone. 007 needed no lesson change.
+
+## (c) Questions
+- **Three facts per objective:** passes everywhere, with no duplicate fact.
+  - 5a: shape, `ref`, and archive plus re-init.
+  - 5b: arguments, locals, outputs.
+  - 5c: shape, location, update.
+  - 5d: registry-only, `~>`, lock file.
+- **Distractors:** real, and refuted by lesson sentences, except as noted below.
+- **New 5a-mc2 "Append `//v2.3.0`":** accepted. It is real and taught, and it removes the 5d duplicate.
+- **5a-mr "only after `.terraform` is deleted and recreated":** accepted. It is real, and the init sentence refutes it.
+- **Echo and strawmen:** no stem/key echo defects. The only caricature is in 5c-mc.
+
+## (d) Numbers
+5d-mc2: 1.0.10 is correct. The other figures are consistent with the lesson.
+
+## (e) LD-Qg5-005 ruling and findings
+- **TEACHER-Qg5-001 (medium, 5c-mc2): confirmed, and worse than a pair.** Only the key says "kept out of version control"; the other three say "committed". The fix:
+  - choice b becomes "In a `modules` folder beside the root `.tf` files, kept out of version control and recreated by `init`";
+  - choice d becomes "In the user's home directory, shared by every project, so there is nothing to commit";
+  - a and c stay;
+  - the rationale is updated to name why b and d are wrong by location. The key rests on "a .terraform subdirectory of the current working directory".
+- **TEACHER-Qg5-002 (low, 5c-mr).** The stem gives away the plain-`init` option.
+  - New stem: "... A registry module has since published a newer release that its `version` constraint allows, and the team wants the installed copies refreshed. Which two actions do that?"
+  - Rationale: "modules are installed and updated by `init` and `get`", replacing an untaught claim about apply.
+- **TEACHER-Qg5-003 (low, 5c-mc, optional).** Replace the caricature distractor ("map keyed by output name with list values") with "A set of the two site keys, with the outputs readable only through each key".
+- **TEACHER-Qg5-004 (low, 5b-mc).** No change needed. An optional lesson sentence: "`-var`, `.tfvars` files and `TF_VAR_` names set root module variables; a child receives its inputs as arguments."
+
+Task tf-g5: not yet (fix 001; 002–004 may ride along) · Overall: concerns
