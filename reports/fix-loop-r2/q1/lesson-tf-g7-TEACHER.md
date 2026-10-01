@@ -109,3 +109,61 @@ All of these are small. None changes a key or makes a question unanswerable. 001
 All numbers match the lesson. The questions use "three databases" with `local.databases` and "twice", and no doc numbers or versions. The lesson's v0.15.0 and the "1 to import" lines appear in no key or rationale.
 
 Task tf-g7: **not yet** (fix TEACHER-Qg7-001 and 004; 002, 003, 005, 006 and 007 may ride along).
+
+# Teacher round 2b — tf-g7 (1b16cf3)
+
+I read the lesson and all 9 questions at 1b16cf3. I also ran `content_lint.py` and the four tf-g7 checks (`q1_batch_check`, `stem_echo_check`, `distractor_type_audit`, `claim_prose_check`); all pass. I wrote no files and made no network calls.
+
+## 1. My TEACHER-Qg7-001..007
+
+- **001: Gone.** The 7b-mc rationale now reads "An address pattern filters by address, not by resource ID, so only `-id` finds the resource that has this ID." It makes no claim about a bare resource type, and the lesson's "Patterns are in resource addressing format" supports it.
+- **002: Gone.** The 7a-mc2 key is now "A block with `for_each = local.databases`, `to` using `each.key`, `id = each.value`", about 83 characters. The distractors run 69 to 84 characters, so the longest-is-key count is 0 of 6.
+- **003: Gone.** The 7a-mr stem now says "what import does and does not do, and what the import block needs". That matches choices c and e.
+- **004: Gone.** 7b-mr e is now "The docs recommend adding `-force` whenever a push is refused". The lesson's Warnings bullet refutes it ("the docs call it 'not recommended'"). The rationale no longer calls push a "routine" correction.
+- **005: Gone.** Accepted as is, per the Lead Dev ruling.
+- **006: Gone.** 7c-mc2 c is now "Set `TF_LOG` to TRACE", refuted by the lesson's "`TF_LOG` is the broad one". The verbosity ladder is no longer re-tested there.
+- **007: Gone.** The "rerun twice" cue is out of the 7c-mr stem. Choice e now states append-without-truncating as a general fact, which is the docs' wording and is in the lesson.
+
+## 2. AWS-Qg7-001..005, second-role check
+
+- **001: Gone.** Same fix as TEACHER-Qg7-001.
+- **002: Gone.** The lesson now says plain `terraform output lb_address` prints a string in double quotes, and `-raw` prints it bare. The 7b-mc2 rationale for choice a uses the quotes as its reason, which matches the stem's "no surrounding quotes".
+- **003: Gone.** Same fix as TEACHER-Qg7-004.
+- **004: Gone.** Same fix as TEACHER-Qg7-007.
+- **005: Gone (optional item, handled).**
+  - 7a-mr e was replaced with a plausible wrong belief that the lesson refutes ("its format depends on the resource type", "find the required ID in the provider documentation").
+  - 7a-mr a, 7b-mr b and 7a-mc2 d were left with stated reasons. Each is still refuted by a taught sentence. I accept the reasons.
+
+## 3. The new 7b sentence
+
+It is accurate, clear and consistent with the rest of 7b.
+
+- It says plain `terraform output lb_address` prints a string in double quotes, in the page's example with the quotes included, and that `-raw` prints it bare.
+- It sits in the "For scripts" bullet right after the `-raw` quote ("no extra escaping or whitespace"), which reads naturally.
+- It supports the 7b-mc2 stem and rationale a. `claim_prose_check` passes.
+- Minor: the sentence splits the `-raw` and `-json` sentences within one bullet. This does not need a fix.
+
+## 4. Changed items, read as a lesson-only reader
+
+- **7a-mr e ("The ID is always the resource's name as shown in the cloud console").** It can be eliminated for a taught reason: the ID format depends on the resource type and comes from the provider docs. "always" is the only falsifying part, which is acceptable because "depends on the resource type" is taught. It is also the only "always" in the question, and it points away from the key (b, d), so it is a faint test-wise elimination cue only. Not blocking.
+- **7c-mc2 new c.**
+  - The two Pair concern: c ("Set `TF_LOG` to TRACE") and d (both variables at TRACE) share one refutation, because both also turn on the core logs. They are functionally the same outcome, so a test-wise reader could drop both on equivalence and be left with a (core-only) and b (provider-only).
+  - Why it does not point at the key: that leaves a 50/50 that only the taught CORE/PROVIDER split resolves. a fails on "does not include providers". All four choices use TRACE, so the level is not a cue. The key is not singled out by length or wording.
+  - The rationale's claim that `TF_LOG` also covers core rests on "broad one" and "only activate a subset", plus the quoted "Overrides all other logging environment variables". That is inferred but well supported. Low severity; see TEACHER-Qg7-008.
+- **7c-mr stem and e.** The stem no longer cues e. e is taught by the page's own wording, and no other choice twins it. Fine. The only echo is "log file" in the stem and e, which is structural and passes `stem_echo_check`.
+- **7b-mr e.**
+  - It is refuted by "not recommended" (Warnings bullet and rationale).
+  - "whenever" is an absolutism, but it is the legitimate falsifier here, because the docs recommend push only for manual modification.
+  - It no longer shares wording with key c in a way that points to c.
+  - Fine.
+- **7a-mc2 key (83 characters), 7a-mr stem, 7b-mc rationale, 7b-mc2 rationale a.** All can be chosen or eliminated for taught reasons. The 7b-mc2 rationale a is a long comma chain but is correct.
+
+## 5. New findings
+
+- **TEACHER-Qg7-008 (low, optional, 7c-mc2 c and d).**
+  - c and d have the same practical effect, as described in section 4.
+  - Fix, if you want it: accept as is (my recommendation, since the key is not singled out). Otherwise replace d with a single-variable distractor that the lesson refutes without touching `TF_LOG`, for example "Set `TF_LOG_PROVIDER` to TRACE and `TF_LOG_CORE` to ERROR". That would still include core logs, so it is not clearly better.
+  - I do not recommend a change.
+- No other new findings.
+
+**Verdict: close**
