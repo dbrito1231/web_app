@@ -64,3 +64,111 @@ Saved by the Lead Dev from the Teacher's reply (condensed; fixes and ownership v
 - Spare: implicit workspace creation by `init`, `.terraformignore`, Terraform 1.1+.
 
 Lesson tf-g8: not yet (fix 001–002; 003–007 may ride along) · Overall: concerns
+
+# Teacher round 2 — tf-g8 (c44481b)
+
+I read the lesson (4,861 words) and all 20 questions end to end. I re-ran the five scripts (content_lint, q1_batch_check, stem_echo_check, distractor_type_audit, claim_prose_check) and all pass. "HCP Terraform" sits at exactly 3/20 (15%) in the distractor audit. I checked the Read-role and run-task override facts against the HashiCorp docs with curl.
+
+## (a) My round 1 findings
+
+| Id | Status | Evidence |
+|---|---|---|
+| 001 | Gone | The policy-set quote is cut to "globally, to specific projects, workspaces" or "to workspaces with specific tags". "Sentinel and OPA policy sets only support workspaces" is quoted. Stacks are glossed once in 8b ("another kind of resource a project can hold… this lesson does not cover them"). The later "and Stacks" quotes in 8c point back with "(Stacks are glossed in 8b)". |
+| 002 | Gone | The 8b hard-mandatory bullet, the Enforcement-levels summary, the exam tip and Warnings bullet 5 all say hard mandatory is overridable only when the policy set allows it. 8b-mr key c matches. |
+| 003 | Gone | `#### Run triggers` and `#### Remote state and workspace locking` exist. The sentence separating a workspace lock from state locking (6b) is present. |
+| 004 | Gone | Remote now reads "The docs list Sentinel policy enforcement, cost estimation and notifications as features of remote execution". The Local line "disables remote execution" is quoted. |
+| 005 | Gone | 8a says "the default" for a workspace left on its default settings, and "a project or organization can set a different default; see 8c". |
+| 006 | Mostly gone | The "(8b explains…)" pointer is added, the stray `import` sentence is removed, and the saved-plan clause is replaced by the verified VCS limit. "Configuration version" is still not glossed (see TEACHER-Lg8-010). |
+| 007 | Gone | The intro now says "introduced HCP Terraform briefly". |
+
+## (b) Second-role check of AWS-Lg8-00x
+
+| Id | Status | Evidence |
+|---|---|---|
+| 001 | Gone | The override option, the "even policies set to Hard mandatory" quote and the precedence quote are all in 8b, and Warnings is reworded. |
+| 002 | Gone | 8c now teaches the layers: Project Default, then the organization's "Remote or Local", then "inherit the project default". 8d scopes "Remote" to a workspace that `terraform init` creates. 8a is qualified. |
+| 003 | Gone | The pull-request condition and destination-branch quotes are in 8a. |
+| 004 | Gone | The cost-estimation and policy-check stages are marked as conditional. |
+| 005 | Gone | Same fix as my 001. |
+| 006 | Gone | The saved-plan VCS limit and the v1.6.0 floor are both present. |
+| 007 | Gone | The quoted "enables advanced features, such as…" wording replaces the exhaustive reading. |
+| 008 | Gone | The Local-mode line is labelled "this follows from the requirement", and 8b-extra-05 words it the same way. |
+| 009 | Gone | The migration sentences now follow the order on the page: "requires all workspaces to have a name", then rename, then unique names. |
+| 010 | Not applied | Optional. |
+
+## (c) The lesson as a whole
+
+- **Coherence:** it is still coherent at 4,861 words. I found no new contradiction. The cross-references to 1b, 6b, 6c and 8a through 8d all hold.
+- **Objective coverage:** no objective is under-taught.
+- **Enforcement levels split:** the new `#### Enforcement levels` subsection is fine. It is about 150 words and gives the "trap" paragraph a clear home. It keeps each 8b subsection short, so I would keep it.
+- **TEACHER-Lg8-008 (low, 8b policy sets):** the text says a policy set applies "to specific projects", then calls Sentinel and OPA sets "workspace-only". The two read as a clash.
+  - Fix: change "are workspace-only:" to "do not cover Stacks:". The quote is unchanged.
+- **TEACHER-Lg8-009 (low, 8b Teams and permissions):** the lesson never states what Read allows, so 8b-mc distractor c rests on inference. I verified the docs table: "Read: View information about workspace runs." and "Plan: Queue Terraform plans in the workspace."
+  - Fix: add `Read means "View information about workspace runs."` beside the Apply and Plan quotes, with a claim row.
+- **TEACHER-Lg8-010 (low, 8a speculative plans):** "configuration version" is undefined for a college student.
+  - Fix: append "(the uploaded configuration a run uses)". No question depends on this.
+
+## (d) Questions
+
+I checked every choice against two tests: is it really wrong, and is the reason it is wrong taught in the lesson. Unless a row says otherwise, "really wrong?" and "reason taught?" are both yes for every distractor, and the key is right.
+
+- **Ownership:** followed in all 20 questions.
+- **Duplicates:** none. 8a-mc and 8c-mr overlap slightly, because 8c-mr distractor c is the negation of 8a-mc's key. They test different keyed facts, so I accept it.
+- **Letter references:** none in any rationale.
+- **Absolutes:** only on distractors, apart from the necessary qualifiers on 8b-mr c ("only when") and 8a-mr d ("cannot").
+- **Equivalent pairs:** none.
+
+| Question | Key | Verdict |
+|---|---|---|
+| 8a-mc | c | Distractor d (plan on laptop, apply remote) is a weak hybrid. TEACHER-Qg8-004. |
+| 8a-mc2 | a | Clean. Distractors b and c are eliminated by stem details (no repository, no commands). |
+| 8a-mr | b, d | Both keys are the two longest choices. TEACHER-Qg8-002. |
+| 8a-extra-00 | b | Clean. |
+| 8a-extra-04 | d | Clean. Choice c rests on "plan-only is the exception", which is adequate. |
+| 8b-mc | d | Choice c (Read) is eliminated only by inference. TEACHER-Qg8-001 and Lg8-009. |
+| 8b-mc2 | b | Clean. Choice d is a plausible, if thin, run-task misuse. |
+| 8b-mr | a, c | Both keys are the longest two (115 and 104 characters against 84, 79 and 56). TEACHER-Qg8-002. The content is right and consistent with Lg8-002. |
+| 8b-extra-01 | d | Clean. I confirmed the run-tasks docs mention no override for run tasks, so choice b is really wrong. |
+| 8b-extra-05 | b | Clean, and the Local-mode wording is honest. |
+| 8c-mc | a | Clean. |
+| 8c-mc2 | c | Clean. The "permissions at workspace scope" fact is taught in 8b. |
+| 8c-mr | a, e | Clean. |
+| 8c-extra-02 | a | The key says sharing is switched on "in the `network` workspace itself", but the lesson never says where the setting lives. Choice c (lock needed to read state) is a borderline invented rule. TEACHER-Qg8-005. |
+| 8c-extra-06 | c | Choice d ("Terraform stops…") is the longest choice and an outlier, while the key is the shortest. TEACHER-Qg8-006, minor. |
+| 8d-mc | b | Clean. |
+| 8d-mc2 | d | Clean. |
+| 8d-mr | c, d | Clean. Distractor a is refuted by the quoted "will not create a new workspace from this variable". |
+| 8d-extra-03 | c | Stem and key echo each other, and choice d is near-strawman. TEACHER-Qg8-003. |
+| 8d-extra-07 | a | Key wording "directories… trigger runs" is close to the lesson's wording but is a structural reference. Choice c is acceptable because it is taught as a filter on CLI uploads only. |
+
+Other checks:
+- **Caricatures:** 8a-mc d, 8c-extra-02 c and 8d-extra-03 d are the borderline ones, covered by Qg8-004, 005 and 003.
+- **Distractor-only "as…/because…" clauses:** none.
+- **Stem/key echo:** only 8d-extra-03 and, weakly, 8b-mc.
+
+New findings:
+- **TEACHER-Qg8-001 (low, 8b-mc):** the stem says "queue plan runs" and the key says Plan "queues Terraform plans". That is a keyword match on the role name.
+  - Fix: reword the stem to "submit changes for review and see what each would do, while a senior engineer decides what is applied". Add the Read quote from Lg8-009 so choice c is eliminated by a taught sentence.
+- **TEACHER-Qg8-002 (low, 8a-mr and 8b-mr):** in both questions the two keys are the two longest choices, a length tell.
+  - Fix for 8b-mr: shorten key a to "A failed OPA mandatory policy can be overridden by a user with Manage Policy Overrides". Shorten key c to "A failed Sentinel hard mandatory policy can be overridden only if its policy set allows overrides". Lengthen e to "OPA offers the same three enforcement levels as Sentinel: advisory, soft mandatory and hard mandatory".
+  - Fix for 8a-mr: lengthen c to "A commit pushed to any branch of the repository, including feature branches, queues a run".
+- **TEACHER-Qg8-003 (low, 8d-extra-03):** the stem asks about "the migration of that state" and the key says "migrate the existing state". Only the key shares that term with the stem.
+  - Fix: stem "What step actually brings that existing state into HCP Terraform?" Key "Run `terraform init` and answer yes when prompted to copy the existing state".
+- **TEACHER-Qg8-004 (low, 8a-mc):** distractor d says the plan runs on the laptop and only the apply runs remotely. Nobody believes this.
+  - Fix: replace it with "On HCP Terraform's machines only for repository-linked workspaces, while CLI runs stay on the laptop". The lesson refutes this with "CLI operations are remotely executed by default".
+- **TEACHER-Qg8-005 (low, 8c-extra-02):** drop the "in the `network` workspace itself" location claim from the key.
+  - Fix: use "State sharing is off by default and has to be enabled for `network`".
+- **TEACHER-Qg8-006 (low, 8c-extra-06):** shorten choice d to "Terraform reports an error for a key defined in several places".
+
+**LD-Qg8-001 ruling:** the Read distractor is really wrong. It is taught only by inference from the role ladder, and the lesson never says Read is the lowest role. I would not accept it as it stands. Add the verified Read quote (TEACHER-Lg8-009) and the Plan quote already there. With both in place, c is eliminated by a quoted contrast.
+
+**LD-Qg8-002 ruling on TERMS:** add only `run trigger` (3 questions, 15%, three different wrong reasons) and `variable set` (8c-mc2 b and extra-02 d, 10%). That is a safe addition, because the audit still passes at the cap.
+- Do not add the rest. `speculative plan`, `tfe_outputs` and `TF_WORKSPACE` appear in no distractor or in only one question. `TF_CLOUD_` appears only in 8d-mr.
+- Do not add `Sentinel` or `OPA`, since they are 8b's subject vocabulary.
+- Leave "HCP Terraform" as is.
+
+## (e) Numbers
+
+No question uses a number beyond "three enforcement levels" (8b-mr e), "two levels" and "all three workspaces". These match the lesson: Sentinel has advisory, soft mandatory and hard mandatory, OPA has two, and the three `app-` workspaces are in the stem. No tier, version or day count is used as a key.
+
+**not yet**
