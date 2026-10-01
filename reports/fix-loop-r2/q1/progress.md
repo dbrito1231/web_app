@@ -32,7 +32,7 @@ Pipeline per task:
 | 16 | lesson-tf-g3 | 21 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 21/21 | ✔ (AWS-Lg3-001 fabricated quote, AWS-Lg3-002 version boundary, TEACHER-Lg3-001–004, TEACHER-Qg3-001; Lead Dev pre-check: 3f dependents contradiction, 2 self-explaining choices, 2 match-the-flag reworks; 3 freebie distractors after Student) | ✔ 2026-09-27 |
 | 17 | lesson-tf-g4 | 24 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 24/24 | ✔ (AWS-Lg4-001/002, TEACHER-Lg4-001/002; Lead Dev pre-check 12 incl. 10 rationales with shifted letter refs, a sort() distractor that worked, stale nonsensitive() claim; AWS-Qg4-001–010, AWS-Lg4-013, TEACHER-Qg4-001–011; three fix passes, round 2c) | ✔ 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 12/12 | ✔ (AWS-Lg5-001–008, TEACHER-Lg5-001–007; Lead Dev pre-check LD-Qg5-001–006, incl. a blind distractor audit fixed by adding g5 TERMS and a form tell in 5c-mr; AWS-Qg5-001–008, TEACHER-Qg5-001–004; lesson 5c sentence added in round 2) | ✔ 2026-09-30 |
-| 19 | lesson-tf-g6 | 12 | | | | | | | |
+| 19 | lesson-tf-g6 | 12 | ✔ | ✔ | ✔ | ✔ | ✔ Tech close, Teacher close, Student packet 12/12 | ✔ (AWS-Lg6-001–004, TEACHER-Lg6-001–008; 5 unsupported proposed sentences dropped, 3 later restored from the correct overview page; LD-Qg6-001/002; AWS-Qg6-001–005, TEACHER-Qg6-001–006; Student found distractor-only justification clauses and 1 echo, fixed) | ✔ 2026-09-30 |
 | 20 | lesson-tf-g7 | 9 | | | | | | | |
 | 21 | lesson-tf-g8 | 20 | | | | | | | |
 

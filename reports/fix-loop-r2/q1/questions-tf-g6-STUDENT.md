@@ -23,3 +23,10 @@ Student verdict: fair
 - **6d-mr c:** now "... drops the database from state without destroying the real database". It no longer echoes "keeps running".
 
 **Checks:** the whole chain re-run on tf-g6 passes (lint, batch check with longest-is-key 25%, audit, echo, claim-prose, letter test). The rationales still match by content. These changes go to the Teacher for a second-role confirmation before close.
+
+## Teacher second-role check, and close
+- **Teacher's check:** the form tells and the echo are gone. The changed distractors are still real and still wrong for taught reasons; 6c-mc2 a still fails "No secrets may reach the repository". The rationales match, and 6c-mr's "new location" is accurate. Verdict: **Task tf-g6: close.**
+- **Remaining tails removed:** the Teacher noted three more "so …"/"because …" tails on distractors (6d-mr b, 6b-mr a and c). The Lead Dev removed them as well:
+  - 6d-mr b: "Renaming the block alone keeps the instance in place under its new address". Still refuted by "a renamed block is read as destroy the old object and create a new one".
+  - 6b-mr a and c: tails dropped.
+- **Checks:** the whole chain re-run passes.

@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Renaming the block alone keeps the instance, because Terraform matches state to resources by remote ID"
+      "text": "Renaming the block alone keeps the instance in place under its new address"
     },
     {
       "id": "c",

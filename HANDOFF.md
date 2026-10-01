@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 19 of 22 tasks closed (tf-g5 closed 2026-09-30). tf-g6 is in flight, in round 2; see "Where tf-g5 and tf-g6 stand" below.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g6: tf-g7 and tf-g8, then the final sitting (which adds CR-0019, CR-0021 and register row D6-FU).**
+**Status: 20 of 22 tasks closed (tf-g5 and tf-g6 closed 2026-09-30). tf-g7 and tf-g8 are in flight, with lessons being written.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, browser smoke test).**
 
 ## Where tf-g5 and tf-g6 stand (resume here; updated 2026-09-30)
 
@@ -23,7 +23,7 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 | Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | Done `23ceea2`: all findings applied, 136 rows; 6d split with `####`; 5 unsupported proposed sentences dropped |
 | Questions written | Done `f97c818`: pre-check findings fixed, audit PASS. `./` kept in 2 questions by Lead Dev decision. LD-Qg5-005 (a pair tell in 5c-mc2) is left to round 2 | **Running** (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` is binding) |
 | Round 2 (lesson findings Gone, plus questions) | **Closed** `6f1b81b`: round 2 fix pass `d688f95` (incl. a lesson 5c sentence and LD-Qg5-006 parallel form); tech and Teacher round 2b both close | Done: all lesson findings Gone. Questions not yet: 6d-mc2 refutation untaught (AWS-Qg6-001, TEACHER-Qg6-001; the import overview page has "To import multiple resources, use the import block", which the writer re-verifies and adds), 6a-mc2 untaught locking claim, plus rationale wording. Fix pass done `7e68d75` (the import-overview sentence verified and added as rows 137–140). Round 2b: **both close** (`f924a10`). Teacher misread 006 as unfixed; the Lead Dev verified it Gone |
-| Student, then close | **Closed 2026-09-30** `65d51ff`: Student 12/12, 0 keyword-guessable | Not started |
+| Student, then close | **Closed 2026-09-30** `65d51ff`: Student 12/12, 0 keyword-guessable | **Closed 2026-09-30**: Student 12/12; distractor-only justification clauses and 1 echo fixed |
 
 **Carry forward.**
 - **tf-g5 fact ownership (TEACHER-Lg5-006), for the question writer:** 5b owns `module.<name>.<output>` and "child must declare an output"; 5c owns the output shape and `init -upgrade`; 5d owns the lock file, the exact pin and registry-only `version`.
@@ -32,6 +32,7 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 - **tf-g6:** the S3 `use_lockfile` default and the DynamoDB-locking deprecation must be stated exactly as the page states them.
 - **`distractor_type_audit` TERMS** gained g5 constructs at `23ceea2`. A bare `./` path is not matchable, so count it by hand. g6 constructs were added at `60cbddc` (24 terms).
 - **Usage limit 2026-09-30:** all three agents stopped mid-task with nothing written; they were resumed from the same point. The tree was clean.
+- **New tell found by the Student in tf-g6:** "as …"/"because …" justification clauses on distractors only, which let a reader spot the keys by form. **Check for this in every future pre-check.**
 - **Both:** if a fresh session resumes, start new agents and hand them the impl and review reports. Session agent ids do not carry over.
 
 ## tf-g4 closed (2026-09-28)
@@ -145,7 +146,7 @@ Ordered by how much trouble each has caused.
 | 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
-| 19 | lesson-tf-g6 | 12 | **In flight**: both reviewers closed; Student running |
+| 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
 | 20 | lesson-tf-g7 | 9 | **In flight**: lesson being written (it must build on g6 §6d, which already teaches import and state list/show) |
 | 21 | lesson-tf-g8 | 20 | **In flight**: lesson being written (builds on g6 `cloud` block; 20 questions incl. 8 extras, so ~5 facts per objective) |
 

@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "The current S3 backend has removed the DynamoDB arguments, so any configuration still naming a table is rejected"
+      "text": "The current S3 backend has removed the DynamoDB locking arguments"
     },
     {
       "id": "b",
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "S3 locks state by default once `bucket` and `key` are set, so no further argument is needed"
+      "text": "S3 locks state by default once `bucket` and `key` are set"
     },
     {
       "id": "d",
