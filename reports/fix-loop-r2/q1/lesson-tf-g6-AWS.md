@@ -71,3 +71,56 @@ No other factual errors found; no absolute stated beyond the quoted text; versio
 Lesson tf-g6: approve for question writing (the four findings are wording fixes and one added row; none blocks questions, provided question writers follow the AWS-Lg6-001/002 guidance).
 
 Overall: approve
+
+---
+
+## Round 2
+
+Method: re-ran my table checker against the current `lesson-tf-g6-impl.md` (136 rows): 131 verbatim directly; the 5 misses are rows 15, 40, 50, 113 (link/code split, verified by hand in round 1) and row 125 (`lifecycle block ... required`, an ellipsis join of two fragments that the page separates with a pipe; both fragments are on the page's configuration-model line). Re-read the import command page, import overview, import-single, block/import and resource-drift pages to rule on the dropped sentences. Read the current lesson and all 12 `q-tf-004-6*.json` (keys from `correctAnswerIds`), and checked every citation id exists with `accessed: 2026-09-26`. No AWS, no terraform, no git, no content edits.
+
+### (a) My round-1 findings
+
+- AWS-Lg6-001: Gone. The lesson now states that the model marks `lifecycle` "required", that only `destroy` is supported, the opening-line tension, and "always write the `lifecycle` block and set `destroy` explicitly". It makes no claim about omitting it. Questions use only `lifecycle { destroy = false }`.
+- AWS-Lg6-002: Gone. The tip scopes 1.7 to "the remove-and-import workflow"; no question tests 1.7.
+- AWS-Lg6-003: Gone. The 1.1 sentence carries the page's wording and the `state mv` alternative; no question tests 1.1.
+- AWS-Lg6-004: Gone. The row-124 sentence is in 6c, verbatim.
+
+### (b) Second-role check of TEACHER-Lg6-001..008
+
+- 001 Gone (nesting shown; discriminator and tip use `lifecycle { destroy = false }`).
+- 002 Gone, and the writer was right to drop the five unsupported sentences. The `terraform import` command page says none of: "no plan preview", cannot generate configuration, must write the resource block first, "To import multiple resources, use the import block". I read the whole page text: it says only "Import will find the existing resource from ID and import it into your Terraform state at the given ADDRESS", the one-address warning, and "Instead of manually importing resources, you can add the import block ...". "Changes state immediately" and "records the rename for others" are on no fetched page either. The replacements (rows 97, 128-130) are verbatim and say no more than the source. Caution: the resource-drift tutorial itself says "This tutorial uses terraform import to bring infrastructure under Terraform management", so `terraform import` is a working way to adopt a bucket; a question may fail it only on a stated requirement (see AWS-Qg6-001).
+- 003 Gone (rows 131-136 verbatim; "legacy command" correctly scoped to moving resources between state files).
+- 004 Gone (four `####` headings plus "Putting it together"; garbled quote rewritten; one `**Exam tip:**` for 6d).
+- 005 Gone. 006 Gone (rows 121-123 verbatim; "HashiCorp's hosted service" is the lesson's attribution of the page's "hosted service", acceptable).
+- 007 Confirmed real and outside g6: g4 says "per group 3's state-security guidance" but g3 has no state-security text. The right pointer is g6's Warnings. g6's own cross-reference "group 4, section 4h covers how secret values reach state" is accurate (g4 has `### tf.004.4h ... Manage sensitive data` and opens with "Terraform stores those secrets in its state and plan files"). The CR against g4 stands.
+- 008 Gone (no fix needed).
+
+### (c)/(d) Question review
+
+All 12: keys correct; every distractor is a real Terraform option or a common belief; citations resolve; `mcpStatus` verified. MR stems carry "(Select TWO.)", and each joins two needs that every distractor addresses (6a: flags vs return-to-local; 6b: S3 locking vs force-unlock; 6c: `-migrate-state` vs `-force-copy`; 6d: rename vs forget), so the MR stem-need rule holds. No distractor is a working answer against its stem (6d-mc `terraform refresh` and plan-only fail "inspect before it is recorded" and "state updated"; 6d-mc2 `terraform import` fails "one reviewed run with adoption visible in the plan"). No fact is duplicated across the 12. Numbers and versions in keys and distractors: `-lock-timeout=0s` (default "0s" on the init page; used as a false "wait indefinitely" distractor, correct), `use_lockfile` default false (S3 page), and "1.5 or later" in the 6d-mc2 rationale (tutorial: "Terraform 1.5+ supports configuration-driven import"). No 1.1, 1.7 or 0.15.4 appears in any key or distractor. The S3 locking defaults and "deprecated and will be removed in a future minor version" match the page exactly; no `removed` question rests on the intro line.
+
+**AWS-Qg6-001 (Medium, q-tf-004-6d-mc2; this rules LD-Qg6-002).**
+- Is the `terraform import` distractor's refutation taught? Partly. The lesson never says the command lacks a preview or handles only one object, and rightly does not. It does teach that the block "lets you import multiple resources at once, review the import in your plan-and-apply workflow" (row 130), set beside a command whose usage is `ADDRESS ID`. A reader can infer the contrast, but "one object per run" is stated nowhere in the lesson, and only the stem's "adoption visible in the plan output" excludes the command.
+- Doc support for the rationale's claims: "one object per run" is supported only by the command page's usage line (`terraform import [options] ADDRESS ID`, one address and one ID) and by its examples each importing a single instance. "Several resources in one reviewed run" is supported (row 130). "The docs steer readers to the block" is supported (row 129). "Resource blocks alone ... Terraform would plan to create new buckets" is neither taught nor on a fetched page; the lesson says only that an `import` block is required and that a resource block must exist to stop Terraform destroying the object.
+- Keyword tell: "plan" is in the stem ("plan-and-apply run", "plan output") and in the key ("review `terraform plan` first") and in no distractor.
+- Fix 1, lesson (Importing paragraph, after the sentence ending "at the given ADDRESS."): add "Its usage line is `terraform import [options] ADDRESS ID`, so each run names one address and one ID." Add a claim row quoting "terraform import [options] ADDRESS ID" from https://developer.hashicorp.com/terraform/cli/commands/import.
+- Fix 2, stem: "Cobalt Retail has twenty S3 buckets created by hand in the console. They want all twenty adopted in a single reviewed run, with every adoption listed in a preview before anything is applied. How should they bring the buckets under management?"
+- Fix 3, rationale, replace "so Terraform would plan to create new buckets" with "so nothing is adopted", and replace the last sentence with: "The `terraform import ADDRESS ID` command names one address and one ID per run, and the docs steer readers to the `import` block instead, which lets you import multiple resources at once and review the import in the plan-and-apply workflow." Do not assert that the command shows no preview.
+
+**AWS-Qg6-002 (Low, 6a-mc rationale).** "HCP Terraform is only used when a `cloud` block connects the configuration to a workspace" is too strong: the docs' own examples use `backend "remote"` with `workspaces { name = ... }`, and the state page says remote state "is implemented by a backend or by HCP Terraform". Stem and key are fine.
+- Fix: "HCP Terraform is used when the configuration connects to a workspace there (the `cloud` block is the documented way), not by default; with no block declared, the state is the local file."
+
+**AWS-Qg6-003 (Low, 6a-mc2 rationale).** (1) "Other workspaces are supported through the `workspace_dir` setting" misstates it: `workspace_dir` is only "The path to non-default workspaces". (2) "Version control does not offer state locking or secure access control" generalises the page, which says to avoid "a version control system or other storage solution that does not support Terraform state locking and secure access control". The key is unaffected.
+- Fix: "The local backend has a `workspace_dir` setting for the path of non-default workspaces, so more than the default workspace is possible. The docs say to avoid a version control system or other storage that does not support state locking and secure access control, because it can lead to data loss or exposure of secrets, so committing the file is not a fix." The lesson's Warnings quote only the data-loss clause; either add "does not support Terraform state locking and secure access control" to that quote (it is verbatim on the state page) or drop the locking clause from the rationale.
+
+**AWS-Qg6-004 (Low, 6a-mr key a).** "the docs no longer recommend them for new systems" adds "for new systems"; the page says "we no longer recommend" the options.
+- Fix: "Those options are legacy features kept for backward compatibility, and the docs no longer recommend them".
+
+**AWS-Qg6-005 (Low, 6c-mc rationale).** "no setting writes state to two places" is supported by no page or lesson sentence; the supported point is mutual exclusivity.
+- Fix: replace "and no setting writes state to two places" with "so a cloud block cannot sit beside a backend block".
+
+Checked and not defects: 6b-mc2 stem "keep retrying" versus key "keeps trying" is a paraphrase and the verb also fits distractor c; 6c-mr key c is true in isolation (the unattended-job need is carried by key d); the 6a-mr stem timeline reads acceptably.
+
+Task tf-g6: not yet (AWS-Qg6-001 needs a lesson sentence, a claim row, and a stem and rationale rewrite; 002-005 are rationale wording and may ride along; I will recheck)
+
+Overall: concerns
