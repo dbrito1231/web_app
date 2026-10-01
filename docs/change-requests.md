@@ -260,6 +260,18 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: none yet
 - Teacher validation: proposed by the Teacher
 
+## CR-0021 — Lesson tf-g4 Warnings cite guidance that tf-g3 does not contain
+- Raised by: Teacher (tf-g6 round 1, TEACHER-Lg6-007)
+- Date: 2026-09-30
+- Type: content-error
+- Where: `content/lessons/lesson-tf-g4.json`, `### Warnings`, the bullet on `sensitive`
+- Problem: the bullet says to treat state as sensitive "per group 3's state-security guidance". A regex over `lesson-tf-g3.json` finds no such guidance, so this is an overclaiming cross-reference (the same defect class as TEACHER-Lg5-001).
+- Suggested fix: cite group 2's note that the state file can hold secrets, and group 6's warning, instead (g6 Warnings now teaches "state data contains extremely sensitive information"). Wording only.
+- Affects learning content: yes
+- Status: open. For the final sitting with D6-FU, unless the user asks sooner
+- Plan: none yet
+- Teacher validation: proposed by the Teacher
+
 ## Template
 
 ```markdown
