@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-moved-refactoring",
+  "title": "Refactor modules (moved blocks)",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claims that a moved block renames an address without destroying and needs Terraform v1.1 or later."
+}

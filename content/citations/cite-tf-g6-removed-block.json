@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-removed-block",
+  "title": "removed block reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/block/removed",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claims that a removed block destroys the real resource by default and lifecycle destroy = false keeps it."
+}

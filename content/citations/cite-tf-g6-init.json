@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-init",
+  "title": "terraform init command reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/init",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6c claims that init -migrate-state copies state, -reconfigure prevents migration, and -lock-timeout defaults to 0s."
+}

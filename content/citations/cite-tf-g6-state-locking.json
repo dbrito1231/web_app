@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-state-locking",
+  "title": "State: Locking",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/state/locking",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6b claims that locking is automatic only where the backend supports it, -lock=false is discouraged, and force-unlock is only for your own lock after automatic unlocking failed."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-state-commands",
+  "title": "terraform state commands",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/state",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claims that terraform state commands replace direct editing and that modifying subcommands always write a backup."
+}

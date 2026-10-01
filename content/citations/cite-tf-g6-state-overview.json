@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-state-overview",
+  "title": "State",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/state",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6a/6d claims that state defaults to terraform.tfstate with a .backup file, must not be hand-edited, and keeps a one-to-one mapping to remote objects."
+}

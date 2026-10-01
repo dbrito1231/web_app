@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-import-single",
+  "title": "Import a single resource",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/import/single-resource",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claim that a resource block must exist for any resource in state or Terraform will destroy it."
+}

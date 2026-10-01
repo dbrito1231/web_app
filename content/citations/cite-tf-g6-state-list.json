@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-state-list",
+  "title": "terraform state list command",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/state/list",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claim that terraform state list lists resources within state."
+}

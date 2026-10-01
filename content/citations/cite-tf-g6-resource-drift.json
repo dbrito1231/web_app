@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-resource-drift",
+  "title": "Manage resource drift",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/tutorials/state/resource-drift",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6d claims defining drift, the effect of -refresh-only, and that configuration-driven import needs Terraform 1.5 or later."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g6-force-unlock",
+  "title": "terraform force-unlock command reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/force-unlock",
+  "accessed": "2026-09-26",
+  "note": "Backs the 6b claims that force-unlock does not modify infrastructure and that local state files cannot be unlocked by another process."
+}
