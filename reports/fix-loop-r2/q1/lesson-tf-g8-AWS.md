@@ -98,3 +98,131 @@ Two Medium findings (AWS-Lg8-001, AWS-Lg8-002), each with a doc-verified fix and
 Lesson tf-g8: not yet
 
 Overall: concerns
+
+## Round 2 (c44481b)
+
+**Method.** I fetched all 32 cited pages this turn with `curl -sSL` and stripped the HTML with Python. I then machine-checked every double-quoted span in `bodyMarkdown`: 221 spans, of which 198 are on the cited pages and the other 23 are exam-tip scenario phrases, which are not doc text by design. I read context for the new and changed rows. I read the lesson, all 20 questions (every choice and rationale) and the 6b text. Nothing was written, and I ran no git, terraform or AWS.
+
+### (a) My round-1 findings
+
+- **AWS-Lg8-001: Gone.** The 8b hard-mandatory bullet, the tip and Warnings bullet 5 all say overridable only when the policy set allows it. The three doc quotes in the bullet (rows 229–231) are verbatim, and the lesson does not overstate them. Question 8b-mr key c uses "only when its policy set is configured to allow overrides".
+- **AWS-Lg8-002: Gone.** 8a qualifies "the default". 8c has a "Defaults come in layers" paragraph with the quote "which is either Remote or Local" and "inherit the project default". 8d is scoped to a `terraform init`-created workspace. No question keys on a generic default mode.
+  - One wording nit is logged as AWS-Lg8-011 below.
+- **AWS-Lg8-003: Gone.** Rows 223 and 224 are present and verbatim.
+- **AWS-Lg8-004: Gone, with a small gap.** The "only occurs if cost estimation is enabled" and "only occurs if Sentinel policies are enabled" quotes are verbatim. See AWS-Lg8-014.
+- **AWS-Lg8-005: Gone.** The lesson now says "Sentinel and OPA policy sets only support workspaces" (row 227), and "Stacks" is out of the quoted policy-set wording.
+- **AWS-Lg8-006: Gone.** The sentence "remote saved plans are for workspaces without a linked VCS repository" is in 8a (row 226).
+- **AWS-Lg8-007: Gone.** The Remote bullet now carries the quote "enables advanced features, such as Sentinel policy enforcement, cost estimation, notifications" and is not framed as exhaustive. "Local mode 'disables remote execution'" is the page's "This mode disables remote execution".
+- **AWS-Lg8-008: Gone.** The lesson and the extra-05 rationale both carry the "this follows from the requirement; the docs do not name Local mode" label.
+- **AWS-Lg8-009: Gone.** The rename sentence is in the page's order, and the "must have unique names" quote is attached to the CLI-workspace rename.
+- **AWS-Lg8-010: not applied; acceptable.** The lesson is 4,861 words. The longest `####` subsection is 344 words, and the 8b split brings the others down to 213–336. Density is a readability risk, not a coverage or accuracy risk.
+
+### (b) Second-role check of TEACHER-Lg8-001..007
+
+- **001: Gone.** The narrowed quotes are in, the Sentinel/OPA-only sentence is in, and Stacks are glossed once in 8b. The 8c variable-set quotes still contain "and Stacks" but carry "(Stacks are glossed in 8b)".
+- **002: Gone.** The hard-mandatory bullet, the Warnings bullet and the tip are all fixed.
+- **003: Gone.** The `#### Run triggers` (77 words) and `#### Remote state and workspace locking` (336 words) split is done, with the lock versus state-lock contrast. One qualifier is logged as AWS-Lg8-013.
+- **004: Gone.**
+- **005: Gone.**
+- **006: Gone.** The writer's deviation is correct. The page does not say "marked as a speculative run in the runs API". It says the runs API creates speculative plans "whenever the specified configuration version is marked as speculative" and points to the configuration-versions API; I read both on the page. The stage-list pointer is added and the stray `terraform import` sentence is gone.
+- **007: Gone.**
+- **Unrequested `#### Enforcement levels` split: fine.** Both halves stay under 240 words, and the Markdown subset still holds.
+
+### (c) Rows 220–234
+
+All 15 quotes are verbatim on the page named in each row's URL column. I read the context of rows 229–231, 232, 233, 234 and 228.
+
+| Rows | Exact claim? |
+|---|---|
+| 220, 221 | Yes. |
+| 222 | Yes. |
+| 223, 224 | Yes. |
+| 225 | Yes. The page says the runs API creates speculative plans when the configuration version is marked speculative, and points to the configuration-versions API. |
+| 226 | Yes. |
+| 227 | Yes. |
+| 228 | Yes. See below. |
+| 229, 230, 231 | Yes. The page text is "This policy set can be overridden in the event of mandatory failures", "even policies set to Hard mandatory" and "takes precedence over the individual policy's enforcement level", and the lesson uses them at the same strength. |
+| 232 | Yes. The page says "This mode disables remote execution", about Local mode. |
+| 233 | Yes. |
+| 234 | Yes. The same sentence continues "and also prevents many kinds of plans". See AWS-Lg8-013. |
+
+- **Row 228** (`cite-tf-g8-projects-manage`): the page reads "A project is a folder containing one or more workspaces, Stacks, or both." The lesson's gloss ("another kind of resource a project can hold next to workspaces ... this lesson does not cover them") is accurate.
+- **Citation file:** it exists with the right URL and a correct note, is in `citationIds`, and every question citation id resolves.
+
+### (d) Questions
+
+All 20 keys are correct per the docs. All 20 have `mcpStatus: "verified"`, `reviewedOn: "2026-09-26"` and resolving citations. No rationale uses a letter reference. I found no distractor-only "as…/because…" clauses and no duplicate facts. Teacher fact ownership is followed throughout.
+
+**Rulings requested**
+
+- **LD-Qg8-001 (8b-mc, Read): acceptable, one optional strengthening.**
+  - Read really cannot queue plans. The docs' role table marks "Plan runs" as unavailable to Read, and Read is described as "Read workspace runs".
+  - The lesson supports this only by inference: the "builds upon the previous level" ladder, plus "Plan means Queue Terraform plans". That is a sound deduction for a student, so I do not block on it.
+  - Optional: add one sentence to 8b quoting the Read description.
+- **extra-07 c (`.terraformignore`): acceptable.**
+  - It really is wrong. The docs scope it to excluding files from a CLI-driven upload, and VCS runs take their code from the repository. The lesson teaches both halves.
+  - "Does not filter VCS triggers" is an inference; no page says it. Optional rationale softening: "it is not the setting the docs name for choosing which repository files trigger runs".
+- **extra-04 rationale cross-reference to 6b: accepted.** 6b teaches that the `-lock-timeout` default "0s ... causes immediate failure if the lock is already held". That is true Terraform behavior, and g8 explicitly builds on 6b.
+- **8d-mr a (`TF_WORKSPACE`): accepted.** The page says "HCP Terraform will not create a new workspace from this variable", and the lesson quotes it.
+- **extra-06 (`-var` precedence): key correct, but exposed. See AWS-Qg8-001.**
+
+**Version and edition checks**
+
+- **`tags` vs newer `cloud` forms:** the page now allows `tags` as a list or a map. The key in 8d-mc2 ("a tag that all three workspaces carry") is valid in either form, and `prefix` is correctly excluded.
+- **Editions:** no key depends on a tier. extra-05 and 8b-mc2 are silent on edition, which is acceptable under the Teacher's rule.
+- **Remote -var:** `-var` in a CLI-driven remote run works. The docs say "Terraform 1.1 and later" for run-specific variables, and neither lesson nor stem states that floor (fine at this age).
+
+**Findings**
+
+**AWS-Qg8-001 (Medium, extra-06 and the lesson's 8c precedence sentence).**
+- The variables page ranks "Priority global variable sets" above `-var`: "If prioritized, variables in a global variable set have precedence over all other variables with the same key."
+- The lesson quotes only "`-var` ... overwrite workspace-specific and variable set variables" with no exception. The stem says "a global variable set" with no priority qualifier, so distractor a is true under a legitimate reading.
+- Fix, lesson: after the precedence sentence add "A variable set marked as priority is the exception: 'If prioritized, variables in a global variable set have precedence over all other variables with the same key.'" Add a claim row (cloud-docs/variables, 18 words).
+- Fix, stem: "a global variable set that is not marked as priority".
+- Add a rationale clause that this question uses a non-priority set.
+- This is the lesson finding AWS-Lg8-012 below.
+
+**AWS-Qg8-002 (Medium, 8c-mc2 distractor d).**
+- "Move pricing into the Default Project and rely on that project's permissions" can satisfy every stated requirement. If both teams hold access on the Default Project, it works. The stem states no constraint that rules it out.
+- Fix: add to the stem "Neither team should gain access to workspaces it does not already use."
+- Fix: reword the rationale for d to say that moving the workspace either leaves both teams without access or hands them everything in the Default Project.
+
+**AWS-Qg8-003 (Low, extra-03).**
+- The stem's "completes the migration of that state" and the key's "migrate the existing state" share a term that no distractor carries. That is a stem/key echo.
+- Option a also presupposes an existing `backend` block while the stem says only "the default local backend".
+- Fix, stem: "What gets that state into the HCP Terraform workspace?" Fix, option a: "Keep a `backend "local"` block beside the `cloud` block until the state has moved".
+- Option d (destroy and re-apply) is borderline strawman. I accept it because the rationale refutes it by the in-place migration fact.
+
+**AWS-Qg8-004 (Low, extra-02 distractor c).**
+- "The network workspace has to be locked before another workspace can read its state" is an invented requirement that no candidate would believe.
+- Fix: replace with "The two workspaces sit in different projects, and remote state only works within one project". This is refuted by the three taught share scopes and is a real misconception.
+
+**AWS-Qg8-005 (Low, 8b-mc key d).** "without the apply permission" restates the stem's sign-off requirement inside the key, like the banned "without changing". Fix: "Plan, which can queue Terraform plans".
+
+**AWS-Qg8-006 (Low, 8a-mr distractor c).**
+- "A commit pushed to any branch queues a run" is arguably true for a speculative plan on a pull request, per the lesson's own 8a.
+- Fix: "A commit pushed to any other branch of the repository queues a regular plan-and-apply run in this workspace".
+
+**Lesson additions**
+
+- **AWS-Lg8-011 (Low, 8c "Defaults come in layers").** "The one place the docs state Remote as the default" contradicts the 8a quote "(the default)" from the workspaces page. Fix: "One place".
+- **AWS-Lg8-012 (Medium).** Same as AWS-Qg8-001: the precedence sentence omits priority variable sets.
+- **AWS-Lg8-013 (Low, 8c locking).** "Locking a workspace stops new HCP Terraform runs" is too broad. The page adds "Locking does not affect plan-only runs or the planning stages of saved plan runs". Fix: add "(plan-only runs are not affected)".
+- **AWS-Lg8-014 (Low, 8a stage conditions).** "A run without those features skips them" could read as if OPA does not exist. The page also has "The OPA Policy Check Stage ... only occurs if you enabled Open Policy Agent (OPA) policies". Fix: add "(an OPA policy check stage occurs only when OPA policies are enabled)". No question depends on it.
+
+### (e) Numbers
+
+- Numbers in keys and rationales:
+  - Sentinel has three levels (advisory, soft mandatory, hard mandatory) and OPA has two. Both are on the page ("OPA provides two policy enforcement levels"), and 8b-mr e is correctly false.
+  - The only other number is the three workspaces named in 8d-mc2's stem.
+- Lesson numbers, all verbatim on pages and unchanged:
+  - 14 days.
+  - Up to 20 source workspaces.
+  - Five users, and one policy set of up to five policies.
+  - Terraform 1.1.9.
+  - CLI v1.6.0.
+  - Terraform v1.1.
+  - Four imports and four run-task stages.
+  - April 22, 2024.
+
+Task tf-g8: **not yet** (AWS-Qg8-001 and its lesson sentence, and AWS-Qg8-002, are required; the rest are Low and may ride along).
