@@ -147,8 +147,8 @@ Ordered by how much trouble each has caused.
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
 | 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
-| 20 | lesson-tf-g7 | 9 | **In flight**: lesson written (2,442 words, 104 rows; builds on 6d; cross-references to g3 and g4 verified); round 1 running |
-| 21 | lesson-tf-g8 | 20 | **In flight**: lesson being written (builds on g6 `cloud` block; 20 questions incl. 8 extras, so ~5 facts per objective) |
+| 20 | lesson-tf-g7 | 9 | **In flight**: round 1 done (tech approve; Teacher not yet: `TF_LOG_PATH` and lineage/serial); writer applying fixes, then writing the 9 questions (ownership in `lesson-tf-g7-TEACHER.md`) |
+| 21 | lesson-tf-g8 | 20 | **In flight**: lesson written `c1a80ac` (4,495 words, 219 rows; cross-references to g1/g4/g6 verified); round 1 running |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
