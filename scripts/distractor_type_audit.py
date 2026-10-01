@@ -80,8 +80,10 @@ TERMS = [
     # tf-g7 (maintain infrastructure). Bare `TF_LOG` and the level names
     # (TRACE, DEBUG ...) are 7c's own subject vocabulary and are left out,
     # the same way bare `version` was left out for tf-g5's 5d.
+    # `identity` was removed in the final sitting: it appeared in one tf-g7
+    # question only and matched IAM "identity", task 1-1's own subject.
     "TF_LOG_PATH", "TF_LOG_CORE", "TF_LOG_PROVIDER",
-    "-raw", "-json", "state pull", "state push", "identity", "terraform show",
+    "-raw", "-json", "state pull", "state push", "terraform show",
     "terraform output", "-force",
     # tf-g8 (HCP Terraform), per the Teacher's round 2 ruling. Sentinel, OPA
     # and bare "HCP Terraform" stay out as 8b's and the group's own subject
