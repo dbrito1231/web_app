@@ -147,7 +147,7 @@ Ordered by how much trouble each has caused.
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
 | 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
-| 20 | lesson-tf-g7 | 9 | **In flight**: lesson being written (it must build on g6 §6d, which already teaches import and state list/show) |
+| 20 | lesson-tf-g7 | 9 | **In flight**: lesson written (2,442 words, 104 rows; builds on 6d; cross-references to g3 and g4 verified); round 1 running |
 | 21 | lesson-tf-g8 | 20 | **In flight**: lesson being written (builds on g6 `cloud` block; 20 questions incl. 8 extras, so ~5 facts per objective) |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
