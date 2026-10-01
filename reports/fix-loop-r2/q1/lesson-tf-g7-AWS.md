@@ -169,3 +169,61 @@ There are no numbers in any key or rationale. Counts such as "two checks", "thre
   - Fix: use a more plausible form for each, for example 7a-mr a "refuses to adopt a broker it finds unhealthy".
 
 **Verdict: not yet.** AWS-Qg7-001 and -002 need a small fix, and -003 and -004 are quick wording changes. The lesson fixes are all Gone.
+
+## Round 2b (1b16cf3)
+
+I read the output, state push, plugin/log/managing and debugging pages with curl. I wrote no files.
+
+**1. AWS-Qg7-00x**
+- **001: Gone.** The 7b-mc rationale now reads "An address pattern filters by address, not by resource ID, so only `-id` finds the resource that has this ID." The bare-type claim is gone, and choice b is unchanged.
+- **002: Gone.**
+  - The output page shows plain `terraform output lb_address` printing `"my-app-alb-1657023003.us-east-1.elb.amazonaws.com"` with quotes, and `-raw` printing it bare.
+  - The lesson sentence in 7b "Reading outputs" says the same.
+  - The 7b-mc2 rationale now names the quotes as a reason.
+- **003: Gone.** 7b-mr e is now "The docs recommend adding `-force` whenever a push is refused". The push page says "This is not recommended" and "We only recommend using this command when you must manually modify the remote state". The rationale cites both.
+- **004: Gone.**
+  - The "rerun twice" hook is out of the 7c-mr stem.
+  - Choice e is now a general fact.
+  - The "without truncating the file contents" wording matches the plugin/log/managing page verbatim.
+- **005: Left, which is acceptable.**
+  - The new 7a-mr e is covered in item 4.
+  - Choices a, 7b-mr b and 7a-mc2 d are still mild, but each is a real confusion and refuted by taught text.
+
+**2. TEACHER-Qg7-00x**
+- **001:** Gone, same fix as AWS-001.
+- **002:** Gone. The 7a-mc2 key is now 83 characters, and the other choices are 69–84 characters.
+- **003:** Gone. The 7a-mr stem now matches choices c and e.
+- **004:** Gone, same fix as AWS-003.
+- **005:** Acceptance is reasonable. The level ladder is the taught contrast for 7c-mc, and a is the only choice that fails on one requirement alone.
+- **006:** Gone, with the pair note in item 4.
+- **007:** Gone, same fix as AWS-004.
+
+**3. Rows 119–120: both match.**
+- Row 119 quotes "To query for the DNS address of the load balancer:", and the page's example output shows the string in double quotes.
+- Row 120 quotes "which will print the string directly with no extra escaping or whitespace", and the page shows `-raw` printing it bare.
+- The lesson sentence matches both rows.
+
+**4. Changed items, re-read in isolation**
+- **7a-mr e ("always the resource's name as shown in the cloud console"):** real, wrong, and refuted by a taught sentence.
+  - It is a real misconception, because some IDs are names (S3 bucket, IAM role).
+  - It is wrong because many IDs are not names (`sg-…`, ARNs, composite IDs).
+  - It is taught by "its format depends on the resource type" and "find the required ID in the provider documentation".
+  - "Always" is an absolutism tell, but it is what makes the statement false. No key carries an absolute, so it is a mild cue. It is acceptable and not worth fixing.
+- **7c-mc2 c ("`TF_LOG` to TRACE"):** real, wrong, and refuted by a taught sentence.
+  - It is real because teams do set `TF_LOG`.
+  - It is wrong for the plugins-only stem.
+  - It is taught by "`TF_LOG` is the broad one" and "Overrides all other logging environment variables".
+  - c and d do share a refutation, because both also turn on core logs, so they are outcome-equivalent.
+  - This is not a key tell. Eliminating the pair still leaves a and b, which need the taught `TF_LOG_CORE` and `TF_LOG_PROVIDER` coverage to separate.
+  - All four choices using TRACE is good design, since only the variable differs. Low and acceptable.
+- **7c-mr e and stem:** the stem is neutral and e is a general fact verbatim from the page. It is a key, so there is no distractor issue.
+- **7b-mr e (`-force`):** real, wrong, and refuted by a taught sentence.
+  - People do force a push.
+  - The docs say "This is not recommended", and the lesson quotes it.
+  - It shares the `-force` token with key c, but c states what `-force` does and e states advice. That is a clean taught contrast, not a tell.
+  - The rationale's final sentence is accurate.
+- **Other edits:** 7b-mc2 a, 7a-mc2 and 7a-mr stem read cleanly. In 7b-mc2 a, the "quotes" reason now matches the stem's "no surrounding quotes".
+
+**5. New findings:** none above trivial. Optional only: the 7c-mc2 c/d outcome-equivalence noted above (low).
+
+**Verdict: close**
