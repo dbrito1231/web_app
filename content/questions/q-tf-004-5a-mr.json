@@ -19,11 +19,11 @@
     },
     {
       "id": "c",
-      "text": "The address has to begin with `./` because the file is fetched to local disk first"
+      "text": "The address can use the three-part `<NAMESPACE>/<NAME>/<PROVIDER>` shape, with the bucket name as the namespace"
     },
     {
       "id": "d",
-      "text": "`terraform plan` fetches the newer file by itself, because sources are evaluated at plan time"
+      "text": "The new file is picked up only after the `.terraform` directory has been deleted and recreated"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "b",
     "e"
   ],
-  "rationale": "For an S3 source the object must be an archive, and the address uses the `s3::` prefix. Changing the `source` argument requires another `terraform init`, because modules are installed at initialization. Loose `.tf` objects are not a supported shape for this kind of source, which expects one archive object. A leading `./` marks a local path to files already on disk, not a packaged file in a bucket. Plan does not fetch module code; sourcing happens at install time, not at plan time.",
+  "rationale": "For an S3 source the object must be an archive, and the address uses the `s3::` prefix. Changing the `source` argument requires another `terraform init`, because modules are installed at initialization. Loose `.tf` objects are not a supported shape for this kind of source, which expects one archive object. The three-part `NAMESPACE/NAME/PROVIDER` shape is a registry address, while a bucket object is addressed with the `s3::` prefix. Nothing requires deleting the `.terraform` directory: re-running init after the edit is what installs the new code.",
   "citationIds": [
     "cite-tf-g5-module-block"
   ],

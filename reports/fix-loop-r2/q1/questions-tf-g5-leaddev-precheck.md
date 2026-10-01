@@ -23,3 +23,8 @@ All 12 questions and every choice were read. Keys and rationales are correct, an
   - Replace 5a-mr c.
 - **LD-Qg5-003 (medium): duplicate fact.** 5a-mc2 a ("Add a `version = "2.3.0"` argument") tests "`version` is registry-only", which is 5d-mc's key fact and owned by 5d. Replace it with a 5a-owned misconception about selecting a Git revision. It also brings `version =` under the cap.
 - **LD-Qg5-004 (low): 5d-mr d** ("A range such as `version = "~> 6.0"` keeps the first release installed on every later run"). It is false for CI only because each run is a fresh install. 5c teaches that a plain repeat `init` does not change an installed module. Add "fresh" to the stem ("every CI run, each starting from a fresh clone") so the reason is determinate.
+
+## After the pre-check fix pass
+All four findings were applied. `distractor_type_audit` passes: every type is in at most 1 of 12 questions.
+- **Lead Dev exception, recorded:** a bare `./` local path stays a distractor in 5a-mc (5a owns source shapes) and 5d-mc (5d owns "local paths do not support `version`"). That is 2 of 12, kept deliberately because each tests a different owned fact.
+- **New issue for round 2 (LD-Qg5-005):** 5c-mc2's replacement distractor ("`.terraform` subdirectory, committed so teammates skip the download") pairs with the key ("`.terraform` subdirectory ... kept out of version control"). The two differ only in commit versus don't-commit, which points at the key; the same true/false-pair pattern was rejected in D6. The reviewers should rule on it and propose a replacement.

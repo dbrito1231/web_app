@@ -116,3 +116,59 @@ Cap is 15% (1 question for 12). During the pass `-upgrade` was at 2 (5a-mc2, 5d-
 - `stem_echo_check.py tf-g5`: PASS (0 giveaways, 0 waivers, 0 bulk echoes).
 - `claim_prose_check.py tf-g5`: PASS (16 numbers in lesson prose; every claim-table number appears in it).
 - `test_q1_letter.py`: PASS (12 bad, 10 good, 0 failures).
+
+## Pre-check fix pass
+
+Applied LD-Qg5-001 to 004. Key positions are unchanged (5a-mc2 d; 5a-mr b,e; 5c-mc2 a; 5d-mr a,c). 5c-mr is kept as the owner of install behaviour, 5a-mc and 5d-mc keep their `./` distractor as directed.
+
+Old and new text:
+
+- **LD-Qg5-003 (5a-mc2 choice)**
+  - Old: 'Add a `version = "2.3.0"` argument to the module block'
+  - New: 'Append `//v2.3.0` to the repository address'
+
+- **LD-Qg5-003 (5a-mc2 rationale)**
+  - Old: The `version` argument applies only to registry modules, so it does not select a revision of a GitHub repository.
+  - New: A double slash marks a folder inside the package, not a revision, so a slash-delimited tag name would be read as a folder path instead of selecting the tag.
+
+- **LD-Qg5-002 (5a-mr choice)**
+  - Old: 'The address has to begin with `./` because the file is fetched to local disk first'
+  - New: 'The address can use the three-part `<NAMESPACE>/<NAME>/<PROVIDER>` shape, with the bucket name as the namespace'
+
+- **LD-Qg5-001 (5a-mr choice)**
+  - Old: '`terraform plan` fetches the newer file by itself, because sources are evaluated at plan time'
+  - New: 'The new file is picked up only after the `.terraform` directory has been deleted and recreated'
+
+- **LD-Qg5-001 + LD-Qg5-002 (5a-mr rationale)**
+  - Old: A leading `./` marks a local path to files already on disk, not a packaged file in a bucket. Plan does not fetch module code; sourcing happens at install time, not at plan time.
+  - New: The three-part `NAMESPACE/NAME/PROVIDER` shape is a registry address, while a bucket object is addressed with the `s3::` prefix. Nothing requires deleting the `.terraform` directory: re-running init after the edit is what installs the new code.
+
+- **LD-Qg5-001 (5c-mc2 choice)**
+  - Old: 'Nowhere on disk, because Terraform reads each source remotely again at plan time'
+  - New: 'In a `.terraform` subdirectory of the working directory, committed so teammates skip the download'
+
+- **LD-Qg5-001 (5c-mc2 rationale)**
+  - Old: Modules are cloned at initialization and read from the local copy afterwards; sourcing does not happen at plan time.
+  - New: The `.terraform` directory itself should not be committed, even though that is where the copies land.
+
+- **LD-Qg5-004 (5d-mr stem)**
+  - Old: wants every CI run to install the identical release of a registry module.
+  - New: wants every CI run, each starting from a fresh clone, to install the identical release of a registry module.
+
+Two-question check for each new distractor (Real? and Taught?):
+
+- **5a-mc2 `Append //v2.3.0 to the repository address`:** Real? yes, people reuse the double slash they have seen in sources and expect it to take a revision. Taught? yes, the lesson says a double slash marks a folder inside the package and that `ref` is what selects a revision. Not a working answer: it names a folder that does not exist.
+- **5a-mr `three-part <NAMESPACE>/<NAME>/<PROVIDER> shape with the bucket name as namespace`:** Real? yes, a plausible way to shorten an S3 address. Taught? yes, that shape is the registry shape, and the lesson teaches `s3::` for bucket objects. Not a working answer: it would be read as a registry address. Answers the packaging/address need.
+- **5a-mr `picked up only after the .terraform directory has been deleted and recreated`:** Real? yes, a common folk remedy. Taught? yes, the lesson says changing `source` needs a fresh `terraform init` so that Terraform can update the local code; nothing requires deleting the directory. Not a working answer as worded ("only after"): re-running init alone installs the code. Answers the edit need.
+- **5c-mc2 `.terraform subdirectory, committed so teammates skip the download`:** Real? yes, teams do consider committing it. Taught? yes, "Don't commit this directory to your version control repository". Not a working answer: the stem asks whether the copies belong in the repository. It shares its first half with the key, so the question's difference is the commit decision only; the stem asks both parts.
+- **5d-mr stem:** now "each starting from a fresh clone", so distractor d (a range keeps the first release on every later run) is false because a fresh install selects the newest release the range allows, which the lesson teaches.
+
+Rationales were rewritten by content (the replaced sentences are above); none refers to a choice by letter.
+
+Counts after the pass:
+
+- The audit no longer shows `version =` or `plan time` over cap: `version =` is 1 (5d-mr), and "plan time" appears in no choice. Plan appears only as a distractor in 5c-mr.
+- A bare `./` distractor (counted by hand, the script cannot match it): 5a-mc and 5d-mc, 2 of 12. This is above the 1-question cap for 12; the Lead Dev's instruction was to keep both (5a-mc owns source shapes and 5d-mc owns "local paths do not support `version`"), so the over-cap is accepted and flagged here.
+- Key length ranks unchanged for the edited MC: 5a-mc2 key is rank 3 (the replaced choice is short), 5c-mc2 key is rank 2. Longest-is-key 1/8 (12%), shortest-is-key 2/8 (25%).
+
+Final chain, whole files: `content_lint.py` PASS; `q1_batch_check.py tf-g5` PASS (details above); `distractor_type_audit.py tf-g5` PASS (every type at 1 of 12); `stem_echo_check.py tf-g5` PASS (0 giveaways, 0 bulk echoes); `claim_prose_check.py tf-g5` PASS; `test_q1_letter.py` PASS (12 bad, 10 good, 0 failures).

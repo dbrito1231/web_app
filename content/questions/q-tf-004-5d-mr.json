@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.5d"
   ],
-  "stem": "(Select TWO.) Orchid Logistics commits `.terraform.lock.hcl` and wants every CI run to install the identical release of a registry module. Which two statements are accurate?",
+  "stem": "(Select TWO.) Orchid Logistics commits `.terraform.lock.hcl` and wants every CI run, each starting from a fresh clone, to install the identical release of a registry module. Which two statements are accurate?",
   "selectCount": 2,
   "choices": [
     {
