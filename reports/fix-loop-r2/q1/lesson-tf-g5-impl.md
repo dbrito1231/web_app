@@ -71,7 +71,7 @@ Each objective supports 3 questions (mc, mc2, mr) on different facts, and the le
 | 32 | 5c | Root module = .tf files in working directory | https://developer.hashicorp.com/terraform/language/modules/develop | The .tf files in your working directory when you run terraform plan or terraform apply together form the root module. |
 | 33 | 5c | Child modules are those configured with module blocks | https://developer.hashicorp.com/terraform/language/modules | Modules you configure using module blocks are called child modules. |
 | 34 | 5c | Nested child modules are possible | https://developer.hashicorp.com/terraform/language/modules | The root module can also call a child module that calls its own nested child module. |
-| 35 | 5c | Recommendation: flat module tree | https://developer.hashicorp.com/terraform/language/modules/develop/composition | we strongly recommend keeping the module tree flat, with only one level of child modules |
+| 35 | 5c | Recommendation: flat module tree | https://developer.hashicorp.com/terraform/language/modules/develop/composition | in most cases we strongly recommend keeping the module tree flat, with only one level of child modules |
 | 36 | 5c | Example connecting modules with an expression at the root | https://developer.hashicorp.com/terraform/language/modules/develop/composition | vpc_id = module.network.vpc_id |
 | 37 | 5c | Flat style is called module composition | https://developer.hashicorp.com/terraform/language/modules/develop/composition | We call this flat style of module usage module composition |
 | 38 | 5c | Module author decides the inputs | https://developer.hashicorp.com/terraform/language/block/module | The module developer determines which inputs you can specify for the module. |
@@ -120,6 +120,10 @@ Each objective supports 3 questions (mc, mc2, mr) on different facts, and the le
 | 81 | 5d | Recommendation: specific versions for third-party modules | https://developer.hashicorp.com/terraform/language/expressions/version-constraints | Require specific versions to ensure that updates only happen when convenient to you when your infrastructure depends on third-party modules. |
 | 82 | 5d | init -upgrade moves a registry module to the latest allowed version | https://developer.hashicorp.com/terraform/language/modules/configuration | include the -upgrade flag to upgrade the module to the latest version allowed by the version constraint. |
 | 83 | 5d | Git source pinned with ?ref= tag (v1.2.0 example) | https://developer.hashicorp.com/terraform/language/modules/configuration | Terraform selects the module version from a Git repository tagged as v1.2.0: |
+| 84 | 5a | HTTPS URL with archive extension is used directly as the archive | https://developer.hashicorp.com/terraform/language/block/module | If an HTTPS URL has a common file extension associated with an archive file format, Terraform bypasses the terraform-get=1 redirection |
+| 85 | 5a | A module is a directory of .tf files | https://developer.hashicorp.com/terraform/language/modules/develop | create a new directory for it and place one or more .tf files inside |
+| 86 | 5a | The label is a local name for the module | https://developer.hashicorp.com/terraform/language/block/module | The LABEL is a local name for the module. |
+| 87 | 5d | Terraform selects the newest module version meeting constraints (no module memory) | https://developer.hashicorp.com/terraform/language/files/dependency-lock | Terraform will always select the newest available module version that meets the specified version constraints. |
 
 Claims that carry no quote because they restate or infer from the rows above, not new facts: a parent and a child can each declare a variable called `region` (inferred from the per-module uniqueness row); an unpinned Git source follows the repository's default branch (restates the HEAD row); `-var` and `TF_VAR_` set root variables, not a child's (the TF_VAR_ naming was taught and cited in tf-g4 4c; the child side is the two arguments rows); `~> 1.1` stays in major version 1 (restates the 1.2 and 1.10 but not 2.0 row).
 
@@ -216,3 +220,79 @@ RESULT: FAIL
 task tf-g5: 16 distinct numbers in lesson prose
 PASS: every claim-table number appears in the lesson prose
 ```
+
+## Round 1 fix pass
+
+Applied every finding from `lesson-tf-g5-AWS.md` (AWS-Lg5-001 to 008) and `lesson-tf-g5-TEACHER.md` (TEACHER-Lg5-001 to 007). Overlaps applied once: AWS-Lg5-002 + TEACHER-Lg5-004 (a branch moves, so it is not a pin), AWS-Lg5-003 + TEACHER-Lg5-002 (reserved names). The page text for the new quotes was fetched this turn with curl (the same cached fetch from this task, re-checked by machine: every table row, including the new ones, is a verbatim substring of its page and 20 words or fewer; every double-quoted doc string in the lesson is in the table). The claim table above was regenerated and now has 87 rows.
+
+New claim rows added (rows 84-87): HTTPS URL with an archive extension is used as the archive (module block page, AWS-Lg5-005); a module is a directory of `.tf` files (develop page, TEACHER-Lg5-005); the label is a local name (module block page, TEACHER-Lg5-005); Terraform selects the newest module version meeting the constraints (lock page, TEACHER-Lg5-003). Row 35 was widened to include "in most cases" (AWS-Lg5-006).
+
+Changes per finding (old text, then new text):
+
+- **AWS-Lg5-001**
+  - Old: A `version` constraint belongs only on registry modules. Putting it on a local path or a `git::` source does not pin anything; pin Git sources with `?ref=` and registry modules with an exact `version`.
+  - New: A `version` constraint belongs only on registry modules: the docs say the argument "only applies when installing modules from a registry" and that local-path modules "do not support version". Do not add it to a local path or a `git::` source. Pin a Git source with `?ref=` (a tag or commit) and a registry module with an exact `version`.
+
+- **AWS-Lg5-002 + TEACHER-Lg5-004**
+  - Old: Pin with a tag, branch or commit using `?ref=`, for example `?ref=v1.2.0` (5a).
+  - New: Select a revision with `?ref=`, for example `?ref=v1.2.0` (5a): a tag or a commit SHA fixes the version, while a branch name is accepted too but a branch keeps moving as new commits arrive, so it is not a fixed version.
+
+- **AWS-Lg5-003 + TEACHER-Lg5-002**
+  - Old: A variable name cannot collide with the arguments a `module` block itself understands: it can be "any valid identifier except the following reserved names: source, version, providers, count, for_each, lifecycle, depends_on, or locals."
+  - New: A variable cannot use certain reserved names: the label can be "any valid identifier except the following reserved names: source, version, providers, count, for_each, lifecycle, depends_on, or locals."
+
+- **AWS-Lg5-004**
+  - Old: The docs add the one way around it: "You can access local values in the module where you define them, but not in other modules." The same page adds that "you can pass a local value to a child module as an argument."
+  - New: The docs state the rule: "You can access local values in the module where you define them, but not in other modules." They then give the one exception: "you can pass a local value to a child module as an argument."
+
+- **AWS-Lg5-005**
+  - Old: an HTTP or HTTPS URL, `s3::` for an S3 bucket object
+  - New: an HTTPS URL (one ending in an archive extension such as `.zip` is used directly as the archive: "If an HTTPS URL has a common file extension associated with an archive file format, Terraform bypasses the terraform-get=1 redirection"), `s3::` for an S3 bucket object
+
+- **AWS-Lg5-006**
+  - Old: The docs recommend against deep nesting: "we strongly recommend keeping the module tree flat, with only one level of child modules"
+  - New: In most cases the docs recommend against deep nesting: "we strongly recommend keeping the module tree flat, with only one level of child modules"
+
+- **AWS-Lg5-008**
+  - Old: which updates "all modules to the latest available source code", and `terraform get -update`
+  - New: which updates "all modules to the latest available source code" (within any `version` constraint on a registry module, 5d), and `terraform get -update`
+
+- **TEACHER-Lg5-001**
+  - Old: Those are the methods 4c covered (`-var`, `.tfvars` files, `TF_VAR_` names).
+  - New: `TF_VAR_` names were covered in 4c; `-var` and `.tfvars` files are the other methods in that list.
+
+- **TEACHER-Lg5-003**
+  - Old: can therefore move to a newer release the next time Terraform installs it, and no lock file prevents that.
+  - New: can therefore move to a newer release the next time Terraform selects a version, and no lock file prevents that: "Terraform will always select the newest available module version that meets the specified version constraints." That happens on a first install, or after `init -upgrade` or `get -update`, not on a repeat `init` of an already-installed module (5c).
+
+- **TEACHER-Lg5-005**
+  - Old: how a `module` block is used, and how module versions are pinned.
+  - New: how a `module` block is used, and how module versions are pinned. Vocabulary: a module is a folder of `.tf` files; the directory you run Terraform in is the root module, and any module it calls with a `module` block is a child module. The name after `module` in that block is its label.
+
+- **TEACHER-Lg5-007**
+  - Old: The docs add a rule for version control: "The modules are downloaded
+  - New: The docs say where they land: "The modules are downloaded
+
+- **TEACHER-Lg5-007**
+  - Old: " And: "Don't commit this directory to your version control repository."
+  - New: " And the rule: "Don't commit this directory to your version control repository."
+
+- **AWS-Lg5-007:** no lesson change (the review says none is needed). The body already says "Don't commit this directory"; question writers must not claim Terraform refuses to commit it.
+- **TEACHER-Lg5-006:** planning only, no lesson edit. Fact ownership when the questions are written:
+  - 5b owns `module.<name>.<output>` and "a child must declare an output" for a parent to read a value.
+  - 5c owns the output shape (map for `for_each`, list for `count`) and `init -upgrade` / `get -update`.
+  - 5d owns the lock file, the exact-version pin, and registry-only `version`.
+  - Spares: 5a S3 archives and HTTPS archive URLs; 5b variable-name uniqueness and reserved names; 5c provider inheritance.
+
+Isolation re-read of each changed sentence against its row:
+
+- Warnings `version` bullet: asserts only registry-only (rows 61, 62) and "do not add"; no claim about error versus ignored. Pin advice follows the `?ref=` and exact-version rows.
+- 5d Git bullet: "a tag or a commit SHA fixes the version" is the inference that a tag/SHA does not move; the `ref` row says only that `ref` accepts those values. The branch half is plain explanation, unquoted, as AWS asked.
+- Reserved names: quote is the whole reserved list; the claim no longer says they are module-block arguments.
+- Locals: first quote is the rule, second is the exception; each quote is a separate sentence on the page.
+- HTTPS archive: the claim says HTTPS only, matching the row; the HTTP vanity-URL behaviour is not taught.
+- 5d move-to-newer sentence: the quote says it always selects the newest version meeting the constraints; the scoping to first install or `-upgrade`/`get -update` rests on the init rows (5c rows: re-running init does not change installed modules; `-upgrade`; `get -update`). It no longer conflicts with 5c.
+- Vocabulary sentence: directory of `.tf` files and label rows; root and child were already defined in 5c rows.
+- Against tf-g4 4c: unchanged. The `-var` statement no longer claims 4c covered `-var` or `.tfvars`.
+
+The check outputs above were produced by the whole chain run after these edits.
