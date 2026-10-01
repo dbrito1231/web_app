@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The `-id` option of `terraform state list` limits the output to the resource whose ID is given, and the docs say it is useful for finding where in your configuration a specific resource is located. `terraform state show` needs an address that points to a single resource in state, not an ID, so the ID cannot be passed to it. An address pattern such as a resource type filters by address, so it lists every security group of that type instead of the one with this ID. A module address lists only the resources in that module and its submodules, which helps only after the owning module is known.",
+  "rationale": "The `-id` option of `terraform state list` limits the output to the resource whose ID is given, and the docs say it is useful for finding where in your configuration a specific resource is located. `terraform state show` needs an address that points to a single resource in state, not an ID, so the ID cannot be passed to it. An address pattern filters by address, not by resource ID, so only `-id` finds the resource that has this ID. A module address lists only the resources in that module and its submodules, which helps only after the owning module is known.",
   "citationIds": [
     "cite-tf-g7-state-list",
     "cite-tf-g7-state-show"

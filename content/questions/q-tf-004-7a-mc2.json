@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "A single block with `for_each = local.databases`, `to` indexed by `each.key` and `id` set to `each.value`"
+      "text": "A block with `for_each = local.databases`, `to` using `each.key`, `id = each.value`"
     },
     {
       "id": "b",

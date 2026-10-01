@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "The docs recommend `terraform state push` as the routine way to correct state"
+      "text": "The docs recommend adding `-force` whenever a push is refused"
     }
   ],
   "correctAnswerIds": [
     "a",
     "c"
   ],
-  "rationale": "Push has two safety checks. A higher serial in the destination state suggests data there that the local state does not account for, so Terraform prevents the push. A differing lineage suggests the two states are completely different, and Terraform will not allow the push. The `-force` option disables both checks, the docs say that is not recommended, and with the checks off the destination state is overwritten. The `state pull` command goes the other way: it downloads state and prints the raw format to stdout, and it does not upload. The docs recommend push only when you must manually modify the remote state, so it is not the routine way to correct state.",
+  "rationale": "Push has two safety checks. A higher serial in the destination state suggests data there that the local state does not account for, so Terraform prevents the push. A differing lineage suggests the two states are completely different, and Terraform will not allow the push. The `-force` option disables both checks, the docs say that is not recommended, and with the checks off the destination state is overwritten. The `state pull` command goes the other way: it downloads state and prints the raw format to stdout, and it does not upload. The docs recommend push only when you must manually modify the remote state, and they do not recommend adding `-force` when a push is refused, so that is not advice to follow.",
   "citationIds": [
     "cite-tf-g7-state-push",
     "cite-tf-g7-state-pull"
