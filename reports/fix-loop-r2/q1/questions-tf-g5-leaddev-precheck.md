@@ -28,3 +28,6 @@ All 12 questions and every choice were read. Keys and rationales are correct, an
 All four findings were applied. `distractor_type_audit` passes: every type is in at most 1 of 12 questions.
 - **Lead Dev exception, recorded:** a bare `./` local path stays a distractor in 5a-mc (5a owns source shapes) and 5d-mc (5d owns "local paths do not support `version`"). That is 2 of 12, kept deliberately because each tests a different owned fact.
 - **New issue for round 2 (LD-Qg5-005):** 5c-mc2's replacement distractor ("`.terraform` subdirectory, committed so teammates skip the download") pairs with the key ("`.terraform` subdirectory ... kept out of version control"). The two differ only in commit versus don't-commit, which points at the key; the same true/false-pair pattern was rejected in D6. The reviewers should rule on it and propose a replacement.
+
+## After the round 2 fix pass
+- **LD-Qg5-006 (low, fixed by the Lead Dev):** in 5c-mr the three distractors began "Running …" and the two keys were bare commands, so the shape alone picked the keys. Both keys now read "Running `terraform init -upgrade`" and "Running `terraform get -update`". This is wording only; the key ids are unchanged. The batch check and echo check still pass. It goes to the round 2 confirmation.

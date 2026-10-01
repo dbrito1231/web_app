@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "Committing the lock file freezes the module release, because it lists every external dependency"
+      "text": "Running `terraform init -upgrade` in each CI job keeps the module on the release chosen the first time"
     },
     {
       "id": "c",
@@ -34,7 +34,7 @@
     "a",
     "c"
   ],
-  "rationale": "At present the dependency lock file tracks only provider dependencies, and Terraform does not remember version selections for remote modules. The documented way to freeze a module is an exact version constraint, which always selects the same release. Committing the lock file does not freeze a module because it holds no module entries. A range constraint can move to a newer release the next time Terraform selects a version, because nothing remembers the first pick. The `!=` operator only excludes one exact version; it does not hold the module to a single release.",
+  "rationale": "At present the dependency lock file tracks only provider dependencies, and Terraform does not remember version selections for remote modules. The documented way to freeze a module is an exact version constraint, which always selects the same release. The upgrade flag does the opposite of holding a release: it moves modules to the newest release the constraint allows. A range constraint can move to a newer release the next time Terraform selects a version, and each fresh clone selects again because nothing remembers the first pick. The `!=` operator only excludes one exact version; it does not hold the module to a single release.",
   "citationIds": [
     "cite-tf-g5-lock-file",
     "cite-tf-g5-version-constraints"

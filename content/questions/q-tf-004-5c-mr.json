@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.5c"
   ],
-  "stem": "(Select TWO.) Tallgrass Insurance installed its modules last quarter. A registry module has since published a newer release that its `version` constraint allows, but routine initialization keeps leaving the old copy in place. Which two actions would move the installed modules forward?",
+  "stem": "(Select TWO.) Tallgrass Insurance installed its modules last quarter. A registry module has since published a newer release that its `version` constraint allows. Which two actions would move the installed modules forward?",
   "selectCount": 2,
   "choices": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "`terraform init -upgrade`"
+      "text": "Running `terraform init -upgrade`"
     },
     {
       "id": "d",
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "`terraform get -update`"
+      "text": "Running `terraform get -update`"
     }
   ],
   "correctAnswerIds": [
     "c",
     "e"
   ],
-  "rationale": "The `-upgrade` flag on init updates already-installed modules, and `terraform get -update` checks downloaded modules for updates and downloads them. A plain re-run of init installs only modules added since the last run and does not change any already-installed module. Plan and apply work with the modules already installed; sourcing happens at install time, not at plan or apply time.",
+  "rationale": "The `-upgrade` flag on init updates already-installed modules, and `terraform get -update` checks downloaded modules for updates and downloads them. A plain re-run of init installs only modules added since the last run and does not change any already-installed module. Installing and provisioning are separate steps: init installs the module code, and plan and apply work with the modules already installed, so neither moves an installed module forward.",
   "citationIds": [
     "cite-tf-g5-init",
     "cite-tf-g5-get"

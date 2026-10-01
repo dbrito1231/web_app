@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.5a"
   ],
-  "stem": "Harlow Logistics keeps a shared networking module in a folder of the `network.git` repository on its internal Git server, and nothing from that repository is checked out next to the configuration. Only the module in the `modules/vpc` folder is wanted. Which `source` value fits?",
+  "stem": "Harlow Logistics keeps a shared networking module in a folder of the `network.git` repository on its internal Git server, and nothing from that repository is checked out next to the configuration. The module is not published to any registry, and only the one in the `modules/vpc` folder is wanted. Which `source` value fits?",
   "selectCount": 1,
   "choices": [
     {

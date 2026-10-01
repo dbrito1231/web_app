@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The `~>` operator lets only the right-most version component increment, so `~> 1.0.4` allows 1.0.5 and 1.0.10 but not 1.1.0 or anything newer in the 1.1 line, and 1.0.3 is below the stated lower bound. Of the releases that qualify, Terraform installs the newest one, and 1.0.10 is newer than 1.0.5. The release 1.1.10 is excluded because it would change a component to the left of the right-most one, and 1.0.5 qualifies but is not the newest.",
+  "rationale": "The `~>` operator lets only the right-most version component increment, so `~> 1.0.4` allows 1.0.5 and 1.0.10 but not 1.1.0 or anything newer in the 1.1 line, and 1.0.3 is older than the 1.0.4 the constraint starts from, and in any case it is not the newest qualifying release. Of the releases that qualify, Terraform installs the newest one, and 1.0.10 is newer than 1.0.5. The release 1.1.10 is excluded because it would change a component to the left of the right-most one, and 1.0.5 qualifies but is not the newest.",
   "citationIds": [
     "cite-tf-g5-version-constraints"
   ],

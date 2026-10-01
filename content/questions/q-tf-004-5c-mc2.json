@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "In a `modules` folder beside the root `.tf` files, committed so everyone has identical code"
+      "text": "In a `modules` folder beside the root `.tf` files, kept out of version control and recreated by `init`"
     },
     {
       "id": "c",
@@ -23,13 +23,13 @@
     },
     {
       "id": "d",
-      "text": "In a `.terraform` subdirectory of the working directory, committed so teammates skip the download"
+      "text": "In the user's home directory, shared by every project, so there is nothing to commit"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Terraform downloads module sources into a hidden `.terraform` subdirectory of the working directory, and that directory should not be committed. Nothing creates a committed `modules` folder next to the root files by default. The dependency lock file records provider selections, not module code or module versions. The `.terraform` directory itself should not be committed, even though that is where the copies land.",
+  "rationale": "Terraform downloads module sources into a hidden `.terraform` subdirectory of the current working directory, and that directory should not be committed. A `modules` folder beside the root files is not where the copies land, whether or not it is committed. The home directory is not used either: the copies sit in the working directory of each configuration, not in a location shared by every project. The dependency lock file records provider selections, not module code or module versions.",
   "citationIds": [
     "cite-tf-g5-get",
     "cite-tf-g5-use-modules",

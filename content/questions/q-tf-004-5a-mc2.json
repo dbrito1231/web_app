@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Rewrite the address as `git::https://github.com/acme/queue-module.git` with nothing else changed"
+      "text": "Rewrite the address in the explicit `git::https://github.com/acme/queue-module.git` form"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The `ref` query parameter accepts a tag name, so naming the release tag fixes which revision is cloned. A double slash marks a folder inside the package, not a revision, so a slash-delimited tag name would be read as a folder path instead of selecting the tag. A branch name is accepted by `ref` as well, but a branch keeps moving as commits arrive, so it does not fix a version. The explicit `git::` form of the same repository still follows the default branch at HEAD when no `ref` is given.",
+  "rationale": "The `ref` query parameter accepts a tag name, so naming the release tag fixes which revision is cloned. A double slash marks a folder inside the package, not a revision, so `//v2.3.0` would be read as a folder named v2.3.0 inside the repository, which does not exist, instead of selecting the tag. A branch name is accepted by `ref` as well, but a branch keeps moving as commits arrive, so it does not fix a version. The explicit `git::` form of the same repository still follows the default branch at HEAD when no `ref` is given.",
   "citationIds": [
     "cite-tf-g5-module-block",
     "cite-tf-g5-init"

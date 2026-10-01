@@ -124,6 +124,8 @@ Each objective supports 3 questions (mc, mc2, mr) on different facts, and the le
 | 85 | 5a | A module is a directory of .tf files | https://developer.hashicorp.com/terraform/language/modules/develop | create a new directory for it and place one or more .tf files inside |
 | 86 | 5a | The label is a local name for the module | https://developer.hashicorp.com/terraform/language/block/module | The LABEL is a local name for the module. |
 | 87 | 5d | Terraform selects the newest module version meeting constraints (no module memory) | https://developer.hashicorp.com/terraform/language/files/dependency-lock | Terraform will always select the newest available module version that meets the specified version constraints. |
+| 88 | 5c | init step installs the module | https://developer.hashicorp.com/terraform/language/modules/configuration | Initialize the workspace to install the module. |
+| 89 | 5c | apply step provisions the module resources (separate from install) | https://developer.hashicorp.com/terraform/language/modules/configuration | Apply the configuration to provision the module's resources. |
 
 Claims that carry no quote because they restate or infer from the rows above, not new facts: a parent and a child can each declare a variable called `region` (inferred from the per-module uniqueness row); an unpinned Git source follows the repository's default branch (restates the HEAD row); `-var` and `TF_VAR_` set root variables, not a child's (the TF_VAR_ naming was taught and cited in tf-g4 4c; the child side is the two arguments rows); `~> 1.1` stays in major version 1 (restates the 1.2 and 1.10 but not 2.0 row).
 
@@ -161,57 +163,13 @@ PASS: lesson tables/numbered lines: 0
 PASS: lesson citations unresolved: []
 PASS: drillIds match questions (missing [], extra [])
 PASS: exam tips 4 for 4 objectives
-FAIL: q-tf-004-5a-mc choice c: pastes objective text
-FAIL: q-tf-004-5a-mc: stem pastes objective text
-FAIL: q-tf-004-5a-mc: no citationIds
-FAIL: q-tf-004-5a-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5a-mc: still a placeholder stem
-FAIL: q-tf-004-5a-mc2 choice c: pastes objective text
-FAIL: q-tf-004-5a-mc2: stem pastes objective text
-FAIL: q-tf-004-5a-mc2: no citationIds
-FAIL: q-tf-004-5a-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5a-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-5a-mr: stem pastes objective text
-FAIL: q-tf-004-5a-mr: no citationIds
-FAIL: q-tf-004-5a-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5b-mc choice b: pastes objective text
-FAIL: q-tf-004-5b-mc: stem pastes objective text
-FAIL: q-tf-004-5b-mc: no citationIds
-FAIL: q-tf-004-5b-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5b-mc2 choice b: pastes objective text
-FAIL: q-tf-004-5b-mc2: stem pastes objective text
-FAIL: q-tf-004-5b-mc2: no citationIds
-FAIL: q-tf-004-5b-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5b-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-5b-mr: stem pastes objective text
-FAIL: q-tf-004-5b-mr: no citationIds
-FAIL: q-tf-004-5b-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5c-mc choice a: pastes objective text
-FAIL: q-tf-004-5c-mc: stem pastes objective text
-FAIL: q-tf-004-5c-mc: no citationIds
-FAIL: q-tf-004-5c-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5c-mc2 choice a: pastes objective text
-FAIL: q-tf-004-5c-mc2: stem pastes objective text
-FAIL: q-tf-004-5c-mc2: no citationIds
-FAIL: q-tf-004-5c-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5c-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-5c-mr: stem pastes objective text
-FAIL: q-tf-004-5c-mr: no citationIds
-FAIL: q-tf-004-5c-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5d-mc: no citationIds
-FAIL: q-tf-004-5d-mc: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5d-mc2: no citationIds
-FAIL: q-tf-004-5d-mc2: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: q-tf-004-5d-mr: MR stem lacks '(Select N.)'
-FAIL: q-tf-004-5d-mr: no citationIds
-FAIL: q-tf-004-5d-mr: mcpStatus/reviewedOn not verified/2026-09-26
-FAIL: duplicate 6-word openings: ['select two actions that support this']
-FAIL: longest-is-key 4/8 = 50%
+PASS: duplicate 6-word openings: []
+PASS: longest-is-key 1/8 = 12%
 PASS: shortest-is-key 2/8 = 25%
-WARN: MC key positions {'a': 4, 'b': 2, 'c': 2}
-PASS: MR key slots {'a': 1, 'b': 1, 'c': 3, 'd': 2, 'e': 1}
-FAIL: MR key sets: most common 'c,d' in 2/4 (50%); all {'c,d': 2, 'b,c': 1, 'a,e': 1}
-RESULT: FAIL
+PASS: MC key positions {'a': 2, 'b': 2, 'c': 2, 'd': 2}
+PASS: MR key slots {'a': 2, 'b': 1, 'c': 2, 'd': 1, 'e': 2}
+PASS: MR key sets: most common 'b,e' in 1/4 (25%); all {'b,e': 1, 'a,d': 1, 'c,e': 1, 'a,c': 1}
+RESULT: PASS
 ```
 
 ### claim_prose_check.py tf-g5
@@ -223,7 +181,7 @@ PASS: every claim-table number appears in the lesson prose
 
 ## Round 1 fix pass
 
-Applied every finding from `lesson-tf-g5-AWS.md` (AWS-Lg5-001 to 008) and `lesson-tf-g5-TEACHER.md` (TEACHER-Lg5-001 to 007). Overlaps applied once: AWS-Lg5-002 + TEACHER-Lg5-004 (a branch moves, so it is not a pin), AWS-Lg5-003 + TEACHER-Lg5-002 (reserved names). The page text for the new quotes was fetched this turn with curl (the same cached fetch from this task, re-checked by machine: every table row, including the new ones, is a verbatim substring of its page and 20 words or fewer; every double-quoted doc string in the lesson is in the table). The claim table above was regenerated and now has 87 rows.
+Applied every finding from `lesson-tf-g5-AWS.md` (AWS-Lg5-001 to 008) and `lesson-tf-g5-TEACHER.md` (TEACHER-Lg5-001 to 007). Overlaps applied once: AWS-Lg5-002 + TEACHER-Lg5-004 (a branch moves, so it is not a pin), AWS-Lg5-003 + TEACHER-Lg5-002 (reserved names). The page text for the new quotes was fetched this turn with curl (the same cached fetch from this task, re-checked by machine: every table row, including the new ones, is a verbatim substring of its page and 20 words or fewer; every double-quoted doc string in the lesson is in the table). The claim table above was regenerated and now has 89 rows.
 
 New claim rows added (rows 84-87): HTTPS URL with an archive extension is used as the archive (module block page, AWS-Lg5-005); a module is a directory of `.tf` files (develop page, TEACHER-Lg5-005); the label is a local name (module block page, TEACHER-Lg5-005); Terraform selects the newest module version meeting the constraints (lock page, TEACHER-Lg5-003). Row 35 was widened to include "in most cases" (AWS-Lg5-006).
 
@@ -296,3 +254,11 @@ Isolation re-read of each changed sentence against its row:
 - Against tf-g4 4c: unchanged. The `-var` statement no longer claims 4c covered `-var` or `.tfvars`.
 
 The check outputs above were produced by the whole chain run after these edits.
+
+## Round 2 lesson addition (AWS-Qg5-006)
+
+Added to 5c, directly after the sentence ending "...manages them as part of the configuration.":
+
+New text: "Installing and provisioning are separate steps. The docs list "Initialize the workspace to install the module." and then "Apply the configuration to provision the module's resources." So `plan` and `apply` work with the modules that `init` has already installed."
+
+Both quotes were re-fetched this turn with `curl -sL` and the HTML strip from https://developer.hashicorp.com/terraform/language/modules/configuration and match verbatim (the page's apostrophe in "module's" is a straight one in the second quote). Two claim rows were added (table now 89 rows): the init-installs row and the apply-provisions row, both on the use-modules page. The sentence claims only what the two quotes say: install and provision are separate listed steps. It does not say "only init installs"; the second half ("plan and apply work with modules init has already installed") restates the step order. The Teacher's alternative rationale wording ("modules are installed and updated by init and get") is covered by the existing `get` row, the `init` rows and this sentence, so it is not needed separately. Whole chain re-run: content_lint PASS, q1_batch_check lesson lines PASS, claim_prose_check PASS (16 numbers, none missing). No other lesson text changed.
