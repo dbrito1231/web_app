@@ -89,3 +89,17 @@ Saved by the Lead Dev from the Teacher's reply (condensed; fixes verbatim).
 Fair, and the key is unambiguous. The refutation needs Fixes 1 and 3, and Fix 2 makes it clean.
 
 Task tf-g6: not yet · Overall: concerns
+
+---
+
+# Teacher round 2b — tf-g6 (7e68d75)
+
+Saved by the Lead Dev (condensed).
+
+- **The Teacher's own question findings:** TEACHER-Qg6-001, 002 and 003 are Gone.
+  - 001: the lesson now carries the import-overview sentence and the usage line. Distractor d has "then run `terraform plan`", so the keyword tell is gone. The rationale claims only taught facts.
+- **Second-role check:** AWS-Qg6-001 to 005 are all Gone. Dropping the untaught "locking and access control" clause was right.
+- **Fairness:** every changed choice is real and refuted by a lesson sentence. The new sentences come from verified rows 137–140.
+- **TEACHER-Qg6-006:** the Teacher reported it "still not fixed", which was **incorrect**. The Lead Dev checked the lesson at 7e68d75. It reads `Moved blocks need Terraform 1.1 or later (...); (on versions older than 1.1 the page says "Instead, use the terraform state mv CLI command")`, which is exactly the Teacher's requested fix. **006 is Gone.** The Teacher marked it non-blocking either way.
+
+Task tf-g6: close · Overall: approve
