@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g7-state-id",
+  "title": "terraform state commands reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/state/index",
+  "accessed": "2026-09-26",
+  "note": "Backs the 7b claim that state subcommand output is designed for Unix command-line tools."
+}
