@@ -224,3 +224,5 @@ This amendment records the current state. It does not change the pipeline in sec
 - run `manage.py test workbook`, `content_lint.py` and `npm run build`.
 
 Learning content is not changed by this amendment, so no Teacher validation is needed for it.
+
+**Update, end of 2026-10-01:** tf-g7 (`2d09593`) and tf-g8 (`bf43307`) are closed, so all 22 tasks (450 questions) are done. Only the final sitting above remains, and it waits for the user's GO.
