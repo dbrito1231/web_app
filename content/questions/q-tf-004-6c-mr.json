@@ -11,15 +11,15 @@
   "choices": [
     {
       "id": "a",
-      "text": "`terraform init -reconfigure` copies the existing state into the new bucket, as it re-reads the whole configuration"
+      "text": "`terraform init -reconfigure` copies the existing state into the new bucket"
     },
     {
       "id": "b",
-      "text": "A plain `terraform init` migrates the state without any prompts, as Terraform detects the backend change itself"
+      "text": "A plain `terraform init` migrates the state without any prompts"
     },
     {
       "id": "c",
-      "text": "`-migrate-state` makes init copy the existing state to the new backend"
+      "text": "`-migrate-state` makes init copy the existing state to the new location"
     },
     {
       "id": "d",
@@ -27,7 +27,7 @@
     },
     {
       "id": "e",
-      "text": "Backing up the state file first is unnecessary, because migration always leaves the old copy intact"
+      "text": "Backing up the state file before migrating is unnecessary"
     }
   ],
   "correctAnswerIds": [

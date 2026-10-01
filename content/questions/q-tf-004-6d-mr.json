@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "A `removed` block with `lifecycle { destroy = false }` drops the database from state while the real database keeps running"
+      "text": "A `removed` block with `lifecycle { destroy = false }` drops the database from state without destroying the real database"
     },
     {
       "id": "d",

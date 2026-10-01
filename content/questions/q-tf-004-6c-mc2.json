@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Hardcode the credentials in the backend block for each environment; only `-backend-config` values are copied into plan files, so hardcoded ones stay private"
+      "text": "Hardcode the credentials in the backend block for each environment"
     },
     {
       "id": "b",

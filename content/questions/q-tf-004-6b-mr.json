@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "`terraform force-unlock` is safe for any engineer to run on a held lock, because it does not modify infrastructure"
+      "text": "`terraform force-unlock` is safe for any engineer to run on a lock that another engineer's run still holds"
     },
     {
       "id": "e",
