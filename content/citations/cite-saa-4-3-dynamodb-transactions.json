@@ -3,6 +3,6 @@
   "title": "Managing complex workflows with DynamoDB transactions",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 K09 plain-language ACID definition and all-or-nothing transaction behavior."
 }

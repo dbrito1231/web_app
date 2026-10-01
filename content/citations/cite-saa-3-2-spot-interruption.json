@@ -3,6 +3,6 @@
   "title": "Spot Instance interruption notices",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-instance-termination-notices.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K04: confirms Amazon EC2 issues a two-minute Spot Instance interruption notice as an EventBridge event and an instance metadata item before reclaiming Spot capacity."
 }

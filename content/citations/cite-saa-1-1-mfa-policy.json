@@ -3,6 +3,6 @@
   "title": "AWS: Allows MFA-authenticated IAM users to manage their own credentials",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_my-sec-creds-self-manage.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
 }

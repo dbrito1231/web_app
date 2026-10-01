@@ -3,6 +3,6 @@
   "title": "Amazon Athena partitioning basics",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/athena/latest/ug/partitions.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the S06/S07 claim that partitioning restricts the data an Athena query scans, improving performance and cost."
 }

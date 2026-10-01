@@ -3,6 +3,6 @@
   "title": "Import Terraform configuration (tutorial)",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/tutorials/state/state-import",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7a claims on pruning generated configuration, the replace warning, import limitations and the full-lifecycle warning."
 }

@@ -3,6 +3,6 @@
   "title": "AWS Direct Connect as Primary and AWS Site-to-Site VPN as Backup",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/reference-architecture-diagrams/latest/hybrid-connectivity-transit-gateway/hybrid-dx-primary-vpn-backup.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.4 K04/S01: confirms a Site-to-Site VPN connection configured as a backup line to Direct Connect is how AWS documents achieving high availability in a hybrid setup."
 }

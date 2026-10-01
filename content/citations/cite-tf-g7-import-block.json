@@ -3,6 +3,6 @@
   "title": "import block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/block/import",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7a claims on the import block: id as a string known at plan, identity, for_each, provider, and file placement."
 }

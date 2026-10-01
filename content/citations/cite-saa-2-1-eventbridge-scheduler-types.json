@@ -3,6 +3,6 @@
   "title": "Schedule types in EventBridge Scheduler",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/scheduler/latest/UserGuide/schedule-types.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 addition for task 2.1 questions (K05, distractor for q-saa-2-1-k05-mc/mr): fetched from docs.aws.amazon.com and confirmed EventBridge Scheduler supports rate-based, cron-based, and one-time schedules that invoke a target on a time-driven schedule you configure, distinct from an EventBridge rule, which reacts to a matching event."
 }

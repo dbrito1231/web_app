@@ -3,6 +3,6 @@
   "title": "Compare using global static IP addresses to regional static IP addresses",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.eip-accelerator.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that Global Accelerator's static IP addresses accept incoming traffic onto the AWS global network from the edge location closest to users, which is a performance tool distinct from CDN cost reduction."
 }

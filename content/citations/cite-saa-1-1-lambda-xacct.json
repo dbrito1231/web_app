@@ -3,6 +3,6 @@
   "title": "Granting Lambda function access to other accounts",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/lambda/latest/dg/permissions-function-cross-account.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
 }

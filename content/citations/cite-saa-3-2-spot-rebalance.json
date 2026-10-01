@@ -3,6 +3,6 @@
   "title": "EC2 instance rebalance recommendations",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/rebalance-recommendations.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K04: backs the claim that an EC2 rebalance recommendation signals a Spot Instance is at elevated risk of interruption and can arrive before the two-minute interruption notice (verified in the AWS-L32 review)."
 }

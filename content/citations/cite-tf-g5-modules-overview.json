@@ -3,6 +3,6 @@
   "title": "Modules overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/modules",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5a claim that Terraform loads modules from the local file system, a registry or VCS repositories, and the 5c claims about root, child and nested modules."
 }

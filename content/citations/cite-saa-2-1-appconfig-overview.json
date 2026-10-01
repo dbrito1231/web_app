@@ -3,6 +3,6 @@
   "title": "What is AWS AppConfig?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 addition for task 2.1 questions (K02, distractor for q-saa-2-1-k02-mc/mr): fetched from docs.aws.amazon.com and confirmed AWS AppConfig deploys feature-flag and free-form configuration data using deployment strategies for a controlled, gradual rollout with monitoring and automatic rollback; the page describes no credential-rotation capability, unlike Secrets Manager."
 }

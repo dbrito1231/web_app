@@ -3,6 +3,6 @@
   "title": "Placement strategies for your placement groups",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-strategies.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 S03: confirms a spread placement group supports a maximum of 7 running instances per Availability Zone and a partition placement group supports a maximum of 7 partitions per Availability Zone, each with distinct rack, power, and network isolation."
 }

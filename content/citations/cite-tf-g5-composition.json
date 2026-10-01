@@ -3,6 +3,6 @@
   "title": "Module composition",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/modules/develop/composition",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5c claims that a flat module tree and module composition are recommended."
 }

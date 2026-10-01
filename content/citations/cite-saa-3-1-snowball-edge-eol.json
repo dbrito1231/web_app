@@ -3,6 +3,6 @@
   "title": "AWS Snowball Edge availability change",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/snowball/latest/developer-guide/snowball-edge-availability-change.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, K01 and S02: confirms AWS Snowball Edge (and by extension the Snow Family device line) is no longer available to new customers, who are directed to AWS DataSync for online transfers or AWS Data Transfer Terminal for large offline transfers instead."
 }

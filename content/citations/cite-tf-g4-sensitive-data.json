@@ -3,6 +3,6 @@
   "title": "Manage sensitive data in your configuration",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/manage-sensitive-data",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the sensitive argument's CLI/UI-only redaction (values still stored in state and plan, still exposed via terraform output -json/-raw), the ephemeral argument's exclusion from state and plan, and where ephemeral values may be referenced."
 }

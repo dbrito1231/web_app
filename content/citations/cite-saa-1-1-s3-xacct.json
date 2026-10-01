@@ -3,6 +3,6 @@
   "title": "Amazon S3: Bucket owner granting cross-account bucket permissions",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-walkthroughs-managing-access-example2.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
 }

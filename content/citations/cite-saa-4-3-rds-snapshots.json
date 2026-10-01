@@ -3,6 +3,6 @@
   "title": "Creating a DB snapshot for a Single-AZ DB instance for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreateSnapshot.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claim that manual snapshots are not subject to automated backup retention expiration."
 }

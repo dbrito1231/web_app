@@ -3,6 +3,6 @@
   "title": "Route tables for your VPC",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/userguide/RouteTables.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K03): re-fetched and confirmed every subnet is associated with exactly one route table (the VPC's main route table by default), which is the basis for K03's one-route-table-per-AZ resiliency pattern."
 }

@@ -3,6 +3,6 @@
   "title": "Working with storage for Amazon RDS DB instances",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (K04): confirmed RDS gp3 General Purpose SSD storage provides a baseline of 3,000 IOPS and 125 MiB/s that rises to 12,000 IOPS and 500 MiB/s once striping kicks in above a per-engine size threshold, while io2 Block Express Provisioned IOPS SSD storage is recommended for I/O-intensive, latency-sensitive workloads and scales up to 256,000 IOPS."
 }

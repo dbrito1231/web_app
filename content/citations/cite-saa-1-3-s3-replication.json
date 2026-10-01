@@ -3,6 +3,6 @@
   "title": "Replicating objects within and across Regions",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): live replication (CRR/SRR) only replicates new/changed objects going forward; S3 Batch Replication handles objects that existed before replication was configured; S3 RTC gives a 15-minute SLA."
 }

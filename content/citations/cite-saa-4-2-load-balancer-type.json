@@ -3,6 +3,6 @@
   "title": "Load balancer type",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/help-panel/elasticbeanstalk/latest/helppanel/f-load-balancer-type.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 S01: supports ALB Layer 7 routing, NLB Layer 4 static-IP use cases, and that Classic Load Balancer is previous-generation and not recommended for new environments."
 }

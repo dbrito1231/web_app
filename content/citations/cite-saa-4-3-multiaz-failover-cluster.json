@@ -3,6 +3,6 @@
   "title": "Failing over a Multi-AZ DB cluster for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts-failover.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 failover timing and reader promotion behavior for Multi-AZ DB cluster deployments."
 }

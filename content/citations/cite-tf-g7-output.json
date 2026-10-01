@@ -3,6 +3,6 @@
   "title": "terraform output command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/output",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claims on root-module-only outputs, -json and -raw, and sensitive and ephemeral outputs."
 }

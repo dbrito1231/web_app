@@ -3,6 +3,6 @@
   "title": "What is a Gateway Load Balancer?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that Gateway Load Balancer operates at the network layer (layer 3) of the OSI model, used to contrast it with ALB and NLB."
 }

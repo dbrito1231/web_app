@@ -3,6 +3,6 @@
   "title": "Amazon EBS Provisioned IOPS SSD volumes (io2 Block Express and io1)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ebs/latest/userguide/provisioned-iops.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, K03: confirms io2 Block Express delivers up to 256,000 IOPS and 4,000 MiB/s on Nitro-based instances with sub-millisecond average latency and 99.999% durability, and that io1 is a distinct, still-current Provisioned IOPS SSD type (up to 64,000 IOPS, 1,000 MiB/s, 4 GiB\u201316 TiB, all instance types)."
 }

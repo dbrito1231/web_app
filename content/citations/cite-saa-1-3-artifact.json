@@ -3,6 +3,6 @@
   "title": "What is AWS Artifact?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): on-demand downloads of AWS compliance reports (SOC, ISO, PCI) and agreements, provided free of charge, for use as audit artifacts."
 }

@@ -3,6 +3,6 @@
   "title": "AWS DataSync overview",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K03/S03 claim that DataSync is a secure, high-speed transfer service with built-in encryption and integrity validation."
 }

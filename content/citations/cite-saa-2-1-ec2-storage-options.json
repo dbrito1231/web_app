@@ -3,6 +3,6 @@
   "title": "Storage options for your Amazon EC2 instances",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Storage.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K13): fetched from docs.aws.amazon.com and checked against the claims distinguishing block storage (EBS, instance store), object storage (S3), and file storage (EFS, FSx) by durability, attachment model, and sharing characteristics."
 }

@@ -3,6 +3,6 @@
   "title": "Reserved DB instances for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithReservedDBInstances.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claims on RDS Reserved DB Instance terms, offering types, and discount application rules."
 }

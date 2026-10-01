@@ -3,6 +3,6 @@
   "title": "AWS Direct Connect (Hybrid Networking Lens)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/hybrid-networking-lens/aws-direct-connect.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claims about Direct Connect bypassing the public internet for consistent low-latency connectivity, and the dedicated (1/10/100/400 Gbps) and hosted (50 Mbps-25 Gbps) bandwidth tiers."
 }

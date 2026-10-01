@@ -3,6 +3,6 @@
   "title": "REL08-BP04 Deploy using immutable infrastructure",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_tracking_change_management_immutable_infrastructure.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K07): re-fetched and confirmed immutable infrastructure deploys changes as a new resource that replaces the old one rather than patching a running resource in place, matching Well-Architected REL08-BP04."
 }

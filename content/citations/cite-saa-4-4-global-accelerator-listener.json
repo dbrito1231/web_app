@@ -3,6 +3,6 @@
   "title": "AWS Global Accelerator components (Listener)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-components.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that a Global Accelerator listener is configured for TCP, UDP, or both, used for the CloudFront-vs-Global-Accelerator non-HTTP discriminator."
 }

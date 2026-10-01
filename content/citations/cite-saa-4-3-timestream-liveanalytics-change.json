@@ -3,6 +3,6 @@
   "title": "Amazon Timestream for LiveAnalytics availability change",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/timestream/latest/developerguide/AmazonTimestreamForLiveAnalytics-availability-change.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 status guidance that Timestream for LiveAnalytics is closed to new customers and suggests Timestream for InfluxDB for new users."
 }

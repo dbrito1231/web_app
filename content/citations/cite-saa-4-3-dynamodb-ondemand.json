@@ -3,6 +3,6 @@
   "title": "DynamoDB on-demand capacity mode",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/on-demand-capacity-mode.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 on-demand billing and scaling claims including initial throughput and double-previous-peak behavior."
 }

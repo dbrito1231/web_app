@@ -3,6 +3,6 @@
   "title": "What is AWS CloudHSM?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): single-tenant, FIPS-validated general purpose HSM with full customer control of keys/algorithms, versus the managed AWS KMS service."
 }

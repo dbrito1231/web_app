@@ -153,8 +153,8 @@ def main():
         for c in qc:
             if c not in cites:
                 report("FAIL", f"{qid}: citation {c} unresolved")
-        if q.get("mcpStatus") != "verified" or q.get("reviewedOn") != "2026-09-26":
-            report("FAIL", f"{qid}: mcpStatus/reviewedOn not verified/2026-09-26")
+        if q.get("mcpStatus") != "verified" or q.get("reviewedOn") != "2026-10-01":
+            report("FAIL", f"{qid}: mcpStatus/reviewedOn not verified/2026-10-01")
         if "Which action is the right fit for this requirement" in q["stem"]:
             report("FAIL", f"{qid}: still a placeholder stem")
     dups = [o for o, n in openings.items() if n > 1]

@@ -3,6 +3,6 @@
   "title": "Amazon EBS General Purpose SSD volumes (gp3, gp2)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, K06: confirms gp3 offers a 20 percent lower price per GiB than gp2 and decouples performance from provisioned size."
 }

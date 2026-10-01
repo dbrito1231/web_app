@@ -3,6 +3,6 @@
   "title": "Amazon Aurora billing FAQ",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/rds/latest/auroraextendedcontent/aurora-faq-billing.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 distinctions between Aurora Standard and Aurora I/O-Optimized, including the 25 percent I/O share and up to 40 percent savings guidance."
 }

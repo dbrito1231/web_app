@@ -3,6 +3,6 @@
   "title": "Amazon SQS queue types (standard and FIFO)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-types.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K11): fetched from docs.aws.amazon.com and checked against the standard-queue (nearly unlimited throughput, at-least-once, best-effort ordering) versus FIFO-queue (ordered, exactly-once processing, 300 TPS unbatched, 3,000 TPS batched, 30,000 TPS in high-throughput mode) claims."
 }

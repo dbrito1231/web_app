@@ -3,6 +3,6 @@
   "title": "Version constraints",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/expressions/version-constraints",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5d claims about version constraint operators, ~> behavior and newest-version selection."
 }

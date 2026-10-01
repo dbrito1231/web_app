@@ -3,6 +3,6 @@
   "title": "Data protection in Amazon S3 (durability)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/DataDurability.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 K11: backs the claim that S3 storage classes are designed for 99.999999999% (eleven nines) durability by storing data redundantly across a minimum of three Availability Zones (except One Zone classes); verified by the AWS-L22 review."
 }

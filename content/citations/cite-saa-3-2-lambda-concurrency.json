@@ -3,6 +3,6 @@
   "title": "Understanding Lambda function scaling (reserved and provisioned concurrency)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K05: confirms reserved concurrency sets a fixed floor and ceiling carved out of the account's shared pool for one function, while provisioned concurrency pre-initializes execution environments to cut cold-start latency."
 }

@@ -3,6 +3,6 @@
   "title": "Inject secrets into Terraform using the Vault provider",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/tutorials/secrets/secrets-vault",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the Vault provider's role: replacing static long-lived cloud credentials with Vault-issued short-lived ones to reduce the exposure of a compromised credential."
 }

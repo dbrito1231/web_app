@@ -3,6 +3,6 @@
   "title": "Validate your configuration",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/validate",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the distinctions and execution order among input variable validation, precondition, postcondition, and check blocks, including the self object and the alltrue/anytrue pattern from the referenced Conditional Expressions content."
 }

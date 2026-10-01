@@ -3,6 +3,6 @@
   "title": "try Function",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/functions/try",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs that try returns the result of the first argument expression that does not error, used as a fallback-value function."
 }

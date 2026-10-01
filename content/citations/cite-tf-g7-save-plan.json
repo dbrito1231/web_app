@@ -3,6 +3,6 @@
   "title": "Create a Terraform plan (tutorial)",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claims that terraform show prints a saved plan and that plan files can contain sensitive data."
 }

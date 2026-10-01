@@ -3,6 +3,6 @@
   "title": "Backend Type: local",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/backend/local",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6a claims that the local backend stores state on the local filesystem with system-API locking, path defaults to terraform.tfstate, and the legacy -state/-state-out/-backup options are local-only and not recommended."
 }

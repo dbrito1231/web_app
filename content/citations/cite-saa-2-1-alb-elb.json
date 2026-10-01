@@ -3,6 +3,6 @@
   "title": "Application Load Balancer (Elastic Load Balancing)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/full.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K09): fetched from docs.aws.amazon.com and checked against the claim that an Application Load Balancer operates at the application layer with cross-zone load balancing always enabled and support for HTTP/2 and WebSockets, unlike a connection-level Network Load Balancer."
 }

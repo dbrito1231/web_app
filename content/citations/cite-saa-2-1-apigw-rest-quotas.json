@@ -3,6 +3,6 @@
   "title": "Quotas for configuring and running a REST API in API Gateway",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-execution-service-limits-table.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 fix (TEACHER-L21-003, K01/S01): fetched from docs.aws.amazon.com and checked against the claim that a Regional REST API's integration timeout defaults to 50 milliseconds-29 seconds and can be increased via a service quota request, unlike an edge-optimized API's fixed timeout."
 }

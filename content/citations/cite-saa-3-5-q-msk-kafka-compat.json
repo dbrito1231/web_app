@@ -3,6 +3,6 @@
   "title": "Amazon MSK runs native Apache Kafka APIs",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/big-data-analytics-options/amazon-msk.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs question claims that Amazon MSK lets existing Apache Kafka producers and consumers run against it using native Kafka APIs."
 }

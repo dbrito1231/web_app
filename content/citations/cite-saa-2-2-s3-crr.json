@@ -3,6 +3,6 @@
   "title": "Replicating objects",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, S05): re-fetched and confirmed S3 Cross-Region Replication asynchronously copies objects and their metadata to a bucket in another Region."
 }

@@ -3,6 +3,6 @@
   "title": "Projects overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/projects",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8c claims about projects, the Default Project, project permissions and project default execution mode. Also backs that a project uses the organization execution mode (Remote or Local) unless overridden."
 }

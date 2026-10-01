@@ -3,6 +3,6 @@
   "title": "Import resources overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/import",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7a claim that importing brings existing infrastructure into the workspace so it can be managed as code."
 }

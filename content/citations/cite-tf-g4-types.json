@@ -3,6 +3,6 @@
   "title": "Types and Values",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/expressions/types",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the definitions of list/tuple, set, map/object and null, that sets cannot be indexed directly, that map keys must be strings, and the automatic type conversion rules."
 }

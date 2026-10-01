@@ -3,6 +3,6 @@
   "title": "Overview of backing up and restoring an Aurora DB cluster",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claims for Aurora continuous incremental backups, 1-35 day retention, and restorable-time behavior."
 }

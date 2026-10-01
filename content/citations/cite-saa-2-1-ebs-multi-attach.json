@@ -3,6 +3,6 @@
   "title": "Attach an EBS volume to multiple EC2 instances using Multi-Attach",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 addition for task 2.1 questions (K13, distractor for q-saa-2-1-k13-mc): fetched from docs.aws.amazon.com and confirmed EBS Multi-Attach lets a single Provisioned IOPS SSD (io1 or io2) volume attach to up to 16 Nitro-based instances in the same Availability Zone, and that standard file systems such as XFS/EXT4 are not designed for simultaneous multi-instance access, so a clustered file system is needed on top."
 }

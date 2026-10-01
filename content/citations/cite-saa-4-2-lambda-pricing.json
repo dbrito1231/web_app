@@ -3,6 +3,6 @@
   "title": "AWS Lambda Pricing",
   "publisher": "AWS",
   "url": "https://aws.amazon.com/lambda/pricing/",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K08 and S03: confirms Lambda function pricing is based on request count and execution duration measured in GB-seconds."
 }

@@ -3,6 +3,6 @@
   "title": "State - Terraform Language",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/state",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs why Terraform stores state (mapping, metadata, performance) and that state defaults to a local file named terraform.tfstate."
 }

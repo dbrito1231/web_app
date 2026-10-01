@@ -3,6 +3,6 @@
   "title": "Creating modules",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/modules/develop",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5c claim that the .tf files in the working directory form the root module."
 }

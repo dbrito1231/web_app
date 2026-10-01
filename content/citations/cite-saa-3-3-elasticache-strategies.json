@@ -3,6 +3,6 @@
   "title": "Caching strategies (lazy loading, write-through, adding TTL)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Strategies.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (K02, S05): confirmed lazy loading only caches data after a read miss (can serve stale data), write-through updates the cache on every database write (keeps data current but can cache unused items), and adding a TTL combines both while limiting staleness."
 }

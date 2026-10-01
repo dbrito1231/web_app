@@ -3,6 +3,6 @@
   "title": "What is AWS Certificate Manager?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): ACM issues/imports/manages TLS certificates for integrated AWS services, certificates are Regional, and CloudFront requires the certificate in us-east-1."
 }

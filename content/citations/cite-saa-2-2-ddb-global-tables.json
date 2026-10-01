@@ -3,6 +3,6 @@
   "title": "Global tables - multi-active, multi-Region replication",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001/AWS-L22-002, S02): re-fetched and confirmed DynamoDB global tables default to multi-Region eventual consistency (MREC), offer an MRSC (multi-Region strong consistency) mode limited to same-account tables, and resolve conflicting writes last-writer-wins."
 }

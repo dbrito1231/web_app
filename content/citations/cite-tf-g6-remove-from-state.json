@@ -3,6 +3,6 @@
   "title": "Remove a resource from state",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/state/remove",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that the removed block is recommended over terraform state rm because it can be previewed."
 }

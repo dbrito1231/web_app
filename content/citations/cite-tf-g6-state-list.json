@@ -3,6 +3,6 @@
   "title": "terraform state list command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/state/list",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claim that terraform state list lists resources within state."
 }

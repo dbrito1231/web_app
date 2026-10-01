@@ -3,6 +3,6 @@
   "title": "API Gateway use cases (REST, HTTP, WebSocket APIs)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-overview-developer-experience.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K01): fetched from docs.aws.amazon.com and checked against the claim that HTTP APIs give lower latency and cost than REST APIs, while REST APIs add usage plans, API keys, and request validation that HTTP APIs do not."
 }

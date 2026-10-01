@@ -3,6 +3,6 @@
   "title": "What is AWS Global Accelerator?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that a standard Global Accelerator accelerator improves availability and performance for internet applications with a global audience by directing traffic over the AWS global network."
 }

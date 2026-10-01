@@ -3,6 +3,6 @@
   "title": "How Elastic Load Balancing works: cross-zone load balancing",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Task 3.4 s04-mr (TEACHER-Q34-001): states that with Network Load Balancers and Gateway Load Balancers cross-zone load balancing is disabled by default and can be enabled at any time, and that when disabled each node routes only to targets in its own Availability Zone."
 }

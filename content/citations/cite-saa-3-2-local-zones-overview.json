@@ -3,6 +3,6 @@
   "title": "AWS Local Zones",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K02: confirms AWS Local Zones place a subset of AWS services in metro-area locations closer to users and data sources for latency-sensitive distributed workloads."
 }

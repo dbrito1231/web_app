@@ -3,6 +3,6 @@
   "title": "terraform block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/settings/terraform-cloud",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8d claims about cloud block arguments and the TF_CLOUD_* and TF_WORKSPACE environment variables."
 }

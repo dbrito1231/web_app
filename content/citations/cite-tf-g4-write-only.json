@@ -3,6 +3,6 @@
   "title": "Use temporary write-only arguments",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/manage-sensitive-data/write-only",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs what a write-only argument is, the paired _wo_version argument that is stored in state to signal an update, and that Terraform resends a write-only argument to the provider on every operation because it cannot diff the value."
 }

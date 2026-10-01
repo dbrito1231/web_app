@@ -3,6 +3,6 @@
   "title": "Connect to HCP Terraform",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/cloud/settings",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8d claims about cloud block organization, workspaces name/tags/project, and migrating state with terraform init."
 }

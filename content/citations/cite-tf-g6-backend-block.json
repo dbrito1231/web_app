@@ -3,6 +3,6 @@
   "title": "Backend block configuration overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/backend",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6c claims that a backend block is nested in terraform, allows one block, cannot refer to named values, cannot coexist with cloud, and supports partial configuration."
 }

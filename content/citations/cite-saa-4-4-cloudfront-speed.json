@@ -3,6 +3,6 @@
   "title": "Deliver content faster with Amazon CloudFront",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/hands-on/latest/deliver-content-faster/deliver-content-faster.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that CloudFront speeds up content delivery using its global network of edge locations to cache content close to end users."
 }

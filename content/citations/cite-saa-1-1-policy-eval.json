@@ -3,6 +3,6 @@
   "title": "Policy evaluation logic",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Amendment 2 (L1, lesson 1.1 rewrite): fetched from docs.aws.amazon.com and checked against the lesson claims."
 }

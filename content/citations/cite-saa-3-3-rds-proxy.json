@@ -3,6 +3,6 @@
   "title": "RDS Proxy connection pooling",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-best-practices.usage-scenarios.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (K05): confirmed RDS Proxy pools and multiplexes many client connections onto fewer database connections, letting an application scale beyond the database instance's own connection limit without application code changes."
 }

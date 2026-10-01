@@ -3,6 +3,6 @@
   "title": "Amazon EC2 instance type naming conventions",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/instance-type-names.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K07: defines instance type naming positions for series, generation, options, and size, including family letter meanings."
 }

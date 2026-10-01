@@ -3,6 +3,6 @@
   "title": "Hibernate your Amazon EC2 instance",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K09 and S02: confirms hibernation saves RAM to EBS, preserves EBS volumes, and charges continue for storage while instance usage is stopped."
 }

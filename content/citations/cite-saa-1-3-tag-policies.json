@@ -3,6 +3,6 @@
   "title": "Tag policies",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): AWS Organizations tag policies standardize tag keys/values (such as a data-classification tag) across an organization's accounts and can enforce compliance on specified resource types."
 }

@@ -3,6 +3,6 @@
   "title": "Amazon Athena is serverless with no infrastructure to manage",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/big-data-analytics-options/amazon-athena.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs question claims that Athena runs ad hoc SQL directly against S3 data with no infrastructure to set up or manage."
 }

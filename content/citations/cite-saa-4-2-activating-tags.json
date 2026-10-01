@@ -3,6 +3,6 @@
   "title": "Activating user-defined cost allocation tags",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K01: confirms user-defined cost allocation tags must be activated to appear in billing reports."
 }

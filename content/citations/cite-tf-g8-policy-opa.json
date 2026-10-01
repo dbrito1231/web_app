@@ -3,6 +3,6 @@
   "title": "Define Open Policy Agent policies for HCP Terraform",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/opa",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8b claims that an OPA policy uses a Rego query and passes when the result array is empty."
 }

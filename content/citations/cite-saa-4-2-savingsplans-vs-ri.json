@@ -3,6 +3,6 @@
   "title": "Compute Savings Plans and Reserved Instances",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/savingsplans/latest/userguide/sp-ris.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K04: confirms Compute Savings Plans cover EC2, Fargate, and Lambda with up to 66 percent discounts, while EC2 Instance Savings Plans can reach 72 percent."
 }

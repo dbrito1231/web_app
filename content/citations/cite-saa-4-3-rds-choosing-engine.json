@@ -3,6 +3,6 @@
   "title": "Choosing your database engine for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/choosing-engine.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 S02 discriminator guidance for choosing MySQL versus PostgreSQL by workload and feature needs."
 }

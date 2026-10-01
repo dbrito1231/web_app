@@ -3,6 +3,6 @@
   "title": "Site-to-Site VPN tunnel options",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpn/latest/s2svpn/VPNTunnels.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.4 K04: confirms a standard Site-to-Site VPN tunnel supports up to 1.25 Gbps, and a Large Bandwidth Tunnel on a Transit Gateway or Cloud WAN attachment supports up to 5 Gbps."
 }

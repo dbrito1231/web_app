@@ -3,6 +3,6 @@
   "title": "AWS Backup plan lifecycle and cold storage minimum",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/plan-options-and-configuration.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, K05: confirms recovery points transitioned to cold storage must remain there at least 90 days beyond any time in warm storage."
 }

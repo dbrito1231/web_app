@@ -3,6 +3,6 @@
   "title": "Backup retention period",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.BackupRetention.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 backup retention numeric limits for RDS DB instances and Multi-AZ DB clusters."
 }

@@ -3,6 +3,6 @@
   "title": "What is Amazon FSx for Windows File Server?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, K02: confirms FSx for Windows File Server provides a fully managed native Windows file system over SMB with Active Directory integration."
 }

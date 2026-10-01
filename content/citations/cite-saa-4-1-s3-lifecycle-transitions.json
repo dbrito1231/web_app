@@ -3,6 +3,6 @@
   "title": "Transitioning objects using Amazon S3 Lifecycle",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, S05 and S09: confirms the 128 KB default minimum transition size, the waterfall transition order, and the early-transition charge rule."
 }

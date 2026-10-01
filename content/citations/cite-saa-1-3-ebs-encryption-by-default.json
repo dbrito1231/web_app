@@ -3,6 +3,6 @@
   "title": "Enable Amazon EBS encryption by default",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ebs/latest/userguide/encryption-by-default.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 LW fix (Amendment 3): EBS encryption by default is a per-Region account setting that forces every newly created EBS volume and snapshot copy in that Region to be encrypted (AWS managed key or a chosen customer managed key); it has no effect on existing unencrypted volumes or snapshots, and once enabled it cannot be overridden for an individual volume in that Region."
 }

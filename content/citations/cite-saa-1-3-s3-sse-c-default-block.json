@@ -3,6 +3,6 @@
   "title": "Blocking or unblocking SSE-C for a general purpose bucket",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/blocking-unblocking-s3-c-encryption-gpb.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 LW fix (Amendment 3): starting April 2026, S3 automatically disables SSE-C for all new general purpose buckets and for existing buckets in accounts with no SSE-C encrypted objects; a blocked PutObject/CopyObject/Multipart request specifying SSE-C is rejected with HTTP 403 AccessDenied unless the bucket's PutBucketEncryption configuration explicitly re-enables SSE-C."
 }

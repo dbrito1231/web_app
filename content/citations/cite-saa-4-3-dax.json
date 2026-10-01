@@ -3,6 +3,6 @@
   "title": "In-memory acceleration with DynamoDB Accelerator (DAX)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 caching claims about DAX latency reduction and read-capacity cost optimization use cases."
 }

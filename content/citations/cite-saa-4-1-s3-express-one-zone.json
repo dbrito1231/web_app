@@ -3,6 +3,6 @@
   "title": "S3 Express One Zone storage class",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/directory-bucket-high-performance.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, K11: confirms S3 Express One Zone has request costs 50 percent lower than S3 Standard in exchange for single-AZ redundancy."
 }

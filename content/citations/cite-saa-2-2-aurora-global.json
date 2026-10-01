@@ -3,6 +3,6 @@
   "title": "Working with Amazon Aurora Global Database",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.Aurora_Fea_Regions_DB-eng.Feature.GlobalDatabase.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K06/S02): re-fetched and confirmed Aurora Global Database extends an Aurora cluster with secondary, read-only clusters in other Regions that can be promoted if the primary Region is lost."
 }

@@ -3,6 +3,6 @@
   "title": "What is Amazon GuardDuty?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K05 claims on GuardDuty's foundational data sources (CloudTrail, VPC flow logs, DNS logs) and the threats it flags."
 }

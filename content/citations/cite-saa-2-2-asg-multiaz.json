@@ -3,6 +3,6 @@
   "title": "Benefits of Amazon EC2 Auto Scaling (distributing instances across Availability Zones)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K06): re-fetched and confirmed Amazon EC2 Auto Scaling detects an unhealthy instance, terminates it, and launches a replacement, and can launch instances in another Availability Zone if one AZ becomes unavailable."
 }

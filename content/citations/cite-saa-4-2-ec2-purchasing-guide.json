@@ -3,6 +3,6 @@
   "title": "Choosing a purchasing option for Amazon EC2",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/decision-guides/latest/decision-guides/ec2-purchasing-options-aws-how-to-choose.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K04: supports the distinction between On-Demand, Savings Plans, Reserved Instances, and Spot purchase models."
 }

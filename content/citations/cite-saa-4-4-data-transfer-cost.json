@@ -3,6 +3,6 @@
   "title": "COST08-BP02 Select components to optimize data transfer cost",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/2025-02-25/framework/cost_data_transfer_optimized_components.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claims that inter-Region data transfer typically incurs charges and should be a deliberate decision, and that CloudWatch and VPC flow logs are the tools used to monitor and analyze data transfer for a workload review."
 }

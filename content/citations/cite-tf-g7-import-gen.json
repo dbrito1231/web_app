@@ -3,6 +3,6 @@
   "title": "Generating configuration for single imports",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/import/generating-configuration",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7a claims that generated configuration is a reviewable template, covers only missing resources, can fail on complex schemas, and needs a provider block."
 }

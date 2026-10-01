@@ -3,6 +3,6 @@
   "title": "Access AWS services through AWS PrivateLink",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that interface VPC endpoints are billed per hour per Availability Zone plus per GB of data processed, unlike the free gateway endpoint type."
 }

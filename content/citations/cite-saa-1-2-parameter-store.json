@@ -3,6 +3,6 @@
   "title": "AWS Systems Manager Parameter Store",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K01 claims on SecureString, parameter types, and why Secrets Manager is recommended for credentials instead."
 }

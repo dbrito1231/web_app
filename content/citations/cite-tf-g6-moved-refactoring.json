@@ -3,6 +3,6 @@
   "title": "Refactor modules (moved blocks)",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/modules/develop/refactoring",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that a moved block renames an address without destroying and needs Terraform v1.1 or later, that Terraform includes the change in the next plan, and that on older versions terraform state mv is used."
 }

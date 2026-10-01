@@ -3,6 +3,6 @@
   "title": "AWS Fargate launch type (compute services overview)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/compute-services.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K12): fetched from docs.aws.amazon.com and checked against the claim that Fargate runs ECS or EKS containers with specified CPU and memory without provisioning or managing the underlying EC2 instances."
 }

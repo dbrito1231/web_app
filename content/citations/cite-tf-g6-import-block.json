@@ -3,6 +3,6 @@
   "title": "import block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/block/import",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that the import block id is the provider ID and to must match an existing resource block address."
 }

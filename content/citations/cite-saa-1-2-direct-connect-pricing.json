@@ -3,6 +3,6 @@
   "title": "AWS Direct Connect pricing (capacity/port-hour and data transfer out)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/directconnect/latest/PricingGuide/full.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 rewrite (SAA task 1.2, S04 lesson bullet and questions): fetched from docs.aws.amazon.com and checked against the claim that Direct Connect is billed through port-hour capacity charges plus data transfer out, not a per-connection-hour model."
 }

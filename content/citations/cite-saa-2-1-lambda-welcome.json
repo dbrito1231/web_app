@@ -3,6 +3,6 @@
   "title": "What is AWS Lambda?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K12): fetched from docs.aws.amazon.com and checked against the claim that Lambda runs code on demand in response to events, scaling automatically and billing only for compute time actually consumed."
 }

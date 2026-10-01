@@ -3,6 +3,6 @@
   "title": "Plugin Development: Filtering Log Output",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/plugin/log/filtering",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7c claim that provider logs may contain sensitive data."
 }

@@ -3,6 +3,6 @@
   "title": "Environment Variables",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/config/environment-variables",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 4c claim that Terraform only reads a variable's value from an environment variable when the name carries the TF_VAR_ prefix."
 }

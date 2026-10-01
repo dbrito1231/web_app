@@ -3,6 +3,6 @@
   "title": "AWS Trusted Advisor fault tolerance checks: NAT Gateway AZ Independence",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/awssupport/latest/user/fault-tolerance-checks.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that a NAT gateway is redundant only within its own Availability Zone, so resources in other AZs should use a NAT gateway in their own AZ."
 }

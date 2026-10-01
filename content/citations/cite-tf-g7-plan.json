@@ -3,6 +3,6 @@
   "title": "terraform plan command reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/plan",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claim that plan -out writes an opaque saved plan file."
 }

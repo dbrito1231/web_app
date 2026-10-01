@@ -3,6 +3,6 @@
   "title": "Import resources overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/import",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that an import block needs the resource ID and a matching destination resource block."
 }

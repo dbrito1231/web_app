@@ -3,6 +3,6 @@
   "title": "Pricing for NAT gateways",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateway-pricing.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that a NAT gateway is billed hourly plus per gigabyte processed, and that same-AZ placement or interface/gateway endpoints reduce that data-processing charge."
 }

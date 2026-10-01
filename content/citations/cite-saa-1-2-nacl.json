@@ -3,6 +3,6 @@
   "title": "Control subnet traffic with network access control lists",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the K03/S01 claims that NACLs are stateless, subnet-level, numbered and evaluated in order, and that the default NACL allows all traffic."
 }

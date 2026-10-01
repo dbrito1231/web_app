@@ -3,6 +3,6 @@
   "title": "AWS Glue DataBrew visual data preparation",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/databrew/latest/dg/what-is.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K04 claim that DataBrew is a serverless, visual, no-code data-preparation tool separate from Glue ETL jobs."
 }

@@ -3,6 +3,6 @@
   "title": "Configuring DNS failover",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-types.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K06): re-fetched and confirmed Route 53 failover routing, backed by health checks, implements active-passive DNS failover by no longer returning an endpoint once it fails its health check."
 }

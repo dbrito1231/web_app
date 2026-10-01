@@ -3,6 +3,6 @@
   "title": "Workspace health assessments",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/health",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8b claims about drift detection, continuous validation, plan tiers and execution mode requirements."
 }

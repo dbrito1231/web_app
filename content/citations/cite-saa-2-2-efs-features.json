@@ -3,6 +3,6 @@
   "title": "Amazon EFS features",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/efs/latest/ug/features.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K11): re-fetched and confirmed a Regional EFS file system stores data redundantly across multiple Availability Zones in the Region automatically, giving continuous availability even if an AZ is unavailable."
 }

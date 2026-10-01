@@ -3,6 +3,6 @@
   "title": "terraform plan command reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/plan",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that -refresh-only updates state to match outside changes, needs v0.15.4 or later, and that -generate-config-out is experimental."
 }

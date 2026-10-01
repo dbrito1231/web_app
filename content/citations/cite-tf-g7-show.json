@@ -3,6 +3,6 @@
   "title": "terraform show command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/show",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claims that terraform show prints a state or plan file and that -json output shows sensitive values in plain text."
 }

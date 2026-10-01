@@ -3,6 +3,6 @@
   "title": "The CLI-driven remote run workflow",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/run/cli",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8a claims about CLI-driven plan and apply, remote apply limits, and the 8c claims about run-specific variables."
 }

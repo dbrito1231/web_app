@@ -3,6 +3,6 @@
   "title": "How Amazon RDS Proxy works",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K09): re-fetched and confirmed RDS Proxy pools and multiplexes short-lived client connections onto fewer database connections and holds client-side connections open across a failover, reducing the failover time an application perceives by up to 66%."
 }

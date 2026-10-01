@@ -3,6 +3,6 @@
   "title": "Amazon EBS General Purpose SSD volumes (gp3 and gp2)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/ebs/latest/userguide/general-purpose.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, K03: confirms gp3's baseline 3,000 IOPS and 125 MiB/s at no extra cost, its provisionable ceiling of 80,000 IOPS and 2,000 MiB/s, and that gp3 sustains provisioned performance indefinitely instead of bursting like gp2."
 }

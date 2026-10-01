@@ -3,6 +3,6 @@
   "title": "How internet traffic is routed to your website or web application",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-dns-service.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that a DNS service such as Amazon Route 53 makes the connection between domain names and IP addresses."
 }

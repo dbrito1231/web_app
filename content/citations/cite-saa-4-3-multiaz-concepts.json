@@ -3,6 +3,6 @@
   "title": "Configuring and managing a Multi-AZ deployment for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 differences between Multi-AZ DB instance deployments and Multi-AZ DB cluster deployments, including standby read behavior."
 }

@@ -3,6 +3,6 @@
   "title": "can Function",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/functions/can",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs that can returns a boolean indicating whether an expression evaluated without error, distinguishing it from try's fallback-value behavior."
 }

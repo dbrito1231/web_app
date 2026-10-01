@@ -3,6 +3,6 @@
   "title": "Right-size selection: price variations between processor architectures (AWS Prescriptive Guidance)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/optimize-costs-microsoft-workloads/right-size-selection.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 S03: states that current Graviton processors are 20 percent cheaper than their Intel counterparts and deliver a 20 percent or greater performance boost, with a worked hourly-pricing example (repointed per AWS-L32-001)."
 }

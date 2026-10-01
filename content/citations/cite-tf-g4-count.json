@@ -3,6 +3,6 @@
   "title": "count meta-argument reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/meta-arguments/count",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs count.index, when to prefer count over for_each, and that count is used for nearly-identical instances."
 }

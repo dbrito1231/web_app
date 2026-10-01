@@ -3,6 +3,6 @@
   "title": "Listener configurations for Elastic Load Balancing",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that layer 4 is the TCP transport layer and layer 7 is the HTTP/HTTPS application layer, used to contrast ALB (layer 7) with NLB (layer 4)."
 }

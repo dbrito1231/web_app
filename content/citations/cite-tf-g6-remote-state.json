@@ -3,6 +3,6 @@
   "title": "Remote State",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/state/remote",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6a/6b/6c claims about the limits of local state, remote state storage, and HCP Terraform queuing and stronger locking."
 }

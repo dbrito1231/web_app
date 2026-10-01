@@ -3,6 +3,6 @@
   "title": "Create and manage resources overview",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/resources",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the general resource-vs-data framing referenced when introducing resource blocks in objective 4a."
 }

@@ -3,6 +3,6 @@
   "title": "Elastic Fabric Adapter",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 S03: confirms the Elastic Fabric Adapter adds an OS-bypass, low-latency transport for tightly coupled HPC and machine-learning inter-node communication beyond what standard Enhanced Networking (ENA) provides."
 }

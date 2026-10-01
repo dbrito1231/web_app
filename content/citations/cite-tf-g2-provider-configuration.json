@@ -3,6 +3,6 @@
   "title": "Provider Configuration - Configuration Language",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/providers/configuration",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the provider block's role in declaring/configuring a provider, the default-configuration rule when aliases exist, and using multiple provider aliases for individual resources."
 }

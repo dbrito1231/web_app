@@ -3,6 +3,6 @@
   "title": "Amazon Elastic Container Service overview",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K14): fetched from docs.aws.amazon.com and checked against the claim that Amazon ECS is an AWS-native container orchestrator that runs tasks and services on a cluster without a separate Kubernetes control plane."
 }

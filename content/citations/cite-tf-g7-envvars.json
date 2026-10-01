@@ -3,6 +3,6 @@
   "title": "Terraform CLI environment variables reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/config/environment-variables",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7c claim that logging is turned off by unsetting TF_LOG or setting it to off."
 }

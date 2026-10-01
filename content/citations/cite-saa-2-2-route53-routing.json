@@ -3,6 +3,6 @@
   "title": "Choosing a routing policy",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K01): re-fetched and confirmed the definitions of the simple, weighted, latency-based, geolocation, geoproximity, IP-based, multivalue answer, and failover routing policies used in K01's routing-policy summary."
 }

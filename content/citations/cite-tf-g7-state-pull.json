@@ -3,6 +3,6 @@
   "title": "terraform state pull command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/state/pull",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claims that state pull downloads and prints raw state to stdout."
 }

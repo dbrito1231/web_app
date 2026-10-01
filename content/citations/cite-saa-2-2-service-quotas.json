@@ -3,6 +3,6 @@
   "title": "Requesting a quota increase",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K10): re-fetched and confirmed adjustable service quotas can be requested at the account or resource level through the Service Quotas console, API, or CLI ahead of when they are needed."
 }

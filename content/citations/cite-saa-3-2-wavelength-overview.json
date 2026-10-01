@@ -3,6 +3,6 @@
   "title": "AWS Wavelength",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wavelength/latest/developerguide/what-is-wavelength.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K02: confirms AWS Wavelength extends AWS compute and storage to telecommunications providers' 5G networks to bring distributed processing physically closer to end users."
 }

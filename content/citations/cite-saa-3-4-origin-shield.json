@@ -3,6 +3,6 @@
   "title": "Use Amazon CloudFront Origin Shield",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.4 K01: confirms Origin Shield adds a caching layer that consolidates requests from all CloudFront caching layers to a single location before they reach the origin."
 }

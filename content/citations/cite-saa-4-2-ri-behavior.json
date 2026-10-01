@@ -3,6 +3,6 @@
   "title": "Reserved Instances",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-behavior.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K01: confirms consolidated billing treats organization accounts as one account for Reserved Instance cost benefits."
 }

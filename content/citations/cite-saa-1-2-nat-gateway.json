@@ -3,6 +3,6 @@
   "title": "NAT gateways",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the S01 claims that a NAT gateway sits in a public subnet with an Elastic IP and lets private-subnet instances start outbound connections without accepting inbound ones."
 }

@@ -3,6 +3,6 @@
   "title": "What is AWS Step Functions?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K16): fetched from docs.aws.amazon.com and checked against the claim that Standard workflows give exactly-once execution and run up to one year with full execution history, while Express workflows give at-least-once execution, run up to five minutes, and support a much higher event rate."
 }

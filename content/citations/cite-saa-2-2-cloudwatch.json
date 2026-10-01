@@ -3,6 +3,6 @@
   "title": "What is Amazon CloudWatch?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K12): re-fetched and confirmed Amazon CloudWatch collects metrics, logs, and alarms used to detect when a resource is unhealthy."
 }

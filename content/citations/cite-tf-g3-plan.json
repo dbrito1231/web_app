@@ -3,6 +3,6 @@
   "title": "terraform plan - Command: plan",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/plan",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs what terraform plan does (refreshes state, compares to configuration, proposes add/change/destroy actions, never applies them) and the -out, -target, -refresh-only, and -destroy flags, plus the pre-0.15 note that only plan (not apply) supported -destroy."
 }

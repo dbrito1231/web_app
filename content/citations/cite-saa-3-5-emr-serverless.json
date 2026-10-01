@@ -3,6 +3,6 @@
   "title": "Amazon EMR Serverless deployment option",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/emr-serverless.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the S05 claim that EMR Serverless runs the same open-source frameworks as EMR without a cluster to configure."
 }

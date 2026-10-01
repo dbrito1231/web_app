@@ -3,6 +3,6 @@
   "title": "Use HCP Terraform with the Terraform CLI",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/cloud",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8d claim that CLI-driven plan and apply run remotely in HCP Terraform by default."
 }

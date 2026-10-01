@@ -3,6 +3,6 @@
   "title": "Uploading and copying objects using multipart upload",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, S01: confirms multipart upload splits a large object into parts uploaded in parallel and that incomplete multipart uploads keep billing for storage until removed."
 }

@@ -3,6 +3,6 @@
   "title": "Managing EFS storage lifecycle",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, K07 and K10: confirms EFS Lifecycle Management's default transition timing into the IA and Archive storage classes."
 }

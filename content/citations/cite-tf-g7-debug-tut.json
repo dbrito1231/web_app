@@ -3,6 +3,6 @@
   "title": "Troubleshoot Terraform (tutorial)",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/tutorials/configuration-language/troubleshooting-workflow",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7c claims on core versus provider logs and using TRACE for bug reports."
 }

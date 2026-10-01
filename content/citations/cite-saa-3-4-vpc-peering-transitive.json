@@ -3,6 +3,6 @@
   "title": "VPC peering basics",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-basics.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.4 K04/S02: confirms VPC peering does not support transitive peering, so a peered VPC cannot route through another VPC to reach a third."
 }

@@ -3,6 +3,6 @@
   "title": "What is Amazon ElastiCache?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 statements that ElastiCache provides a managed in-memory cache used to offload database reads."
 }

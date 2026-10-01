@@ -3,6 +3,6 @@
   "title": "What is AWS X-Ray?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K12): re-fetched and confirmed AWS X-Ray traces a request across multiple services, builds a service map, and pinpoints which downstream call introduced latency or an error."
 }

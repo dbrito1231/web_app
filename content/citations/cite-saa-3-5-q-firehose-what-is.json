@@ -3,6 +3,6 @@
   "title": "What is Amazon Data Firehose (fully managed delivery service)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs question claims that Amazon Data Firehose is a fully managed service that delivers streaming data to a destination with no code."
 }

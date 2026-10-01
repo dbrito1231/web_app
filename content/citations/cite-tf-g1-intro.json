@@ -3,6 +3,6 @@
   "title": "What is Infrastructure as Code with Terraform?",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/intro",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the definition of Terraform as an IaC tool, its declarative configuration files, the consistent lifecycle workflow, the resource-graph parallelism, the state file as source of truth, and VCS/HCP Terraform collaboration."
 }

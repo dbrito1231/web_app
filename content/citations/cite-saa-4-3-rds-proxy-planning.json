@@ -3,6 +3,6 @@
   "title": "Planning where to use RDS Proxy",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy-planning.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claims about RDS Proxy connection pooling scenarios and failover-time reductions up to 66 percent."
 }

@@ -3,6 +3,6 @@
   "title": "terraform fmt - Command: fmt",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/fmt",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs that terraform fmt rewrites configuration files to canonical style without checking correctness, that it only processes the current directory unless given -recursive, and that -check reports formatting status via exit code and file list instead of rewriting files."
 }

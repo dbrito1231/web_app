@@ -3,6 +3,6 @@
   "title": "AWS Cloud Financial Management services and tools",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/management-and-governance-guide/aws-cloud-financial-management-services-and-tools.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K02: defines Cost Explorer, Budgets, and Cost and Usage Report use cases for analysis, alerts, and granular cost data."
 }

@@ -3,6 +3,6 @@
   "title": "Audit trails API reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/api-docs/audit-trails",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8b claims about audit trail retention of 14 days, plan tiers and token types."
 }

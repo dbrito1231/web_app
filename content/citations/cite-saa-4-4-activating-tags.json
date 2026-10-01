@@ -3,6 +3,6 @@
   "title": "Activating user-defined cost allocation tags",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that user-defined cost allocation tags must be activated in Billing and Cost Management, with up to 24 hours to appear and another 24 hours to activate, before they show on billing reports."
 }

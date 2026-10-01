@@ -3,6 +3,6 @@
   "title": "Enable point-in-time recovery in DynamoDB",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery_Howitworks.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 PITR recovery-window limits, restore behavior, and pricing implications."
 }

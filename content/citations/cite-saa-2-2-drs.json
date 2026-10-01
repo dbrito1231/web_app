@@ -3,6 +3,6 @@
   "title": "What is Elastic Disaster Recovery?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/drs/latest/userguide/what-is-drs.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, S07): re-fetched and confirmed AWS Elastic Disaster Recovery continuously replicates servers at the block level into a low-cost staging area and can launch recovery instances within minutes, with no source-code changes required."
 }

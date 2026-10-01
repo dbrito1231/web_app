@@ -3,6 +3,6 @@
   "title": "The variable block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/block/variable",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5b claims that child module variables are set by the parent, variable names are unique per module and some names are reserved."
 }

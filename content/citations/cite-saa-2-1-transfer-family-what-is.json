@@ -3,6 +3,6 @@
   "title": "What is AWS Transfer Family?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K02): fetched from docs.aws.amazon.com and checked against the claim that Transfer Family is a fully managed SFTP, FTPS, FTP, and AS2 endpoint for Amazon S3 or Amazon EFS that needs no file-transfer server infrastructure to run or patch."
 }

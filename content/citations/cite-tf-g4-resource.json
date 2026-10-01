@@ -3,6 +3,6 @@
   "title": "resource block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/block/resource",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs what a resource block is, that it includes the built-in terraform_data type, its <TYPE>.<LABEL> reference syntax, and the lifecycle arguments create_before_destroy and prevent_destroy."
 }

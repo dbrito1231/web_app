@@ -3,6 +3,6 @@
   "title": "AWS Backup plans",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/about-backup-plans.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.1, K05 and S06: confirms AWS Backup stores the first backup in full and subsequent backups incrementally for supported resources."
 }

@@ -3,6 +3,6 @@
   "title": "Monitoring read replication",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.Monitoring.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (S01): confirmed you can monitor replication lag in Amazon CloudWatch by viewing the Amazon RDS ReplicaLag metric."
 }

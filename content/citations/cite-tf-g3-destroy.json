@@ -3,6 +3,6 @@
   "title": "terraform destroy - Command: destroy",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/destroy",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs that terraform destroy deprovisions all objects managed by a configuration and that it is a convenience alias for terraform apply -destroy on current Terraform versions."
 }

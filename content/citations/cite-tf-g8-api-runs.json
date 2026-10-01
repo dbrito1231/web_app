@@ -3,6 +3,6 @@
   "title": "The API-driven run workflow",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/run/api",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8a claims that API-driven workspaces have no VCS repository and that tooling uploads a tar.gz configuration."
 }

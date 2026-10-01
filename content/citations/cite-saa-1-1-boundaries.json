@@ -3,6 +3,6 @@
   "title": "Permissions boundaries for IAM entities",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 pilot (SAA task 1.1): fetched from docs.aws.amazon.com and checked against the question claims."
 }

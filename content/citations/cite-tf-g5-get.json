@@ -3,6 +3,6 @@
   "title": "The terraform get command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/get",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5c claims about terraform get, the .terraform subdirectory and -update."
 }

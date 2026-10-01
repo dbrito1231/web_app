@@ -3,6 +3,6 @@
   "title": "Failing over a Multi-AZ DB instance for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.Failover.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 failover timing guidance for Multi-AZ DB instance deployments."
 }

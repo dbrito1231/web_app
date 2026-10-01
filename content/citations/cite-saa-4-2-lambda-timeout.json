@@ -3,6 +3,6 @@
   "title": "Configure Lambda function timeout",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-timeout.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K08 and S03: confirms default timeout is 3 seconds and maximum is 900 seconds for standard Lambda functions."
 }

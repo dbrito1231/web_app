@@ -3,6 +3,6 @@
   "title": "Amazon Data Firehose BufferingHints API",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/firehose/latest/APIReference/API_BufferingHints.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K06 claim that Firehose buffers records by a configurable size and interval before delivery."
 }

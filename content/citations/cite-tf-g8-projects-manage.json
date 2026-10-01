@@ -3,6 +3,6 @@
   "title": "Manage projects",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/projects/manage",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8b gloss that a project is a folder holding workspaces, Stacks, or both."
 }

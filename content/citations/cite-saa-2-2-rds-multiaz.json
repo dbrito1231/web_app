@@ -3,6 +3,6 @@
   "title": "Configuring and managing a Multi-AZ deployment for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K06): re-fetched and confirmed a Multi-AZ DB instance keeps one non-readable standby that the instance's endpoint transparently repoints to on automatic failover, with no DNS or application change required."
 }

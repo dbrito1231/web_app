@@ -3,6 +3,6 @@
   "title": "What is a Classic Load Balancer?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/introduction.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 addition for task 2.1 questions (K09, distractor for q-saa-2-1-k09-mc): fetched from docs.aws.amazon.com and confirmed the Classic Load Balancer is the previous generation of Elastic Load Balancing, whose listed benefits (TCP/SSL listeners, application-generated-cookie sticky sessions) do not include path- or host-based routing, which requires an Application Load Balancer."
 }

@@ -3,6 +3,6 @@
   "title": "DynamoDB provisioned capacity mode",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/provisioned-capacity-mode.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claims for RCU/WCU definitions, auto scaling behavior, and target utilization guidance."
 }

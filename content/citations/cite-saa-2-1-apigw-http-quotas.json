@@ -3,6 +3,6 @@
   "title": "Quotas for configuring and running an HTTP API in API Gateway",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-quotas.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 fix (TEACHER-L21-003, K01/S01): fetched from docs.aws.amazon.com and checked against the claim that an HTTP API's maximum integration timeout is a fixed 30 seconds that cannot be increased."
 }

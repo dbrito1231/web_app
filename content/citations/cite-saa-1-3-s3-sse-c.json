@@ -3,6 +3,6 @@
   "title": "Using server-side encryption with customer-provided keys (SSE-C)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerSideEncryptionCustomerKeys.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): S3 never stores the SSE-C key, the caller must supply it on every request over HTTPS, and the caller manages rotation."
 }

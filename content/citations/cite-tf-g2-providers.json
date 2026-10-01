@@ -3,6 +3,6 @@
   "title": "Providers - Configuration Language",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/providers",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that providers are plugins Terraform relies on to interact with platforms and APIs, that each provider adds resource/data source types, that the Terraform Registry hosts most providers, and that terraform init installs providers."
 }

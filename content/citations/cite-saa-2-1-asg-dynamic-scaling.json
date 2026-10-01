@@ -3,6 +3,6 @@
   "title": "Dynamic scaling for Amazon EC2 Auto Scaling",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K06, S02): fetched from docs.aws.amazon.com and checked against the claims that target tracking scaling holds a CloudWatch metric at a target value, step scaling applies adjustments sized to the alarm breach, and simple scaling applies one adjustment with a cooldown."
 }

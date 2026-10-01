@@ -3,6 +3,6 @@
   "title": "Command: init",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/init",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that terraform init -upgrade ignores the selections recorded in the dependency lock file and installs the newest version matching the constraint."
 }

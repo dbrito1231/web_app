@@ -3,6 +3,6 @@
   "title": "terraform state show command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/state/show",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7b claims that state show needs one resource address and how to quote for_each instances."
 }

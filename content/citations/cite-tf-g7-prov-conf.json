@@ -3,6 +3,6 @@
   "title": "Provider block configuration",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/providers/configuration",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7a claims that an alias defines multiple configurations for the same provider and that the docs example uses them for different regions."
 }

@@ -3,6 +3,6 @@
   "title": "Designing partition keys to distribute your workload in DynamoDB",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-uniform-load.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (K04, S02): confirmed a partition key design that does not spread requests evenly creates 'hot' partitions, causing throttling even when the table's total provisioned or on-demand capacity is not exhausted."
 }

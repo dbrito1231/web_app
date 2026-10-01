@@ -3,6 +3,6 @@
   "title": "The lifecycle Meta-Argument",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 4f claims that ignore_changes accepts the bare all keyword to ignore every attribute, and that replace_triggered_by forces a replacement when a referenced resource or attribute changes."
 }

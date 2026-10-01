@@ -3,6 +3,6 @@
   "title": "Protecting data by using client-side encryption",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingClientSideEncryption.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): objects are encrypted locally with the Amazon S3 Encryption Client before upload, so S3/AWS never see the plaintext or the key."
 }

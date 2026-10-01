@@ -3,6 +3,6 @@
   "title": "Kinesis Data Streams quotas and limits (per-shard throughput)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 fix (TEACHER-L21-004, K11): fetched from docs.aws.amazon.com and checked against the claim that each Kinesis Data Streams shard supports up to 1 MB/second (1,000 records/second) of write throughput and up to 2 MB/second of read throughput."
 }

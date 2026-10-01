@@ -3,6 +3,6 @@
   "title": "terraform apply - Command: apply",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/apply",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs what terraform apply does without a saved plan (auto-generates a plan and prompts for approval), the -auto-approve flag skipping that prompt, applying a saved -out plan file without re-prompting, and the apply -destroy planning mode."
 }

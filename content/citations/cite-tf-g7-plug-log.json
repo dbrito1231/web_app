@@ -3,6 +3,6 @@
   "title": "Plugin Development: Managing Log Output",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/plugin/log/managing",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7c claims on log levels, TF_LOG precedence, TF_LOG_CORE scope, the stderr default and appending to TF_LOG_PATH."
 }

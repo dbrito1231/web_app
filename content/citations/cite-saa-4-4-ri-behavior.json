@@ -3,6 +3,6 @@
   "title": "Reserved Instances (consolidated billing)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-behavior.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claim that consolidated billing treats organization accounts as one account for Reserved Instance and Savings Plans discount sharing, which the management account can turn off."
 }

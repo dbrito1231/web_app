@@ -3,6 +3,6 @@
   "title": "How AWS Global Accelerator works",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/global-accelerator/latest/dg/introduction-how-it-works.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.4 K01: confirms Global Accelerator's static IPs are fixed entry points that route traffic over the AWS global network to the optimal regional endpoint."
 }

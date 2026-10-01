@@ -3,6 +3,6 @@
   "title": "Backend Type: s3",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/backend/s3",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6b/6c claims that S3 locking is opt-in via use_lockfile (default false) and that DynamoDB-based locking is deprecated."
 }

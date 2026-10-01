@@ -3,6 +3,6 @@
   "title": "Refactor Terraform state",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/state/refactor",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that the remove-and-import workflow requires Terraform 1.7 or newer and that plan previews an import."
 }

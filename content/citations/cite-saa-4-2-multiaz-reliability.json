@@ -3,6 +3,6 @@
   "title": "REL10-BP01 Deploy the workload to multiple locations",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_fault_isolation_multiaz_region_system.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K03 and S04: confirms production workloads should run in at least two Availability Zones and distribute compute across zones."
 }

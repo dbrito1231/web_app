@@ -3,6 +3,6 @@
   "title": "IAM Access Analyzer findings",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Amendment 2 (Q1-T3, q-saa-1-1-k04-mr fix): fetched from docs.aws.amazon.com and checked against the question claims. Confirms external access findings cover resource sharing outside the zone of trust, not usage-based rightsizing."
 }

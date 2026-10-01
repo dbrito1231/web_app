@@ -3,6 +3,6 @@
   "title": "Amazon EC2 pricing",
   "publisher": "AWS",
   "url": "https://aws.amazon.com/ec2/pricing/",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K04 and S06: confirms EC2 per-second billing with a 60-second minimum and highlights Spot discount language."
 }

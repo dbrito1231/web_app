@@ -3,6 +3,6 @@
   "title": "Conditional Expressions",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/expressions/conditionals",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the condition ? true_val : false_val syntax, the self object in postconditions, the can-with-regex validation pattern, and the alltrue/anytrue for-expression pattern."
 }

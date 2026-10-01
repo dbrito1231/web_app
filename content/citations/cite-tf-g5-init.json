@@ -3,6 +3,6 @@
   "title": "The terraform init command",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/init",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 5c claims that re-running terraform init does not change installed modules unless -upgrade is used."
 }

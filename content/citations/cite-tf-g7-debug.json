@@ -3,6 +3,6 @@
   "title": "Enable logs to debug Terraform",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/internals/debugging",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 7c claims on TF_LOG, the level order, JSON output, TF_LOG_CORE and TF_LOG_PROVIDER, and TF_LOG_PATH needing TF_LOG."
 }

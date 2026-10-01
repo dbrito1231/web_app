@@ -3,6 +3,6 @@
   "title": "lookup Function",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/functions/lookup",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs that lookup retrieves one map value by key with a fallback default when the key is missing."
 }

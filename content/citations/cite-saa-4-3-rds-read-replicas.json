@@ -3,6 +3,6 @@
   "title": "Working with DB instance read replicas",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 distinctions between read replicas and synchronous Multi-AZ standbys for scaling and availability."
 }

@@ -3,6 +3,6 @@
   "title": "Workspaces",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/state/workspaces",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6a gloss that a workspace is one of possibly several named states for a configuration and that the default workspace cannot be deleted."
 }

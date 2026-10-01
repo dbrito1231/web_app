@@ -3,6 +3,6 @@
   "title": "Compare AWS database services (AWS Overview whitepaper)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/database.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.3 (K08, S04): confirmed AWS's current database-service comparison maps relational to Aurora/RDS/Redshift, key-value to DynamoDB, in-memory to ElastiCache/MemoryDB, document to DocumentDB, wide column to Amazon Keyspaces, graph to Neptune, and time series to Amazon Timestream."
 }

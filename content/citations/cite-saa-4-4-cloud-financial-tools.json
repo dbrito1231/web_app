@@ -3,6 +3,6 @@
   "title": "AWS Cloud Financial Management services and tools",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/management-and-governance-guide/aws-cloud-financial-management-services-and-tools.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the claims about Cost Explorer's 12-month view and forecast, Budgets' threshold alerting, and the Cost and Usage Report's comprehensive line-item data."
 }

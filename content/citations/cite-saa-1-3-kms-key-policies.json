@@ -3,6 +3,6 @@
   "title": "Key policies in AWS KMS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): every KMS key must have exactly one key policy, IAM policies cannot allow access unless the key policy enables them, key policies are Regional."
 }

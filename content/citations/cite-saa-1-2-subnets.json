@@ -3,6 +3,6 @@
   "title": "Subnets for your VPC",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the S02 claims that a subnet's public/private/isolated type is determined by its route table, not by a separate flag."
 }

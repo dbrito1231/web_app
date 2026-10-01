@@ -3,6 +3,6 @@
   "title": "AWS cost-modeling benchmark: CSV vs. Parquet query cost and speed",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/whitepapers/latest/cost-modeling-data-lakes/overview-of-cost-optimization.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the S07 claim that converting CSV to Parquet cut data scanned, query cost, and query time in an AWS example."
 }

@@ -3,6 +3,6 @@
   "title": "DB instance billing for Aurora",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/User_DBInstanceBilling.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Supports Lesson 4.3 claims on Aurora billing components and Aurora Serverless billing by ACU-hours."
 }

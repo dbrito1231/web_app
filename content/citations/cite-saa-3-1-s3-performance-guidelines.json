@@ -3,6 +3,6 @@
   "title": "Performance guidelines for Amazon S3",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance-guidelines.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, S01: confirms byte-range fetches use the Range HTTP header to parallelize retrieval of large objects and improve retry behavior."
 }

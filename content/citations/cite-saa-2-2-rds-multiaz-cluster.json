@@ -3,6 +3,6 @@
   "title": "Multi-AZ DB cluster deployments for Amazon RDS",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K06): re-fetched and confirmed a Multi-AZ DB cluster keeps a writer and two readable standby instances across three separate Availability Zones, adding read capacity on top of automatic failover protection."
 }

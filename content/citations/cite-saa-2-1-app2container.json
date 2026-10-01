@@ -3,6 +3,6 @@
   "title": "Getting started with AWS App2Container",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/app2container/latest/UserGuide/start-intro.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 rewrite (K08): fetched from docs.aws.amazon.com and checked against the claim that App2Container analyzes an application already running on a server, packages it into a container image, and generates ECS, EKS, or App Runner deployment artifacts without requiring code changes."
 }

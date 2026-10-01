@@ -3,6 +3,6 @@
   "title": "Workspace settings",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 8c claims about the Project Default, Remote, Local and Agent execution modes."
 }

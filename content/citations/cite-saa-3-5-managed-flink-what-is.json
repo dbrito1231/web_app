@@ -3,6 +3,6 @@
   "title": "What is Amazon Managed Service for Apache Flink",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/managed-flink/latest/java/what-is.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K07 claim that Managed Service for Apache Flink runs custom Java, Scala, Python, or SQL stream-processing code."
 }

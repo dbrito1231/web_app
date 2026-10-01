@@ -3,6 +3,6 @@
   "title": "Amazon S3 access points for shared datasets",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K05 claim that an S3 access point is a named endpoint with its own access policy that can be scoped to a VPC."
 }

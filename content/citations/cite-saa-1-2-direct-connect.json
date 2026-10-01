@@ -3,6 +3,6 @@
   "title": "What is Direct Connect?",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 1.2 rewrite: fetched from docs.aws.amazon.com and checked against the S04 claims that Direct Connect is a dedicated fiber connection bypassing the public internet, with public/private/transit virtual interfaces."
 }

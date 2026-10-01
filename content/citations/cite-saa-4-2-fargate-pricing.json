@@ -3,6 +3,6 @@
   "title": "AWS Fargate Pricing",
   "publisher": "AWS",
   "url": "https://aws.amazon.com/fargate/pricing/",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 4.2 K08: confirms Fargate duration billing is per second with one-minute minimum for Linux and five-minute minimum for Windows containers."
 }

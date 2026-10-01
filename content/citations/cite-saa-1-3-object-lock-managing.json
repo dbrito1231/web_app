@@ -3,6 +3,6 @@
   "title": "Object Lock considerations",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-managing.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Q1 lesson rewrite (SAA task 1.3): bypassing governance mode requires the s3:BypassGovernanceRetention permission and an explicit header; a legal hold is unaffected by that bypass."
 }

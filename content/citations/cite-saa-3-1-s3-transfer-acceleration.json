@@ -3,6 +3,6 @@
   "title": "Configuring fast, secure file transfers using Amazon S3 Transfer Acceleration",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.1, S01: confirms S3 Transfer Acceleration routes uploads through the nearest CloudFront edge location over the AWS backbone to cut distance-driven latency."
 }

@@ -3,6 +3,6 @@
   "title": "terraform refresh command reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/refresh",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that terraform refresh is deprecated and is an alias for apply -refresh-only -auto-approve."
 }

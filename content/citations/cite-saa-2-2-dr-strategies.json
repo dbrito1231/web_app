@@ -3,6 +3,6 @@
   "title": "REL13-BP02 Use defined recovery strategies to meet the recovery objectives",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_planning_for_recovery_disaster_recovery.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.2 fix (AWS-L22-001, K04): re-fetched and confirmed the four DR strategies (backup and restore, pilot light, warm standby, multi-site active/active) and their RPO/RTO ordering, including the point-in-time-recovery-to-about-5-minutes detail, match this Well-Architected page verbatim."
 }

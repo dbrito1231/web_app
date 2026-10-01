@@ -3,6 +3,6 @@
   "title": "Choosing the hardware for your Amazon EMR cluster",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/amazon-emr-hardware/introduction.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K01: confirms Amazon EMR runs distributed frameworks such as Apache Spark and Hadoop across many cluster nodes for large-scale data processing."
 }

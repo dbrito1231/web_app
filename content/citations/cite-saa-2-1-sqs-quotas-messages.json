@@ -3,6 +3,6 @@
   "title": "Amazon SQS message quotas",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 2.1 fix (AWS-L21-002 and TEACHER-L21-002, K11): fetched from docs.aws.amazon.com and checked against the FIFO throughput quotas (300 TPS per API action unbatched, 3,000 TPS batched, and a Region-dependent higher quota in high-throughput mode) and the message retention (4 days default, 14 days maximum), message size (up to 1,048,576 bytes / 1 MiB), and visibility timeout (30 seconds default, 12 hours maximum) figures."
 }

@@ -3,6 +3,6 @@
   "title": "AWS Glue for Spark and Python shell job types (AWS Glue for Ray is closed to new customers)",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/glue/latest/dg/how-it-works-engines.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the K04 claim that Glue ETL jobs run as Spark or Python shell engines with different scaling tradeoffs; this page still lists Glue for Ray, which AWS closed to new customers on 2026-04-30."
 }

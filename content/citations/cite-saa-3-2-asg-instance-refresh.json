@@ -3,6 +3,6 @@
   "title": "Replacing Auto Scaling instances based on an instance refresh",
   "publisher": "AWS",
   "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/start-instance-refresh.html",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Lesson 3.2 K04: confirms instance refresh rolls out a new launch template or AMI across an Auto Scaling group's instances using a minimum healthy percentage with automatic rollback on failure."
 }

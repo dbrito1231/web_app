@@ -3,6 +3,6 @@
   "title": "removed block reference",
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/language/block/removed",
-  "accessed": "2026-09-26",
+  "accessed": "2026-10-01",
   "note": "Backs the 6d claims that a removed block destroys the real resource by default and lifecycle destroy = false keeps it and that the lifecycle block is required in the removed block configuration model."
 }
