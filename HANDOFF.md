@@ -1,4 +1,4 @@
-# HANDOFF: Q1 lesson-first content rewrite (as of 2026-09-28, sitting 5)
+# HANDOFF: Q1 lesson-first content rewrite (as of 2026-10-01)
 
 Read this first, then `AGENTS.md`, then `reports/fix-loop-r2/q1/RULES.md`.
 
@@ -9,11 +9,29 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 20 of 22 tasks closed (tf-g5 and tf-g6 closed 2026-09-30). tf-g7 and tf-g8 are in flight, with lessons being written.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, browser smoke test).**
+**Status: 20 of 22 tasks closed (tf-g5 and tf-g6 closed 2026-09-30). tf-g7 and tf-g8 are in flight; both lessons are written and through round 1.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
 
-## Where tf-g5 and tf-g6 stand (resume here; updated 2026-09-30)
+The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
+
+## Where tf-g7 and tf-g8 stand (resume here; updated 2026-10-01)
 
 The two tasks run in parallel, one writer each (3 subagents allowed at once).
+
+| Step | tf-g7 (maintain infrastructure, 9 Qs) | tf-g8 (HCP Terraform, 20 Qs) |
+|---|---|---|
+| Lesson written | Done `a6aee0c`: 2,442 words, 104 claim rows; builds on 6d | Done `c1a80ac`: 4 objectives, 4,495 words, 219 claim rows |
+| Round 1 review | Done. Tech: approve (`c1a80ac`). Teacher: not yet, 2 medium (`TF_LOG_PATH`, lineage/serial) (`451a144`); fact ownership in `lesson-tf-g7-TEACHER.md` | Done. Both not yet, 2 medium each, matching: hard-mandatory override and execution-mode defaults (`ff2af38`, `9665ee8`). Teacher set fact ownership for all 20 Qs in `lesson-tf-g8-TEACHER.md` |
+| Lesson fix pass | Done `9372747`: 118 claim rows; `TF_LOG_PATH` now teaches only what every page agrees on | **Not done.** Next: resume or start the writer with both round 1 reports. See the `53f1beb` note below |
+| Questions written | Done `9372747`: 9 questions | **Not started.** The 20 files (`q-tf-004-8a…8d-*` and `q-tf-004-8-extra-00…07-mc`) are still placeholders |
+| Lead Dev pre-check | Done `9372747` (`questions-tf-g7-leaddev-precheck.md`): whole chain PASS, g7 TERMS added, LD-Qg7-001 (5 stems with no question) fixed | — |
+| Round 2 | **Next step.** Start fresh tech and Teacher reviewers; hand them the round 1 reports, `lesson-tf-g7-impl.md`, `questions-tf-g7-impl.md` and the pre-check | — |
+| Student, then close | — | — |
+
+**`53f1beb` (2026-09-30, the user's own commit):** adds the citation `cite-tf-g8-projects-manage` to `lesson-tf-g8.json` and rewords part of `bodyMarkdown`. It was made outside the writer/review pipeline. Before the tf-g8 fix pass: tell the writer it exists so the edit is not overwritten, add a claim-table row for the new citation if the prose relies on it, and have round 2 check it like any other lesson change. Do not add a `Co-Authored-By:` trailer to it.
+
+## tf-g5 and tf-g6 closed (2026-09-30)
+
+The two tasks ran in parallel, one writer each.
 
 | Step | tf-g5 (modules, 12 Qs) | tf-g6 (state, 12 Qs) |
 |---|---|---|
@@ -21,7 +39,7 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 | Lead Dev pre-check | Done; lesson-only checks PASS (question lines fail only on the 12 placeholders) | Done; same. Cross-references to g2, g3 and g4 checked with a regex and true |
 | Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | Done. Tech: approve, 1 medium + 3 low. Teacher: not yet, 4 medium + 4 low (`removed` nesting, import contrast, `moved` vs `state mv`, split 6d with `####`). TEACHER-Lg6-007 logged as CR-0021 against g4 |
 | Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | Done `23ceea2`: all findings applied, 136 rows; 6d split with `####`; 5 unsupported proposed sentences dropped |
-| Questions written | Done `f97c818`: pre-check findings fixed, audit PASS. `./` kept in 2 questions by Lead Dev decision. LD-Qg5-005 (a pair tell in 5c-mc2) is left to round 2 | **Running** (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` is binding) |
+| Questions written | Done `f97c818`: pre-check findings fixed, audit PASS. `./` kept in 2 questions by Lead Dev decision. LD-Qg5-005 (a pair tell in 5c-mc2) is left to round 2 | Done (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` was binding) |
 | Round 2 (lesson findings Gone, plus questions) | **Closed** `6f1b81b`: round 2 fix pass `d688f95` (incl. a lesson 5c sentence and LD-Qg5-006 parallel form); tech and Teacher round 2b both close | Done: all lesson findings Gone. Questions not yet: 6d-mc2 refutation untaught (AWS-Qg6-001, TEACHER-Qg6-001; the import overview page has "To import multiple resources, use the import block", which the writer re-verifies and adds), 6a-mc2 untaught locking claim, plus rationale wording. Fix pass done `7e68d75` (the import-overview sentence verified and added as rows 137–140). Round 2b: **both close** (`f924a10`). Teacher misread 006 as unfixed; the Lead Dev verified it Gone |
 | Student, then close | **Closed 2026-09-30** `65d51ff`: Student 12/12, 0 keyword-guessable | **Closed 2026-09-30**: Student 12/12; distractor-only justification clauses and 1 echo fixed |
 
@@ -30,8 +48,7 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 - **tf-g5 `version` Warning:** the Lead Dev's "version on a non-registry source errors" came from memory and is **not doc-backed**. Use the reviewer's wording, which makes no claim about the outcome.
 - **tf-g6 `removed` block:** the docs page contradicts itself (the intro says infrastructure is unchanged; the lifecycle section says destroy is the default). The technical reviewer rules on it in round 1.
 - **tf-g6:** the S3 `use_lockfile` default and the DynamoDB-locking deprecation must be stated exactly as the page states them.
-- **`distractor_type_audit` TERMS** gained g5 constructs at `23ceea2`. A bare `./` path is not matchable, so count it by hand. g6 constructs were added at `60cbddc` (24 terms).
-- **Usage limit 2026-09-30:** all three agents stopped mid-task with nothing written; they were resumed from the same point. The tree was clean.
+- **`distractor_type_audit` TERMS** gained g5 constructs at `23ceea2`. A bare `./` path is not matchable, so count it by hand. g6 constructs were added at `60cbddc` (24 terms). g7 constructs were added at `9372747`; bare `TF_LOG` and `TRACE` were left out as 7c's own subject vocabulary. tf-g8 will need its own terms in its pre-check.
 - **New tell found by the Student in tf-g6:** "as …"/"because …" justification clauses on distractors only, which let a reader spot the keys by form. **Check for this in every future pre-check.**
 - **Both:** if a fresh session resumes, start new agents and hand them the impl and review reports. Session agent ids do not carry over.
 
@@ -88,6 +105,8 @@ Background to those decisions follows.
 - Commit messages end with a `Co-Authored-By:` line naming the model. **Do not add it to a commit of the user's own work** — their README rewrite is committed under their authorship at `0161bb9` with no trailer.
 
 ## Tools
+
+**Local Windows machine only.** The paths below (`backend\.venv\Scripts\python.exe`, `../eval-baseline/db.sqlite3.bak`) and the `mcp__MCP_DOCKER__*` AWS docs tools exist on the user's PC. A Claude Code cloud session (Linux, fresh clone) has none of them: no venv, no DB backup, no MCP_DOCKER tools, and a shallow git history (older commits such as `0161bb9` are not in the clone). In a cloud session, do docs-only work and leave DB restores, the Django tests and Student browser checks for the local machine.
 
 - **AWS docs:** `mcp__MCP_DOCKER__search_documentation`, `read_documentation`, `read_sections` — load all three in one ToolSearch `select:` call. Prefer user-guide pages.
 - **Terraform docs:** `developer.hashicorp.com`. **Read the rendered page text, not WebFetch.** WebFetch answers through a summarising model that can paraphrase a quote into something plausible, which is the most likely cause of g3's fabricated quote. The g4 writer switched method and 56 of its 75 quotes were then verified verbatim by a reviewer with no fabrication.
@@ -147,14 +166,17 @@ Ordered by how much trouble each has caused.
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
 | 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
-| 20 | lesson-tf-g7 | 9 | **In flight**: round 1 done (tech approve; Teacher not yet: `TF_LOG_PATH` and lineage/serial); writer applying fixes, then writing the 9 questions (ownership in `lesson-tf-g7-TEACHER.md`) |
-| 21 | lesson-tf-g8 | 20 | **In flight**: round 1 done (both not yet: hard-mandatory override, execution-mode defaults; Teacher set fact ownership for all 20 Qs); writer applying fixes, then writing the 20 questions |
+| 20 | lesson-tf-g7 | 9 | **In flight**: lesson fixes, 9 questions and Lead Dev pre-check done (`9372747`). Next: round 2 |
+| 21 | lesson-tf-g8 | 20 | **In flight**: round 1 done (both not yet: hard-mandatory override, execution-mode defaults). Next: lesson fix pass (account for `53f1beb`), then the 20 questions |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
-**Suggested sittings:** finish g4, then g5+g6 (one writer). Then g7, g8.
+**Next sitting:** tf-g7 round 2, Student and close; tf-g8 fix pass, questions, pre-check, round 2, Student and close. Then the final sitting.
 
 **Final sitting:**
+- **date sweep (user decision 3, 2026-09-28):** set one final date across every citation and `reviewedOn` in a single commit, and update the `2026-09-26` literal in `q1_batch_check` to match;
+- **CR-0019** (lesson 3.5 and four 3.5 questions present AWS Glue for Ray as current) and **CR-0021** (tf-g4 Warnings cite guidance tf-g3 does not contain), both in `docs/change-requests.md`; **D6-FU** lesson follow-ups (register row);
+- **LD-Qg7-002:** stems with no question in closed tasks tf-g1 (1a-mr, 1b-mr, 1c-mr), tf-g2 (2a-mr, 2b-mr, 2d-mr) and tf-g4 (4a-mc). Not a correctness defect. Decide whether to fix them and whether `q1_batch_check` should flag a stem not ending in "?" (a script change, so it needs a plan);
 - browser Student smoke test, ~10 questions across 3.1 to tf-g8, then restore the DB;
 - **reconcile the register (user-approved).** `reports/fix-loop/issue-register.md` lists **53 rows under "Still open"** and the number is not real. Close with a reason: `L1` ("lessons don't teach") is what the rewrite fixed; `N8` (133 rationales naming wrong letters) — those questions were all rewritten; `R6 / ISS-070` already says "folded into the lesson and question rewrites"; `Q1-T2/T3/T4` are pilot-era findings against content that no longer exists. Genuinely live and independent of the rewrite: `FS-R3-001` (header hidden behind an 80px scroll margin), `AWS-R3-002` (GL-14/19/21 subnet lookup returns a tab-joined string, breaking cluster creation), `TEACHER-R3-001/002/003` (lab criteria), `PY-R3-002/003` (scanner), and `D6 / ISS-080`. Leave a true open list;
 - close `L1` and `ISS-010`;
