@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "When a module block uses `for_each`, the value is a map of objects, with one object for each module instance holding that instance's outputs. A single object with one attribute per output is the shape for a block that uses neither count nor for_each. A list of objects is the shape produced by `count`. A set of objects with no keys is not what Terraform returns: the lesson describes a map of objects, so the instances are looked up by key.",
+  "rationale": "When a module block uses `for_each`, the value is a map of objects, with one object for each module instance holding that instance's outputs. A single object with one attribute per output is the shape for a block that uses neither count nor for_each. A list of objects is the shape produced by `count`. A set of objects with no keys is not what Terraform returns: the value is a map of objects, so each instance is looked up by its key.",
   "citationIds": [
     "cite-tf-g5-references",
     "cite-tf-g5-use-modules"
