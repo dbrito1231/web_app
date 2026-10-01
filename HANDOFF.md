@@ -148,7 +148,7 @@ Ordered by how much trouble each has caused.
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
 | 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
 | 20 | lesson-tf-g7 | 9 | **In flight**: round 1 done (tech approve; Teacher not yet: `TF_LOG_PATH` and lineage/serial); writer applying fixes, then writing the 9 questions (ownership in `lesson-tf-g7-TEACHER.md`) |
-| 21 | lesson-tf-g8 | 20 | **In flight**: lesson written `c1a80ac` (4,495 words, 219 rows; cross-references to g1/g4/g6 verified); round 1 running |
+| 21 | lesson-tf-g8 | 20 | **In flight**: round 1 done (both not yet: hard-mandatory override, execution-mode defaults; Teacher set fact ownership for all 20 Qs); writer applying fixes, then writing the 20 questions |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
