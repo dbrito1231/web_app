@@ -19,8 +19,8 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 |---|---|---|
 | Lesson written | Done `2d5469d`: 2,399 words, 83 claim rows, 15 cites | Done `a7cd16f`: 2,684 words, 120 claim rows, 25 cites |
 | Lead Dev pre-check | Done; lesson-only checks PASS (question lines fail only on the 12 placeholders) | Done; same. Cross-references to g2, g3 and g4 checked with a regex and true |
-| Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | **Running** (tech `lesson-tf-g6-AWS.md`; Teacher's text is saved by the Lead Dev as `lesson-tf-g6-TEACHER.md`) |
-| Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | Not started |
+| Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | Done. Tech: approve, 1 medium + 3 low. Teacher: not yet, 4 medium + 4 low (`removed` nesting, import contrast, `moved` vs `state mv`, split 6d with `####`). TEACHER-Lg6-007 logged as CR-0021 against g4 |
+| Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | **Running** (the writer applies both reviews; new sentences need claim rows or are dropped) |
 | Questions written | **Running** (same writer) | Not started |
 | Lead Dev pre-check of questions, then round 2, Student and close | Not started | Not started |
 
@@ -142,7 +142,7 @@ Ordered by how much trouble each has caused.
 | 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **In flight**: lesson and fixes done, questions being written |
-| 19 | lesson-tf-g6 | 12 | **In flight**: lesson done, round 1 running |
+| 19 | lesson-tf-g6 | 12 | **In flight**: lesson done, round 1 done, fix pass running |
 | 20 | lesson-tf-g7 | 9 | Not started |
 | 21 | lesson-tf-g8 | 20 | Not started |
 
