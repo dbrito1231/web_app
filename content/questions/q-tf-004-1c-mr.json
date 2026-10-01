@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.1c"
   ],
-  "stem": "(Select TWO.) Corriedale Metals runs some servers on-premises and some in the cloud, and wants to add both kinds of infrastructure using one configuration language and one applied workflow, rather than a separate native tool for each environment.",
+  "stem": "(Select TWO.) Corriedale Metals runs some servers on-premises and some in the cloud, and wants to add both kinds of infrastructure using one configuration language and one applied workflow, rather than a separate native tool for each environment. Which two approaches meet this goal?",
   "selectCount": 2,
   "choices": [
     {

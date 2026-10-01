@@ -5,7 +5,7 @@
   "objectiveIds": [
     "tf.004.4a"
   ],
-  "stem": "Bramblewood Freight wants to look up the ID of an AMI that already exists in their AWS account, without creating or changing anything, so the value can be reused elsewhere in the configuration.",
+  "stem": "Bramblewood Freight wants to look up the ID of an AMI that already exists in their AWS account, without creating or changing anything, so the value can be reused elsewhere in the configuration. Which approach should they use?",
   "selectCount": 1,
   "choices": [
     {

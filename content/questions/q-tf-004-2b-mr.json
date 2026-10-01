@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.2b"
   ],
-  "stem": "(Select TWO.) Rosewell Analytics wants to confirm exactly how Terraform will resolve a provider that a colleague referred to only by its local name.",
+  "stem": "(Select TWO.) Rosewell Analytics wants to confirm exactly how Terraform will resolve a provider that a colleague referred to only by its local name. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {

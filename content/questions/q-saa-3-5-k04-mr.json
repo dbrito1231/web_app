@@ -23,7 +23,7 @@
     },
     {
       "id": "d",
-      "text": "A Glue for Ray job for the schema discovery"
+      "text": "An AWS Glue Python shell job for the schema discovery"
     },
     {
       "id": "e",
@@ -34,7 +34,7 @@
     "b",
     "e"
   ],
-  "rationale": "DataBrew's point-and-click interface cleans messy fields without any code, and a Glue crawler scans new files, infers their schema, and registers the result in the Data Catalog. A CTAS query builds a new table from data Athena can already query through an existing table definition; it doesn't discover the schema of files nobody has cataloged yet. An EMR Serverless Spark job and a Glue for Ray job both run code a developer writes, and neither offers a no-code visual cleaning interface.",
+  "rationale": "DataBrew's point-and-click interface cleans messy fields without any code, and a Glue crawler scans new files, infers their schema, and registers the result in the Data Catalog. A CTAS query builds a new table from data Athena can already query through an existing table definition; it doesn't discover the schema of files nobody has cataloged yet. An EMR Serverless Spark job runs code a developer writes and offers no no-code visual cleaning interface, and a Glue Python shell job is an ETL engine that runs scripts on a single machine once data is cataloged; it is the crawler, not an ETL job, that infers the schema and writes the table definitions.",
   "citationIds": [
     "cite-saa-3-5-glue-databrew",
     "cite-saa-3-5-glue-data-catalog",

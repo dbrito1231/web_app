@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-3-3-rds-cloudwatch-alarms",
+  "title": "Creating CloudWatch alarms to monitor Amazon RDS",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/creating_alarms.html",
+  "accessed": "2026-09-26",
+  "note": "Lesson 3.3 (S01): confirmed you can create a CloudWatch alarm that sends an Amazon SNS message when the alarm changes state; backs alarming on the ReplicaLag metric."
+}

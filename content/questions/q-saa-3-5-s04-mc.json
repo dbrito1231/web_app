@@ -11,7 +11,7 @@
   "choices": [
     {
       "id": "a",
-      "text": "Import the dataset into Amazon QuickSight and cache it in SPICE"
+      "text": "Import the dataset into Amazon QuickSight and hold it in SPICE memory storage"
     },
     {
       "id": "b",
@@ -23,17 +23,17 @@
     },
     {
       "id": "d",
-      "text": "Publish a Glue for Ray job that emails a static report nightly"
+      "text": "Schedule an AWS Glue DataBrew job that writes a CSV extract to S3 each morning"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Importing the dataset into QuickSight's SPICE in-memory engine avoids re-querying the source on every interaction, giving hundreds of concurrent viewers a fast, cached dashboard that matches the nightly-refresh freshness the requirement accepts. Querying the source directly on every load re-runs the query for every viewer, trading away the fast, cached performance the scenario wants for freshness the scenario does not need. Re-running the same Athena query for every view has the same repeated-query cost and no dashboard layer for viewers to interact with. A Glue for Ray job that emails a static report is a scheduled report, not an interactive dashboard hundreds of people can load and explore.",
+  "rationale": "Importing the dataset into QuickSight's SPICE in-memory engine avoids re-querying the source on every interaction, giving hundreds of concurrent viewers a fast, cached dashboard that matches the nightly-refresh freshness the requirement accepts. Querying the source directly on every load re-runs the query for every viewer, trading away the fast, cached performance the scenario wants for freshness the scenario does not need. Re-running the same Athena query for every view has the same repeated-query cost and no dashboard layer for viewers to interact with. Glue DataBrew is a visual data-preparation tool for cleaning and normalizing data, so a scheduled job that writes a CSV extract to S3 produces a prepared file, not an interactive dashboard hundreds of people can load and explore.",
   "citationIds": [
     "cite-saa-3-5-quicksight-rename",
     "cite-saa-3-5-q-athena-serverless",
-    "cite-saa-3-5-glue-job-engines"
+    "cite-saa-3-5-glue-databrew"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

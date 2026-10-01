@@ -49,7 +49,7 @@
     },
     {
       "id": "r7",
-      "label": "Each new fleet keeps at least the vCPUs and the memory that its stated utilisation requires, with the vCPU and GiB totals before and after stated for both services",
+      "label": "Each new fleet keeps at least the vCPUs and the memory that its stated utilisation requires, with the vCPU and GiB totals before and after stated for both services, and neither fleet keeps more vCPUs or memory than its utilisation plus the headroom the record states",
       "points": 2
     }
   ],

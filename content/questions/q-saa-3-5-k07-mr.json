@@ -15,7 +15,7 @@
     },
     {
       "id": "b",
-      "text": "AWS Glue for Ray for delivering the copy to S3"
+      "text": "AWS DataSync for delivering the copy to S3"
     },
     {
       "id": "c",
@@ -34,10 +34,10 @@
     "a",
     "c"
   ],
-  "rationale": "Data Firehose is the managed delivery service built to move stream data into a destination like S3 with no code, and Kinesis Data Streams retains an ordered stream that multiple independent consumers can each read and replay at their own pace. Glue for Ray runs Python compute jobs and has no role delivering a stream to S3. Managed Service for Apache Flink is itself a consumer that processes a stream; it doesn't give several separate applications their own independent replay of the raw records the way the underlying stream does. An S3 access point only scopes network and permission access to a bucket; it has no concept of a stream or independent consumer replay.",
+  "rationale": "Data Firehose is the managed delivery service built to move stream data into a destination like S3 with no code, and Kinesis Data Streams retains an ordered stream that multiple independent consumers can each read and replay at their own pace. AWS DataSync is a file-transfer service that moves files and objects between storage systems, not a service that delivers a live stream into S3. Managed Service for Apache Flink is itself a consumer that processes a stream; it doesn't give several separate applications their own independent replay of the raw records the way the underlying stream does. An S3 access point only scopes network and permission access to a bucket; it has no concept of a stream or independent consumer replay.",
   "citationIds": [
     "cite-saa-3-5-q-firehose-what-is",
-    "cite-saa-3-5-glue-job-engines",
+    "cite-saa-3-5-datasync-what-is",
     "cite-saa-3-5-q-kinesis-consumers",
     "cite-saa-3-5-managed-flink-what-is",
     "cite-saa-3-5-s3-access-points"

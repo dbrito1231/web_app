@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.2a"
   ],
-  "stem": "(Select TWO.) Hallowmere Systems reviews a colleague's `required_providers` block and needs to know precisely which future releases each constraint would allow.",
+  "stem": "(Select TWO.) Hallowmere Systems reviews a colleague's `required_providers` block and needs to know precisely which future releases each constraint would allow. Which two statements about the constraints are correct?",
   "selectCount": 2,
   "choices": [
     {

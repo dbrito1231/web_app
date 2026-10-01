@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Run a Glue for Ray job that filters rows before analysts see them"
+      "text": "Run an AWS Glue crawler so each analyst group sees only its own tables"
     },
     {
       "id": "d",
@@ -29,10 +29,10 @@
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Lake Formation registers an S3 path into a governed data lake and grants access through its own database and table permission model layered on IAM, matching the centralized, table-level control the requirement describes. Attaching individual IAM policies per analyst manages access permission by permission rather than by database and table, and becomes unmanageable as analysts and tables grow. S3 Intelligent-Tiering only manages storage cost tiers and has nothing to do with granting access. Filtering rows in a Glue for Ray job changes what data an output contains; it provides no centrally managed grant/revoke permission system over the catalog.",
+  "rationale": "Lake Formation registers an S3 path into a governed data lake and grants access through its own database and table permission model layered on IAM, matching the centralized, table-level control the requirement describes. Attaching individual IAM policies per analyst manages access permission by permission rather than by database and table, and becomes unmanageable as analysts and tables grow. S3 Intelligent-Tiering only manages storage cost tiers and has nothing to do with granting access. A Glue crawler only infers schemas and writes table definitions into the Data Catalog; it grants and revokes nothing, because permissions come from Lake Formation's grant/revoke model.",
   "citationIds": [
     "cite-saa-3-5-lake-formation-terminology",
-    "cite-saa-3-5-glue-job-engines"
+    "cite-saa-3-5-glue-data-catalog"
   ],
   "reviewedOn": "2026-09-26",
   "mcpStatus": "verified"

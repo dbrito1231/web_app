@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.1b"
   ],
-  "stem": "(Select TWO.) Solvent Analytics' five engineers currently trust whoever last touched the servers to remember what is actually running, and nobody double-checks an edit before it goes live. Leadership wants a second set of eyes on every edit, and a way for any of the five to check what is actually running without asking that person.",
+  "stem": "(Select TWO.) Solvent Analytics' five engineers currently trust whoever last touched the servers to remember what is actually running, and nobody double-checks an edit before it goes live. Leadership wants a second set of eyes on every edit, and a way for any of the five to check what is actually running without asking that person. Which two actions meet both needs?",
   "selectCount": 2,
   "choices": [
     {

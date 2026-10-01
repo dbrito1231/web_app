@@ -1,0 +1,8 @@
+{
+  "id": "cite-saa-4-4-vpn-limits-ecmp",
+  "title": "Quotas for your Site-to-Site VPN connections",
+  "publisher": "AWS",
+  "url": "https://docs.aws.amazon.com/vpn/latest/s2svpn/vpn-limits.html",
+  "accessed": "2026-09-26",
+  "note": "Backs the K05 claim that ECMP can aggregate multiple VPN tunnels for higher bandwidth, and that ECMP is not supported on VPN connections that use static routing."
+}
