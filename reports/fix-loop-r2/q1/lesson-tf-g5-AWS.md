@@ -108,3 +108,124 @@ New retired/renamed/closed-service finds: none (no AWS service is named in this 
 
 Lesson tf-g5: approve for question writing
 Overall: concerns
+
+## Round 2
+
+Method: re-fetched `language/block/module` and `language/modules/configuration` with `curl -sL` plus the HTML strip (no WebFetch). Read the current lesson (29230f0) and all 12 question files (f97c818, key = `correctAnswerIds`), the writer's fix pass, the Teacher's round-1 report and the Lead Dev pre-check. All 12 questions have `mcpStatus: verified`, `reviewedOn: 2026-09-26`, and non-empty citation ids. Every cited id maps to a page that backs the question's facts. No version-sensitive claim is made: the only numbers are `~>` arithmetic and sample versions.
+
+### (a) My round-1 findings
+
+- **AWS-Lg5-001 Gone.** The Warnings bullet now quotes "only applies when installing modules from a registry" and "do not support version", says "Do not add it", and makes no claim about error versus ignored.
+- **AWS-Lg5-002 Gone.** The Git bullet reads "a tag or a commit SHA fixes the version, while a branch ... keeps moving".
+- **AWS-Lg5-003 Gone.** The text now reads "A variable cannot use certain reserved names", followed by the quote.
+- **AWS-Lg5-004 Gone.** The rule quote and the exception quote are separate sentences, each attributed correctly.
+- **AWS-Lg5-005 Gone.** The bullet now says HTTPS URL with an archive extension and quotes the "terraform-get=1 redirection" sentence. I re-fetched it: verbatim, and the page continues "uses the contents of the referenced archive as the module source code".
+- **AWS-Lg5-006 Gone.** "In most cases" was added.
+- **AWS-Lg5-007 Gone.** No change was required, and the lesson says "Don't commit this directory".
+- **AWS-Lg5-008 Gone.** "(within any `version` constraint on a registry module, 5d)" was added.
+
+### (b) Second-role check of TEACHER-Lg5-001..007
+
+- **001 Gone.** The text says "`TF_VAR_` names were covered in 4c; `-var` and `.tfvars` files are the other methods in that list", and "methods 4c covered" is gone (0 hits).
+- **002 Gone.** Same fix as AWS-Lg5-003.
+- **003 Gone.** The page sentence is "Terraform will always select the newest available module version that meets the specified version constraints". The lesson now scopes it to a first install, `init -upgrade` or `get -update`, which agrees with 5c's "will not change any already-installed modules".
+- **004 Gone.** Same fix as AWS-Lg5-002.
+- **005 Gone.** The vocabulary sentence (folder of `.tf` files, root, child, label) is in the intro.
+- **006 Gone.** Ownership was followed; see (c) for the duplicate-fact check.
+- **007 Gone.** The lesson reads "where they land ... And the rule".
+
+### (c) Question review
+
+For each question I report the key, each distractor as real? and taught?, and any defect. Syntax is valid everywhere: the `s3::https://s3-eu-west-1.amazonaws.com/...` form is the page's own form, and `//` and `?ref=` are as documented. No distractor is a working answer.
+
+**5a-mc.** The key b is correct.
+- a (single slash, `?ref=main`): real and taught (`//` marks the folder). It fails because the folder is not marked.
+- c (`./network.git//modules/vpc`): real and taught (local path means files already on disk).
+- d (`acme/network/aws//modules/vpc`): real and taught (registry shape).
+- **AWS-Qg5-001 (Low).** The rationale says "the module is not published to a registry", but the stem never says so; it says only "internal Git server". Fix: add to the stem "The module is not published to any registry."
+
+**5a-mc2.** The key d is correct.
+- a (`//v2.3.0`): real and taught. I rule it acceptable: the lesson teaches that `//` marks a folder, and `github.com/acme/queue-module//v2.3.0` would name a folder `v2.3.0` that does not exist.
+- b (`?ref=main`): real and taught. The stem says the unfinished change went to the primary branch, and a branch moves.
+- c (explicit `git::` form): real and taught (default branch at HEAD).
+- **AWS-Qg5-002 (Low-Medium, rationale wording).** "a slash-delimited tag name would be read as a folder path" is confusing, since `v2.3.0` is not slash-delimited. Fix: "A double slash marks a folder inside the package, not a revision, so `//v2.3.0` would be read as a folder named v2.3.0 inside the repository, which does not exist, instead of selecting the tag."
+- **AWS-Qg5-003 (Low, giveaway).** c's tail "with nothing else changed" signals a wrong answer, close to the banned "without changing" family. Fix: "Rewrite the address in the explicit `git::https://github.com/acme/queue-module.git` form".
+
+**5a-mr.** The keys b and e are correct.
+- a (loose folder works like a packaged file): real and taught (the object must be an archive). It answers the packaging need.
+- c (three-part shape with the bucket as namespace): real, a little contrived. Taught (registry shape, versus `s3::`). It answers the packaging need.
+- d (".terraform directory deleted and recreated"): ruling below. It answers the edit need.
+- Both needs are answered by at least one distractor each, so the MR-need rule is met.
+- Echo: "edit" is in the stem and in key e but not in a distractor. It is structural, since it names the event, and the script passes.
+
+**5b-mc.** The key a is correct.
+- b (`-var`), c (`TF_VAR_replicas`) and d (tfvars in the child folder) are real and taught as root-module methods.
+- d is the thinnest: it is true in Terraform (definition files are read from the working directory only), and the lesson lists `.tfvars` only among root-module methods. Acceptable.
+
+**5b-mc2.** The key c is correct.
+- a (direct `local.` use), b (a second `locals` block) and d (output read as `module.app.prefix`) are real and taught. d tests direction; the "in" direction is owned here and 5b-mr owns "out", so there is no duplication.
+
+**5b-mr.** The keys a and d are correct.
+- b (`module.network.aws_subnet.main.id`): real. It is an error in practice, and the lesson hedges with "no documented way". The rationale keeps that hedge, so that is fine.
+- c (a `locals` block) and e (a `variable` default): real and taught.
+- Note: b carries "because the child's resources are shared with its caller", a justification clause. It is the false claim itself, not a hint, so I do not require a change.
+- Note: both keys mention "output" and no distractor does. The stem does not mention output, so this is not echo.
+
+**5c-mc.** The key d is correct (row 47).
+- a (one object per output) and b (a list) are the other two real shapes, and both are taught.
+- **AWS-Qg5-004 (Low).** c ("a map keyed by output name, whose values are lists") is a caricature, as the writer flagged. The key is also the shortest choice. Fix: replace c with "A set of objects, one per module instance, with no keys to look instances up by". This is real (sets were taught in 4d), and it is wrong because the lesson says the value is a map. It also makes the choice lengths less revealing.
+
+**5c-mc2.** The key a is correct. The ruling on LD-Qg5-005 and the replacement are in (e).
+
+**5c-mr.** The keys c and e are correct.
+- **AWS-Qg5-005 (Medium, giveaway).** The stem says "routine initialization keeps leaving the old copy in place". That sentence refutes choice a ("terraform init again with no extra flags") and tests reading rather than knowledge. Fix: delete the clause. Stem: "(Select TWO.) Tallgrass Insurance installed its modules last quarter. A registry module has since published a newer release that its `version` constraint allows. Which two actions would move the installed modules forward?"
+- **AWS-Qg5-006 (Medium, teach-before-test).** d (`terraform apply` on an unchanged configuration) is real, but the lesson never says apply does not install or update modules. It teaches only "Sourcing happens at install time, not at plan time"; the "not apply" half is untaught. Lesson addition requested, in 5c after the workflow sentence: "Only `init` and `get` install or update module code: the docs list the steps as "Initialize the workspace to install the module." and then "Apply the configuration to provision the module's resources."" Both quotes are verbatim on https://developer.hashicorp.com/terraform/language/modules/configuration (checked this turn). Add them as claim rows, then update the rationale to "plan and apply use the modules already installed".
+
+**5d-mc.** The key c is correct.
+- a, b and d are real and taught, and each is wrong for a different reason.
+- The "can carry" wording avoids any claim about error behaviour.
+
+**5d-mc2.** Numbers verified: `~> 1.0.4` allows 1.0.5 and 1.0.10 but not 1.1.0 (row 72). So 1.1.10 is out, 1.0.5 and 1.0.10 qualify, and 1.0.10 is numerically newer than 1.0.5. The key b (1.0.10) is correct.
+- 1.0.3 is wrong whatever the lower bound is, because it is not the newest.
+- **AWS-Qg5-007 (Low).** The rationale says "1.0.3 is below the stated lower bound". The lesson and the page do not state a lower bound. Fix: "1.0.3 is older than the 1.0.4 the constraint starts from, and in any case it is not the newest qualifying release."
+
+**5d-mr.** The keys a and c are correct.
+- d (a range keeps the first release): real, and false for the stem's fresh clones, which is taught.
+- e (`!=` holds a single release): real mix-up, and taught.
+- **AWS-Qg5-008 (Medium, negation pair).** b ("Committing the lock file freezes the module release, because it lists every external dependency") is almost the plain negation of key a. A reader sees one true and one false version of the same sentence, and "because ..." justifies the false claim. This is the same pair pattern as 5c-mc2. Fix: replace b with "Running `terraform init -upgrade` in each CI job keeps the module on the release chosen the first time". Real, because people mix up `-upgrade`. It is wrong for a reason taught in 5c and 5d: `-upgrade` moves modules to the newest release the constraint allows. It tests a different fact from a, so it is not a negation.
+- The MR need rule is met: all distractors address the single stated need.
+
+### (d) Numbers and versions in keys and distractors
+
+All verified against the pages: 1.0.5, 1.0.10, 1.1.0, 1.0.3, 1.1.10, `~> 1.0.4`, `~> 6.0`, exact `6.0.1`, `v2.3.0`, `2.x`. The arithmetic is correct. There is no Terraform version floor in any question.
+
+### (e) Rulings
+
+**LD-Qg5-005 (5c-mc2): it is a pair tell, and worse, an odd-one-out tell.** a and d share their first words ("In a `.terraform` subdirectory of the working directory") and differ only in "kept out of" versus "committed so teammates skip the download". Three of four choices (b, c, d) say "committed", so the key is the only choice that does not. A student who knows the lesson says "Don't commit" picks it without reading the location. Replacement for d, which stays real and taught: "In a `modules` folder beside the root `.tf` files, kept out of version control". It is wrong for the same location reason as b, namely that modules land in `.terraform` (taught, row 51). Then two choices commit and two do not, and the question is decided by the location, which is the fact the lesson teaches. Update the rationale: "Nothing creates a `modules` folder next to the root files by default, whether or not it is committed." Drop its last sentence about `.terraform` itself.
+
+**5a-mc2 "Append `//v2.3.0` to the repository address": accept.** It is real, because people reuse `//` as a revision marker. It is taught, because the lesson says `//` marks a subdirectory and `ref` selects a revision. It is not a working answer: it names a folder that does not exist. Only the rationale wording needs the fix in AWS-Qg5-002.
+
+**5a-mr "picked up only after the `.terraform` directory has been deleted and recreated": accept, with one note.** It is clearly false for a taught reason: the lesson says changing `source` requires a fresh `terraform init` "so that Terraform can update the local code", so `init` alone is enough and "only after" is wrong. The rationale states that nothing requires deleting the directory. The lesson does not say so in as many words. If a reviewer wants it airtight, add to 5a: "Re-running `terraform init` is enough; the `.terraform` directory does not need to be deleted." This is not a doc quote, so state it as plain explanation. I do not require it.
+
+### Duplicate facts across questions
+
+None. 5b-mc2 (local value passed as an argument) and 5b-mr (output declaration and `module.<label>.<name>`) are different facts. 5a-mr's "`init` after a `source` edit" is different from 5c-mr's "`-upgrade` / `get -update`". The `./` distractor in 5a-mc and 5d-mc is a recorded exception (each tests a different owned fact), and I accept it.
+
+### Distractor types
+
+After AWS-Qg5-008 and the 5c-mc2 change, `-upgrade` appears as a distractor once (5d-mr) and as a key once (5c-mr). That is within the 15% cap, and the lock file is a distractor in 5c-mc2 only.
+
+### Summary of open items
+
+- AWS-Qg5-001: Low.
+- AWS-Qg5-002: Low-Medium.
+- AWS-Qg5-003: Low.
+- AWS-Qg5-004: Low.
+- AWS-Qg5-005: Medium.
+- AWS-Qg5-006: Medium, needs a lesson addition (teach-before-test).
+- AWS-Qg5-007: Low.
+- AWS-Qg5-008: Medium.
+- LD-Qg5-005: the pair tell is confirmed; the replacement is above.
+
+Task tf-g5: not yet
+Overall: concerns
