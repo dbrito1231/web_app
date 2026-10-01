@@ -66,3 +66,20 @@ AWS-Lg5-001 to 008 are all applied and correct, so all are Gone. 007 needed no l
 - **TEACHER-Qg5-004 (low, 5b-mc).** No change needed. An optional lesson sentence: "`-var`, `.tfvars` files and `TF_VAR_` names set root module variables; a child receives its inputs as arguments."
 
 Task tf-g5: not yet (fix 001; 002–004 may ride along) · Overall: concerns
+
+---
+
+# Teacher round 2b — tf-g5 (d688f95)
+
+Saved by the Lead Dev (condensed).
+
+- **TEACHER-Qg5-001: Gone.** The commit clause now varies across 5c-mc2's options, so it no longer picks the key; the location does, and the lesson quotes it.
+- **TEACHER-Qg5-002: Gone.** The 5c-mr stem no longer refutes plain `init`.
+- **TEACHER-Qg5-003: Gone.** The writer used the AWS replacement ("A set of objects ... no keys"). It is real (`for_each` takes a set) and is refuted by "a map of objects", which makes it better than the Teacher's own alternative.
+- **Second-role check on AWS-Qg5-001 to 008:** all applied correctly.
+  - 008's new 5d-mr distractor tests a different fact, refuted in 5c.
+  - 006's new lesson 5c sentence is sound and well placed, and asserts no more than its two quotes.
+- **LD-Qg5-006: Gone.** The keys are now parallel "Running …" options.
+- **Changed choices:** all real, all refuted by a lesson sentence, no giveaways.
+
+Task tf-g5: close · Overall: approve
