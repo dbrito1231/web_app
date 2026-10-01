@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-workspace-permissions",
+  "title": "Workspace permissions",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/workspace",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims about the Read, Plan, Write and Admin workspace roles."
+}

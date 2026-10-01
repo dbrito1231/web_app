@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-workspace-state",
+  "title": "Manage workspace state",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/state",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8c claims about remote state sharing options and that sharing is off by default."
+}

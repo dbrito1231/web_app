@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-manage-runs",
+  "title": "Manage and view runs",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/run",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b and 8c claims that a soft-mandatory failure can be overridden and that locked workspaces keep new runs pending."
+}

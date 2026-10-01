@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-ui-vcs-runs",
+  "title": "The UI and VCS-driven run workflow",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/run/ui",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8a claims about VCS-driven runs, speculative plans on pull requests and the fork restriction."
+}

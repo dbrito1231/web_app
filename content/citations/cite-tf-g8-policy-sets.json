@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-policy-sets",
+  "title": "Manage policies and policy sets in HCP Terraform",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims about policy sets, the Sentinel advisory/soft mandatory/hard mandatory levels and the OPA advisory/mandatory levels."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-policy-overview",
+  "title": "Policy enforcement overview",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims that Sentinel and OPA are policy frameworks and that a third framework is labeled beta."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-vcs",
+  "title": "Connect to VCS providers",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/vcs",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8d claims about OAuth, webhooks, scoping VCS connections to projects and publishing modules by tag."
+}

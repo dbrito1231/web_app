@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-managing-variables",
+  "title": "Manage variables and variable sets",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/variables/managing-variables",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8c claims about sensitive variables and passing credentials as environment variables."
+}

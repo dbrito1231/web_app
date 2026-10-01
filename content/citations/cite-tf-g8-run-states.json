@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-run-states",
+  "title": "Run states and stages",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/run/states",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8a claim listing the run stages pending, plan, cost estimation, policy check, apply and completion."
+}

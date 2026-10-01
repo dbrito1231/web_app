@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-policy-sentinel",
+  "title": "Define Sentinel policies in HCP Terraform",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/sentinel",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims that Sentinel policies use the tfplan, tfconfig, tfstate and tfrun imports."
+}

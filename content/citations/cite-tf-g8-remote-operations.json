@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-remote-operations",
+  "title": "Remote operations",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/remote-operations",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8a claims about remote operations, plan before apply, the per-workspace run queue and speculative plans."
+}

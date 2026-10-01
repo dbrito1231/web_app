@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-private-registry",
+  "title": "HCP Terraform private registry overview",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/registry",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims that the private registry shares providers and modules inside an organization."
+}

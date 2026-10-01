@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-hcp-overview",
+  "title": "What is HCP Terraform?",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs",
+  "accessed": "2026-09-26",
+  "note": "Backs the name change from Terraform Cloud to HCP Terraform, the Terraform Enterprise definition, and the free-tier versus paid-edition statements."
+}

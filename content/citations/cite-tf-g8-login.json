@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-login",
+  "title": "terraform login command reference",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cli/commands/login",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8d claims that terraform login obtains an API token, defaults to app.terraform.io, is interactive, and saves the token in plain text."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-permissions",
+  "title": "Permissions overview",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claim that permissions are additive across organization, project and workspace scope."
+}

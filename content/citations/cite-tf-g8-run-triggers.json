@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-run-triggers",
+  "title": "Run triggers",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-triggers",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8c claims about run trigger limits and the tfe_outputs recommendation."
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-run-tasks",
+  "title": "Run tasks",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b claims about run task stages, advisory and mandatory enforcement levels and the Terraform version floor."
+}

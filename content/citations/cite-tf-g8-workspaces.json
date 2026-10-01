@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-workspaces",
+  "title": "HCP Terraform workspaces",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8c claims that HCP Terraform workspaces differ from CLI workspaces and that workspaces should be small."
+}

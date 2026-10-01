@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-workspace-settings",
+  "title": "Workspace settings",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8c claims about the Project Default, Remote, Local and Agent execution modes."
+}
