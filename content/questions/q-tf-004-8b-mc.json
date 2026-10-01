@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "Rowan Health wants junior engineers to submit changes for review and preview what each would do on their own, while a senior engineer decides what is applied. Which workspace role should the junior engineers' team receive?",
+  "stem": "Rowan Health wants junior engineers to start their own plans in the workspace to preview each proposed change, while a senior engineer decides what is applied. Which workspace role should the junior engineers' team receive?",
   "selectCount": 1,
   "choices": [
     {

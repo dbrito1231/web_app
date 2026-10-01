@@ -257,3 +257,11 @@ All chosen and eliminated answers have a taught reason.
 No new contradictions. No question depends on any of these items.
 
 **Verdict: close** (the Low items may ride along or be dropped).
+
+# Teacher check — Copilot review edits on PR #1 (2026-10-01)
+
+Copilot's review of dbrito1231/web_app#1 raised the same two items earlier logged as optional (AWS-Qg8-007, AWS-Qg8-008 = TEACHER-Qg8-008). The Lead Dev applied them; this check approves both.
+- **8b-mc stem:** "submit changes for review and preview what each would do on their own," became "start their own plans in the workspace to preview each proposed change,". There is now one correct answer. The Read loophole (viewing PR-triggered speculative plans) is closed, the rationale still fits, `stem_echo_check` and `q1_batch_check` pass, and "plans" also appears in choice a, so it does not single out the key.
+- **8c-mc2 stem:** "The Default Project also holds other teams' workspaces, and" was added. Distractor d now fails either way. The new clause names the Default Project, which appears in d and not in the key, so it gives nothing away.
+
+**Teacher: approve.**

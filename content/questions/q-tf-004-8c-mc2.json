@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "At Larkspur Group, retail and wholesale each have a project with its own team permissions. The shared `pricing` workspace must be usable by both teams through permissions. Neither team should end up able to open workspaces it does not already use. What is the correct approach?",
+  "stem": "At Larkspur Group, retail and wholesale each have a project with its own team permissions. The shared `pricing` workspace must be usable by both teams through permissions. The Default Project also holds other teams' workspaces, and neither team should end up able to open workspaces it does not already use. What is the correct approach?",
   "selectCount": 1,
   "choices": [
     {
