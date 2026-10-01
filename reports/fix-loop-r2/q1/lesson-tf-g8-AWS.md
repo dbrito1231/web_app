@@ -226,3 +226,88 @@ All 20 keys are correct per the docs. All 20 have `mcpStatus: "verified"`, `revi
   - April 22, 2024.
 
 Task tf-g8: **not yet** (AWS-Qg8-001 and its lesson sentence, and AWS-Qg8-002, are required; the rest are Low and may ride along).
+
+## Round 2b (ace0419)
+
+I fetched all five pages for rows 235–239 with `curl -sSL` and stripped the HTML. I wrote no files and ran no git, terraform or AWS.
+
+### 1. My findings
+
+All are Gone.
+
+- **AWS-Qg8-001 / AWS-Lg8-012: Gone.**
+  - The 8c lesson sentence now reads "A variable set can be marked as priority, and that is the exception: 'If prioritized, variables in a global variable set have precedence over all other variables with the same key.'"
+  - The extra-06 stem says "not marked as priority", and the rationale says the same.
+  - I read the page's full precedence list. Priority sets (global, project-scoped, workspace-scoped) rank above `-var`, then `-var`/`-var-file`, then `TF_VAR_`, then workspace-specific, then non-priority sets. The stem has no priority set and no `TF_VAR_`, so a and b are false and c is the only answer.
+- **AWS-Qg8-002: Gone.** The stem now has the "Neither team should end up able to open workspaces it does not already use" constraint. A residual weakness is logged as AWS-Qg8-007.
+- **AWS-Qg8-003: Gone.** The stem is now "What gets that state into the HCP Terraform workspace?" The key's shared term "migration" is gone from the stem. Option a is now `backend "local"`, which matches the stem's "default local backend". The rationale cites the taught rule that a `backend` block and `cloud` cannot coexist.
+- **AWS-Qg8-004: Gone.** Choice c is now "different projects, and remote state only works within one project". The lesson teaches three share scopes (organization, same project, specific workspaces). A reader of the lesson alone rejects c, because organization-wide sharing plainly crosses projects. c is also a real misconception, and it is now the longest choice, so it is not a strawman.
+- **AWS-Qg8-005: Gone.** The key is "Plan, which can queue Terraform plans". The "without the apply permission" clause is removed.
+- **AWS-Qg8-006: Gone.** Choice c now says "any other branch ... queues a regular plan-and-apply run". "Regular" and "plan-and-apply" exclude the PR speculative-plan case, which the lesson teaches separately. The wording is false in practice, because another branch queues no regular run. The reason is taught: "linked to one branch ... ignores changes to other branches".
+- **AWS-Lg8-011: Gone.** Line 119 reads "One place the docs state Remote ...".
+- **AWS-Lg8-013: Gone.** Line 137 adds "(plan-only runs are not affected: 'Locking does not affect plan-only runs')". The page says the same, followed by "or the planning stages of saved plan runs". The lesson's shorter quote does not claim more than the page.
+- **AWS-Lg8-014: Gone.** Line 13 quotes "This stage only occurs if you enabled Open Policy Agent (OPA) policies".
+
+### 2. Second-role check of the Teacher's findings
+
+- **TEACHER-Lg8-008: Gone.** "do not cover Stacks:" no longer clashes with "to specific projects". The quote "Sentinel and OPA policy sets only support workspaces" is unchanged and verbatim.
+- **TEACHER-Lg8-009: Gone.** Line 45 adds `Read means "View information about workspace runs."` beside the Plan and Apply quotes. The page table reads "Read View information about workspace runs. Plan Queue Terraform plans in the workspace."
+- **TEACHER-Lg8-010: Gone. Deviation accepted.**
+  - The page says "HCP Terraform manages configurations as a series of configuration versions". It adds that VCS workspaces tie them to branch revisions and that non-VCS workspaces get uploads via CLI or API.
+  - So "uploaded configuration" would have been wrong for VCS workspaces.
+  - The page also says a run is "locked to a particular configuration version". The gloss "one saved version of a workspace's configuration, which a run uses" matches both statements.
+- **TEACHER-Qg8-001: Gone.** The stem no longer carries "queue plan runs". The Read quote is now taught, and the rationale contrasts Read and Plan by quoted wording. A residual risk is logged as AWS-Qg8-008.
+- **TEACHER-Qg8-002: Gone.**
+  - 8b-mr has a 86, c 97 and e 101, so the longest choice is a distractor.
+  - In 8a-mr the keys are 78 and 84 characters, and c is 104. The keys are no longer the two longest.
+- **TEACHER-Qg8-003: Gone.** See AWS-Qg8-003 above.
+- **TEACHER-Qg8-004: Gone.** The new d is a plausible misreading of the remote-apply rule. The lesson refutes it with "remotely executed ... by default" and with the stem's "remote operations enabled".
+- **TEACHER-Qg8-005: Gone.** The key no longer says where the setting lives.
+- **TEACHER-Qg8-006: Gone.** Choice d is shortened to "Terraform reports an error for a key defined in several places".
+
+### 3. Rows 235–239
+
+All five quotes are verbatim, and each claim is exact.
+
+| Row | Evidence |
+|---|---|
+| 235 | The page text is "If prioritized, variables in a global variable set have precedence over all other variables with the same key." |
+| 236 | The page has "View information about workspace runs." |
+| 237 | The page has "HCP Terraform manages configurations as a series of configuration versions". |
+| 238 | The page has "Locking does not affect plan-only runs". |
+| 239 | The page has "This stage only occurs if you enabled Open Policy Agent (OPA) policies" |
+
+### 4. Changed fragments read in isolation
+
+- **8a-mc:** d is real as a misreading and wrong for a taught reason. It lands on the same "laptop" outcome as a, but with a different false premise. I accept it.
+- **8a-mr:** c is real, really wrong and taught. There is no new echo. Key b restates the stem's "linked branch", but that is structural and unchanged from before.
+- **8b-mc:** Read is real. It is wrong by the taught Read versus Plan contrast.
+  - No stem/key echo remains, and no giveaway wording.
+  - The key is the shortest choice, at 25% overall, which passes.
+  - Residual risk: see AWS-Qg8-008.
+- **8b-mr:** all five choices are real, and the reasons are taught.
+  - Absolutes sit on a distractor in d ("no way"), and the key c qualifier "only if" is needed.
+  - e is a real misconception, since OPA has two levels.
+  - No equivalent pair.
+- **8c-mc2:** I accept "open workspaces" instead of "gain access", because it avoids an echo. d is a real option and wrong for the taught "separate permissions set". But d's second branch ("the other workspaces that start in the Default Project") rests on a fact the stem does not state. See AWS-Qg8-007.
+- **extra-02:** a, c and d are fine. c is real, taught as false, and no longer a strawman. The rationale states the three share scopes twice, which is redundant but harmless.
+- **extra-03:** a is real and false for a taught reason (the `cloud` and `backend` exclusion). d stays borderline but is refuted by in-place migration, which I accepted in round 2.
+- **extra-06:** no other precedence exception makes a or b true for this stem. The page's other priority tiers (project-scoped and workspace-scoped sets) are not in the stem. The new "not marked as priority" is a required qualifier. It applies to the question's own distractor, not to the others only, so it is not an absolutes problem.
+- **extra-07:** c is real and wrong for a taught reason: `.terraformignore` filters CLI uploads, and the VCS workspace in the stem takes code from the repository. The rationale wording is now an accurate softening.
+
+### 5. New findings
+
+- **AWS-Qg8-007 (Low, 8c-mc2 distractor d).**
+  - d only fails if the Default Project holds other workspaces. If it is empty, or holds only these two teams' workspaces, d works. The stem does not say.
+  - Fix: add to the stem "The Default Project also holds other teams' workspaces." This does not echo the key.
+  - Optional, since the lesson's "By default, all workspaces belong to an organization's Default Project" makes the premise plausible.
+- **AWS-Qg8-008 (Low, 8b-mc stem).**
+  - "Preview what each would do on their own" depends on "on their own". With a VCS workflow, a Read user can still view the speculative plans that pull requests start automatically.
+  - The stem's "submit changes for review" leaves that reading open. Teacher-side ambiguity risk only.
+  - Optional fix: "and run plans against the workspace themselves". That avoids "queue", and the lesson already teaches that `terraform plan` starts a speculative plan.
+
+**Verdict: close.** Everything from this round is Gone and the two new items are Low and optional.
+
+### Lead Dev rulings on the round 2b optional items
+- AWS-Qg8-007, AWS-Qg8-008 = TEACHER-Qg8-008, TEACHER-Qg8-007: accepted as is (both reviewers mark them optional; the Student run is the check on 8b-mc and 8c-mc2).
+- TEACHER-Lg8-011: proposed wording declined. The run-states page lists the OPA policy check as its own stage, so "the policy check stage covers both" would not be doc-backed. The lesson's conditional OPA sentence stays as verified (row 239).
