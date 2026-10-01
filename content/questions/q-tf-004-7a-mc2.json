@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.7a"
   ],
-  "stem": "Quick check \u2014 Import existing infrastructure into your Terraform workspace. Which practice is correct?",
+  "stem": "Delta Ledger runs three existing databases, one per environment. A `locals` entry named `databases` maps each environment name to that database's cloud ID, and the resource block already creates one instance per entry. The team wants a single `import` block to adopt all three. Which `import` block configuration achieves that?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A single block with `for_each = local.databases`, `to` indexed by `each.key` and `id` set to `each.value`"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A single block whose `id` is a list holding the cloud IDs of all three databases"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A single block that sets `id` to the cloud ID and `identity` to the environment name"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Import existing infrastructure into your Terraform workspace"
+      "text": "A single block whose `provider` argument names the three environments"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Import existing infrastructure into your Terraform workspace'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `for_each` meta-argument on an `import` block imports similar resources without separate blocks, and the docs' example pairs `for_each = local.buckets` with `to` indexed by `each.key` and `id` taken from `each.value`, next to a resource block using the same `for_each`. The `id` argument takes a string or an expression that evaluates to a string, so a list of IDs is not a valid value. The `id` and `identity` arguments cannot appear in the same `import` block, because each is a different way of naming one object. The `provider` argument selects which provider configuration, such as an alias for another region, performs the import; it does not choose which objects are imported.",
+  "citationIds": [
+    "cite-tf-g7-import-block",
+    "cite-tf-g7-prov-conf"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

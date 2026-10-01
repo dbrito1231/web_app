@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.7a"
   ],
-  "stem": "Select TWO actions that support this requirement: Import existing infrastructure into your Terraform workspace",
+  "stem": "(Select TWO.) Ridgeline Telecom is about to adopt a hand-built message broker that several other hand-built services connect to. The team wants to know what Terraform will and will not do once the import completes. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Terraform reads the broker's health from the provider and records a health check in the configuration"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Terraform will manage the broker for its whole lifecycle, including its destruction"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "The `id` in the import block can stay unknown until apply and be filled in from the plan"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Terraform does not detect the links between the broker and the services that use it"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "The ID format is identical for every resource type and is documented once in Terraform core"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "After an import Terraform manages the object for its entire lifecycle, destruction included, so a later destroy or replace removes the real broker. Import loads the object as the provider reports it and does not detect or generate relationships between infrastructure, so links to the other services must be added to the configuration by hand. Import cannot determine the health or the intent of the infrastructure, so no health check is written for you. The `id` must be known during the plan operation, so it cannot wait for apply. The value of `id` depends on the type of resource being imported, and the place to find it is the provider documentation for that resource, not one rule in Terraform core.",
+  "citationIds": [
+    "cite-tf-g7-import-tut",
+    "cite-tf-g7-import-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

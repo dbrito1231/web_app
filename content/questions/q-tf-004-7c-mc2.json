@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.7c"
   ],
-  "stem": "Quick check \u2014 Describe when and how to use verbose logging. Which practice is correct?",
+  "stem": "A crash seems to originate in a provider plugin's handling of one resource rather than in Terraform's own planning. The engineer wants the most detailed output available, from the plugins only. Which setting fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Describe when and how to use verbose logging"
+      "text": "Set `TF_LOG_CORE` to TRACE"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Set `TF_LOG_PROVIDER` to TRACE"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Set `TF_LOG_PROVIDER` to ERROR"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Set `TF_LOG_CORE` and `TF_LOG_PROVIDER` to TRACE"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe when and how to use verbose logging'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "`TF_LOG_PROVIDER` covers all providers and provider SDKs used during the run, and TRACE is the most verbose level, so together they give the full plugin detail and nothing else. `TF_LOG_CORE` covers the Terraform binary and does not include providers, so it gives core logs, which are the ones the Terraform team needs for core errors. ERROR is the least verbose level, so provider logging at that level is far less detailed than TRACE. Setting both variables to TRACE turns on the plugin logs and also the core logs, so it does not meet the plugins-only requirement.",
+  "citationIds": [
+    "cite-tf-g7-debug",
+    "cite-tf-g7-plug-log",
+    "cite-tf-g7-debug-tut"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

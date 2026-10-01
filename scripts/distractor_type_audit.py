@@ -77,6 +77,12 @@ TERMS = [
     "terraform import", "import block", "moved block", "removed block",
     "state rm", "state mv", "state list", "state show", "-generate-config-out",
     "-state-out", "-backup", "workspace_dir",
+    # tf-g7 (maintain infrastructure). Bare `TF_LOG` and the level names
+    # (TRACE, DEBUG ...) are 7c's own subject vocabulary and are left out,
+    # the same way bare `version` was left out for tf-g5's 5d.
+    "TF_LOG_PATH", "TF_LOG_CORE", "TF_LOG_PROVIDER",
+    "-raw", "-json", "state pull", "state push", "identity", "terraform show",
+    "terraform output", "-force",
 ]
 
 

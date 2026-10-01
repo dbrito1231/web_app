@@ -182,6 +182,7 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | Area | Items | Closed by |
 |---|---|---|
 | D6-FU | Lesson follow-ups found during D6 (none blocking): 4.4 K05, both tunnels of one VPN connection carry traffic under ECMP (Student, E4); 3.3 S01, "raise an alarm on the replica-lag metric" (TEACHER-DE2-003, optional); 4.4, Regional NAT gateway (AWS-DE3-015, optional); 4.2-s05 r7 sets only a minimum (AWS-DE3-021, optional). Also CR-0019 (Glue for Ray) | Low | Final sitting |
+| Q1-STEM-Q | 7 closed Terraform questions have stems that state a need without asking a question (tf-g1 1a/1b/1c-mr, tf-g2 2a/2b/2d-mr, tf-g4 4a-mc). This is style, not correctness. Optionally add a `q1_batch_check` rule for stems not ending in "?" | Low | Final sitting |
 | Saves, explanations, lesson-drill links | ISS-001, 002, 003, 004 | earlier rounds (see above) |
 | Lab cleanup (CR-0017, Amendments 1 and 2) | N1, N2a–c, N3, N5, N6, N7, T1–T6, R1, R2, AWS-R3-001–011, AWS-R4L-001–006, TEACHER-R3-001–015, STUDENT-R3-004, STUDENT-R4-001–004, STUDENT-R5-001 | AWS (`round-5/AWS-labs.md`, `round-6/AWS-ul11.md`) + Student (`round-5/STUDENT.md`) |
 | Screens | O1–O7, R4, R5, FS-FINAL-001/002, FS-R2-2-001–008, FS-R3-001–004, FS-R4-001–005 | Full-Stack (`round-5/FULLSTACK.md`) + Student (`round-5/STUDENT.md`) |

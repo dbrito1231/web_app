@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.7b"
   ],
-  "stem": "Quick check \u2014 Use the CLI to inspect state. Which practice is correct?",
+  "stem": "Orchid Health's deploy script runs on a minimal runner that has no JSON tooling. It must store the root module output `lb_address`, a plain string, in a shell variable with no surrounding quotes or escaping. Which command should the script run?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`terraform output lb_address`"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Use the CLI to inspect state"
+      "text": "`terraform output -raw lb_address`"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`terraform output -json lb_address`"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`terraform show`"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Use the CLI to inspect state'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `-raw` option prints a string value directly with no extra escaping or whitespace, which is what a shell variable needs, and it works for string, number and boolean values. The default output format is meant for people and can change over time, so scripts are told to use `-json` or `-raw` instead. The `-json` option gives JSON, which is meant to be parsed with a tool such as `jq`, and the runner has none. `terraform show` prints the whole state or a plan file in human-readable form, not one root output as a bare string.",
+  "citationIds": [
+    "cite-tf-g7-output",
+    "cite-tf-g7-show"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

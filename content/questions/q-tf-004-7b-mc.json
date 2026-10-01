@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.7b"
   ],
-  "stem": "The workload needs this outcome: Use the CLI to inspect state. Which action should you take?",
+  "stem": "During an incident, a responder at Quillfeather Retail has only the security group ID `sg-0a1b2c3d` from a console alert. The root configuration calls several nested modules and she does not know which one owns the group. She needs the address Terraform tracks it under. Which command finds it?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Use the CLI to inspect state"
+      "text": "`terraform state show sg-0a1b2c3d`"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`terraform state list aws_security_group`"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`terraform state list module.network`"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`terraform state list -id=sg-0a1b2c3d`"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `-id` option of `terraform state list` limits the output to the resource whose ID is given, and the docs say it is useful for finding where in your configuration a specific resource is located. `terraform state show` needs an address that points to a single resource in state, not an ID, so the ID cannot be passed to it. An address pattern such as a resource type filters by address, so it lists every security group of that type instead of the one with this ID. A module address lists only the resources in that module and its submodules, which helps only after the owning module is known.",
+  "citationIds": [
+    "cite-tf-g7-state-list",
+    "cite-tf-g7-state-show"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

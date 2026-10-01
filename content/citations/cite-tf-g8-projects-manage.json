@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g8-projects-manage",
+  "title": "Manage projects",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/cloud-docs/projects/manage",
+  "accessed": "2026-09-26",
+  "note": "Backs the 8b gloss that a project is a folder holding workspaces, Stacks, or both."
+}

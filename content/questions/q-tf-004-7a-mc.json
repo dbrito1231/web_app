@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.7a"
   ],
-  "stem": "A teammate asks how to meet this requirement: Import existing infrastructure into your Terraform workspace. Which action is appropriate?",
+  "stem": "Harbor Analytics has an existing event queue that nobody has described in Terraform. An engineer adds only an `import` block for it, then runs a plan that writes a matching resource block into a new file, built from what the provider reports. How should the team regard that file?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "As finished configuration that is ready to apply as it stands"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "As a file that Terraform regenerates on each later plan"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "As a best-guess draft to prune and review before it is applied"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Import existing infrastructure into your Terraform workspace"
+      "text": "As a minimal file that lists only values differing from provider defaults"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Generated configuration is a template: Terraform writes HCL holding its best guess at a value for each argument, asks you to review and edit it before it goes into version control, and the tutorial recommends pruning it down to the required arguments plus any whose values differ from defaults. It is not finished configuration, because in the tutorial the first plan after generation proposed replacing the object until a generated value was edited, and the docs advise reviewing plan output to avoid destructive changes. Terraform generates only for import-block resources that do not already exist in the configuration, so once the block is in your files it belongs to you and is not rewritten on later plans. The file also contains all possible arguments, including those set to default values and those without values, rather than only the ones that differ from defaults.",
+  "citationIds": [
+    "cite-tf-g7-import-gen",
+    "cite-tf-g7-import-tut"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

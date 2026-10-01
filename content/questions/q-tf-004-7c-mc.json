@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.7c"
   ],
-  "stem": "Pick the action that satisfies: Describe when and how to use verbose logging.",
+  "stem": "Wren Logistics ships Terraform's diagnostic output to a log platform that ingests structured records. The engineer wants the platform to receive the most detailed output Terraform can produce. Which setting should the engineer use?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Set `TF_LOG` to TRACE and forward the output"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Set `TF_LOG` to DEBUG and forward the output"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Set `TF_LOG` to INFO and forward the output"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe when and how to use verbose logging"
+      "text": "Set `TF_LOG` to JSON and forward the output"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Setting `TF_LOG` to JSON writes logs at the TRACE level or higher in a parseable JSON encoding, which gives both the structured records and the highest detail. The docs also warn that the JSON encoding is not a stable interface. TRACE is the most verbose level but, by default, logs are plain text lines prefixed with a timestamp and a level, which is not a structured format. DEBUG and INFO are plain text as well and sit below TRACE in the order of decreasing verbosity, so they also give less detail.",
+  "citationIds": [
+    "cite-tf-g7-debug",
+    "cite-tf-g7-plug-log"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.7b"
   ],
-  "stem": "Select TWO actions that support this requirement: Use the CLI to inspect state",
+  "stem": "(Select TWO.) After repairing a corrupted remote state offline, an engineer must put the corrected file back with `terraform state push`. Which two statements about this step are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "An upload is refused when the remote state has a higher serial than the file being pushed"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Giving `terraform state pull` the file path uploads that file to the backend"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`-force` switches off the lineage and serial refusals, and the destination state is then overwritten"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "A file whose lineage differs from the remote state is accepted after a confirmation prompt"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The docs recommend `terraform state push` as the routine way to correct state"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Push has two safety checks. A higher serial in the destination state suggests data there that the local state does not account for, so Terraform prevents the push. A differing lineage suggests the two states are completely different, and Terraform will not allow the push. The `-force` option disables both checks, the docs say that is not recommended, and with the checks off the destination state is overwritten. The `state pull` command goes the other way: it downloads state and prints the raw format to stdout, and it does not upload. The docs recommend push only when you must manually modify the remote state, so it is not the routine way to correct state.",
+  "citationIds": [
+    "cite-tf-g7-state-push",
+    "cite-tf-g7-state-pull"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

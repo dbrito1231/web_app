@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g7-prov-conf",
+  "title": "Provider block configuration",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/providers/configuration",
+  "accessed": "2026-09-26",
+  "note": "Backs the 7a claims that an alias defines multiple configurations for the same provider and that the docs example uses them for different regions."
+}
