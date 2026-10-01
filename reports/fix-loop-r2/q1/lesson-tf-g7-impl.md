@@ -355,3 +355,10 @@ Full output is pasted in the questions report.
 | 116 | 7c | Before v0.15.0 levels other than TRACE may be unreliable | https://developer.hashicorp.com/terraform/plugin/log/managing | "Before Terraform v0.15.0, levels besides TRACE may not be reliable." |
 | 117 | 7c | Provider logs may contain sensitive data | https://developer.hashicorp.com/terraform/plugin/log/filtering | "there may be sensitive data which should not be present in log messages or structured log fields." |
 | 118 | 7c | Purpose of enabling logs: debug unexpected behaviors | https://developer.hashicorp.com/terraform/internals/debugging | "This topic describes how to enable Terraform logs so that you can debug unexpected behaviors." |
+
+## Round 2 fix pass (claim rows)
+
+Fetched https://developer.hashicorp.com/terraform/cli/commands/output with curl (rendered text). The page's example shows plain `terraform output lb_address` printing the value inside double quotes, and `terraform output -raw lb_address` printing it bare. Lesson sentence added in 7b "Reading outputs".
+
+| 119 | 7b | Plain `terraform output NAME` prints a string value in double quotes (docs example) | https://developer.hashicorp.com/terraform/cli/commands/output | "To query for the DNS address of the load balancer:" then `terraform output lb_address` prints "my-app-alb-1657023003.us-east-1.elb.amazonaws.com" |
+| 120 | 7b | -raw prints the string without the quotes (docs example) | https://developer.hashicorp.com/terraform/cli/commands/output | "which will print the string directly with no extra escaping or whitespace." |

@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.8a"
   ],
-  "stem": "A teammate asks how to meet this requirement: Use HCP Terraform to create infrastructure. Which action is appropriate?",
+  "stem": "Quill Logistics engineers type `terraform apply` on their laptops against an HCP Terraform workspace that has remote operations enabled and no linked repository. The security lead asks where the plan and apply actually execute. What is the answer?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "On the laptop that typed the command, with only the resulting state kept in the workspace"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "On a lightweight agent installed inside the company's own private network"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "On HCP Terraform's own disposable virtual machines, with output shown in the terminal"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Use HCP Terraform to create infrastructure"
+      "text": "On HCP Terraform's machines only for repository-linked workspaces, while CLI runs stay on the laptop"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "With remote operations enabled, the run happens in HCP Terraform even when it is started from a laptop terminal: Terraform runs managed by HCP Terraform are remote operations, they execute on its own disposable virtual machines, and the engineer watches the output in the terminal. Execution on the laptop with only the state kept in HCP Terraform describes Local execution mode, which is a different setting from the one in the scenario. Running on agents inside a private network describes Agent execution mode, again a different setting. Limiting remote execution to repository-linked workspaces is backwards: CLI operations are remotely executed in HCP Terraform's run environment by default, and a remote apply is for workspaces without a linked VCS repository, so this CLI run does not stay on the laptop.",
+  "citationIds": [
+    "cite-tf-g8-remote-operations",
+    "cite-tf-g8-cli-runs",
+    "cite-tf-g8-workspace-settings"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "Pick the action that satisfies: Describe HCP Terraform collaboration and governance features.",
+  "stem": "Rowan Health wants junior engineers to start their own plans in the workspace to preview each proposed change, while a senior engineer decides what is applied. Which workspace role should the junior engineers' team receive?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Write, which can approve and apply plans as part of day-to-day provisioning"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Admin, which adds workspace settings on top of the other roles"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Read, which lets people view information about workspace runs"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe HCP Terraform collaboration and governance features"
+      "text": "Plan, which can queue Terraform plans"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The Plan role is for people who might propose changes to managed infrastructure but whose changes should be approved before they are applied: it can queue Terraform plans but lacks the permission to approve and apply them. Write is the role for day-to-day provisioning and includes approving and applying plans, so juniors could push changes live. Admin builds on every lower role and adds settings access, so it also includes applying. Read is described as \"View information about workspace runs,\" whereas Plan is described as \"Queue Terraform plans in the workspace,\" so Read juniors could look at runs but could not queue plans to preview their own changes.",
+  "citationIds": [
+    "cite-tf-g8-workspace-permissions",
+    "cite-tf-g8-permissions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

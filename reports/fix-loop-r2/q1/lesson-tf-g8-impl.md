@@ -331,3 +331,78 @@ PASS: every claim-table number appears in the lesson prose
 The q1_batch_check FAIL lines for the 20 questions (objective text pasted in stems, no citationIds, mcpStatus not verified, MR stems lacking '(Select N.)', duplicate openings, longest-is-key, MR key sets) come from the placeholder questions, which are rewritten in the questions step. All lesson lines pass.
 
 Overall: approve
+
+
+## Round 1 fix pass
+
+Both round 1 reports (`lesson-tf-g8-AWS.md`, `lesson-tf-g8-TEACHER.md`) were applied to `content/lessons/lesson-tf-g8.json`. When this pass started, the file already held most of the round 1 wording (the written fix was in the lesson but not in this report, and no fix section existed). I did not trust that and re-read every finding against the current file, then fetched every page this turn with `curl -sSL` piped through a Python HTML strip (no WebFetch) and machine-checked every double-quoted span in `bodyMarkdown` (221 spans) as a verbatim substring of a fetched page. All doc quotes are on their pages; the 23 spans not found are the exam-tip scenario phrases, which are not doc text by design. The spans that had no claim row are listed in the table at the end of this section (rows 220 to 234).
+
+### Findings, one by one
+
+- **AWS-Lg8-001 / TEACHER-Lg8-002 (medium, hard mandatory override).** 8b hard mandatory bullet now says: treat it as the level that cannot be overridden by default, only a policy set configured to allow overrides changes that; the set option "This policy set can be overridden in the event of mandatory failures" lets permitted users override "any failed policy checks in that set, even policies set to Hard mandatory," and the setting "takes precedence over the individual policy's enforcement level." The 8b exam tip says hard mandatory is "overridable only when its policy set allows overrides". Warnings bullet 5 now reads: advisory never stops a run, overrides exist for soft mandatory and OPA mandatory, and for hard mandatory only when the policy set allows them. Rows 229 to 231 added. Question rule: no question says hard mandatory can never be overridden (8b-mr uses "only when its policy set is configured to allow overrides").
+- **AWS-Lg8-002 / TEACHER-Lg8-005 (medium, execution-mode default).** 8a qualifies "the default" as the default for a workspace left on its default settings (a project or organization can set a different default; see 8c). 8c now has a "Defaults come in layers" paragraph: workspace starts at Project Default, a project uses the organization's mode "which is either Remote or Local", workspaces created later "inherit the project default", and the one place the docs state Remote as the default is a workspace that `terraform init` creates. 8d reads "For a workspace that `terraform init` creates, the docs say the execution mode defaults to Remote". Row 233 added (row 153 already held the inheritance quote). No question makes Remote the key to a generic "default execution mode" stem.
+- **AWS-Lg8-003 (low, speculative plans on PRs).** Conditional wording added with the two quotes (rows 223, 224).
+- **AWS-Lg8-004 (low, stage list).** Added "The cost estimation stage ... only occurs if cost estimation is enabled ... policy check stage ... only occurs if Sentinel policies are enabled, so a run without those features skips them" (rows 220, 221).
+- **AWS-Lg8-005 / TEACHER-Lg8-001 (low and medium, Stacks).** The policy-set sentence now quotes "globally, to specific projects, workspaces" and "to workspaces with specific tags", and adds "Sentinel and OPA policy sets only support workspaces" (row 227). The "and Stacks" in the old quote is gone; Stacks are glossed once in 8b ("another kind of resource a project can hold next to workspaces ... this lesson does not cover them") and 8c variable sets point back to that gloss. Row 54 (the old quote with "and Stacks") is superseded by row 227.
+- **AWS-Lg8-006 (low, saved plans).** Added "remote saved plans are for workspaces without a linked VCS repository" (row 226). The v1.6.0 floor was already in the sentence.
+- **AWS-Lg8-007 / TEACHER-Lg8-004 (low, Remote mode overreach).** The 8c Remote bullet now says the docs list Sentinel enforcement, cost estimation and notifications as features of remote execution (quote "enables advanced features, such as Sentinel policy enforcement, cost estimation, notifications", row 154) and that Local mode "disables remote execution" (row 232). The word "version control integration" is not claimed, so the list is not presented as exhaustive.
+- **AWS-Lg8-008 (low, Local-mode health inference).** Kept, now labelled in the lesson: "(this follows from the requirement; the docs do not name Local mode)". Question 8b-extra-05 repeats that label in its rationale and never says the docs call Local mode unsupported.
+- **AWS-Lg8-009 (low, rename wording).** Reordered: HCP Terraform requires all workspaces to have a name, "so" Terraform may prompt to rename; CLI workspaces such as production and staging are renamed because names "must have unique names within the HCP Terraform organization." No new row needed (existing rows).
+- **AWS-Lg8-010 (low, density).** Not applied (optional). No trimming; the lesson is 4,861 words after the Teacher's split request and the 8b split below.
+- **TEACHER-Lg8-003 (low, 8c locking, 387 words).** Split into `#### Run triggers` (77 words) and `#### Remote state and workspace locking` (336 words), with the contrast: locking a workspace stops new HCP Terraform runs, which "remain in the Pending state until the workspace unlocks", while state locking (6b) is Terraform preventing two operations from writing state at once. Row 234 added for "A lock prevents HCP Terraform from performing any applies in the workspace".
+- **TEACHER-Lg8-006 (low, 8a).** Configuration-version gloss: the Teacher's proposed wording ("marked as a speculative run in the runs API") is not what the page says. The page says the runs API creates speculative plans "whenever the specified configuration version is marked as speculative" and points to the configuration-versions API. The lesson now quotes that (row 225) instead of the circular sentence. The saved-plan clause was kept because AWS-Lg8-006 asks for it and the v1.6.0 floor is safe to ask. "(8b explains cost estimation and policy checks)" added after the stage list. The stray `terraform import` sentence is gone from 8a (row 29 is superseded; no sentence in the lesson uses it now).
+- **TEACHER-Lg8-007 (low, intro).** Reads "introduced HCP Terraform briefly as a team collaboration tool".
+- **Extra split (my own, for the 350-word target).** The 8b "Policy as code and enforcement levels" subsection was 446 words after the fixes; I inserted `#### Enforcement levels` before the enforcement-level paragraph (now 236 and 213 words). Longest subsections now: 8a Remote runs 344, 8c Remote state and locking 336, 8a Speculative plans 323, 8b Run tasks 316.
+
+### Commit 53f1beb handling (the user's own edit)
+
+The citation `cite-tf-g8-projects-manage` (https://developer.hashicorp.com/terraform/cloud-docs/projects/manage) and its prose were kept exactly as the user left them; nothing was reverted. The prose that relies on it is the 8b Stacks gloss: "A project is a folder containing one or more workspaces, Stacks, or both" (quote fetched this turn from the page, 13 words; row 228), plus the 8c variable-set pointer "(Stacks are glossed in 8b)". The citation is still listed in `citationIds`, and its note ("Backs the 8b gloss that a project is a folder holding workspaces, Stacks, or both.") is accurate, so I did not change it. I only appended one sentence to the notes of `cite-tf-g8-policy-sets` (hard-mandatory override option) and `cite-tf-g8-projects` (organization execution mode); both keep `accessed: "2026-09-26"`. Round 2 should check the 53f1beb gloss like any other lesson change.
+
+### Superseded rows
+
+Row 29 (the `terraform import` sentence, no longer in the lesson), row 54 (the policy-set quote with "and Stacks", replaced by the narrower quotes plus row 227), and the old Warnings and 8b hard-mandatory wording (row 60 still backs "Failed policies stop the run"). All other rows still back sentences that are in the lesson.
+
+### Rows added by this pass
+
+| # | Section | Claim | Doc URL | Quote (<=20 words) |
+|---|---|---|---|---|
+| 220 | 8a | The cost estimation stage occurs only when cost estimation is enabled | https://developer.hashicorp.com/terraform/cloud-docs/run/states | "only occurs if cost estimation is enabled" |
+| 221 | 8a | The policy check stage occurs only when Sentinel policies are enabled | https://developer.hashicorp.com/terraform/cloud-docs/run/states | "only occurs if Sentinel policies are enabled" |
+| 222 | 8a | Plan-only runs are an exception to the queue | https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/remote-operations | "can proceed at any time and do not block the progress of other runs" |
+| 223 | 8a | Pull requests start speculative plans only where automatic speculative plans are allowed | https://developer.hashicorp.com/terraform/cloud-docs/run/ui | "Pull requests can only trigger runs in workspaces where automatic speculative plans are allowed" |
+| 224 | 8a | A pull request triggers speculative plans only in workspaces connected to its destination branch | https://developer.hashicorp.com/terraform/cloud-docs/run/ui | "will only trigger speculative plans in workspaces that are connected to that pull request's destination branch" |
+| 225 | 8a | The runs API creates speculative plans from a configuration version marked speculative; the docs point to the configuration-versions API | https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/remote-operations | "The runs API creates speculative plans whenever the specified configuration version is marked as speculative" |
+| 226 | 8a | Remote saved plans are limited to workspaces without a linked VCS repository | https://developer.hashicorp.com/terraform/cloud-docs/run/cli | "remote saved plans are for workspaces without a linked VCS repository" |
+| 227 | 8b | Sentinel and OPA policy sets support only workspaces | https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement | "Sentinel and OPA policy sets only support workspaces" |
+| 228 | 8b | A project is a folder that holds workspaces, Stacks, or both; backs the Stacks gloss in 8b | https://developer.hashicorp.com/terraform/cloud-docs/projects/manage | "A project is a folder containing one or more workspaces, Stacks, or both" |
+| 229 | 8b | A policy set can be configured to allow overrides on mandatory failures | https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets | "This policy set can be overridden in the event of mandatory failures" |
+| 230 | 8b | That option lets permitted users override failures in the set, even hard mandatory | https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets | "any failed policy checks in that set, even policies set to Hard mandatory" |
+| 231 | 8b | The set-level override setting outranks the policy enforcement level | https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets | "takes precedence over the individual policy's enforcement level" |
+| 232 | 8c | Local execution mode disables remote execution | https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings | "This mode disables remote execution" |
+| 233 | 8c | A project uses the organization execution mode unless overridden, which is Remote or Local | https://developer.hashicorp.com/terraform/cloud-docs/projects | "a project uses the organization's execution mode, which is either Remote or Local" |
+| 234 | 8c | A workspace lock prevents applies | https://developer.hashicorp.com/terraform/cloud-docs/run | "A lock prevents HCP Terraform from performing any applies in the workspace" |
+
+Re-check after this pass (fresh page fetches, this turn): every double-quoted span in the lesson body is a verbatim substring of a fetched page (whitespace and spacing before punctuation normalised); the 23 exceptions are exam-tip scenario phrases. No quote is over 20 words (longest new row: 16 words).
+
+
+## Round 2 fix pass
+
+Applied to `content/lessons/lesson-tf-g8.json`. Every new quote was copied from a page fetched this turn with `curl -sSL` (HTML stripped with Python) and checked as a verbatim substring (whitespace before punctuation normalised). `accessed` is unchanged (2026-09-26); no citation file needed editing because all five pages are already cited.
+
+- **AWS-Lg8-012 (ruling 1):** 8c precedence now adds that a variable set can be marked as priority, as the exception, with the quote. Row 235.
+- **TEACHER-Lg8-009 (ruling 3):** 8b Teams and permissions adds `Read means "View information about workspace runs."` beside the Plan and Apply quotes. Page text is "Read View information about workspace runs." Row 236.
+- **TEACHER-Lg8-008 (4):** "are workspace-only:" is now "do not cover Stacks:"; the quote is unchanged.
+- **TEACHER-Lg8-010 (5):** gloss added after the runs-API sentence. Deviation: the requested "(the uploaded configuration a run uses)" is not what the page says, because VCS workspaces tie configuration versions to repository revisions. The gloss reads "(a configuration version is one saved version of a workspace's configuration, which a run uses)". Row 237.
+- **AWS-Lg8-011 (6):** "The one place the docs state Remote" is now "One place the docs state Remote".
+- **AWS-Lg8-013 (7):** 8c locking now says "(plan-only runs are not affected: "Locking does not affect plan-only runs")". Row 238.
+- **AWS-Lg8-014 (8):** 8a stages now add the conditional OPA policy check stage with the quote. Row 239.
+
+| # | Section | Claim | Doc URL | Quote (<=20 words) |
+|---|---|---|---|---|
+| 235 | 8c | A priority global variable set outranks all other variables with the same key | https://developer.hashicorp.com/terraform/cloud-docs/variables | "If prioritized, variables in a global variable set have precedence over all other variables with the same key." |
+| 236 | 8b | The Read workspace permission is viewing information about runs | https://developer.hashicorp.com/terraform/cloud-docs/users-teams-organizations/permissions/workspace | "View information about workspace runs." |
+| 237 | 8a | HCP Terraform manages a workspace's configuration as a series of configuration versions | https://developer.hashicorp.com/terraform/cloud-docs/workspaces/run/remote-operations | "HCP Terraform manages configurations as a series of configuration versions" |
+| 238 | 8c | Locking a workspace does not affect plan-only runs | https://developer.hashicorp.com/terraform/cloud-docs/run | "Locking does not affect plan-only runs" |
+| 239 | 8a | The OPA policy check stage occurs only when OPA policies are enabled | https://developer.hashicorp.com/terraform/cloud-docs/run/states | "This stage only occurs if you enabled Open Policy Agent (OPA) policies" |
+
+Chain re-run after the edits: content_lint PASS, q1_batch_check RESULT: PASS, distractor_type_audit RESULT: PASS, stem_echo_check RESULT: PASS, claim_prose_check PASS (8 numbers), test_q1_letter PASS (12 bad, 10 good, 0 failures).

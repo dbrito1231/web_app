@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.8a"
   ],
-  "stem": "Quick check \u2014 Use HCP Terraform to create infrastructure. Which practice is correct?",
+  "stem": "Marlow Credit's release pipeline runs no Terraform commands. It packages each build of the configuration and sends web requests to HCP Terraform that start a run, and the workspace has no linked repository. Which description fits this setup?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The API-driven workflow, where the company's own tooling uploads a `.tar.gz` and starts the run"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "The UI/VCS-driven workflow, where the platform fetches the configuration from version control"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "The CLI-driven workflow, where engineers start runs with the standard plan and apply commands"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Use HCP Terraform to create infrastructure"
+      "text": "A run trigger, where a successful apply in a source workspace queues the run"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Use HCP Terraform to create infrastructure'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "In the API-driven workflow the workspace is not associated with a repository, and the company's own tooling decides when to run and uploads the configuration as a `.tar.gz` file, which matches a pipeline that packages each build and calls HCP Terraform. The UI/VCS-driven workflow links the workspace to a branch and HCP Terraform pulls the code, but this workspace has no linked repository and HCP Terraform does not fetch configuration from version control here. The CLI-driven workflow is started with the standard plan and apply commands, and the pipeline runs none. A run trigger queues a run after a successful apply in another workspace, not after a pipeline sends a build.",
+  "citationIds": [
+    "cite-tf-g8-api-runs",
+    "cite-tf-g8-cli-runs",
+    "cite-tf-g8-ui-vcs-runs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

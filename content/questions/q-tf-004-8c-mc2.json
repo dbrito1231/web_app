@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "Quick check \u2014 Describe how to organize and use HCP Terraform workspaces and projects. Which practice is correct?",
+  "stem": "At Larkspur Group, retail and wholesale each have a project with its own team permissions. The shared `pricing` workspace must be usable by both teams through permissions. The Default Project also holds other teams' workspaces, and neither team should end up able to open workspaces it does not already use. What is the correct approach?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add the `pricing` workspace to both projects at the same time"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Scope a variable set to both projects to make the `pricing` workspace join each"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Keep `pricing` in one project and grant the other team access on the workspace itself"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe how to organize and use HCP Terraform workspaces and projects"
+      "text": "Move `pricing` into the Default Project and rely on that project's permissions"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "c"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe how to organize and use HCP Terraform workspaces and projects'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Every workspace belongs to exactly one project, and permissions can be set at project and workspace scope, so the second team can be granted access directly on the workspace. Placing a workspace in two projects is not possible. A variable set scoped to a project applies variables to the workspaces already in it and does not change which project a workspace belongs to. Moving the workspace into the Default Project either leaves both teams without access, because each project has a separate permissions set, or, if both teams are granted access there, gives them the other workspaces that start in the Default Project.",
+  "citationIds": [
+    "cite-tf-g8-projects",
+    "cite-tf-g8-permissions",
+    "cite-tf-g8-variables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

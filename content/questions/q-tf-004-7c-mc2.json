@@ -19,7 +19,7 @@
     },
     {
       "id": "c",
-      "text": "Set `TF_LOG_PROVIDER` to ERROR"
+      "text": "Set `TF_LOG` to TRACE"
     },
     {
       "id": "d",
@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "`TF_LOG_PROVIDER` covers all providers and provider SDKs used during the run, and TRACE is the most verbose level, so together they give the full plugin detail and nothing else. `TF_LOG_CORE` covers the Terraform binary and does not include providers, so it gives core logs, which are the ones the Terraform team needs for core errors. ERROR is the least verbose level, so provider logging at that level is far less detailed than TRACE. Setting both variables to TRACE turns on the plugin logs and also the core logs, so it does not meet the plugins-only requirement.",
+  "rationale": "`TF_LOG_PROVIDER` covers all providers and provider SDKs used during the run, and TRACE is the most verbose level, so together they give the full plugin detail and nothing else. `TF_LOG_CORE` covers the Terraform binary and does not include providers, so it gives core logs, which are the ones the Terraform team needs for core errors. `TF_LOG` is the broad variable: the core and provider variables only activate a subset of the logs, so TRACE on `TF_LOG` also turns on the core logs and misses the plugins-only requirement. Setting both variables to TRACE turns on the plugin logs and also the core logs, so it does not meet the plugins-only requirement.",
   "citationIds": [
     "cite-tf-g7-debug",
     "cite-tf-g7-plug-log",

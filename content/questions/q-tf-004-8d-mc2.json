@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "Quick check \u2014 Configure and use HCP Terraform integration. Which practice is correct?",
+  "stem": "Lumen Retail keeps one configuration directory that must work with its `app-dev`, `app-test` and `app-prod` HCP Terraform workspaces, switching between them from the CLI. Which `workspaces` setting inside the `cloud` block fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`name` listing all three workspaces"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`prefix` set to `app-`"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`name` for the default workspace together with `tags` for the others"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Configure and use HCP Terraform integration"
+      "text": "`tags` set to a tag that all three workspaces carry"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Configure and use HCP Terraform integration'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `tags` selector associates the configuration with workspaces that match all the tags, so one directory can work with several workspaces. The `name` selector is for a single workspace, and with it the workspace cannot be managed from the Terraform CLI. The `prefix` argument belonged to the older `remote` backend; the `cloud` block does not support it, and `tags` replaces it. `name` and `tags` cannot be combined: if you configure the name, you cannot use the tags configuration.",
+  "citationIds": [
+    "cite-tf-g8-terraform-block",
+    "cite-tf-g8-cloud-connect"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

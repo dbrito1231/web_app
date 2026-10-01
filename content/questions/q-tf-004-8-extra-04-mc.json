@@ -6,29 +6,34 @@
   "objectiveIds": [
     "tf.004.8a"
   ],
-  "stem": "HCP Terraform practice check #4 (tf.004.8a): which statement is correct?",
+  "stem": "Two engineers at Tidewater Bank each start a normal run in the same HCP Terraform workspace a minute apart, and the first run is still working. What happens to the second run?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "It fails immediately with an error saying the state is locked by the first run"
     },
     {
       "id": "b",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "It cancels the first run and takes its place in the workspace"
     },
     {
       "id": "c",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "It plans alongside the first run, and only its apply step waits"
     },
     {
       "id": "d",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "It stays pending in the workspace's queue until the first run finishes"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "Each workspace in HCP Terraform maintains its own queue of runs and processes them in order, so a run waiting for another to finish sits in a pending state. Failing immediately with a lock error is how Terraform itself behaves when it cannot take the state lock, which 6b covered; HCP Terraform queues the run instead. Nothing in the queue cancels an earlier run to replace it. The only runs that skip the queue are plan-only runs, which can proceed at any time and do not block other runs; a normal run waits as a whole rather than planning alongside the first.",
+  "citationIds": [
+    "cite-tf-g8-remote-operations",
+    "cite-tf-g8-manage-runs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

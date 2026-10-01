@@ -29,7 +29,7 @@
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "The `-raw` option prints a string value directly with no extra escaping or whitespace, which is what a shell variable needs, and it works for string, number and boolean values. The default output format is meant for people and can change over time, so scripts are told to use `-json` or `-raw` instead. The `-json` option gives JSON, which is meant to be parsed with a tool such as `jq`, and the runner has none. `terraform show` prints the whole state or a plan file in human-readable form, not one root output as a bare string.",
+  "rationale": "The `-raw` option prints a string value directly with no extra escaping or whitespace, which is what a shell variable needs, and it works for string, number and boolean values. Plain `terraform output lb_address` prints a string value inside double quotes, as the docs' example shows, so the variable would hold the quotes, and the default format is meant for people and can change over time, so scripts are told to use `-json` or `-raw` instead. The `-json` option gives JSON, which is meant to be parsed with a tool such as `jq`, and the runner has none. `terraform show` prints the whole state or a plan file in human-readable form, not one root output as a bare string.",
   "citationIds": [
     "cite-tf-g7-output",
     "cite-tf-g7-show"

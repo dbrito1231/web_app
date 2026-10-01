@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe how to organize and use HCP Terraform workspaces and projects",
+  "stem": "(Select TWO.) A platform group compares HCP Terraform execution modes before choosing one per workspace. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "Agent mode lets HCP Terraform run Terraform on lightweight agents inside a private network"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "Local mode keeps the state on the workstation, and HCP Terraform stores none of it"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Remote mode runs Terraform on the engineer's workstation and keeps the state in HCP Terraform"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Remote mode is the only choice for runs that need to reach private, on-premises systems"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Local mode leaves variables and variable sets unevaluated by HCP Terraform"
     }
   ],
   "correctAnswerIds": [
     "a",
-    "b"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Agent mode lets HCP Terraform communicate with lightweight agents so Terraform runs in isolated, private or on-premises infrastructure. In Local mode runs happen on the workstation, and HCP Terraform does not evaluate workspace variables or variable sets. HCP Terraform still stores the state in Local mode, since the workspace acts as a remote backend for state. Remote mode runs on HCP Terraform's own disposable virtual machines rather than on a workstation. Reaching private or on-premises systems is the purpose of Agent mode, so Remote is not the only choice for that need.",
+  "citationIds": [
+    "cite-tf-g8-workspace-settings",
+    "cite-tf-g8-remote-operations"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

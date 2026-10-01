@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "The workload needs this outcome: Describe how to organize and use HCP Terraform workspaces and projects. Which action should you take?",
+  "stem": "Priya at Lakeshore Systems manages everything with Terraform CLI workspaces and uses only the default one. She asks what HCP Terraform needs in place before it can manage any resources for her. What is the answer?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Describe how to organize and use HCP Terraform workspaces and projects"
+      "text": "At least one HCP Terraform workspace, holding the configuration, variables and state"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A project that contains resources directly, with no workspace needed inside it"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Only the working directory, which already acts as the workspace"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A CLI workspace named after the working directory, created with `terraform workspace new`"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "HCP Terraform workspaces are required: resources cannot be managed in HCP Terraform without at least one workspace, which holds the configuration, the variable values and the state. A project only groups workspaces, and every workspace must belong to one, so a project cannot stand in for it. The working directory acting as the workspace describes a Terraform CLI workspace, which is tied to a directory and is not required. Creating a CLI workspace does not give HCP Terraform anything to manage with, because the two kinds of workspace function differently and the Terraform CLI does not require CLI workspaces at all.",
+  "citationIds": [
+    "cite-tf-g8-workspaces",
+    "cite-tf-g8-projects"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

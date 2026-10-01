@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "Select TWO actions that support this requirement: Configure and use HCP Terraform integration",
+  "stem": "(Select TWO.) Cinder Labs wants its pipeline to supply the HCP Terraform connection settings through environment variables. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "`TF_WORKSPACE` creates the workspace during `terraform init` when it does not exist yet"
     },
     {
       "id": "b",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "`TF_CLOUD_HOSTNAME` has no default and has to be exported in every pipeline"
     },
     {
       "id": "c",
-      "text": "Use root credentials for every lab step"
+      "text": "An empty `cloud` block is still required when every setting comes from the environment"
     },
     {
       "id": "d",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A value written in the `cloud` block takes precedence over the same setting in an environment variable"
     },
     {
       "id": "e",
-      "text": "Validate with official documentation before applying"
+      "text": "`TF_CLOUD_ORGANIZATION` also selects which workspace the directory uses"
     }
   ],
   "correctAnswerIds": [
-    "d",
-    "e"
+    "c",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "If everything is configured through environment variables, an empty `cloud` block must still be added to the configuration file, and when a setting is given in both places the configuration takes precedence. `TF_WORKSPACE` selects a workspace but does not create one; the workspace must already exist in the organization. The hostname argument defaults to app.terraform.io, so exporting `TF_CLOUD_HOSTNAME` matters mainly for Terraform Enterprise. `TF_CLOUD_ORGANIZATION` names the organization, and `TF_WORKSPACE` is the variable that selects the workspace.",
+  "citationIds": [
+    "cite-tf-g8-terraform-block",
+    "cite-tf-g8-cloud-connect"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,29 +6,36 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "HCP Terraform practice check #7 (tf.004.8d): which statement is correct?",
+  "stem": "A monorepo at Gannet Works holds `network` and `app` configurations in separate folders, each with its own HCP Terraform workspace linked to the main branch. The `app` workspace should queue runs only for commits that touch its own folder. What achieves this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "Set which directories in the repository trigger runs for each workspace"
     },
     {
       "id": "b",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "Link each workspace to a different branch, one per folder"
     },
     {
       "id": "c",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "Add a `.terraformignore` file that lists the other folder"
     },
     {
       "id": "d",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "Configure a run trigger from `network` to `app`"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "a"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "A VCS-driven workspace can be told which files and directories within the repository trigger runs, which is the control for per-folder runs. A workspace is linked to one branch and ignores other branches, so separate branches do not separate folders. A `.terraformignore` file keeps files out of a CLI-driven upload; it is not the setting the docs name for choosing which repository files trigger runs. A run trigger starts a run after a successful apply in another workspace, not when files change.",
+  "citationIds": [
+    "cite-tf-g8-vcs",
+    "cite-tf-g8-ui-vcs-runs",
+    "cite-tf-g8-cli-runs",
+    "cite-tf-g8-run-triggers"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

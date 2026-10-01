@@ -6,29 +6,34 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "HCP Terraform practice check #1 (tf.004.8b): which statement is correct?",
+  "stem": "At Fenwick Freight, two run tasks are attached to a workspace at the post-plan stage: a cost scanner set to advisory and a security scanner set to mandatory. Both report failure for the same run. What is the outcome?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "The run completes with both failures shown only as warnings"
     },
     {
       "id": "b",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "The run pauses until a user with the Manage Policy Overrides permission overrides it"
     },
     {
       "id": "c",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "The run is blocked only when every attached task is set to mandatory"
     },
     {
       "id": "d",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "The mandatory task blocks the run from completing"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "When several run tasks are attached, the run ends based on the most restrictive enforcement level among them. A failed mandatory run task can block a run from completing, so the mandatory scanner's failure blocks it even though the advisory task alone could not. Treating both as warnings ignores the most-restrictive rule. The override permission belongs to policy enforcement, and run tasks have their own advisory and mandatory levels that are not the policy levels. Requiring every task to be mandatory is not the rule; one mandatory failure is enough.",
+  "citationIds": [
+    "cite-tf-g8-run-tasks",
+    "cite-tf-g8-policy-sets"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

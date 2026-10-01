@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.7a"
   ],
-  "stem": "(Select TWO.) Ridgeline Telecom is about to adopt a hand-built message broker that several other hand-built services connect to. The team wants to know what Terraform will and will not do once the import completes. Which two statements are correct?",
+  "stem": "(Select TWO.) Ridgeline Telecom is about to adopt a hand-built message broker that several other hand-built services connect to. The team wants to know what import does and does not do, and what the import block needs. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "The ID format is identical for every resource type and is documented once in Terraform core"
+      "text": "The ID is always the resource's name as shown in the cloud console"
     }
   ],
   "correctAnswerIds": [
     "b",
     "d"
   ],
-  "rationale": "After an import Terraform manages the object for its entire lifecycle, destruction included, so a later destroy or replace removes the real broker. Import loads the object as the provider reports it and does not detect or generate relationships between infrastructure, so links to the other services must be added to the configuration by hand. Import cannot determine the health or the intent of the infrastructure, so no health check is written for you. The `id` must be known during the plan operation, so it cannot wait for apply. The value of `id` depends on the type of resource being imported, and the place to find it is the provider documentation for that resource, not one rule in Terraform core.",
+  "rationale": "After an import Terraform manages the object for its entire lifecycle, destruction included, so a later destroy or replace removes the real broker. Import loads the object as the provider reports it and does not detect or generate relationships between infrastructure, so links to the other services must be added to the configuration by hand. Import cannot determine the health or the intent of the infrastructure, so no health check is written for you. The `id` must be known during the plan operation, so it cannot wait for apply. The value of `id` depends on the type of resource being imported, and the place to find it is the provider documentation for that resource, so it is not always the name shown in a console.",
   "citationIds": [
     "cite-tf-g7-import-tut",
     "cite-tf-g7-import-block"

@@ -193,3 +193,36 @@ Sonnet 5 and Haiku 4.5 are no longer offered as subagent models. The runtime's a
 - The no-Opus rule for subagents is unchanged, so `inherit` must not be used.
 
 Everything else — 2 subagents at a time, ~3 tasks per sitting, the text-packet Student check, the closure rule — is unchanged. Sitting 3 covers tasks 4.2, 4.3 and 4.4.
+
+## 11. Amendment: status and rules in force (2026-10-01)
+
+This amendment records the current state. It does not change the pipeline in section 3 or the closure rule. Where it conflicts with sections 1, 3.8, 9 or 10, this amendment wins. `HANDOFF.md` has the step-by-step detail.
+
+**Rules now in force (user decisions after 2026-09-26):**
+- **Models:** `gpt-5.3-codex` and `composer-2.5-fast` (section 10) do not exist in this harness. All subagents run **Sonnet**, per the standing memory rule. No subagent uses `inherit`.
+- **Concurrency:** at most **3** subagents at a time (the user raised it from 2 on 2026-09-30).
+- **Pacing:** still about 3 tasks per sitting, then stop and wait for GO.
+- **Shortest-is-key:** the 35% cap applies to both longest and shortest key length on all new work (decision 2026-09-28; checked by `q1_batch_check`).
+- **Stem-paraphrase rule** (2026-09-27): applies from task 4.4 onward.
+- **New pre-check checks** learned since this plan: letter references in rationales, distractors that work in practice, version-sensitive behaviour, and distractor-only "as …"/"because …" justification clauses.
+
+**What is left (replaces the section 1 table; updated at the end of 2026-10-01):**
+
+| # | Task | Questions | State |
+|---|---|---:|---|
+| 0–19 | 1.1–4.4, tf-g1–tf-g6 | 421 | Closed (4-3, 4-1 and 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
+| 20 | tf-g7 | 9 | Closed 2026-10-01 (`2d09593`): both reviewers close, Student 9/9 |
+| 21 | tf-g8 | 20 | Closed 2026-10-01 (`bf43307`): both reviewers close, Student 20/20. Most round 1 lesson fixes came from the user's commit `53f1beb`, reviewed in round 2 |
+
+**Final sitting (replaces the section 4 list):**
+- one date sweep across all citations and `reviewedOn`, and update `q1_batch_check` to match;
+- CR-0019, CR-0021 and the D6-FU lesson follow-ups;
+- LD-Qg7-002 (stems with no question in tf-g1, tf-g2 and tf-g4): decide whether to fix it;
+- reconcile `reports/fix-loop/issue-register.md`, closing L1 and ISS-010 with reasons;
+- Student browser smoke test (about 10 questions across 3.1 to tf-g8), then DB restore and fingerprint check;
+- update `docs/status.md`;
+- run `manage.py test workbook`, `content_lint.py` and `npm run build`.
+
+Learning content is not changed by this amendment, so no Teacher validation is needed for it.
+
+**Update, end of 2026-10-01:** tf-g7 (`2d09593`) and tf-g8 (`bf43307`) are closed, so all 22 tasks (450 questions) are done. Only the final sitting above remains, and it waits for the user's GO.

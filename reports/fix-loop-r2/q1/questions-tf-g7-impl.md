@@ -126,3 +126,27 @@ PASS: 12 bad, 10 good, 0 failures
 ```
 
 Overall: approve
+
+## Round 2 fix pass
+
+- AWS-Qg7-001 = TEACHER-Qg7-001 (7b-mc rationale): "An address pattern such as a resource type filters by address, so it lists every security group of that type instead of the one with this ID." -> "An address pattern filters by address, not by resource ID, so only `-id` finds the resource that has this ID." Choice b text unchanged (it makes no bare-type claim now).
+- AWS-Qg7-002 (7b-mc2 a rationale): fetched developer.hashicorp.com/terraform/cli/commands/output with curl. The page shows `terraform output lb_address` printing `"my-app-alb-1657023003.us-east-1.elb.amazonaws.com"` in double quotes, and `-raw` printing it bare. Added one lesson sentence in 7b "Reading outputs", claim rows 119-120 in lesson-tf-g7-impl.md. Rationale: "The default output format is meant for people and can change over time, so scripts are told..." -> "Plain `terraform output lb_address` prints a string value inside double quotes, as the docs' example shows, so the variable would hold the quotes, and the default format is meant for people and can change over time, so scripts are told...".
+- AWS-Qg7-003 = TEACHER-Qg7-004 (7b-mr e): "The docs recommend `terraform state push` as the routine way to correct state" -> "The docs recommend adding `-force` whenever a push is refused". Audit: -force 1/9 = 11%, under the 15% cap, so the AWS fallback wording was not needed. Rationale last sentence -> "The docs recommend push only when you must manually modify the remote state, and they do not recommend adding `-force` when a push is refused, so that is not advice to follow."
+- AWS-Qg7-004 = TEACHER-Qg7-007 (7c-mr): stem dropped " and plans to rerun the failing plan twice"; e "The second run's lines are added after the first run's in the same log file" -> "When the log file already exists, new log output is added to the end without truncating it" (lesson quote row 111: "adds new log output onto the end of the file without truncating the file contents", so "without truncating" is the page's own wording). Rationale tail "so two runs share one file" -> "without truncating the file contents". No other choice twins e.
+- TEACHER-Qg7-002 (7a-mc2 key): 105 chars -> "A block with `for_each = local.databases`, `to` using `each.key`, `id = each.value`" (83 chars; others 69-84; longest-is-key now 0/6).
+- TEACHER-Qg7-003 (7a-mr stem): "The team wants to know what Terraform will and will not do once the import completes." -> "The team wants to know what import does and does not do, and what the import block needs." Still ends with a question.
+- TEACHER-Qg7-005: accepted as is, no change.
+- TEACHER-Qg7-006 (7c-mc2 c): "Set `TF_LOG_PROVIDER` to ERROR" -> "Set `TF_LOG` to TRACE". Checked against the stem: wrong in practice (TF_LOG is the broad variable that covers core as well), and taught by "only activate a subset of the logs" and "`TF_LOG` is the broad one". Rationale ERROR sentence -> "`TF_LOG` is the broad variable: the core and provider variables only activate a subset of the logs, so TRACE on `TF_LOG` also turns on the core logs and misses the plugins-only requirement." Note it now shares its reason with the both-variables distractor.
+- AWS-Qg7-005 (optional):
+  - 7a-mr e replaced: "The ID format is identical for every resource type and is documented once in Terraform core" -> "The ID is always the resource's name as shown in the cloud console". (i) teams do import by console name; (ii) wrong, IDs vary; (iii) taught ("its format depends on the resource type", "find the required ID in the provider documentation"). Rationale last clause -> "so it is not always the name shown in a console."
+  - 7a-mr a left: no replacement that is both a real practice and refuted by a taught sentence (health/intent: "cannot determine" is already the taught reason).
+  - 7b-mr b left: direction confusion pull vs push is the realistic and taught contrast; any rewrite tests the same fact.
+  - 7a-mc2 d left: provider/alias confusion is the realistic one; a replacement would need an untaught fact.
+
+RESULT lines (run after all edits):
+- content_lint.py: PASS
+- q1_batch_check.py tf-g7: RESULT: PASS (longest-is-key 0/6, shortest-is-key 1/6 = 17%)
+- distractor_type_audit.py tf-g7: RESULT: PASS
+- stem_echo_check.py tf-g7: RESULT: PASS (0 unwaived giveaway, 0 waived, 0 bulk echo)
+- claim_prose_check.py tf-g7: PASS: every claim-table number appears in the lesson prose
+- test_q1_letter.py: PASS: 12 bad, 10 good, 0 failures

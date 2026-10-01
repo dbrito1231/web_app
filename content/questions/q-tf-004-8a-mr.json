@@ -6,36 +6,40 @@
   "objectiveIds": [
     "tf.004.8a"
   ],
-  "stem": "Select TWO actions that support this requirement: Use HCP Terraform to create infrastructure",
+  "stem": "(Select TWO.) Harbor Analytics links one workspace to the main branch of its repository. Which two statements describe how runs behave in this workspace?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The first run starts by itself as soon as the repository is connected"
     },
     {
       "id": "b",
-      "text": "Validate with official documentation before applying"
+      "text": "A commit merged into the linked branch queues a run without anyone starting it"
     },
     {
       "id": "c",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "A commit pushed to any other branch of the repository queues a regular plan-and-apply run in this workspace"
     },
     {
       "id": "d",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A `terraform apply` typed on an engineer's laptop cannot execute remotely against it"
     },
     {
       "id": "e",
-      "text": "Use root credentials for every lab step"
+      "text": "Each run uses the files uploaded from the engineer's working directory"
     }
   ],
   "correctAnswerIds": [
-    "a",
-    "b"
+    "b",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "HCP Terraform automatically queues a run whenever new commits are merged to the linked branch of the workspace's repository. A remote `terraform apply` is for workspaces without a linked VCS repository, so a laptop apply cannot run remotely here. The first run of a new VCS-driven workspace is not automatic, because someone must trigger the initial run manually. The workspace is linked to one branch and ignores changes to other branches, so a push to another branch does not queue a regular run. In a VCS-driven workspace the Terraform code for a normal run always comes from version control, not from files uploaded from a working directory.",
+  "citationIds": [
+    "cite-tf-g8-ui-vcs-runs",
+    "cite-tf-g8-cli-runs",
+    "cite-tf-g8-vcs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

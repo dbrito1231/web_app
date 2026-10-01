@@ -6,7 +6,7 @@
   "objectiveIds": [
     "tf.004.7c"
   ],
-  "stem": "(Select TWO.) A support engineer wants a log file to attach to a Terraform bug report and plans to rerun the failing plan twice. Which two statements are correct?",
+  "stem": "(Select TWO.) A support engineer wants a log file to attach to a Terraform bug report. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
@@ -27,14 +27,14 @@
     },
     {
       "id": "e",
-      "text": "The second run's lines are added after the first run's in the same log file"
+      "text": "When the log file already exists, new log output is added to the end without truncating it"
     }
   ],
   "correctAnswerIds": [
     "c",
     "e"
   ],
-  "rationale": "`TF_LOG_PATH` only says where to write the log: the docs say TF_LOG must be set for any logging to be enabled, and the tutorial pairs the path with a level variable, so a path on its own produces nothing. When the file already exists, Terraform adds new log output onto the end of it without truncating, so two runs share one file. For bug reports the recommended level is TRACE, the most verbose, not WARN. Without a log path the output goes to stderr, not stdout. The JSON log encoding is not considered a stable interface and may change at any time.",
+  "rationale": "`TF_LOG_PATH` only says where to write the log: the docs say TF_LOG must be set for any logging to be enabled, and the tutorial pairs the path with a level variable, so a path on its own produces nothing. When the file already exists, Terraform adds new log output onto the end of it without truncating the file contents. For bug reports the recommended level is TRACE, the most verbose, not WARN. Without a log path the output goes to stderr, not stdout. The JSON log encoding is not considered a stable interface and may change at any time.",
   "citationIds": [
     "cite-tf-g7-debug",
     "cite-tf-g7-plug-log",

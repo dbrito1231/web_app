@@ -6,31 +6,36 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "Quick check \u2014 Describe HCP Terraform collaboration and governance features. Which practice is correct?",
+  "stem": "Wren Insurance already has Sentinel policies and Rego policies. HCP Terraform itself must evaluate both sets of rules on its payments workspace. How should the policies be arranged?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "One policy set holding the Sentinel policies and the Rego policies together"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Describe HCP Terraform collaboration and governance features"
+      "text": "Two policy sets, one per framework, both applied to the payments workspace"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "The Sentinel set on the payments workspace, with the Rego policies kept for a second workspace"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A Sentinel policy set, with the Rego rules attached to the workspace as a mandatory run task"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe HCP Terraform collaboration and governance features'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A policy set can only contain policies written in a single framework, but the same workspace can use several sets in different frameworks, so one Sentinel set and one OPA set can both be applied to the payments workspace. Mixing both kinds in one set is not allowed. Moving the Rego policies to another workspace leaves them unevaluated on the payments workspace, which fails the stated need. A run task is an external service that HCP Terraform calls at a stage of the run; it is not a way for HCP Terraform to evaluate Rego policies itself, and the stem says HCP Terraform must evaluate them.",
+  "citationIds": [
+    "cite-tf-g8-policy-sets",
+    "cite-tf-g8-policy-opa",
+    "cite-tf-g8-policy-sentinel",
+    "cite-tf-g8-run-tasks"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
