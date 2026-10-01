@@ -172,3 +172,88 @@ New findings:
 No question uses a number beyond "three enforcement levels" (8b-mr e), "two levels" and "all three workspaces". These match the lesson: Sentinel has advisory, soft mandatory and hard mandatory, OPA has two, and the three `app-` workspaces are in the stem. No tier, version or day count is used as a key.
 
 **not yet**
+
+# Teacher round 2b — tf-g8 (ace0419)
+
+I read the lesson and all 20 questions end to end. I re-ran the five scripts and all pass. The distractor audit shows "variable set", "run trigger" and "HCP Terraform" each at 3/20, which is the 15% cap. I checked the priority-variable-set wording against the managing-variables page with curl.
+
+## 1. My round 2 findings
+
+| Id | Status | Evidence |
+|---|---|---|
+| Lg8-008 | Gone | The 8b policy-set text now says "Sentinel and OPA sets do not cover Stacks", with the quote unchanged. The clash with "specific projects" is removed. |
+| Lg8-009 | Gone | The Teams and permissions paragraph now says: Read means "View information about workspace runs." It sits next to the Plan and Apply quotes. |
+| Lg8-010 | Gone | The gloss is in place, and I accept the deviation. "One saved version of a workspace's configuration, which a run uses" is plain and no longer undefined, and it makes no claim the page does not support. |
+| Qg8-001 | Gone | The 8b-mc stem is now "submit changes for review and preview what each would do on their own". Choice c quotes the taught Read sentence, and the rationale contrasts it with the Plan quote. |
+| Qg8-002 | Gone | In 8a-mr, distractor c (107 characters) is now the longest choice, and the keys are 78 and 84. In 8b-mr, the keys are 86 and 97, while distractor e (101) is the longest. `q1_batch_check` shows longest-is-key at 3/16 (19%). |
+| Qg8-003 | Gone | The stem is now "What gets that state into the HCP Terraform workspace?". The key's "migrate" matches no stem word, and `stem_echo_check` is clean. |
+| Qg8-004 | Gone | 8a-mc distractor d is now "HCP Terraform's machines only for repository-linked workspaces, while CLI runs stay on the laptop". It is a real misconception, and the "remotely executed by default" quote refutes it. |
+| Qg8-005 | Gone | The extra-02 key is now "State sharing is off by default and has to be enabled for `network`", with no location claim. |
+| Qg8-006 | Gone | The extra-06 distractor d is shortened to "Terraform reports an error for a key defined in several places". It is still the longest at 62 against 35 to 41, but it is a distractor and no longer an outlier. |
+
+**Deviation 1 (Lg8-010 gloss):** accepted. Optionally say "saved copy of the configuration files" for a plainer read, but nothing depends on it.
+
+**Deviation 2 (8c-mc2 "open workspaces"):** accepted. "Open" does not echo the key's "access", and the stem still states the constraint that eliminates d.
+
+## 2. AWS findings, second-role check
+
+- **AWS-Qg8-001:** Gone.
+  - The stem says "not marked as priority".
+  - The rationale says the set is not priority.
+  - The lesson teaches the priority exception.
+  - Key c is correct.
+- **AWS-Qg8-002:** Gone. The stem adds the "neither team should open workspaces it does not already use" constraint. Distractor d is eliminated by the taught "By default, all workspaces belong to an organization's Default Project".
+- **AWS-Qg8-003:** Gone. The stem is reworded, and option a is now `backend "local"` beside `cloud`. The lesson teaches that the two cannot coexist.
+- **AWS-Qg8-004:** Gone. Distractor c is now "different projects, remote state only works within one project". The three taught share scopes (organization, same project, specific workspaces) refute it.
+- **AWS-Qg8-005:** Gone. The key is "Plan, which can queue Terraform plans".
+- **AWS-Qg8-006:** Gone. Distractor c now says "regular plan-and-apply run", so the speculative-plan reading no longer applies.
+- **AWS-Lg8-011:** Gone. The text now says "One place the docs state Remote as the default…".
+- **AWS-Lg8-012:** Gone. See section 3.
+- **AWS-Lg8-013:** Gone. The text says "(plan-only runs are not affected: 'Locking does not affect plan-only runs')".
+- **AWS-Lg8-014:** Gone. See section 3.
+
+## 3. New lesson sentences
+
+- **Priority variable sets:** accurate. The page says "The values in priority variable sets overwrite any variables with the same key set at more specific scopes", and the quote is limited to global sets. It makes "that is the exception" clear next to the -var sentence. It is consistent with the extra-06 rationale.
+- **Read role:** accurate and clear, with no contradiction with Plan and Apply.
+- **Configuration-version gloss:** clear, and nothing contradicts it.
+- **Plan-only locking exception:** consistent with the queue paragraph ("plan-only runs … do not block the progress of other runs") and with extra-04.
+- **OPA stage:** accurate to the page. See TEACHER-Lg8-011 below.
+
+## 4. Re-read of changed items as a lesson-only reader
+
+All chosen and eliminated answers have a taught reason.
+
+- **8a-mc:** key c is shown by the quoted "disposable virtual machines" sentence. The distractors are eliminated by the Local mode, Agent mode and remote-by-default teaching.
+- **8a-mr (b, d):** b is taught. d is taught by "Remote terraform apply is for workspaces without a linked VCS repository". a is refuted by the manual first run. c is refuted by the one-branch teaching. e is refuted because VCS code comes from the repository.
+- **8b-mc vs Read c:** c is eliminated by the quoted Read versus Plan contrast. The key is the shortest choice at 37 characters. See TEACHER-Qg8-007.
+- **8b-mr (a, c):** both keys are taught. Distractor e (three levels for OPA) is refuted by "two policy enforcement levels".
+- **8c-mc2:** the d rationale is sound. Each project has its own team permissions, so moving the workspace into the Default Project either leaves both teams without access or exposes the other workspaces that start there, and the lesson teaches that default.
+- **extra-02:** the new c ("different projects, remote state only works within one project") is refuted by the same-project share scope the lesson teaches.
+- **extra-03:** key c is taught.
+- **extra-06:** the stem pins "not priority", and the lesson gives the precedence order.
+- **extra-07:** key a is taught. b, c and d each have a taught refutation.
+
+**"Variable set" at the cap:** the three uses are three different wrong reasons.
+- 8c-mc2 b: a variable set changes variable scope, not which project a workspace belongs to.
+- extra-02 d: a variable set shares variables, not state.
+- extra-06 a: a non-priority global set loses on precedence.
+
+**"Run trigger" at the cap:** the three uses are also different.
+- 8a-mc2 d: a run trigger starts a run from another workspace's apply, not from a pipeline upload.
+- extra-02 b: a run trigger does not grant state access.
+- extra-07 d: a run trigger is not driven by file changes.
+
+## 5. New findings (all Low, none blocking)
+
+- **TEACHER-Qg8-007 (Low, 8b-mc):** the key (37 characters) is much shorter than every distractor (61 to 75). It is not a length-tell for "longest is key", but a very short key can look unusual.
+  - Fix: use "Plan, which can queue Terraform plans in the workspace", which matches the quoted phrase.
+- **TEACHER-Qg8-008 (Low, 8b-mc, optional):** a Read user can still see a speculative plan that a pull request starts, so "preview what each would do" is not strictly impossible for Read. The key still holds, because "on their own" and the rationale's "queue plans" separate the roles.
+  - Fix: if you want it tighter, say "start their own preview plans" instead of "preview what each would do on their own".
+- **TEACHER-Lg8-011 (Low, 8a stages):** the sentence "An OPA policy check stage is conditional in the same way" names a stage that is not in the six-stage list just above it. It reads as a seventh stage.
+  - Fix: add "(the policy check stage covers both Sentinel and OPA when enabled)".
+  - Optionally, change "A variable set can be marked as priority" to "A global variable set can be marked as priority", to match the quote.
+
+No new contradictions. No question depends on any of these items.
+
+**Verdict: close** (the Low items may ride along or be dropped).
