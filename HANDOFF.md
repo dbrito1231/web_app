@@ -22,7 +22,7 @@ The two tasks run in parallel, one writer each (3 subagents allowed at once).
 | Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | Done. Tech: approve, 1 medium + 3 low. Teacher: not yet, 4 medium + 4 low (`removed` nesting, import contrast, `moved` vs `state mv`, split 6d with `####`). TEACHER-Lg6-007 logged as CR-0021 against g4 |
 | Lesson fix pass | Done `29230f0`: all 15 findings applied, 87 claim rows | Done `23ceea2`: all findings applied, 136 rows; 6d split with `####`; 5 unsupported proposed sentences dropped |
 | Questions written | Done `f97c818`: pre-check findings fixed, audit PASS. `./` kept in 2 questions by Lead Dev decision. LD-Qg5-005 (a pair tell in 5c-mc2) is left to round 2 | **Running** (same writer; fact ownership from `lesson-tf-g6-TEACHER.md` is binding) |
-| Round 2 (lesson findings Gone, plus questions) | **Closed** `6f1b81b`: round 2 fix pass `d688f95` (incl. a lesson 5c sentence and LD-Qg5-006 parallel form); tech and Teacher round 2b both close | Done: all lesson findings Gone. Questions not yet: 6d-mc2 refutation untaught (AWS-Qg6-001, TEACHER-Qg6-001; the import overview page has "To import multiple resources, use the import block", which the writer re-verifies and adds), 6a-mc2 untaught locking claim, plus rationale wording. **Round 2 fix pass running** |
+| Round 2 (lesson findings Gone, plus questions) | **Closed** `6f1b81b`: round 2 fix pass `d688f95` (incl. a lesson 5c sentence and LD-Qg5-006 parallel form); tech and Teacher round 2b both close | Done: all lesson findings Gone. Questions not yet: 6d-mc2 refutation untaught (AWS-Qg6-001, TEACHER-Qg6-001; the import overview page has "To import multiple resources, use the import block", which the writer re-verifies and adds), 6a-mc2 untaught locking claim, plus rationale wording. Fix pass done `7e68d75` (the import-overview sentence verified and added as rows 137–140). **Round 2b confirmation running** |
 | Student, then close | **Closed 2026-09-30** `65d51ff`: Student 12/12, 0 keyword-guessable | Not started |
 
 **Carry forward.**
@@ -145,8 +145,8 @@ Ordered by how much trouble each has caused.
 | 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
-| 19 | lesson-tf-g6 | 12 | **In flight**: round 2 done; fix pass running; then confirmation, Student, close |
-| 20 | lesson-tf-g7 | 9 | Not started |
+| 19 | lesson-tf-g6 | 12 | **In flight**: round 2b confirmation running; then Student, close |
+| 20 | lesson-tf-g7 | 9 | **In flight**: lesson being written (it must build on g6 §6d, which already teaches import and state list/show) |
 | 21 | lesson-tf-g8 | 20 | Not started |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
