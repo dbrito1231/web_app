@@ -9,7 +9,27 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 18 of 22 tasks closed. D6/ISS-080 closed 2026-09-30 (lab prices, all 60 design exercises, exercise card). CR-0018 done.** The working tree is clean, the DB is at baseline (`930f0e72…`), and no agents are running. **Next: tf-g5, then tf-g6 (lesson-first pipeline). Final sitting adds CR-0019 (Glue for Ray) and register row D6-FU (lesson follow-ups).**
+**Status: 18 of 22 tasks closed. tf-g5 and tf-g6 are in flight (lessons written and committed; round 1 under way) — see "Where tf-g5 and tf-g6 stand" below.** D6/ISS-080 closed 2026-09-30 and CR-0018 is done. The DB is at baseline (`930f0e72…`). **Final sitting adds CR-0019 (Glue for Ray) and register row D6-FU (lesson follow-ups).**
+
+## Where tf-g5 and tf-g6 stand (resume here; updated 2026-09-30)
+
+The two tasks run in parallel, one writer each (3 subagents allowed at once).
+
+| Step | tf-g5 (modules, 12 Qs) | tf-g6 (state, 12 Qs) |
+|---|---|---|
+| Lesson written | Done `2d5469d`: 2,399 words, 83 claim rows, 15 cites | Done `a7cd16f`: 2,684 words, 120 claim rows, 25 cites |
+| Lead Dev pre-check | Done; lesson-only checks PASS (question lines fail only on the 12 placeholders) | Done; same. Cross-references to g2, g3 and g4 checked with a regex and true |
+| Round 1 review | Done. Tech: approve, 2 medium + 6 low (`lesson-tf-g5-AWS.md`). Teacher: not yet, 3 medium + 4 low (`lesson-tf-g5-TEACHER.md`) | **Running** (tech `lesson-tf-g6-AWS.md`; Teacher's text is saved by the Lead Dev as `lesson-tf-g6-TEACHER.md`) |
+| Lesson fix pass | **Running** (the writer applies both reviews) | Not started |
+| Questions written | Not started | Not started |
+| Lead Dev pre-check of questions, then round 2, Student and close | Not started | Not started |
+
+**Carry forward.**
+- **tf-g5 fact ownership (TEACHER-Lg5-006), for the question writer:** 5b owns `module.<name>.<output>` and "child must declare an output"; 5c owns the output shape and `init -upgrade`; 5d owns the lock file, the exact pin and registry-only `version`.
+- **tf-g5 `version` Warning:** the Lead Dev's "version on a non-registry source errors" came from memory and is **not doc-backed**. Use the reviewer's wording, which makes no claim about the outcome.
+- **tf-g6 `removed` block:** the docs page contradicts itself (the intro says infrastructure is unchanged; the lifecycle section says destroy is the default). The technical reviewer rules on it in round 1.
+- **tf-g6:** the S3 `use_lockfile` default and the DynamoDB-locking deprecation must be stated exactly as the page states them.
+- **Both:** if a fresh session resumes, start new agents and hand them the impl and review reports. Session agent ids do not carry over.
 
 ## tf-g4 closed (2026-09-28)
 
@@ -121,8 +141,8 @@ Ordered by how much trouble each has caused.
 |---|---|---:|---|
 | 0–16 | 1.1–4.4, tf-g1, tf-g2, tf-g3 | 373 | **Closed** (4-3, 4-1, 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
 | 17 | lesson-tf-g4 | 24 | **Closed** 2026-09-28 |
-| 18 | lesson-tf-g5 | 12 | Not started |
-| 19 | lesson-tf-g6 | 12 | Not started |
+| 18 | lesson-tf-g5 | 12 | **In flight**: lesson done, round 1 done, fix pass running |
+| 19 | lesson-tf-g6 | 12 | **In flight**: lesson done, round 1 running |
 | 20 | lesson-tf-g7 | 9 | Not started |
 | 21 | lesson-tf-g8 | 20 | Not started |
 
