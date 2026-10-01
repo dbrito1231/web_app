@@ -244,9 +244,9 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: The reviewer reports that AWS Glue for Ray is closed to new customers. The lesson lists it as a current Glue job engine. In all four questions it is a distractor, never the key. That still breaks RULES "Retired, end-of-support or closed services" (no current advice without a status label) and the question rule that every choice is "real and current". **The closure has not yet been verified against AWS docs; verifying it is step 1.**
 - Suggested fix: if the closure is confirmed, label its status in the lesson (or drop it from the engine list) and add it to the RULES closed list. Replace the four distractors with current options that are wrong for a taught reason, and re-run the task 3.5 checks.
 - Affects learning content: yes
-- Status: open. The user deferred it to the final sitting (2026-09-30), to be handled with the register reconciliation
-- Plan: none yet
-- Teacher validation: pending
+- Status: **done 2026-10-01** (`65ac6ba`). AWS docs confirm the closure: "we decided to close AWS Glue for Ray to new customers starting April 30, 2026." Ray dropped from lesson 3.5 K04 and S05; cite note labels the closure; RULES closed list updated; the four distractors replaced (Python shell, DataSync, crawler, DataBrew), each wrong for a taught reason
+- Plan: `.cursor/plans/final_sitting_20261001.plan.md` (item 1)
+- Teacher validation: approved before and after (`reports/final-sitting/TEACHER-plan.md`, `TEACHER-post.md`); technical reviewer close (`AWS-post-check.md`)
 
 ## CR-0020 — Lesson 4.4 K06: VPC peering alongside Transit Gateway is untaught
 - Raised by: batch 3b writer and the Teacher (D6 batch 3, TEACHER-DE3-007)
@@ -268,9 +268,9 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: the bullet says to treat state as sensitive "per group 3's state-security guidance". A regex over `lesson-tf-g3.json` finds no such guidance, so this is an overclaiming cross-reference (the same defect class as TEACHER-Lg5-001).
 - Suggested fix: cite group 2's note that the state file can hold secrets, and group 6's warning, instead (g6 Warnings now teaches "state data contains extremely sensitive information"). Wording only.
 - Affects learning content: yes
-- Status: open. For the final sitting with D6-FU, unless the user asks sooner
-- Plan: none yet
-- Teacher validation: proposed by the Teacher
+- Status: **done 2026-10-01** (`65ac6ba`). The bullet now cites group 2 ("can contain sensitive values") and group 6 ("contains extremely sensitive information")
+- Plan: `.cursor/plans/final_sitting_20261001.plan.md` (item 2)
+- Teacher validation: approved before and after
 
 ## Template
 

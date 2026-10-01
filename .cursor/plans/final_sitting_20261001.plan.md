@@ -37,3 +37,9 @@ Finish the Q1 rewrite cleanly: fix the last open content items, tidy the records
 ## Tests
 
 After every step: `content_lint.py`, and for each task touched `q1_batch_check`, `distractor_type_audit`, `stem_echo_check`, `claim_prose_check`, plus `test_q1_letter.py`. Item 9 on the user's machine.
+
+## Outcome (2026-10-01)
+
+- Items 1–8 are done and pushed to `main`: `1d13468` (item 5), `65ac6ba` (items 1–4; Teacher and technical reviewer close), `a7a215b` (item 6), and the records commit (items 7–8).
+- Item 3: the Regional NAT gateway was skipped on both reviewers' advice and is logged as optional in the register.
+- Item 9 waits on the user's machine.

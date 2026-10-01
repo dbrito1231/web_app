@@ -181,8 +181,6 @@ Rule: an item closes only when its original reporter and a second role mark it G
 
 | Area | Items | Closed by |
 |---|---|---|
-| D6-FU | Lesson follow-ups found during D6 (none blocking): 4.4 K05, both tunnels of one VPN connection carry traffic under ECMP (Student, E4); 3.3 S01, "raise an alarm on the replica-lag metric" (TEACHER-DE2-003, optional); 4.4, Regional NAT gateway (AWS-DE3-015, optional); 4.2-s05 r7 sets only a minimum (AWS-DE3-021, optional). Also CR-0019 (Glue for Ray) | Low | Final sitting |
-| Q1-STEM-Q | 7 closed Terraform questions have stems that state a need without asking a question (tf-g1 1a/1b/1c-mr, tf-g2 2a/2b/2d-mr, tf-g4 4a-mc). This is style, not correctness. Optionally add a `q1_batch_check` rule for stems not ending in "?" | Low | Final sitting |
 | Saves, explanations, lesson-drill links | ISS-001, 002, 003, 004 | earlier rounds (see above) |
 | Lab cleanup (CR-0017, Amendments 1 and 2) | N1, N2a–c, N3, N5, N6, N7, T1–T6, R1, R2, AWS-R3-001–011, AWS-R4L-001–006, TEACHER-R3-001–015, STUDENT-R3-004, STUDENT-R4-001–004, STUDENT-R5-001 | AWS (`round-5/AWS-labs.md`, `round-6/AWS-ul11.md`) + Student (`round-5/STUDENT.md`) |
 | Screens | O1–O7, R4, R5, FS-FINAL-001/002, FS-R2-2-001–008, FS-R3-001–004, FS-R4-001–005 | Full-Stack (`round-5/FULLSTACK.md`) + Student (`round-5/STUDENT.md`) |
@@ -228,3 +226,41 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
 
 DB fingerprint after round 6: `930f0e72…` (matches baseline).
+
+## Final reconciliation (2026-10-01)
+
+Plan: `.cursor/plans/final_sitting_20261001.plan.md`. This section is the current state; every table above is history. The rule is unchanged: an item closes only when its reporter and a second role mark it Gone, or when a user decision closes it.
+
+The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count read the round-3 table. Most of those rows were already closed in the round-6 "Closed" table, including FS-R3-001–004, AWS-R3-001–011, TEACHER-R3-001–015 and PY-R3-001–006. They are not reopened.
+
+### Closed in the final sitting
+
+| ID | Item | Closed by |
+|---|---|---|
+| L1 / Q1 | Lessons didn't teach; template-style question bank | All 22 lesson-first tasks closed (450 questions; tf-g7 and tf-g8 on 2026-10-01). Every task closed by tech + Teacher + blind Student (`reports/fix-loop-r2/q1/progress.md`) |
+| ISS-010 | Template question wording | 0 questions still carry the template stem ("Which action is the right fit…"). Closed with L1/Q1 |
+| R6 / ISS-070 (question and lesson parts) | Per-bullet official citations; `mcpStatus: pending_recheck` | Every rewritten lesson carries per-claim citations. 427 of 429 questions are `verified`; the other 2 are the demo files `q-a0-*`. The coverage-registry part stays open (below) |
+| N8 | Wrong-letter rationales | Interim fix closed in round 6; every rationale since then was rewritten with no letter references, and `q1_batch_check` enforces it (`test_q1_letter.py`) |
+| ISS-020, ISS-030, ISS-040, ISS-050, ISS-060 | Pass-1 rows still marked Open | Every sub-item they list was closed in the round-6 "Closed" table (labs, screens, backend). O8 (GL-07/GL-21 titles) is the exception and is listed below |
+| CR-0019 | Glue for Ray presented as current | AWS confirms it closed to new customers on 2026-04-30. Lesson 3.5, cite, RULES and 4 distractors fixed (`65ac6ba`). Tech + Teacher |
+| CR-0021 | tf-g4 Warnings cited guidance g3 lacks | Now cites g2 and g6 (`65ac6ba`). Teacher + Tech |
+| D6-FU | Lesson follow-ups from D6 | 4.4 K05 ECMP sentence, 3.3 S01 ReplicaLag alarm, 4.2-s05 r7 two-sided rubric (`65ac6ba`, 3 new cites). Regional NAT gateway **skipped** by both reviewers (it would blur the taught "one NAT gateway per AZ" signal) and logged below as optional. Tech + Teacher |
+| Q1-STEM-Q / LD-Qg7-002 | 7 Terraform stems without a question | Each ends with a question (`65ac6ba`). Teacher + Tech |
+| Audit regression on 1-1 | tf-g7 term `identity` matched IAM "identity" | Term removed (`1d13468`); 1-1 passes the audit |
+| Date drift (user decision 3, 2026-09-28) | Corpus dated 2026-09-26 | One sweep to 2026-10-01: 461 citations, 427 questions (`a7a215b`). No other field changed |
+
+### Still open (true list)
+
+| ID | Item | Sev | Notes |
+|---|---|---|---|
+| R6 / ISS-070 (registry) | All 189 rows of `content/coverage/saa_registry.json` still say `implemented_unverified` | Medium | The content behind them is reviewed; the registry status field was never updated. Needs a plan: decide what "verified" means per row |
+| Audit scope | `distractor_type_audit` FAILs on SAA tasks 1-2, 2-1, 2-2 and 3-1 to 4-1 on service names, and did so before this work | Low | One global TERMS list serves both exams. Option: scope TERMS per exam. Needs a plan |
+| Recorded tells | 1-2 longest-is-key 40%; 3-1 shortest 60% (5 MC); 3-5 shortest 36%; 3-3 MR key sets 50% `a,b` | Low | Closed tasks; 3-1 and 3-5 left closed by user decision (2026-09-28) |
+| O8 | GL-07 "EC2 and EBS" and GL-21 "ElastiCache tradeoffs" titles | Low | Marked Fixed in round 2 but never second-role closed. Needs one Full-Stack or Student check |
+| N4 | Start here lists a lesson's drills by raw question ID | Low | Still present (`StartHereTab.tsx` renders the id) |
+| N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
+| STUDENT-R6 notes | Lesson 1.1 has no in-lesson section links | Low | Non-blocking |
+| PY-R5-001–003, PY-R4-005/008/009, PY-R5-004/005 | Scanner bypasses needing deliberate obfuscation; documented KISS trade-offs | Low/Info | Python says close is fine; a formal won't-fix needs your approval |
+| Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
+| Regional NAT gateway (optional) | Lesson 4.4 does not mention regional NAT gateways | Low | Real AWS feature; skipped by both reviewers to keep the exam signal. A future CR if wanted |
+| Local checks | `manage.py test workbook`, `npm run build`, DB fingerprint, browser smoke test | — | Need the user's machine (final-sitting item 9) |

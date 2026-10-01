@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: all 22 tasks closed under the Q1 pipeline (tf-g7 and tf-g8 closed 2026-10-01). The project-wide definition-of-done checks (`manage.py test workbook`, `npm run build`, the DB fingerprint and the `docs/status.md` update) are deliberately part of the final sitting, which waits for the user's GO.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
+**Status: all 22 tasks closed (450 questions). The final sitting's cloud work is done (2026-10-01); only the checks that need the user's machine remain (see Final sitting below).** D6/ISS-080 closed and CR-0018 done. The DB was at baseline (`930f0e72…`) when last fingerprinted locally; no session since has touched it.
 
 The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
 
@@ -173,18 +173,18 @@ Ordered by how much trouble each has caused.
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
-**Next:** the final sitting (below), after the user's GO.
-
-**Final sitting:**
-- **date sweep (user decision 3, 2026-09-28):** set one final date across every citation and `reviewedOn` in a single commit, and update the `2026-09-26` literal in `q1_batch_check` to match;
-- **CR-0019** (lesson 3.5 and four 3.5 questions present AWS Glue for Ray as current) and **CR-0021** (tf-g4 Warnings cite guidance tf-g3 does not contain), both in `docs/change-requests.md`; **D6-FU** lesson follow-ups (register row);
-- **LD-Qg7-002:** stems with no question in closed tasks tf-g1 (1a-mr, 1b-mr, 1c-mr), tf-g2 (2a-mr, 2b-mr, 2d-mr) and tf-g4 (4a-mc). Not a correctness defect. Decide whether to fix them and whether `q1_batch_check` should flag a stem not ending in "?" (a script change, so it needs a plan);
-- **`distractor_type_audit` regression on closed task 1-1 (found 2026-10-01):** the tf-g7 term `identity` (added at `9372747`) also matches IAM "identity" in 1-1, which is 1-1's own subject (6 of 21, 29%). 1-1 passed before `9372747`. `identity` appears in only one tf-g7 question, so removing it (or scoping TERMS per exam) loses nothing; that is a script change for the user to approve. Separately, SAA tasks 1-2, 2-1, 2-2 and 3-1 to 4-1 already FAILed the audit on service names before this session — decide whether the global TERMS list should be split per exam;
-- browser Student smoke test, ~10 questions across 3.1 to tf-g8, then restore the DB;
-- **reconcile the register (user-approved).** `reports/fix-loop/issue-register.md` lists **53 rows under "Still open"** and the number is not real. Close with a reason: `L1` ("lessons don't teach") is what the rewrite fixed; `N8` (133 rationales naming wrong letters) — those questions were all rewritten; `R6 / ISS-070` already says "folded into the lesson and question rewrites"; `Q1-T2/T3/T4` are pilot-era findings against content that no longer exists. Genuinely live and independent of the rewrite: `FS-R3-001` (header hidden behind an 80px scroll margin), `AWS-R3-002` (GL-14/19/21 subnet lookup returns a tab-joined string, breaking cluster creation), `TEACHER-R3-001/002/003` (lab criteria), `PY-R3-002/003` (scanner), and `D6 / ISS-080`. Leave a true open list;
-- close `L1` and `ISS-010`;
-- update `docs/status.md`;
-- run `python manage.py test workbook`, `scripts\content_lint.py` and `npm run build`.
+**Final sitting (plan `.cursor/plans/final_sitting_20261001.plan.md`, approved 2026-10-01; work goes straight to `main` by user decision):**
+- **Done in the cloud session:**
+  - `1d13468`: the `identity` audit term was dropped, and 1-1 passes the audit again.
+  - `65ac6ba`: CR-0019 (Glue for Ray is closed to new customers, confirmed in AWS docs), CR-0021, D6-FU (4.4 K05 ECMP, 3.3 S01 ReplicaLag alarm, 4.2-s05 r7 two-sided rubric; Regional NAT gateway skipped) and LD-Qg7-002. The Teacher validated before and after, and the technical reviewer closed it. Reports are in `reports/final-sitting/`.
+  - `a7a215b`: the date sweep to 2026-10-01 (461 citations, 427 questions; a field-by-field JSON comparison found no other change). `q1_batch_check` and RULES now use the new date.
+  - The register is reconciled (true open list at the end of `reports/fix-loop/issue-register.md`), CR-0019 and CR-0021 are closed, and `docs/status.md` is updated.
+- **Waiting on the user's machine** (cannot run in a cloud session):
+  - `cd backend; .\.venv\Scripts\Activate.ps1; python manage.py test workbook`
+  - `cd frontend; npm run build`
+  - `backend\.venv\Scripts\python.exe scripts\db_fingerprint.py backend\db.sqlite3` (expect `930f0e72…`)
+  - The browser Student smoke test: about 10 questions across 3.1 to tf-g8, then restore the DB with the command under **DB restore** and re-check the fingerprint.
+- **Still open, each needing its own plan:** the coverage registry's 189 `implemented_unverified` rows (R6/ISS-070), per-exam audit TERMS, an O8 second-role check, N4, N9, and the optional Regional NAT gateway. See the register.
 
 ## Session-scoped agent ids (this session only)
 
@@ -193,5 +193,6 @@ None in flight. Agent ids never carry across sessions; start fresh agents and ha
 ## Optional later
 
 - `q1_batch_check.py 1-1` FAILs because its glob matches two demo `q-a0-*` files.
+- The pre-existing check FAILs on closed SAA tasks are recorded in the register's final reconciliation: the audit on service names, and the recorded length and key-set tells on 1-2, 3-1, 3-3 and 3-5.
 - `claim_prose_check.py` cannot see non-numeric claim rows, which is why that defect has recurred on four tasks and depends entirely on the Teacher.
 - The README at `0161bb9` is the user's own work, committed under their authorship.
