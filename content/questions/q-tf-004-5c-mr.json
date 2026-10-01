@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.5c"
   ],
-  "stem": "Select TWO actions that support this requirement: Use modules in configuration",
+  "stem": "(Select TWO.) Tallgrass Insurance installed its modules last quarter. A registry module has since published a newer release that its `version` constraint allows, but routine initialization keeps leaving the old copy in place. Which two actions would move the installed modules forward?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Running `terraform init` again with no extra flags"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "Running `terraform plan` before the next change"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "`terraform init -upgrade`"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "Running `terraform apply` on the unchanged configuration"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "`terraform get -update`"
     }
   ],
   "correctAnswerIds": [
     "c",
-    "d"
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `-upgrade` flag on init updates already-installed modules, and `terraform get -update` checks downloaded modules for updates and downloads them. A plain re-run of init installs only modules added since the last run and does not change any already-installed module. Plan and apply work with the modules already installed; sourcing happens at install time, not at plan or apply time.",
+  "citationIds": [
+    "cite-tf-g5-init",
+    "cite-tf-g5-get"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

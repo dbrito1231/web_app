@@ -6,36 +6,39 @@
   "objectiveIds": [
     "tf.004.5d"
   ],
-  "stem": "Select TWO actions that support this requirement: Manage module versions",
+  "stem": "(Select TWO.) Orchid Logistics commits `.terraform.lock.hcl` and wants every CI run to install the identical release of a registry module. Which two statements are accurate?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Validate with official documentation before applying"
+      "text": "The lock file records provider selections only, and it does not remember which module release was chosen"
     },
     {
       "id": "b",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "Committing the lock file freezes the module release, because it lists every external dependency"
     },
     {
       "id": "c",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "Writing an exact `version = \"6.0.1\"` in the module block holds the module to that single release"
     },
     {
       "id": "d",
-      "text": "Use root credentials for every lab step"
+      "text": "A range such as `version = \"~> 6.0\"` keeps the first release installed on every later run"
     },
     {
       "id": "e",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A `!=` condition in the constraint holds the module to a single release"
     }
   ],
   "correctAnswerIds": [
-    "e",
-    "a"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "At present the dependency lock file tracks only provider dependencies, and Terraform does not remember version selections for remote modules. The documented way to freeze a module is an exact version constraint, which always selects the same release. Committing the lock file does not freeze a module because it holds no module entries. A range constraint can move to a newer release the next time Terraform selects a version, because nothing remembers the first pick. The `!=` operator only excludes one exact version; it does not hold the module to a single release.",
+  "citationIds": [
+    "cite-tf-g5-lock-file",
+    "cite-tf-g5-version-constraints"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

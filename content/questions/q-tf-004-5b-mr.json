@@ -6,36 +6,40 @@
   "objectiveIds": [
     "tf.004.5b"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe variable scope within modules",
+  "stem": "(Select TWO.) Larkspur Bank's root module needs the ID of a subnet that a child module creates internally as `aws_subnet.main`. The child is called with the label `network`. Which two statements about getting that ID are accurate?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Use root credentials for every lab step"
+      "text": "The child module has to declare an `output` block whose value is that subnet's ID"
     },
     {
       "id": "b",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The root can read it as `module.network.aws_subnet.main.id`, because the child's resources are shared with its caller"
     },
     {
       "id": "c",
-      "text": "Validate with official documentation before applying"
+      "text": "A `locals` block in the child holding the ID is enough for the root to read it as `module.network.subnet_id`"
     },
     {
       "id": "d",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "The root reads the exposed value as `module.network.<output_name>`"
     },
     {
       "id": "e",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A `variable` block in the child with the ID as its default lets the root read it as `module.network.subnet_id`"
     }
   ],
   "correctAnswerIds": [
-    "b",
-    "c"
+    "a",
+    "d"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A child module exposes a value to its parent only through an output block, and the parent reads it with the `module.<label>.<output name>` syntax. A child's resources form a self-contained group, so the parent has no documented way to reach a resource address inside it. A locals block is confined to the module that defines it, so it is not readable from the parent. A variable block is an input that the parent sets, not a value the child hands back.",
+  "citationIds": [
+    "cite-tf-g4-outputs",
+    "cite-tf-g4-locals",
+    "cite-tf-g5-use-modules"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

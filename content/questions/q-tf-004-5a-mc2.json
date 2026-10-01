@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.5a"
   ],
-  "stem": "Quick check \u2014 Explain how Terraform sources modules. Which practice is correct?",
+  "stem": "A platform team calls a module straight from GitHub with `source = \"github.com/acme/queue-module\"`. A colleague merged an unfinished change into the repository's primary branch, and the next fresh workspace picked it up during initialization. The team wants every new workspace to receive the code of the release tagged v2.3.0. What should they change?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Add a `version = \"2.3.0\"` argument to the module block"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Add `?ref=main` to the address"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Explain how Terraform sources modules"
+      "text": "Rewrite the address as `git::https://github.com/acme/queue-module.git` with nothing else changed"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Add `?ref=v2.3.0` to the address"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "d"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Explain how Terraform sources modules'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `ref` query parameter accepts a tag name, so naming the release tag fixes which revision is cloned. The `version` argument applies only to registry modules, so it does not select a revision of a GitHub repository. A branch name is accepted by `ref` as well, but a branch keeps moving as commits arrive, so it does not fix a version. The explicit `git::` form of the same repository still follows the default branch at HEAD when no `ref` is given.",
+  "citationIds": [
+    "cite-tf-g5-module-block",
+    "cite-tf-g5-init"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

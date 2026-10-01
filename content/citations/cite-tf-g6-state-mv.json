@@ -4,5 +4,5 @@
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/state/mv",
   "accessed": "2026-09-26",
-  "note": "Backs the 6d claims that state mv rebinds objects to new addresses of the same type and that -lock=false is dangerous with concurrent users."
+  "note": "Backs the 6d claims that state mv rebinds objects to new addresses of the same type and that -lock=false is dangerous with concurrent users and that using it for a refactor needs careful communication with coworkers."
 }

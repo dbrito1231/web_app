@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.5b"
   ],
-  "stem": "An exam scenario centers on: Describe variable scope within modules. Which action matches it?",
+  "stem": "Calder Health's root module calls a child module named `web`. The child declares `variable \"replicas\"` without a default, and the pipeline already passes its other settings on the command line. Where should the value for `replicas` be supplied?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "As `replicas = 3` inside the `module` block for the child"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Describe variable scope within modules"
+      "text": "On the command line as `-var 'replicas=3'`"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "In an environment variable named `TF_VAR_replicas`"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "In a `terraform.tfvars` file placed in the child module's own folder"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A child module receives its inputs from its parent as arguments written in the module block. The command-line `-var` option sets variables of the root module, not of a child. The `TF_VAR_` environment variables are also a way of setting root module variables. Variable definition files are likewise a root-module method, so placing one in the child's folder is not how the parent hands a value down.",
+  "citationIds": [
+    "cite-tf-g5-variable-block",
+    "cite-tf-g4-variables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

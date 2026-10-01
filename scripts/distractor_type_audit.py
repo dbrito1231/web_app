@@ -66,6 +66,10 @@ TERMS = [
     "ignore_changes", "precondition", "postcondition", "validation",
     "check block", "terraform_data", "nonsensitive", "ephemeral",
     "write-only", "tolist", "tomap", "toset",
+    # tf-g5 (modules). A bare `./` local path cannot be matched by the word
+    # guard below, so that distractor type is counted by hand in the pre-check.
+    "TF_VAR", "-var", "tfvars", "?ref", "version =", "lock file",
+    "plan time", "init -upgrade", "get -update",
 ]
 
 

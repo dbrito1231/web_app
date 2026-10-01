@@ -4,7 +4,7 @@
 
 Replaced the placeholder `bodyMarkdown` in `content/lessons/lesson-tf-g6.json` with a full lesson: one `##` title, one `###` per objective in id order (tf.004.6a to 6d, headings `### tf.004.6x -- <objective text>`), each ending with a single `**Exam tip:**` line, then the standard `### Warnings` section. Markdown subset only (no tables, links, numbered lists, fenced code or single-asterisk italics). `id`, `title`, `module`, `tier`, `practiceMode`, `objectiveIds` and `labIds` are unchanged. `drillIds` now lists all 12 ids (`-mc`, `-mc2`, `-mr` per objective) in objective order. `citationIds` lists 25 new files, one per doc page, `cite-tf-g6-*.json`, all `accessed: "2026-09-26"`; the shared `cite-tf-004` was not touched and is no longer referenced by this lesson.
 
-Doc method: every page was fetched this turn with `curl -sL` piped through a small Python HTML-to-text stripper (scratchpad `g6w_fetch.py`); no WebFetch. Every quote in the claim table below, and every double-quoted span in the lesson body, was machine-checked as a verbatim substring of that fetched text (whitespace collapsed; `g6w_claims.py` for the table, `g6w_qcheck.py` for the body). Only my own exam-tip scenario phrases are quoted without a page match, by design (16 of them, all inside `**Exam tip:**` lines). No terraform command, no AWS call, no git command was run.
+Doc method: every page was fetched this turn with `curl -sL` piped through a small Python HTML-to-text stripper (scratchpad `g6w_fetch.py`); no WebFetch. Every quote in the claim table below (136 rows after the round 1 fix pass), and every double-quoted span in the lesson body, was machine-checked as a verbatim substring of that fetched text (whitespace collapsed; `g6w_claims.py` for the table, `g6w_qcheck.py` for the body). Only my own exam-tip scenario phrases are quoted without a page match, by design (16 of them, all inside `**Exam tip:**` lines). No terraform command, no AWS call, no git command was run.
 
 Version floors stated in the lesson, each with its source row:
 - `-refresh-only`: Terraform v0.15.4 or later (row 83).
@@ -161,6 +161,22 @@ Each objective has far more than three separable facts; the three below are the 
 | 118 | 6d | Importing or state rm changes bindings so you must keep the one-to-one rule true | https://developer.hashicorp.com/terraform/language/state | "you'll then need to ensure for yourself that this one-to-one rule is followed" |
 | 119 | Warnings | State data contains extremely sensitive information | https://developer.hashicorp.com/terraform/language/backend | "state data contains extremely sensitive information" |
 | 120 | Warnings | Storing state in version control can cause data loss or secret exposure | https://developer.hashicorp.com/terraform/language/state | "can result in data loss or exposure of secrets stored in the state file" |
+| 121 | 6a | A workspace allows multiple states for one configuration on backends that support multiple named workspaces | https://developer.hashicorp.com/terraform/language/state/workspaces | "multiple named workspaces, allowing multiple states to be associated with a single configuration" |
+| 122 | 6a | The default workspace is named default and cannot be deleted | https://developer.hashicorp.com/terraform/language/state/workspaces | "Terraform starts with a single, default workspace named default that you cannot delete." |
+| 123 | 6b | HCP Terraform is available as a hosted service | https://developer.hashicorp.com/terraform/cloud-docs | "HCP Terraform is available as a hosted service" |
+| 124 | 6c | Terraform asks about migrating state even when reconfiguring the same backend | https://developer.hashicorp.com/terraform/language/backend | "If you're just reconfiguring the same backend, Terraform will still ask if you want to migrate your state." |
+| 125 | 6d | The removed block configuration model lists the lifecycle block as required (the page separates the two words with a pipe character) | https://developer.hashicorp.com/terraform/language/block/removed | "lifecycle block ... required" |
+| 126 | 6d | For removed blocks the only supported lifecycle argument is destroy | https://developer.hashicorp.com/terraform/language/block/removed | "For removed blocks, the only supported lifecycle argument is destroy." |
+| 127 | 6d | The removed page opening line says it removes from state without changing the underlying infrastructure | https://developer.hashicorp.com/terraform/language/block/removed | "without changing the underlying infrastructure" |
+| 128 | 6d | In the docs walkthrough of terraform import the resource definition is added to the configuration first | https://developer.hashicorp.com/terraform/tutorials/state/resource-drift | "add the resource definition to your configuration" |
+| 129 | 6d | The import command page points to the import block instead of manual import | https://developer.hashicorp.com/terraform/cli/commands/import | "Instead of manually importing resources, you can add the import block to your Terraform configurations" |
+| 130 | 6d | Configuration-driven import lets you import several resources and review the import in plan-and-apply | https://developer.hashicorp.com/terraform/tutorials/state/resource-drift | "lets you import multiple resources at once, review the import in your plan-and-apply workflow" |
+| 131 | 6d | On versions without moved-block support, use terraform state mv | https://developer.hashicorp.com/terraform/language/modules/develop/refactoring | "Instead, use the terraform state mv CLI command." |
+| 132 | 6d | Terraform includes a moved block address update in the next execution plan | https://developer.hashicorp.com/terraform/language/modules/develop/refactoring | "Terraform includes the update to the resource address in the next execution plan." |
+| 133 | 6d | Chained moved blocks document the full change history | https://developer.hashicorp.com/terraform/language/modules/develop/refactoring | "chaining moved blocks to document the full change history" |
+| 134 | 6d | state mv for refactoring requires careful communication with coworkers | https://developer.hashicorp.com/terraform/cli/commands/state/mv | "communicate carefully with your coworkers" |
+| 135 | 6d | Nobody should make other changes between the configuration change and the state mv command | https://developer.hashicorp.com/terraform/cli/commands/state/mv | "nobody makes any other changes between your configuration change and your terraform state mv command" |
+| 136 | 6d | The refactor page calls state mv (moving resources between state files) a legacy command | https://developer.hashicorp.com/terraform/language/state/refactor | "Use the terraform state mv command to move resources into a different state file. This is a legacy command." |
 
 ## Self-consistency check
 
@@ -191,7 +207,71 @@ No sentence in the lesson contradicts another: in particular the lesson says `-l
 - Retired/closed services list: none of those services is mentioned.
 - The lesson never states a version for `use_lockfile`, because the S3 page does not.
 
-## Script outputs (exact)
+## Round 1 fix pass
+
+Fetched this turn with `curl -sL` plus the text stripper (no WebFetch): every page in the claim table, plus `language/state/workspaces` and `cloud-docs`. New claim rows 121-136 are appended at the end of the table (existing row numbers unchanged). All 136 quotes were re-verified as verbatim substrings; no quote over 20 words. Row 125 uses two verbatim fragments joined by an ellipsis because the page's configuration-model line separates "lifecycle block" and "required" with a pipe character, which cannot be written inside a table cell. Two new citation files: `cite-tf-g6-workspaces`, `cite-tf-g6-hcp-terraform` (27 total). Notes on four existing citation files were extended for the new claims.
+
+### AWS-Lg6-001 and TEACHER-Lg6-001 (applied once)
+
+- Old (6d `removed` bullet): "Know the default: "By default, Terraform removes the resource from state and destroys the actual resource." To forget it without destroying it, "Set destroy to false ..."." Discriminator and exam tip said `destroy = false`.
+- New: "Its configuration model lists the `lifecycle` block as "required," and "For removed blocks, the only supported lifecycle argument is destroy." Know the default: [same quote]. To forget it ..., [same quote]. In configuration that is `removed { from = <address> lifecycle { destroy = false } }`. The reference page's opening line says the block removes a resource from state "without changing the underlying infrastructure," but its lifecycle section controls destroying with `destroy`, so always write the `lifecycle` block and set `destroy` explicitly." The discriminator and the exam tip now say `lifecycle { destroy = false }`.
+- Rows: 125 (required), 126 (only supported argument), 127 (opening line), existing 104-105.
+- Question-writer guidance kept: ask "to keep the real object, which setting?"; never make "omit lifecycle" a key or distractor.
+
+### AWS-Lg6-002
+
+- Old tip: "a `removed` block with `destroy = false` (1.7 or later) or `terraform state rm`".
+- New tip: "a `removed` block with `lifecycle { destroy = false }` or `terraform state rm` (the docs give Terraform 1.7 or newer for the remove-and-import workflow)". The body sentence already scoped 1.7 to "The remove-and-import workflow with these blocks" (row 106) and still does. Questions must not make 1.7 the floor of the `removed` block alone.
+
+### AWS-Lg6-003
+
+- Old: "Moved blocks need Terraform 1.1 or later."
+- New: "Moved blocks need Terraform 1.1 or later ("Terraform v1.1 and later is required to use moved blocks"); the same page says "Instead, use the terraform state mv CLI command."" Rows 101 and 131.
+
+### AWS-Lg6-004
+
+- Old (6c): "Terraform detects the change and asks about migrating state."
+- New: same sentence plus ", and "If you're just reconfiguring the same backend, Terraform will still ask if you want to migrate your state."" Row 124.
+
+### TEACHER-Lg6-002 (import block versus command)
+
+- Old: one sentence on the command ("The older `terraform import ADDRESS ID` command is the CLI form ...") inside the block paragraph.
+- New: separate paragraph. The command "will find the existing resource from ID and import it into your Terraform state at the given ADDRESS" (row 97); "In the docs' own walkthrough of the command, you first "add the resource definition to your configuration" and then run it" (row 128); "Instead of manually importing resources, you can add the import block to your Terraform configurations" (row 129); and configuration-driven import "lets you import multiple resources at once, review the import in your plan-and-apply workflow" (row 130), with the 1.5 floor (row 94). The block's own features stay with the block paragraph (plan preview, row 92; `-generate-config-out`, rows 95-96). "Older" was dropped from "the older command" because no fetched page calls it older.
+- Dropped as unsupported by any fetched page (none is in the lesson): "it changes state at once with no plan preview"; "cannot generate configuration" (for the command); "To import multiple resources, use the import block" (the `import` command page does not contain it; I searched the whole page text); "you must write the resource block yourself" as a hard requirement (the walkthrough only shows doing so, so the lesson says that and no more).
+
+### TEACHER-Lg6-003 (`moved` versus `state mv`)
+
+- Old: `state mv` "does the same job as a command" with no reason to prefer the block.
+- New, all sourced: a `moved` block lives in the configuration and "Terraform includes the update to the resource address in the next execution plan" (row 132); chained blocks can "document the full change history" (row 133); for a refactor with `state mv` the docs say "communicate carefully with your coworkers" so that "nobody makes any other changes between your configuration change and your terraform state mv command" (rows 134-135); the refactor page calls the command, for moving resources between state files, "a legacy command" (row 136, scoped to that page's use).
+- Dropped: "changes state immediately" and "records the rename for others who use the module" (no page says either; replaced by the coworkers and change-history rows).
+
+### TEACHER-Lg6-004 (6d split and opening)
+
+- Old opening: "Drift is the gap between state and reality. "You should not make manual changes ... or "drift," from the real infrastructure."" (garbled nested quote).
+- New: "Drift is state falling out of sync with the real infrastructure after someone changes it by hand. The docs say you "should not make manual changes to resources controlled by Terraform," because the state file will be out of sync, or "drift," from the real infrastructure." Rows 76-77.
+- The section is split with `####` headings: "Drift and refresh-only", "Importing", "Renaming and forgetting", "Inspecting state", plus "Putting it together" so the discriminator and the single `**Exam tip:**` line close the section. `q1_batch_check` still counts 4 exam tips for 4 objectives.
+
+### TEACHER-Lg6-005
+
+- Old: the refresh paragraph began "Refresh-only mode records drift instead of reverting it."
+- New: "Group 3 (3d) introduced `-refresh-only`; here is how it handles drift. It records drift instead of reverting it." No new factual claim.
+
+### TEACHER-Lg6-006 (glosses)
+
+- 6a, after `workspace_dir`: "A workspace is one named state for a configuration: some backends support "multiple named workspaces, allowing multiple states to be associated with a single configuration," and "Terraform starts with a single, default workspace named default that you cannot delete."" Rows 121-122.
+- 6b, first use: "HCP Terraform (HashiCorp's hosted service)". Row 123 ("HCP Terraform is available as a hosted service"); "HashiCorp's" is the lesson's attribution of that service, as in the docs' own domain.
+
+### TEACHER-Lg6-007 and 008
+
+- No g6 change (007 is logged as CR-0021 against g4; 008 needs no fix).
+
+### Fix-pass checks (RULES "After applying a fix")
+
+- Whole-file chain re-run: `content_lint.py`, `q1_batch_check.py tf-g6`, `claim_prose_check.py tf-g6` (outputs below). All double-quoted spans in the new body (125 spans) were machine-checked against the fetched pages; the only non-matching spans are the 16 exam-tip scenario phrases that are mine by design.
+- Each changed sentence was re-read alone against its row: the `removed` sentence asserts "required" only as the model's marking (row 125) and "only supported argument is destroy" (row 126) and nothing about omitting `lifecycle`; the `moved` sentences each carry their own row; the 1.7 floor is attached only to the remove-and-import workflow; the import-command paragraph claims only what rows 97, 128, 129, 130 and 94 say.
+- tf-g3 consistency unchanged: no new text touches g3 except the 3d back-reference, which restates g3's own introduction of `-refresh-only`.
+
+## Script outputs after the fix pass (exact)
 
 ### scripts\content_lint.py
 ```

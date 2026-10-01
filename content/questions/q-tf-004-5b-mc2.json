@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.5b"
   ],
-  "stem": "Quick check \u2014 Describe variable scope within modules. Which practice is correct?",
+  "stem": "In Ferris Dental's root module, `locals { name_prefix = \"${var.team}-prod\" }` builds a naming prefix, and the resources inside a child module need that same value. The child declares `variable \"prefix\"`. How should the value reach the child?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Refer to `local.name_prefix` directly inside the child's resource arguments"
     },
     {
       "id": "b",
-      "text": "Apply the objective directly: Describe variable scope within modules"
+      "text": "Declare an identically named `locals` block in the child so both modules share one definition"
     },
     {
       "id": "c",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Pass it in the module block as `prefix = local.name_prefix`"
     },
     {
       "id": "d",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Declare an `output \"prefix\"` in the child and read it in the root as `module.app.prefix`"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "c"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Describe variable scope within modules'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A local value can be used only in the module that defines it, but its current value can be handed to a child as an argument, which arrives as the child's ordinary variable. Naming the root's local inside the child fails because it is not visible in another module. A second locals block in the child is a separate definition in a separate scope, not a shared one. An output carries a value out of a child to its parent, which is the opposite direction from what the scenario needs.",
+  "citationIds": [
+    "cite-tf-g4-locals",
+    "cite-tf-g4-outputs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

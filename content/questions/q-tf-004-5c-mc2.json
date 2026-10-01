@@ -6,31 +6,35 @@
   "objectiveIds": [
     "tf.004.5c"
   ],
-  "stem": "Quick check \u2014 Use modules in configuration. Which practice is correct?",
+  "stem": "A new hire at Quillfeather Systems cloned the team repository and ran `terraform init`. They now ask where Terraform put the downloaded copies of the child modules and whether those copies belong in the repository. What is the right answer?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Use modules in configuration"
+      "text": "In a `.terraform` subdirectory of the working directory, kept out of version control"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "In a `modules` folder beside the root `.tf` files, committed so everyone has identical code"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "In `.terraform.lock.hcl`, committed together with the provider selections"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Nowhere on disk, because Terraform reads each source remotely again at plan time"
     }
   ],
   "correctAnswerIds": [
     "a"
   ],
-  "rationale": "Correct: 'Apply the objective directly: Use modules in configuration'. The other choices break root/MFA guidance, skip teardown, or misstate AWS Budgets behavior (alerts do not stop spend).",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Terraform downloads module sources into a hidden `.terraform` subdirectory of the working directory, and that directory should not be committed. Nothing creates a committed `modules` folder next to the root files by default. The dependency lock file records provider selections, not module code or module versions. Modules are cloned at initialization and read from the local copy afterwards; sourcing does not happen at plan time.",
+  "citationIds": [
+    "cite-tf-g5-get",
+    "cite-tf-g5-use-modules",
+    "cite-tf-g5-lock-file"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

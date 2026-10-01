@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.5c"
   ],
-  "stem": "The workload needs this outcome: Use modules in configuration. Which action should you take?",
+  "stem": "Ironbridge Media instantiates a child from a block labelled `api` that sets `for_each` over a collection with two site keys, and the child declares an output. What does `module.api` evaluate to in the parent configuration?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Use modules in configuration"
+      "text": "A single object with one attribute per output, as for a module block that sets neither `count` nor `for_each`"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "A list of objects, one per instance, indexed by position"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "A map keyed by output name, whose values are lists with one entry per instance"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "A map of objects, one object per module instance"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "When a module block uses `for_each`, the value is a map of objects, with one object for each module instance holding that instance's outputs. A single object with one attribute per output is the shape for a block that uses neither count nor for_each. A list of objects is the shape produced by `count`. A map keyed by output name with list values is not a shape Terraform produces; the map is of objects, one per instance.",
+  "citationIds": [
+    "cite-tf-g5-references",
+    "cite-tf-g5-use-modules"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

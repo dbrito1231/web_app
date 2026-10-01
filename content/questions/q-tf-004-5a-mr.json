@@ -6,36 +6,38 @@
   "objectiveIds": [
     "tf.004.5a"
   ],
-  "stem": "Select TWO actions that support this requirement: Explain how Terraform sources modules",
+  "stem": "(Select TWO.) Marlowe Freight packages one module as a single file in an AWS object-storage bucket. Later an engineer edits the address in the `module` block to point at a newer file. Which two statements about this setup are accurate?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A source that points at a plain folder of loose `.tf` objects works the same way as one that points at a packaged file"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "The object has to be an archive, for example a `.zip` or `.tar.gz` file"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "The address has to begin with `./` because the file is fetched to local disk first"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "`terraform plan` fetches the newer file by itself, because sources are evaluated at plan time"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "After the edit, `terraform init` has to run again before the new code is installed"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "b",
+    "e"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "For an S3 source the object must be an archive, and the address uses the `s3::` prefix. Changing the `source` argument requires another `terraform init`, because modules are installed at initialization. Loose `.tf` objects are not a supported shape for this kind of source, which expects one archive object. A leading `./` marks a local path to files already on disk, not a packaged file in a bucket. Plan does not fetch module code; sourcing happens at install time, not at plan time.",
+  "citationIds": [
+    "cite-tf-g5-module-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

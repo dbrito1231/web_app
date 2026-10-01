@@ -6,31 +6,33 @@
   "objectiveIds": [
     "tf.004.5d"
   ],
-  "stem": "In a design review, the requirement is: Manage module versions. Which action matches it?",
+  "stem": "Northgate Retail wants one of its module blocks held to the 2.x release line with a `version` constraint. Which `source` value can carry that constraint?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Apply the objective directly: Manage module versions"
+      "text": "`./modules/billing`"
     },
     {
       "id": "b",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`git::https://git.example.com/billing.git`"
     },
     {
       "id": "c",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`acme-corp/billing/aws`"
     },
     {
       "id": "d",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`s3::https://s3-eu-west-1.amazonaws.com/acme/billing.zip`"
     }
   ],
   "correctAnswerIds": [
-    "a"
+    "c"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The `version` argument applies only when the source is a module listed in a registry, and the three-part `NAMESPACE/NAME/PROVIDER` address is a registry address. A local path is not covered because local modules always share the version of their caller. A Git source is pinned with the `ref` query parameter instead, and an archive in an S3 bucket is not a registry module, so neither takes a version constraint.",
+  "citationIds": [
+    "cite-tf-g5-module-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

@@ -6,31 +6,33 @@
   "objectiveIds": [
     "tf.004.5a"
   ],
-  "stem": "Which action is the right fit for this requirement: Explain how Terraform sources modules?",
+  "stem": "Harlow Logistics keeps a shared networking module in a folder of the `network.git` repository on its internal Git server, and nothing from that repository is checked out next to the configuration. Only the module in the `modules/vpc` folder is wanted. Which `source` value fits?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "`git::https://git.example.com/network.git/modules/vpc?ref=main`"
     },
     {
       "id": "b",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "`git::https://git.example.com/network.git//modules/vpc`"
     },
     {
       "id": "c",
-      "text": "Apply the objective directly: Explain how Terraform sources modules"
+      "text": "`./network.git//modules/vpc`"
     },
     {
       "id": "d",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "`acme/network/aws//modules/vpc`"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "A double slash marks where the repository (the package) ends and the folder holding the module begins; Terraform still downloads the whole package and reads the module from that folder. A single slash is only part of the repository path, so it does not mark a module folder, and the `ref` query parameter selects a revision, not a folder. A value starting with `./` or `../` is a local path for files that are already on disk, which the scenario rules out. The three-part `NAMESPACE/NAME/PROVIDER` shape is a registry address, and the module is not published to a registry.",
+  "citationIds": [
+    "cite-tf-g5-module-block"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

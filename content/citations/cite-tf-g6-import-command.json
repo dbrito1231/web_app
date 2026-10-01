@@ -4,5 +4,5 @@
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cli/commands/import",
   "accessed": "2026-09-26",
-  "note": "Backs the 6d claims that terraform import takes ADDRESS and ID and that each remote object should be imported to only one address."
+  "note": "Backs the 6d claims that terraform import takes ADDRESS and ID and that each remote object should be imported to only one address and that the docs point to the import block instead of manual import."
 }
