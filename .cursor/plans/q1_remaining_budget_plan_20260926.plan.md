@@ -206,13 +206,13 @@ This amendment records the current state. It does not change the pipeline in sec
 - **Stem-paraphrase rule** (2026-09-27): applies from task 4.4 onward.
 - **New pre-check checks** learned since this plan: letter references in rationales, distractors that work in practice, version-sensitive behaviour, and distractor-only "as …"/"because …" justification clauses.
 
-**What is left (replaces the section 1 table):**
+**What is left (replaces the section 1 table; updated at the end of 2026-10-01):**
 
 | # | Task | Questions | State |
 |---|---|---:|---|
 | 0–19 | 1.1–4.4, tf-g1–tf-g6 | 421 | Closed (4-3, 4-1 and 1-3 reopened and re-closed 2026-09-29 for shortest-is-key) |
-| 20 | tf-g7 | 9 | Lesson fixed, questions written, Lead Dev pre-check PASS (`9372747`). Next: round 2 |
-| 21 | tf-g8 | 20 | Lesson written and through round 1 (both reviewers not yet). Next: lesson fix pass, then questions. The user's commit `53f1beb` edited the lesson outside the pipeline and is reviewed in round 2 |
+| 20 | tf-g7 | 9 | Closed 2026-10-01 (`2d09593`): both reviewers close, Student 9/9 |
+| 21 | tf-g8 | 20 | Closed 2026-10-01 (`bf43307`): both reviewers close, Student 20/20. Most round 1 lesson fixes came from the user's commit `53f1beb`, reviewed in round 2 |
 
 **Final sitting (replaces the section 4 list):**
 - one date sweep across all citations and `reviewedOn`, and update `q1_batch_check` to match;

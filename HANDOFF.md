@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: all 22 tasks closed (tf-g7 and tf-g8 closed 2026-10-01). Next: the final sitting, which waits for the user's GO.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
+**Status: all 22 tasks closed under the Q1 pipeline (tf-g7 and tf-g8 closed 2026-10-01). The project-wide definition-of-done checks (`manage.py test workbook`, `npm run build`, the DB fingerprint and the `docs/status.md` update) are deliberately part of the final sitting, which waits for the user's GO.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
 
 The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
 
@@ -50,7 +50,7 @@ The two tasks ran in parallel, one writer each.
 - **tf-g5 `version` Warning:** the Lead Dev's "version on a non-registry source errors" came from memory and is **not doc-backed**. Use the reviewer's wording, which makes no claim about the outcome.
 - **tf-g6 `removed` block:** the docs page contradicts itself (the intro says infrastructure is unchanged; the lifecycle section says destroy is the default). The technical reviewer rules on it in round 1.
 - **tf-g6:** the S3 `use_lockfile` default and the DynamoDB-locking deprecation must be stated exactly as the page states them.
-- **`distractor_type_audit` TERMS** gained g5 constructs at `23ceea2`. A bare `./` path is not matchable, so count it by hand. g6 constructs were added at `60cbddc` (24 terms). g7 constructs were added at `9372747`; bare `TF_LOG` and `TRACE` were left out as 7c's own subject vocabulary. tf-g8 will need its own terms in its pre-check.
+- **`distractor_type_audit` TERMS** gained g5 constructs at `23ceea2`. A bare `./` path is not matchable, so count it by hand. g6 constructs were added at `60cbddc` (24 terms). g7 constructs were added at `9372747`; bare `TF_LOG` and `TRACE` were left out as 7c's own subject vocabulary. tf-g8 constructs (`run trigger`, `variable set`) were added at `ace0419` per the Teacher's round 2 ruling.
 - **New tell found by the Student in tf-g6:** "as …"/"because …" justification clauses on distractors only, which let a reader spot the keys by form. **Check for this in every future pre-check.**
 - **Both:** if a fresh session resumes, start new agents and hand them the impl and review reports. Session agent ids do not carry over.
 
