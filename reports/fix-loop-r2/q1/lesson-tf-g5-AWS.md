@@ -229,3 +229,64 @@ After AWS-Qg5-008 and the 5c-mc2 change, `-upgrade` appears as a distractor once
 
 Task tf-g5: not yet
 Overall: concerns
+
+## Round 2b (confirmation, d688f95)
+
+Method: re-fetched `language/modules/configuration` with `curl -sL` plus the HTML strip (no WebFetch). Re-read the whole lesson and all 12 question files as they now are, and the writer's "Round 2 fix pass", the lesson addition note, LD-Qg5-006 and the Teacher's round 2.
+
+### Lesson quotes (item 4)
+
+Both new quotes are verbatim on https://developer.hashicorp.com/terraform/language/modules/configuration, in the page's numbered steps:
+- "Initialize the workspace to install the module." (7 words)
+- "Apply the configuration to provision the module's resources." (8 words; the apostrophe is straight)
+
+The lesson sentence claims only that these are two separate listed steps and that `plan` and `apply` work with modules `init` has already installed. The second half is a mild inference from the step order, not a doc quote, and it is not overstated: it does not say "only init installs". Accepted.
+
+### (1) My findings AWS-Qg5-001..008
+
+- **001 Gone.** The 5a-mc stem now says "The module is not published to any registry", so the rationale's registry sentence is stated by the stem.
+- **002 Gone.** The 5a-mc2 rationale now reads "`//v2.3.0` would be read as a folder named v2.3.0 inside the repository, which does not exist".
+- **003 Gone.** Choice c is now "Rewrite the address in the explicit `git::https://github.com/acme/queue-module.git` form", with no "nothing else changed". Real, and refuted by the taught HEAD default. Not a working answer, because no `ref` is given.
+- **004 Gone.** 5c-mc c is now "A set of objects, one per module instance, with no keys to look instances up by". Real, because sets were taught in 4d and `for_each` accepts them. It is refuted by the taught "the value will be a map of objects". The word "keys" also appears in the stem ("two site keys") but not in the key, so it is not an echo of the key.
+- **005 Gone.** The 5c-mr stem no longer says routine initialization leaves the old copy. Choice a ("Running `terraform init` again with no extra flags") is now decided by the taught "will not change any already-installed modules".
+- **006 Gone.** 5c-mr choice d (apply on an unchanged configuration) is now refuted by the new 5c sentence. The rationale says "init installs the module code, and plan and apply work with the modules already installed", which the lesson now teaches.
+- **007 Gone.** The 5d-mc2 rationale now reads "1.0.3 is older than the 1.0.4 the constraint starts from, and in any case it is not the newest qualifying release". The sentence has grown long and a little run-on, but it is accurate. Optional tidy: split after "1.0.5 and 1.0.10 but not 1.1.0".
+- **008 Gone.** 5d-mr b is now "Running `terraform init -upgrade` in each CI job keeps the module on the release chosen the first time". It is real, and refuted by the taught "init -upgrade ... updates all modules to the latest available source code (within any `version` constraint ...)". It is not the negation of key a. It is false regardless of the constraint, because `-upgrade` exists to move forward and a fresh CI clone selects again.
+
+### (2) Second-role check of TEACHER-Qg5-001..003
+
+- **001 Gone.** 5c-mc2 now varies both the location and the commit clause:
+  - a: `.terraform`, kept out of version control (key)
+  - b: `modules` folder, kept out of version control and recreated by `init`
+  - c: `.terraform.lock.hcl`, committed
+  - d: user's home directory, nothing to commit
+
+  The key's commit clause is no longer unique (a and b share it), so the location is what separates the choices, and the location is the taught fact ("The modules are downloaded into a .terraform subdirectory of the current working directory"). b is a plausible `.gitignore` habit and wrong by location. d is a plausible shared-cache expectation and wrong by the same sentence. Not working answers.
+  - Residual nit (Low, no action required): d's "so there is nothing to commit" is a justification clause, but it sits on a wrong choice and is not a hint toward the key.
+- **002 Gone.** Same as AWS-Qg5-005.
+- **003 Gone.** The writer used my 5c-mc replacement, and that is Gone as AWS-Qg5-004. The reasoning for not using the Teacher's alternative holds: "outputs readable only through each key" is a statement no taught sentence addresses.
+
+### (3) LD-Qg5-006
+
+Gone. 5c-mr keys now read "Running `terraform init -upgrade`" and "Running `terraform get -update`", the same shape as distractors a, b and d. The sentence shape no longer identifies the keys. Wording is accurate for both commands. Key length ranks are unchanged.
+
+### (5) Every changed choice
+
+All are real, refuted by a taught sentence, and free of banned giveaway words ("so that", "since", "despite", "which does not", "must", "even though", "requiring", "without changing"). None refers to another choice, and none is a working answer.
+
+| Question | Changed choice | Real? | Refuted by |
+|---|---|---|---|
+| 5a-mc2 c | explicit `git::` form | yes | default branch at HEAD without `ref` |
+| 5c-mc c | set of objects, no keys | yes | "a map of objects" |
+| 5c-mc2 b | `modules` folder, ignored, recreated by `init` | yes | `.terraform` landing sentence |
+| 5c-mc2 d | home directory | yes | same sentence (working directory, not shared) |
+| 5c-mr a, c, e | "Running ..." wording | yes | a: "will not change any already-installed modules"; c, e are keys |
+| 5c-mr d | apply | yes | new install/provision sentence |
+| 5d-mr b | `init -upgrade` in CI | yes | 5c `-upgrade` sentence |
+
+I re-checked the unchanged parts for regressions: the keys and ids are unchanged, every question keeps `mcpStatus: verified`, `reviewedOn: 2026-09-26` and non-empty `citationIds`, and the version arithmetic is unchanged and correct (`~> 1.0.4` selects 1.0.10). I found no new defect. I did not run the script chain myself, since the writer's chain results are recorded and no script, apart from reading files, was needed for this review.
+
+All of AWS-Qg5-001..008, TEACHER-Qg5-001..003 and LD-Qg5-006 are Gone, and the new lesson quotes are verbatim.
+
+Task tf-g5: close
+Overall: approve
