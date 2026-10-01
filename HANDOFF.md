@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: 21 of 22 tasks closed (tf-g7 closed 2026-10-01). tf-g8 is in flight: round 1 done, writer applying lesson fixes and writing the 20 questions.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
+**Status: 21 of 22 tasks closed (tf-g7 closed 2026-10-01). tf-g8 is in flight: lesson fixed, 20 questions written, Lead Dev pre-check done, round 2 running.** D6/ISS-080 closed and CR-0018 done. The DB is at baseline (`930f0e72…`). **After tf-g7 and tf-g8: the final sitting (date sweep, register reconciliation, CR-0019, CR-0021, D6-FU, LD-Qg7-002, browser smoke test).**
 
 The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
 
@@ -21,13 +21,13 @@ The two tasks ran in parallel, one writer each (3 subagents allowed at once). **
 |---|---|---|
 | Lesson written | Done `a6aee0c`: 2,442 words, 104 claim rows; builds on 6d | Done `c1a80ac`: 4 objectives, 4,495 words, 219 claim rows |
 | Round 1 review | Done. Tech: approve (`c1a80ac`). Teacher: not yet, 2 medium (`TF_LOG_PATH`, lineage/serial) (`451a144`); fact ownership in `lesson-tf-g7-TEACHER.md` | Done. Both not yet, 2 medium each, matching: hard-mandatory override and execution-mode defaults (`ff2af38`, `9665ee8`). Teacher set fact ownership for all 20 Qs in `lesson-tf-g8-TEACHER.md` |
-| Lesson fix pass | Done `9372747`: 118 claim rows; `TF_LOG_PATH` now teaches only what every page agrees on | **Not done.** Next: resume or start the writer with both round 1 reports. See the `53f1beb` note below |
-| Questions written | Done `9372747`: 9 questions | **Not started.** The 20 files (`q-tf-004-8a…8d-*` and `q-tf-004-8-extra-00…07-mc`) are still placeholders |
-| Lead Dev pre-check | Done `9372747` (`questions-tf-g7-leaddev-precheck.md`): whole chain PASS, g7 TERMS added, LD-Qg7-001 (5 stems with no question) fixed | — |
-| Round 2 | Done. Both not yet (`92bafd8`, `71951bf`): AWS-Qg7-001–005, TEACHER-Qg7-001–007. Fix pass `1b16cf3` (output-page rows 119–120 added; 005 accepted). Round 2b: **both close** (`7f26131`, `abd3a08`) | — |
+| Lesson fix pass | Done `9372747`: 118 claim rows; `TF_LOG_PATH` now teaches only what every page agrees on | Done: most fixes came in the user's `53f1beb`; the writer re-checked all findings and added rows 220–234 (AWS-Lg8-010 optional, not applied) |
+| Questions written | Done `9372747`: 9 questions | Done: 20 questions (`q-tf-004-8a…8d-*`, `q-tf-004-8-extra-00…07-mc`); `questions-tf-g8-impl.md` |
+| Lead Dev pre-check | Done `9372747` (`questions-tf-g7-leaddev-precheck.md`): whole chain PASS, g7 TERMS added, LD-Qg7-001 (5 stems with no question) fixed | Done (`questions-tf-g8-leaddev-precheck.md`): whole chain PASS; LD-Qg8-001 (8b-mc Read distractor rests on the role ladder) and LD-Qg8-002 (proposed TERMS) go to round 2 |
+| Round 2 | Done. Both not yet (`92bafd8`, `71951bf`): AWS-Qg7-001–005, TEACHER-Qg7-001–007. Fix pass `1b16cf3` (output-page rows 119–120 added; 005 accepted). Round 2b: **both close** (`7f26131`, `abd3a08`) | **Running** (fresh tech and Teacher reviewers) |
 | Student, then close | **Closed 2026-10-01**: Student 9/9 fair; 2 stems counted keyword-guessable, ruled structural by Lead Dev and Teacher (`questions-tf-g7-STUDENT.md`) | — |
 
-**`53f1beb` (2026-09-30, the user's own commit):** adds the citation `cite-tf-g8-projects-manage` to `lesson-tf-g8.json` and rewords part of `bodyMarkdown`. It was made outside the writer/review pipeline. Before the tf-g8 fix pass: tell the writer it exists so the edit is not overwritten, add a claim-table row for the new citation if the prose relies on it, and have round 2 check it like any other lesson change. Do not add a `Co-Authored-By:` trailer to it.
+**`53f1beb` (2026-09-30, the user's own commit):** adds the citation `cite-tf-g8-projects-manage` and applies most of the round 1 lesson fixes (hard-mandatory override, layered execution-mode defaults, the locking split, Stacks gloss). It was made outside the writer/review pipeline. The writer kept every span of it (diff-checked by the Lead Dev) and added claim row 228 for the new citation; round 2 reviews it as part of the lesson fix pass. Do not add a `Co-Authored-By:` trailer to it.
 
 ## tf-g5 and tf-g6 closed (2026-09-30)
 
@@ -169,11 +169,11 @@ Ordered by how much trouble each has caused.
 | 18 | lesson-tf-g5 | 12 | **Closed** 2026-09-30 |
 | 19 | lesson-tf-g6 | 12 | **Closed** 2026-09-30 |
 | 20 | lesson-tf-g7 | 9 | **Closed** 2026-10-01 |
-| 21 | lesson-tf-g8 | 20 | **In flight**: round 1 done (both not yet: hard-mandatory override, execution-mode defaults). Next: lesson fix pass (account for `53f1beb`), then the 20 questions |
+| 21 | lesson-tf-g8 | 20 | **In flight**: lesson fixed, 20 questions written, Lead Dev pre-check PASS. Round 2 running |
 
 Terraform question files are named `q-tf-004-<group><letter>-*`; every script matches them by the lesson's `objectiveIds`, not by filename.
 
-**Next:** tf-g8 Lead Dev pre-check, round 2, Student and close. Then the final sitting.
+**Next:** tf-g8 round 2, Student and close. Then the final sitting.
 
 **Final sitting:**
 - **date sweep (user decision 3, 2026-09-28):** set one final date across every citation and `reviewedOn` in a single commit, and update the `2026-09-26` literal in `q1_batch_check` to match;

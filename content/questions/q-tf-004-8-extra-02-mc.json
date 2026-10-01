@@ -6,29 +6,36 @@
   "objectiveIds": [
     "tf.004.8c"
   ],
-  "stem": "HCP Terraform practice check #2 (tf.004.8c): which statement is correct?",
+  "stem": "At Corvid Energy, the `app` workspace reads the VPC ID output of the `network` workspace with the `terraform_remote_state` data source, and its plan fails with an access error. Nobody has changed the `network` workspace's settings since it was created. What explains the failure?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "State sharing is off by default and has to be switched on in the `network` workspace itself"
     },
     {
       "id": "b",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "No run trigger from `network` to `app` has been configured"
     },
     {
       "id": "c",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "The `network` workspace has to be locked before another workspace can read its state"
     },
     {
       "id": "d",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "A variable set scoped to the project holding `network` has not reached `app`"
     }
   ],
   "correctAnswerIds": [
-    "b"
+    "a"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "New workspaces in HCP Terraform do not allow other workspaces to access their state by default, and sharing can be enabled for the organization, the project or specific workspaces. A run trigger starts a run after a successful apply in a source workspace; it does not grant access to state. Locking a workspace stops new runs, which wait in Pending, and has no bearing on reading outputs. A variable set shares variables across workspaces and does not carry state or outputs.",
+  "citationIds": [
+    "cite-tf-g8-workspace-state",
+    "cite-tf-g8-run-triggers",
+    "cite-tf-g8-manage-runs",
+    "cite-tf-g8-variables"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

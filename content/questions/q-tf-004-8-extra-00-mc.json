@@ -6,29 +6,36 @@
   "objectiveIds": [
     "tf.004.8a"
   ],
-  "stem": "HCP Terraform practice check #0 (tf.004.8a): which statement is correct?",
+  "stem": "Cobalt Retail wants each proposed change in its repository to show what it would do to infrastructure, with no possibility that the proposal gets applied. Which HCP Terraform run type provides this?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "A normal run in a workspace with auto-apply off, which pauses for confirmation after the plan"
     },
     {
       "id": "b",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "A speculative plan, which is plan-only and can be started by a pull request"
     },
     {
       "id": "c",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "A saved plan created with `terraform plan -out` and kept for later"
     },
     {
       "id": "d",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "A health assessment, which checks the workspace for drift on a schedule"
     }
   ],
   "correctAnswerIds": [
     "b"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "Speculative plans are plan-only runs: they show possible changes but cannot apply any changes, and in VCS-backed workspaces pull requests start them. A normal run with auto-apply off still stops at a confirmation step, and once someone confirms it the change is applied, so the possibility of applying remains. A saved plan from `terraform plan -out` is a different thing: it can later be applied with `terraform apply` on the saved file. A health assessment is the scheduled version of drift detection and continuous validation; it checks a built workspace and is not a preview of a proposed change.",
+  "citationIds": [
+    "cite-tf-g8-remote-operations",
+    "cite-tf-g8-ui-vcs-runs",
+    "cite-tf-g8-cli-runs",
+    "cite-tf-g8-health"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

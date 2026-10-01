@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "Pick the action that satisfies: Describe HCP Terraform collaboration and governance features.",
+  "stem": "Rowan Health wants junior engineers to propose infrastructure changes and queue plan runs to preview each one, while a senior engineer signs off before anything goes live. Which workspace role should the junior engineers' team receive?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Write, which can approve and apply plans as part of day-to-day provisioning"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Admin, which adds workspace settings on top of the other roles"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Read, the lowest built-in role on the workspace"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Describe HCP Terraform collaboration and governance features"
+      "text": "Plan, which queues Terraform plans without the apply permission"
     }
   ],
   "correctAnswerIds": [
     "d"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "The Plan role is for people who might propose changes to managed infrastructure but whose changes should be approved before they are applied: it queues Terraform plans but lacks the permission to approve and apply them. Write is the role for day-to-day provisioning and includes approving and applying plans, so juniors could push changes live. Admin builds on every lower role and adds settings access, so it also includes applying. Read sits at the bottom of the built-in ladder and does not include queuing plans, which is the permission Plan adds; the juniors need to preview changes.",
+  "citationIds": [
+    "cite-tf-g8-workspace-permissions",
+    "cite-tf-g8-permissions"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

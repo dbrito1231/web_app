@@ -6,29 +6,36 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "HCP Terraform practice check #5 (tf.004.8b): which statement is correct?",
+  "stem": "Alder Mutual's workspace runs Terraform on engineers' workstations, and HCP Terraform only stores the state. The team now wants HCP Terraform to check on its own schedule whether real infrastructure still matches the configuration. What must change?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "Enable cost estimation for the workspace"
     },
     {
       "id": "b",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "Switch the workspace to Remote or Agent execution mode"
     },
     {
       "id": "c",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "Attach a post-apply run task that scans for drift"
     },
     {
       "id": "d",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "Create an audit trail token and read the audit log on a schedule"
     }
   ],
   "correctAnswerIds": [
-    "c"
+    "b"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "Health assessments are the scheduled version of drift detection, and the docs require a workspace in Remote execution mode or Agent execution mode. A workspace whose runs execute on workstations in Local mode does not meet that requirement; this follows from the requirement, and the docs do not name Local mode. Cost estimation only adds an estimate as an extra phase between the plan and the apply and is off by default. A run task is an external service called at a stage of a run, not a scheduled check by HCP Terraform. Audit trails record who changed workspaces and runs, and they do not compare real infrastructure with the configuration.",
+  "citationIds": [
+    "cite-tf-g8-health",
+    "cite-tf-g8-cost-estimation",
+    "cite-tf-g8-run-tasks",
+    "cite-tf-g8-audit-trails"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

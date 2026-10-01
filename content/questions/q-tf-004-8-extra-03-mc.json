@@ -6,29 +6,35 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "HCP Terraform practice check #3 (tf.004.8d): which statement is correct?",
+  "stem": "Mapleton Freight has years of Terraform state in the default local backend and now adds a `cloud` block to move to HCP Terraform. What completes the migration of that state?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Agents should create HCP workspaces during implementation"
+      "text": "Keep the existing `backend` block beside the `cloud` block until the state has moved"
     },
     {
       "id": "b",
-      "text": "Skip teardown for cloud resources managed outside Terraform"
+      "text": "Run `terraform login` again and let the saved token move the state"
     },
     {
       "id": "c",
-      "text": "Use a no-charge plan for hands-on; otherwise study docs/drills only"
+      "text": "Run `terraform init` and accept the prompt to migrate the existing state"
     },
     {
       "id": "d",
-      "text": "Always connect AWS access keys to HCP on a paid plan for this workbook"
+      "text": "Destroy the resources locally and apply the configuration again in HCP Terraform"
     }
   ],
   "correctAnswerIds": [
     "c"
   ],
-  "rationale": "Workbook rule: HCP hands-on only on a no-charge path; never connect AWS credentials on a paid path; agents never operate HCP.",
-  "mcpStatus": "pending_recheck"
+  "rationale": "After adding or changing a `cloud` block, running `terraform init` completes the setup, and if the directory has existing state Terraform prompts you to migrate it from the existing workspaces. A `backend` block cannot be configured when the configuration also contains a `cloud` configuration, so keeping both is not possible. `terraform login` only obtains an API token and does not move state. Destroying and re-applying would remove real infrastructure and recreate it, which is unnecessary because init migrates the state in place.",
+  "citationIds": [
+    "cite-tf-g8-cloud-connect",
+    "cite-tf-g8-terraform-block",
+    "cite-tf-g8-login"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

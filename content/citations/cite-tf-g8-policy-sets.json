@@ -4,5 +4,5 @@
   "publisher": "HashiCorp",
   "url": "https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement/manage-policy-sets",
   "accessed": "2026-09-26",
-  "note": "Backs the 8b claims about policy sets, the Sentinel advisory/soft mandatory/hard mandatory levels and the OPA advisory/mandatory levels."
+  "note": "Backs the 8b claims about policy sets, the Sentinel advisory/soft mandatory/hard mandatory levels and the OPA advisory/mandatory levels. Also backs the policy-set option that lets users override failed policy checks, even hard mandatory ones."
 }

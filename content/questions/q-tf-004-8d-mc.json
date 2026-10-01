@@ -6,31 +6,34 @@
   "objectiveIds": [
     "tf.004.8d"
   ],
-  "stem": "A teammate asks how to meet this requirement: Configure and use HCP Terraform integration. Which action is appropriate?",
+  "stem": "A new engineer at Pinecrest Labs runs `terraform login` with no arguments on a laptop that has never connected to HCP Terraform. What is the result?",
   "selectCount": 1,
   "choices": [
     {
       "id": "a",
-      "text": "Ignore least privilege and use the root user for speed"
+      "text": "Terraform stores an encrypted token in the operating system keychain"
     },
     {
       "id": "b",
-      "text": "Leave hourly resources running overnight without teardown"
+      "text": "Terraform obtains a token for `app.terraform.io` and saves it in plain text locally"
     },
     {
       "id": "c",
-      "text": "Treat budget alerts as a hard spend stop that deletes resources"
+      "text": "Terraform writes the API token into the `cloud` block of the configuration file"
     },
     {
       "id": "d",
-      "text": "Apply the objective directly: Configure and use HCP Terraform integration"
+      "text": "Terraform refuses to continue until a hostname argument is supplied on the command line"
     }
   ],
   "correctAnswerIds": [
-    "d"
+    "b"
   ],
-  "rationale": "The choice that applies the stated requirement is correct. Using the root user, leaving hourly resources running, and treating budget alerts as a hard stop are not.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "Without an explicit hostname, Terraform assumes HCP Terraform at app.terraform.io, obtains an API token through a browser sign-in, and by default saves it in plain text in a local CLI configuration file called credentials.tfrc.json. An encrypted keychain entry is not the default behaviour. A token can be written in the `cloud` block, but the docs recommend omitting it, and `terraform login` does not do that. A hostname argument is optional because the default is app.terraform.io.",
+  "citationIds": [
+    "cite-tf-g8-login",
+    "cite-tf-g8-cloud-connect"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }

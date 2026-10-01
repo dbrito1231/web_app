@@ -6,36 +6,40 @@
   "objectiveIds": [
     "tf.004.8b"
   ],
-  "stem": "Select TWO actions that support this requirement: Describe HCP Terraform collaboration and governance features",
+  "stem": "(Select TWO.) Quarry Bank's auditors ask how failed policy checks are handled in HCP Terraform. Which two statements are correct?",
   "selectCount": 2,
   "choices": [
     {
       "id": "a",
-      "text": "Skip teardown if the instance is stopped"
+      "text": "A failed OPA mandatory policy can be overridden by a user holding the Manage Policy Overrides permission"
     },
     {
       "id": "b",
-      "text": "Use root credentials for every lab step"
+      "text": "A failed Sentinel advisory policy pauses the run until a permitted user overrides it"
     },
     {
       "id": "c",
-      "text": "Design against the stated requirement and document tradeoffs"
+      "text": "A failed Sentinel hard mandatory policy can be overridden only when its policy set is configured to allow overrides"
     },
     {
       "id": "d",
-      "text": "Validate with official documentation before applying"
+      "text": "A failed Sentinel soft mandatory policy ends the run with no way to continue it"
     },
     {
       "id": "e",
-      "text": "Store AWS access keys in the workbook git repo"
+      "text": "OPA offers the same three enforcement levels as Sentinel"
     }
   ],
   "correctAnswerIds": [
-    "c",
-    "d"
+    "a",
+    "c"
   ],
-  "rationale": "Correct: 'Design against the stated requirement and document tradeoffs' and 'Validate with official documentation before applying'. The other choices break credential, teardown, or root-user rules.",
-  "citationIds": [],
-  "reviewedOn": null,
-  "mcpStatus": "pending_recheck"
+  "rationale": "OPA has two enforcement levels, advisory and mandatory, and a failed mandatory policy can be overridden by a user with the Manage Policy Overrides permission. A Sentinel hard mandatory failure stops the run and is treated as not overridable by default; only a policy set configured to allow overrides changes that, and the setting takes precedence over the policy's own level. A Sentinel advisory failure never interrupts the run, so there is nothing to override. A soft mandatory failure stops the run, but it can be continued when team members are allowed to override failures. OPA does not mirror Sentinel's three levels, since it has only advisory and mandatory.",
+  "citationIds": [
+    "cite-tf-g8-policy-sets",
+    "cite-tf-g8-policy-opa",
+    "cite-tf-g8-manage-runs"
+  ],
+  "reviewedOn": "2026-09-26",
+  "mcpStatus": "verified"
 }
