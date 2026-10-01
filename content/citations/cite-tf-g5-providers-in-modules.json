@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g5-providers-in-modules",
+  "title": "Providers within modules",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/modules/develop/providers",
+  "accessed": "2026-09-26",
+  "note": "Backs the 5c claims that child modules inherit default provider configurations but not aliased ones or provider requirements."
+}

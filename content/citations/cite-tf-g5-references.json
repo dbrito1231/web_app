@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g5-references",
+  "title": "References to named values",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/expressions/references",
+  "accessed": "2026-09-26",
+  "note": "Backs the 5c claims about the value shape of module.<name> with and without count or for_each."
+}

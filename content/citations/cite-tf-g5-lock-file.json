@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g5-lock-file",
+  "title": "Dependency lock file",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/files/dependency-lock",
+  "accessed": "2026-09-26",
+  "note": "Backs the 5d claims that the dependency lock file tracks only providers and an exact constraint pins a module version."
+}

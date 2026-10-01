@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g5-composition",
+  "title": "Module composition",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/modules/develop/composition",
+  "accessed": "2026-09-26",
+  "note": "Backs the 5c claims that a flat module tree and module composition are recommended."
+}

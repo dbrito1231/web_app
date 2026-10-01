@@ -1,0 +1,8 @@
+{
+  "id": "cite-tf-g5-use-modules",
+  "title": "Use modules in your configuration",
+  "publisher": "HashiCorp",
+  "url": "https://developer.hashicorp.com/terraform/language/modules/configuration",
+  "accessed": "2026-09-26",
+  "note": "Backs the 5c claims about count, for_each and the init workflow for modules, and the 5d claims about -upgrade and Git tags."
+}
