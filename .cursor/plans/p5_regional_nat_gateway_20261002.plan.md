@@ -16,11 +16,15 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 5 of `m
 
 ## Recommended approach (option 1)
 
-Record the decision in the register and HANDOFF. If you choose option 2 instead:
+Record the decision in the register and HANDOFF, with the exact revisit trigger: an SAA-C03 exam guide update, or exam questions that include regional NAT gateways. Also log the S01 sentence ("operates within a designated Availability Zone") as a known zonal simplification, with no content change. If you choose option 2 instead:
 1. The technical reviewer re-verifies the quote.
 2. The writer adds the one sentence and the citation.
 3. The Teacher checks that no 4.4 question becomes ambiguous.
 4. Run the full 4-4 check chain.
+
+## Teacher pre-validation (2026-10-02)
+
+**Approve** option 1. (The Teacher could not re-check the AWS quote in its run; the technical reviewer read it with curl on 2026-10-01.)
 
 ## Files
 

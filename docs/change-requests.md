@@ -272,6 +272,30 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: `.cursor/plans/final_sitting_20261001.plan.md` (item 2)
 - Teacher validation: approved before and after
 
+## CR-0022 — `docs/coverage-and-metrics.md` is still the Phase-0 skeleton
+- Raised by: Teacher (open-items plan validation), recorded by the Lead Dev
+- Date: 2026-10-02
+- Type: content-update
+- Where: `docs/coverage-and-metrics.md` (gap report, rollup, skeleton table)
+- Problem: the doc says every registry row is `missing` and shows "0 / 189" with "no lessons, drills, labs". It contradicts the registry and the rewritten content.
+- Suggested fix: refresh it in plan P1 and define "verified" narrowly.
+- Affects learning content: yes (content-facing doc)
+- Status: planned
+- Plan: `.cursor/plans/p1_coverage_registry_verify_20261002.plan.md`
+- Teacher validation: plan approved with concerns (folded in)
+
+## CR-0023 — GL-21 objective and stale sidebar lab titles (O8)
+- Raised by: Teacher (open-items plan validation), recorded by the Lead Dev
+- Date: 2026-10-02
+- Type: content-error
+- Where: `content/labs/gl-21.json` `objectiveIds`; `frontend/src/data/curriculum.ts` (gl-07, gl-21 titles)
+- Problem: gl-21 lists `tf.004.8a` (use HCP Terraform to create infrastructure) but teaches no HCP content. The sidebar still shows "EC2, EBS, EFS" for GL-07 and "ElastiCache & HCP path" for GL-21, although the lab files were renamed.
+- Suggested fix: remove `tf.004.8a` from gl-21 and keep it on ul-21 as partial; fix the two sidebar strings.
+- Affects learning content: yes
+- Status: planned
+- Plan: `.cursor/plans/p3_o8_lab_titles_20261002.plan.md`
+- Teacher validation: plan approved
+
 ## Template
 
 ```markdown

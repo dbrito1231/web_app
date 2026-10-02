@@ -22,10 +22,11 @@ Also, `gl-21.json` lists objective `tf.004.8a` (HCP Terraform) although the lab 
 ## Recommended approach (option 1)
 
 1. Edit the two strings in `curriculum.ts`.
-2. Teacher ruling on `gl-21` `tf.004.8a`:
-   - **Keep** if UL-21 or GL-21 really practises it.
-   - Otherwise **remove** it from `gl-21.json` `objectiveIds`. The coverage registry and the Coverage tab are then re-checked, because labs feed `guided_refs`.
-3. Check every other sidebar title against its lab file with a one-off script, read-only. Report other mismatches; do not fix them silently.
+2. `tf.004.8a` ("Use HCP Terraform to create infrastructure"). The Teacher has already ruled, from the lab steps:
+   - **Remove it from `gl-21.json`**: GL-21 teaches no HCP and says "Terraform is not required".
+   - **Keep it on `ul-21` as partial**: UL-21 covers HCP sign-up, a remote-backend block and notes, but stops before connecting AWS credentials and never creates infrastructure through HCP. Record "partial (setup and concepts, no run)".
+   - `tf.004.8a` is not in `saa_registry.json`; it is in `content/objectives/terraform_004.json`. Check how the Coverage tab counts Terraform lab coverage, so 8a still shows one lab (UL-21).
+3. Check every other sidebar title against its lab file with a one-off script, read-only. Normalise benign differences, such as shortened names ("IAM role & STS") and hyphenation ("single AZ" vs "single-AZ"), so the report is not noise. Report only real mismatches (the Teacher suggests looking at gl-20 and gl-03); do not fix them silently.
 4. Student check (a browser screenshot or a text check of the rendered sidebar): Gone or not.
 
 ## Files
@@ -39,6 +40,10 @@ Removing an objective from a lab changes coverage counts. Only do it if the Teac
 ## Tests
 
 `npm run build`; `content_lint.py`; `scripts/scan_lab_placeholders.py`; `manage.py test workbook`; the Student check.
+
+## Teacher pre-validation (2026-10-02)
+
+**Approve**, with the `tf.004.8a` ruling folded in above (CR-0023).
 
 ## Learning content affected
 

@@ -11,14 +11,14 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 1 of `m
 
 ## Options (KISS)
 
-1. **Per-task subject exclusions (recommended).** Add a small `SUBJECT` map, task to terms that are that task's own subject. The Teacher writes it from each lesson's objectives. Those terms are skipped for that task only. This applies the existing Terraform rule to the SAA tasks.
+1. **Per-task subject terms with a looser cap (recommended).** Add a small `SUBJECT` map, task to terms that are that task's own subject. The Teacher proposes it and the Lead Dev records it. Each term cites the objective bullet ID that makes it a subject term. Subject terms are **not skipped**: they are printed ("subject: X n/N") and held to a looser cap (40%) instead of 15%, so heavy over-use still shows. This applies the spirit of the existing Terraform rule to the SAA tasks.
 2. **Split by exam only.** Have separate `SAA_TERMS` and `TF_TERMS` lists, chosen by task prefix. This stops cross-exam false hits like `identity`, but the 9 SAA FAILs remain, because they are SAA terms in SAA tasks.
 3. **Record and downgrade.** Keep the script, but report closed SAA tasks as WARN instead of FAIL, and list them in the register. This is cheap, but it hides any real reuse.
 
 ## Recommended approach (option 1, plus option 2's split, which is one extra line)
 
 1. Run the audit on all 22 tasks and save the output (the baseline).
-2. The Teacher proposes the `SUBJECT` exclusions per SAA task, from each task's objective bullets. It also says which flagged terms are a **real** reused distractor type rather than subject vocabulary. Those stay counted.
+2. The Teacher proposes the `SUBJECT` terms per SAA task, term by term, citing the bullet ID. It also lists which flagged terms are a **real** reused distractor type rather than subject vocabulary; those stay at the 15% cap. Its first read already names candidates for real reuse: Compute Optimizer in 3-2 (in no 3.2 bullet), NAT Gateway in 3-4 (a 1.2 and 4.4 subject, not a 3.4 one), and RDS in 2-2 (6 of 32, borderline).
 3. The Lead Dev adds the map, plus the exam split, to the script, with a comment citing this plan.
 4. Re-run all 22 tasks.
    - Any task still FAILing after exclusions has real distractor reuse. **It is reported, not fixed here.** Fixing questions in closed tasks would be a separate content plan.
@@ -30,6 +30,8 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 1 of `m
 
 ## Risks
 
+- Task 3-1 has only 8 questions, so the 15% cap flags a single repeat. Report it as such, or add a minimum-N rule (for example no FAIL below 10 questions) with the Teacher's agreement.
+
 - Over-excluding hides genuine reuse. The mitigation is that the Teacher rules term by term and the before and after outputs are both kept in `reports/`.
 - Tasks tf-g5 to tf-g8 must still PASS with identical counts.
 
@@ -39,4 +41,8 @@ The audit on all 22 tasks, before and after (both saved); `content_lint.py`; `te
 
 ## Learning content affected
 
-No content changes. Only a check script changes. The Teacher rules on the exclusions, because they decide what counts as reuse.
+No content changes. Only a check script changes. **A Teacher ruling is required**, because the subject terms decide what counts as reuse.
+
+## Teacher pre-validation (2026-10-02)
+
+Concerns, folded in above: subject terms are printed and get a looser cap rather than being skipped, each cites a bullet ID, and the Teacher proposes while the Lead Dev records.

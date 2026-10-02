@@ -21,9 +21,9 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 4 of `m
 
 ## Recommended approach (N4 option 1, N9 option 1)
 
-1. N4: in `StartHereTab.tsx`, look up each drill in the already-loaded catalog or summary and render the type plus a stem preview, with the ID as a muted label. Leave the link target (`/exam?q=`) unchanged.
+1. N4: Start here loads only `api.lesson` and `api.contentSummary`, and the summary carries question **IDs only** (checked). So add one call to the existing catalog endpoint (`/api/content/catalog`, which returns `stem` and is already used by Exam drills). Render the type plus a stem preview, with the ID as a muted label, and cut the preview at a word boundary. The Teacher confirms that no cut stem reads as a different question. Leave the link target (`/exam?q=`) unchanged.
 2. N9: in `ExamDrillsTab.tsx`, move the `{question && <article…>}` block above `.pbq-grid`. Keep the "Back to Start here" link above it. Check that the keyboard focus moves to the question heading, as it does now.
-3. Update the existing Playwright tests in `frontend/tests/e2e/` that assert on drill IDs or on the card and question order, and add one test for each change.
+3. `frontend/tests/e2e/slice.spec.ts` is one loose smoke test, so add real tests: one for the N4 labels, and one for N9 (question above the grid, `?q=` focus, 375 px).
 
 ## Files
 
@@ -31,12 +31,18 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 4 of `m
 
 ## Risks
 
+- Study-loop cost (Teacher): with the question above the grid, picking the next drill after answering means scrolling down to the list. A "Next drill" control would fix this, but it is out of scope unless you want it.
+
 - A layout change can break the `?q=` deep link and focus behaviour that round 5 fixed (FS-R2-2-001, R5). The smoke test must cover a `?q=` link, a card click, keyboard focus and the 375 px width.
 - No grading logic changes.
 
 ## Tests
 
 `npm run build`; `npm run test:e2e`; a browser smoke test on a throwaway DB (as in the final sitting: `?q=` deep link, card click, answer grading, a 375 px viewport, no horizontal scroll); `manage.py test workbook`.
+
+## Teacher pre-validation (2026-10-02)
+
+**Approve**, with the catalog fetch and the study-loop note folded in above.
 
 ## Learning content affected
 
