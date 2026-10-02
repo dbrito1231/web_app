@@ -43,3 +43,4 @@ After every step: `content_lint.py`, and for each task touched `q1_batch_check`,
 - Items 1–8 are done and pushed to `main`: `1d13468` (item 5), `65ac6ba` (items 1–4; Teacher and technical reviewer close), `a7a215b` (item 6), and the records commit (items 7–8).
 - Item 3: the Regional NAT gateway was skipped on both reviewers' advice and is logged as optional in the register.
 - Item 9 waits on the user's machine.
+- Item 9 (2026-10-02): by user decision (option 2) the tests, the build and a smoke test on a throwaway DB ran in the cloud: 91 tests OK, build OK, smoke 16/16. Only the DB fingerprint remains, on the user's machine.

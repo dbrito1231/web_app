@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: all 22 tasks closed (450 questions). The final sitting's cloud work is done (2026-10-01); only the checks that need the user's machine remain (see Final sitting below).** D6/ISS-080 closed and CR-0018 done. The DB was at baseline (`930f0e72…`) when last fingerprinted locally; no session since has touched it.
+**Status: all 22 tasks closed (450 questions). The final sitting's cloud work is done (2026-10-01); only the DB fingerprint remains, on the user's machine (see Final sitting below).** D6/ISS-080 closed and CR-0018 done. The DB was at baseline (`930f0e72…`) when last fingerprinted locally; no session since has touched it.
 
 The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
 
@@ -179,11 +179,7 @@ Terraform question files are named `q-tf-004-<group><letter>-*`; every script ma
   - `65ac6ba`: CR-0019 (Glue for Ray is closed to new customers, confirmed in AWS docs), CR-0021, D6-FU (4.4 K05 ECMP, 3.3 S01 ReplicaLag alarm, 4.2-s05 r7 two-sided rubric; Regional NAT gateway skipped) and LD-Qg7-002. The Teacher validated before and after, and the technical reviewer closed it. Reports are in `reports/final-sitting/`.
   - `a7a215b`: the date sweep to 2026-10-01 (461 citations, 427 questions; a field-by-field JSON comparison found no other change). `q1_batch_check` and RULES now use the new date.
   - The register is reconciled (true open list at the end of `reports/fix-loop/issue-register.md`), CR-0019 and CR-0021 are closed, and `docs/status.md` is updated.
-- **Waiting on the user's machine** (cannot run in a cloud session):
-  - `cd backend; .\.venv\Scripts\Activate.ps1; python manage.py test workbook`
-  - `cd frontend; npm run build`
-  - `backend\.venv\Scripts\python.exe scripts\db_fingerprint.py backend\db.sqlite3` (expect `930f0e72…`)
-  - The browser Student smoke test: about 10 questions across 3.1 to tf-g8, then restore the DB with the command under **DB restore** and re-check the fingerprint.
+- **Item 9 (2026-10-02, user option 2):** run in the cloud. 91 Django tests OK (Python 3.12 venv; Django 6.1.1 failed to install on the 3.11 default), `npm run build` OK, and the browser smoke test was 16/16 against a throwaway DB, as a one-off exception to "No servers, no Playwright" (`reports/final-sitting/local-checks.md`). **Only the DB fingerprint remains, on the user's machine:** `backend\.venv\Scripts\python.exe scripts\db_fingerprint.py backend\db.sqlite3` (expect `930f0e72…`).
 - **Still open, each needing its own plan:** the coverage registry's 189 `implemented_unverified` rows (R6/ISS-070), per-exam audit TERMS, an O8 second-role check, N4, N9, and the optional Regional NAT gateway. See the register.
 
 ## Session-scoped agent ids (this session only)
