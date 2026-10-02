@@ -225,7 +225,7 @@ Rule: an item closes only when its original reporter and a second role mark it G
 | PY-R4-005/008/009, PY-R5-004/005 | Documented KISS trade-offs / info | Low/Info | As above |
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
 
-DB fingerprint after round 6: `930f0e72…` (matches baseline).
+DB fingerprint after round 6: `930f0e72…` (matches baseline). Re-checked by the user on 2026-10-02: still matches.
 
 ## Final reconciliation (2026-10-01)
 
@@ -248,6 +248,7 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | Q1-STEM-Q / LD-Qg7-002 | 7 Terraform stems without a question | Each ends with a question (`65ac6ba`). Teacher + Tech |
 | Audit regression on 1-1 | tf-g7 term `identity` matched IAM "identity" | Term removed (`1d13468`); 1-1 passes the audit |
 | Date drift (user decision 3, 2026-09-28) | Corpus dated 2026-09-26 | One sweep to 2026-10-01: 461 citations, 427 questions (`a7a215b`). No other field changed |
+| Local checks (final-sitting item 9) | Tests, build, smoke test, DB fingerprint | 91 Django tests OK, build OK and smoke 16/16 in the cloud on a throwaway DB (user option 2); the user's DB fingerprint `930f0e72…` matches baseline (2026-10-02) |
 
 ### Still open (true list)
 
@@ -263,4 +264,3 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | PY-R5-001–003, PY-R4-005/008/009, PY-R5-004/005 | Scanner bypasses needing deliberate obfuscation; documented KISS trade-offs | Low/Info | Python says close is fine; a formal won't-fix needs your approval |
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
 | Regional NAT gateway (optional) | Lesson 4.4 does not mention regional NAT gateways | Low | Real AWS feature; skipped by both reviewers to keep the exam signal. A future CR if wanted |
-| Local checks | `manage.py test workbook`, `npm run build`, DB fingerprint, browser smoke test | — | Need the user's machine (final-sitting item 9) |
