@@ -62,7 +62,6 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 | O5 | Exam layout at 375px | WP8b | Fixed. One column, no horizontal scroll at 375px |
 | O6 | Each drill links back to its lesson | WP7b | Fixed. `Study:` link on `q-saa-1-1-k01-mc` opens lesson 1.1 |
 | O7 | Each lesson links to its labs and design exercises | WP7b | Fixed. Matched on objective ids. Lab links open `/labs?lab=`. Exercises show on the lesson |
-| O8 | GL-07 says EFS but has no EFS steps; GL-21 title says HCP | WP5b | Fixed. GL-07 is “EC2 and EBS” and points at UL-07 for EFS. GL-21 is “ElastiCache tradeoffs” |
 | O9 | Missing sidecar templates; s12–s15 boilerplate | WP5b | Reported. Not started |
 | O10 | Corrupt content JSON returns a clear JSON 500 | WP9b | Fixed. Loader raises ContentParseError; question GET returns JSON 500. 13 Django tests OK |
 | Q1 | Rewrite the practice-question bank | WP4b | Reported. Blocked until the pilot batch is approved |
@@ -263,6 +262,7 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | STUDENT-R6 notes | Lesson 1.1 has no in-lesson section links | Low | Non-blocking |
 | PY-R5-001–003, PY-R4-005/008/009, PY-R5-004/005 | Scanner bypasses needing deliberate obfuscation; documented KISS trade-offs | Low/Info | Python says close is fine; a formal won't-fix needs your approval |
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
+| CR-0025 | GL-03 and GL-20 lab titles overclaim (no resource-policy step; no module or import steps) | Low | Needs its own small plan |
 | Regional NAT gateway (optional) | Lesson 4.4 does not mention regional NAT gateways | Low | Real AWS feature; skipped by both reviewers to keep the exam signal. A future CR if wanted |
 
 ### Open-items master plan progress (`.cursor/plans/master_open_items_20261002.plan.md`)
@@ -270,3 +270,4 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | Phase | Item | Result | Closed by |
 |---|---|---|---|
 | 1 (P2) | Audit scope: 9 SAA tasks FAILed, mostly on their own subject vocabulary | **Closed 2026-10-04** (`69487ff`). Subject terms held to 40%, an exam split, and a small-N WARN. 1-2, 2-1 and 4-1 PASS; 3-1 WARN; the real reuse is logged as CR-0024 | Teacher ruling + Teacher post-check; Lead Dev re-ran all 22 tasks (Terraform unchanged) |
+| 2 (P3) | O8 / CR-0023: the sidebar still showed the old GL-07 and GL-21 titles; GL-21 listed `tf.004.8a` (HCP) without HCP content | **Closed 2026-10-04.** The sidebar reads "EC2 and EBS" and "ElastiCache tradeoffs"; `tf.004.8a` is removed from gl-21; lesson tf-g8 `labIds` is now `ul-21` (the generator too). **tf.004.8a is partial on UL-21** (HCP sign-up, a remote-backend block and concepts; no apply, no AWS credentials). All 42 sidebar titles checked: none misleading. Follow-up: CR-0025 (the gl-03 and gl-20 lab titles overclaim) | Student + Teacher |

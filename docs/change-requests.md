@@ -292,7 +292,7 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: gl-21 lists `tf.004.8a` (use HCP Terraform to create infrastructure) but teaches no HCP content. The sidebar still shows "EC2, EBS, EFS" for GL-07 and "ElastiCache & HCP path" for GL-21, although the lab files were renamed.
 - Suggested fix: remove `tf.004.8a` from gl-21 and keep it on ul-21 as partial; fix the two sidebar strings.
 - Affects learning content: yes
-- Status: planned
+- Status: **done 2026-10-04** (Phase 2). The sidebar titles are fixed; `tf.004.8a` is removed from gl-21; `lesson-tf-g8` `labIds` is now `ul-21` (also in `scripts/gen_all_content.py`). **8a is deliberately partial on UL-21** (HCP sign-up, a remote-backend block and concepts; no apply, no AWS credentials); the drills and lesson tf-g8 carry the rest. Closed by the Student and the Teacher (both re-checked the result)
 - Plan: `.cursor/plans/p3_o8_lab_titles_20261002.plan.md`
 - Teacher validation: plan approved
 
@@ -311,6 +311,18 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Suggested fix: replace some repeated distractors with other plausible, objective-relevant options, or rebalance with new questions. Each replacement needs Teacher validation and AWS doc checks, and must keep the key balance and objective mapping.
 - Affects learning content: yes
 - Status: open. Needs its own content plan; not part of the open-items master plan
+- Plan: none yet
+- Teacher validation: drafted by the Teacher
+
+## CR-0025 — GL-03 and GL-20 lab titles overclaim their content
+- Raised by: Teacher (Phase 2 post-check), recorded by the Lead Dev
+- Date: 2026-10-04
+- Type: content-error
+- Where: `content/labs/gl-03.json`, `content/labs/gl-20.json` (`title`)
+- Problem: the GL-03 title says "IAM role, resource policy, and STS", but no step creates a resource policy; the only mention is a teardown line about a bucket policy. The GL-20 title says "Terraform workflow modules state import", but the steps cover init, fmt, validate, plan, apply and state; a grep finds no module or import content. The shorter sidebar titles ("IAM role & STS", "Terraform workflow & state") are the accurate ones.
+- Suggested fix: trim the two lab titles to match their steps, or add the missing content. Do not lengthen the sidebar titles.
+- Affects learning content: yes
+- Status: open. Needs its own small plan
 - Plan: none yet
 - Teacher validation: drafted by the Teacher
 

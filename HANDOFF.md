@@ -180,7 +180,7 @@ Terraform question files are named `q-tf-004-<group><letter>-*`; every script ma
   - `a7a215b`: the date sweep to 2026-10-01 (461 citations, 427 questions; a field-by-field JSON comparison found no other change). `q1_batch_check` and RULES now use the new date.
   - The register is reconciled (true open list at the end of `reports/fix-loop/issue-register.md`), CR-0019 and CR-0021 are closed, and `docs/status.md` is updated.
 - **Item 9 (2026-10-02, user option 2):** run in the cloud. 91 Django tests OK (Python 3.12 venv; Django 6.1.1 failed to install on the 3.11 default), `npm run build` OK, and the browser smoke test was 16/16 against a throwaway DB, as a one-off exception to "No servers, no Playwright" (`reports/final-sitting/local-checks.md`). The DB fingerprint on the user's machine (2026-10-02) matched: `930f0e72…`, integrity ok.
-- **Open-items master plan** (`.cursor/plans/master_open_items_20261002.plan.md`, approved 2026-10-04; one phase per GO): Phase 1 (audit scope) closed `69487ff`; next is Phase 2 (O8 lab titles, plan P3).
+- **Open-items master plan** (`.cursor/plans/master_open_items_20261002.plan.md`, approved 2026-10-04; one phase per GO): Phase 1 (audit scope) closed `69487ff`; Phase 2 (O8 lab titles) closed 2026-10-04; next is Phase 3 (coverage registry, plan P1).
 - **Still open, each needing its own plan:** the coverage registry's 189 `implemented_unverified` rows (R6/ISS-070), per-exam audit TERMS, an O8 second-role check, N4, N9, and the optional Regional NAT gateway. See the register.
 
 ## Session-scoped agent ids (this session only)

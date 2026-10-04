@@ -69,7 +69,7 @@ export const CURRICULUM: CurriculumModule[] = [
     color: 'd3',
     weight: 26,
     groups: [
-      { id: 'A2.1', title: 'Connectivity & compute', labs: [{ id: 'gl-06', title: 'NAT gateway', chip: 'GL-06' }, { id: 'ul-06', title: 'Challenge: NAT gateway then delete', chip: 'UL-06' }, { id: 'gl-07', title: 'EC2, EBS, EFS', chip: 'GL-07' }, { id: 'ul-07', title: 'Challenge: EC2, EBS, and EFS', chip: 'UL-07' }, { id: 'gl-08', title: 'Application Load Balancer', chip: 'GL-08' }, { id: 'ul-08', title: 'Challenge: Application Load Balancer', chip: 'UL-08' }, { id: 'gl-09', title: 'Auto Scaling', chip: 'GL-09' }, { id: 'ul-09', title: 'Challenge: Auto Scaling', chip: 'UL-09' }] },
+      { id: 'A2.1', title: 'Connectivity & compute', labs: [{ id: 'gl-06', title: 'NAT gateway', chip: 'GL-06' }, { id: 'ul-06', title: 'Challenge: NAT gateway then delete', chip: 'UL-06' }, { id: 'gl-07', title: 'EC2 and EBS', chip: 'GL-07' }, { id: 'ul-07', title: 'Challenge: EC2, EBS, and EFS', chip: 'UL-07' }, { id: 'gl-08', title: 'Application Load Balancer', chip: 'GL-08' }, { id: 'ul-08', title: 'Challenge: Application Load Balancer', chip: 'UL-08' }, { id: 'gl-09', title: 'Auto Scaling', chip: 'GL-09' }, { id: 'ul-09', title: 'Challenge: Auto Scaling', chip: 'UL-09' }] },
       { id: 'A2.2', title: 'Integration', labs: [{ id: 'gl-10', title: 'Queue and event path', chip: 'GL-10' }, { id: 'ul-10', title: 'Challenge: Queue and event path', chip: 'UL-10' }, { id: 'gl-11', title: 'API Gateway & Lambda', chip: 'GL-11' }, { id: 'ul-11', title: 'Challenge: API Gateway and Lambda', chip: 'UL-11' }, { id: 'gl-12', title: 'Step Functions', chip: 'GL-12' }, { id: 'ul-12', title: 'Challenge: Step Functions', chip: 'UL-12' }] },
     ],
   },
@@ -91,7 +91,7 @@ export const CURRICULUM: CurriculumModule[] = [
     color: 'd5',
     weight: 20,
     groups: [
-      { id: 'A4.1', title: 'Cost labs', labs: [{ id: 'gl-20', title: 'Terraform workflow & state', chip: 'GL-20' }, { id: 'ul-20', title: 'Challenge: Terraform workflow', chip: 'UL-20' }, { id: 'gl-21', title: 'ElastiCache & HCP path', chip: 'GL-21' }, { id: 'ul-21', title: 'Challenge: ElastiCache, then HCP as allowed', chip: 'UL-21' }] },
+      { id: 'A4.1', title: 'Cost labs', labs: [{ id: 'gl-20', title: 'Terraform workflow & state', chip: 'GL-20' }, { id: 'ul-20', title: 'Challenge: Terraform workflow', chip: 'UL-20' }, { id: 'gl-21', title: 'ElastiCache tradeoffs', chip: 'GL-21' }, { id: 'ul-21', title: 'Challenge: ElastiCache, then HCP as allowed', chip: 'UL-21' }] },
     ],
   },
   {

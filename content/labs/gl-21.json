@@ -11,8 +11,7 @@
   "practiceMode": "live_aws",
   "objectiveIds": [
     "SAA-3.3-K02",
-    "SAA-3.3-S05",
-    "tf.004.8a"
+    "SAA-3.3-S05"
   ],
   "module": "T4",
   "beforeYouStart": [

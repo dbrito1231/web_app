@@ -1,0 +1,47 @@
+Sidebar title vs lab file title (read-only, normalised: case, &/and, hyphens, plurals, filler words).
+MISMATCH = the sidebar names a topic word the lab title does not have.
+
+gl-01: ok       | sidebar: Identity, budget, and preflight | lab: Identity, budget, and preflight
+gl-02: ok       | sidebar: Private S3 data controls | lab: Private S3 data controls
+gl-03: ok       | sidebar: IAM role & STS | lab: IAM role, resource policy, and STS
+gl-04: ok       | sidebar: Customer-managed KMS | lab: Customer-managed KMS key
+gl-05: ok       | sidebar: VPC segmentation | lab: VPC segmentation
+gl-06: ok       | sidebar: NAT gateway | lab: NAT gateway then delete
+gl-07: ok       | sidebar: EC2 and EBS | lab: EC2 and EBS
+gl-08: ok       | sidebar: Application Load Balancer | lab: Application Load Balancer
+gl-09: ok       | sidebar: Auto Scaling | lab: Auto Scaling
+gl-10: ok       | sidebar: Queue and event path | lab: Queue and event path
+gl-11: ok       | sidebar: API Gateway & Lambda | lab: API Gateway and Lambda
+gl-12: ok       | sidebar: Step Functions | lab: Step Functions
+gl-13: ok       | sidebar: DynamoDB | lab: DynamoDB
+gl-14: ok       | sidebar: RDS single AZ | lab: RDS single-AZ
+gl-15: ok       | sidebar: CloudWatch & CloudTrail | lab: CloudWatch and CloudTrail
+gl-16: ok       | sidebar: Private DNS | lab: Private DNS
+gl-17: ok       | sidebar: Athena | lab: Athena on a tiny file
+gl-18: ok       | sidebar: ECS on Fargate | lab: ECS on Fargate
+gl-19: ok       | sidebar: EKS control plane | lab: EKS control plane then delete
+gl-20: ok       | sidebar: Terraform workflow & state | lab: Terraform workflow modules state import
+gl-21: ok       | sidebar: ElastiCache tradeoffs | lab: ElastiCache tradeoffs
+ul-01: ok       | sidebar: Challenge: Identity, budget, and preflight | lab: Challenge: Identity, budget, and preflight
+ul-02: ok       | sidebar: Challenge: Private S3 data controls | lab: Challenge: Private S3 data controls
+ul-03: ok       | sidebar: Challenge: IAM role, resource policy, and STS | lab: Challenge: IAM role, resource policy, and STS
+ul-04: ok       | sidebar: Challenge: Customer-managed KMS key | lab: Challenge: Customer-managed KMS key
+ul-05: ok       | sidebar: Challenge: VPC segmentation | lab: Challenge: VPC segmentation
+ul-06: ok       | sidebar: Challenge: NAT gateway then delete | lab: Challenge: NAT gateway then delete
+ul-07: ok       | sidebar: Challenge: EC2, EBS, and EFS | lab: Challenge: EC2, EBS, and EFS
+ul-08: ok       | sidebar: Challenge: Application Load Balancer | lab: Challenge: Application Load Balancer
+ul-09: ok       | sidebar: Challenge: Auto Scaling | lab: Challenge: Auto Scaling
+ul-10: ok       | sidebar: Challenge: Queue and event path | lab: Challenge: Queue and event path
+ul-11: ok       | sidebar: Challenge: API Gateway and Lambda | lab: Challenge: API Gateway and Lambda
+ul-12: ok       | sidebar: Challenge: Step Functions | lab: Challenge: Step Functions
+ul-13: ok       | sidebar: Challenge: DynamoDB | lab: Challenge: DynamoDB
+ul-14: ok       | sidebar: Challenge: RDS, single AZ | lab: Challenge: RDS single-AZ
+ul-15: ok       | sidebar: Challenge: CloudWatch and CloudTrail | lab: Challenge: CloudWatch and CloudTrail
+ul-16: ok       | sidebar: Challenge: Private DNS | lab: Challenge: Private DNS
+ul-17: ok       | sidebar: Challenge: Athena on a tiny file | lab: Challenge: Athena on a tiny file
+ul-18: ok       | sidebar: Challenge: ECS on Fargate | lab: Challenge: ECS on Fargate
+ul-19: ok       | sidebar: Challenge: EKS control plane, then delete | lab: Challenge: EKS control plane then delete
+ul-20: ok       | sidebar: Challenge: Terraform workflow | lab: Challenge: Terraform workflow modules state import
+ul-21: ok       | sidebar: Challenge: ElastiCache, then HCP as allowed | lab: Challenge: ElastiCache then HCP as allowed
+
+0 to review; 42 sidebar entries

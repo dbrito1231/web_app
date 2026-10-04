@@ -197,7 +197,7 @@ def gen_lessons() -> dict[str, list[str]]:
             "practiceMode": "concept_review",
             "objectiveIds": oids,
             "drillIds": [f"q-{oid.replace('.', '-')}-mc" for oid in oids] + [f"q-{oid.replace('.', '-')}-mr" for oid in oids[:1]],
-            "labIds": ["gl-20"] if g in (3, 5, 7) else (["gl-21"] if g == 8 else []),
+            "labIds": ["gl-20"] if g in (3, 5, 7) else (["ul-21"] if g == 8 else []),  # ul-21: HCP (CR-0023)
             "citationIds": ["cite-tf-004"],
             "bodyMarkdown": "\n".join(body),
         }
