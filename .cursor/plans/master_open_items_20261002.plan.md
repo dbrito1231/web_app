@@ -1,6 +1,6 @@
 # Master plan: open items after the Q1 rewrite (2026-10-02)
 
-Author: Lead Developer. Status: **draft, awaiting user approval. Nothing is implemented until the user approves.** Each phase also needs its own approval: approving this master plan approves the order and the process, not every phase's option.
+Author: Lead Developer. Status: **approved by the user 2026-10-04 (recommended option).** Each phase also needs its own approval: approving this master plan approves the order and the process, not every phase's option.
 
 **Naming:** the plan files are called P1–P5 (by topic). The phases are numbered 1–5 in the order they run. Phase 1 runs plan P2, Phase 2 runs P3, Phase 3 runs P1, and Phases 4 and 5 run P4 and P5.
 

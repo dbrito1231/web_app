@@ -1,6 +1,6 @@
 # Plan P4: Drill list UI (N4 raw IDs, N9 long card grid)
 
-Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 4 of `master_open_items_20261002.plan.md`.
+Author: Lead Developer. Status: **approved by the user 2026-10-04 (recommended option).** Phase 4 of `master_open_items_20261002.plan.md`.
 
 ## Problem (facts checked 2026-10-02)
 
@@ -23,7 +23,8 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 4 of `m
 
 1. N4: Start here loads only `api.lesson` and `api.contentSummary`, and the summary carries question **IDs only** (checked). So add one call to the existing catalog endpoint (`/api/content/catalog`, which returns `stem` and is already used by Exam drills). Render the type plus a stem preview, with the ID as a muted label, and cut the preview at a word boundary. The Teacher confirms that no cut stem reads as a different question. Leave the link target (`/exam?q=`) unchanged.
 2. N9: in `ExamDrillsTab.tsx`, move the `{question && <article…>}` block above `.pbq-grid`. Keep the "Back to Start here" link above it. Check that the keyboard focus moves to the question heading, as it does now.
-3. `frontend/tests/e2e/slice.spec.ts` is one loose smoke test, so add real tests: one for the N4 labels, and one for N9 (question above the grid, `?q=` focus, 375 px).
+3. Add the "Next drill" button (see Risks) in `ExamDrillsTab.tsx`.
+4. `frontend/tests/e2e/slice.spec.ts` is one loose smoke test, so add real tests, including one for Next drill: one for the N4 labels, and one for N9 (question above the grid, `?q=` focus, 375 px).
 
 ## Files
 
@@ -31,7 +32,7 @@ Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 4 of `m
 
 ## Risks
 
-- Study-loop cost (Teacher): with the question above the grid, picking the next drill after answering means scrolling down to the list. A "Next drill" control would fix this, but it is out of scope unless you want it.
+- Study-loop cost (Teacher): with the question above the grid, picking the next drill after answering means scrolling down to the list. **Added by the user (2026-10-04):** a "Next drill" button beside Retry, which opens the next drill in the current list (wrapping to the first) and moves focus to its heading.
 
 - A layout change can break the `?q=` deep link and focus behaviour that round 5 fixed (FS-R2-2-001, R5). The smoke test must cover a `?q=` link, a card click, keyboard focus and the 375 px width.
 - No grading logic changes.

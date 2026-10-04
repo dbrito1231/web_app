@@ -1,6 +1,6 @@
 # Plan P1: Verify the coverage registry (R6 / ISS-070 remainder)
 
-Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 3 of `master_open_items_20261002.plan.md`.
+Author: Lead Developer. Status: **approved by the user 2026-10-04 (recommended option).** Phase 3 of `master_open_items_20261002.plan.md`.
 
 ## Problem (facts checked 2026-10-02)
 

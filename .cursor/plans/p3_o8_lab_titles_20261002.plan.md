@@ -1,6 +1,6 @@
 # Plan P3: Finish O8 (GL-07 and GL-21 titles)
 
-Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 2 of `master_open_items_20261002.plan.md`.
+Author: Lead Developer. Status: **approved by the user 2026-10-04 (recommended option).** Phase 2 of `master_open_items_20261002.plan.md`.
 
 ## Problem (facts checked 2026-10-02)
 

@@ -1,6 +1,6 @@
 # Plan P2: Scope the distractor audit terms
 
-Author: Lead Developer. Status: **draft, awaiting user approval.** Phase 1 of `master_open_items_20261002.plan.md`.
+Author: Lead Developer. Status: **approved by the user 2026-10-04 (recommended option).** Phase 1 of `master_open_items_20261002.plan.md`.
 
 ## Problem (facts checked 2026-10-02)
 
