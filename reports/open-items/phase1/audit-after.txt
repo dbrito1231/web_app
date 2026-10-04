@@ -1,0 +1,336 @@
+===== 1-1
+task 1-1: 21 questions; 15% cap = 3 questions
+
+Lambda                        2   10%  k04-mc,s01-mr
+RDS                           2   10%  k03-mc,k05-mc
+CloudFormation                1    5%  s04-mc
+DataSync                      1    5%  s05-mc
+DynamoDB                      1    5%  s02-mr
+Local Zone                    1    5%  k03-mc
+Multi-AZ                      1    5%  k05-mc
+read replica                  1    5%  k03-mc
+snapshot                      1    5%  k03-mc
+
+RESULT: PASS
+===== 1-2
+task 1-2: 16 questions; 15% cap = 2 questions; subject-term cap (40%) = 6
+
+NAT Gateway                   5   31%  k02-mc,k02-mr,s01-mr,s02-mc,s04-mc  [subject]
+Direct Connect                2   12%  s04-mc,s04-mr
+Application Load Balancer     1    6%  k06-mc
+Lambda                        1    6%  k02-mr
+
+RESULT: PASS
+===== 1-3
+task 1-3: 20 questions; 15% cap = 3 questions
+
+EBS                           2   10%  k02-mc,s05-mc
+Application Load Balancer     1    5%  s03-mr
+Batch                         1    5%  s05-mr
+DynamoDB                      1    5%  s05-mc
+S3 Glacier                    1    5%  k03-mc
+point-in-time recovery        1    5%  s05-mc
+snapshot                      1    5%  s05-mc
+
+RESULT: PASS
+===== 2-1
+task 2-1: 35 questions; 15% cap = 5 questions; subject-term cap (40%) = 14
+
+Lambda                        8   23%  k05-mr,k08-mc,k10-mc,k11-mr,k12-mc,s04-mc,s05-mr,s07-mr  [subject]
+Fargate                       5   14%  k14-mc,k14-mr,s04-mr,s05-mc,s05-mr
+Auto Scaling                  4   11%  k06-mc,k10-mc,s04-mr,s06-mr
+Application Load Balancer     3    9%  k10-mc,s03-mc,s03-mr
+CloudFront                    2    6%  k03-mc,k07-mc
+EBS                           2    6%  k13-mc,s06-mc
+On-Demand                     2    6%  s05-mc,s05-mr
+Classic Load Balancer         1    3%  s06-mr
+DataSync                      1    3%  k02-mr
+DynamoDB                      1    3%  k05-mc
+EFS                           1    3%  s07-mc
+ElastiCache                   1    3%  k03-mc
+Gateway Load Balancer         1    3%  k09-mc
+Multi-AZ                      1    3%  k15-mc
+Network Load Balancer         1    3%  k09-mc
+RDS                           1    3%  k02-mr
+Reserved Instance             1    3%  s05-mc
+Spot                          1    3%  k12-mc
+
+RESULT: PASS
+===== 2-2
+task 2-2: 32 questions; 15% cap = 4 questions; subject-term cap (40%) = 12
+
+Multi-AZ                      9   28%  k05-mc,k06-mc,k06-mr,k09-mc,k09-mr,s02-mc,s02-mr,s06-mr,s07-mr  [subject]
+RDS                           6   19%  k06-mr,s02-mc,s02-mr,s06-mr,s07-mc,s07-mr   <-- OVER CAP
+Aurora                        5   16%  k06-mc,k06-mr,k09-mc,s02-mc,s08-mr   <-- OVER CAP
+Auto Scaling                  5   16%  k02-mc,k08-mc,s01-mc,s01-mr,s04-mr   <-- OVER CAP
+read replica                  5   16%  k05-mc,k06-mc,k09-mc,s04-mr,s05-mc   <-- OVER CAP
+Application Load Balancer     4   12%  k02-mc,k08-mc,s04-mr,s07-mr
+NAT Gateway                   3    9%  k03-mc,k03-mr,s04-mc
+EBS                           2    6%  k07-mc,k11-mc
+snapshot                      2    6%  k07-mc,s04-mr
+EFS                           1    3%  k11-mc
+Lambda                        1    3%  s08-mc
+RDS Proxy                     1    3%  s07-mc
+
+RESULT: FAIL (Auto Scaling, read replica, Aurora, RDS)
+===== 3-1
+task 3-1: 8 questions; 15% cap = 1 questions; subject-term cap (40%) = 3
+
+FSx                           3   38%  k01-mc,k02-mc,s02-mc   <-- OVER CAP
+EFS                           2   25%  s01-mr,s02-mc  [subject]
+Storage Gateway               2   25%  k01-mc,k01-mr  [subject]
+DataSync                      1   12%  k01-mr
+EBS                           1   12%  s02-mc
+
+RESULT: WARN (small N: 8 < 10) (FSx)
+===== 3-2
+task 3-2: 16 questions; 15% cap = 2 questions; subject-term cap (40%) = 6
+
+Lambda                        4   25%  k01-mc,k05-mc,k05-mr,s04-mr  [subject]
+Auto Scaling                  3   19%  k06-mc,s01-mc,s01-mr  [subject]
+Compute Optimizer             3   19%  k02-mr,k05-mr,s04-mr   <-- OVER CAP
+Graviton                      2   12%  s03-mc,s03-mr
+Network Load Balancer         2   12%  s01-mc,s01-mr
+EMR                           1    6%  k01-mc
+Fargate                       1    6%  k01-mc
+Local Zone                    1    6%  k02-mc
+Outpost                       1    6%  k02-mc
+Spot                          1    6%  k04-mc
+Wavelength                    1    6%  k02-mr
+
+RESULT: FAIL (Compute Optimizer)
+===== 3-3
+task 3-3: 21 questions; 15% cap = 3 questions; subject-term cap (40%) = 8
+
+RDS                           9   43%  k01-mc,k01-mr,k04-mc,k07-mc,s01-mc,s03-mc,s03-mr,s04-mc,s05-mr  [subject]   <-- OVER CAP
+read replica                  7   33%  k01-mr,k03-mc,k04-mc,k04-mr,k05-mc,k07-mc,s03-mc  [subject]
+Aurora                        4   19%  k06-mc,k07-mc,k07-mr,s03-mc  [subject]
+DynamoDB                      4   19%  k02-mc,s01-mc,s04-mc,s05-mr  [subject]
+ElastiCache                   4   19%  k02-mc,k03-mc,s05-mc,s05-mr  [subject]
+Redshift                      4   19%  s03-mc,s04-mc,s04-mr,s05-mr   <-- OVER CAP
+DAX                           3   14%  k02-mc,s01-mc,s05-mr
+Auto Scaling                  2   10%  k01-mr,k04-mc
+DMS                           2   10%  k06-mc,s03-mr
+DynamoDB Accelerator          2   10%  k02-mc,s01-mc
+Keyspaces                     2   10%  k08-mc,s04-mr
+Multi-AZ                      2   10%  k03-mc,k07-mc
+RDS Proxy                     2   10%  k01-mc,s01-mc
+Batch                         1    5%  k04-mr
+DocumentDB                    1    5%  s04-mr
+Lambda                        1    5%  k05-mc
+Multi-AZ DB cluster           1    5%  k07-mc
+Neptune                       1    5%  k08-mc
+On-Demand                     1    5%  s02-mc
+Timestream                    1    5%  k08-mc
+
+RESULT: FAIL (RDS, Redshift)
+===== 3-4
+task 3-4: 13 questions; 15% cap = 1 questions; subject-term cap (40%) = 5
+
+Application Load Balancer     3   23%  k03-mc,k03-mr,s04-mc  [subject]
+Direct Connect                3   23%  k04-mc,s02-mr,s03-mr  [subject]
+NAT Gateway                   3   23%  s01-mc,s01-mr,s03-mr   <-- OVER CAP
+CloudFront                    2   15%  k01-mc,s03-mc  [subject]
+Gateway Load Balancer         2   15%  k03-mc,k03-mr  [subject]
+Classic Load Balancer         1    8%  s04-mc
+Global Accelerator            1    8%  k01-mc
+Local Zone                    1    8%  s03-mc
+Network Load Balancer         1    8%  s04-mr
+Transit Gateway               1    8%  s01-mr
+Wavelength                    1    8%  s03-mr
+
+RESULT: FAIL (NAT Gateway)
+===== 3-5
+task 3-5: 24 questions; 15% cap = 3 questions; subject-term cap (40%) = 9
+
+Glue                         11   46%  k01-mr,k03-mc,k04-mc,k04-mr,k07-mc,s01-mc,s01-mr,s02-mc,s04-mc,s05-mc,s07-mc  [subject]   <-- OVER CAP
+EMR                           8   33%  k01-mc,k01-mr,k04-mr,s01-mr,s03-mr,s04-mr,s05-mc,s05-mr  [subject]
+Athena                        6   25%  k01-mr,k04-mc,k04-mr,s04-mc,s05-mc,s07-mc  [subject]
+DataSync                      3   12%  k07-mr,s03-mc,s03-mr
+Batch                         1    4%  k02-mc
+On-Demand                     1    4%  s02-mr
+
+RESULT: FAIL (Glue)
+===== 4-1
+task 4-1: 35 questions; 15% cap = 5 questions; subject-term cap (40%) = 14
+
+EBS                           9   26%  k04-mc,k05-mc,k05-mr,k11-mc,s02-mc,s04-mr,s06-mc,s06-mr,s10-mc  [subject]
+EFS                           8   23%  k05-mc,k05-mr,k11-mc,k11-mr,s02-mc,s02-mr,s04-mc,s10-mc  [subject]
+FSx                           8   23%  k04-mc,k08-mc,k08-mr,k11-mc,k11-mr,s02-mr,s10-mc,s10-mr  [subject]
+S3 Glacier                    6   17%  k05-mc,k09-mc,k10-mc,s06-mc,s06-mr,s08-mc  [subject]
+Standard-IA                   5   14%  k09-mc,k10-mc,s08-mc,s08-mr,s09-mr
+Storage Gateway               5   14%  k08-mc,k11-mr,s03-mc,s03-mr,s07-mr
+snapshot                      5   14%  k05-mc,k05-mr,s04-mr,s06-mc,s06-mr
+DataSync                      3    9%  k08-mc,s07-mc,s07-mr
+Batch                         1    3%  k07-mc
+DynamoDB                      1    3%  s06-mr
+RDS                           1    3%  s06-mr
+
+RESULT: PASS
+===== 4-2
+task 4-2: 24 questions; 15% cap = 3 questions
+
+Auto Scaling                  3   12%  k08-mc,s03-mr,s06-mr
+Fargate                       3   12%  k08-mc,s03-mc,s03-mr
+Lambda                        3   12%  k08-mr,s03-mc,s03-mr
+Local Zone                    3   12%  k03-mc,k05-mc,k06-mc
+Outpost                       3   12%  k03-mc,k05-mc,k05-mr
+Reserved Instance             3   12%  k04-mc,k08-mr,k09-mc
+Spot                          3   12%  k04-mc,s02-mr,s06-mr
+Classic Load Balancer         2    8%  s01-mc,s01-mr
+Network Load Balancer         2    8%  s01-mc,s01-mr
+On-Demand                     2    8%  k04-mc,k08-mr
+Savings Plan                  2    8%  k03-mc,s06-mr
+Wavelength                    2    8%  k05-mr,k06-mc
+Application Load Balancer     1    4%  s01-mr
+Athena                        1    4%  k02-mc
+Dedicated Host                1    4%  k06-mc
+Gateway Load Balancer         1    4%  s01-mc
+Multi-AZ                      1    4%  s04-mc
+
+RESULT: PASS
+===== 4-3
+task 4-3: 22 questions; 15% cap = 3 questions
+
+Aurora                        3   14%  k07-mc,k09-mc,s03-mc
+DMS                           3   14%  k07-mc,s05-mc,s05-mr
+ElastiCache                   3   14%  k03-mc,k09-mc,s03-mc
+Multi-AZ                      3   14%  k04-mc,k08-mc,k08-mr
+RDS                           3   14%  k01-mc,k02-mc,s02-mc
+read replica                  3   14%  k06-mc,k08-mr,s01-mr
+snapshot                      2    9%  s01-mc,s01-mr
+Athena                        1    5%  s04-mc
+Auto Scaling                  1    5%  k05-mc
+Database Migration Service    1    5%  k02-mc
+On-Demand                     1    5%  s03-mr
+Savings Plan                  1    5%  k01-mc
+Standard-IA                   1    5%  k03-mc
+Timestream                    1    5%  s04-mr
+
+RESULT: PASS
+===== 4-4
+task 4-4: 23 questions; 15% cap = 3 questions
+
+Application Load Balancer     3   13%  k03-mc,k03-mr,s04-mc
+Gateway Load Balancer         3   13%  k03-mr,k04-mc,k07-mc
+Global Accelerator            3   13%  s03-mc,s03-mr,s04-mc
+NAT Gateway                   3   13%  k04-mc,s01-mc,s01-mr
+Network Load Balancer         3   13%  k03-mc,k03-mr,k07-mc
+CloudFront                    2    9%  s05-mc,s05-mr
+Direct Connect                2    9%  s02-mc,s02-mr
+Savings Plan                  2    9%  k01-mc,s05-mc
+Transit Gateway               2    9%  k05-mc,k06-mr
+DynamoDB                      1    4%  s03-mr
+Reserved Instance             1    4%  k01-mc
+
+RESULT: PASS
+===== tf-g1
+task tf-g1: 9 questions; 15% cap = 1 questions
+
+CloudFormation                1   11%  q-tf-004-1c-mc
+snapshot                      1   11%  q-tf-004-1b-mc2
+
+RESULT: PASS
+===== tf-g2
+task tf-g2: 12 questions; 15% cap = 1 questions
+
+-upgrade                      1    8%  q-tf-004-2a-mc2
+dependency lock file          1    8%  q-tf-004-2d-mc2
+init -upgrade                 1    8%  q-tf-004-2a-mc2
+lock file                     1    8%  q-tf-004-2d-mc2
+provider block                1    8%  q-tf-004-2c-mc2
+required_providers            1    8%  q-tf-004-2b-mc
+
+RESULT: PASS
+===== tf-g3
+task tf-g3: 21 questions; 15% cap = 3 questions
+
+-target                       3   14%  q-tf-004-3d-mc,q-tf-004-3e-mc,q-tf-004-3f-mc2
+-upgrade                      3   14%  q-tf-004-3b-mc2,q-tf-004-3b-mr,q-tf-004-3f-mc2
+-auto-approve                 2   10%  q-tf-004-3e-mc2,q-tf-004-3f-mc
+-backend=false                2   10%  q-tf-004-3c-mc,q-tf-004-3f-mc
+-check                        2   10%  q-tf-004-3e-mc,q-tf-004-3g-mc
+-destroy                      2   10%  q-tf-004-3d-mc,q-tf-004-3e-mr
+-out                          2   10%  q-tf-004-3d-mc,q-tf-004-3d-mr
+-recursive                    2   10%  q-tf-004-3c-mc,q-tf-004-3f-mc
+dependency lock file          2   10%  q-tf-004-3b-mc2,q-tf-004-3b-mr
+lock file                     2   10%  q-tf-004-3b-mc2,q-tf-004-3b-mr
+-refresh-only                 1    5%  q-tf-004-3e-mc
+init -upgrade                 1    5%  q-tf-004-3f-mc2
+
+RESULT: PASS
+===== tf-g4
+task tf-g4: 24 questions; 15% cap = 3 questions
+
+depends_on                    3   12%  q-tf-004-4b-mc2,q-tf-004-4b-mr,q-tf-004-4e-mc
+precondition                  3   12%  q-tf-004-4g-mc,q-tf-004-4g-mc2,q-tf-004-4g-mr
+ephemeral                     2    8%  q-tf-004-4h-mc,q-tf-004-4h-mr
+prevent_destroy               2    8%  q-tf-004-4f-mc2,q-tf-004-4f-mr
+terraform_data                2    8%  q-tf-004-4a-mc,q-tf-004-4a-mr
+validation                    2    8%  q-tf-004-4g-mc,q-tf-004-4g-mc2
+TF_VAR                        1    4%  q-tf-004-4c-mc2
+create_before_destroy         1    4%  q-tf-004-4f-mr
+ignore_changes                1    4%  q-tf-004-4f-mc2
+nonsensitive                  1    4%  q-tf-004-4h-mr
+plan time                     1    4%  q-tf-004-4b-mr
+postcondition                 1    4%  q-tf-004-4g-mr
+tomap                         1    4%  q-tf-004-4d-mc
+write-only                    1    4%  q-tf-004-4h-mc2
+
+RESULT: PASS
+===== tf-g5
+task tf-g5: 12 questions; 15% cap = 1 questions
+
+-upgrade                      1    8%  q-tf-004-5d-mr
+-var                          1    8%  q-tf-004-5b-mc
+?ref                          1    8%  q-tf-004-5a-mc2
+TF_VAR                        1    8%  q-tf-004-5b-mc
+for_each                      1    8%  q-tf-004-5c-mc
+init -upgrade                 1    8%  q-tf-004-5d-mr
+tfvars                        1    8%  q-tf-004-5b-mc
+version =                     1    8%  q-tf-004-5d-mr
+
+RESULT: PASS
+===== tf-g6
+task tf-g6: 12 questions; 15% cap = 1 questions
+
+-backend-config               1    8%  q-tf-004-6c-mc2
+-lock-timeout                 1    8%  q-tf-004-6b-mc2
+-lock=false                   1    8%  q-tf-004-6b-mc2
+-reconfigure                  1    8%  q-tf-004-6c-mr
+-refresh-only                 1    8%  q-tf-004-6d-mc
+DynamoDB                      1    8%  q-tf-004-6b-mr
+HCP Terraform                 1    8%  q-tf-004-6a-mc
+cloud block                   1    8%  q-tf-004-6c-mc
+force-unlock                  1    8%  q-tf-004-6b-mr
+state mv                      1    8%  q-tf-004-6b-mc
+state rm                      1    8%  q-tf-004-6d-mr
+terraform import              1    8%  q-tf-004-6d-mc2
+terraform refresh             1    8%  q-tf-004-6d-mc
+terraform.tfstate             1    8%  q-tf-004-6a-mc
+
+RESULT: PASS
+===== tf-g7
+task tf-g7: 9 questions; 15% cap = 1 questions
+
+-force                        1   11%  q-tf-004-7b-mr
+-json                         1   11%  q-tf-004-7b-mc2
+TF_LOG_CORE                   1   11%  q-tf-004-7c-mc2
+TF_LOG_PROVIDER               1   11%  q-tf-004-7c-mc2
+import block                  1   11%  q-tf-004-7a-mr
+state list                    1   11%  q-tf-004-7b-mc
+state pull                    1   11%  q-tf-004-7b-mr
+state show                    1   11%  q-tf-004-7b-mc
+terraform output              1   11%  q-tf-004-7b-mc2
+terraform show                1   11%  q-tf-004-7b-mc2
+
+RESULT: PASS
+===== tf-g8
+task tf-g8: 20 questions; 15% cap = 3 questions
+
+HCP Terraform                 3   15%  q-tf-004-8-extra-03-mc,q-tf-004-8a-mc,q-tf-004-8c-mr
+run trigger                   3   15%  q-tf-004-8-extra-02-mc,q-tf-004-8-extra-07-mc,q-tf-004-8a-mc2
+variable set                  3   15%  q-tf-004-8-extra-02-mc,q-tf-004-8-extra-06-mc,q-tf-004-8c-mc2
+-out                          1    5%  q-tf-004-8-extra-00-mc
+
+RESULT: PASS

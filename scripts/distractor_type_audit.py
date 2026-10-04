@@ -24,6 +24,26 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CAP = 0.15
+SUBJECT_CAP = 0.40  # plan p2_audit_terms_scope_20261002
+MIN_N = 10  # below this, an over-cap task reports WARN (small N), not FAIL
+
+# Plan P2 (.cursor/plans/p2_audit_terms_scope_20261002.plan.md): a term that is
+# the task's own subject vocabulary is not a reused distractor type, so it is
+# held to SUBJECT_CAP instead of CAP. It is still counted and printed, so heavy
+# over-use shows. Each entry was ruled by the Teacher against the task's own
+# objective bullets (reports/open-items/phase1/TEACHER-subject-ruling.md).
+SUBJECT = {
+    "1-2": ["NAT Gateway"],                                  # 1.2-S01
+    "2-1": ["Lambda"],                                       # 2.1-K12, S05
+    "2-2": ["Multi-AZ"],                                     # 2.2-S02, S04, K06
+    "3-1": ["Storage Gateway", "EFS"],                       # 3.1-K01, K02
+    "3-2": ["Lambda", "Auto Scaling"],                       # 3.2-K05, K04
+    "3-3": ["RDS", "read replica", "ElastiCache", "DynamoDB", "Aurora"],  # 3.3-S03, K07, K02, S04
+    "3-4": ["Application Load Balancer", "Direct Connect", "CloudFront",
+            "Gateway Load Balancer"],                        # 3.4-K03, K04, K01, S04
+    "3-5": ["Glue", "EMR", "Athena"],                        # 3.5-K04, S05, K01
+    "4-1": ["EBS", "FSx", "EFS", "S3 Glacier"],              # 4.1-K04, K10
+}
 
 TERMS = [
     # compute / placement (4.2)
@@ -108,6 +128,13 @@ def main(task: str) -> int:
         print(f"no question files for task {task}")
         return 1
 
+    # Exam split: SAA tasks use only the AWS service terms (everything before
+    # the first Terraform-only term); Terraform tasks keep the full list, so
+    # their results are unchanged. This stops cross-exam hits such as the
+    # tf-g7 term `identity` matching IAM "identity" in task 1-1.
+    terms = TERMS if task.startswith("tf-") else TERMS[: TERMS.index("HCP Terraform")]
+    subject = set(SUBJECT.get(task, []))
+
     cnt: collections.Counter = collections.Counter()
     where = collections.defaultdict(list)
     for f in files:
@@ -118,7 +145,7 @@ def main(task: str) -> int:
             if ch["id"] in keys:
                 continue
             low = ch["text"].lower()
-            for t in TERMS:
+            for t in terms:
                 # Word-boundary match: a bare "RDS" must not match inside
                 # "shards" or "records". The trailing guard allows a plural
                 # suffix, because it previously hid "read replicas" (6 of 22
@@ -132,15 +159,26 @@ def main(task: str) -> int:
             cnt[t] += 1
             where[t].append(short)
 
-    cap = int(len(files) * CAP)
-    over = [t for t, c in cnt.items() if c > cap]
-    print(f"task {task}: {len(files)} questions; 15% cap = {cap} questions\n")
-    for t, c in cnt.most_common():
-        flag = "   <-- OVER CAP" if c > cap else ""
-        print(f"{t:28}{c:3d}{c / len(files) * 100:5.0f}%  {','.join(where[t])}{flag}")
-    print(f"\nRESULT: {'FAIL' if over else 'PASS'}" + (f" ({', '.join(over)})" if over else ""))
-    return 1 if over else 0
-
+    n = len(files)
+    cap = int(n * CAP)
+    scap = int(n * SUBJECT_CAP)
+    over = [t for t, c in cnt.items() if c > (scap if t in subject else cap)]
+    print(f"task {task}: {n} questions; 15% cap = {cap} questions"
+          + (f"; subject-term cap (40%) = {scap}" if subject else "") + "\n")
+    # Sort ties by name so the output is stable across runs and diffs cleanly.
+    for t, c in sorted(cnt.items(), key=lambda kv: (-kv[1], kv[0])):
+        lim = scap if t in subject else cap
+        flag = "   <-- OVER CAP" if c > lim else ""
+        tag = "  [subject]" if t in subject else ""
+        print(f"{t:28}{c:3d}{c / n * 100:5.0f}%  {','.join(where[t])}{tag}{flag}")
+    if not over:
+        print("\nRESULT: PASS")
+        return 0
+    if n < MIN_N:
+        print(f"\nRESULT: WARN (small N: {n} < {MIN_N}) ({', '.join(over)})")
+        return 0
+    print(f"\nRESULT: FAIL ({', '.join(over)})")
+    return 1
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv[1]))
