@@ -62,6 +62,7 @@ Only a user decision can set By-design or won't-fix (D3, D4, D5, D6).
 | O5 | Exam layout at 375px | WP8b | Fixed. One column, no horizontal scroll at 375px |
 | O6 | Each drill links back to its lesson | WP7b | Fixed. `Study:` link on `q-saa-1-1-k01-mc` opens lesson 1.1 |
 | O7 | Each lesson links to its labs and design exercises | WP7b | Fixed. Matched on objective ids. Lab links open `/labs?lab=`. Exercises show on the lesson |
+| O8 | GL-07 says EFS but has no EFS steps; GL-21 title says HCP | WP5b | Fixed. GL-07 is “EC2 and EBS” and points at UL-07 for EFS. GL-21 is “ElastiCache tradeoffs” |
 | O9 | Missing sidecar templates; s12–s15 boilerplate | WP5b | Reported. Not started |
 | O10 | Corrupt content JSON returns a clear JSON 500 | WP9b | Fixed. Loader raises ContentParseError; question GET returns JSON 500. 13 Django tests OK |
 | Q1 | Rewrite the practice-question bank | WP4b | Reported. Blocked until the pilot batch is approved |
@@ -256,7 +257,6 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | R6 / ISS-070 (registry) | All 189 rows of `content/coverage/saa_registry.json` still say `implemented_unverified` | Medium | The content behind them is reviewed; the registry status field was never updated. Needs a plan: decide what "verified" means per row |
 | CR-0024 (distractor reuse) | Real reuse or over-use left after the audit was scoped: 2-2 (RDS, Aurora, Auto Scaling, read replica), 3-1 FSx (WARN), 3-2 Compute Optimizer, 3-3 RDS and Redshift, 3-4 NAT Gateway, 3-5 Glue | Low | Needs its own content plan (`docs/change-requests.md`) |
 | Recorded tells | 1-2 longest-is-key 40%; 3-1 shortest 60% (5 MC); 3-5 shortest 36%; 3-3 MR key sets 50% `a,b` | Low | Closed tasks; 3-1 and 3-5 left closed by user decision (2026-09-28) |
-| O8 | GL-07 "EC2 and EBS" and GL-21 "ElastiCache tradeoffs" titles | Low | Marked Fixed in round 2 but never second-role closed. Needs one Full-Stack or Student check |
 | N4 | Start here lists a lesson's drills by raw question ID | Low | Still present (`StartHereTab.tsx` renders the id) |
 | N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
 | STUDENT-R6 notes | Lesson 1.1 has no in-lesson section links | Low | Non-blocking |
