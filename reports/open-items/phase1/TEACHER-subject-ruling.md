@@ -17,3 +17,9 @@ Saved by the Lead Dev (condensed). A term counts as SUBJECT only when a bullet i
 **Minimum-N:** agreed, with a condition. Below 10 questions an over-cap task reports `WARN (small N)` and still prints every term. The 3-1 FSx repeat (3/8, REUSE) is probably real; the Teacher proposes a CR to add questions to 3-1.
 
 **Predicted result after the change:** 1-2, 2-1 and 4-1 go to PASS. 2-2, 3-2, 3-3, 3-4 and 3-5 stay FAIL on real reuse or over-use; 3-1 becomes WARN. The actual run matched this exactly (`audit-after.txt`).
+
+## Post-check (Teacher, after implementation): close
+- The SUBJECT map matches the ruling exactly, and no REUSE term was exempted.
+- The exam split removed no flagged term. The only term that disappeared is `validation` in 4-3, a Terraform-only term that was matching "SQL dialect validation" (by design).
+- Terraform tasks are unchanged, and a rerun matches `audit-after.txt` exactly.
+- The remaining FAILs and the WARN are real reuse or over-use, logged as CR-0024.

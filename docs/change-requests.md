@@ -296,6 +296,24 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: `.cursor/plans/p3_o8_lab_titles_20261002.plan.md`
 - Teacher validation: plan approved
 
+## CR-0024 — Real distractor reuse and over-use in tasks 2-2, 3-1, 3-2, 3-3, 3-4, 3-5
+- Raised by: Teacher (Phase 1 post-check), recorded by the Lead Dev
+- Date: 2026-10-04
+- Type: content-update
+- Where: `content/questions/q-saa-{2-2,3-1,3-2,3-3,3-4,3-5}-*`; numbers in `reports/open-items/phase1/audit-after.txt`
+- Problem: after the audit was scoped (Phase 1), these still exceed the cap. Reuse terms are held to 15%, subject terms to 40%:
+  - 2-2: RDS 6/32, Aurora 5/32, Auto Scaling 5/32, read replica 5/32. Multi-AZ 9/32 passes only as a subject term, the weakest ruling.
+  - 3-1: FSx 3/8 (WARN, small N). Add questions rather than swap distractors.
+  - 3-2: Compute Optimizer 3/16.
+  - 3-3: RDS 9/21 (43%, over the subject cap) and Redshift 4/21.
+  - 3-4: NAT Gateway 3/13.
+  - 3-5: Glue 11/24 (46%, over the subject cap).
+- Suggested fix: replace some repeated distractors with other plausible, objective-relevant options, or rebalance with new questions. Each replacement needs Teacher validation and AWS doc checks, and must keep the key balance and objective mapping.
+- Affects learning content: yes
+- Status: open. Needs its own content plan; not part of the open-items master plan
+- Plan: none yet
+- Teacher validation: drafted by the Teacher
+
 ## Template
 
 ```markdown

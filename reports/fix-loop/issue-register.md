@@ -255,7 +255,7 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | ID | Item | Sev | Notes |
 |---|---|---|---|
 | R6 / ISS-070 (registry) | All 189 rows of `content/coverage/saa_registry.json` still say `implemented_unverified` | Medium | The content behind them is reviewed; the registry status field was never updated. Needs a plan: decide what "verified" means per row |
-| Audit scope | `distractor_type_audit` FAILs on SAA tasks 1-2, 2-1, 2-2 and 3-1 to 4-1 on service names, and did so before this work | Low | One global TERMS list serves both exams. Option: scope TERMS per exam. Needs a plan |
+| CR-0024 (distractor reuse) | Real reuse or over-use left after the audit was scoped: 2-2 (RDS, Aurora, Auto Scaling, read replica), 3-1 FSx (WARN), 3-2 Compute Optimizer, 3-3 RDS and Redshift, 3-4 NAT Gateway, 3-5 Glue | Low | Needs its own content plan (`docs/change-requests.md`) |
 | Recorded tells | 1-2 longest-is-key 40%; 3-1 shortest 60% (5 MC); 3-5 shortest 36%; 3-3 MR key sets 50% `a,b` | Low | Closed tasks; 3-1 and 3-5 left closed by user decision (2026-09-28) |
 | O8 | GL-07 "EC2 and EBS" and GL-21 "ElastiCache tradeoffs" titles | Low | Marked Fixed in round 2 but never second-role closed. Needs one Full-Stack or Student check |
 | N4 | Start here lists a lesson's drills by raw question ID | Low | Still present (`StartHereTab.tsx` renders the id) |
@@ -264,3 +264,9 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 | PY-R5-001–003, PY-R4-005/008/009, PY-R5-004/005 | Scanner bypasses needing deliberate obfuscation; documented KISS trade-offs | Low/Info | Python says close is fine; a formal won't-fix needs your approval |
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
 | Regional NAT gateway (optional) | Lesson 4.4 does not mention regional NAT gateways | Low | Real AWS feature; skipped by both reviewers to keep the exam signal. A future CR if wanted |
+
+### Open-items master plan progress (`.cursor/plans/master_open_items_20261002.plan.md`)
+
+| Phase | Item | Result | Closed by |
+|---|---|---|---|
+| 1 (P2) | Audit scope: 9 SAA tasks FAILed, mostly on their own subject vocabulary | **Closed 2026-10-04** (`69487ff`). Subject terms held to 40%, an exam split, and a small-N WARN. 1-2, 2-1 and 4-1 PASS; 3-1 WARN; the real reuse is logged as CR-0024 | Teacher ruling + Teacher post-check; Lead Dev re-ran all 22 tasks (Terraform unchanged) |

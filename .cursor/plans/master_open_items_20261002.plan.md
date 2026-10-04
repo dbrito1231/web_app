@@ -51,3 +51,13 @@ Done for all five plans (`reports/open-items/TEACHER-plans.md`). P3, P4 and P5 w
 
 1. Approve this master plan and its phase order?
 2. For each phase: the recommended option, or another?
+
+## Progress
+
+| Phase | Plan | Status |
+|---|---|---|
+| 1 | P2 audit scope | **Closed 2026-10-04** (`69487ff`); Teacher close; the real reuse is logged as CR-0024 |
+| 2 | P3 O8 lab titles | Waiting for the user's GO |
+| 3 | P1 registry | — |
+| 4 | P4 drill UI | — |
+| 5 | P5 regional NAT gateway | — |
