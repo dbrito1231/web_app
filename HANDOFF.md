@@ -1,4 +1,4 @@
-# HANDOFF: Q1 lesson-first content rewrite (as of 2026-10-01)
+# HANDOFF: Q1 lesson-first content rewrite (as of 2026-10-07)
 
 Read this first, then `AGENTS.md`, then `reports/fix-loop-r2/q1/RULES.md`.
 
@@ -9,11 +9,50 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). The remaining open items are listed at the end of `reports/fix-loop/issue-register.md`; each needs its own plan.
+**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). **Now running: the open-items master plan. Phases 1 and 2 are closed; Phase 3 is next and waits for the user's GO.** See "Remaining steps" below.
+
+## Remaining steps (resume here; updated 2026-10-07)
+
+**Branch:** all work goes straight to `main` (user decision 2026-10-01). The last PR was dbrito1231/web_app#1, merged 2026-10-01; the old branch `claude/eloquent-davinci-7z477q` is stale. If the user wants a phase reviewed first, use a fresh branch from `main` and a new PR.
+
+**Master plan:** `.cursor/plans/master_open_items_20261002.plan.md` (approved 2026-10-04, all recommended options, plus the user's "Next drill" button in P4). One phase per GO; stop and report after each.
+
+| Phase | Plan | State | What is left |
+|---|---|---|---|
+| 1 | P2 audit scope | **Closed** `69487ff` | — (real reuse logged as CR-0024) |
+| 2 | P3 O8 lab titles | **Closed** `aff6496` (+`ffbc520`) | — (follow-up CR-0025) |
+| 3 | P1 coverage registry | **Next; waits for GO** | See steps below |
+| 4 | P4 drill list UI (N4, N9, Next drill) | Not started | See steps below |
+| 5 | P5 regional NAT gateway | Not started | Close as won't-do: record it in the register with the revisit trigger (an SAA-C03 guide update, or exam questions that include it) and log the 4.4 S01 "single AZ" sentence as a known zonal simplification. No content change |
+
+**Phase 3 steps (plan `p1_coverage_registry_verify_20261002.plan.md`):**
+1. Write `scripts/registry_verify.py`. It is read-only by default and prints a per-row PASS/FAIL table; `--write` applies changes. A row passes when:
+   - its lesson is a closed Q1 lesson;
+   - `drill_refs` equals the questions whose `objectiveIds` name the row;
+   - every drill is `verified` and cited;
+   - the task's audit has no real-reuse FAIL;
+   - every `validation_refs` path exists.
+2. Remove the demo questions `q-a0-mc-001` and `q-a0-mr-001` from the `drill_refs` of `SAA-1.1-K04` and `K05`.
+3. The Teacher spot-checks about 20 rows before `--write`. Include K04, K05, a single-drill row (69 exist), a design_exercise row and several live_aws rows.
+4. Run `--write`. **"Verified" means reviewed on paper** by the technical reviewer, the Teacher and a blind Student, with citations. It never means "tested", "exam-ready" or "run in AWS". The 25 live_aws rows say "paper review only; not run in AWS (D5)" in the row itself.
+5. **Note the audit's effect.** Tasks 2-2, 3-2, 3-3, 3-4 and 3-5 still FAIL on real reuse (CR-0024), and 3-1 is WARN. The plan says rows of a task with a real-reuse FAIL are not marked verified. Expect those rows to stay `implemented_unverified`, with CR-0024 named in `gap`. Tell the user this before writing; it is the honest result.
+6. Refresh `docs/coverage-and-metrics.md` (CR-0022): it is still the Phase-0 skeleton ("0 / 189").
+7. The Teacher re-validates. Check that the Coverage tab caption still says this is not a pass probability. Then run the tests, the build and a smoke check of the Coverage count.
+
+**Phase 4 steps (plan `p4_drill_list_ui_20261002.plan.md`):**
+1. **N4:** Start here must fetch `/api/content/catalog`, because the summary carries IDs only. Show each drill's type plus a stem preview cut at a word boundary, with the ID as a muted label.
+2. **N9:** move the question article above `.pbq-grid` in `ExamDrillsTab.tsx`, keeping the "Back to Start here" link and the heading focus.
+3. Add a **"Next drill"** button beside Retry. It opens the next drill in the current list (wrapping to the first) and focuses its heading.
+4. Add e2e tests to `frontend/tests/e2e/` for N4, N9 (`?q=` focus, 375 px) and Next drill. Run a browser smoke test on a throwaway DB.
+5. The Teacher validates before and after, and a Student checks the screens.
+
+**Open change requests outside the master plan** (each needs its own plan): CR-0024 (real distractor reuse in 2-2, 3-1, 3-2, 3-3, 3-4, 3-5) and CR-0025 (the gl-03 and gl-20 lab titles overclaim their content). Smaller items: PY-R5 scanner trade-offs (a won't-fix needs the user's yes or no), lab cosmetics, and the STUDENT-R6 note.
+
+**Process for every phase:** Teacher before and after for content or UI changes; a second role closes each register item; Sonnet subagents only, at most 3 at a time, no git; the Lead Dev runs every check before and after and diffs the full output; commit and push to `main`; then update the register, `docs/status.md`, the master plan's Progress table and this file.
 
 The plan in force is `.cursor/plans/q1_remaining_budget_plan_20260926.plan.md` (see its Amendment 11 for the current rules and what is left), under `.cursor/plans/lead_dev_fix_loop_round2_20260926.plan.md` Amendment 3.
 
-## Where tf-g7 and tf-g8 stand (resume here; updated 2026-10-01)
+## Where tf-g7 and tf-g8 stood (closed 2026-10-01)
 
 The two tasks ran in parallel, one writer each (3 subagents allowed at once). **Both are closed; resume at the final-sitting list below.**
 
@@ -108,6 +147,13 @@ Background to those decisions follows.
 
 ## Tools
 
+**Cloud session (verified 2026-10-02):**
+- **Django tests:** the default Python is 3.11 and Django 6.1.1 does not install on it. Create `backend/.venv` with `python3.12 -m venv`, then `pip install -r requirements.txt`.
+- **Frontend:** `npm ci` and `npm run build` work.
+- **Browser smoke test:** use a throwaway DB (`manage.py migrate`), Django on 127.0.0.1:8000, and `npx vite preview --port 5173`. Use Playwright with `executablePath: '/opt/pw-browsers/chromium'`; the project's Playwright version expects a different browser build. The script is `reports/final-sitting/smoke.cjs`.
+- **Cleanup:** delete the throwaway DB and stop both servers afterwards. Running a smoke test needs the user's OK each time, because it is an exception to "No servers, no Playwright".
+- **DB fingerprint:** only on the user's machine; `db.sqlite3` is not in git.
+
 **Local Windows machine only.** The paths below (`backend\.venv\Scripts\python.exe`, `../eval-baseline/db.sqlite3.bak`) and the `mcp__MCP_DOCKER__*` AWS docs tools exist on the user's PC. A Claude Code cloud session (Linux, fresh clone) has none of them: no venv, no DB backup, no MCP_DOCKER tools, and a shallow git history (older commits such as `0161bb9` are not in the clone). In a cloud session, do docs-only work and leave DB restores, the Django tests and Student browser checks for the local machine.
 
 - **AWS docs:** `mcp__MCP_DOCKER__search_documentation`, `read_documentation`, `read_sections` — load all three in one ToolSearch `select:` call. Prefer user-guide pages.
@@ -180,8 +226,8 @@ Terraform question files are named `q-tf-004-<group><letter>-*`; every script ma
   - `a7a215b`: the date sweep to 2026-10-01 (461 citations, 427 questions; a field-by-field JSON comparison found no other change). `q1_batch_check` and RULES now use the new date.
   - The register is reconciled (true open list at the end of `reports/fix-loop/issue-register.md`), CR-0019 and CR-0021 are closed, and `docs/status.md` is updated.
 - **Item 9 (2026-10-02, user option 2):** run in the cloud. 91 Django tests OK (Python 3.12 venv; Django 6.1.1 failed to install on the 3.11 default), `npm run build` OK, and the browser smoke test was 16/16 against a throwaway DB, as a one-off exception to "No servers, no Playwright" (`reports/final-sitting/local-checks.md`). The DB fingerprint on the user's machine (2026-10-02) matched: `930f0e72…`, integrity ok.
-- **Open-items master plan** (`.cursor/plans/master_open_items_20261002.plan.md`, approved 2026-10-04; one phase per GO): Phase 1 (audit scope) closed `69487ff`; Phase 2 (O8 lab titles) closed 2026-10-04; next is Phase 3 (coverage registry, plan P1).
-- **Still open, each needing its own plan:** the coverage registry's 189 `implemented_unverified` rows (R6/ISS-070), per-exam audit TERMS, an O8 second-role check, N4, N9, and the optional Regional NAT gateway. See the register.
+- **Open-items master plan** (`.cursor/plans/master_open_items_20261002.plan.md`, approved 2026-10-04; one phase per GO): Phase 1 (audit scope) closed `69487ff`; Phase 2 (O8 lab titles) closed `aff6496`; next is Phase 3 (coverage registry, plan P1). See "Remaining steps" at the top.
+- **Still open:** see "Remaining steps" at the top and the register's final reconciliation.
 
 ## Session-scoped agent ids (this session only)
 
