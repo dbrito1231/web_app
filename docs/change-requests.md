@@ -280,7 +280,7 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Problem: the doc says every registry row is `missing` and shows "0 / 189" with "no lessons, drills, labs". It contradicts the registry and the rewritten content.
 - Suggested fix: refresh it in plan P1 and define "verified" narrowly.
 - Affects learning content: yes (content-facing doc)
-- Status: planned
+- Status: **done 2026-10-07** (Phase 3). The gap report, rollup and registry section are refreshed; `verified` is defined as reviewed on paper
 - Plan: `.cursor/plans/p1_coverage_registry_verify_20261002.plan.md`
 - Teacher validation: plan approved with concerns (folded in)
 
@@ -321,6 +321,18 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Where: `content/labs/gl-03.json`, `content/labs/gl-20.json` (`title`)
 - Problem: the GL-03 title says "IAM role, resource policy, and STS", but no step creates a resource policy; the only mention is a teardown line about a bucket policy. The GL-20 title says "Terraform workflow modules state import", but the steps cover init, fmt, validate, plan, apply and state; a grep finds no module or import content. The shorter sidebar titles ("IAM role & STS", "Terraform workflow & state") are the accurate ones.
 - Suggested fix: trim the two lab titles to match their steps, or add the missing content. Do not lengthen the sidebar titles.
+- Affects learning content: yes
+- Status: open. Needs its own small plan
+- Plan: none yet
+- Teacher validation: drafted by the Teacher
+
+## CR-0026 — Phase 3 Teacher follow-ups (thin spots in verified rows)
+- Raised by: Teacher (Phase 3 spot-check), recorded by the Lead Dev
+- Date: 2026-10-07
+- Type: content-update
+- Where: `lesson-1-1` (SAA-1.1-S04 Control Tower, one mention); `SAA-1.1-K05` (one drill left after the demo drills were removed); `lesson-4-2` and `q-saa-4-2-s06-mc` (SAA-4.2-S06: no Compute Optimizer or percentile sizing, mc solvable by "next size up")
+- Problem: the rows are acceptable as verified on paper, but each has a thin lesson passage or a single weak drill (TEACHER-P3-002, 003, 004).
+- Suggested fix: add a Control Tower paragraph; add a second K05 drill (shared responsibility); add a Compute Optimizer line and a harder 4.2-S06 mc.
 - Affects learning content: yes
 - Status: open. Needs its own small plan
 - Plan: none yet

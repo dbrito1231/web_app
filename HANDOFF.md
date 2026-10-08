@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). **Now running: the open-items master plan. Phases 1 and 2 are closed; Phase 3 is next and waits for the user's GO.** See "Remaining steps" below.
+**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). **Now running: the open-items master plan. Phases 1, 2 and 3 are closed; Phase 4 is next and waits for the user's GO.** See "Remaining steps" below.
 
 ## Remaining steps (resume here; updated 2026-10-07)
 
@@ -21,23 +21,9 @@ Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the
 |---|---|---|---|
 | 1 | P2 audit scope | **Closed** `69487ff` | — (real reuse logged as CR-0024) |
 | 2 | P3 O8 lab titles | **Closed** `aff6496` (+`ffbc520`) | — (follow-up CR-0025) |
-| 3 | P1 coverage registry | **Next; waits for GO** | See steps below |
-| 4 | P4 drill list UI (N4, N9, Next drill) | Not started | See steps below |
+| 3 | P1 coverage registry | **Closed 2026-10-07** | — (119/189 verified on paper; the 70 rows of 2.2 and 3.1-3.5 wait on CR-0024, then re-run `python scriptsegistry_verify.py --write`; follow-up CR-0026) |
+| 4 | P4 drill list UI (N4, N9, Next drill) | **Next; waits for GO** | See steps below |
 | 5 | P5 regional NAT gateway | Not started | Close as won't-do: record it in the register with the revisit trigger (an SAA-C03 guide update, or exam questions that include it) and log the 4.4 S01 "single AZ" sentence as a known zonal simplification. No content change |
-
-**Phase 3 steps (plan `p1_coverage_registry_verify_20261002.plan.md`):**
-1. Write `scripts/registry_verify.py`. It is read-only by default and prints a per-row PASS/FAIL table; `--write` applies changes. A row passes when:
-   - its lesson is a closed Q1 lesson;
-   - `drill_refs` equals the questions whose `objectiveIds` name the row;
-   - every drill is `verified` and cited;
-   - the task's audit has no real-reuse FAIL;
-   - every `validation_refs` path exists.
-2. Remove the demo questions `q-a0-mc-001` and `q-a0-mr-001` from the `drill_refs` of `SAA-1.1-K04` and `K05`.
-3. The Teacher spot-checks about 20 rows before `--write`. Include K04, K05, a single-drill row (69 exist), a design_exercise row and several live_aws rows.
-4. Run `--write`. **"Verified" means reviewed on paper** by the technical reviewer, the Teacher and a blind Student, with citations. It never means "tested", "exam-ready" or "run in AWS". The 25 live_aws rows say "paper review only; not run in AWS (D5)" in the row itself.
-5. **Note the audit's effect.** Tasks 2-2, 3-2, 3-3, 3-4 and 3-5 still FAIL on real reuse (CR-0024), and 3-1 is WARN. The plan says rows of a task with a real-reuse FAIL are not marked verified. Expect those rows to stay `implemented_unverified`, with CR-0024 named in `gap`. Tell the user this before writing; it is the honest result.
-6. Refresh `docs/coverage-and-metrics.md` (CR-0022): it is still the Phase-0 skeleton ("0 / 189").
-7. The Teacher re-validates. Check that the Coverage tab caption still says this is not a pass probability. Then run the tests, the build and a smoke check of the Coverage count.
 
 **Phase 4 steps (plan `p4_drill_list_ui_20261002.plan.md`):**
 1. **N4:** Start here must fetch `/api/content/catalog`, because the summary carries IDs only. Show each drill's type plus a stem preview cut at a word boundary, with the ID as a muted label.

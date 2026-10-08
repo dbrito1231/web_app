@@ -59,6 +59,6 @@ Done for all five plans (`reports/open-items/TEACHER-plans.md`). P3, P4 and P5 w
 | 1 | P2 audit scope | **Closed 2026-10-04** (`69487ff`); Teacher close; the real reuse is logged as CR-0024 |
 | 2 | P3 O8 lab titles | **Closed 2026-10-04**; Student and Teacher close; CR-0023 done; follow-up CR-0025 |
 
-| 3 | P1 registry | Waiting for the user's GO |
+| 3 | P1 registry | **Closed 2026-10-07**; 119/189 verified on paper, 70 held back by CR-0024; Teacher pre/post; CR-0022 done; follow-up CR-0026 |
 | 4 | P4 drill UI | — |
 | 5 | P5 regional NAT gateway | — |

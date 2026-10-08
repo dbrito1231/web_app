@@ -63,7 +63,7 @@ export function CoverageTab() {
       const d = counts[row.domain_id];
       if (!d) continue;
       d.n += 1;
-      if (row.status !== 'missing') d.done += 1;
+      if (row.status === 'verified') d.done += 1;
     }
     return counts;
   }, [data]);
@@ -104,7 +104,7 @@ export function CoverageTab() {
 
       <div className="main">
         <div className="eyebrow">
-          Objective bullet → curriculum status. Gaps stay visible until verified with evidence.
+          Objective bullet → curriculum status. Gaps stay visible until the lesson and drills are reviewed on paper. This is curriculum coverage, not a pass probability or exam readiness.
         </div>
         <div className="covsum">
           <div>
@@ -117,7 +117,7 @@ export function CoverageTab() {
             <b className="tnum">
               {verified}/{total}
             </b>
-            <span>verified with evidence</span>
+            <span>verified on paper (labs not run in AWS)</span>
           </div>
           <div>
             <b className="tnum">189</b>

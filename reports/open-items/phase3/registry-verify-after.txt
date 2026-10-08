@@ -1,0 +1,193 @@
+row            mode            drills audit result
+SAA-1.1-K01    concept_review       2 PASS  PASS
+SAA-1.1-K02    concept_review       1 PASS  PASS
+SAA-1.1-K03    concept_review       1 PASS  PASS
+SAA-1.1-K04    concept_review       2 PASS  PASS
+SAA-1.1-K05    concept_review       1 PASS  PASS
+SAA-1.1-S01    live_aws             2 PASS  PASS
+SAA-1.1-S02    live_aws             2 PASS  PASS
+SAA-1.1-S03    live_aws             2 PASS  PASS
+SAA-1.1-S04    design_exercise      2 PASS  PASS
+SAA-1.1-S05    live_aws             2 PASS  PASS
+SAA-1.1-S06    design_exercise      2 PASS  PASS
+SAA-1.2-K01    concept_review       1 PASS  PASS
+SAA-1.2-K02    concept_review       2 PASS  PASS
+SAA-1.2-K03    concept_review       1 PASS  PASS
+SAA-1.2-K04    concept_review       1 PASS  PASS
+SAA-1.2-K05    concept_review       2 PASS  PASS
+SAA-1.2-K06    concept_review       1 PASS  PASS
+SAA-1.2-S01    live_aws             2 PASS  PASS
+SAA-1.2-S02    live_aws             2 PASS  PASS
+SAA-1.2-S03    design_exercise      2 PASS  PASS
+SAA-1.2-S04    design_exercise      2 PASS  PASS
+SAA-1.3-K01    concept_review       2 PASS  PASS
+SAA-1.3-K02    concept_review       1 PASS  PASS
+SAA-1.3-K03    concept_review       1 PASS  PASS
+SAA-1.3-K04    concept_review       2 PASS  PASS
+SAA-1.3-S01    design_exercise      2 PASS  PASS
+SAA-1.3-S02    live_aws             2 PASS  PASS
+SAA-1.3-S03    design_exercise      2 PASS  PASS
+SAA-1.3-S04    live_aws             2 PASS  PASS
+SAA-1.3-S05    design_exercise      2 PASS  PASS
+SAA-1.3-S06    live_aws             2 PASS  PASS
+SAA-1.3-S07    design_exercise      2 PASS  PASS
+SAA-2.1-K01    concept_review       1 PASS  PASS
+SAA-2.1-K02    concept_review       2 PASS  PASS
+SAA-2.1-K03    concept_review       1 PASS  PASS
+SAA-2.1-K04    concept_review       1 PASS  PASS
+SAA-2.1-K05    concept_review       2 PASS  PASS
+SAA-2.1-K06    concept_review       1 PASS  PASS
+SAA-2.1-K07    concept_review       1 PASS  PASS
+SAA-2.1-K08    concept_review       2 PASS  PASS
+SAA-2.1-K09    concept_review       1 PASS  PASS
+SAA-2.1-K10    concept_review       1 PASS  PASS
+SAA-2.1-K11    concept_review       2 PASS  PASS
+SAA-2.1-K12    concept_review       1 PASS  PASS
+SAA-2.1-K13    concept_review       1 PASS  PASS
+SAA-2.1-K14    concept_review       2 PASS  PASS
+SAA-2.1-K15    concept_review       1 PASS  PASS
+SAA-2.1-K16    concept_review       1 PASS  PASS
+SAA-2.1-S01    live_aws             2 PASS  PASS
+SAA-2.1-S02    design_exercise      2 PASS  PASS
+SAA-2.1-S03    design_exercise      2 PASS  PASS
+SAA-2.1-S04    design_exercise      2 PASS  PASS
+SAA-2.1-S05    live_aws             2 PASS  PASS
+SAA-2.1-S06    design_exercise      2 PASS  PASS
+SAA-2.1-S07    design_exercise      2 PASS  PASS
+SAA-2.2-K01    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K02    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K03    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K04    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K05    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K06    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K07    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K08    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K09    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K10    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K11    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-K12    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S01    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S02    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S03    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S04    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S05    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S06    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S07    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-2.2-S08    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.1-K01    concept_review       2 WARN  FAIL audit WARN (CR-0024)
+SAA-3.1-K02    concept_review       1 WARN  FAIL audit WARN (CR-0024)
+SAA-3.1-K03    concept_review       1 WARN  FAIL audit WARN (CR-0024)
+SAA-3.1-S01    design_exercise      2 WARN  FAIL audit WARN (CR-0024)
+SAA-3.1-S02    design_exercise      2 WARN  FAIL audit WARN (CR-0024)
+SAA-3.2-K01    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-K02    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-K03    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-K04    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-K05    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-K06    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-S01    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-S02    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-S03    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.2-S04    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K01    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K02    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K03    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K04    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K05    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K06    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K07    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-K08    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-S01    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-S02    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-S03    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-S04    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.3-S05    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-K01    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-K02    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-K03    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-K04    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-S01    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-S02    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-S03    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.4-S04    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K01    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K02    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K03    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K04    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K05    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K06    concept_review       1 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-K07    concept_review       2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S01    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S02    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S03    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S04    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S05    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S06    design_exercise      2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-3.5-S07    live_aws             2 FAIL  FAIL audit FAIL (CR-0024)
+SAA-4.1-K01    concept_review       1 PASS  PASS
+SAA-4.1-K02    concept_review       2 PASS  PASS
+SAA-4.1-K03    concept_review       1 PASS  PASS
+SAA-4.1-K04    concept_review       1 PASS  PASS
+SAA-4.1-K05    concept_review       2 PASS  PASS
+SAA-4.1-K06    concept_review       1 PASS  PASS
+SAA-4.1-K07    concept_review       1 PASS  PASS
+SAA-4.1-K08    concept_review       2 PASS  PASS
+SAA-4.1-K09    concept_review       1 PASS  PASS
+SAA-4.1-K10    concept_review       1 PASS  PASS
+SAA-4.1-K11    concept_review       2 PASS  PASS
+SAA-4.1-S01    design_exercise      2 PASS  PASS
+SAA-4.1-S02    design_exercise      2 PASS  PASS
+SAA-4.1-S03    design_exercise      2 PASS  PASS
+SAA-4.1-S04    design_exercise      2 PASS  PASS
+SAA-4.1-S05    design_exercise      2 PASS  PASS
+SAA-4.1-S06    design_exercise      2 PASS  PASS
+SAA-4.1-S07    design_exercise      2 PASS  PASS
+SAA-4.1-S08    design_exercise      2 PASS  PASS
+SAA-4.1-S09    design_exercise      2 PASS  PASS
+SAA-4.1-S10    design_exercise      2 PASS  PASS
+SAA-4.2-K01    concept_review       1 PASS  PASS
+SAA-4.2-K02    concept_review       2 PASS  PASS
+SAA-4.2-K03    concept_review       1 PASS  PASS
+SAA-4.2-K04    concept_review       1 PASS  PASS
+SAA-4.2-K05    concept_review       2 PASS  PASS
+SAA-4.2-K06    concept_review       1 PASS  PASS
+SAA-4.2-K07    concept_review       1 PASS  PASS
+SAA-4.2-K08    concept_review       2 PASS  PASS
+SAA-4.2-K09    concept_review       1 PASS  PASS
+SAA-4.2-S01    design_exercise      2 PASS  PASS
+SAA-4.2-S02    design_exercise      2 PASS  PASS
+SAA-4.2-S03    design_exercise      2 PASS  PASS
+SAA-4.2-S04    design_exercise      2 PASS  PASS
+SAA-4.2-S05    design_exercise      2 PASS  PASS
+SAA-4.2-S06    live_aws             2 PASS  PASS
+SAA-4.3-K01    concept_review       1 PASS  PASS
+SAA-4.3-K02    concept_review       2 PASS  PASS
+SAA-4.3-K03    concept_review       1 PASS  PASS
+SAA-4.3-K04    concept_review       1 PASS  PASS
+SAA-4.3-K05    concept_review       2 PASS  PASS
+SAA-4.3-K06    concept_review       1 PASS  PASS
+SAA-4.3-K07    concept_review       1 PASS  PASS
+SAA-4.3-K08    concept_review       2 PASS  PASS
+SAA-4.3-K09    concept_review       1 PASS  PASS
+SAA-4.3-S01    live_aws             2 PASS  PASS
+SAA-4.3-S02    design_exercise      2 PASS  PASS
+SAA-4.3-S03    live_aws             2 PASS  PASS
+SAA-4.3-S04    design_exercise      2 PASS  PASS
+SAA-4.3-S05    design_exercise      2 PASS  PASS
+SAA-4.4-K01    concept_review       1 PASS  PASS
+SAA-4.4-K02    concept_review       1 PASS  PASS
+SAA-4.4-K03    concept_review       2 PASS  PASS
+SAA-4.4-K04    concept_review       1 PASS  PASS
+SAA-4.4-K05    concept_review       1 PASS  PASS
+SAA-4.4-K06    concept_review       2 PASS  PASS
+SAA-4.4-K07    concept_review       1 PASS  PASS
+SAA-4.4-S01    live_aws             2 PASS  PASS
+SAA-4.4-S02    design_exercise      2 PASS  PASS
+SAA-4.4-S03    design_exercise      2 PASS  PASS
+SAA-4.4-S04    design_exercise      2 PASS  PASS
+SAA-4.4-S05    design_exercise      2 PASS  PASS
+SAA-4.4-S06    design_exercise      2 PASS  PASS
+SAA-4.4-S07    design_exercise      2 PASS  PASS
+
+119 PASS / 70 FAIL of 189
+read-only run; pass --write to apply
