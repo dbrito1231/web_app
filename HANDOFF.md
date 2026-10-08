@@ -21,7 +21,7 @@ Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the
 |---|---|---|---|
 | 1 | P2 audit scope | **Closed** `69487ff` | — (real reuse logged as CR-0024) |
 | 2 | P3 O8 lab titles | **Closed** `aff6496` (+`ffbc520`) | — (follow-up CR-0025) |
-| 3 | P1 coverage registry | **Closed 2026-10-07** | — (119/189 verified on paper; the 70 rows of 2.2 and 3.1-3.5 wait on CR-0024, then re-run `python scriptsegistry_verify.py --write`; follow-up CR-0026) |
+| 3 | P1 coverage registry | **Closed 2026-10-07** | — (119/189 verified on paper; the 70 rows of 2.2 and 3.1-3.5 wait on CR-0024, then re-run `python scripts\registry_verify.py --write`; follow-up CR-0026) |
 | 4 | P4 drill list UI (N4, N9, Next drill) | **Closed 2026-10-07** | — (follow-up CR-0027) |
 | 5 | P5 regional NAT gateway | **Closed 2026-10-07: won't-do** | — (revisit trigger in the register) |
 
