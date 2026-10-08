@@ -9,7 +9,7 @@ The SAA-C03 and Terraform 004 workbook has 22 lessons, each with a set of drill 
 
 Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the Teacher** reviews and writes none (Lead Dev saves its reports), and a **technical reviewer** and a **Student** also check the work.
 
-**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). **Now running: the open-items master plan. Phases 1, 2 and 3 are closed; Phase 4 is next and waits for the user's GO.** See "Remaining steps" below.
+**Status: the Q1 rewrite and its final sitting are complete (2026-10-02).** All 22 tasks are closed (450 questions). 91 Django tests pass, the build passes, the smoke test was 16/16, and the user's DB fingerprint matches the baseline (`930f0e72…`, integrity ok, workbook tables empty). **Now running: the open-items master plan. Phases 1-5 of the master plan are all closed (2026-10-07).** See "Remaining steps" below.
 
 ## Remaining steps (resume here; updated 2026-10-07)
 
@@ -22,17 +22,10 @@ Roles are in `AGENTS.md`: **Lead Dev** is the only role that writes files, **the
 | 1 | P2 audit scope | **Closed** `69487ff` | — (real reuse logged as CR-0024) |
 | 2 | P3 O8 lab titles | **Closed** `aff6496` (+`ffbc520`) | — (follow-up CR-0025) |
 | 3 | P1 coverage registry | **Closed 2026-10-07** | — (119/189 verified on paper; the 70 rows of 2.2 and 3.1-3.5 wait on CR-0024, then re-run `python scriptsegistry_verify.py --write`; follow-up CR-0026) |
-| 4 | P4 drill list UI (N4, N9, Next drill) | **Next; waits for GO** | See steps below |
-| 5 | P5 regional NAT gateway | Not started | Close as won't-do: record it in the register with the revisit trigger (an SAA-C03 guide update, or exam questions that include it) and log the 4.4 S01 "single AZ" sentence as a known zonal simplification. No content change |
+| 4 | P4 drill list UI (N4, N9, Next drill) | **Closed 2026-10-07** | — (follow-up CR-0027) |
+| 5 | P5 regional NAT gateway | **Closed 2026-10-07: won't-do** | — (revisit trigger in the register) |
 
-**Phase 4 steps (plan `p4_drill_list_ui_20261002.plan.md`):**
-1. **N4:** Start here must fetch `/api/content/catalog`, because the summary carries IDs only. Show each drill's type plus a stem preview cut at a word boundary, with the ID as a muted label.
-2. **N9:** move the question article above `.pbq-grid` in `ExamDrillsTab.tsx`, keeping the "Back to Start here" link and the heading focus.
-3. Add a **"Next drill"** button beside Retry. It opens the next drill in the current list (wrapping to the first) and focuses its heading.
-4. Add e2e tests to `frontend/tests/e2e/` for N4, N9 (`?q=` focus, 375 px) and Next drill. Run a browser smoke test on a throwaway DB.
-5. The Teacher validates before and after, and a Student checks the screens.
-
-**Open change requests outside the master plan** (each needs its own plan): CR-0024 (real distractor reuse in 2-2, 3-1, 3-2, 3-3, 3-4, 3-5) and CR-0025 (the gl-03 and gl-20 lab titles overclaim their content). Smaller items: PY-R5 scanner trade-offs (a won't-fix needs the user's yes or no), lab cosmetics, and the STUDENT-R6 note.
+**Open change requests outside the master plan** (each needs its own plan): CR-0026 (thin spots in verified rows), CR-0027 (stale slice e2e tests, Next drill test gaps), CR-0024 (real distractor reuse in 2-2, 3-1, 3-2, 3-3, 3-4, 3-5) and CR-0025 (the gl-03 and gl-20 lab titles overclaim their content). Smaller items: PY-R5 scanner trade-offs (a won't-fix needs the user's yes or no), lab cosmetics, and the STUDENT-R6 note.
 
 **Process for every phase:** Teacher before and after for content or UI changes; a second role closes each register item; Sonnet subagents only, at most 3 at a time, no git; the Lead Dev runs every check before and after and diffs the full output; commit and push to `main`; then update the register, `docs/status.md`, the master plan's Progress table and this file.
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../api/client';
-import type { ExerciseIndexRow, LabIndexRow, Lesson, ReadinessPayload } from '../types';
+import type { ExerciseIndexRow, LabIndexRow, Lesson, QuestionCatalogRow, ReadinessPayload } from '../types';
 import { MarkdownBody } from '../utils/markdown';
 
 interface StartHereTabProps {
@@ -81,11 +81,20 @@ function RelatedPractice({
   );
 }
 
+function stemPreview(stem: string | undefined, max = 90) {
+  const text = (stem ?? '').replace(/\s+/g, ' ').trim();
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const at = cut.lastIndexOf(' ');
+  return `${(at > 40 ? cut.slice(0, at) : cut).replace(/[,;:.\s]+$/, '')}…`;
+}
+
 export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: StartHereTabProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [lessonIndex, setLessonIndex] = useState<Array<{ id: string; title: string }>>([
     { id: 'a0-lab-safety', title: 'A0 — Lab safety' },
   ]);
+  const [drillInfo, setDrillInfo] = useState<Map<string, QuestionCatalogRow>>(new Map());
   const [labIndex, setLabIndex] = useState<LabIndexRow[]>([]);
   const [exerciseIndex, setExerciseIndex] = useState<ExerciseIndexRow[]>([]);
   // ?lesson= is the single source of truth: no separate lessonId state, so a
@@ -150,6 +159,13 @@ export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: S
           api.lesson(lessonId),
           api.contentSummary(),
         ]);
+        // Stems are only in the catalog; a failure here just leaves the raw IDs.
+        api.questionCatalog().then(
+          (cat) => {
+            if (!cancelled) setDrillInfo(new Map(cat.questions.map((q) => [q.id, q])));
+          },
+          () => undefined,
+        );
         if (!cancelled) {
           setLesson(payload);
           if (summary.lessonIndex?.length) setLessonIndex(summary.lessonIndex);
@@ -344,11 +360,17 @@ export function StartHereTab({ readiness, notice, onDismissNotice, onReload }: S
             <>
               <h3>Drills for this lesson</h3>
               <ul>
-                {lesson.drillIds.map((id) => (
-                  <li key={id}>
-                    <Link to={`/exam?q=${encodeURIComponent(id)}`}>{id}</Link>
-                  </li>
-                ))}
+                {lesson.drillIds.map((id) => {
+                  const info = drillInfo.get(id);
+                  return (
+                    <li key={id}>
+                      <Link to={`/exam?q=${encodeURIComponent(id)}`}>
+                        {info ? `${info.type.toUpperCase()} · ${stemPreview(info.stem)}` : id}
+                      </Link>
+                      {info && <span className="drill-id"> {id}</span>}
+                    </li>
+                  );
+                })}
               </ul>
             </>
           )}

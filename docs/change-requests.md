@@ -338,6 +338,18 @@ Teacher drafts each request in chat. Lead Developer records it here. The log sta
 - Plan: none yet
 - Teacher validation: drafted by the Teacher
 
+## CR-0027 — Phase 4 follow-ups: stale slice e2e tests and test/polish gaps
+- Raised by: Lead Dev (slice.spec.ts) and Teacher (Phase 4 post-check, TEACHER-P4-002/003/004), recorded by the Lead Dev
+- Date: 2026-10-07
+- Type: bug (tests) and ux
+- Where: `frontend/tests/e2e/slice.spec.ts`; `frontend/tests/e2e/drills.spec.ts`; `ExamDrillsTab.tsx` grid cards
+- Problem: all 5 tests in `slice.spec.ts` fail on the current UI (`getByRole('button', { name: 'Labs' })` matches sidebar buttons too, and the Exam drills click times out). They do not touch Phase 4 code. The Next drill test does not cover wrap-around, the single-drill retry path or list order; the 375 px test does not assert the question is in the viewport; grid cards still cut stems mid-word with no ellipsis, unlike Start here.
+- Suggested fix: rewrite slice.spec.ts with exact tab locators; extend the Next drill test; reuse the word-boundary preview on the cards.
+- Affects learning content: no
+- Status: open. Needs its own small plan
+- Plan: none yet
+- Teacher validation: drafted by the Teacher (P4-002/003/004)
+
 ## Template
 
 ```markdown

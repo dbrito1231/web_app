@@ -213,6 +213,18 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
     if (question) setOrder(shuffle(question.choices.map((c) => c.id)));
   };
 
+  const nextDrill = () => {
+    if (!list.length) return;
+    const i = list.findIndex((q) => q.id === activeQuestionId);
+    const next = list[(i + 1) % list.length];
+    if (next.id === activeQuestionId) {
+      retry();
+      return;
+    }
+    scrollToQuestion.current = true;
+    setActiveQuestionId(next.id);
+  };
+
   const selectCount =
     question?.type === 'mr' ? String(question.selectCount ?? 2) : '1';
 
@@ -280,58 +292,6 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
 
         {list.length > 0 && (
           <>
-            <div className="pbq-grid">
-              {list.map((q) => {
-                const color = EXAM_MODULE_COLOR[q.module] ?? 'd1';
-                const best = bestScores[q.id];
-                return (
-                  <button
-                    key={q.id}
-                    type="button"
-                    className={`pbq-card ${q.id === activeQuestionId ? 'sel' : ''}`}
-                    style={DOMAIN_STYLE[color]}
-                    onClick={() => {
-                      setUnknownQueryId(null);
-                      if (q.id !== activeQuestionId) {
-                        scrollToQuestion.current = true;
-                        setActiveQuestionId(q.id);
-                      } else {
-                        scrollToQuestion.current = false;
-                        (questionArticle.current ?? questionHeading.current)?.scrollIntoView({
-                          block: 'start',
-                        });
-                        questionHeading.current?.focus({ preventScroll: true });
-                      }
-                    }}
-                  >
-                    <span className="eyebrow" style={{ color: 'var(--dc)' }}>
-                      {q.module} · {q.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
-                    </span>
-                    <span className="t">{q.stem?.slice(0, 90) ?? q.id}</span>
-                    <span className="m">
-                      <span>~5 min</span>
-                      <span className="tnum">
-                        {best == null ? 'Not tried' : `Best ${best}%`}
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-              <button
-                type="button"
-                className="pbq-card"
-                disabled
-                title="The 50-question set is in the coverage registry. A timed runner is not in this build."
-              >
-                <span className="eyebrow">Mock exam</span>
-                <span className="t">50-question set (15/13/12/10)</span>
-                <span className="m">
-                  <span>Set shipped; timed runner not in this build</span>
-                  <span className="tnum">Not runnable</span>
-                </span>
-              </button>
-            </div>
-
             {loading && !question && <p>Loading question…</p>}
             {error && (
               <p className="inline-error" role="alert">
@@ -406,6 +366,9 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                       <button type="button" className="btn" onClick={retry}>
                         Retry
                       </button>
+                      <button type="button" className="btn" onClick={nextDrill}>
+                        Next drill
+                      </button>
                     </>
                   )}
                 </div>
@@ -429,6 +392,59 @@ export function ExamDrillsTab({ summary }: ExamDrillsTabProps) {
                 )}
               </article>
             )}
+
+            <div className="pbq-grid">
+              {list.map((q) => {
+                const color = EXAM_MODULE_COLOR[q.module] ?? 'd1';
+                const best = bestScores[q.id];
+                return (
+                  <button
+                    key={q.id}
+                    type="button"
+                    className={`pbq-card ${q.id === activeQuestionId ? 'sel' : ''}`}
+                    style={DOMAIN_STYLE[color]}
+                    onClick={() => {
+                      setUnknownQueryId(null);
+                      if (q.id !== activeQuestionId) {
+                        scrollToQuestion.current = true;
+                        setActiveQuestionId(q.id);
+                      } else {
+                        scrollToQuestion.current = false;
+                        (questionArticle.current ?? questionHeading.current)?.scrollIntoView({
+                          block: 'start',
+                        });
+                        questionHeading.current?.focus({ preventScroll: true });
+                      }
+                    }}
+                  >
+                    <span className="eyebrow" style={{ color: 'var(--dc)' }}>
+                      {q.module} · {q.type === 'mc' ? 'Multiple choice' : 'Multiple response'}
+                    </span>
+                    <span className="t">{q.stem?.slice(0, 90) ?? q.id}</span>
+                    <span className="m">
+                      <span>~5 min</span>
+                      <span className="tnum">
+                        {best == null ? 'Not tried' : `Best ${best}%`}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+              <button
+                type="button"
+                className="pbq-card"
+                disabled
+                title="The 50-question set is in the coverage registry. A timed runner is not in this build."
+              >
+                <span className="eyebrow">Mock exam</span>
+                <span className="t">50-question set (15/13/12/10)</span>
+                <span className="m">
+                  <span>Set shipped; timed runner not in this build</span>
+                  <span className="tnum">Not runnable</span>
+                </span>
+              </button>
+            </div>
+
           </>
         )}
       </div>

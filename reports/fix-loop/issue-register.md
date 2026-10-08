@@ -254,16 +254,13 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 
 | ID | Item | Sev | Notes |
 |---|---|---|---|
-| R6 / ISS-070 (registry) | All 189 rows of `content/coverage/saa_registry.json` still say `implemented_unverified` | Medium | The content behind them is reviewed; the registry status field was never updated. Needs a plan: decide what "verified" means per row |
 | CR-0024 (distractor reuse) | Real reuse or over-use left after the audit was scoped: 2-2 (RDS, Aurora, Auto Scaling, read replica), 3-1 FSx (WARN), 3-2 Compute Optimizer, 3-3 RDS and Redshift, 3-4 NAT Gateway, 3-5 Glue | Low | Needs its own content plan (`docs/change-requests.md`) |
 | Recorded tells | 1-2 longest-is-key 40%; 3-1 shortest 60% (5 MC); 3-5 shortest 36%; 3-3 MR key sets 50% `a,b` | Low | Closed tasks; 3-1 and 3-5 left closed by user decision (2026-09-28) |
-| N4 | Start here lists a lesson's drills by raw question ID | Low | Still present (`StartHereTab.tsx` renders the id) |
-| N9 | Exam tab renders all ~430 drill cards above the question | Low | Scroll-to-question works; layout unchanged |
 | STUDENT-R6 notes | Lesson 1.1 has no in-lesson section links | Low | Non-blocking |
 | PY-R5-001–003, PY-R4-005/008/009, PY-R5-004/005 | Scanner bypasses needing deliberate obfuscation; documented KISS trade-offs | Low/Info | Python says close is fine; a formal won't-fix needs your approval |
 | Lab cosmetic | UL-21 comment dash encoding; UL-02 bucket-name echo quirk | Info | From AWS round 5 |
 | CR-0025 | GL-03 and GL-20 lab titles overclaim (no resource-policy step; no module or import steps) | Low | Needs its own small plan |
-| Regional NAT gateway (optional) | Lesson 4.4 does not mention regional NAT gateways | Low | Real AWS feature; skipped by both reviewers to keep the exam signal. A future CR if wanted |
+| Regional NAT gateway (optional) | **Closed 2026-10-07 (Phase 5): won't-do.** No content change | Info | Revisit only if the SAA-C03 exam guide is updated, or if exam questions include regional NAT gateways. Both reviewers advised skipping it to keep the "one NAT gateway per AZ" signal clear. **Known zonal simplification:** lesson 4.4 S01 says a NAT gateway "operates within a designated Availability Zone", which is true of zonal NAT gateways only (AWS now also offers a regional NAT gateway that spans AZs). The lesson and the 4.4 questions teach the zonal signal on purpose |
 
 ### Open-items master plan progress (`.cursor/plans/master_open_items_20261002.plan.md`)
 
@@ -271,3 +268,6 @@ The HANDOFF note of 2026-09-28 counted 53 rows under "Still open". That count re
 |---|---|---|---|
 | 1 (P2) | Audit scope: 9 SAA tasks FAILed, mostly on their own subject vocabulary | **Closed 2026-10-04** (`69487ff`). Subject terms held to 40%, an exam split, and a small-N WARN. 1-2, 2-1 and 4-1 PASS; 3-1 WARN; the real reuse is logged as CR-0024 | Teacher ruling + Teacher post-check; Lead Dev re-ran all 22 tasks (Terraform unchanged) |
 | 2 (P3) | O8 / CR-0023: the sidebar still showed the old GL-07 and GL-21 titles; GL-21 listed `tf.004.8a` (HCP) without HCP content | **Closed 2026-10-04.** The sidebar reads "EC2 and EBS" and "ElastiCache tradeoffs"; `tf.004.8a` is removed from gl-21; lesson tf-g8 `labIds` is now `ul-21` (the generator too). **tf.004.8a is partial on UL-21** (HCP sign-up, a remote-backend block and concepts; no apply, no AWS credentials). All 42 sidebar titles checked: none misleading. Follow-up: CR-0025 (the gl-03 and gl-20 lab titles overclaim) | Student + Teacher |
+| 3 (P1) | R6 / ISS-070: all 189 registry rows said `implemented_unverified` | **Closed 2026-10-07** (`d484bc4`). 119/189 verified on paper; 70 rows of 2.2 and 3.1-3.5 wait on CR-0024. `scripts/registry_verify.py` re-checks the rows | Teacher pre/post; CR-0022 done; follow-up CR-0026 |
+| 4 (P4) | N4 (raw drill IDs on Start here) and N9 (question below ~430 cards) | **Closed 2026-10-07.** Start here shows type plus a stem preview with the ID muted; the question sits above the grid; a Next drill button wraps and focuses the heading. 4 new e2e tests pass on a throwaway DB; the user's DB fingerprint is unchanged | Teacher post-check approve; follow-up CR-0027 |
+| 5 (P5) | Regional NAT gateway | **Closed 2026-10-07: won't-do.** No content change; revisit trigger recorded in the "Still open" table | Teacher pre-validation (option 1) |
